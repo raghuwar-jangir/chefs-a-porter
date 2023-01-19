@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Proxima+Nova');
+
+
+:Root {
+    --active-color: #C6A87D;
+    --basic-title: #FBFBFB;
+}
+
+
+
+.hamburger-title {
+    text-decoration: none;
+    font-size: 24px;
+    color: var(--basic-title);
+    font-family: 'proxima-nova', sans-serif;
+    padding: 18px 16px;
+    overflow-y: scroll;
+    width: 92%;
+    line-height: 29px;
+    font-weight: 300;
+}
+
+.active {
+    color: var(--active-color);
+    text-decoration: none;
+    font-size: 24px;
+    font-family: 'proxima-nova', sans-serif;
+    padding: 1.18rem 1rem;
+    /* overflow-y: scroll; */
+}
+
+.bm-menu {
+    background-color: #101418;
+}
+
+.burger-collapse {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.berger-menu-down {
+    display: flex !important;
+    align-items: center;
+}
+
+/* !browser view hamburger menu csss */
+
+/* .browser-hamburger-menu {
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 300;
+    text-decoration: none;
+    color: #080B0E;
+} */
