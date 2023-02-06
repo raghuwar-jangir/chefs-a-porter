@@ -159,6 +159,14 @@ const Navbar = () => {
                                     to='/contact'>
                                     Contact
                                 </NavLink>
+                                <NavLink className='browser-hamburger-menu'
+                                         to='/contact'>
+                                    Contact
+                                </NavLink>
+                                <NavLink className='browser-hamburger-menu'
+                                         to='/about-us'>
+                                    About Us
+                                </NavLink>
                             </Grid>
                             <Grid className='browser-search' item md={3}>
                                 {!search &&
