@@ -5,7 +5,7 @@ import chef from './../assets/images/chef1.png'
 import chef2 from './../assets/images/chef2.png'
 import Footer from "./Footer";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import { Link } from "react-router-dom";
+import { Link } from "gatsby";
 import { isMobile, MobileView } from "react-device-detect";
 import FoodCard from "./FoodCard";
 

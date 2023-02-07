@@ -3,7 +3,8 @@ import { Box, styled } from '@mui/system';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { slide as Menu } from 'react-burger-menu'
 import '../assets/styles/bergerMenu.css'
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import {Link} from 'gatsby';
 import { Collapse, Grid } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -143,30 +144,30 @@ const Navbar = () => {
                                 }
                             </Grid>
                             <Grid className='browser-menu' item md={5}>
-                                <NavLink className='browser-hamburger-menu'
+                                <Link className='browser-hamburger-menu'
                                     to='/privee'>
                                     Privee
-                                </NavLink>
-                                <NavLink className='browser-hamburger-menu'
+                                </Link>
+                                <Link className='browser-hamburger-menu'
                                     to='/super-club'>
                                     Supper Clubs
-                                </NavLink>
-                                <NavLink className='browser-hamburger-menu'
+                                </Link>
+                                <Link className='browser-hamburger-menu'
                                     to='/our-chef'>
                                     Our Chefs
-                                </NavLink>
-                                <NavLink className='browser-hamburger-menu'
+                                </Link>
+                                <Link className='browser-hamburger-menu'
                                     to='/contact'>
                                     Contact
-                                </NavLink>
-                                <NavLink className='browser-hamburger-menu'
+                                </Link>
+                                <Link className='browser-hamburger-menu'
                                          to='/contact'>
                                     Contact
-                                </NavLink>
-                                <NavLink className='browser-hamburger-menu'
+                                </Link>
+                                <Link className='browser-hamburger-menu'
                                          to='/about-us'>
                                     About Us
-                                </NavLink>
+                                </Link>
                             </Grid>
                             <Grid className='browser-search' item md={3}>
                                 {!search &&
@@ -204,28 +205,28 @@ const Navbar = () => {
                     onOpen={handleIsOpen}
                     onClose={handleIsOpen}
                     styles={styles} left width={'100%'}>
-                    <NavLink onClick={closeSideBar}
-                        className='hamburger-title' to='/home'> Home </NavLink>
-                    <NavLink onClick={closeSideBar}
-                        className="hamburger-title" to='/super-club'> Supper Clubs </NavLink>
-                    <NavLink onClick={closeSideBar}
-                        className="hamburger-title" to='/privee'> Privee </NavLink>
-                    <NavLink onClick={closeSideBar}
-                        className="hamburger-title" to='/our-chef'> Our  Chefs </NavLink>
-                    <NavLink onClick={closeSideBar}
-                        className="hamburger-title" to='/patron'> Become a Patron </NavLink>
-                    <NavLink onClick={closeSideBar}
-                        className="hamburger-title" to='/cards'> Gift Cards </NavLink>
-                    {/* <NavLink onClick={closeSideBar}
-                        className="hamburger-title" to='/join-us'> Join Us </NavLink> */}
-                    <NavLink onClick={closeSideBar}
-                        className="hamburger-title" to='/about-us'> About us </NavLink>
-                    <NavLink onClick={closeSideBar}
-                        className="hamburger-title" to='/contact'> Contact </NavLink>
+                    <Link onClick={closeSideBar}
+                        className='hamburger-title' to='/home'> Home </Link>
+                    <Link onClick={closeSideBar}
+                        className="hamburger-title" to='/super-club'> Supper Clubs </Link>
+                    <Link onClick={closeSideBar}
+                        className="hamburger-title" to='/privee'> Privee </Link>
+                    <Link onClick={closeSideBar}
+                        className="hamburger-title" to='/our-chef'> Our  Chefs </Link>
+                    <Link onClick={closeSideBar}
+                        className="hamburger-title" to='/patron'> Become a Patron </Link>
+                    <Link onClick={closeSideBar}
+                        className="hamburger-title" to='/cards'> Gift Cards </Link>
+                    {/* <Link onClick={closeSideBar}
+                        className="hamburger-title" to='/join-us'> Join Us </Link> */}
+                    <Link onClick={closeSideBar}
+                        className="hamburger-title" to='/about-us'> About us </Link>
+                    <Link onClick={closeSideBar}
+                        className="hamburger-title" to='/contact'> Contact </Link>
                     <div className='berger-menu-down'>
-                        <NavLink
+                        <Link
                             onClick={() => setExpanded(!expanded)}
-                            className="hamburger-title" > Join Us </NavLink>
+                            className="hamburger-title" > Join Us </Link>
                         <Box>
                             {expanded ? <KeyboardArrowUpIcon /> : < KeyboardArrowDownIcon />}
                         </Box>

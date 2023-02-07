@@ -8,9 +8,9 @@ import facebook from './../assets/images/facebook.png'
 import img from './../assets/images/1212.png'
 import twitter from './../assets/images/twitter.png'
 import instagram from './../assets/images/instagram.png'
-import { Link } from "react-router-dom";
+import { Link } from "gatsby";
 
-const ChefProfile = () => {
+const ChefProfile = (props) => {
     const BoxWrapper = styled(Box)(() => ({
         padding: '16px',
         ".main-box": {

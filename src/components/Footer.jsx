@@ -4,13 +4,13 @@ import {
 } from '@mui/material';
 import footerLogo from './../assets/images/logo-gold.png';
 import footerArrow from './../assets/images/footer-arrow.png';
-import {BrowserView, MobileView, FooterMobile} from 'react-device-detect';
+import {BrowserView} from 'react-device-detect';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Button from "@mui/material/Button";
-import Navbar from "./Navbar";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
 
 const Footer = () => {
@@ -108,7 +108,6 @@ const Footer = () => {
         '.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root': {
             borderRadius: '0px',
             fontSize: '14px'
-
         },
         // '@media (max-width:1280px)': {
         //     '.sub-div': {
@@ -123,18 +122,6 @@ const Footer = () => {
         }
 
     }));
-    const FooterMobile = styled(Box)({
-        '.footer-text': {
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            backgroundColor: "#222222",
-            padding: '18px',
-
-            '.footer-item': {
-                color: '#DCD7CB',
-            }
-        }
-    })
     return (
         <React.Fragment>
             <BrowserView>

@@ -8,7 +8,7 @@ import facebook from './../assets/images/facebook.png'
 // import teamImg from './../assets/images/Rectangle 392.png'
 import twitter from './../assets/images/twitter.png'
 import instagram from './../assets/images/instagram.png'
-import { Link } from "react-router-dom";
+import { Link } from "gatsby";
 
 const FooterOurChef = () => {
     const BoxWrapper = styled(Box)(() => ({

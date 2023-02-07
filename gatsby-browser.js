@@ -2,8 +2,7 @@ import React from 'react'
 import config from 'react-reveal/globals'
 import smoothscroll from 'smoothscroll-polyfill'
 
-// import "normalize.css"
-// import './src/styles/base.scss'
+import "normalize.css"
 
 export const onClientEntry = () => {
     config({ ssrFadeout: true })

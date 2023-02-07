@@ -14,6 +14,7 @@ import RatingCarousel from './RatingCarousel';
 import Questions from './Questions';
 import Footer from './Footer';
 import MainFoodDetailng from './MainFoodDetailng';
+import NeedHelp from "./NeedHelp";
 
 
 const MainBoxContent = styled(Box)({
@@ -223,13 +224,13 @@ const HomePage = () => {
                         </Box>
                     </Grid>
                 </Grid>
-
                 <PriveeMain title='Continue Browsing' subTitle='Chef s you ve checked out previously' />
                 {/* <FoodDetailing /> */}
                 <MainFoodDetailng />
                 <PriveeMain title='Chefs available for private dining this month' isButtonShow={true} />
                 <RatingCarousel />
                 <Questions />
+                <NeedHelp/>
                 <Footer />
 
                 {/* <PrivateProfile /> */}

@@ -1,6 +1,6 @@
 import { Box, Stack, styled, Typography } from '@mui/material';
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from 'gatsby';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import diningPicture from './../assets/images/diningPicture.png'
 import DiningProgress from './DiningProgress';

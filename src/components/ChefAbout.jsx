@@ -3,7 +3,8 @@ import { Box, styled } from '@mui/system';
 import { BrowserView, isMobile, MobileView } from 'react-device-detect';
 import { slide as Menu } from 'react-burger-menu'
 import '../assets/styles/bergerMenu.css'
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { Link } from 'gatsby';
 import { Button, Collapse, Grid, Typography } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -25,7 +26,7 @@ import ChefProfile from './ChefProfile';
 
 const ChefAbout = () => {
 
-    const location = useLocation();
+    // const location = useLocation();
 
 
     const BoxWrapper = styled(Box)({
@@ -201,22 +202,22 @@ const ChefAbout = () => {
                                     <img src={chefsPorter} alt='chefs-header-logo' />
                                 </Grid>
                                 <Grid className='browser-menu' item md={3}>
-                                    <NavLink className='browser-hamburger-menu'
+                                    <Link className='browser-hamburger-menu'
                                         to='/book'>
                                         Book an Experience
-                                    </NavLink>
-                                    <NavLink className='browser-hamburger-menu'
+                                    </Link>
+                                    <Link className='browser-hamburger-menu'
                                         to='/super-club'>
                                         For Chefs
-                                    </NavLink>
-                                    <NavLink className='browser-hamburger-menu'
+                                    </Link>
+                                    <Link className='browser-hamburger-menu'
                                         to='/our-chefs'>
                                         Our Chefs
-                                    </NavLink>
-                                    <NavLink className='browser-hamburger-menu'
+                                    </Link>
+                                    <Link className='browser-hamburger-menu'
                                         to='/contact'>
                                         About Us
-                                    </NavLink>
+                                    </Link>
                                 </Grid>
                             </Grid>
                         </AppBar>

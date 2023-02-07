@@ -1,31 +1,31 @@
 import React from "react";
 import { Avatar, Box, Button, Grid, ImageList, ImageListItem, Stack, styled, Typography } from "@mui/material";
-import HotelImg1 from "./../assets/images/HotelImg1.png";
-import HotelImg2 from "./../assets/images/HotelImg2.png";
-import HotelImg3 from "./../assets/images/HotelImg3.png";
-import HotelImg4 from "./../assets/images/HotelImg4.png";
-import HotelImg5 from "./../assets/images/HotelImg5.png";
-import HotelImg6 from "./../assets/images/HotelImg6.png";
-import HotelImg7 from "./../assets/images/HotelImg7.png";
-import HotelImg8 from "./../assets/images/HotelImg8.png";
-import hotelImgView from "./../assets/images/hotelImgView.png"
-import hotelImgView2 from "./../assets/images/hotelImgView2.png"
-import logo1 from "./../assets/images/logo1.png"
-import logo2 from "./../assets/images/logo2.png"
-import logo3 from "./../assets/images/logo3.png"
-import logo4 from "./../assets/images/logo4.png"
-import IntroChefImg1 from "./../assets/images/IntroChefImg1.png"
+import HotelImg1 from "../../assets/images/HotelImg1.png";
+import HotelImg2 from "../../assets/images/HotelImg2.png";
+import HotelImg3 from "../../assets/images/HotelImg3.png";
+import HotelImg4 from "../../assets/images/HotelImg4.png";
+import HotelImg5 from "../../assets/images/HotelImg5.png";
+import HotelImg6 from "../../assets/images/HotelImg6.png";
+import HotelImg7 from "../../assets/images/HotelImg7.png";
+import HotelImg8 from "../../assets/images/HotelImg8.png";
+import hotelImgView from "../../assets/images/hotelImgView.png"
+import hotelImgView2 from "../../assets/images/hotelImgView2.png"
+import logo1 from "../../assets/images/logo1.png"
+import logo2 from "../../assets/images/logo2.png"
+import logo3 from "../../assets/images/logo3.png"
+import logo4 from "../../assets/images/logo4.png"
+import IntroChefImg1 from "../../assets/images/IntroChefImg1.png"
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import CommanTextCard from "./CommanTextCard";
-import IntroCardComponent from "./IntroCardComponent";
-import CommanCarousel from "./CommanCarousel";
-import sustainable from "./../assets/images/sustainable-energy.png"
-import weather from "./../assets/images/weather-app.png"
-import recycling from "./../assets/images/recycling-bin.png"
-import Footer from "./Footer";
+import CommanTextCard from "../../components/CommanTextCard";
+import IntroCardComponent from "../../components/IntroCardComponent";
+import CommanCarousel from "../../components/CommanCarousel"
+import sustainable from "../../assets/images/sustainable-energy.png"
+import weather from "../../assets/images/weather-app.png"
+import recycling from "../../assets/images/recycling-bin.png"
+import Footer from "../../components/Footer";
 import { Link } from "gatsby";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import LogoSwiper from "./LogoSwiper";
+import LogoSwiper from "../../components/LogoSwiper";
 import { isMobile } from "react-device-detect";
 
 
@@ -277,8 +277,8 @@ const AboutCardComponet = (props) => {
                         <Box className="sub-box">
                             <CommanTextCard
                                 mainTitle="Who are we"
-                                details="We are home to the hottest food tribe in the world! 
-                    We offer our diners a unique chance to experience curated, 
+                                details="We are home to the hottest food tribe in the world!
+                    We offer our diners a unique chance to experience curated,
                     conscious-dining in different formats."
                                 colors='#080B0E'
                             />
@@ -300,10 +300,10 @@ const AboutCardComponet = (props) => {
                         <CommanTextCard
                             mainTitle="Conscious Dining"
                             colors='#080B0E'
-                            details="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Donec efficitur justo eget mollis tincidunt. Maecenas ullamcorper 
-                        volutpat diam, vel vulputate orci dictum nec.  In odio metus, 
-                        rhoncus quis sapien eget, vehicula ornare erat. Mauris aliquam 
+                            details="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Donec efficitur justo eget mollis tincidunt. Maecenas ullamcorper
+                        volutpat diam, vel vulputate orci dictum nec.  In odio metus,
+                        rhoncus quis sapien eget, vehicula ornare erat. Mauris aliquam
                         vitae sem in rhoncus. Vivamus nec convallis ligula."
                         />
                     </Box>
@@ -458,8 +458,8 @@ const AboutCardComponet = (props) => {
                 </Box>
                 <Box className="lastBox">
                     <Box>
-                        <Typography className="some-text">Don’t see an open role for you</Typography>
-                        <Typography className="some-details">We’re always on the look out for top talent to join us.</Typography>
+                        <Typography className="some-text">Don't see an open role for you</Typography>
+                        <Typography className="some-details">We're always on the look out for top talent to join us.</Typography>
                     </Box>
                     <Button className="btn-get-in-touch">
                         Get in touch
@@ -468,8 +468,8 @@ const AboutCardComponet = (props) => {
                 <Footer />
                 <Box className="footer-end">
                     <Stack className='footer-text'
-                        divider={<FiberManualRecordIcon sx={{ fontSize: '6px', color: '#C6A87D' }} />}
-                        direction="row" spacing={2}>
+                           divider={<FiberManualRecordIcon sx={{ fontSize: '6px', color: '#C6A87D' }} />}
+                           direction="row" spacing={2}>
                         <Link className='footer-item' to='/'> FAQs </Link>
                         <Link className='footer-item' to='/'> Privacy Policy </Link>
                         <Link className='footer-item' to='/'> T&C </Link>
@@ -481,4 +481,4 @@ const AboutCardComponet = (props) => {
         </React.Fragment >
     )
 }
-export default AboutCardComponet 
+export default AboutCardComponet
