@@ -18,6 +18,7 @@ import NeedHelp from "../components/NeedHelp";
 import Navbar from "./navbar";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import {Link} from "gatsby";
+import LightThemeIcon from "../assets/images/lightThemeIcon.png";
 
 
 
@@ -119,6 +120,9 @@ const BoxWrapper = styled(Box)({
     }, '.footer-item': {
         color: '#DCD7CB',
     },
+    '.MobileLightThemeIcon':{
+        paddingRight:'40px'
+    },
 
     // !media query for mobile device demo component(Privee and supperClub)
 
@@ -189,7 +193,7 @@ const HomePage = () => {
 
                 <MobileView>
                     <MainBoxContent>
-                        <img src={sampleText} alt="title-text" />
+                        <img src={LightThemeIcon} alt="title-text" className='MobileLightThemeIcon'/>
                     </MainBoxContent>
                 </MobileView>
                 {/* //! Browser view for main-home screen */}
