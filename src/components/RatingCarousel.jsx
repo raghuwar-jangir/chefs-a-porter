@@ -7,26 +7,27 @@ import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { styled } from '@mui/system';
 import { Rating } from '@mui/material';
+import {brown} from "@mui/material/colors";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const images = [
     {
-        mainTitle: '"They are the only ones that do Private Dining Well"',
+        mainTitle: '"Mako and his eccentric Personality, lit up the room and our taste buds!"',
         details: "I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!",
         ceoName: "Arvind Mohan, CEO of Alpha",
     },
     {
-        mainTitle: '“They are the only ones that do Private Dining Well”',
+        mainTitle: '"Mako and his eccentric Personality, lit up the room and our taste buds!"',
         details: "I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!",
         ceoName: "Arvind Mohan, CEO of Alpha",
     },
     {
-        mainTitle: '“They are the only ones that do Private Dining Well”',
+        mainTitle: '"Mako and his eccentric Personality, lit up the room and our taste buds!"',
         details: "I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!",
         ceoName: "Arvind Mohan, CEO of Alpha",
     },
     {
-        mainTitle: '“They are the only ones that do Private Dining Well”',
+        mainTitle: '"Mako and his eccentric Personality, lit up the room and our taste buds!"',
         details: "I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!",
         ceoName: "Arvind Mohan, CEO of Alpha",
     },
@@ -45,30 +46,46 @@ const RatingCarousel = ({ backgroundColor }) => {
         background: `${backgroundColor}`,
         color: '#222222',
         ".mainTitle": {
-            fontSize: "24px",
-            textAlign: "center"
+            fontSize: '40px ',
+            lineHeight:'60px',
+            textAlign: 'center',
+            fontFamily: 'Bon Vivant',
+            fontStyle: 'normal',
         },
         ".details": {
-            textAlign: "center",
-            fontSize: "14px",
-            fontWeight: 400,
+            textAlign: 'center',
+            fontSize: '24px',
+            lineHeight:'29px',
+            fontFamily: 'Proxima Nova !important',
+            padding: '0px 250px',
         },
         ".star": {
+            height:'40px',
             textAlign: "center",
             padding: '22px 0px',
             color: '#000',
         },
         ".ceoName": {
             textAlign: "center",
-            fontSize: "14px",
+            fontSize: "20px",
             fontWeight: 600,
-            padding: '30px 0px 24px 0px '
+            padding: '30px 0px 24px 0px ',
+            fontFamily: 'Proxima Nova',
+            textTransform:'uppercase'
         },
         '.rating-star': {
             color: '#222222',
             borderColor: '#222222'
-        }
-
+        },
+        '.css-26w9jf-MuiMobileStepper-dot':{
+            backgroundColor:'black !important',
+            width: '14px',
+            height: '14px',
+            marginTop:'-3px',
+        },
+        '.css-dqr9h-MuiRating-label':{
+            fontSize:'40px'
+        },
     }))
 
 

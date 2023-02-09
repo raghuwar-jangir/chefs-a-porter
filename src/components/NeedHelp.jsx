@@ -20,6 +20,7 @@ const NeedHelp = ({ isColor }) => {
             textTransform: "capitalize",
             fontFamily: 'Proxima Nova',
             height: "55px",
+            marginTop: "0px",
         },
         ".btn:hover": {
             color: "#C6A87D",
@@ -53,7 +54,8 @@ const NeedHelp = ({ isColor }) => {
             letterSpacing: "0.06em",
             color: '#080B0E',
             // color: `${ isColor? '#FBFBFB' : '#080B0E' }`,
-            paddingBottom: "8px"
+            paddingBottom: "8px",
+            textAlign:'left'
         },
         ".details": {
             fontWeight: 300,
@@ -61,7 +63,8 @@ const NeedHelp = ({ isColor }) => {
             fontStyle: 'normal',
             fontSize: "16px",
             lineHeight: "24px",
-            color: '#080B0E'
+            color: '#080B0E',
+            textAlign:'left'
             // color: `${ isColor? '#FBFBFB' : '#080B0E' }`,
             // paddingBottom: "20px"
         },

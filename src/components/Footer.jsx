@@ -38,6 +38,7 @@ const Footer = () => {
             padding: '10px 0px',
             fontFamily: 'Proxima Nova',
             fontStyle: 'normal',
+            textAlign:'left'
         },
         '.sub-div': {
             display: 'flex',
@@ -88,8 +89,12 @@ const Footer = () => {
             lineHeight: "25px",
             borderRadius: "0px",
             color: "#080B0E",
-            height: "auto",
+            height: "36px",
             borderColor: '#C6A87D',
+            margin:'0px'
+        },
+        '.css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input':{
+            padding: '8px 14px !important'
         },
         ".btn:hover": {color: "#080B0E", background: "#C6A87D",},
         '.listItem': {
@@ -100,7 +105,8 @@ const Footer = () => {
             cursor: 'pointer',
             fontStyle: 'normal',
             fontFamily: 'Proxima Nova',
-            fontSize: '14px'
+            fontSize: '14px',
+            textAlign:'left'
         },
         '.listItem-subheading:hover': {
             color: "#C6A87D"
@@ -207,19 +213,19 @@ const Footer = () => {
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <a className="listItem-subheading">as Chef</a>
+                                        <a className="listItem-subheading">As Chef</a>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <a className="listItem-subheading">as Sponsor Partner</a>
+                                        <a className="listItem-subheading">As Sponsor Partner</a>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <a className="listItem-subheading">as Vendor</a>
+                                        <a className="listItem-subheading">As Vendor</a>
                                     </List>
                                 </Box>
                             </Grid>
@@ -231,9 +237,19 @@ const Footer = () => {
                                                    placeholder='Your email address' variant='outlined'/>
                                         <Button className='btn'>Submit</Button>
                                     </Box>
-                                    <Typography className='details listItem-subheading'>Contact Us</Typography>
-                                    <a href="mailto:reservations@chefsaporter.com."
-                                       className='listItem-subheading'>reservations@chefsaporter.com.</a>
+                                    <List>
+                                        <ListItemIcon className="listItem">
+                                            <img src={footerArrow}/>
+                                        </ListItemIcon>
+                                        <a className='listItem-subheading'>Contact Us</a>
+                                    </List>
+                                    <List>
+                                        <ListItemIcon className="listItem">
+                                            <img src={footerArrow}/>
+                                        </ListItemIcon>
+                                        <a href="mailto:reservations@chefsaporter.com."
+                                           className='listItem-subheading'>reservations@chefsaporter.com.</a>
+                                    </List>
                                 </Box>
                             </Grid>
                         </Grid>

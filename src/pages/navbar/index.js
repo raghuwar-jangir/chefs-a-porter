@@ -1,15 +1,13 @@
 import React, {useState} from 'react'
 import {Box, styled} from '@mui/system';
-import {BrowserView, MobileView, isMobile, isBrowser} from 'react-device-detect';
+import {BrowserView, MobileView} from 'react-device-detect';
 import {slide as Menu} from 'react-burger-menu'
 import '../../assets/styles/bergerMenu.css'
 import '../../assets/styles/searchBar.css'
 import {Outlet} from 'react-router-dom';
-import {Collapse, Grid, TextField, ListItem,ListItemText,List,ListItemButton} from '@mui/material';
+import {Collapse, Grid, TextField, ListItemText, List, ListItemButton, Typography, ListItem} from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import AppBar from '@mui/material/AppBar';
 import vector from '../../assets/images/vector.svg'
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
@@ -18,9 +16,6 @@ import {Link} from "gatsby";
 import CloseIcon from '@mui/icons-material/Close';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
 
 
 const Navbar = () => {
@@ -49,6 +44,15 @@ const Navbar = () => {
 
     const BoxWrapper = styled(Box)({
             flexGrow: 1,
+            position: 'fixed',
+            width: '100%',
+            height: '80px',
+            top: '0px',
+            left: '0px',
+            right: '0px',
+            zIndex: '999',
+            display: 'block',
+
             '.home-stack': {
                 display: 'flex',
                 alignItems: 'center',
@@ -122,14 +126,14 @@ const Navbar = () => {
             }
         },
     )
-    const JoinCollapse = styled(Collapse)({
-        width: '100%',
-        fontSize: '20px',
-        color: '#FBFBFB',
-        padding: '14px 16px',
-        fontWeight: '250',
-        lineHeight: '24px',
-    })
+    // const JoinCollapse = styled(Collapse)({
+    //     width: '100%',
+    //     fontSize: '20px',
+    //     color: '#FBFBFB',
+    //     padding: '14px 16px',
+    //     fontWeight: '250',
+    //     lineHeight: '24px',
+    // })
 
     let styles = {
         bmBurgerButton: {
@@ -138,7 +142,7 @@ const Navbar = () => {
             height: '1.4rem',
             right: '15px',
             top: '35px',
-            fontStyle:'proxima Nova'
+            fontStyle: 'proxima Nova'
         },
 
         bmBurgerBars: {
@@ -206,7 +210,7 @@ const Navbar = () => {
                                     Supper Clubs
                                 </Link>
                                 <Link className='browser-hamburger-menu'
-                                      to='/our-chef'>
+                                      to='/our-chefs'>
                                     Our Chefs
                                 </Link>
                                 <Link className='browser-hamburger-menu'
@@ -253,9 +257,6 @@ const Navbar = () => {
                             </Search> */}
                     </AppBar>
                 </BoxWrapper>
-
-                {/* <BoxWrapper> */}
-                {/* </BoxWrapper> */}
             </BrowserView>
 
             {/* //! mobile view for the hamburgerMenu. */}
@@ -280,10 +281,34 @@ const Navbar = () => {
                           className="hamburger-title" to='/patron'> Become a Patron </Link>
                     <Link onClick={closeSideBar}
                           className="hamburger-title" to='/cards'> Gift Cards </Link>
+                    <List
+                        sx={{width: '100%', maxWidth: '100%'}}
+                        component="nav"
+                    >
+                        <ListItemButton onClick={handleClick}>
+                            <ListItemText disableTypography primary="Join Us" className='hamburger-title'
+                                          sx={{fontSize: '24px', padding: '0px !important'}}/>
+                            {expanded ? <ExpandLess/> : <ExpandMore/>}
+                        </ListItemButton>
+                        <Collapse in={expanded} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                <ListItemButton>
+                                    <Link to={'/our-chef-page'} className="hamburger-subtitle">Chef</Link>
+                                </ListItemButton>
+                                <ListItemButton>
+                                    <Link to={'/'} className="hamburger-subtitle">Sponsor Partner</Link>
+                                </ListItemButton>
+                                <ListItemButton>
+                                    <Link to={'/'} className="hamburger-subtitle">Vendor<br/>(decor, venue,
+                                        crockery, cultery, produce, etc)</Link>
+                                </ListItemButton>
+                            </List>
+                        </Collapse>
+                    </List>
                     {/* <Link onClick={closeSideBar}
                         className="hamburger-title" to='/join-us'> Join Us </Link> */}
                     <Link onClick={closeSideBar}
-                          className="hamburger-title" to='/about-us'> About us </Link>
+                          className="hamburger-title" to='/about/'> About us </Link>
                     <Link onClick={closeSideBar}
                           className="hamburger-title" to='/contact'> Contact </Link>
                     {/*<div className='berger-menu-down'>*/}
@@ -305,29 +330,6 @@ const Navbar = () => {
                     {/*        Vendor*/}
                     {/*    </JoinCollapse>*/}
                     {/*</div>*/}
-                    <List
-                        sx={{ width: '100%', maxWidth: '100%'}}
-                        component="nav"
-                    >
-                        <ListItemButton onClick={handleClick}>
-                            <ListItemText primary="Join Us" />
-                            {expanded ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-                        <Collapse in={expanded} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                                <ListItemButton >
-                                    <Link to={'/'} className="hamburger-title">Chef</Link>
-                                </ListItemButton>
-                                <ListItemButton >
-                                    <Link to={'/'} className="hamburger-title">Sponsor Partner</Link>
-                                </ListItemButton>
-                                <ListItemButton >
-                                    <Link to={'/'} className="hamburger-title">Vendor<br/>(decor, venue,
-                                        crockery, cultery, produce, etc)</Link>
-                                </ListItemButton>
-                            </List>
-                        </Collapse>
-                    </List>
                 </Menu>
             </MobileView>
             <Outlet/>

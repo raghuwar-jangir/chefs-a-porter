@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Box, Button, Grid, ImageList, ImageListItem, Stack, styled, Typography } from "@mui/material";
+import {Avatar, Box, Button, Grid, ImageList, ImageListItem, Stack, styled, Typography} from "@mui/material";
 import HotelImg1 from "../../assets/images/HotelImg1.png";
 import HotelImg2 from "../../assets/images/HotelImg2.png";
 import HotelImg3 from "../../assets/images/HotelImg3.png";
@@ -10,25 +10,23 @@ import HotelImg7 from "../../assets/images/HotelImg7.png";
 import HotelImg8 from "../../assets/images/HotelImg8.png";
 import hotelImgView from "../../assets/images/hotelImgView.png"
 import hotelImgView2 from "../../assets/images/hotelImgView2.png"
+import teamImage from "../../assets/images/team.png"
 import logo1 from "../../assets/images/logo1.png"
 import logo2 from "../../assets/images/logo2.png"
 import logo3 from "../../assets/images/logo3.png"
 import logo4 from "../../assets/images/logo4.png"
 import IntroChefImg1 from "../../assets/images/IntroChefImg1.png"
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import CommanTextCard from "../../components/CommanTextCard";
 import IntroCardComponent from "../../components/IntroCardComponent";
-import CommanCarousel from "../../components/CommanCarousel"
 import sustainable from "../../assets/images/sustainable-energy.png"
 import weather from "../../assets/images/weather-app.png"
 import recycling from "../../assets/images/recycling-bin.png"
 import Footer from "../../components/Footer";
-import { Link } from "gatsby";
+import {Link} from "gatsby";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import LogoSwiper from "../../components/LogoSwiper";
-import { isMobile } from "react-device-detect";
-
-
+import {isMobile} from "react-device-detect";
+import Navbar from "../navbar";
+import NeedHelp from "../../components/NeedHelp";
 
 
 const itemData = [
@@ -79,42 +77,50 @@ const IntroCardDetails = [
 const AboutCardComponet = (props) => {
     const BoxWrapper = styled(Box)(() => ({
         ".main-box": {
-            padding: "40px 120px",
+            padding: '130px 160px 40px'
         },
         ".header-club": {
             padding: '20px',
             backgroundColor: '#DCD7CB',
         },
         ".main-heading": {
-            fontWeight: 700,
-            fontSize: "30px",
-            lineHeight: "25px",
+            fontWeight: 'normal !important',
+            fontSize: "24px !important",
+            lineHeight: "30px",
             textAlign: 'center', color: '#080B0E',
-            fontFamily: 'Bon Vivant'
+            fontFamily: 'Bon Vivant !important',
+        },
+        ".about-heading": {
+            fontWeight: 'normal !important',
+            fontSize: "32px !important",
+            lineHeight: "30px",
+            textAlign: 'center', color: '#080B0E',
+            fontFamily: 'Bon Vivant !important',
         },
         ".details": {
             fontWeight: 400,
-            fontSize: "14px",
+            fontSize: "24px !important",
             lineHeight: "24px",
             textAlign: 'center',
+            fontFamily: 'Proxima Nova',
         },
         ".grid-box": {
             border: '1px solid'
         },
         ".sub-box": {
-            padding: "40px 16px 16px 16px"
+            padding: "40px 16px 16px 16px",
         },
         ".sub-box-2": {
-            padding: "20px 20px 40px",
+            padding: '40px 160px',
             background: '#101418'
         },
         ".sub-box-3": {
-            padding: "20px 20px 40px",
+            padding: '40px 160px',
             background: '#DCD7CB'
         },
         ".sub-box-4": {
-            padding: "40px 16px",
-            background: '#FBFBFB'
+            padding: '80px 160px 40px ',
+            background: '#101418'
         },
         ".custom-log": {
             height: "120px",
@@ -124,11 +130,6 @@ const AboutCardComponet = (props) => {
             alignItems: "center",
             borderRadius: "60px",
             background: '#fff'
-        },
-        ".hotelview-img": {
-            width: "100%",
-            height: '500px',
-            paddingBottom: "16px"
         },
         ".btn": {
             background: "#C6A87D",
@@ -140,48 +141,7 @@ const AboutCardComponet = (props) => {
             height: "57px",
             marginTop: "40px", paddingTop: "16px 10px"
         }, ".btn:hover": { color: '#fff' },
-        ".main-div-open-positions": {
-            fontWeight: 700,
-            fontSize: "24px",
-            lineHeight: "30px",
-            textAlign: 'center',
-            padding: '40px 16px'
-        },
-        ".sub-div-open-positions": {
-            background: "#FBFBFB",
-            boxShadow: "0px 8px 10px rgba(0, 0, 0, 0.06)",
-            padding: '16px 10px 16px 10px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: '8px'
-        },
-        ".positions": {
-            fontWeight: 600,
-            fontSize: "20px",
-            lineHeight: "24px",
-            paddingBottom: '16px'
-        },
-        ".main-heading-open-positions": {
-            fontWeight: 700,
-            fontSize: "16px",
-            lineHeight: "19px",
-            color: "#242F35",
-        },
-        ".details-open-positions": {
-            fontWeight: 300,
-            fontSize: "16px",
-            lineHeight: "19px",
-            color: "#242F35",
-            paddingTop: "8px",
-        },
-        ".sub-heading-open-positions": {
-            fontWeight: 600,
-            fontSize: "16px",
-            lineHeight: "19px",
-            color: "#101418",
-            paddingTop: '20px'
-        },
+
         ".some-text": {
             fontWeight: 600,
             fontSize: "20px",
@@ -200,9 +160,6 @@ const AboutCardComponet = (props) => {
             display: 'flex',
             justifyContent: 'space-between'
         },
-        ".open-positions-div": {
-            padding: "0px"
-        },
         ".btn-get-in-touch": {
             background: "#080B0E", color: "#FBFBFB",
             fontSize: "16px", width: '25%',
@@ -215,12 +172,12 @@ const AboutCardComponet = (props) => {
             justifyContent: 'center', padding: '25px'
         },
         '.conscious-option': {
-            border: '1px solid #080B0E', padding: '37px', borderRadius: '50%'
+            border: '1px solid #080B0E', padding: '37px', borderRadius: '100%'
         },
         '.parent-stack': {
             padding: '40px 0px'
-        }, '.sub-title': { paddingTop: '10px' },
-        '.options-icon': { width: '50px', height: '50px' },
+        }, '.sub-title': {paddingTop: '10px'},
+        '.options-icon': {width: '50px', height: '50px'},
         '.parent-options': {
             textAlign: 'center',
         },
@@ -239,9 +196,6 @@ const AboutCardComponet = (props) => {
             ".hotelview-img": {
                 height: '30%',
                 paddingBottom: "16px"
-            },
-            ".open-positions-div": {
-                padding: "0px 16px 40px 16px"
             },
             ".btn": {
                 width: '100%'
@@ -263,91 +217,89 @@ const AboutCardComponet = (props) => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Box className="main-box">
-                    <Box>
-                        {isMobile ? (
-                            <Box className='header-club'>
-                                <Typography className="main-heading">About Us</Typography>
+                <Navbar/>
+                <Box>
+                    <Box className="main-box">
+                        <Box>
+                            {isMobile ? (
+                                <Box className='header-club'>
+                                    <Typography className="about-heading">About Us</Typography>
+                                </Box>
+                            ) : (
+                                <Typography className="about-heading">About Us</Typography>
+                            )}
+
+
+                            <Box className="sub-box">
+                                <CommanTextCard
+                                    mainTitle="Who are we"
+                                    details="We are home to the hottest food tribe in the world! We offer our diners a unique chance to experience curated, conscious-dining in different formats.."
+                                    colors='#080B0E'
+                                />
                             </Box>
-                        ) : (
-                            <Typography className="main-heading">About Us</Typography>
-                        )}
-
-
+                            <ImageList variant="masonry" cols={3} gap={8}>
+                                {itemData.map((item, index) => (
+                                    <ImageListItem key={item}>
+                                        <img
+                                            src={item}
+                                            alt="img"
+                                            loading="lazy"
+                                            width={"394px"}
+                                        />
+                                    </ImageListItem>
+                                ))}
+                            </ImageList>
+                        </Box>
                         <Box className="sub-box">
                             <CommanTextCard
-                                mainTitle="Who are we"
-                                details="We are home to the hottest food tribe in the world!
-                    We offer our diners a unique chance to experience curated,
-                    conscious-dining in different formats."
+                                mainTitle="Conscious Dining"
                                 colors='#080B0E'
+                                details="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Donec efficitur justo eget mollis tincidunt. Maecenas ullamcorper"
                             />
                         </Box>
-                        <ImageList variant="masonry" cols={3} gap={8}>
-                            {itemData.map((item, index) => (
-                                <ImageListItem key={item}>
-                                    <img
-                                        src={item}
-                                        alt="img"
-                                        loading="lazy"
-                                        width={"394px"}
-                                    />
-                                </ImageListItem>
-                            ))}
-                        </ImageList>
-                    </Box>
-                    <Box className="sub-box">
-                        <CommanTextCard
-                            mainTitle="Conscious Dining"
-                            colors='#080B0E'
-                            details="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Donec efficitur justo eget mollis tincidunt. Maecenas ullamcorper
-                        volutpat diam, vel vulputate orci dictum nec.  In odio metus,
-                        rhoncus quis sapien eget, vehicula ornare erat. Mauris aliquam
-                        vitae sem in rhoncus. Vivamus nec convallis ligula."
-                        />
-                    </Box>
-                    <Box className="parent-stack">
-                        <Stack
-                            className="conscious-stack"
-                            direction={{ xs: 'row' }}
-                            spacing={{ xs: 2, md: 15 }}
-                        >
-                            <Box className="parent-options">
-                                <Box className="conscious-option">
-                                    <Avatar
-                                        className="options-icon"
-                                        variant="square"
-                                        alt="sustainable"
-                                        src={sustainable}
-                                    />
+                        <Box className="parent-stack">
+                            <Stack
+                                className="conscious-stack"
+                                direction={{xs: 'row'}}
+                                spacing={{xs: 2, md: 15}}
+                            >
+                                <Box className="parent-options">
+                                    <Box className="conscious-option">
+                                        <Avatar
+                                            className="options-icon"
+                                            variant="square"
+                                            alt="sustainable"
+                                            src={sustainable}
+                                        />
+                                    </Box>
+                                    <Typography className="sub-title">Sustainable</Typography>
                                 </Box>
-                                <Typography className="sub-title">Sustainable</Typography>
-                            </Box>
-                            <Box className="parent-options">
-                                <Box className="conscious-option">
-                                    <Avatar
-                                        className="options-icon"
-                                        variant="square"
-                                        alt="sustainable"
-                                        src={weather}
-                                    />
+                                <Box className="parent-options">
+                                    <Box className="conscious-option">
+                                        <Avatar
+                                            className="options-icon"
+                                            variant="square"
+                                            alt="sustainable"
+                                            src={weather}
+                                        />
+                                    </Box>
+                                    <Typography className="sub-title">Seasonal & Local</Typography>
                                 </Box>
-                                <Typography className="sub-title">Seasonal & Local</Typography>
-                            </Box>
-                            <Box className="parent-options">
-                                <Box className="conscious-option">
-                                    <Avatar
-                                        className="options-icon"
-                                        variant="square"
-                                        alt="sustainable"
-                                        src={recycling}
-                                    />
+                                <Box className="parent-options">
+                                    <Box className="conscious-option">
+                                        <Avatar
+                                            className="options-icon"
+                                            variant="square"
+                                            alt="sustainable"
+                                            src={recycling}
+                                        />
+                                    </Box>
+                                    <Typography className="sub-title">Zero Waste</Typography>
                                 </Box>
-                                <Typography className="sub-title">Zero Waste</Typography>
-                            </Box>
 
-                        </Stack>
+                            </Stack>
+                        </Box>
                     </Box>
 
                     <Box>
@@ -357,7 +309,8 @@ const AboutCardComponet = (props) => {
                                 alt="view"
                                 className="hotelview-img"
                                 style={{
-                                    // height: '500px'
+                                    width: "100%",
+                                    margin: "40px 0px"
                                 }}
                             />
                             <CommanTextCard
@@ -375,7 +328,7 @@ const AboutCardComponet = (props) => {
                             alt="view"
                             style={{
                                 width: "100%",
-                                paddingBottom: "16px"
+                                margin: "0px 0px 30px"
                             }}
                         />
                         <CommanTextCard
@@ -384,35 +337,35 @@ const AboutCardComponet = (props) => {
                          blandit quam nec, iaculis mi. Cras a est cursus."
                         />
                     </Box>
-                    <Box className="sub-box-4">
-                        <LogoSwiper />
-                        {/* <Box sx={{ display: 'flex', justifyContent: "space-around" }}>
-                            {logoImg.map((imgItem, index) => (
-                                <Box key={index} className="custom-log">
-                                    <img src={imgItem} alt="logo1" />
-                                </Box>
-                            ))}
-                        </Box> */}
-                    </Box>
 
-                    <Box sx={{ background: '#101418', padding: "40px 20px" }}>
+                    <Box className='sub-box-4'>
                         <CommanTextCard
                             mainTitle="Meet Our Team"
+                            colors='#FBFBFB'
                             details="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit
                          quam nec, iaculis mi. Cras a est cursus."
-                            colors="#fff"
                         />
-                        <Box sx={{ paddingTop: "40px" }}>
-                            <CommanCarousel />
-                        </Box>
+                        <img
+                            src={teamImage}
+                            alt="view"
+                            style={{
+                                width: "100%",
+                                margin: "40px 0px"
+                            }}
+                        />
+
+                        {/*<Box sx={{paddingTop: "40px"}}>*/}
+                        {/*    <CommanCarousel/>*/}
+                        {/*</Box>*/}
                     </Box>
 
-                    <Box sx={{ background: "#080B0E", padding: "40px 16px" }}>
+                    <Box sx={{background: "#080B0E", padding: "40px 16px"}}>
                         <Grid container spacing={2}>
                             {IntroCardDetails.map((cardItem, index) => {
                                 return (
                                     <Grid key={index} item xl={3} md={12} sm={6} xs={12}>
-                                        <IntroCardComponent title={cardItem.title} position={cardItem.position} details={cardItem.details} image={cardItem.img} />
+                                        <IntroCardComponent title={cardItem.title} position={cardItem.position}
+                                                            details={cardItem.details} image={cardItem.img}/>
                                     </Grid>
                                 )
                             })}
@@ -429,56 +382,21 @@ const AboutCardComponet = (props) => {
                             </Button>
                         </Box>
                     </Box>
-                    <Box className="open-positions-div">
-                        <Typography className="main-div-open-positions">Open Positions</Typography>
-                        <Typography className="positions" >Engineers</Typography>
-                        <Box className="sub-div-open-positions">
-                            <Box>
-                                <Typography className="main-heading-open-positions">Software Engineers (Back End)</Typography>
-                                <Typography className="details-open-positions">Mumbai, IN</Typography>
-                            </Box>
-                            <ChevronRightIcon />
-                        </Box>
-                        <Box className="sub-div-open-positions">
-                            <Box>
-                                <Typography className="main-heading-open-positions">QA Engineer</Typography>
-                                <Typography className="details-open-positions">Mumbai, IN</Typography>
-                            </Box>
-                            <ChevronRightIcon />
-                        </Box>
-                        <Typography className="sub-heading-open-positions">Developers</Typography>
-                        <Box className="sub-div-open-positions">
-                            <Box>
-                                <Typography className="main-heading-open-positions">Full Stack Developer</Typography>
-                                <Typography className="details-open-positions">Mumbai, IN</Typography>
-                            </Box>
-                            <ChevronRightIcon />
-                        </Box>
-                    </Box>
                 </Box>
-                <Box className="lastBox">
-                    <Box>
-                        <Typography className="some-text">Don't see an open role for you</Typography>
-                        <Typography className="some-details">We're always on the look out for top talent to join us.</Typography>
-                    </Box>
-                    <Button className="btn-get-in-touch">
-                        Get in touch
-                    </Button>
-                </Box>
-                <Footer />
+                <NeedHelp/>
+                <Footer/>
                 <Box className="footer-end">
                     <Stack className='footer-text'
-                           divider={<FiberManualRecordIcon sx={{ fontSize: '6px', color: '#C6A87D' }} />}
+                           divider={<FiberManualRecordIcon sx={{fontSize: '6px', color: '#C6A87D'}}/>}
                            direction="row" spacing={2}>
                         <Link className='footer-item' to='/'> FAQs </Link>
                         <Link className='footer-item' to='/'> Privacy Policy </Link>
                         <Link className='footer-item' to='/'> T&C </Link>
                     </Stack>
                 </Box>
-                {/* <FutterComponent /> */}
             </BoxWrapper>
 
-        </React.Fragment >
+        </React.Fragment>
     )
 }
 export default AboutCardComponet
