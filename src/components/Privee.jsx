@@ -1,9 +1,32 @@
 import React from 'react'
 import { Box, Divider, Stack, styled, Typography } from '@mui/material';
-import Rebook from './../assets/images/rebook.png'
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import Chef1 from '../assets/images/chef1.png'
+import Chef2 from '../assets/images/chef2.png'
+// import Rebook from './../assets/images/rebook.png'
 
 
 const Privee = (props) => {
+    const responsive = {
+        superLargeDesktop: {
+          // the naming can be any, depends on you.
+          breakpoint: { max: 4000, min: 3000 },
+          items: 5
+        },
+        desktop: {
+          breakpoint: { max: 3000, min: 1024 },
+          items: 3
+        },
+        tablet: {
+          breakpoint: { max: 1024, min: 464 },
+          items: 2
+        },
+        mobile: {
+          breakpoint: { max: 464, min: 0 },
+          items: 1
+        }
+      };
     const MainContentBox = styled(Box)({
         position: 'relative',
         '.saff-title': {
@@ -65,8 +88,8 @@ const Privee = (props) => {
     return (
         <React.Fragment >
             {/* <div style={{ border: '2px solid green' }}> */}
-            <MainContentBox >
-                <img src={props.image} alt="saffImage" style={{ verticalAlign: 'top' }} width={'100%'} className='main-chaf-image' />
+            {/* <MainContentBox > */}
+                {/* <img src={props.image} alt="saffImage" style={{ verticalAlign: 'top' }} width={'100%'} className='main-chaf-image' />
                 <Box className='saff-parent'>
                     <Typography className='saff-title'>
                         Madhav Dayal
@@ -86,8 +109,39 @@ const Privee = (props) => {
                             </Box>
                         </Box>
                     }
-                </Box>
-            </MainContentBox >
+                </Box> */}
+<Carousel
+      responsive={responsive}
+      ssr={true} // means to render carousel on server-side.
+      infinite={true}
+      autoPlay={false}
+    draggable={true}
+    swipeable={true}
+      autoPlaySpeed={1000}
+      keyBoardControl={true}
+      customTransition="all .5"
+      transitionDuration={500}
+      containerClass="carousel-container"
+      removeArrowOnDeviceType={["tablet", "mobile"]}
+      deviceType={props.deviceType}
+      dotListClass="custom-dot-list-style"
+      itemClass="carousel-item-padding-40-px"
+    >
+      <div>
+        <img src={Chef1} />
+      </div>
+      <div>
+        <img src={Chef2} />
+      </div>
+      <div>
+        <img src={Chef1} />
+      </div>
+      <div>
+        <img src={Chef2} />
+      </div>
+    </Carousel>
+
+            {/* </MainContentBox > */}
             {/* </div> */}
         </React.Fragment >
     )
