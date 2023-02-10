@@ -10,7 +10,7 @@ const NeedHelp = ({ isColor }) => {
         ".btn": {
             // border: '0.25px solid #fff',
             background: "#080B0E",
-            width: '214px',
+            width: '214px !important',
             fontSize: "16px",
             fontWeight: 600,
             lineHeight: "19px",
@@ -29,7 +29,7 @@ const NeedHelp = ({ isColor }) => {
         ".btn-2": {
             border: `${isColor ? '0.25px solid #080B0E' : '0.25px solid #080B0E'}`,
             background: "#FBFBFB",
-            width: '214px',
+            width: '214px !important',
             fontSize: "16px",
             fontWeight: 400,
             lineHeight: "19px",
@@ -55,6 +55,7 @@ const NeedHelp = ({ isColor }) => {
             color: '#080B0E',
             // color: `${ isColor? '#FBFBFB' : '#080B0E' }`,
             paddingBottom: "8px",
+            paddingTop:'0px!important',
             textAlign:'left'
         },
         ".details": {
@@ -82,7 +83,18 @@ const NeedHelp = ({ isColor }) => {
             ".btn-2": {
                 width: '48%',
             }
-
+        },
+        "@media (min-width: 768px) and (max-width:1024px)": {
+            '.btn-2':{
+                marginLeft:'-1px !important',
+                marginRight:'0px !important',
+            }
+        },
+        "@media (min-width: 582px) and (max-width:768px)": {
+           padding:'40px 30px'
+        },
+        "@media (min-width: 1px) and (max-width:767px)": {
+            display:'none'
         }
     }))
     return (

@@ -54,7 +54,8 @@ const Footer = () => {
         '.social-icon': {
             display: 'flex',
             alignItems: 'center',
-            placeContent: 'flex-end'
+            placeContent: 'flex-end',
+            cursor:'pointer'
         },
         '.icon': {
             display: 'flex',
@@ -81,17 +82,20 @@ const Footer = () => {
             fontSize: '14px',
             lineHeight: '25px',
             color: '#BDBDBD',
-            width: '190px'
+            width: '190px !important',
+            height: "36px !important",
         },
         '.btn': {
             background: "#C6A87D",
-            fontSize: '10px',
+            fontSize: '14px !important',
             lineHeight: "25px",
             borderRadius: "0px",
             color: "#080B0E",
-            height: "36px",
+            height: "36px !important",
+            width:'50px !important',
             borderColor: '#C6A87D',
-            margin:'0px'
+            margin:'0px',
+            textTransform: "capitalize !important"
         },
         '.css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input':{
             padding: '8px 14px !important'

@@ -141,8 +141,9 @@ const Navbar = () => {
             width: '2.1rem',
             height: '1.4rem',
             right: '15px',
-            top: '35px',
-            fontStyle: 'proxima Nova'
+            top: '15px',
+            fontStyle: 'proxima Nova',
+            alignItem:'center'
         },
 
         bmBurgerBars: {
@@ -305,31 +306,10 @@ const Navbar = () => {
                             </List>
                         </Collapse>
                     </List>
-                    {/* <Link onClick={closeSideBar}
-                        className="hamburger-title" to='/join-us'> Join Us </Link> */}
                     <Link onClick={closeSideBar}
-                          className="hamburger-title" to='/about/'> About us </Link>
+                          className="hamburger-title" to='/about-us/'> About us </Link>
                     <Link onClick={closeSideBar}
                           className="hamburger-title" to='/contact'> Contact </Link>
-                    {/*<div className='berger-menu-down'>*/}
-                    {/*    <Link*/}
-                    {/*        onClick={() => setExpanded(!expanded)}*/}
-                    {/*        className="hamburger-title"> Join Us </Link>*/}
-                    {/*    <Box>*/}
-                    {/*        {expanded ? <KeyboardArrowUpIcon/> : < KeyboardArrowDownIcon/>}*/}
-                    {/*    </Box>*/}
-                    {/*</div>*/}
-                    {/*<div className='burger-collapse'>*/}
-                    {/*    <JoinCollapse orientation={"horizontal"} in={expanded}>*/}
-                    {/*        Chef*/}
-                    {/*    </JoinCollapse>*/}
-                    {/*    <JoinCollapse orientation={"horizontal"} in={expanded}>*/}
-                    {/*        Sponser Partner*/}
-                    {/*    </JoinCollapse>*/}
-                    {/*    <JoinCollapse orientation={"horizontal"} in={expanded}>*/}
-                    {/*        Vendor*/}
-                    {/*    </JoinCollapse>*/}
-                    {/*</div>*/}
                 </Menu>
             </MobileView>
             <Outlet/>

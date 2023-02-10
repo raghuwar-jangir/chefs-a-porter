@@ -121,7 +121,10 @@ const BoxWrapper = styled(Box)({
         color: '#DCD7CB',
     },
     '.MobileLightThemeIcon':{
-        paddingRight:'40px'
+        paddingRight:'40px',
+    },
+    '.css-oacx5d':{
+        padding:'10px'
     },
 
     // !media query for mobile device demo component(Privee and supperClub)
