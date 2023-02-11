@@ -38,6 +38,7 @@
     "react-burger-menu": "^3.0.8",
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
+    "react-elastic-carousel": "^0.11.5",
     "react-helmet": "^6.1.0",
     "react-horizontal-scrolling-menu": "^3.2.3",
     "react-leaf-carousel": "^3.0.0",
@@ -48,6 +49,7 @@
     "react-scripts": "5.0.1",
     "react-swipeable-views": "^0.14.0",
     "smoothscroll-polyfill": "^0.4.4",
+    "styled-components": "^5.3.6",
     "swiper": "^8.4.6",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"

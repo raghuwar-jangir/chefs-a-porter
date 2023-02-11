@@ -19,6 +19,7 @@ import Navbar from "./navbar";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import {Link} from "gatsby";
 import LightThemeIcon from "../assets/images/lightThemeIcon.png";
+import Privee from '../components/Privee';
 
 
 
@@ -244,10 +245,12 @@ const HomePage = () => {
                         </Box>
                     </Grid>
                 </Grid>
-                <PriveeMain title='Continue Browsing' subTitle='Chef s you ve checked out previously' />
+                {/* <PriveeMain title='Continue Browsing' subTitle='Chef s you ve checked out previously' /> */}
+                <PriveeMain />
                 {/* <FoodDetailing /> */}
                 <MainFoodDetailng />
-                <PriveeMain title='Chefs available for private dining this month' isButtonShow={true} />
+                {/* <PriveeMain title='Chefs available for private dining this month' isButtonShow={true} /> */}
+                <Privee />
                 <RatingCarousel />
                 <Questions />
                 <NeedHelp/>

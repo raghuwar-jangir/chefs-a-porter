@@ -13,7 +13,8 @@ const MainParent = styled(Box)({
         lineHeight: '24px',
         fontWeight: '700',
         color: '#050405',
-        padding: '0px 5px'
+        padding: '0px 5px',
+        fontFamily: 'Bon Vivant'
     },
     '.sub-description': {
         fontSize: '20px',
@@ -73,14 +74,14 @@ const MainFoodDetailng = () => {
                         Step out & enjoy a curated meal prepared by top chefs
                     </Typography>
                     <FoodDetailing />
-                    <Box className='button-component'>
+                    {/* <Box className='button-component'>
                         <Button
                             fullWidth
                             className='view-button'
                         >
                             View All
                         </Button>
-                    </Box>
+                    </Box> */}
                 </Box>
             </MainParent>
         </React.Fragment>
