@@ -19,7 +19,7 @@ const NeedHelp = ({ isColor }) => {
             // color: `${isColor ? '#FBFBFB' : '#FBFBFB'}`,
             textTransform: "capitalize",
             fontFamily: 'Proxima Nova',
-            height: "55px",
+            height: "55px !important",
             marginTop: "0px",
         },
         ".btn:hover": {
