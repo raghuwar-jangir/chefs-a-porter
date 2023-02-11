@@ -115,6 +115,9 @@ const Navbar = () => {
             '.GridContainer': {
                 padding: '10px 120px'
             },
+        '.searchbar-icon':{
+                cursor:'pointer'
+        },
             '@media(min-width: 320px) and (max-width: 1024px)': {
                 '.header-search-box': {
                     display: 'none',
@@ -232,12 +235,14 @@ const Navbar = () => {
                                         <Box className='search-box'>
                                             <TextField
                                                 type='search' placeholder='Search'
+                                                variant='standard'
                                                 InputProps={{
+                                                    disableUnderline: true,
                                                     startAdornment: (<InputAdornment position="start">
-                                                        <SearchIcon onClick={() => setSearch(false)}/>
+                                                        <SearchIcon className='searchbar-icon' onClick={() => setSearch(false)}/>
                                                     </InputAdornment>),
                                                     endAdornment: (<InputAdornment position="end">
-                                                        <CloseIcon onClick={() => setSearch(false)}/>
+                                                        <CloseIcon className='searchbar-icon' onClick={() => setSearch(false)}/>
                                                     </InputAdornment>)
                                                 }}
                                             />

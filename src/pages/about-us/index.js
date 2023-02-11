@@ -80,7 +80,7 @@ const AboutCardComponet = (props) => {
             padding: '130px 160px 40px'
         },
         ".header-club": {
-            padding: '20px',
+            padding: '10px',
             backgroundColor: '#DCD7CB',
         },
         ".main-heading": {
@@ -212,7 +212,16 @@ const AboutCardComponet = (props) => {
             }, '.conscious-option': {
                 padding: '31px',
             },
+        },
+        "@media (min-width: 426px) and (max-width:769px)": {
+            ".main-box": {
+                padding: "0px",
+            },
+            ".about-heading": {
+                textAlign: 'left', color: '#080B0E',
+            },
         }
+
     }))
     return (
         <React.Fragment>

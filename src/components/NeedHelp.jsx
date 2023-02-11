@@ -62,7 +62,7 @@ const NeedHelp = ({ isColor }) => {
             fontWeight: 300,
             fontFamily: 'Proxima Nova',
             fontStyle: 'normal',
-            fontSize: "16px",
+            fontSize: "16px !important",
             lineHeight: "24px",
             color: '#080B0E',
             textAlign:'left'
@@ -91,7 +91,14 @@ const NeedHelp = ({ isColor }) => {
             }
         },
         "@media (min-width: 582px) and (max-width:768px)": {
-           padding:'40px 30px'
+           padding:'40px 30px', ".details": {
+                fontWeight: 300,
+                fontSize: "16px",
+                lineHeight: "24px",
+                // color: "#FBFBFB",
+                paddingBottom: "20px"
+            },
+
         },
         "@media (min-width: 1px) and (max-width:767px)": {
             display:'none'
