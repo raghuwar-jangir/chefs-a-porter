@@ -19,6 +19,8 @@ import supperVideo from "../assets/video/supper.mp4";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import footerArrow from "../assets/images/footer-arrow.png";
+import TestimonialCarousel from "../components/TestimonialCarousel";
+import Treaty from "../components/Treaty";
 
 
 const MainBoxContent = styled(Box)({
@@ -238,7 +240,7 @@ const BoxWrapper = styled(Box)({
     //join table
     '.join-table': {
         background: '#101418',
-        width:'100%'
+        width: '100%'
     },
     '.join-table-heading': {
         fontFamily: 'Bon Vivant',
@@ -262,10 +264,10 @@ const BoxWrapper = styled(Box)({
         objectFit: 'cover',
         width: '952px !important'
     },
-    '.join-table-image':{
+    '.join-table-image': {
         padding: '0px',
     },
-    '.find-us':{
+    '.find-us': {
         display: 'flex'
     },
     '.find-us-title': {
@@ -280,14 +282,14 @@ const BoxWrapper = styled(Box)({
         marginBottom: '0px',
         marginTop: '7px',
     },
-    '.join-table-title':{
+    '.join-table-title': {
         padding: '109px 200px 0px 120px'
     },
     '.social-icon': {
         display: 'flex',
         alignItems: 'center',
         placeContent: 'flex-end',
-        cursor:'pointer'
+        cursor: 'pointer'
     },
     '.icon': {
         display: 'flex',
@@ -314,9 +316,9 @@ const BoxWrapper = styled(Box)({
         fontSize: '14px',
         lineHeight: '25px',
         color: '#BDBDBD',
-        width:'100%',
+        width: '100%',
         height: "36px !important",
-        marginBottom:'20px'
+        marginBottom: '20px'
     },
     '.btn': {
         background: "#C6A87D",
@@ -325,9 +327,9 @@ const BoxWrapper = styled(Box)({
         borderRadius: "0px",
         color: "#080B0E",
         height: "36px !important",
-        width:'50px !important',
+        width: '50px !important',
         borderColor: '#C6A87D',
-        margin:'0px',
+        margin: '0px',
         textTransform: "capitalize !important"
     },
     ".btn:hover": {color: "#080B0E", background: "#C6A87D",},
@@ -338,6 +340,16 @@ const BoxWrapper = styled(Box)({
     '.sign-in': {
         color: '#C6A87D !important',
         textDecoration: 'underline !important',
+    },
+    '.treat': {
+        display:'flex',
+        justifyContent:'center',
+        background: ' #DCD7CB',
+        padding: '80px 120px'
+    },
+    '.treaty-card': {
+        display: "flex",
+        justifyContent: 'center'
     },
     // !media query for mobile device demo component(Privee and supperClub)
 
@@ -391,7 +403,29 @@ const BoxWrapper = styled(Box)({
             padding: '5px',
             marginBottom: '16px'
         },
-    }
+        '.treat-card2': {
+            display: 'none'
+        },
+        '.treaty-card': {
+            display: "block",
+        },
+        '.treat':{
+            padding:'0px'
+        }
+    },
+    '@media(min-width: 426px) and (max-width: 768px)': {
+        '.treaty-card': {
+            display: "block",
+        },
+        '.treat':{
+            padding:'0px'
+        }
+    },
+    '@media(min-width: 769px) and (max-width: 1024px)': {
+        '.treat':{
+            padding: '80px'
+        }
+    },
 })
 
 function FooterMobile() {
@@ -452,6 +486,13 @@ const HomePage = () => {
                 <MainFoodDetailng/>
                 <PriveeMain title='Chefs available for private dining this month' isButtonShow={true}/>
                 <RatingCarousel/>
+                <TestimonialCarousel/>
+                <Box className="treat">
+                        <Grid className="treaty-card">
+                            <Grid className="treat-card1" sx={{width:'100%'}} item xs={6} md={4} sm={4}><Treaty/></Grid>
+                            <Grid className="treat-card2" sx={{width:'100%'}} item xs={6} md={4} sm={4}><Treaty/></Grid>
+                        </Grid>
+                </Box>
                 <Box className="join-table join-table1">
                     <Box className="container-fluid">
                         <Box className="row">
@@ -460,23 +501,27 @@ const HomePage = () => {
                             </Box>
                             <Box className="join-table-title">
                                 <Typography className='join-table-heading'>Join our table</Typography>
-                                <Typography className='join-table-details'>Receive recipes , tips and tricks from top chefs from around the globe, and exclusive
+                                <Typography className='join-table-details'>Receive recipes , tips and tricks from top
+                                    chefs from around the globe, and exclusive
                                     offers right to your inbox.</Typography>
                                 <form action="" accept-charset="UTF-8" method="get">
                                     <Box className="input-group">
                                         <Box className='input-group'>
-                                            <Box style={{width: '100%',display:'flex'}}>
+                                            <Box style={{width: '100%', display: 'flex'}}>
                                                 <TextField className='input-field' id='email-address' size='small'
-                                                           placeholder='Your email address' variant='outlined'  InputProps={{
-                                                    disableUnderline: true}}/>
+                                                           placeholder='Your email address' variant='outlined'
+                                                           InputProps={{
+                                                               disableUnderline: true
+                                                           }}/>
                                                 <Button className='btn'>Submit</Button>
                                             </Box>
                                         </Box>
                                     </Box>
                                 </form>
-                                <Typography className="join-table-details">By signing up, I agree to Chef’s a porter’s <a
-                                    href="" className='sign-in'>T&C’s</a> and <a href="" className='sign-in'>Privacy
-                                    Policy</a></Typography>
+                                <Typography className="join-table-details">By signing up, I agree to Chef’s a
+                                    porter’s <a
+                                        href="" className='sign-in'>T&C’s</a> and <a href="" className='sign-in'>Privacy
+                                        Policy</a></Typography>
                                 <Box className="find-us">
                                     <Typography className="find-us-title">Find us on:</Typography>
                                     <Box className="social-icon">
@@ -504,6 +549,6 @@ const HomePage = () => {
                 {/* <DiningPage /> */}
             </BoxWrapper>
         </React.Fragment>
-)
+    )
 }
 export default HomePage;
