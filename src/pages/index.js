@@ -1,5 +1,16 @@
 import React from 'react';
-import {Box, Button, Grid, List, ListItemIcon, Stack, TextField, Typography} from '@mui/material';
+import {
+    Box,
+    Button,
+    Grid,
+    ImageList,
+    ImageListItem,
+    List,
+    ListItemIcon,
+    Stack,
+    TextField,
+    Typography
+} from '@mui/material';
 import {styled} from '@mui/system';
 import {MobileView} from 'react-device-detect';
 import FrontFood from '../components/FrontFood';
@@ -19,8 +30,17 @@ import supperVideo from "../assets/video/supper.mp4";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import footerArrow from "../assets/images/footer-arrow.png";
+import {isMobile} from "react-device-detect";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import Treaty from "../components/Treaty";
+import gallery1 from "../assets/images/gallery1.png";
+import gallery2 from "../assets/images/gallery2.png";
+import gallery3 from "../assets/images/gallery3.png";
+import gallery4 from "../assets/images/team.png";
+import gallery5 from "../assets/images/about3.png";
+import gallery6 from "../assets/images/gallery1.png";
+import gallery7 from "../assets/images/gallery2.png";
+import gallery8 from "../assets/images/gallery3.png";
 
 
 const MainBoxContent = styled(Box)({
@@ -342,8 +362,8 @@ const BoxWrapper = styled(Box)({
         textDecoration: 'underline !important',
     },
     '.treat': {
-        display:'flex',
-        justifyContent:'center',
+        display: 'flex',
+        justifyContent: 'center',
         background: ' #DCD7CB',
         padding: '80px 120px'
     },
@@ -351,6 +371,41 @@ const BoxWrapper = styled(Box)({
         display: "flex",
         justifyContent: 'center'
     },
+    //gallery
+    '.gallery': {
+        background: '#FBFBFB',
+        padding: '80px 120px',
+    },
+    '.gallery-heading': {
+        fontFamily: 'Bon Vivant',
+        fontStyle: 'normal',
+        fontSize: '24px',
+        lineHeight: '30px',
+        letterSpacing: ' 0.06em',
+        color: '#080B0E',
+        textAlign: 'center',
+        padding: '15px 5px',
+    },
+    ".gallery-btn": {
+        fontStyle: 'normal',
+        lineHeight: '24px',
+        marginRight: '0px',
+        border: '1px solid #222222',
+        width: '100% !important',
+        fontFamily: 'Proxima Nova',
+        fontSize: "20px !important",
+        fontWeight: '600',
+        borderRadius: "0px",
+        color: "#080B0E !important",
+        backgroundColor: 'unset !important',
+        textTransform: "capitalize",
+        height: "55px !important",
+        padding: '14px !important',
+    },
+    '.mobileView-gallery': {
+        display: 'none',
+    },
+    ".gallery-btn:hover": {color: "#C6A87D!important;"},
     // !media query for mobile device demo component(Privee and supperClub)
 
     '@media(min-width: 1px) and (max-width: 425px)': {
@@ -409,20 +464,37 @@ const BoxWrapper = styled(Box)({
         '.treaty-card': {
             display: "block",
         },
-        '.treat':{
-            padding:'0px'
-        }
+        '.treat': {
+            padding: '0px'
+        },
+        '.gallery': {
+            display: 'none'
+        },
+        '.mobileView-gallery': {
+            display: 'block',
+        },
+        '.gallery-heading': {
+            fontSize: '20px',
+            lineHeight: '25px',
+            textAlign: 'left',
+            marginBottom: '16px',
+            padding: '15px 12px',
+        },
     },
     '@media(min-width: 426px) and (max-width: 768px)': {
         '.treaty-card': {
             display: "block",
         },
-        '.treat':{
-            padding:'0px'
+        '.treat': {
+            padding: '0px'
+        },
+        '.MuiImageList-root': {
+            columnCount: '1 !important',
+            width: 'auto'
         }
     },
     '@media(min-width: 769px) and (max-width: 1024px)': {
-        '.treat':{
+        '.treat': {
             padding: '80px'
         }
     },
@@ -433,6 +505,31 @@ function FooterMobile() {
 }
 
 const HomePage = () => {
+    const itemData = [
+        {
+            img: gallery2,
+            title: 'gallery2',
+        },
+        {
+            img: gallery1,
+            title: ' gallery1',
+        },
+        {
+            img: gallery3,
+            title: 'gallery3',
+            rows: 2,
+            cols: 2,
+        },
+        {
+            img: gallery4,
+            title: 'gallery4',
+        },
+        {
+            img: gallery5,
+            title: 'gallery5',
+        },
+    ];
+    console.log("isMobile===", isMobile)
     return (
         <React.Fragment>
             <Navbar/>
@@ -487,11 +584,50 @@ const HomePage = () => {
                 <PriveeMain title='Chefs available for private dining this month' isButtonShow={true}/>
                 <RatingCarousel/>
                 <TestimonialCarousel/>
-                <Box className="treat">
-                        <Grid className="treaty-card">
-                            <Grid className="treat-card1" sx={{width:'100%'}} item xs={6} md={4} sm={4}><Treaty/></Grid>
-                            <Grid className="treat-card2" sx={{width:'100%'}} item xs={6} md={4} sm={4}><Treaty/></Grid>
+                <Box className="gallery">
+                    <Box>
+                        <Typography className='gallery-heading'>Food that makes you drool!</Typography>
+                    </Box>
+                    <ImageList variant="masonry"
+                               sx={{width: '100%', height: '100%'}}
+                               cols={3}
+                               gap={20}
+                               rowHeight={300}>
+                        {itemData.map((item) => (
+                            <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
+                                <img
+                                    src={item.img}
+                                    alt={item.title}
+                                    loading="lazy"
+                                />
+                            </ImageListItem>
+                        ))}
+                    </ImageList>
+                </Box>
+                <Box className="mobileView-gallery">
+                    <Box>
+                        <Typography className='gallery-heading'>Food that makes you drool!</Typography>
+                    </Box>
+                    <Grid container spacing={1} sx={{padding: '10px 12px'}}>
+                        <Grid item xs={12}>
+                            <img src={gallery1} style={{width: '100%', height: '200px'}}/>
                         </Grid>
+                        <Grid item xs={12}>
+                            <img src={gallery2} style={{width: '48%', height: '200', paddingRight: "5px"}}/>
+                            <img src={gallery3} style={{width: '48%', height: '200', paddingLeft: "5px"}}/>
+                        </Grid>
+                        <Grid item xs={12} spacing={2}>
+                            <Button className="gallery-btn">
+                                View Gallery
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Box>
+                <Box className="treat">
+                    <Grid className="treaty-card">
+                        <Grid className="treat-card1" item xs={6} md={4} sm={4}><Treaty/></Grid>
+                        <Grid className="treat-card2" item xs={6} md={4} sm={4}><Treaty/></Grid>
+                    </Grid>
                 </Box>
                 <Box className="join-table join-table1">
                     <Box className="container-fluid">
