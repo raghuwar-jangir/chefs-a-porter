@@ -38,9 +38,11 @@ import gallery2 from "../assets/images/gallery2.png";
 import gallery3 from "../assets/images/gallery3.png";
 import gallery4 from "../assets/images/team.png";
 import gallery5 from "../assets/images/about3.png";
-import gallery6 from "../assets/images/gallery1.png";
-import gallery7 from "../assets/images/gallery2.png";
-import gallery8 from "../assets/images/gallery3.png";
+import food1 from "../assets/images/food1.png";
+import food2 from "../assets/images/food2.png";
+import food3 from "../assets/images/food3.png";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+
 
 
 const MainBoxContent = styled(Box)({
@@ -406,6 +408,73 @@ const BoxWrapper = styled(Box)({
         display: 'none',
     },
     ".gallery-btn:hover": {color: "#C6A87D!important;"},
+
+    //fresh food from
+    '.fresh-blog': {
+        padding: '80px 120px'
+    },
+    '.fresh-food-detail': {
+        display:'flex',
+        justifyContent:'space-between',
+        alignItems:'center',
+        boxShadow: '0px 8px 10px rgb(0 0 0 / 6%)',
+        placeItems:'center',
+        alignItem: 'center',
+        marginBottom: '16px'
+    },
+    '.fresh-food-gallery-heading': {
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        fontSize: '24px',
+        lineHeight: '30px',
+        margin: '20px 0px'
+    },
+    '.fresh-food-img': {
+        width: '250px',
+        height: '160px',
+        objectFit:'cover'
+    },
+    '.fresh-food-title': {
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontWeight: '700',
+        fontSize: '20px',
+        lineHeight: '150%',
+        color: '#222222',
+        display: 'block',
+        paddingBottom: '8px',
+        width:'100%'
+    },
+    '.fresh-food-sub-details': {
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        fontSize: '16px',
+        lineHeight: '150%',
+        color: '#222222',
+        display: 'block',
+        paddingBottom: '8px'
+    },
+    '.fresh-food-heading': {
+        fontFamily: 'Bon Vivant',
+        fontStyle: 'normal',
+        fontSize: '24px',
+        lineHeight: '30px',
+        letterSpacing: ' 0.06em',
+        color: '#080B0E',
+        textAlign: 'center',
+        padding: '15px 5px',
+    },
+    '.fresh-food-arrow':{
+        fontSize: '40px',
+    },
+    '.food-box':{
+        display:'flex',
+        justifyContent:'space-between',
+        alignItems:'center'
+    },
+
     // !media query for mobile device demo component(Privee and supperClub)
 
     '@media(min-width: 1px) and (max-width: 425px)': {
@@ -480,6 +549,29 @@ const BoxWrapper = styled(Box)({
             marginBottom: '16px',
             padding: '15px 12px',
         },
+        '.fresh-blog': {
+            padding: '15px'
+        },
+        '.fresh-food-sub-details': {
+            fontFamily: 'Proxima Nova',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '12px',
+            lineHeight: '18px',
+            color: '#222222',
+        },
+        '.fresh-food-title': {
+            fontFamily: 'Proxima Nova',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '14px',
+            lineHeight: '30px',
+            paddingBottom:'0px'
+        },
+        '.fresh-food-img': {
+            width: '60px',
+            height: '60px',
+        },
     },
     '@media(min-width: 426px) and (max-width: 768px)': {
         '.treaty-card': {
@@ -491,12 +583,18 @@ const BoxWrapper = styled(Box)({
         '.MuiImageList-root': {
             columnCount: '1 !important',
             width: 'auto'
-        }
+        },
+        '.fresh-food-img': {
+            width: 'unset',
+        },
     },
     '@media(min-width: 769px) and (max-width: 1024px)': {
         '.treat': {
             padding: '80px'
-        }
+        },
+        '.fresh-food-img': {
+            width: 'unset',
+        },
     },
 })
 
@@ -528,6 +626,23 @@ const HomePage = () => {
             img: gallery5,
             title: 'gallery5',
         },
+    ];
+    const freshFoodItems= [
+        {
+            title:"Food Tips",
+            subTitle:"Indian dishes that you can prepare at home this diwali",
+            img:food1
+        },
+        {
+            title:"Global Fusion",
+            subTitle:"Recipes prepared by our chef that have a twist and are easy to make at home",
+            img:food2
+        },
+        {
+            title:"Latest Trends",
+            subTitle:"Recipes prepared by our chef that have a twist and are easy to make at home",
+            img:food3
+        }
     ];
     console.log("isMobile===", isMobile)
     return (
@@ -670,6 +785,21 @@ const HomePage = () => {
                     </Box>
                 </Box>
                 <Questions/>
+                <Box className="fresh-blog">
+                    <Typography className='fresh-food-heading'>Fresh from the blog</Typography>
+                    {freshFoodItems.map((item, index) => (
+                        <Box className='fresh-food-detail'>
+                            <Box key={index} className="food-box">
+                                <img src={item.img} className="fresh-food-img"/>
+                                <Box style={{marginLeft: '20px'}}>
+                                    <Typography className='fresh-food-title'>{item.title}</Typography>
+                                    <Typography className='fresh-food-sub-details'>{item.subTitle}</Typography>
+                                </Box>
+                            </Box>
+                            <Box><KeyboardArrowRightIcon className="fresh-food-arrow"/></Box>
+                        </Box>
+                    ))}
+                </Box>
                 <NeedHelp/>
                 <Footer/>
                 <Box className="footer-end">
