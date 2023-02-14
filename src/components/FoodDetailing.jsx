@@ -56,35 +56,73 @@ const MainParent = styled(Box)({
     lineHeight: '1.5',
     letterSpacing: '0.00938em',
     },
-    '.Slxdj:disabled': {
-        position: 'relative',
-        left: '5%',
-        zIndex: '1',
-        fontSize: '16px',
-        background: 'none',
-        boxShadow: 'none'
-    },
-//     '.Slxdj':{
-//         fontSize: '16px !important',
-//         background: 'none !important',
-//         position: 'absolute',
-//     left: '158px',
-//     zIndex: '1',
-//     boxShadow:'none'
-// },
+    '.Slxdj':{
+        fontSize: '16px !important',
+        background: 'none !important',
+},
 '.kXteup':{
     fontSize: '16px !important',
-    background: 'none !important',
+    background: 'none !important'
+},
+'.rec.rec-arrow:disabled': {
+    visibility: 'hidden'
+},
+'.rec-arrow-right':{
+    position: 'relative',
+            right: '5%',
+            zIndex: '1',
+            fontSize: '16px',
+            background: 'none',
+            boxShadow: 'none',
+            color:'white'
+},
+'.rec-arrow-left':{
     position: 'relative',
     left: '5%',
-    boxShadow:'none',
-    color:'white',
-    zIndex:'1'
+    zIndex: '1',
+    fontSize: '16px',
+    background: 'none',
+    boxShadow: 'none',
+    color:'white'
 },
-'.kXteup:hover:enabled, .kXteup:focus:enabled':{
-    color:'white',
-    boxShadow:'none'
-},
+    '.kXteup:hover:enabled, .kXteup:focus:enabled':{
+        color:'white',
+        boxShadow:'none'
+    },
+    '..css-1akftu3 .kXteup:hover:enabled, .css-1akftu3 .kXteup:focus:enabled': {
+        color: 'white'
+    },
+    // '.css-1dv2hf8 .kXteup:hover:enabled, .css-1dv2hf8 .kXteup:focus:enabled': {
+    //     color: 'black'
+    // }
+//     '.Slxdj:disabled': {
+//         position: 'relative',
+//         left: '5%',
+//         zIndex: '1',
+//         fontSize: '16px',
+//         background: 'none',
+//         boxShadow: 'none'
+//     },
+//     '.rec.rec-arrow:disabled': {
+//         visibility: 'hidden'
+//     },
+// //     '.Slxdj':{
+// //         fontSize: '16px !important',
+// //         background: 'none !important',
+// //         position: 'absolute',
+// //     left: '158px',
+// //     zIndex: '1',
+// //     boxShadow:'none'
+// // },
+// '.kXteup':{
+//     fontSize: '16px !important',
+//     background: 'none !important',
+//     position: 'relative',
+//     left: '5%',
+//     boxShadow:'none',
+//     color:'white',
+//     zIndex:'1'
+// },
 // '.Slxdj':{
 //     fontSize: '16px !important',
 //     background: 'none !important',
@@ -93,16 +131,13 @@ const MainParent = styled(Box)({
 //     boxShadow:'none',
 //     zIndex: '1'
 // },
-'.jtKTCe':{
-    display:'none'
-},
 })
 
 const FoodDetailing = () => {
     return (
         <React.Fragment>
             <MainParent>
-            <Carousel itemsToShow={4} itemsToScroll={1} itemPadding={[10, 30]}>
+            <Carousel itemsToShow={4} itemsToScroll={1} itemPadding={[10, 30]} pagination={false}>
             <Box><img src={testImage}/>
             <Box className='supper-info' >
             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography> 

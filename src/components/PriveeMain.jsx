@@ -112,6 +112,12 @@ const MainParent = styled(Box)({
     height: '100%',
     margin: '0 5px'
     },
+    // ".css-0":{
+    //     width:'100% !important'
+    // },
+    // '.img-size':{
+    //     width:'100%'
+    // },
     '.Slxdj':{
             fontSize: '16px !important',
             background: 'none !important'
@@ -120,9 +126,34 @@ const MainParent = styled(Box)({
         fontSize: '16px !important',
         background: 'none !important'
     },
-    '.jtKTCe':{
-        display:'none'
+    '.rec.rec-arrow:disabled': {
+        visibility: 'hidden'
     },
+    '.rec-arrow-right':{
+        position: 'relative',
+                right: '5%',
+                zIndex: '1',
+                fontSize: '16px',
+                background: 'none',
+                boxShadow: 'none',
+                color:'white'
+    },
+    '.rec-arrow-left':{
+        position: 'relative',
+        left: '5%',
+        zIndex: '1',
+        fontSize: '16px',
+        background: 'none',
+        boxShadow: 'none',
+        color:'white'
+    },
+    '.kXteup:hover:enabled, .kXteup:focus:enabled':{
+            color:'white',
+            boxShadow:'none'
+        },
+        '.css-1akftu3 .kXteup:hover:enabled, .css-1akftu3 .kXteup:focus:enabled': {
+            color: 'white'
+        },
     '@media(min-width: 1px) and (max-width: 425px)': {
         '.continue-browsing-box': {
             background: '#080B0E',
@@ -205,8 +236,8 @@ const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
         <div><img src={chef}/></div>
         <div><img src={chef2}/></div> 
     </Carousel>    */}
-<Carousel itemsToShow={3} itemsToScroll={1} itemPadding={[10, 30]}>
-<Box><img src={chef}/>
+<Carousel itemsToShow={3} itemsToScroll={1} itemPadding={[10, 30]} pagination={false}>
+<Box><img className="img-size" src={chef}/>
 <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
 <Box className="chef-details">
 <span>Thai <span className='line'>|</span></span>
@@ -215,19 +246,19 @@ const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
 </Box>
 </Box>
 </Box>
-<Box><img src={chef2}/>
+<Box ><img className="img-size" src={chef2}/>
 <Box className="name-box"><Typography className='chef-title'>Kyoumars Freeman</Typography>
 <Box className="chef-details"><span>Persian</span></Box>
 </Box>
 </Box>
-<Box><img src={chef}/>
+<Box><img className="img-size" src={chef}/>
 <Box className="name-box"><Typography className='chef-title'>Mako Ravindran</Typography>
 <Box className="chef-details">
 <span>French <span className='line'>|</span></span>
 <span>Italian <span className='line'>|</span></span>
 <span>Indian </span></Box>
 </Box></Box>
-<Box><img src={chef2}/>
+<Box><img className="img-size" src={chef2}/>
 <Box className="name-box"><Typography className='chef-title'>Mako Kyoumars Freeman</Typography>
 <Box className="chef-details"><span>Persian</span></Box>
 </Box></Box>

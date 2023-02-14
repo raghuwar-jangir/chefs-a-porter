@@ -135,14 +135,39 @@ const MainParent = styled(Box)({
     },
     '.Slxdj':{
             fontSize: '16px !important',
-            background: 'none !important'
+            background: 'none !important',
     },
     '.kXteup':{
         fontSize: '16px !important',
         background: 'none !important'
     },
-    '.jtKTCe':{
-        display:'none'
+    '.rec.rec-arrow:disabled': {
+    visibility: 'hidden'
+},
+'.rec-arrow-right':{
+    position: 'relative',
+            right: '5%',
+            zIndex: '1',
+            fontSize: '16px',
+            background: 'none',
+            boxShadow: 'none',
+            color:"white"
+},
+'.rec-arrow-left':{
+    position: 'relative',
+    left: '5%',
+    zIndex: '1',
+    fontSize: '16px',
+    background: 'none',
+    boxShadow: 'none',
+    color:"white"
+},
+'.kXteup:hover:enabled, .kXteup:focus:enabled':{
+        color:'white',
+        boxShadow:'none'
+    },
+    '..css-1akftu3 .kXteup:hover:enabled, .css-1akftu3 .kXteup:focus:enabled': {
+        color: 'white'
     },
     '@media(min-width: 1px) and (max-width: 425px)': {
         '.continue-browsing-box': {
@@ -199,7 +224,7 @@ const PriveeMain = ({ title, subTitle, isButtonShow = true }) => {
                     Chef’s you’ve checked out previously
                      </Typography> */}
                   
-<Carousel itemsToShow={4} itemsToScroll={1} itemPadding={[10, 30]}>
+<Carousel itemsToShow={4} itemsToScroll={1} itemPadding={[10, 30]} pagination={false}>
 <Box><img src={chef}/>
 <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
 <Box className="chef-details">
