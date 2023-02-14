@@ -1,8 +1,9 @@
 import { Box, Stack, styled, Typography } from '@mui/material';
-import React from 'react'
+import React, { useRef, useState }  from 'react';
 import { Link } from 'gatsby';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import diningPicture from './../assets/images/diningPicture.png'
+// import Carousel from 'react-bootstrap/Carousel';
+import Slider from 'infinite-react-carousel';
+import diningPicture from '../assets/images/cook1.png'
 import DiningProgress from './DiningProgress';
 
 
@@ -10,14 +11,26 @@ const MainContentBox = styled(Box)({
     backgroundColor: '#101418',
     padding: '32px 0px',
     '.dining-title': {
-        fontSize: '24px',
-        fontWeight: '400',
-        lineHeight: '29px',
-        padding: '8px 16px',
-        color: '#FBFBFB'
+        padding: '0px 120px',
+        marginBottom: '20px',
+        fontFamily: 'Bon Vivant',
+    fontStyle: 'normal',
+    fontWeight: '300',
+    fontSize: '24px',
+    lineHeight: '30px',
+    letterSpacing: '0.06em',
+    color:'#FBFBFB',
     },
     '.dining-content': {
         padding: '16px 18px',
+    },
+    '.img-box':{
+        padding:'0px !important '
+    },
+    '.img':{
+        width:'100%',
+        height: '550px',
+    objectFit: 'cover'
     }
 })
 
@@ -26,17 +39,24 @@ const DiningPage = () => {
         <React.Fragment>
             <MainContentBox>
                 <Typography className="dining-title">
-                    What We Cook For
+                    What we cook for
                 </Typography>
-                <Link className='dining-more' to='/'>
-                    Know more <KeyboardArrowRightIcon fontSize='small' />
-                </Link>
-                <img src={diningPicture} alt='' width={'100%'} />
-                <Stack className='dining-content' direction="row" spacing={2}>
+                <Slider dots={false} arrows={false}>
+    <Box className='img-box'>
+      <img className='img' src={diningPicture}/>
+      </Box>
+      <Box className='img-box'>
+    <img className='img' src={diningPicture}/>
+    </Box>
+    <Box className='img-box'>
+    <img className='img' src={diningPicture}/>
+    </Box>
+  </Slider>
+                {/* <Stack className='dining-content' direction="row" spacing={2}>
                     <DiningProgress title='Conscious Dining' />
                     <DiningProgress title='Championing Chefs' />
                     <DiningProgress title='Community' />
-                </Stack>
+                </Stack> */}
             </MainContentBox>
         </React.Fragment>
     )

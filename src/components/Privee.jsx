@@ -224,7 +224,7 @@ const PriveeMain = ({ title, subTitle, isButtonShow = true }) => {
                     Chef’s you’ve checked out previously
                      </Typography> */}
                   
-<Carousel itemsToShow={4} itemsToScroll={1} itemPadding={[10, 30]} pagination={false}>
+<Carousel itemsToShow={4} itemsToScroll={1} itemPadding={[10, 30]} pagination={false} enableMouseSwipe={true} preventDefaultTouchmoveEvent enableSwipe={true}>
 <Box><img src={chef}/>
 <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
 <Box className="chef-details">

@@ -20,6 +20,8 @@ import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import {Link} from "gatsby";
 import LightThemeIcon from "../assets/images/lightThemeIcon.png";
 import Privee from '../components/Privee';
+import CorporateBooking from '../components/CorporateBooking';
+import PriveeComponentSlider from '../components/PriveeComponentSlider';
 
 
 
@@ -251,8 +253,11 @@ const HomePage = () => {
                 <MainFoodDetailng />
                 {/* <PriveeMain title='Chefs available for private dining this month' isButtonShow={true} /> */}
                 <Privee />
+                <CorporateBooking/>
                 <RatingCarousel />
+                <DiningPage />
                 <Questions />
+                <PriveeComponentSlider/>
                 <NeedHelp/>
                 <Footer />
                 <Box className="footer-end">
@@ -265,7 +270,6 @@ const HomePage = () => {
                     </Stack>
                 </Box>
                 {/* <PrivateProfile /> */}
-                {/* <DiningPage /> */}
             </BoxWrapper >
         </React.Fragment >
     )

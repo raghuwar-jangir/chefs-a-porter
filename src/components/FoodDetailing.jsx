@@ -137,7 +137,7 @@ const FoodDetailing = () => {
     return (
         <React.Fragment>
             <MainParent>
-            <Carousel itemsToShow={4} itemsToScroll={1} itemPadding={[10, 30]} pagination={false}>
+            <Carousel itemsToShow={4} itemsToScroll={1} itemPadding={[10, 30]} pagination={false} preventDefaultTouchmoveEvent>
             <Box><img src={testImage}/>
             <Box className='supper-info' >
             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography> 

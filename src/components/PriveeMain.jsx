@@ -236,7 +236,7 @@ const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
         <div><img src={chef}/></div>
         <div><img src={chef2}/></div> 
     </Carousel>    */}
-<Carousel itemsToShow={3} itemsToScroll={1} itemPadding={[10, 30]} pagination={false}>
+<Carousel itemsToShow={3} itemsToScroll={1} itemPadding={[10, 30]} preventDefaultTouchmoveEvent pagination={false}>
 <Box><img className="img-size" src={chef}/>
 <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
 <Box className="chef-details">
