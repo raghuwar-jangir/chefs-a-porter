@@ -140,6 +140,11 @@ const MobileContact = () => {
                 color: '#222222',
             },
         },
+        '@media(min-width: 769px) and (max-width: 2560px)': {
+        '.mobile-header':{
+            display:'none'
+        }
+        }
     }))
     return (
         <React.Fragment>
