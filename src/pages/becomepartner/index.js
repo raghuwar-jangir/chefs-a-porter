@@ -2,12 +2,11 @@ import React, {useState} from "react";
 import {
     Box,
     Grid,
-    MenuItem, paperClasses,
+    MenuItem,
     Select,
     styled,
     TextField,
     Typography,
-
 } from "@mui/material";
 import Footer from "../../components/Footer";
 import Navbar from "../navbar";
@@ -21,7 +20,6 @@ import IosShareIcon from '@mui/icons-material/IosShare';
 import {Formik, Form, ErrorMessage} from "formik";
 import * as Yup from 'yup';
 import {isMobile} from "react-device-detect";
-import {makeStyles} from '@material-ui/core/styles';
 
 const BecomePartner = () => {
 
@@ -184,7 +182,7 @@ const BecomePartner = () => {
             fontSize: '14px',
             lineHeight: '17px',
             fontWeight: '400',
-            // color: ' #7D7D7D',
+            color: ' #7D7D7D',
             padding: '16px 15px',
         },
         '.files': {
@@ -322,9 +320,6 @@ const BecomePartner = () => {
             '.joinaschef': {
                 paddingTop: '80px'
             },
-            '.mobile-heading': {
-                marginRight: '60px'
-            }
         },
         '@media(min-width: 615px) and (max-width: 768px)': {
             '.banner': {
