@@ -27,6 +27,7 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import {isMobile} from "react-device-detect";
 import Navbar from "../navbar";
 import NeedHelp from "../../components/NeedHelp";
+import FooterEnd from "../../components/FooterEndSection";
 
 
 const itemData = [
@@ -394,15 +395,7 @@ const AboutCardComponet = (props) => {
                 </Box>
                 <NeedHelp/>
                 <Footer/>
-                <Box className="footer-end">
-                    <Stack className='footer-text'
-                           divider={<FiberManualRecordIcon sx={{fontSize: '6px', color: '#C6A87D'}}/>}
-                           direction="row" spacing={2}>
-                        <Link className='footer-item' to='/'> FAQs </Link>
-                        <Link className='footer-item' to='/'> Privacy Policy </Link>
-                        <Link className='footer-item' to='/'> T&C </Link>
-                    </Stack>
-                </Box>
+              <FooterEnd/>
             </BoxWrapper>
 
         </React.Fragment>

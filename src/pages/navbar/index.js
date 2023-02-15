@@ -196,7 +196,7 @@ const Navbar = () => {
 
             <BrowserView>
                 <BoxWrapper>
-                    <AppBar position="static" elevation={0}
+                    <AppBar position="fixed" elevation={0}
                             sx={{background: '#FBFBFB'}}
                     >
                         <Grid container direction={'row'} columnSpacing={1} sx={{padding: '10px 120px'}}

@@ -10,6 +10,7 @@ import { isMobile, MobileView } from "react-device-detect";
 import FoodCard from "../../components/FoodCard";
 import Navbar from '../navbar'
 import NeedHelp from "../../components/NeedHelp";
+import FooterEnd from "../../components/FooterEndSection";
 
 
 const OurChefsPage = () => {
@@ -62,16 +63,6 @@ const OurChefsPage = () => {
         },
         '.btn:hover': {
             color: '#C6A87D',
-        }, '.footer-text': {
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            backgroundColor: "#222222",
-            padding: '18px', width: '50%'
-        }, '.footer-end': { display: 'flex', justifyContent: 'center', backgroundColor: '#222222' },
-        '.footer-item': {
-            fontSize: '12px',
-            textDecoration: 'none',
-            color: '#FBFBFB',
         },
         "@media (min-width: 1px) and (max-width:425px)": {
             '.main-parent-box': {
@@ -179,15 +170,7 @@ const OurChefsPage = () => {
                     <FoodCard />
                 </MobileView>
                 <Footer />
-                <Box className="footer-end">
-                    <Stack className='footer-text'
-                           divider={<FiberManualRecordIcon sx={{ fontSize: '6px', color: '#C6A87D' }} />}
-                           direction="row" spacing={2}>
-                        <Link className='footer-item' to='/'> FAQs </Link>
-                        <Link className='footer-item' to='/'> Privacy Policy </Link>
-                        <Link className='footer-item' to='/'> T&C </Link>
-                    </Stack>
-                </Box>
+                <FooterEnd/>
             </BoxWrapper >
         </React.Fragment >
     )

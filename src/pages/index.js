@@ -42,6 +42,7 @@ import food1 from "../assets/images/food1.png";
 import food2 from "../assets/images/food2.png";
 import food3 from "../assets/images/food3.png";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import FooterEnd from "../components/FooterEndSection";
 
 
 
@@ -644,7 +645,6 @@ const HomePage = () => {
             img:food3
         }
     ];
-    console.log("isMobile===", isMobile)
     return (
         <React.Fragment>
             <Navbar/>
@@ -802,15 +802,7 @@ const HomePage = () => {
                 </Box>
                 <NeedHelp/>
                 <Footer/>
-                <Box className="footer-end">
-                    <Stack className='footer-text'
-                           Boxider={<FiberManualRecordIcon sx={{fontSize: '6px', color: '#C6A87D'}}/>}
-                           direction="row" spacing={2}>
-                        <Link className='footer-item' to='/'> FAQs </Link>
-                        <Link className='footer-item' to='/'> Privacy Policy </Link>
-                        <Link className='footer-item' to='/'> T&C </Link>
-                    </Stack>
-                </Box>
+               <FooterEnd/>
                 {/* <PrivateProfile /> */}
                 {/* <DiningPage /> */}
             </BoxWrapper>

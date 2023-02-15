@@ -11,6 +11,7 @@ import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import {Link} from "gatsby";
 import {isMobile} from "react-device-detect";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import FooterEnd from "../../components/FooterEndSection";
 
 const personDetails1 = [
     {
@@ -78,14 +79,6 @@ const MobileContact = () => {
             color: '#222222',
             display: 'block',
             paddingBottom: '8px'
-        },
-        '.footer-text': {
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            backgroundColor: "#222222",
-            padding: '18px',
-        }, '.footer-item': {
-            color: '#DCD7CB',
         },
         '.form-inline': {
             display: 'none'
@@ -196,15 +189,7 @@ const MobileContact = () => {
                     </Box>
                 </Box>
                 <Footer/>
-                <Box className="footer-end">
-                    <Stack className='footer-text'
-                           Boxider={<FiberManualRecordIcon sx={{fontSize: '6px', color: '#C6A87D'}}/>}
-                           direction="row" spacing={2}>
-                        <Link className='footer-item' to='/'> FAQs </Link>
-                        <Link className='footer-item' to='/'> Privacy Policy </Link>
-                        <Link className='footer-item' to='/'> T&C </Link>
-                    </Stack>
-                </Box>
+                <FooterEnd/>
             </BoxWrapper>
         </React.Fragment>
     )
