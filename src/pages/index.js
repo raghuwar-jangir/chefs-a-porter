@@ -25,6 +25,7 @@ import PriveeComponentSlider from '../components/PriveeComponentSlider';
 
 
 
+
 const MainBoxContent = styled(Box)({
     padding: '20px',
     textAlign: 'center',

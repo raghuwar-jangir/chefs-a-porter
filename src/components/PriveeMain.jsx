@@ -181,6 +181,7 @@ const MainParent = styled(Box)({
 )
 
 const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
+    
     // const responsive = {
     //     superLargeDesktop: {
     //       // the naming can be any, depends on you.
