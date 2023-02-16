@@ -5,16 +5,21 @@ import MobileStepper from '@mui/material/MobileStepper';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { styled } from '@mui/system';
-import CarouselImg from "./../assets/images/team.png"
-
+// import CarouselImg from "./../assets/images/team.png"
+import gallery from "../assets/images/sc-gallery.png";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
-    CarouselImg,
-    CarouselImg,
-    CarouselImg,
-    CarouselImg,
-    CarouselImg,
+    // CarouselImg,
+    // CarouselImg,
+    // CarouselImg,
+    // CarouselImg,
+    // CarouselImg,
+    gallery,
+    gallery,
+    gallery,
+    gallery,
+    gallery,
 ];
 const BoxWrapper = styled(Box)(() => ({
     background: "#FBFBFB",

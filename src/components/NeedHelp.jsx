@@ -5,8 +5,8 @@ const NeedHelp = ({ isColor }) => {
         padding: '40px 120px',
         display: 'flex',
         justifyContent: 'space-between',
-        background: `${isColor ? '#101418' : '#FBFBFB'
-        }`,
+        background: `${isColor ? '#101418' : '#FBFBFB'}`,
+        borderTop:'0.5px solid #080B0E',
         ".btn": {
             // border: '0.25px solid #fff',
             background: "#080B0E",

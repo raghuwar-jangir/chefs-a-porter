@@ -22,7 +22,7 @@ import moment from "moment";
 import * as _ from 'lodash';
 import '../../assets/styles/searchBar.css'
 
-const BecomePatron = () => {
+const BecomePatronForm = () => {
 
     //validations
     const validationSchema = Yup.object({
@@ -560,4 +560,4 @@ const BecomePatron = () => {
         </React.Fragment>
     )
 }
-export default BecomePatron
+export default BecomePatronForm
