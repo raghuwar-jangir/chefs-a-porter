@@ -224,6 +224,21 @@ const ContactUs = () => {
                 color: 'rgba(0, 0, 0, 0.9)',
             },
         },
+        '@media(min-width: 320px) and (max-width: 370px)': {
+            '.mobile-header': {
+                paddingRight: '80px'
+            },
+        },
+        '@media(min-width: 371px) and (max-width: 400px)': {
+            '.mobile-header': {
+                paddingRight: '100px'
+            },
+        },
+        '@media(min-width: 401px) and (max-width: 565px)': {
+            '.mobile-header': {
+                paddingRight: '120px'
+            },
+        },
     }))
 
     return (
