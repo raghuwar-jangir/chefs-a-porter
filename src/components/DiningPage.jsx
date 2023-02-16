@@ -13,6 +13,8 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
 import diningPicture from '../assets/images/cook1.png'
 import DiningProgress from './DiningProgress';
 import { keyframes } from 'styled-components';
+import { slide } from 'react-burger-menu';
+import { width } from '@mui/system';
 
 
 const MainContentBox = styled(Box)({
@@ -58,13 +60,13 @@ const MainContentBox = styled(Box)({
     '.swiper-pagination-bullet':{
         borderRadius:'0px',
         width:'200px',
-        height:'2px',
+        height:'3px',
         background:'#FBFBFB',
         opacity:'1',
 //         webkitTransition: 'background-color 5s ease-out',
 //   mozTransition: 'background-color 5s ease-out',
 //   oTransition: 'background-color 5s ease-out',
-  transition: 'background-color 8s linear',
+//   transition: 'background-color 8s linear',
     },
     '.swiper-pagination-bullet-active':{
         // background:'linear-gradient(to left, red 50%, blue 50%) right',
@@ -82,14 +84,34 @@ const MainContentBox = styled(Box)({
         // backgroundSize: '200%',
         // transition: '.5s ease-out',
         // backgroundPosition: 'left',
-     backgroundColor:'#C6A87D'
+    //  backgroundColor:'#C6A87D',
+    animationDuration: '5s',
+  animationName: 'swiper-pagination-bullet',
+  animationDirection:'normal',
+animationFillMode:'forwards',
+backgroundColor:'#C6A87D',
+opacity:'1',
+positionX:'end'
+    },
+    '@keyframes swiper-pagination-bullet' :{
+        '0%' :{
+           
+            background:'#FBFBFB',
+            // width:'100px'
+           
+        },
+        '100%' :{
+            background:'#C6A87D',
+            // opacity: '2'
+            // width:'200px'
+        }
     },
     '.swiper-pagination':{
         bottom:'-5px !important',
     },
     '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
         margin:'0 var(--swiper-pagination-bullet-horizontal-gap,19px) !important'
-    }
+    },
     // '.carousel-dots li button:before':{
     // '.carousel-dots':{
       
@@ -102,6 +124,38 @@ const MainContentBox = styled(Box)({
     //     color:'red',
     //     content:`'-'`
     // }
+    '@media(min-width: 1px) and (max-width: 768px)': {
+        '.img':{
+            height:'250%',
+            width:'50%',
+            padding:'0px 26%'
+        },
+        '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
+            margin:'0 var(--swiper-pagination-bullet-horizontal-gap,3px) !important'
+    },
+    '.swiper-pagination-bullet':{
+        width:'96px'
+    },
+    '.dining-content': {
+        width:'10px',
+        font:'12px',
+        padding: '4px 46px'
+    },
+    '.content-box':{
+        marginRight:'65px'
+    }
+},
+'@media(min-width: 320px) and (max-width: 768px)': {
+    '.img':{
+        // height:'250%',
+        width:'94%',
+        padding:'0px 3%'
+    },
+    '.dining-title':{
+        padding:'0px 29px',
+        font:'20px'
+    }
+}
 })
 
 const DiningPage = () => {
@@ -125,10 +179,10 @@ const DiningPage = () => {
        pagination={{
          clickable: true,
        }}
-       autoplay={{
-        delay: 8000,
-        disableOnInteraction: false,
-    }}
+    //    autoplay={{
+    //     delay: 8000,
+    //     disableOnInteraction: false,
+    // }}
     speed={500}
        navigation={true}
        modules={[Pagination,Autoplay]}

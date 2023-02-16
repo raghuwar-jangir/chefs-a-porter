@@ -95,7 +95,12 @@ const MainParent = styled(Box)({
     },
     ".name-box":{
         padding: '16px 20px',
-        background: '#101418'
+        background: '#101418',
+     position: 'relative',
+    bottom: '12%'
+    },
+    '.lguFiu':{
+        height:'466.641px !important'
     },
     '.chef-title':{
         display: 'flex',
@@ -224,7 +229,7 @@ const PriveeMain = ({ title, subTitle, isButtonShow = true }) => {
                     Chef’s you’ve checked out previously
                      </Typography> */}
                   
-<Carousel itemsToShow={4} itemsToScroll={1} itemPadding={[10, 30]} pagination={false} enableMouseSwipe={true} preventDefaultTouchmoveEvent enableSwipe={true}>
+<Carousel outerSpacing={20} itemsToShow={4} itemsToScroll={1} itemPadding={[10, 30]} pagination={false} enableMouseSwipe={true} preventDefaultTouchmoveEvent enableSwipe={true}>
 <Box><img src={chef}/>
 <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
 <Box className="chef-details">

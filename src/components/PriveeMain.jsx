@@ -74,7 +74,15 @@ const MainParent = styled(Box)({
     },
     ".name-box":{
         padding: '16px 20px',
-        background: '#101418'
+        background: '#101418',
+        position: 'relative',
+        bottom: '33%'
+    },
+    // '.continue-browsing-box MuiBox-root css-0':{
+    //     height:'auto'
+    // },
+    '.lguFiu':{
+        height:'523.641px !important'
     },
     '.chef-title':{
         display: 'flex',
@@ -113,11 +121,11 @@ const MainParent = styled(Box)({
     margin: '0 5px'
     },
     // ".css-0":{
-    //     width:'100% !important'
+    //     height:'520px'
     // },
-    // '.img-size':{
-    //     width:'100%'
-    // },
+    '.img-size':{
+        width:'531.667px'
+    },
     '.Slxdj':{
             fontSize: '16px !important',
             background: 'none !important'
@@ -237,7 +245,7 @@ const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
         <div><img src={chef}/></div>
         <div><img src={chef2}/></div> 
     </Carousel>    */}
-<Carousel itemsToShow={3} itemsToScroll={1} itemPadding={[10, 30]} preventDefaultTouchmoveEvent pagination={false}>
+<Carousel itemsToShow={3} itemsToScroll={1} itemPadding={[10, 200]} preventDefaultTouchmoveEvent pagination={false}>
 <Box><img className="img-size" src={chef}/>
 <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
 <Box className="chef-details">

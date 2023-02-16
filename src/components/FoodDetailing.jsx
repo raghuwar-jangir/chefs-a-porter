@@ -14,7 +14,7 @@ const MainParent = styled(Box)({
         paddingTop: "30px"
     },
     '.supper-info':{
-        padding: '20px 16px',
+        padding: '8px 16px',
     background: '#FFFFFF',
     boxShadow: '0px 16.3378px 20.4223px rgb(0 0 0 / 6%)',
     position: 'relative',
@@ -131,14 +131,82 @@ const MainParent = styled(Box)({
 //     boxShadow:'none',
 //     zIndex: '1'
 // },
+'@media(min-width: 1440px) and (max-width: 2560px)':{
+    '.test-img':{
+    height: '351px',
+    width: '525.25px',
+    objectFit:'cover'
+    }
+},
+'@media(min-width: 1024px) and (max-width: 1440px)':{
+    '.test-img':{
+        height: '334px',
+        width: '258px',
+        objectFit:'cover'
+        },
+        '.super-title':{
+            fontSize:'19px'
+        },
+        '.supper-info':{
+            bottom:'6px'
+        }
+},
+'@media(min-width: 768px) and (max-width: 1024px)':{
+    '.test-img':{
+        height: '280px',
+        width: '155px',
+        objectFit:'cover'
+        },
+        '.supper-info':{
+            bottom:'11px'
+        },
+        '.super-chef-details':{
+            paddingTop:'4px'
+        },
+        '.chef-tag':{
+            paddingBottom:"2px"
+        },
+        '.rec-arrow-right':{
+            right:'57px'
+        },
+        '.rec-arrow-left':{
+            left:'58px'
+        }
+},
+'@media(min-width: 425px) and (max-width: 768px)':{
+    // '.test-img':{
+    //     height: '280px',
+    //     width: '155px',
+    //     objectFit:'cover'
+    //     },
+        '.parent-body':{
+            padding:'80px 0px !important'
+        },
+    '.lguFiu':{
+        // width:'50%'
+    }
+}
 })
 
-const FoodDetailing = () => {
+class FoodDetailing extends React.Component {
+    constructor(props) {
+        super(props)
+        this.breakPoints = [
+            { width: 664, itemsToShow: 3 },
+            { width: 425, itemsToShow: 3 },
+            // { width: 425, itemsToShow: 3, itemsToScroll: 1, pagination: false },
+            // { width: 768, itemsToShow: 4 },
+            // { width: 1150, itemsToShow: 4, itemsToScroll: 1 },
+            // { width: 1450, itemsToShow: 4 },
+            // { width: 1750, itemsToShow: 4 },
+          ]
+    }
+    render(){
     return (
         <React.Fragment>
             <MainParent>
-            <Carousel itemsToShow={4} itemsToScroll={1} itemPadding={[10, 30]} pagination={false} preventDefaultTouchmoveEvent>
-            <Box><img src={testImage}/>
+            <Carousel breakPoints={this.breakPoints} itemsToShow={4} itemsToScroll={1} itemPadding={[21, 30]} pagination={false} preventDefaultTouchmoveEvent>
+            <Box><img className='test-img' src={testImage}/>
             <Box className='supper-info' >
             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography> 
             <Box className='super-chef-details'>
@@ -149,17 +217,7 @@ const FoodDetailing = () => {
             </Box>
             </Box>
             </Box>
-            <Box><img src={testImage2}/>
-            <Box className='supper-info' >
-            <Typography className='super-title'>The Big Fat Parsi Blowout</Typography> 
-            <Box className='super-chef-details'>
-            <span className='chef-tag'><img className='img-tag' src={cap} alt="chef cap"/><Typography className='tag-detail'>Chef Anna Miocher</Typography></span>
-            <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
-            <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography className='tag-detail'>₹2500/per diner</Typography></span>
-            {/* <b>₹2500</b>/per diner */}
-            </Box>
-            </Box></Box>
-            <Box><img src={testImage}/>
+            <Box><img className='test-img' src={testImage2}/>
             <Box className='supper-info' >
             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography> 
             <Box className='super-chef-details'>
@@ -169,7 +227,7 @@ const FoodDetailing = () => {
             {/* <b>₹2500</b>/per diner */}
             </Box>
             </Box></Box>
-            <Box><img src={testImage2}/>
+            <Box><img className='test-img' src={testImage}/>
             <Box className='supper-info' >
             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography> 
             <Box className='super-chef-details'>
@@ -179,7 +237,17 @@ const FoodDetailing = () => {
             {/* <b>₹2500</b>/per diner */}
             </Box>
             </Box></Box>
-            <Box><img src={testImage2}/>
+            <Box><img className='test-img' src={testImage2}/>
+            <Box className='supper-info' >
+            <Typography className='super-title'>The Big Fat Parsi Blowout</Typography> 
+            <Box className='super-chef-details'>
+            <span className='chef-tag'><img className='img-tag' src={cap} alt="chef cap"/><Typography className='tag-detail'>Chef Anna Miocher</Typography></span>
+            <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
+            <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography className='tag-detail'>₹2500/per diner</Typography></span>
+            {/* <b>₹2500</b>/per diner */}
+            </Box>
+            </Box></Box>
+            <Box><img className='test-img' src={testImage2}/>
             <Box className='supper-info' >
             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography> 
             <Box className='super-chef-details'>
@@ -206,7 +274,7 @@ const FoodDetailing = () => {
                 </Grid> */}
             </MainParent>
         </React.Fragment >
-    )
+            )
 }
-
+}
 export default FoodDetailing;
