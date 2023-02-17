@@ -15,7 +15,7 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import {isMobile} from "react-device-detect";
 import gallery from "../../assets/images/sc-gallery.png";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import CommanCarousel from "../../components/CommanCarousel";
+import ImageCarousel from "../../components/ImageCarousel";
 
 const BecomePartner = () => {
 
@@ -409,7 +409,7 @@ const BecomePartner = () => {
                         </Box>
                     </Box>
                 </Box>
-                <Box className="gallery-carousel"><CommanCarousel/></Box>
+                <Box className="gallery-carousel"><ImageCarousel/></Box>
                 <Box className="big_dis">
                     <Box> <Typography className="booking-heading">Check out the benifits our patron recieve</Typography></Box>
                     <Grid container>

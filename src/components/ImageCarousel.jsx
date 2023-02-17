@@ -5,15 +5,15 @@ import MobileStepper from '@mui/material/MobileStepper';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { styled } from '@mui/system';
-import CarouselImg from "./../assets/images/team.png"
+import gallery from "../assets/images/sc-gallery.png";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
-    CarouselImg,
-    CarouselImg,
-    CarouselImg,
-    CarouselImg,
-    CarouselImg,
+    gallery,
+    gallery,
+    gallery,
+    gallery,
+    gallery,
 ];
 const BoxWrapper = styled(Box)(() => ({
     background: "#FBFBFB",
@@ -24,13 +24,12 @@ const BoxWrapper = styled(Box)(() => ({
     '.MuiMobileStepper-dot.MuiMobileStepper-dotActive.css-26w9jf-MuiMobileStepper-dot': {
         width: '15px',
         height: '15px',
-        backgroundColor: '#C6A87D',
+        backgroundColor: '#FBFBFB',
     },
     '.MuiMobileStepper-dots.css-1384nzf-MuiMobileStepper-dots': {
         paddingTop: '16px',
     },
     ".css-114p2tk-MuiMobileStepper-dot": {
-        background: "#080B0E",
         border: '1px solid #FBFBFB',
         width: '14px',
         height: '14px'
@@ -45,10 +44,28 @@ const BoxWrapper = styled(Box)(() => ({
             width: '100%',
             display: 'block',
         },
-    }
+    },
+    "@media (min-width: 320px) and (max-width:425px)": {
+        '.css-5n45bv-MuiPaper-root-MuiMobileStepper-root':{
+            paddingLeft:'130px',
+            top:'220px'
+        },
+    },
+    "@media (min-width: 320px) and (max-width:350px)": {
+        '.css-5n45bv-MuiPaper-root-MuiMobileStepper-root':{
+            paddingLeft:'105px',
+            top:'190px'
+        },
+    },
+    "@media (min-width: 425px) and (max-width:450px)": {
+        '.css-5n45bv-MuiPaper-root-MuiMobileStepper-root':{
+            paddingLeft:'150px',
+            top:'250px'
+        },
+    },
 }))
 
-const CommanCarousel = () => {
+const ImageCarousel = () => {
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
     const maxSteps = images.length;
@@ -65,7 +82,7 @@ const CommanCarousel = () => {
                     enableMouseEvents
                 >
                     {images.map((step, index) => (
-                        <div key={index}>
+                        <div key={index} sx={{position:'relative'}}>
                             <Box className='main-div'>
                                 <img alt="sample_file" className="img" src={step} />
                             </Box>
@@ -77,14 +94,14 @@ const CommanCarousel = () => {
                     position="static"
                     activeStep={activeStep}
                     sx={{
-                        background: "#FBFBFB",
+                        background: "transparent",
+                        position:'absolute',
                         display: 'flex',
                         justifyContent: 'center',
                     }}
                 />
-
             </BoxWrapper>
         </React.Fragment >
     )
 }
-export default CommanCarousel
+export default ImageCarousel
