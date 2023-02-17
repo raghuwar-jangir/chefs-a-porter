@@ -73,17 +73,17 @@ const MainParent = styled(Box)({
         padding: '12px'
     },
     ".name-box":{
-        padding: '16px 20px',
+        padding: '22px 20px',
         background: '#101418',
         position: 'relative',
-        bottom: '33%'
+        bottom: '29%'
     },
     // '.continue-browsing-box MuiBox-root css-0':{
     //     height:'auto'
     // },
-    '.lguFiu':{
-        height:'523.641px !important'
-    },
+    // '.lguFiu':{
+    //     height:'523.641px !important'
+    // },
     '.chef-title':{
         display: 'flex',
         placeContent: 'center',
@@ -124,7 +124,7 @@ const MainParent = styled(Box)({
     //     height:'520px'
     // },
     '.img-size':{
-        width:'531.667px'
+        width:'490.667px'
     },
     '.Slxdj':{
             fontSize: '16px !important',
@@ -184,7 +184,258 @@ const MainParent = styled(Box)({
             fontSize: '16px',
             fontWeight: '600',
         }
-    }
+    },
+    '@media(min-width: 2400px) and (max-width: 2700px)': {
+        '.img-size':{
+            width:'662.667px'
+        },
+        '.name-box':{
+            bottom:'43%'
+        },
+        '.lguFiu':{
+                height:'523.641px !important'
+            },
+            // '.chef-title':{
+            //     fontSize:'30px'
+            // },
+            // '.chef-details':{
+            //     fontSize:'21px'
+            // }
+    },
+    '@media(min-width: 2240px) and (max-width: 2400px)': {
+        '.img-size':{
+            width:'612.667px'
+        },
+        '.name-box':{
+            bottom:'40%'
+        },
+        '.lguFiu':{
+                height:'523.641px !important'
+            },
+    },
+    '@media(min-width: 2160px) and (max-width: 2240px)': {
+        '.img-size':{
+            width:'586.667px'
+        },
+        '.name-box':{
+            bottom:'38%'
+        },
+        '.lguFiu':{
+                height:'523.641px !important'
+            },
+    },
+    '@media(min-width: 2000px) and (max-width: 2160px)': {
+        '.img-size':{
+            width:'534.667px'
+        },
+        '.name-box':{
+            bottom:'33%'
+        },
+        '.lguFiu':{
+                height:'523.641px !important'
+            },
+    },
+    '@media(min-width: 1900px) and (max-width: 2000px)': {
+        '.img-size':{
+            width:'500.667px'
+        },
+        '.name-box':{
+            bottom:'29%'
+        },
+        '.lguFiu':{
+                height:'523.641px !important'
+            },
+    },
+    '@media(min-width: 1650px) and (max-width: 1900px)': {
+        '.img-size':{
+            width:'423.667px'
+        },
+        '.name-box':{
+            bottom:'19%'
+        },
+        '.lguFiu':{
+                height:'523.641px !important'
+            },
+    },
+    '@media(min-width: 1570px) and (max-width: 1650px)': {
+        '.img-size':{
+            width:'389.667px'
+        },
+        '.name-box':{
+            bottom:'16%'
+        }
+    },
+    '@media(min-width: 1400px) and (max-width: 1570px)': {
+        '.img-size':{
+            width:'332.667px'
+        },
+        '.name-box':{
+            bottom:'11%'
+        }
+    },
+    '@media(min-width: 1280px) and (max-width: 1400px)': {
+        '.img-size':{
+            width:'295.667px'
+        },
+        '.name-box':{
+            bottom:'7%'
+        },
+    },
+    '@media(min-width: 1155px) and (max-width: 1280px)': {
+        '.img-size':{
+            width:'252.667px',objectFit: 'cover'
+        },
+        '.name-box':{
+            bottom:'6%'
+        },
+    },
+    '@media(min-width: 1085px) and (max-width: 1155px)': {
+        '.img-size':{
+            width:'232.667px',
+            objectFit: 'cover'
+        },
+        '.name-box':{
+            bottom:'5%',
+            padding:'11px 20px'
+        },
+    },
+    '@media(min-width: 1000px) and (max-width: 1085px)': {
+        '.img-size':{
+            width:'206.667px',
+            height:'406px',
+            objectFit: 'cover'
+        },
+        '.name-box':{
+            bottom:'5%',
+            padding:'11px 20px'
+        },
+        '.chef-title':{
+            fontSize:'15px'
+        },
+        '.chef-details':{
+            fontSize:'12px'
+        }
+    },
+    '@media(min-width: 922px) and (max-width: 1000px)': {
+        '.img-size':{
+            width:'297.667px',
+            // height:'372px',
+            objectFit: 'cover'
+        },
+        '.name-box':{
+            bottom:'17%',
+            padding:'11px 20px'
+        },
+        '.chef-title':{
+            fontSize:'15px'
+        },
+        '.chef-details':{
+            fontSize:'12px'
+        },
+        '.lguFiu':{
+            width:'1055px'
+        }
+    },
+    '@media(min-width: 800px) and (max-width: 922px)': {
+        '.img-size':{
+            width:'230.667px',
+            // height:'372px',
+            objectFit: 'cover'
+        },
+        '.name-box':{
+            bottom:'17%',
+            padding:'7px 20px'
+        },
+        '.chef-title':{
+            fontSize:'15px'
+        },
+        '.chef-details':{
+            fontSize:'12px'
+        },
+        '.lguFiu':{
+            width:'970px'
+        }
+    },
+    '@media(min-width: 727px) and (max-width: 800px)': {
+        '.img-size':{
+            width:'210.667px',
+            // height:'372px',
+            objectFit: 'cover'
+        },
+        '.name-box':{
+            bottom:'17%',
+            padding:'7px 20px'
+        },
+        '.chef-title':{
+            fontSize:'15px'
+        },
+        '.chef-details':{
+            fontSize:'12px'
+        },
+        '.lguFiu':{
+            width:'900px'
+        }
+    },
+    '@media(min-width: 600px) and (max-width: 727px)': {
+        '.img-size':{
+            width:'162.667px',
+            // height:'372px',
+            objectFit: 'cover'
+        },
+        '.name-box':{
+            bottom:'17%',
+            padding:'7px 20px'
+        },
+        '.chef-title':{
+            fontSize:'15px'
+        },
+        '.chef-details':{
+            fontSize:'12px'
+        },
+        '.lguFiu':{
+            width:'710px'
+        }
+    },
+    '@media(min-width: 500px) and (max-width: 600px)': {
+        '.img-size':{
+            width:'234.667px',
+            // height:'372px',
+            objectFit: 'cover'
+        },
+        '.name-box':{
+            bottom:'17%',
+            padding:'7px 20px'
+        },
+        '.chef-title':{
+            fontSize:'18px'
+        },
+        '.chef-details':{
+            fontSize:'14px'
+        },
+        '.lguFiu':{
+            width:'627px'
+        }
+    },
+    '@media(min-width: 375px) and (max-width: 500px)': {
+        '.img-size':{
+            width:'178.667px',
+            // height:'372px',
+            objectFit: 'cover'
+        },
+        '.name-box':{
+            bottom:'17%',
+            padding:'7px 20px'
+        },
+        '.chef-title':{
+            fontSize:'14px'
+        },
+        '.chef-details':{
+            fontSize:'12px'
+        },
+        '.lguFiu':{
+            width:'494px'
+        }
+    },
 }
 )
 
@@ -245,7 +496,7 @@ const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
         <div><img src={chef}/></div>
         <div><img src={chef2}/></div> 
     </Carousel>    */}
-<Carousel itemsToShow={3} itemsToScroll={1} itemPadding={[10, 200]} preventDefaultTouchmoveEvent pagination={false}>
+<Carousel itemsToShow={3} itemsToScroll={1} itemPadding={[10,8 ]} pagination={false}>
 <Box><img className="img-size" src={chef}/>
 <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
 <Box className="chef-details">
@@ -260,7 +511,7 @@ const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
 <Box className="chef-details"><span>Persian</span></Box>
 </Box>
 </Box>
-<Box><img className="img-size" src={chef}/>
+<Box><img className="img-size" src={chef3}/>
 <Box className="name-box"><Typography className='chef-title'>Mako Ravindran</Typography>
 <Box className="chef-details">
 <span>French <span className='line'>|</span></span>

@@ -179,10 +179,10 @@ const DiningPage = () => {
        pagination={{
          clickable: true,
        }}
-    //    autoplay={{
-    //     delay: 8000,
-    //     disableOnInteraction: false,
-    // }}
+       autoplay={{
+        delay: 8000,
+        disableOnInteraction: false,
+    }}
     speed={500}
        navigation={true}
        modules={[Pagination,Autoplay]}

@@ -1,4 +1,9 @@
-import React from 'react'
+import React , { useRef, useState } from 'react';
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import "swiper/css";
+// import "swiper/css/navigation";
+// import { Navigation } from "swiper";
+// import "./styles.css";
 import { Box, Button, Grid, styled, Typography } from '@mui/material';
 import Carousel from 'react-elastic-carousel'
 import FoodDetail from './FoodDetail';
@@ -131,71 +136,217 @@ const MainParent = styled(Box)({
 //     boxShadow:'none',
 //     zIndex: '1'
 // },
-'@media(min-width: 1440px) and (max-width: 2560px)':{
+'@media(min-width: 2500px) and (max-width: 2700px)':{
     '.test-img':{
     height: '351px',
     width: '525.25px',
     objectFit:'cover'
     }
 },
-'@media(min-width: 1024px) and (max-width: 1440px)':{
+'@media(min-width: 2370px) and (max-width: 2500px)':{
     '.test-img':{
-        height: '334px',
-        width: '258px',
+        height: '351px',
+        width: '490.25px',
         objectFit:'cover'
-        },
-        '.super-title':{
-            fontSize:'19px'
-        },
-        '.supper-info':{
-            bottom:'6px'
         }
 },
-'@media(min-width: 768px) and (max-width: 1024px)':{
+'@media(min-width: 2100px) and (max-width: 2370px)':{
     '.test-img':{
-        height: '280px',
-        width: '155px',
+        height: '351px',
+        width: '425.25px',
+        objectFit:'cover'
+        }
+},
+'@media(min-width: 1620px) and (max-width: 1850px)':{
+    '.test-img':{
+        height: '351px',
+        width: '300.25px',
+        objectFit:'cover'
+        }
+},
+'@media(min-width: 1400px) and (max-width: 1620px)':{
+    '.test-img':{
+        height: '351px',
+        width: '251.25px',
+        objectFit:'cover'
+        }
+},
+'@media(min-width: 1265px) and (max-width: 1400px)':{
+    '.test-img':{
+        height: '435px',
+        width: '215.25px',
+        objectFit:'cover'
+        }
+},
+'@media(min-width: 1120px) and (max-width: 1265px)':{
+    '.test-img':{
+        height: '435px',
+        width: '179.25px',
         objectFit:'cover'
         },
         '.supper-info':{
-            bottom:'11px'
-        },
-        '.super-chef-details':{
-            paddingTop:'4px'
-        },
-        '.chef-tag':{
-            paddingBottom:"2px"
-        },
-        '.rec-arrow-right':{
-            right:'57px'
-        },
-        '.rec-arrow-left':{
-            left:'58px'
+            padding:'16px 26px'
         }
 },
-'@media(min-width: 425px) and (max-width: 768px)':{
-    // '.test-img':{
-    //     height: '280px',
-    //     width: '155px',
-    //     objectFit:'cover'
-    //     },
-        '.parent-body':{
-            padding:'80px 0px !important'
+'@media(min-width: 1024px) and (max-width: 1120px)':{
+    '.test-img':{
+        height: '435px',
+        width: '156.25px',
+        objectFit:'cover'
         },
-    '.lguFiu':{
-        // width:'50%'
-    }
-}
+        '.supper-info':{
+            padding:'16px 16px'
+        }
+    },
+    '@media(min-width: 877px) and (max-width: 1024px)':{
+        '.test-img':{
+            height: '435px',
+            width: '273.25px',
+            objectFit:'cover'
+            },
+            '.lguFiu':{
+                width:'980px'
+            }
+        },
+        '@media(min-width: 730px) and (max-width: 877px)':{
+            '.test-img':{
+                height: '435px',
+                width: '202.25px',
+                objectFit:'cover'
+                },
+                '.lguFiu':{
+                    width:'820px'
+                }
+        },
+        '@media(min-width: 550px) and (max-width: 730px)':{
+            '.test-img':{
+                height: '435px',
+                width: '505.25px',
+                objectFit:'cover'
+                },
+                '.lguFiu':{
+                    width:'820px'
+                }
+        },
+        '@media(min-width: 320px) and (max-width: 550px)':{
+            '.test-img':{
+                height: '435px',
+                width: '310.25px',
+                objectFit:'cover'
+                },
+                '.lguFiu':{
+                    width:'700px'
+                }
+        }
+// '@media(min-width: 1024px)':{
+//     '.test-img':{
+//         height: '334px',
+//         width: '186px',
+//         objectFit:'cover'
+//         },
+//         '.lguFiu':{
+//             width:'946px'
+//         }
+        // '.biYdFZ':{
+        //     margin: '0px 87px'
+        // }
+        // '.super-title':{
+        //     fontSize:'19px'
+        // },
+        // '.supper-info':{
+        //     bottom:'6px'
+        // },
+        // '.rec-arrow-right':{
+        //     right:'60px'
+        // },
+        // '.rec-arrow-left':{
+        //     left:'60px'
+        // },
+        // '.parent-body':{
+        //    marginLeft:'-14%'
+        // }
+// },
+// '@media(max-width: 768px)':{
+//     '.test-img':{
+//         height: '351px',
+//         width: '238.25px',
+//         objectFit:'cover'
+//         },
+//         '.lguFiu':{
+//             width:'850px'
+//         }
+// },
+// '@media(max-width: 425px)':{
+//     '.test-img':{
+//         height: '351px',
+//         width: '376.25px',
+//         objectFit:'cover'
+//         },
+//         // '.lguFiu':{
+//         //     width:'550px'
+//         // }
+// },
+// '@media(max-width: 375px)':{
+//     '.test-img':{
+//         height: '351px',
+//         width: '352.25px',
+//         objectFit:'cover'
+//         }
+//     },
+//     '@media(max-width: 320px)':{
+//         '.test-img':{
+//             height: '351px',
+//             width: '300.25px',
+//             objectFit:'cover'
+//             }
+//         }
+// '@media(min-width: 768px) and (max-width: 1024px)':{
+//     '.test-img':{
+//         height: '280px',
+//         width: '230px',
+//         objectFit:'cover'
+//         },
+//         '.supper-info':{
+//             bottom:'11px'
+//         },
+//         '.super-chef-details':{
+//             paddingTop:'4px'
+//         },
+//         '.chef-tag':{
+//             paddingBottom:"2px"
+//         },
+//         '.rec-arrow-right':{
+//             right:'57px'
+//         },
+//         '.rec-arrow-left':{
+//             left:'58px'
+//         },
+//         '.lguFiu':{
+//             width:'165%'
+//         }
+// },
+// '@media(min-width: 1px) and (max-width: 768px)':{
+//     '.test-img':{
+//         width: '393px',
+//         objectFit:'cover'
+//         },
+//         '.biYdFZ':{
+//             margin: '0px -54px'
+//         }
+// }
 })
 
 class FoodDetailing extends React.Component {
     constructor(props) {
         super(props)
         this.breakPoints = [
-            { width: 664, itemsToShow: 3 },
-            { width: 425, itemsToShow: 3 },
+            // {width:290 , itemsToShow:3}
+            // { width: 664, itemsToShow: 3 },
+            // { width: 425, itemsToShow: 3 },
             // { width: 425, itemsToShow: 3, itemsToScroll: 1, pagination: false },
-            // { width: 768, itemsToShow: 4 },
+            // {width:575, itemsToShow: 4},
+            // {width:1024, itemsToScroll:3}
+            // { width: 768, itemsToShow: 3 },
             // { width: 1150, itemsToShow: 4, itemsToScroll: 1 },
             // { width: 1450, itemsToShow: 4 },
             // { width: 1750, itemsToShow: 4 },
@@ -278,3 +429,14 @@ class FoodDetailing extends React.Component {
 }
 }
 export default FoodDetailing;
+
+// const FoodDetailing = () => {
+//     <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+//         <SwiperSlide><img src={testImage} /></SwiperSlide>
+//         <SwiperSlide><img src={testImage2} /></SwiperSlide>
+//         <SwiperSlide><img src={testImage} /></SwiperSlide>
+//         <SwiperSlide><img src={testImage2} /></SwiperSlide>
+//         <SwiperSlide><img src={testImage2} /></SwiperSlide>
+//       </Swiper>
+// }
+// export default FoodDetailing;

@@ -10,7 +10,7 @@ const CorporateBooking = () => {
         '.main-box':{
             // display: 'block',
         background: '#F3F3F3',
-        padding: '40px 0px'
+        padding: '70px 0px'
         },
         '.title':{
             textAlign: 'center',
@@ -31,12 +31,14 @@ const CorporateBooking = () => {
             width: '598px'
         },
         '.person-parts':{
-            display:'flex'
+            display:'flex',
+            position:'relative'
         },
         '.person-details': {
             paddingLeft: '0px',
     paddingTop: '30px',
-    width:'64%'
+    // width:'64%',
+    position:'relative'
         },
         '.main-details':{
             fontSize: '16px',
@@ -82,21 +84,49 @@ const CorporateBooking = () => {
     // textTransform:'lowercase'
         },
         '.img':{
-            width: '100% !important',
-            height: '261px',
+            width: '195px',
+            height: '260px',
             marginLeft: '15px'
         },
         '.InfiniteCarouselDotActiveIcon ':{
-            backgroundColor:'black'
+            backgroundColor:'black',
+            width: '12px !important',
+    height: '12px !important',
         },
         '.InfiniteCarouselDots':{
             top:'100%'
-        }
+        },
+        '.InfiniteCarouselDotIcon':{
+            width: '8px',
+    height: '8px',
+    border: '1px solid black',
+        },
     //     '.InfiniteCarouselSlide img':{
     //         width: '100% !important',
     // height: '261px',
     // marginLeft: '40px'
     //     }
+    '@media(min-width: 320px) and (max-width: 700px)': {
+        '.person-parts':{
+            flexFlow:'row-reverse'
+        },
+        '.carousel-box':{
+            width:'367px',
+            padding:'0px'
+        },
+        '.person-details':{
+            marginLeft:'6px',
+            paddingTop:'0px'
+        },
+        '.img':{
+            marginLeft:'0px',
+            width:'143px',
+            height:'222px'
+        },
+        '.InfiniteCarousel':{
+            left:'-7%'
+        }
+    }
     }))
     return(
         <React.Fragment>
@@ -110,15 +140,22 @@ const CorporateBooking = () => {
       {
         breakpoint: 500,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 1,
+          slidesToScroll: 1,
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 739,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
         },
       },
     ]}
@@ -127,7 +164,7 @@ const CorporateBooking = () => {
     enableMouseSwipe={true}
     dots={true}
     showSides={true}
-    sidesOpacity={0.5}
+    sidesOpacity={0}
     sideSize={0.1}
     slidesToScroll={1}
     slidesToShow={1}
