@@ -6,7 +6,8 @@ import Carousel from 'react-elastic-carousel';
 // import "react-multi-carousel/lib/styles.css";
 import chef from './../assets/images/chef1.png'
 import chef2 from './../assets/images/chef2.png'
-import chef3 from '../assets/images/chef3.png'
+import chef3 from '../assets/images/chef3.png';
+import reebok from '../assets/images/rebook.png'
 import zIndex from '@mui/material/styles/zIndex';
 
 
@@ -162,6 +163,57 @@ const MainParent = styled(Box)({
         '.css-1akftu3 .kXteup:hover:enabled, .css-1akftu3 .kXteup:focus:enabled': {
             color: 'white'
         },
+        // '.rebook':{
+        //     position: 'absolute',
+        //     background: '#101418',
+        //     display: 'flex',
+        //     placeContent: 'flex-end',
+        //     top: '11px',
+        //     width:'22%',
+        //     padding:'5px 24px'
+    //
+    //         fontFamily: 'Proxima Nova Alt',
+    // fontStyle: 'normal',
+    // fontWeight: '300',
+    // fontSize: '12px',
+    // lineHeight: '15px',
+    // textAlign: 'right',
+    // letterSpacing: '0.02em',
+    // color: '#C6A87D',
+    // position: 'absolute',
+    // top: '0px',
+    // width: '100%',
+    // background: '#101418',
+    // display: 'flex',
+    // placeContent: 'flex-end',
+    // padding: '2px 12px',
+    // left: '0px',
+        // },
+        '.rebook-title':{
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+    fontWeight: '150',
+    fontSize: '16px',
+    lineHeight: '19px',
+    textAlign: 'right',
+    letterSpacing: '0.02em',
+    color: '#C6A87D',
+        },
+        '.rebook-img':{
+            objectFit: 'contain',
+            marginRight: '4px',
+            width:'12px',
+            height:'16px'
+        },
+        '.rebook':{
+            position: 'absolute',
+            background: '#101418',
+            display: 'flex',
+            placeContent: 'flex-end',
+            top: '11px',
+            width:'22%',
+            padding:'5px 24px'
+        },
     '@media(min-width: 1px) and (max-width: 425px)': {
         '.continue-browsing-box': {
             background: '#080B0E',
@@ -183,7 +235,8 @@ const MainParent = styled(Box)({
             width: '100%',
             fontSize: '16px',
             fontWeight: '600',
-        }
+        },
+        
     },
     '@media(min-width: 2400px) and (max-width: 2700px)': {
         '.img-size':{
@@ -374,7 +427,32 @@ const MainParent = styled(Box)({
         },
         '.lguFiu':{
             width:'900px'
-        }
+        },
+        '.rebook':{
+            position: 'absolute',
+            background: '#101418',
+            display: 'flex',
+            placeContent: 'flex-end',
+            top: '11px',
+            width:'19%',
+            padding:'3px 6px'
+        },
+        '.rebook-title':{
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+    fontWeight: '150',
+    fontSize: '12px',
+    lineHeight: '15px',
+    textAlign: 'right',
+    letterSpacing: '0.02em',
+    color: '#C6A87D',
+        },
+        '.rebook-img':{
+            objectFit: 'contain',
+            marginRight: '4px',
+            width:'10px',
+            height:'15px'
+        },
     },
     '@media(min-width: 600px) and (max-width: 727px)': {
         '.img-size':{
@@ -416,31 +494,45 @@ const MainParent = styled(Box)({
             width:'627px'
         }
     },
-    '@media(min-width: 375px) and (max-width: 500px)': {
+    '@media(min-width: 320px) and (max-width: 500px)': {
         '.img-size':{
-            width:'178.667px',
+            width:'480.667px',
             // height:'372px',
             objectFit: 'cover'
         },
         '.name-box':{
-            bottom:'17%',
+            bottom:'10%',
             padding:'7px 20px'
         },
         '.chef-title':{
-            fontSize:'14px'
+            fontSize:'24px'
         },
         '.chef-details':{
-            fontSize:'12px'
+            fontSize:'22px'
         },
         '.lguFiu':{
             width:'494px'
-        }
+        },
+        '.rebook':{
+            position: 'absolute',
+            background: '#101418',
+            display: 'flex',
+            placeContent: 'flex-end',
+            top: '11px',
+            width:'27%',
+            padding:'3px 13px'
+        },
     },
 }
 )
 
 const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
-    
+    const breakPoints = [ 
+        {width:1,itemsToShow:1},
+        {width:500,itemsToShow:2},
+        {width:768,itemsToShow:3},
+        {width:1100,itemsToShow:3}
+      ]
     // const responsive = {
     //     superLargeDesktop: {
     //       // the naming can be any, depends on you.
@@ -496,7 +588,7 @@ const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
         <div><img src={chef}/></div>
         <div><img src={chef2}/></div> 
     </Carousel>    */}
-<Carousel itemsToShow={3} itemsToScroll={1} itemPadding={[10,8 ]} pagination={false}>
+<Carousel breakPoints={breakPoints} itemsToShow={3} itemsToScroll={1} itemPadding={[10,8 ]} pagination={false}>
 <Box><img className="img-size" src={chef}/>
 <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
 <Box className="chef-details">
@@ -506,7 +598,11 @@ const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
 </Box>
 </Box>
 </Box>
-<Box ><img className="img-size" src={chef2}/>
+<Box>
+{/* <Box  className='reebok'>< img src={reebok}/><Typography className='reebok-title'>Reebok</Typography></Box> */}
+    <img className="img-size" src={chef2}
+    />
+<Box  className='rebook'><img className='rebook-img' src={reebok}/><Typography className='rebook-title'>Reebook</Typography></Box>
 <Box className="name-box"><Typography className='chef-title'>Kyoumars Freeman</Typography>
 <Box className="chef-details"><span>Persian</span></Box>
 </Box>
@@ -519,6 +615,7 @@ const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
 <span>Indian </span></Box>
 </Box></Box>
 <Box><img className="img-size" src={chef2}/>
+<Box  className='rebook'><img className='rebook-img' src={reebok}/><Typography className='rebook-title'>Rebook</Typography></Box>
 <Box className="name-box"><Typography className='chef-title'>Mako Kyoumars Freeman</Typography>
 <Box className="chef-details"><span>Persian</span></Box>
 </Box></Box>

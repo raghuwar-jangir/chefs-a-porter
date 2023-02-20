@@ -7,7 +7,8 @@ import Carousel from 'react-elastic-carousel';
 import chef from './../assets/images/chef1.png'
 import chef2 from './../assets/images/chef2.png'
 import chef3 from '../assets/images/chef3.png'
-import chef4 from '../assets/images/chef4.png'
+import chef4 from '../assets/images/chef4.png';
+import reebok from '../assets/images/rebook.png'
 import zIndex from '@mui/material/styles/zIndex';
 
 
@@ -88,7 +89,8 @@ const MainParent = styled(Box)({
     '.btn-view':{
       display:"flex", 
       justifyContent:'space-between', 
-      marginBottom:"30px"
+      marginBottom:"30px",
+      position:'relative'
     },
     '.css-1fu7jd5-MuiButtonBase-root-MuiButton-root:hover':{
       background:'none'
@@ -174,6 +176,40 @@ const MainParent = styled(Box)({
     '..css-1akftu3 .kXteup:hover:enabled, .css-1akftu3 .kXteup:focus:enabled': {
         color: 'white'
     },
+    // '.rebook':{
+    //     position: 'absolute',
+    //     background: '#101418',
+    //     display: 'flex',
+    //     placeContent: 'flex-end',
+    //     top: '11px',
+    //     width:'22%',
+    //     padding:'5px 24px'
+    // },
+    '.rebook-title':{
+        fontFamily: 'Proxima Nova Alt',
+        fontStyle: 'normal',
+fontWeight: '150',
+fontSize: '16px',
+lineHeight: '19px',
+textAlign: 'right',
+letterSpacing: '0.02em',
+color: '#C6A87D',
+    },
+    '.rebook-img':{
+        objectFit: 'contain',
+        marginRight: '4px',
+        width:'12px',
+        height:'16px'
+    },
+    '.rebook':{
+        position: 'absolute',
+        background: '#101418',
+        display: 'flex',
+        placeContent: 'flex-end',
+        top: '10px',
+        width:'16%',
+        padding:'5px 24px'
+    },
     '@media(min-width: 1px) and (max-width: 425px)': {
         '.continue-browsing-box': {
             background: '#080B0E',
@@ -196,11 +232,147 @@ const MainParent = styled(Box)({
             fontSize: '16px',
             fontWeight: '600',
         }
+    },
+    '@media(min-width: 2000px) and (max-width: 2560px)': {
+        '.img':{
+            height:'629px',
+            width:'521px',
+            objectFit:'cover'
+        },
+        '.name-box':{
+            bottom:'36%'
+        },
+        '.rebook':{
+            width:'18%',
+            padding:'5px 18px'
+        }
+    },
+    '@media(min-width: 1028px)and (max-width: 1440px)': {
+        '.img':{
+            height:'376px',
+            width:'286px',
+            objectFit:'cover'
+        },
+        '.name-box':{
+            bottom:'1%'
+        },
+        '.rebook':{
+            width:'16%',
+            padding:'5px 23px'
+        },
+        ".biYdFZ":{
+            margin:'0px -52px'
+        }
+        // '.fAVBsF':{
+        //    width:'267px !important'
+        // }
+    },
+    '@media(min-width: 770px)and (max-width: 1024px)': {
+        '.img':{
+            height:'370px',
+            width: '181px',
+            objectFit:'cover'
+        },
+        '.name-box':{
+            bottom:'2%'
+        },
+        ".biYdFZ":{
+            margin:'0px -52px'
+        },
+        '.rebook':{
+            width:'13%',
+            padding:'5px 27px'
+        },
+        '.chef-title':{
+            fontSize: '17px',
+    lineHeight: '25px',
+    marginBottom: '6px'
+        },
+        '.chef-details':{
+            textAlign: 'center',
+    fontSize: '15px',
+    lineHeight: '19px'
+        },
+        '.view-more':{
+            fontSize:'12px'
+        },
+        '.main-heading':{
+            fontSize:'19px'
+        }
+    },
+    '@media(min-width: 430px)and (max-width: 768px)': {
+        '.img':{
+            height:'396px',
+            width: '178px',
+            objectFit:'cover'
+        },
+        '.continue-browsing-box':{
+            padding:'80px 45px'
+        },
+        '.rebook':{
+            width:'14%',
+            padding:'5px 25px'
+        },
+        '.chef-title':{
+    placeContent:'start',
+    fontSize: '17px',
+        },
+    },
+    '@media(min-width: 1px)and (max-width: 425px)': {
+        '.img':{
+            height:'396px',
+            width: '344px',
+            objectFit:'cover',
+            display:'block'
+        },
+        '.rebook':{
+            width:'79%',
+            top:'515px'
+        },
+        '.view-more':{
+            position:'absolute',
+            top: '1090px',
+            left:'0%',
+            border:'0.5px solid #C6A87D',
+            width: '100%',
+    fontSize: '13px',
+    fontWeight: '200',
+    color:'white',
+    fontFamily: 'ProximaNovaA-Regular',
+    height:'65%'
+        },
+        '.lguFiu':{
+            height:'1018.641px !important'
+        },
+        '.name-box':{
+            bottom:'0%'
+        },
+        '.css-1fu7jd5-MuiButtonBase-root-MuiButton-root:focus':{
+            color:'#C6A87D !important'
+        },
+        // '.view-more':{
+        //     visibility: 'hidden',
+        //     position: 'relative'
+        // },
+        // '.view-more:after': {
+        //     visibility: 'visible',
+        //     position: 'absolute',
+        //     // top: '0',
+        //     // left: '0',
+        //     text: "View More Chefs"
+        // }
+        
     }
 }
 )
 
-const PriveeMain = ({ title, subTitle, isButtonShow = true }) => {
+const PriveeMain = ({ title, subTitle, isButtonShow = true,}) => {
+    const breakPoints = [ 
+        {width:1,itemsToShow:2,showArrows:false,verticalMode:true,enableSwipe:false},
+        {width:500,itemsToShow:3},
+        {width:768,itemsToShow:4},
+        {width:1100,itemsToShow:4}
+      ]
     return (
         <React.Fragment>
             <MainParent>
@@ -213,12 +385,12 @@ const PriveeMain = ({ title, subTitle, isButtonShow = true }) => {
             </Box>
             <Box>
             {isButtonShow &&
-                        <Box className='parent-view-button'>
+                        <Box className='more-button'>
                             <Button
                                 fullWidth
                                 className='view-more'
                                 variant="contained">
-                                View All
+                                View More Chefs
                             </Button>
                         </Box>
                     }
@@ -229,8 +401,8 @@ const PriveeMain = ({ title, subTitle, isButtonShow = true }) => {
                     Chef’s you’ve checked out previously
                      </Typography> */}
                   
-<Carousel outerSpacing={20} itemsToShow={4} itemsToScroll={1} itemPadding={[10, 30]} pagination={false} enableMouseSwipe={true} preventDefaultTouchmoveEvent enableSwipe={true}>
-<Box><img src={chef}/>
+<Carousel  itemsToScroll={1} breakPoints={breakPoints} itemPadding={[10, 30]} pagination={false} enableMouseSwipe={true} preventDefaultTouchmoveEvent enableSwipe={true}>
+<Box><img className='img' src={chef}/>
 <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
 <Box className="chef-details">
 <span>Thai <span className='line'>|</span></span>
@@ -239,24 +411,27 @@ const PriveeMain = ({ title, subTitle, isButtonShow = true }) => {
 </Box>
 </Box>
 </Box>
-<Box><img src={chef2}/>
-<Box className="name-box"><Typography className='chef-title'>Kyoumars Freeman</Typography>
+<Box><img className='img' src={chef2}/>
+<Box  className='rebook'><img className='rebook-img' src={reebok}/><Typography className='rebook-title'>Rebook</Typography></Box>
+<Box className="name-box"><Typography className='chef-title'>Anup Kakati</Typography>
 <Box className="chef-details"><span>Persian</span></Box>
 </Box>
 </Box>
-<Box><img src={chef3}/>
-<Box className="name-box"><Typography className='chef-title'>Mako Ravindran</Typography>
+<Box><img className='img' src={chef3}/>
+<Box className="name-box"><Typography className='chef-title'>Kyoumars Freeman</Typography>
 <Box className="chef-details">
 <span>French <span className='line'>|</span></span>
 <span>Italian <span className='line'>|</span></span>
 <span>Indian </span></Box>
 </Box></Box>
-<Box><img src={chef4}/>
-<Box className="name-box"><Typography className='chef-title'>Mako Kyoumars Freeman</Typography>
+<Box><img className='img' src={chef4}/>
+<Box  className='rebook'><img className='rebook-img' src={reebok}/><Typography className='rebook-title'>Rebook</Typography></Box>
+<Box className="name-box"><Typography className='chef-title'>Mako Ravindran</Typography>
 <Box className="chef-details"><span>Persian</span></Box>
 </Box></Box>
-<Box><img src={chef2}/>
-<Box className="name-box"><Typography className='chef-title'>Kyoumars Freeman</Typography>
+<Box><img className='img' src={chef2}/>
+<Box  className='rebook'><img className='rebook-img' src={reebok}/><Typography className='rebook-title'>Rebook</Typography></Box>
+<Box className="name-box"><Typography className='chef-title'>Anup Kakati</Typography>
 <Box className="chef-details"><span>Persian</span></Box>
 </Box>
 </Box>

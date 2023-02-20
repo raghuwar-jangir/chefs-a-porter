@@ -201,7 +201,7 @@ const MainParent = styled(Box)({
     '@media(min-width: 877px) and (max-width: 1024px)':{
         '.test-img':{
             height: '435px',
-            width: '273.25px',
+            width: '200.25px',
             objectFit:'cover'
             },
             '.lguFiu':{
@@ -235,8 +235,24 @@ const MainParent = styled(Box)({
                 objectFit:'cover'
                 },
                 '.lguFiu':{
-                    width:'700px'
-                }
+                    width:'600px'
+                },
+                '.css-1fu7jd5-MuiButtonBase-root-MuiButton-root:focus':{
+                    color:'#C6A87D !important'
+                },
+                '.view-more':{
+                    // position:'absolute',
+                    // top: '1090px',
+                    // left:'0%',
+                    border:'0.5px solid black',
+                    width: '100%',
+            fontSize: '13px',
+            fontWeight: '200',
+            color:'white',
+            fontFamily: 'ProximaNovaA-Regular',
+            height:'65%',
+            background:'none'
+                },
         }
 // '@media(min-width: 1024px)':{
 //     '.test-img':{
@@ -336,27 +352,30 @@ const MainParent = styled(Box)({
 // }
 })
 
-class FoodDetailing extends React.Component {
-    constructor(props) {
-        super(props)
-        this.breakPoints = [
-            // {width:290 , itemsToShow:3}
-            // { width: 664, itemsToShow: 3 },
-            // { width: 425, itemsToShow: 3 },
-            // { width: 425, itemsToShow: 3, itemsToScroll: 1, pagination: false },
-            // {width:575, itemsToShow: 4},
-            // {width:1024, itemsToScroll:3}
-            // { width: 768, itemsToShow: 3 },
-            // { width: 1150, itemsToShow: 4, itemsToScroll: 1 },
-            // { width: 1450, itemsToShow: 4 },
-            // { width: 1750, itemsToShow: 4 },
-          ]
-    }
-    render(){
-    return (
+const FoodDetailing = (isButtonShow) =>{
+    const breakPoints = [ 
+        {width:1,itemsToShow:1,verticalMode:true,enableSwipe:false},
+        {width:500,itemsToShow:3},
+        {width:768,itemsToShow:4},
+        {width:1100,itemsToShow:4}
+      ]
+        // this.breakPoints = [
+        //     // {width:290 , itemsToShow:3}
+        //     { width: 664, itemsToShow: 3 },
+        //     { width: 425, itemsToShow: 3 },
+        //     { width: 425, itemsToShow: 3, itemsToScroll: 1, pagination: false },
+        //     {width:575, itemsToShow: 4},
+        //     {width:1024, itemsToScroll:3},
+        //     // { width: 768, itemsToShow: 3 },
+        //     { width: 1150, itemsToShow: 4, itemsToScroll: 1 },
+        //     { width: 1450, itemsToShow: 4 },
+        //     { width: 1750, itemsToShow: 4 },
+        //   ]
+   
+   return (
         <React.Fragment>
             <MainParent>
-            <Carousel breakPoints={this.breakPoints} itemsToShow={4} itemsToScroll={1} itemPadding={[21, 30]} pagination={false} preventDefaultTouchmoveEvent>
+            <Carousel breakPoints={breakPoints} itemsToShow={1} itemsToScroll={1} itemPadding={[21, 30]} pagination={false}>
             <Box><img className='test-img' src={testImage}/>
             <Box className='supper-info' >
             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography> 
@@ -409,6 +428,18 @@ class FoodDetailing extends React.Component {
             </Box>
             </Box></Box>
 </Carousel>
+<Box>
+            {isButtonShow &&
+                        <Box className='more-button'>
+                            <Button
+                                fullWidth
+                                className='view-more'
+                                variant="contained">
+                                View All
+                            </Button>
+                        </Box>
+                    }
+            </Box>
                 {/* <Grid className='parent-grid' container spacing={2}>
                     <Grid item xs={12} md={3} xl={3}>
                         <FoodDetail image={testImage} />
@@ -425,8 +456,7 @@ class FoodDetailing extends React.Component {
                 </Grid> */}
             </MainParent>
         </React.Fragment >
-            )
-}
+   )    
 }
 export default FoodDetailing;
 
