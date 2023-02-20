@@ -11,6 +11,8 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Button from "@mui/material/Button";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import InputAdornment from "@mui/material/InputAdornment";
+import ContactsIcon from "@mui/icons-material/Contacts";
 
 
 const Footer = () => {

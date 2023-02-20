@@ -9,6 +9,7 @@ const NeedHelp = ({ isColor }) => {
         borderTop:'0.5px solid #080B0E',
         ".btn": {
             // border: '0.25px solid #fff',
+            border:'none !important',
             background: "#080B0E",
             width: '214px !important',
             fontSize: "16px",
