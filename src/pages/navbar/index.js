@@ -18,7 +18,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 
 
-const Navbar = () => {
+const Navbar = ({isColor}) => {
 
     const [isOpen, setOpen] = useState(false);
     const [search, setSearch] = useState(false);
@@ -52,7 +52,6 @@ const Navbar = () => {
             right: '0px',
             zIndex: '999',
             display: 'block',
-
             '.home-stack': {
                 display: 'flex',
                 alignItems: 'center',
@@ -64,7 +63,7 @@ const Navbar = () => {
                 lineHeight: '19px',
                 fontWeight: 300,
                 textDecoration: 'none',
-                color: '#080B0E',
+                color: `${isColor ? '#FBFBFB' : '#080B0E'}`,
                 fontFamily: 'Proxima Nova',
             },
             '.food-title': {
@@ -86,8 +85,9 @@ const Navbar = () => {
             },
             '.telePhoneLogo': {
                 height: '48px',
-                width: '24px',
-                color: '#000000',
+                width: '30px',
+                // color: '#000000',
+                color: `${isColor ? '#FBFBFB' : '#080B0E'}`,
                 marginLeft: '10px',
                 cursor: 'pointer'
             },
@@ -197,7 +197,7 @@ const Navbar = () => {
             <BrowserView>
                 <BoxWrapper>
                     <AppBar position="fixed" elevation={0}
-                            sx={{background: '#FBFBFB'}}
+                            sx={{  background: `${isColor ? '#101418' : '#FBFBFB'}`}}
                     >
                         <Grid container direction={'row'} columnSpacing={1} sx={{padding: '10px 120px'}}
                               className='GridContainer'>
@@ -229,7 +229,8 @@ const Navbar = () => {
                                 {/*<Grid className='browser-search' item md={3}>*/}
                                 <Box className='header-search-box browser-search'>
                                     {!search &&
-                                        <img src={vector} alt="vector" className='telePhoneLogo' onClick={handleOpen}/>
+                                        <SearchIcon className='telePhoneLogo' onClick={handleOpen}/>
+                                        // <img src={vector} alt="vector" className='telePhoneLogo' onClick={handleOpen}/>
                                     }
                                     {search &&
                                         <Box className='search-box'>

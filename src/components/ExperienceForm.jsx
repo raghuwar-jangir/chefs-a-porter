@@ -56,6 +56,7 @@ const ExperienceForm = () => {
     const [count, setCount] = useState(0);
 
     const handleDecrement = () => {
+    const handleDecrement = () => {
         setCount(count => Math.max(count - 1, 0));
     }
 

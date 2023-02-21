@@ -46,14 +46,12 @@ const GiftCards = () => {
     const CHAR_LIMIT = 70;
     let [count, setCount] = useState(1);
     let Qty = 10;
-
     function incrementCount() {
         if (count < Qty) {
             count = count + 1;
             setCount(count);
         }
     }
-
     function decrementCount() {
         if (count > 0) {
             count = count - 1;
@@ -978,7 +976,9 @@ const GiftCards = () => {
                                                             </span>
                                                             <TextField type="text" name="quant[1]" id="Qty"
                                                                        className="input-number"
-                                                                       value={count} sx={{
+                                                                       value={count}
+                                                                       autoComplete={"off"}
+                                                                       sx={{
                                                                 '.MuiOutlinedInput-notchedOutline': {
                                                                     border: 'none',
                                                                     outline: 'none'
