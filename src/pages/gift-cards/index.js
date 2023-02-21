@@ -28,6 +28,7 @@ import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
+import {makeStyles} from "@mui/styles";
 
 const GiftCards = () => {
 
@@ -520,7 +521,7 @@ const GiftCards = () => {
         '.occasion': {
             padding: '20px',
             background: '#FBFBFB',
-            width: '596px !important',
+            width: '596px',
             position: 'relative'
         },
         '.occasion-container': {
@@ -534,23 +535,10 @@ const GiftCards = () => {
             color: '#080B0E',
             // marginBottom: '26px',
         },
-        '#piils-tab li button': {
-            border: '0.5px solid #080B0E',
-            borderRadius: '0px',
-            fontFamily: 'Proxima Nova',
-            fontStyle: 'normal',
-            fontHeight: '400',
-            fontSize: '12px',
-            lineHeight: '15px',
-            color: '#080B0E',
-            padding: '8px 0px',
-            width: '100.9px',
-            height: '38px',
-        },
-        'ul#piils-tab': {
-            gap: '8px'
-        },
-        '.css-cr824o-JoyTab-root,.css-6gpojs-JoyTab-root':{
+        // 'ul#piils-tab': {
+        //     gap: '8px'
+        // },
+        '.css-cr824o-JoyTab-root': {
             border: '0.5px solid #080B0E',
             borderRadius: '0px',
             fontFamily: 'Proxima Nova',
@@ -559,12 +547,26 @@ const GiftCards = () => {
             fontSize: '12px',
             lineHeight: '15px',
             color: '#FBFBFB',
-            background:'#080B0E',
+            background: '#080B0E',
             padding: '8px 0px',
             width: '100.9px',
             height: '38px',
         },
-        '.css-p8bp3u-JoyTab-root,.css-9qqdig-JoyTab-root':{
+        '.css-6gpojs-JoyTab-root': {
+            border: '0.5px solid #080B0E',
+            borderRadius: '0px',
+            fontFamily: 'Proxima Nova',
+            fontStyle: 'normal',
+            fontHeight: '400',
+            fontSize: '12px',
+            lineHeight: '15px',
+            color: '#FBFBFB',
+            background: '#080B0E',
+            padding: '8px 0px',
+            width: '100.9px',
+            height: '38px',
+        },
+        '.css-p8bp3u-JoyTab-root': {
             border: '0.5px solid #080B0E',
             borderRadius: '0px',
             fontFamily: 'Proxima Nova',
@@ -577,13 +579,22 @@ const GiftCards = () => {
             width: '100.9px',
             height: '38px',
         },
-        '.css-1lhe3ax-JoyTabPanel-root':{
-            padding:'0px'
+        '.css-9qqdig-JoyTab-root': {
+            border: '0.5px solid #080B0E',
+            borderRadius: '0px',
+            fontFamily: 'Proxima Nova',
+            fontStyle: 'normal',
+            fontHeight: '400',
+            fontSize: '12px',
+            lineHeight: '15px',
+            color: '#080B0E',
+            padding: '8px 0px',
+            width: '100.9px',
+            height: '38px',
         },
-        // 'ul#piils-tab li button.active': {
-        //     background: '#080B0E',
-        //     color: '#FBFBFB',
-        // },
+        '.css-1lhe3ax-JoyTabPanel-root': {
+            padding: '0px'
+        },
         '.occasion-cards': {
             backgroundColor: '#101418',
             boxShadow: '0px 12.0863px 18.1295px rgba(0, 0, 0, 0.2)',
@@ -649,17 +660,17 @@ const GiftCards = () => {
             outline: 'none',
             borderRadius: '0px',
             paddingLeft: '0px',
-            opacity:'1'
+            opacity: '1'
         },
-        '.tab-pane': {
-            padding: '0px'
-        },
+        // '.tab-pane': {
+        //     padding: '0px'
+        // },
         '.clean': {
             // position: 'absolute',
             right: '20px',
             top: '24px',
-            background:'transparent',
-            border:'0px',
+            background: 'transparent',
+            border: '0px',
             fontFamily: 'Proxima Nova',
             fontStyle: 'normal',
             // fontWeight: '300',
@@ -671,6 +682,58 @@ const GiftCards = () => {
             cursor: 'pointer',
         },
         '@media(min-width: 1px) and (max-width: 425px)': {
+            '.logo': {
+                width: '140px',
+                height: '35px',
+            },
+            '.personalize': {
+                marginBottom: '40px',
+            },
+            '.occasion-subtitle': {
+                fontSize: '25px',
+                lineHeight: '25px',
+            },
+            '.css-cr824o-JoyTab-root': {
+                width: '60px',
+                height: '35px',
+                fontSize: '9px'
+            },
+            '.css-6gpojs-JoyTab-root': {
+                width: '60px',
+                height: '35px',
+                fontSize: '9px'
+            },
+            '.css-p8bp3u-JoyTab-root': {
+                width: '58px',
+                height: '35px',
+                fontSize: '8px'
+            },
+            '.css-9qqdig-JoyTab-root': {
+                width: '60px',
+                height: '35px',
+                fontSize: '8px'
+            },
+            '.occasion': {
+                width: '100%',
+                padding: '0px',
+                background: '#DCD7CB'
+            },
+            '.occasion-container': {
+                padding: '10px 5px',
+                // background:'#DCD7CB'
+            },
+            '.occasion-cards': {
+                padding: '10px',
+                width: 'auto'
+            },
+            '.occasion-cards u': {
+                fontSize: '12px',
+                lineHeight: '15px',
+            },
+            '.css-66dh3a-MuiInputBase-input-MuiInput-input': {
+                fontSize: '14px',
+                lineHeight: '15px'
+            },
             '.gallery-carousel': {
                 display: 'block'
             },
@@ -689,7 +752,8 @@ const GiftCards = () => {
                 width: 'auto',
             },
             '.recipient': {
-                width: 'auto'
+                width: 'auto',
+                background: 'unset'
             },
             '.step-1-heading': {
                 width: 'auto'
@@ -712,6 +776,16 @@ const GiftCards = () => {
             }
         },
         '@media(min-width:600px) and (max-width: 768px)': {
+            '.header-club': {
+                display: 'flex'
+            },
+            ".chef-mobile-heading": {
+                fontSize: "24px",
+                paddingLeft: '280px',
+                textAlign: 'center',
+                color: '#000',
+                fontFamily: 'Bon Vivant'
+            },
             ".patron-mobile-heading": {
                 textAlign: 'left',
             },
@@ -818,8 +892,13 @@ const GiftCards = () => {
                                 name: 'sana',
                                 email: 'kachwallasana@gmail.com',
                                 contactNumber: '8794561230',
+                                giftCardAmount: '',
                                 receiverMessage: '',
-                                occassionMessage: '',
+                                occassionMessage1: '',
+                                occassionMessage2: '',
+                                occassionMessage3: '',
+                                occassionMessage4: '',
+                                occassionMessage5: '',
                             }}
                             validationSchema={validationSchema}
                             onSubmit={(values) => {
@@ -863,10 +942,10 @@ const GiftCards = () => {
                                                         <label className="sr-only" className="enter-amount-label"
                                                                htmlFor="gift-amount">Enter Gift Card
                                                             Amount</label>
-                                                        <TextField type="text" name="contactNumber"
-                                                            // className="form-control"
-                                                            // value={values.contactNumber}
-                                                            // onChange={handleChange}
+                                                        <TextField type="text" name="giftCardAmount"
+                                                                   className="form-control"
+                                                                   value={values.giftCardAmount}
+                                                                   onChange={handleChange}
                                                                    autoComplete="off"
                                                                    variant="outlined"
                                                                    id="gift-amount"
@@ -944,14 +1023,7 @@ const GiftCards = () => {
                                         <Box className="occasion">
                                             <Box className="occasion-container">
                                                 <h4 className="occasion-title">Choose Occassion</h4>
-                                                <Tabs aria-label="Basic tabs" defaultValue={0} sx={{width:'auto'}} sx={{
-                                                    // '.MuiTab-root':{
-                                                    //     maxWidth:'80px',
-                                                    //     fontSize:'16px',
-                                                    //     padding:'0px'
-                                                    // }
-                                                    //need to change it
-                                                }}>
+                                                <Tabs aria-label="Basic tabs" defaultValue={0}>
                                                     <TabList>
                                                         <Tab>Wedding</Tab>
                                                         <Tab>Festive</Tab>
@@ -959,9 +1031,9 @@ const GiftCards = () => {
                                                         <Tab>Congratulation</Tab>
                                                         <Tab>Congratulation</Tab>
                                                     </TabList>
-                                                    <TabPanel value={0} sx={{ p: 2 }}>
+                                                    <TabPanel value={0} sx={{p: 2}}>
                                                         <div className="tab-content" id="pills-tabContent">
-                                                            <div className="tab-pane fade show active" id="wedding"
+                                                            <div className="tab-pane fade show" id="wedding"
                                                                  role="tabpanel"
                                                                  aria-labelledby="wedding-tab">
                                                                 <div className="occasion-cards">
@@ -976,9 +1048,20 @@ const GiftCards = () => {
                                                                     </div>
                                                                     <div className="row occasion-title">
                                                                         <div className="col-lg-12">
-                                                                            <Box style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                                                                                <Box>  <Typography className="occasion-subtitle">Happy Wedding</Typography></Box>
-                                                                                <Box> <button id="clean" type="reset" className="clean" onClick={() => setOccassionMessage('')}>Clear</button></Box>
+                                                                            <Box style={{
+                                                                                display: 'flex',
+                                                                                justifyContent: 'space-between',
+                                                                                alignItems: 'center'
+                                                                            }}>
+                                                                                <Box> <Typography
+                                                                                    className="occasion-subtitle">Happy
+                                                                                    Wedding</Typography></Box>
+                                                                                <Box>
+                                                                                    <button id="clean" type="reset"
+                                                                                            className="clean"
+                                                                                            onClick={() => setOccassionMessage('')}>Clear
+                                                                                    </button>
+                                                                                </Box>
                                                                             </Box>
                                                                             <TextField
                                                                                 inputProps={{
@@ -1005,13 +1088,13 @@ const GiftCards = () => {
                                                                                         opacity: '1',
                                                                                     },
                                                                                 }}
-                                                                                name="occassionMessage"
+                                                                                name="occassionMessage1"
                                                                                 autoComplete="off"
                                                                                 className="form-control remove-bottom-border occassion-box"
-                                                                                value={values.occassionMessage}
+                                                                                value={values.occassionMessage1}
                                                                                 placeholder="Wishing you the best of a lifetime of memories|"
-                                                                                helperText={`${values.occassionMessage.length}/${CHAR_LIMIT} Characters`}
-                                                                                onChange={handleChange("occassionMessage")}
+                                                                                helperText={`${values.occassionMessage1.length}/${CHAR_LIMIT} Characters`}
+                                                                                onChange={handleChange("occassionMessage1")}
                                                                                 margin="normal"
                                                                                 variant="standard"
                                                                                 fullWidth
@@ -1024,9 +1107,9 @@ const GiftCards = () => {
                                                             </div>
                                                         </div>
                                                     </TabPanel>
-                                                    <TabPanel value={1} sx={{ p: 2 }}>
+                                                    <TabPanel value={1} sx={{p: 2}}>
                                                         <div className="tab-content" id="pills-tabContent">
-                                                            <div className="tab-pane fade show active" id="wedding"
+                                                            <div className="tab-pane fade show " id="wedding"
                                                                  role="tabpanel"
                                                                  aria-labelledby="wedding-tab">
                                                                 <div className="occasion-cards">
@@ -1041,9 +1124,20 @@ const GiftCards = () => {
                                                                     </div>
                                                                     <div className="row occasion-title">
                                                                         <div className="col-lg-12">
-                                                                            <Box style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                                                                                <Box>  <Typography className="occasion-subtitle">Happy Festive</Typography></Box>
-                                                                                <Box> <button id="clean" type="reset" className="clean" onClick={() => setOccassionMessage('')}>Clear</button></Box>
+                                                                            <Box style={{
+                                                                                display: 'flex',
+                                                                                justifyContent: 'space-between',
+                                                                                alignItems: 'center'
+                                                                            }}>
+                                                                                <Box> <Typography
+                                                                                    className="occasion-subtitle">Happy
+                                                                                    Festive</Typography></Box>
+                                                                                <Box>
+                                                                                    <button id="clean" type="reset"
+                                                                                            className="clean"
+                                                                                            onClick={() => setOccassionMessage('')}>Clear
+                                                                                    </button>
+                                                                                </Box>
                                                                             </Box>
                                                                             <TextField
                                                                                 inputProps={{
@@ -1070,13 +1164,13 @@ const GiftCards = () => {
                                                                                         opacity: '1',
                                                                                     },
                                                                                 }}
-                                                                                name="occassionMessage"
+                                                                                name="occassionMessage2"
                                                                                 autoComplete="off"
                                                                                 className="form-control remove-bottom-border occassion-box"
-                                                                                value={values.occassionMessage}
+                                                                                value={values.occassionMessage2}
                                                                                 placeholder="Wishing you the best of a lifetime of memories|"
-                                                                                helperText={`${values.occassionMessage.length}/${CHAR_LIMIT} Characters`}
-                                                                                onChange={handleChange("occassionMessage")}
+                                                                                helperText={`${values.occassionMessage2.length}/${CHAR_LIMIT} Characters`}
+                                                                                onChange={handleChange("occassionMessage2")}
                                                                                 margin="normal"
                                                                                 variant="standard"
                                                                                 fullWidth
@@ -1089,9 +1183,9 @@ const GiftCards = () => {
                                                             </div>
                                                         </div>
                                                     </TabPanel>
-                                                    <TabPanel value={2} sx={{ p: 2 }}>
+                                                    <TabPanel value={2} sx={{p: 2}}>
                                                         <div className="tab-content" id="pills-tabContent">
-                                                            <div className="tab-pane fade show active" id="wedding"
+                                                            <div className="tab-pane fade show " id="wedding"
                                                                  role="tabpanel"
                                                                  aria-labelledby="wedding-tab">
                                                                 <div className="occasion-cards">
@@ -1106,9 +1200,20 @@ const GiftCards = () => {
                                                                     </div>
                                                                     <div className="row occasion-title">
                                                                         <div className="col-lg-12">
-                                                                            <Box style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                                                                                <Box>  <Typography className="occasion-subtitle">Happy Birthday</Typography></Box>
-                                                                                <Box> <button id="clean" type="reset" className="clean" onClick={() => setOccassionMessage('')}>Clear</button></Box>
+                                                                            <Box style={{
+                                                                                display: 'flex',
+                                                                                justifyContent: 'space-between',
+                                                                                alignItems: 'center'
+                                                                            }}>
+                                                                                <Box> <Typography
+                                                                                    className="occasion-subtitle">Happy
+                                                                                    Birthday</Typography></Box>
+                                                                                <Box>
+                                                                                    <button id="clean" type="reset"
+                                                                                            className="clean"
+                                                                                            onClick={() => setOccassionMessage('')}>Clear
+                                                                                    </button>
+                                                                                </Box>
                                                                             </Box>
                                                                             <TextField
                                                                                 inputProps={{
@@ -1135,13 +1240,13 @@ const GiftCards = () => {
                                                                                         opacity: '1',
                                                                                     },
                                                                                 }}
-                                                                                name="occassionMessage"
+                                                                                name="occassionMessage3"
                                                                                 autoComplete="off"
                                                                                 className="form-control remove-bottom-border occassion-box"
-                                                                                value={values.occassionMessage}
+                                                                                value={values.occassionMessage3}
                                                                                 placeholder="Wishing you the best of a lifetime of memories|"
-                                                                                helperText={`${values.occassionMessage.length}/${CHAR_LIMIT} Characters`}
-                                                                                onChange={handleChange("occassionMessage")}
+                                                                                helperText={`${values.occassionMessage3.length}/${CHAR_LIMIT} Characters`}
+                                                                                onChange={handleChange("occassionMessage3")}
                                                                                 margin="normal"
                                                                                 variant="standard"
                                                                                 fullWidth
@@ -1154,9 +1259,9 @@ const GiftCards = () => {
                                                             </div>
                                                         </div>
                                                     </TabPanel>
-                                                    <TabPanel value={3} sx={{ p: 2 }}>
+                                                    <TabPanel value={3} sx={{p: 2}}>
                                                         <div className="tab-content" id="pills-tabContent">
-                                                            <div className="tab-pane fade show active" id="wedding"
+                                                            <div className="tab-pane fade show " id="wedding"
                                                                  role="tabpanel"
                                                                  aria-labelledby="wedding-tab">
                                                                 <div className="occasion-cards">
@@ -1171,9 +1276,19 @@ const GiftCards = () => {
                                                                     </div>
                                                                     <div className="row occasion-title">
                                                                         <div className="col-lg-12">
-                                                                            <Box style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                                                                                <Box>  <Typography className="occasion-subtitle">Congratulations!!</Typography></Box>
-                                                                                <Box> <button id="clean" type="reset" className="clean" onClick={() => setOccassionMessage('')}>Clear</button></Box>
+                                                                            <Box style={{
+                                                                                display: 'flex',
+                                                                                justifyContent: 'space-between',
+                                                                                alignItems: 'center'
+                                                                            }}>
+                                                                                <Box> <Typography
+                                                                                    className="occasion-subtitle">Congratulations!!</Typography></Box>
+                                                                                <Box>
+                                                                                    <button id="clean" type="reset"
+                                                                                            className="clean"
+                                                                                            onClick={() => setOccassionMessage('')}>Clear
+                                                                                    </button>
+                                                                                </Box>
                                                                             </Box>
                                                                             <TextField
                                                                                 inputProps={{
@@ -1200,13 +1315,13 @@ const GiftCards = () => {
                                                                                         opacity: '1',
                                                                                     },
                                                                                 }}
-                                                                                name="occassionMessage"
+                                                                                name="occassionMessage4"
                                                                                 autoComplete="off"
                                                                                 className="form-control remove-bottom-border occassion-box"
-                                                                                value={values.occassionMessage}
+                                                                                value={values.occassionMessage4}
                                                                                 placeholder="Wishing you the best of a lifetime of memories|"
-                                                                                helperText={`${values.occassionMessage.length}/${CHAR_LIMIT} Characters`}
-                                                                                onChange={handleChange("occassionMessage")}
+                                                                                helperText={`${values.occassionMessage4.length}/${CHAR_LIMIT} Characters`}
+                                                                                onChange={handleChange("occassionMessage4")}
                                                                                 margin="normal"
                                                                                 variant="standard"
                                                                                 fullWidth
@@ -1219,9 +1334,9 @@ const GiftCards = () => {
                                                             </div>
                                                         </div>
                                                     </TabPanel>
-                                                    <TabPanel value={4} sx={{ p: 2 }}>
+                                                    <TabPanel value={4} sx={{p: 2}}>
                                                         <div className="tab-content" id="pills-tabContent">
-                                                            <div className="tab-pane fade show active" id="wedding"
+                                                            <div className="tab-pane fade show " id="wedding"
                                                                  role="tabpanel"
                                                                  aria-labelledby="wedding-tab">
                                                                 <div className="occasion-cards">
@@ -1236,9 +1351,19 @@ const GiftCards = () => {
                                                                     </div>
                                                                     <div className="row occasion-title">
                                                                         <div className="col-lg-12">
-                                                                            <Box style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                                                                                <Box>  <Typography className="occasion-subtitle">Congratulations!!</Typography></Box>
-                                                                                <Box> <button id="clean" type="reset" className="clean" onClick={() => setOccassionMessage('')}>Clear</button></Box>
+                                                                            <Box style={{
+                                                                                display: 'flex',
+                                                                                justifyContent: 'space-between',
+                                                                                alignItems: 'center'
+                                                                            }}>
+                                                                                <Box> <Typography
+                                                                                    className="occasion-subtitle">Congratulations!!</Typography></Box>
+                                                                                <Box>
+                                                                                    <button id="clean" type="reset"
+                                                                                            className="clean"
+                                                                                            onClick={() => setOccassionMessage('')}>Clear
+                                                                                    </button>
+                                                                                </Box>
                                                                             </Box>
                                                                             <TextField
                                                                                 inputProps={{
@@ -1265,13 +1390,13 @@ const GiftCards = () => {
                                                                                         opacity: '1',
                                                                                     },
                                                                                 }}
-                                                                                name="occassionMessage"
+                                                                                name="occassionMessage5"
                                                                                 autoComplete="off"
                                                                                 className="form-control remove-bottom-border occassion-box"
-                                                                                value={values.occassionMessage}
+                                                                                value={values.occassionMessage5}
                                                                                 placeholder="Wishing you the best of a lifetime of memories|"
-                                                                                helperText={`${values.occassionMessage.length}/${CHAR_LIMIT} Characters`}
-                                                                                onChange={handleChange("occassionMessage")}
+                                                                                helperText={`${values.occassionMessage5.length}/${CHAR_LIMIT} Characters`}
+                                                                                onChange={handleChange("occassionMessage5")}
                                                                                 margin="normal"
                                                                                 variant="standard"
                                                                                 fullWidth
@@ -1285,109 +1410,6 @@ const GiftCards = () => {
                                                         </div>
                                                     </TabPanel>
                                                 </Tabs>
-                                                {/*<ul className="nav nav-pills mb-3" id="piils-tab" role="tablist">*/}
-                                                {/*    <li className="nav-item" role="presentation">*/}
-                                                {/*        <button className="nav-link active" id="wedding-tab"*/}
-                                                {/*                data-bs-toggle="pill" data-bs-target="#wedding"*/}
-                                                {/*                type="button" role="tab" aria-controls="wedding"*/}
-                                                {/*                aria-selected="true">Wedding*/}
-                                                {/*        </button>*/}
-                                                {/*    </li>*/}
-                                                {/*    <li className="nav-item" role="presentation">*/}
-                                                {/*        <button className="nav-link" id="festive-tab"*/}
-                                                {/*                data-bs-toggle="pill"*/}
-                                                {/*                data-bs-target="#festive" type="button" role="tab"*/}
-                                                {/*                aria-controls="festive" aria-selected="false">Festive*/}
-                                                {/*        </button>*/}
-                                                {/*    </li>*/}
-                                                {/*    <li className="nav-item" role="presentation">*/}
-                                                {/*        <button className="nav-link" id="birthday-tab"*/}
-                                                {/*                data-bs-toggle="pill"*/}
-                                                {/*                data-bs-target="#birthday" type="button" role="tab"*/}
-                                                {/*                aria-controls="birthday" aria-selected="false">Birthday*/}
-                                                {/*        </button>*/}
-                                                {/*    </li>*/}
-                                                {/*    <li className="nav-item" role="presentation">*/}
-                                                {/*        <button className="nav-link" id="congra-tab"*/}
-                                                {/*                data-bs-toggle="pill"*/}
-                                                {/*                data-bs-target="#congra" type="button" role="tab"*/}
-                                                {/*                aria-controls="congra"*/}
-                                                {/*                aria-selected="false">Congratulation*/}
-                                                {/*        </button>*/}
-                                                {/*    </li>*/}
-                                                {/*    <li className="nav-item" role="presentation">*/}
-                                                {/*        <button className="nav-link" id="congra1-tab"*/}
-                                                {/*                data-bs-toggle="pill"*/}
-                                                {/*                data-bs-target="#congra1" type="button" role="tab"*/}
-                                                {/*                aria-controls="congra1"*/}
-                                                {/*                aria-selected="false">Congratulation*/}
-                                                {/*        </button>*/}
-                                                {/*    </li>*/}
-                                                {/*</ul>*/}
-                                                {/*<div className="tab-content" id="pills-tabContent">*/}
-                                                {/*    <div className="tab-pane fade show active" id="wedding"*/}
-                                                {/*         role="tabpanel"*/}
-                                                {/*         aria-labelledby="wedding-tab">*/}
-                                                {/*        <div className="occasion-cards">*/}
-                                                {/*            <div className="row align-items-center personalize">*/}
-                                                {/*                <div className="col-lg-7">*/}
-                                                {/*                    <img src={goldLogo} alt="Logo"*/}
-                                                {/*                         className="logo footer-logo"/>*/}
-                                                {/*                </div>*/}
-                                                {/*                <div className="col-lg-5">*/}
-                                                {/*                    <u>Personalize</u>*/}
-                                                {/*                </div>*/}
-                                                {/*            </div>*/}
-                                                {/*            <div className="row occasion-title">*/}
-                                                {/*                <div className="col-lg-12">*/}
-                                                {/*                   <Box style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>*/}
-                                                {/*                     <Box>  <Typography className="occasion-subtitle">Happy*/}
-                                                {/*                         Wedding</Typography></Box>*/}
-                                                {/*                      <Box> <button id="clean" type="reset" className="clean" onClick={() => setOccassionMessage('')}>Clear</button></Box>*/}
-                                                {/*                   </Box>*/}
-                                                {/*                    <TextField*/}
-                                                {/*                        inputProps={{*/}
-                                                {/*                            maxlength: CHAR_LIMIT,*/}
-                                                {/*                        }}*/}
-                                                {/*                        sx={{*/}
-                                                {/*                            disableUnderline: true,*/}
-                                                {/*                            '.MuiOutlinedInput-notchedOutline': {*/}
-                                                {/*                                border: 'none',*/}
-                                                {/*                                outline: 'none'*/}
-                                                {/*                            },*/}
-                                                {/*                            '.css-1rcvvn7-MuiInputBase-root-MuiInput-root:after': {*/}
-                                                {/*                                borderBottom: 'unset'*/}
-                                                {/*                            },*/}
-                                                {/*                            '.css-1d1r5q-MuiFormHelperText-root': {*/}
-                                                {/*                                fontFamily: 'Proxima Nova',*/}
-                                                {/*                                fontStyle: 'normal',*/}
-                                                {/*                                fontWeight: '250',*/}
-                                                {/*                                fontSize: '16px',*/}
-                                                {/*                                lineHeight: '19px',*/}
-                                                {/*                                textAlign: 'right',*/}
-                                                {/*                                color: '#FBFBFB',*/}
-                                                {/*                                marginBottom: '0px',*/}
-                                                {/*                                opacity: '1',*/}
-                                                {/*                            },*/}
-                                                {/*                        }}*/}
-                                                {/*                        name="occassionMessage"*/}
-                                                {/*                        autoComplete="off"*/}
-                                                {/*                        className="form-control remove-bottom-border occassion-box"*/}
-                                                {/*                        value={values.occassionMessage}*/}
-                                                {/*                        placeholder="Wishing you the best of a lifetime of memories|"*/}
-                                                {/*                        helperText={`${values.occassionMessage.length}/${CHAR_LIMIT} Characters`}*/}
-                                                {/*                        onChange={handleChange("occassionMessage")}*/}
-                                                {/*                        margin="normal"*/}
-                                                {/*                        variant="standard"*/}
-                                                {/*                        fullWidth*/}
-                                                {/*                        multiline*/}
-                                                {/*                        autoComplete="off"*/}
-                                                {/*                    />*/}
-                                                {/*                </div>*/}
-                                                {/*            </div>*/}
-                                                {/*        </div>*/}
-                                                {/*    </div>*/}
-                                                {/*</div>*/}
                                             </Box>
                                         </Box>
                                         <Box className="recipient">
