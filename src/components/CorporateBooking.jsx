@@ -160,7 +160,7 @@ const CorporateBooking = () => {
       },
     ]}
     arrows={false}
-    // swipe={true}
+    swipe={true}
     enableMouseSwipe={true}
     dots={true}
     showSides={true}

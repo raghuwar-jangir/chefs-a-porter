@@ -10,6 +10,8 @@ import chef3 from '../assets/images/chef3.png'
 import chef4 from '../assets/images/chef4.png';
 import reebok from '../assets/images/rebook.png'
 import zIndex from '@mui/material/styles/zIndex';
+import { isMobile } from 'react-device-detect';
+import {Link} from "gatsby";
 
 
 const MainParent = styled(Box)({
@@ -74,15 +76,15 @@ const MainParent = styled(Box)({
     '.view-more': {
       fontFamily: 'ProximaNovaA-Regular',
       fontStyle: 'normal',
-      fontWeight: '600',
-      fontSize: '16px',
+      fontWeight: '300',
+      fontSize: '14px',
       lineHeight: '19px',
       textAlign: 'right',
       color: '#C6A87D',
       width: '100%',
       padding: '0px',
       border: '0px',
-      marginTop: '0px',
+      marginTop: '10px',
       background:'none',
       right: '76px'
     },
@@ -210,6 +212,10 @@ color: '#C6A87D',
         width:'16%',
         padding:'5px 24px'
     },
+    '.link':{
+        textDecoration: 'none',
+        color: '#C6A87D',
+    },
     '@media(min-width: 1px) and (max-width: 425px)': {
         '.continue-browsing-box': {
             background: '#080B0E',
@@ -318,9 +324,9 @@ color: '#C6A87D',
     fontSize: '17px',
         },
     },
-    '@media(min-width: 1px)and (max-width: 425px)': {
+    '@media(min-width: 380px)and (max-width: 425px)': {
         '.img':{
-            height:'396px',
+            height:'400px',
             width: '344px',
             objectFit:'cover',
             display:'block'
@@ -362,7 +368,74 @@ color: '#C6A87D',
         //     text: "View More Chefs"
         // }
         
-    }
+    },
+    '@media(min-width: 325px)and (max-width: 375px)': {
+        '.img':{
+            height:'396px',
+            width: '344px',
+            objectFit:'cover',
+            display:'block'
+        },
+        '.rebook':{
+            width:'88%',
+            top:'515px'
+        },
+        '.view-more':{
+            position:'absolute',
+            top: '1090px',
+            left:'0%',
+            border:'0.5px solid #C6A87D',
+            width: '100%',
+    fontSize: '13px',
+    fontWeight: '200',
+    color:'white',
+    fontFamily: 'ProximaNovaA-Regular',
+    height:'65%'
+        },
+        '.lguFiu':{
+            height:'1018.641px !important'
+        },
+        '.name-box':{
+            bottom:'0%'
+        },
+        '.css-1fu7jd5-MuiButtonBase-root-MuiButton-root:focus':{
+            color:'#C6A87D !important'
+        },
+    },
+    '@media(min-width: 1px)and (max-width: 320px)': {
+        '.img':{
+            height:'396px',
+            width: '344px',
+            objectFit:'cover',
+            display:'block'
+        },
+        '.rebook':{
+            width:'97%',
+            top:'515px'
+        },
+        '.view-more':{
+            position:'absolute',
+            top: '1090px',
+            left:'0%',
+            border:'0.5px solid #C6A87D',
+            width: '100%',
+    fontSize: '13px',
+    fontWeight: '200',
+    color:'white',
+    fontFamily: 'ProximaNovaA-Regular',
+    height:'65%'
+        },
+        '.lguFiu':{
+            height:'1018.641px !important'
+        },
+        '.name-box':{
+            bottom:'0%'
+        },
+        '.css-1fu7jd5-MuiButtonBase-root-MuiButton-root:focus':{
+            color:'#C6A87D !important'
+        },
+    },
+
 }
 )
 
@@ -384,24 +457,36 @@ const PriveeMain = ({ title, subTitle, isButtonShow = true,}) => {
                     </Typography>
             </Box>
             <Box>
-            {isButtonShow &&
-                        <Box className='more-button'>
+            {isMobile ?
+                        (<Box className='more-button'>
                             <Button
                                 fullWidth
                                 className='view-more'
                                 variant="contained">
                                 View More Chefs
                             </Button>
-                        </Box>
-                    }
-            </Box>
+                        </Box>)
+             :       
+        
+           ( <Box className='more-button'>
+                            <Button
+                                fullWidth
+                                className='view-more'
+                                variant="contained">
+                                 <Link className='link'
+                                      to='/our-chefs'>
+                                    View All
+                                </Link>
+                            </Button>
+                        </Box>)
+}
                   </Box>
-                    
+                  </Box>
                     {/* <Typography className='heading-details'>
                     Chef’s you’ve checked out previously
                      </Typography> */}
                   
-<Carousel  itemsToScroll={1} breakPoints={breakPoints} itemPadding={[10, 30]} pagination={false} enableMouseSwipe={true} preventDefaultTouchmoveEvent enableSwipe={true}>
+<Carousel  itemsToScroll={1} breakPoints={breakPoints} itemPadding={[10, 30]} pagination={false} enableMouseSwipe={true} preventDefaultTouchmoveEvent={true} enableSwipe={true}>
 <Box><img className='img' src={chef}/>
 <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
 <Box className="chef-details">

@@ -28,18 +28,42 @@ const MainParent = styled(Box)({
         textAlign: 'center',
     },
     '.view-button': {
-        border: '1px solid #080B0E',
-        marginTop: '10px',
         textTransform: 'capitalize',
-        width: '30%',
-        fontSize: '24px',
         backgroundColor: '#DCD7CB',
         color: '#080B0E',
-        marginTop: '40px'
+        fontFamily: 'ProximaNovaA-Regular',
+        right:'86%',
+        fontStyle: 'normal',
+    fontWeight: '200',
+    fontSize: '16px',
+    lineHeight: '19px',
+    },
+    ".btn-container":{
+        display:'flex',
+        justifyContent:'space-between',
+        position:'relative'
     },
 
     // ! media query for foodDetails card-component(Mobile-view)
-
+    '@media(min-width: 380px)and (max-width: 425px)': {
+        '.view-button':{
+            position:'absolute',
+            // top: '1090px',
+            // left:'0%',
+            border:'1px solid black',
+            width: '100%',
+    fontSize: '13px',
+    fontWeight: '200',
+    fontFamily: 'ProximaNovaA-Regular',
+    top:'663px',
+    right:'0px',
+    // height:'65%'
+        },
+        '.css-10vjzfb-MuiButtonBase-root-MuiButton-root:hover ':{
+            color:'#C6A87D !important'
+        },
+        
+    },
     '@media(min-width: 1px) and (max-width: 425px)': {
         '.parent-body': {
             padding: '40px 16px',
@@ -55,8 +79,9 @@ const MainParent = styled(Box)({
         '.view-button': {
             width: '100%',
             fontSize: '16px',
-            fontWeight: '600'
-        }
+            // fontWeight: '600'
+        },
+       
     }
 
 })
@@ -66,22 +91,25 @@ const MainFoodDetailng = () => {
     return (
         <React.Fragment>
             <MainParent>
+               
                 <Box className='parent-body'>
                     <Typography className="food-header">
                         Upcoming Supper Clubs
                     </Typography>
+                    <Box className='btn-container'>
                     <Typography className="sub-description">
                         Step out & enjoy a curated meal prepared by top chefs
                     </Typography>
-                    <FoodDetailing />
-                    {/* <Box className='button-component'>
+                    <Box className='button-component'>
                         <Button
                             fullWidth
                             className='view-button'
                         >
-                            View All
+                           View All
                         </Button>
-                    </Box> */}
+                    </Box>
+                    </Box>
+                    <FoodDetailing />
                 </Box>
             </MainParent>
         </React.Fragment>

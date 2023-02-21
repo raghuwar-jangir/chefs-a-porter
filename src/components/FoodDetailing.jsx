@@ -15,6 +15,21 @@ import tag from '../assets/images/tag-chef.png';
 
 
 const MainParent = styled(Box)({
+    '.parent-view-button': {
+        textAlign: 'center',
+        marginTop: '20px',
+        marginTop: '40px'
+    },
+    '.view-more': {
+        fontSize: '24px',
+        fontWeight: '400',
+        lineHeight: '29px',
+        width: '30%',
+        color: '#FBFBFB',
+        background: '#080B0E',
+        border: '1px solid #DCD7CB',
+        padding: '12px'
+    },
     '.parent-grid': {
         paddingTop: "30px"
     },
@@ -252,7 +267,12 @@ const MainParent = styled(Box)({
             fontFamily: 'ProximaNovaA-Regular',
             height:'65%',
             background:'none'
+           
+           
                 },
+                '.css-1fu7jd5-MuiButtonBase-root-MuiButton-root:hover':{
+                    background:'none '
+                }
         }
 // '@media(min-width: 1024px)':{
 //     '.test-img':{
@@ -428,18 +448,16 @@ const FoodDetailing = (isButtonShow) =>{
             </Box>
             </Box></Box>
 </Carousel>
-<Box>
-            {isButtonShow &&
-                        <Box className='more-button'>
+{/* {isButtonShow &&
+                        <Box className='parent-view-button'>
                             <Button
                                 fullWidth
                                 className='view-more'
                                 variant="contained">
-                                View All
+                                View More
                             </Button>
-                        </Box>
-                    }
-            </Box>
+                        </Box> */}
+{/* } */}
                 {/* <Grid className='parent-grid' container spacing={2}>
                     <Grid item xs={12} md={3} xl={3}>
                         <FoodDetail image={testImage} />
