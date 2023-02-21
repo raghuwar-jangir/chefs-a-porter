@@ -261,6 +261,7 @@ const HomePage = () => {
                 <PriveeComponentSlider/>
                 <NeedHelp/>
                 <Footer />
+                
                 <Box className="footer-end">
                     <Stack className='footer-text'
                            divider={<FiberManualRecordIcon sx={{ fontSize: '6px', color: '#C6A87D' }} />}

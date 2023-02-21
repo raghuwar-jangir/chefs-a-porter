@@ -14,7 +14,13 @@ import DetailsCarousel from "../../components/DetailsCarousel (1)";
 import Treaty from "../../components/Treaty";
 import NeedHelp from "../../components/NeedHelp";
 import sampleText from '../../assets/images/SupperClub.png'
-import arrow from '../../assets/images/arrow.png'
+import arrow from '../../assets/images/arrow.png';
+import Tabs from '@mui/joy/Tabs';
+import TabList from '@mui/joy/TabList';
+import Tab from '@mui/joy/Tab';
+import TabPanel from '@mui/joy/TabPanel';
+import GoogleMapReact from 'google-map-react';
+import { Link } from "gatsby";
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -28,6 +34,14 @@ const images = [
 ];
 
 const SupperClubChaefPage = () => {
+    const AnyReactComponent = ({ text }) => <div>{text}</div>;
+    const defaultProps = {
+        center: {
+          lat: 10.99835602,
+          lng: 77.01502627
+        },
+        zoom: 11
+      };
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
     const maxSteps = images.length;
@@ -185,11 +199,14 @@ const SupperClubChaefPage = () => {
             lineHeight: "19px"
         },
         '.date-stack': {
-            color: '#FBFBFB', background: '#101418', padding: '16px 13px'
+            color: '#FBFBFB', background: '#101418', padding: '16px 13px',placeContent:'center'
         },
         '.date-description': {
-            fontSize: '14px',
-            fontWeight: 400
+            fontSize: '20px',
+            fontWeight: 400,
+            fontFamily:'ProximaNovaA-Regular',
+            lineHeight: '24px',
+    letterSpacing:' 0.06em'
         },
         '.blowOut-description': {
             padding: '20px 16px',
@@ -209,6 +226,100 @@ const SupperClubChaefPage = () => {
         '.slot-title2': {
             fontSize: '14px',
         },
+        '.line':{
+            margin: '0px',
+marginLeft: '7px',
+fontSize: '22px',
+        },
+        '.css-e53awj-MuiStack-root>:not(style)+:not(style)': {
+            marginLeft: '6px'
+        },
+        '.tab-box':{
+            border:'1px solid black',
+            borderRadius:'1px',
+        },
+        '.box-contain':{
+            display:'grid',
+            gridTemplate:'repeat(1, 1fr) / repeat(2, 1fr)',
+            background:'#DCD7CB',
+            gap:'12px',
+            marginTop:'20px'
+        },
+        '.box1':{
+            padding: '40px 16px',
+    background: '#FBFBFB',
+    width: '92%',
+    marginTop: '20px',
+    boxShadow: '0px 16.3378px 20.4223px rgb(0 0 0 / 6%)',
+    position: 'relative',
+    // right:'3%'
+    // // backgroundImage: URL('../../assets/images/menuBackground.png'),
+    // backgroundSize: '212.4px',
+    // backgroundRepeat: 'no-repeat',
+    // backgroundPosition: 'center'
+        },
+        '.box2':{
+            padding: '40px 16px',
+            background: '#FBFBFB',
+            width: '93%',
+            marginTop: '20px',
+            boxShadow: '0px 16.3378px 20.4223px rgb(0 0 0 / 6%)',
+            position: 'relative',
+            // left:'2%'
+        },
+        '.detail-box':{
+            marginBottom:'36.69px'
+        },
+        '.menu-title':{
+            margin: '0px',
+    fontFamily: 'Bon Vivant',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    fontSize: '20px',
+    lineHeight: '25px',
+    letterSpacing: '0.06em',
+    color: '#080B0E',
+    marginBottom: '8px',
+        },
+        '.menu-sub':{
+            margin: '0px',
+            fontWeight: '400',
+            fontSize: '1rem',
+            lineHeight: '1.5',
+            letterSpacing: '0.00938em'
+        },
+        'button:focus':{
+            backgroundColor:'black',
+            color:'white'
+        },
+        '.css-130r91k-JoyTabList-root':{
+            width:'96% !important',
+            left:'2% !important'
+        },
+        '.map-heading':{
+            fontFamily:'Bon Vivant',
+            // fontWeight: '100',
+            fontSize: "20px",
+            lineHeight: "0px",
+            // padding: '0px 8px 0px 10px',
+            // marginLeft:'10px',
+            marginBottom:'14px',
+            color: '#080B0E',
+            marginTop:'10%',
+            marginLeft:'2%'
+        },
+        ".map-link":{
+            fontFamily: 'ProximaNovaA-Regular',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontSize: '20px',
+    lineHeight: '24px',
+    textDecoration: 'underline',
+    color: '#080B0E',
+    marginBottom: '16px',
+    display: 'block',
+    marginLeft:'2%'
+        },
         "@media (min-width: 1px) and (max-width:425px)": {
             ".main-box": {
                 padding: '0px',
@@ -222,31 +333,19 @@ const SupperClubChaefPage = () => {
 
             ".footer-box": {
                 display: 'none'
-            },
+            }
         }
     }))
 
     return (
         <React.Fragment>
             <BoxWrapper>
-                <MobileView>
+                {/* <MobileView> */}
                     <Box className='header-club'>
                         <img src={arrow} alt="title" className='back-aerrow' />
                         <img src={sampleText} alt="title" className='supper-club-image' />
                     </Box>
-                    <Box>
-                        <Stack
-                            className="date-stack"
-                            direction="row"
-                            divider={<Divider orientation="vertical" flexItem />}
-                            spacing={2}
-                        >
-                            <Typography className="date-description">April 9</Typography>
-                            <Typography className="date-description"> 7:30 PM - 10 PM</Typography>
-                            <Typography className="date-description">Blue Cafe, Kamanahalli</Typography>
-                        </Stack>
-                    </Box>
-                    <Box className="blowOut-description">
+                    {/* <Box className="blowOut-description">
                         <Typography className="blowOut-title">The Big Fat Parsi Blowout</Typography>
                         <Box className="slots">
                             <Typography className="slot-title">
@@ -255,10 +354,10 @@ const SupperClubChaefPage = () => {
                             <Typography className="slot-title2">
                                 2 Slots Left!o
                             </Typography>
-                        </Box>
-                    </Box>
+                        </Box> */}
+                    {/* </Box> */}
 
-                </MobileView>
+                {/* </MobileView> */}
                 <Box className="main-box">
                     <Grid container spacing={{ md: 2 }}>
                         <Grid item xl={7} md={7} sm={6} xs={12}>
@@ -297,12 +396,106 @@ const SupperClubChaefPage = () => {
                                 <Typography className="sub-box-text">Curated by <span><b>Chef Mako</b></span></Typography>
                                 <Typography className="sub-box-text">2 Slots Left!</Typography>
                             </Box>
-                            <Box sx={{ padding: '40px 16px 16px 16px', background: '#FBFBFB' }}>
-                                <CardChefComponent bgColor="#FBFBFB" />
+                            <Box>
+                        <Stack
+                            className="date-stack"
+                            direction="row"
+                            divider={<Divider orientation="vertical" flexItem />}
+                            spacing={2}
+                        >
+                            <Typography className="date-description">April 9</Typography><span className="line">|</span>
+                            <Typography className="date-description"> 7:30 PM - 10 PM</Typography><span className="line">|</span>
+                            <Typography className="date-description">Blue Cafe, Kamanahalli</Typography>
+                        </Stack>
+                    </Box>
+                            <Box sx={{ paddingTop: '16px', paddingBottom:'16px', background: '#FBFBFB', }}>
+                            <Tabs defaultValue={1} sx={{ "--Tabs-gap": "0px"}}
+                             >
+      <TabList>
+        <Tab className='tab-box' value={0}>Chef</Tab>
+        <Tab className='tab-box' value={1}>Menu</Tab>
+        <Tab className='tab-box' value={2}>Venue</Tab>
+      </TabList>
+      <TabPanel value={0} sx={{ p: 0 }}>
+      <CardChefComponent bgColor="#FBFBFB" />
+      </TabPanel>
+      <TabPanel value={1} sx={{ p: 0 }}>
+        <Box className='box-contain'>
+            <Box className='box1'>
+                <Box className='detail-box'>
+                    <Typography className="menu-title">Course 1</Typography>
+                    <Typography className="menu-sub">Seafood Soup | Roasted Garlic Foam | Snail butter</Typography>
+                </Box>
+                <Box className='detail-box'>
+                    <Typography className="menu-title">Course 2</Typography>
+                    <Typography className="menu-sub">Beetrott Sweet and Sour | Granny Smiith | Chicken Liver Spread | Tamarind served with croutons, curry leaves powder and oil, onion pickles</Typography>
+                </Box>
+                <Box className='detail-box'>
+                    <Typography className="menu-title">Course 3</Typography>
+                    <Typography className="menu-sub">Bread Skinned Fish | Grenoblaise | Smoked Pumpkin
+                                                        Served with white wine and mushroom sauce</Typography>
+                </Box>
+                <Box className='detail-box'>
+                    <Typography className="menu-title">Course 4</Typography>
+                    <Typography className="menu-sub">Braised Lamb & Vadouvan | Gremolata | Carrot 
+                                                        Served withh cashew crumble and potato cappuccino</Typography>
+                </Box>
+                <Box className='detail-box'>
+                    <Typography className="menu-title">Course 5</Typography>
+                    <Typography className="menu-sub">Citrus Variation| Walnut | Yogurt
+                                                        Paired with Five reserves Chemin Blanc & Five Reserves Pintoge</Typography>
+                </Box>
+            </Box>
+            <Box className='box2'>
+            <Box className='detail-box'>
+                    <Typography className="menu-title">Course 1</Typography>
+                    <Typography className="menu-sub">Seafood Soup | Roasted Garlic Foam | Snail butter</Typography>
+                </Box>
+                <Box className='detail-box'>
+                    <Typography className="menu-title">Course 2</Typography>
+                    <Typography className="menu-sub">Beetrott Sweet and Sour | Granny Smiith | Chicken Liver Spread | Tamarind served with croutons, curry leaves powder and oil, onion pickles</Typography>
+                </Box>
+                <Box className='detail-box'>
+                    <Typography className="menu-title">Course 3</Typography>
+                    <Typography className="menu-sub">Bread Skinned Fish | Grenoblaise | Smoked Pumpkin
+                                                        Served with white wine and mushroom sauce</Typography>
+                </Box>
+                <Box className='detail-box'>
+                    <Typography className="menu-title">Course 4</Typography>
+                    <Typography className="menu-sub">Braised Lamb & Vadouvan | Gremolata | Carrot 
+                                                        Served withh cashew crumble and potato cappuccino</Typography>
+                </Box>
+                <Box className='detail-box'>
+                    <Typography className="menu-title">Course 5</Typography>
+                    <Typography className="menu-sub">Citrus Variation| Walnut | Yogurt
+                                                        Paired with Five reserves Chemin Blanc & Five Reserves Pintoge</Typography>
+                </Box>
+            </Box>
+        </Box>
+      </TabPanel>
+      <TabPanel value={2} sx={{ p: 0 }}>
+      <Box className='map-heading'>Blue Cafe, Kamanahalli</Box>
+      <Link className="map-link">Get Directions</Link>
+      <div style={{ height: '70vh', width: '97%', padding:'16px 16px 16px 16px' }}>
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: "" }}
+        defaultCenter={defaultProps.center}
+        defaultZoom={defaultProps.zoom}
+      >
+        <AnyReactComponent
+          lat={59.955413}
+          lng={30.337844}
+          text="My Marker"
+        />
+      </GoogleMapReact>
+    </div>
+      </TabPanel>
+    </Tabs>
+                                {/* <CardChefComponent bgColor="#FBFBFB" /> */}
                             </Box>
-                            <Box sx={{ padding: '16px 16px 40px 16px', background: '#DCD7CB' }}>
+                            {/* <Box sx={{ padding: '16px 16px 40px 16px', background: '#DCD7CB' }}>
                                 <CardChefComponent />
-                            </Box>
+                            </Box> */}
                             <DiningPage />
                             <ChefCarousel />
                             <DetailsCarousel />
