@@ -16,6 +16,9 @@ import moment from "moment/moment";
 import {Formik, Form} from "formik";
 import * as _ from "lodash";
 import PriveeComponentSlider from "../../components/PriveeComponentSlider";
+import {DatePickerInput} from 'rc-datepicker';
+import 'rc-datepicker/lib/style.css';
+import PriveeExperienceCarousel from "../../components/PriveeExperienceCarousel";
 
 const MainBoxContent = styled(Box)({
     position: 'relative',
@@ -271,6 +274,31 @@ const BoxWrapper = styled(Box)(() => ({
         fontFamily: 'Proxima Nova',
         fontSize: '16px',
         lineHeight: '19px',
+    },
+    '.react-datepicker-component .react-datepicker-input input': {
+        paddingLeft:'5px',
+        color: '#080B0E',
+    },
+    '.icon-rc-datepicker':{
+        color: '#080B0E !important',
+    },
+    '.react-datepicker-component .react-datepicker-input': {
+        background: 'transparent',
+        border: '0px',
+        borderRadius:'0px',
+    },
+    '.react-datepicker-component .react-datepicker-input:hover': {
+        background: 'transparent',
+        border: '0px',
+        borderRadius:'0px'
+    },
+    '.react-datepicker-component .react-datepicker-input.has-value input':{
+        color: '#080B0E !important',
+    },
+    '.react-datepicker-component .react-datepicker-input.is-open':{
+        background: 'transparent',
+        border: '0px',
+        borderRadius: '0px',
     },
     '.form-group': {
         marginBottom: '30px',
@@ -533,15 +561,16 @@ const PriveePage = () => {
                                 <Formik
                                     initialValues={{
                                         city: 'Mumbai',
-                                        date:new Date(),
+                                        date: new Date(),
                                         experience: 'Experiences',
                                         numberOfDiner: ''
                                     }}
                                     onSubmit={(values) => {
+                                        console.log(values.date)
                                         const experienceData = {
                                             ...values,
-                                            date: moment(JSON.stringify(_.get(values, 'dateOfBirth'))).format('DD/MM/YYYY'),
-                                            numberOfDiner:count,
+                                            date: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
+                                            numberOfDiner: count,
                                         }
                                         console.log("value===>", values)
                                         console.log("experienceData===>", experienceData)
@@ -593,17 +622,15 @@ const PriveePage = () => {
                                                 </Select>
                                             </Box>
                                             <Box className="form-group">
-                                                <TextField type="date" name="date"
-                                                           value={values.date}
-                                                           onChange={handleChange}
-                                                           defaultValue={values.date}
-                                                           className="form-control capital-date-format"
-                                                           autoComplete="off"
-                                                           variant="standard"
-                                                           InputProps={{
-                                                               disableUnderline: true,
-                                                               autoCapitalize: true,
-                                                           }}/>
+                                                <DatePickerInput
+                                                    name="date"
+                                                    value={values.date}
+                                                    displayFormat="DD/MM/YYYY"
+                                                    returnFormat="DD/MM/YYYY"
+                                                    className="form-control"
+                                                    onChange={(dateString) => setFieldValue('date', dateString)}
+                                                    defaultValue={values.date}/>
+
                                             </Box>
                                             <Box className="form-group">
                                                 <Select
@@ -699,6 +726,7 @@ const PriveePage = () => {
                 </Box>
                 <Box className="available-experiences">
                     <Typography className="chef-header">Available Experiences</Typography>
+                    {/*<PriveeExperienceCarousel/>*/}
                     <Grid container spacing={2}>
                         <Grid item xl={3} md={3} sm={6} xs={12}>
                             <PriveeDining/>

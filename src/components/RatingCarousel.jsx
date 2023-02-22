@@ -86,6 +86,73 @@ const RatingCarousel = ({ backgroundColor }) => {
         '.css-dqr9h-MuiRating-label':{
             fontSize:'40px'
         },
+        "@media (min-width: 700px) and (max-width:768px)": {
+            ".mainTitle": {
+                fontSize: '24px ',
+                lineHeight:'30px',
+                textAlign: 'center',
+                fontFamily: 'Bon Vivant',
+                fontStyle: 'normal',
+            },
+            '.css-dqr9h-MuiRating-label':{
+                fontSize:'23px'
+            },
+            ".details": {
+                textAlign: 'center',
+                fontSize: '14px',
+                lineHeight:'17px',
+                fontFamily: 'Proxima Nova !important',
+                padding: '0px 50px',
+            },
+            ".ceoName": {
+                textAlign: "center",
+                fontSize: "14px",
+                fontWeight: 600,
+                padding: '30px 0px 24px 0px ',
+                fontFamily: 'Proxima Nova',
+                textTransform:'uppercase'
+            },
+            '.css-26w9jf-MuiMobileStepper-dot':{
+                backgroundColor:'black !important',
+                width: '12px',
+                height: '12px',
+                marginTop:'-3px',
+            },
+        },
+        "@media (min-width: 1px) and (max-width:425px)": {
+            padding: '40px 20px',
+            ".mainTitle": {
+                fontSize: '22px ',
+                lineHeight:'30px',
+                textAlign: 'center',
+                fontFamily: 'Bon Vivant',
+                fontStyle: 'normal',
+            },
+            '.css-dqr9h-MuiRating-label':{
+                fontSize:'23px'
+            },
+            ".details": {
+                textAlign: 'center',
+                fontSize: '14px',
+                lineHeight:'17px',
+                fontFamily: 'Proxima Nova !important',
+                padding: '0px 5px',
+            },
+            ".ceoName": {
+                textAlign: "center",
+                fontSize: "14px",
+                fontWeight: 600,
+                padding: '30px 0px 24px 0px ',
+                fontFamily: 'Proxima Nova',
+                textTransform:'uppercase'
+            },
+            '.css-26w9jf-MuiMobileStepper-dot':{
+                backgroundColor:'black !important',
+                width: '12px',
+                height: '12px',
+                marginTop:'-3px',
+            },
+        },
     }))
 
 
