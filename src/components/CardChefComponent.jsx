@@ -8,11 +8,13 @@ import chef from '../assets/images/cheflogo.png';
 import dish from '../assets/images/meal.png';
 import glass from '../assets/images/wine-glass.png';
 import star from '../assets/images/chef-star.png';
+// import ReadMoreReact from 'read-more-react';
+import ReactReadMoreReadLess from "react-read-more-read-less";
+
+
 const CardChefComponent = ({ bgColor }) => {
-    const [isExpanded, setIsExpanded] = useState(false);
-    const toggleExpand = () => {
-        setIsExpanded(!isExpanded);
-      };
+    const longText = ' From Bangalore to the Culinary Institute of America in New York. He has developed his skills and love for the culinary arts. From Bangalore to the Culinary...';<span><u><b>Read less</b></u></span>
+    const longText2 = 'Host connections at your place and leave the dinner table to us. Select your chef and let them curate an experience worth enjoying...';
     const BoxWrapper = styled(Box)(() => ({
         // padding: '40px 16px 16px 16px',
         background: bgColor,
@@ -94,9 +96,28 @@ const CardChefComponent = ({ bgColor }) => {
                     <Typography className="field-ans">Gordan Ramsay</Typography>
                 </Box>
               <Typography className="details">
-                    From Bangalore to the Culinary Institute of
+                    {/* From Bangalore to the Culinary Institute of
                     America in New York. He has developed his skills and love for the culinary arts.
-                    From Bangalore to the Culinary...<span><u><b>Read more</b></u></span>
+                    From Bangalore to the Culinary...<span><u><b>Read more</b></u></span> */}
+                    {/* <ReadMoreReact
+      text={longText}
+      min={50}
+      ideal={100}
+    //   max={200}
+      readMoreText="Read more"
+      readLessText="Read less"
+      readMoreClassName="my-read-more-class"
+      readLessClassName="my-read-less-class"
+    /> */}
+     <ReactReadMoreReadLess
+     readMoreStyle={{textDecoration: "underline",fontWeight:'bold'}}
+     readLessStyle={{textDecoration: "underline",fontWeight:'bold'}}
+                charLimit={125}
+                readMoreText={"Read more"}
+                readLessText={"Read less"}
+            >
+                {longText}
+            </ReactReadMoreReadLess>
                 </Typography>
                 <Typography className="heading">What to expect</Typography>
                 <Box className="sub-box-card">
@@ -113,7 +134,26 @@ const CardChefComponent = ({ bgColor }) => {
                     <Typography className="field-ans">Freshly Sourced Seafood</Typography>
                 </Box>
                 <Typography className="details">
-                Host connections at your place and leave the dinner table to us. Select your chef and let them curate an experience worth enjoying...<span><u><b>Read more</b></u></span>
+                {/* Host connections at your place and leave the dinner table to us. Select your chef and let them curate an experience worth enjoying...<span><u><b>Read more</b></u></span> */}
+                {/* <ReadMoreReact
+      text={longText2}
+      min={50}
+      ideal={100}
+    //   max={200}
+      readMoreText="Read more"
+      readLessText="Read less"
+      readMoreClassName="my-read-more-class"
+      readLessClassName="my-read-less-class"
+    /> */}
+    <ReactReadMoreReadLess
+     readMoreStyle={{textDecoration: "underline",fontWeight:'bold'}}
+     readLessStyle={{textDecoration: "underline",fontWeight:'bold'}}
+                charLimit={125}
+                readMoreText={"Read more"}
+                readLessText={"Read less"}
+            >
+                {longText2}
+            </ReactReadMoreReadLess>
                 </Typography>
             </BoxWrapper>
         </React.Fragment>
