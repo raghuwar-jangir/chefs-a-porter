@@ -245,7 +245,7 @@ const Footer = () => {
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <Link href="contact-us" className='listItem-subheading'>Contact Us</Link>
+                                        <Link href="/contact-us" className='listItem-subheading'>Contact Us</Link>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
