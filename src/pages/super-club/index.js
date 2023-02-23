@@ -8,7 +8,11 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+// import "swiper/css/navigation";
+import { Navigation } from "swiper";
+import React, {useState,useRef} from "react";
 import { useTheme } from "@mui/material/styles";
 import RestorentImg from "../../assets/images/RestorentImg.png";
 import RestorentImgMobile from "../../assets/images/RestorentImgMobile.png";
@@ -44,6 +48,15 @@ const images = [
 ];
 
 const SupperClubChaefPage = () => {
+    const [showCarousel, setShowCarousel] = useState(false);
+  
+    const handleImageClick = () => {
+      setShowCarousel(true);
+    };
+  
+    const handleClose = () => {
+      setShowCarousel(false);
+    };
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
   const defaultProps = {
     center: {
@@ -76,7 +89,9 @@ const SupperClubChaefPage = () => {
       height: "390px",
       display: "block",
       objectFit:'cover',
-      boxShadow: '0px 8px 16px rgb(0 0 0 / 16%)'
+      boxShadow: '0px 8px 16px rgb(0 0 0 / 16%)',
+      cursor: 'pointer'
+      
     },
     ".main-img-1": {
     //   border: "1px solid",
@@ -196,7 +211,7 @@ const SupperClubChaefPage = () => {
         color: "#000",
         border:'0.5px solid #F8A039'
     },
-    ".secound-grid": {
+    ".next-grid": {
       display: "inline",
     },
     ".date-time-box": {
@@ -335,14 +350,14 @@ const SupperClubChaefPage = () => {
       lineHeight: "1.5",
       letterSpacing: "0.00938em",
     },
-    "button:focus": {
-      backgroundColor: "black",
-      color: "white",
-    },
-    "button:active": {
-        backgroundColor: "black",
-        color: "white",
-      },
+    // "button:focus": {
+    //   backgroundColor: "black",
+    //   color: "white",
+    // },
+    // "button:active": {
+    //     backgroundColor: "black",
+    //     color: "white",
+    //   },
     ".css-130r91k-JoyTabList-root": {
       width: "96% !important",
       left: "2% !important",
@@ -401,12 +416,12 @@ objectFit: 'contain',
             textDecoration: "underline",  
     },
     '.child-container':{
-        position:'relative'
+        // position:'relative'
     },
     '.show-btn':{
-        position: 'absolute',
-    bottom: '22px',
-    right: '22px',
+        position: 'relative',
+    bottom: '52px',
+    left: '170px',
     fontFamily: 'ProximaNovaA-Regular',
     fontStyle: 'normal',
     fontWeight: '100',
@@ -456,6 +471,40 @@ objectFit: 'contain',
     '.time-btn-box':{
         width:'57%'
     },
+    '.chef-carousel':{
+      border:'1px solid black'
+    },
+    '.container': {
+      position: 'relative'
+    },
+    '.carousel-popup': {
+      position: 'fixed',
+      top: '0',
+left: '0',
+width: '100%',
+height: '100%',
+backgroundColor: 'rgba(0, 0, 0, 0.5)',
+display: 'flex',
+justifyContent: 'center',
+alignItems: 'center'
+},
+'.close-button': {
+  position: 'absolute',
+  top: '10px',
+  right: '10px',
+  fontSize: '24px',
+  backgroundColor: 'transparent',
+  border: 'none',
+  color: 'white',
+  cursor: 'pointer',
+},
+'.swiper': {
+  // height: '428px',
+  width:'75%',
+  height:'100%'
+  // paddingBottom:'40px'
+},
+    
     "@media (min-width: 768px) and (max-width:1024px)": {
         '.box1':{
             width:'87%'
@@ -476,8 +525,8 @@ objectFit: 'contain',
         },
         '.time-btn-box': {
             width: '52%'
-        }
-    },
+        },
+      },
     "@media (min-width: 1px) and (max-width:768px)": {
       ".css-1fh2pai-MuiGrid-root ": {
         width: "100% !important",
@@ -486,7 +535,7 @@ objectFit: 'contain',
     //   ".sub-box": {
     //     display: "none",
     //   },
-      ".secound-grid": {
+      ".next-grid": {
         display: "none",
       },
     },
@@ -497,7 +546,7 @@ objectFit: 'contain',
     //   ".sub-box": {
     //     display: "none",
     //   },
-      ".secound-grid": {
+      ".next-grid": {
         display: "none",
       },
 
@@ -574,12 +623,30 @@ objectFit: 'contain',
                   /> */}
                 </Box>
               {/* ) : ( */}
-                <Box>
+                <Box className="container">
                   <img
                     src={RestorentImg}
                     alt="RestorentImg"
                     className="main-img"
+                    // className="image"
+                    onClick={handleImageClick}
                   />
+                   {showCarousel && (
+        <Box className="carousel-popup">
+          <button className="close-button" onClick={handleClose}>
+            X
+          </button>
+          <Box className="carousel">
+          <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+        <SwiperSlide><img  src={RestorentImg}/></SwiperSlide>
+        <SwiperSlide><img src={RestorentImg}/></SwiperSlide>
+        <SwiperSlide><img src={RestorentImg}/></SwiperSlide>
+        <SwiperSlide><img src={RestorentImg}/></SwiperSlide>
+        <SwiperSlide><img src={RestorentImg}/></SwiperSlide>
+      </Swiper>
+          </Box>
+        </Box>
+      )}
                 </Box>
               {/* )} */}
               <Box className="sub-box">
@@ -620,20 +687,41 @@ objectFit: 'contain',
                   background: "#FBFBFB",
                 }}
               >
-                <Tabs defaultValue={0} sx={{ "--Tabs-gap": "0px" }}>
-                  <TabList>
-                    <Tab className="tab-box" value={0}>
+                <Tabs defaultValue={0} sx={{ "--Tabs-gap": "0px" , backgroundColor:'#FBFBFB'}}>
+                  <TabList >
+                    <Tab sx={{ 
+      '&:focus': {
+        color: '#FBFBFB',
+        backgroundColor: '#101418',
+      },
+    }} className="tab-box"  value={0}>
                       Chef
                     </Tab>
-                    <Tab className="tab-box" value={1}>
+                    <Tab sx={{ 
+      '&:focus': {
+        color: '#FBFBFB',
+        backgroundColor: '#101418',
+      },
+    }}className="tab-box" value={1}>
                       Menu
                     </Tab>
-                    <Tab className="tab-box" value={2}>
+                    <Tab sx={{ 
+      '&:focus': {
+        color: '#FBFBFB',
+        backgroundColor: '#101418',
+      },
+    }} className="tab-box" value={2}>
                       Venue
                     </Tab>
                   </TabList>
                   <TabPanel value={0} sx={{ p: 0 }}>
                     <CardChefComponent bgColor="#FBFBFB" />
+                    <Box className='chef-carousel'>
+                    <ChefMakoCarousel/>
+                    <ChefCarousel/>
+                    <DetailsCarousel />
+              <Treaty />
+              </Box>
                   </TabPanel>
                   <TabPanel value={1} sx={{ p: 0 }}>
                     <Box className="box-contain">
@@ -770,43 +858,44 @@ objectFit: 'contain',
               {/* <Box sx={{ padding: '16px 16px 40px 16px', background: '#DCD7CB' }}>
                                 <CardChefComponent />
                             </Box> */}
-              <ChefMakoCarousel/>
-              <ChefCarousel />
-              <DetailsCarousel />
-              <Treaty />
               <NeedHelp />
              </Grid>
-             <Grid item md={5} sm={6} xs={12} xl={5} className="secound-grid">
+             <Grid item md={5} sm={6} xs={12} xl={5} className="next-grid">
               <Grid className="child-container" container spacing={2}>
                 <Grid item md={6} sm={6} xs={6} xl={6}>
                   <img
                     src={RestorentImg}
                     alt="RestorentImg"
                     className="main-img-1"
+                    onClick={handleImageClick}
                   />
                 </Grid>
                 <Grid item md={6} sm={6} xs={6} xl={6}>
-                  <img
+                <img
                     src={RestorentImg}
                     alt="RestorentImg"
                     className="main-img-1"
+                    onClick={handleImageClick}
                   />
                 </Grid>
                 <Grid item md={6} sm={6} xs={6} xl={6}>
-                  <img
+                <img
                     src={RestorentImg}
                     alt="RestorentImg"
                     className="main-img-2"
+                    onClick={handleImageClick}
                   />
                 </Grid>
                 <Grid item md={6} sm={6} xs={6} xl={6}>
-                  <img
+                <img
                     src={RestorentImg}
                     alt="RestorentImg"
                     className="main-img-2"
+                    onClick={handleImageClick}
                   />
+                   <Button className="show-btn">Show All Photos</Button>
                 </Grid>
-                <Button className="show-btn">Show All Photos</Button>
+               
                  </Grid>
                  <Box className="sub-box-2">
                  <Box

@@ -3,7 +3,7 @@ import React, { useRef, useState }  from 'react';
 import { Link } from 'gatsby';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { Autoplay, Pagination} from "swiper";
+import { Autoplay} from "swiper";
 import "swiper/css/pagination";
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import diningPicture from '../assets/images/cook1.png'
@@ -33,7 +33,7 @@ const MainContentBox = styled(Box)({
         lineHeight: '30px',
         letterSpacing: '0.06em',
         color: '#FBFBFB',
-        padding: '0px 120px',
+        padding: '0px 40px',
     marginBottom: '20px',
     },
     '.content-box':{
@@ -49,13 +49,13 @@ const MainContentBox = styled(Box)({
     },
     '.img':{
         width:'100%',
-        height: '550px',
+        height: '352px',
     objectFit: 'cover'
     },
     '.swiper-pagination-bullet':{
         borderRadius:'0px',
-        width:'200px',
-        height:'3px',
+        width:'290px',
+        height:'5px',
         background:'#FBFBFB',
         opacity:'1',
     },
@@ -81,20 +81,24 @@ positionX:'end'
         bottom:'-5px !important',
     },
     '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
-        margin:'0 var(--swiper-pagination-bullet-horizontal-gap,19px) !important'
+        margin:'0 var(--swiper-pagination-bullet-horizontal-gap,10px) !important'
+    },
+    '.mako-details':{
+        fontFamily: 'ProximaNovaA-Regular',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        fontSize: '16px',
+        lineHeight: '20px',
+        color: '#FBFBFB',
+        margin: '24px 16px 10px',
     },
     '@media(min-width: 1px) and (max-width: 768px)': {
         '.img':{
             height:'250%',
             width:'50%',
-            padding:'0px 26%'
+            // padding:'0px 26%'
         },
-        '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
-            margin:'0 var(--swiper-pagination-bullet-horizontal-gap,3px) !important'
-    },
-    '.swiper-pagination-bullet':{
-        width:'96px'
-    },
+     
     '.dining-content': {
         width:'10px',
         font:'12px',
@@ -104,15 +108,58 @@ positionX:'end'
         marginRight:'65px'
     }
 },
+'@media(min-width: 2000px) and (max-width: 2560px)': {
+    '.swiper-pagination-bullet':{
+        width: '403px',
+    height: '4px',
+    },
+    '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
+        margin:'0 var(--swiper-pagination-bullet-horizontal-gap,18px) !important'
+},
+'.mako-details':{
+fontSize:'20px'
+}
+},
+'@media(min-width: 1024px) and (max-width: 1440px)': {
+    '.swiper-pagination-bullet':{
+        width: '187px',
+    height: '4px',
+    },
+    '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
+        margin:'0 var(--swiper-pagination-bullet-horizontal-gap,15px) !important'
+},
+'@media(min-width: 768px) and (max-width: 1024px)': {
+    '.swiper-pagination-bullet':{
+        width: '117px',
+    },
+    '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
+        margin:'0 var(--swiper-pagination-bullet-horizontal-gap,14px) !important'
+},
+},
+},
 '@media(min-width: 320px) and (max-width: 768px)': {
     '.img':{
-        width:'94%',
-        padding:'0px 3%'
+        width:'100%',
+        // padding:'0px 3%'
     },
     '.dining-title':{
         padding:'0px 29px',
         font:'20px'
-    }
+    },
+    '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
+        margin:'0 var(--swiper-pagination-bullet-horizontal-gap,6px) !important'
+},
+'.swiper-pagination-bullet':{
+    width:'148px'
+},
+},
+'@media(min-width: 320px) and (max-width: 425px)': {
+    '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
+        margin:'0 var(--swiper-pagination-bullet-horizontal-gap,3px) !important'
+},
+'.swiper-pagination-bullet':{
+    width:'100px'
+},
 }
 })
 
@@ -131,17 +178,17 @@ const ChefMakoCarousel = () => {
          clickable: true,
        }}
        autoplay={{
-        delay: 8000,
+        delay: 3800,
         disableOnInteraction: false,
     }}
     speed={500}
        navigation={true}
-       modules={[Pagination,Autoplay]}
+       modules={[Autoplay]}
        className="mySwiper"
     >
-      <SwiperSlide><img className='img' src={diningPicture}></img> <Typography style={{color:'white'}}>An agnostic menu that explores a diverse culinary journey with chef mako at the helm</Typography></SwiperSlide>
-      <SwiperSlide><img className='img'  src={diningPicture}></img><Typography style={{color:'white'}}>An agnostic menu that explores a diverse culinary journey with chef mako at the helm</Typography></SwiperSlide>
-      <SwiperSlide><img className='img' src={diningPicture}></img><Typography style={{color:'white'}}>An agnostic menu that explores a diverse culinary journey with chef mako at the helm</Typography></SwiperSlide>
+      <SwiperSlide><img className='img' src={diningPicture}></img> <Typography className='mako-details'>An agnostic menu that explores a diverse culinary journey with chef mako at the helm</Typography></SwiperSlide>
+      <SwiperSlide><img className='img'  src={diningPicture}></img><Typography className='mako-details'>An agnostic menu that explores a diverse culinary journey with chef mako at the helm</Typography></SwiperSlide>
+      <SwiperSlide><img className='img' src={diningPicture}></img><Typography className='mako-details'>An agnostic menu that explores a diverse culinary journey with chef mako at the helm</Typography></SwiperSlide>
       ...
     </Swiper>
     {/* <Box className='content-box'>
