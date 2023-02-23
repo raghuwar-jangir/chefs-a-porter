@@ -302,9 +302,6 @@ const BecomePartner = () => {
             borderLeft: '0.25px solid #FBFBFB',
             paddingLeft: '14px'
         },
-        '.gallery-carousel':{
-            display:'none'
-        },
         '@media(min-width: 1px) and (max-width: 425px)': {
             '.membership-type': {
                 background: '#FBFBFB',
@@ -326,9 +323,6 @@ const BecomePartner = () => {
             },
             '.corporate-b':{
                 display:'none'
-            },
-            '.gallery-carousel':{
-                display:'block'
             },
         },
         '@media(min-width: 320px) and (max-width: 768px)': {
@@ -409,7 +403,7 @@ const BecomePartner = () => {
                         </Box>
                     </Box>
                 </Box>
-                <Box className="gallery-carousel"><ImageCarousel/></Box>
+               <ImageCarousel/>
                 <Box className="big_dis">
                     <Box> <Typography className="booking-heading">Check out the benifits our patron recieve</Typography></Box>
                     <Grid container>

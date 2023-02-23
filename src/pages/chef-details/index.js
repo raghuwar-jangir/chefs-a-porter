@@ -34,6 +34,9 @@ import moment from "moment/moment";
 import * as _ from "lodash";
 import {DatePickerInput} from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
+import RatingCarousel from "../../components/RatingCarousel";
+import TemplateYet from "../../components/TemplateYet";
+import ImageCarousel from "../../components/ImageCarousel";
 
 const ChefDetails = () => {
 
@@ -161,7 +164,79 @@ const ChefDetails = () => {
                 fontWeight: '700',
                 fontFamily: 'Proxima Nova',
             },
+            '.treat': {
+                padding: '40px 20px',
+                background: '#101418',
+            },
+            '.treat-container': {
+                padding: ' 0px',
+                border: '0px',
+                background: 'transparent',
+            },
+            '.treat-Box': {
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
+            },
+            '.surprise-title': {
+                fontSize: '24px',
+                lineHeight: '30px',
+                color: '#FBFBFB',
+                fontFamily: 'Bon Vivant',
+                fontStyle: 'normal',
+                // fontWeight: '700',
+                letterSpacing: '0.06em',
+                marginBottom: '8px',
+            },
+            '.surpirse-details': {
+                fontSize: '15px',
+                lineHeight: '24px',
+                color: '#FBFBFB',
+                fontFamily: 'Proxima Nova',
+                fontStyle: 'normal',
+            },
+            '.surprise-Box': {
+                padding: '0px 12px',
+                width: '75%'
+            },
+            '.view-all': {
+                fontSize: '16px',
+                lineHeight: '19px',
+                color: '#FBFBFB',
+                fontFamily: 'Proxima nova',
+                fontStyle: 'normal',
+                letterSpacing: '0.06em',
+                marginBottom: '8px',
+                textAlign: 'center',
+                textDecoration: 'none',
+                border: '1px solid #C6A87D',
+                padding: '14px',
+                display: 'block'
+            },
+            '.book-now': {
+                width: '25%',
+                padding: '0px 12px'
+            },
+            '.mobileView-chef': {
+                display: 'none',
+                margin:'5px 0px'
+            },
 
+            '@media(min-width: 1px) and (max-width: 768px)': {
+                '.treat-Box': {
+                    display: 'block',
+                    alignItems: 'center'
+                },
+                '.book-now': {
+                    width: 'auto',
+                },
+                '.surprise-Box': {
+                    width: 'auto'
+                },
+                '.container-fluid': {
+                    padding: '32px 0px 0px'
+                },
+            },
             '@media(min-width: 2200px) and (max-width: 2560px)': {
                 '.all-photos': {
                     bottom: '50px',
@@ -186,6 +261,40 @@ const ChefDetails = () => {
                     left: '3px',
                 },
             },
+            "@media (min-width: 320px) and (max-width:425px)": {
+                '.css-5n45bv-MuiPaper-root-MuiMobileStepper-root': {
+                    paddingLeft: '130px',
+                    top: '290px !important'
+                },
+            },
+            "@media (min-width: 320px) and (max-width:350px)": {
+                '.css-5n45bv-MuiPaper-root-MuiMobileStepper-root': {
+                    paddingLeft: '105px',
+                    top: '260px  !important'
+                },
+            },
+            "@media (min-width: 425px) and (max-width:450px)": {
+                '.css-5n45bv-MuiPaper-root-MuiMobileStepper-root': {
+                    paddingLeft: '160px !important',
+                    top: '320px  !important'
+                },
+            },
+            "@media (min-width: 1px) and (max-width:425px)": {
+                '.supper-chef-details': {
+                    display: 'none'
+                },
+                '.tz-gallery': {
+                    display: 'none'
+                },
+                '.mobileView-chef': {
+                    display: 'block'
+                },
+                '.mbl-chef-name': {
+                    textAlign: 'center',
+                    marginBottom:'0px !important'
+                }
+            },
+
         }
     ))
 
@@ -324,6 +433,13 @@ const ChefDetails = () => {
                                 <span className="chef-details">Specialty:<b> Thai, Japanese</b></span>
                             </Box>
                         </Box>
+                        <Box className="mobileView-chef">
+                            <Typography className="chef-name mbl-chef-name">Chef Mako Ravindran</Typography>
+                        </Box>
+                        <ImageCarousel/>
+                        <Box className="mobileView-chef">
+                            <Typography className="chef-details mbl-chef-name">Specialty:<b> Thai, Japanese</b></Typography>
+                        </Box>
                         <Box className="tz-gallery">
                             <ImageList variant="masonry"
                                        sx={{width: '100%', height: '100%'}}
@@ -343,12 +459,12 @@ const ChefDetails = () => {
                                    data-bs-target="#exampleModal" onClick={handleOpen}>Show All Photos</a>
                             </ImageList>
                         </Box>
-                        <div className="row supper-chef-details">
-                            <div className="col-lg-12">
-                                <div className="details">
-                                    <div className="supper-tabs">
-                                        <div className="tab-content" id="pills-tabContent">
-                                            <div className="tab-pane fade show active" id="pills-home" role="tabpanel"
+                        <Box className="row supper-chef-details">
+                            <Box className="col-lg-12">
+                                <Box className="details">
+                                    <Box className="supper-tabs">
+                                        <Box className="tab-content" id="pills-tabContent">
+                                            <Box className="tab-pane fade show active" id="pills-home" role="tabpanel"
                                                  aria-labelledby="pills-home-tab">
                                                 <Typography className="about-chef-heading">About the Chef</Typography>
                                                 <Box>
@@ -390,12 +506,27 @@ const ChefDetails = () => {
                                                         {longText}
                                                     </ReactReadMoreReadLess>
                                                 </Box>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                            </Box>
+                                        </Box>
+                                    </Box>
+                                </Box>
+                            </Box>
+                        </Box>
+                        <Box className="treat">
+                            <Box className="treat-container">
+                                <Box className="treat-Box">
+                                    <Box className="surprise-Box">
+                                        <Typography className="surprise-title">Surprise me</Typography>
+                                        <Typography className="surpirse-details">An agnostic menu that explores a
+                                            Boxerse culinary<br/>journey with chef mako at the helm</Typography>
+                                    </Box>
+                                    <Box className="book-now">
+                                        <a href="javascript:void(0);" className="view-all">Book Now</a>
+                                    </Box>
+                                </Box>
+                            </Box>
+                        </Box>
+                        <RatingCarousel backgroundColor="#DCD7CB"/>
                     </Box>
                 </Box>
                 <Modal
@@ -424,7 +555,6 @@ const ChefDetails = () => {
                                         queryMessage: '',
                                     }}
                                     onSubmit={(values) => {
-                                        console.log(values.date)
                                         const experienceData = {
                                             ...values,
                                             day: moment(_.get(values, 'day')).format("ddd,DD MMM "),
@@ -511,6 +641,7 @@ const ChefDetails = () => {
                 </Modal>
                 <NeedHelp/>
                 <Footer/>
+                <TemplateYet/>
                 <FooterEnd/>
             </BoxWrapper>
         </React.Fragment>

@@ -18,6 +18,7 @@ import * as _ from "lodash";
 import PriveeComponentSlider from "../../components/PriveeComponentSlider";
 import {DatePickerInput} from 'rc-datepicker';
 import 'rc-datepicker/lib/style.css';
+import TemplateYet from "../../components/TemplateYet";
 
 const MainBoxContent = styled(Box)({
     position: 'relative',
@@ -360,44 +361,6 @@ const BoxWrapper = styled(Box)(() => ({
         cursor: 'pointer',
     },
 
-    //template show
-    '.template': {
-        display: 'none',
-        background: '#FBFBFB',
-        padding: '0px 10px 24px'
-    },
-    '.template-title': {
-        fontFamily: 'Bon Vivant',
-        fontStyle: 'normal',
-        fontWeight: '700',
-        fontSize: '24px',
-        lineHeight: '30px',
-        textAlign: 'center',
-        letterSpacing: '0.06em',
-        color: '#080B0E',
-        marginBottom: '0px',
-        paddingBottom: '34px',
-        paddingTop: '20px',
-    },
-    '.view-all': {
-        marginTop: '40px',
-        display: 'block',
-        width: 'auto',
-        padding: '10px',
-        textAlign: 'center',
-        border: '0.5px solid #080B0E',
-        fontFamily: 'Proxima Nova',
-        fontStyle: 'normal',
-        fontWeight: '600',
-        fontSize: '16px',
-        lineHeight: '19px',
-        background: '#080B0E',
-        color: '#FBFBFB',
-        textDecoration: 'none',
-    },
-    '.view-all:hover': {
-        color: '#C6A87D !important',
-    },
     "@media(width = 1440px)": {
         ".experience-form-box": {
             padding: '38px 120px'
@@ -440,22 +403,6 @@ const BoxWrapper = styled(Box)(() => ({
         },
         '.privee-container': {
             display: 'block'
-        },
-        '.template': {
-            background: '#080B0E',
-        },
-        '.template-title': {
-            color: '#FBFBFB',
-        },
-        '.view-all': {
-            marginTop: '5px',
-            color: '#080B0E',
-            background: '#C6A87D',
-        },
-    },
-    "@media (min-width: 1px) and (max-width:768px)": {
-        '.template': {
-            display: 'block',
         },
     },
     "@media (min-width: 1px) and (max-width:767px)": {
@@ -787,10 +734,7 @@ const PriveePage = () => {
                 <Box className="frequently-questions-box">
                     <Questions/>
                 </Box>
-                <Box className="template show">
-                    <Typography className="template-title">Tempted yet?</Typography>
-                    <a href="" className="view-all">Book an Experience</a>
-                </Box>
+                <TemplateYet/>
                 <NeedHelp/>
                 <Footer/>
                 <FooterEnd/>

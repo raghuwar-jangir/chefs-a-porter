@@ -16,6 +16,7 @@ const images = [
     gallery,
 ];
 const BoxWrapper = styled(Box)(() => ({
+    display:"none",
     background: "#FBFBFB",
     color: '#222222',
     ".css-1w60iqt-MuiPaper-root-MuiMobileStepper-root": {
@@ -40,6 +41,7 @@ const BoxWrapper = styled(Box)(() => ({
         height: "100%"
     },
     "@media (min-width: 1px) and (max-width:425px)": {
+        display:"block",
         ".img": {
             width: '100%',
             display: 'block',

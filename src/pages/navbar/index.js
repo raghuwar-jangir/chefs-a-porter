@@ -210,7 +210,7 @@ const Navbar = ({isColor}) => {
                                     Privee
                                 </Link>
                                 <Link className='browser-hamburger-menu'
-                                      to='/super-club'>
+                                      to='/supper-club'>
                                     Supper Clubs
                                 </Link>
                                 <Link className='browser-hamburger-menu'
@@ -218,7 +218,7 @@ const Navbar = ({isColor}) => {
                                     Our Chefs
                                 </Link>
                                 <Link className='browser-hamburger-menu'
-                                      to='/contact'>
+                                      to='/contact-us'>
                                     Contact
                                 </Link>
                                 <Link className='browser-hamburger-menu'
