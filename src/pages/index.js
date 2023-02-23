@@ -45,7 +45,6 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import FooterEnd from "../components/FooterEndSection";
 
 
-
 const MainBoxContent = styled(Box)({
     padding: '20px',
     textAlign: 'center',
@@ -415,11 +414,11 @@ const BoxWrapper = styled(Box)({
         padding: '80px 120px'
     },
     '.fresh-food-detail': {
-        display:'flex',
-        justifyContent:'space-between',
-        alignItems:'center',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         boxShadow: '0px 8px 10px rgb(0 0 0 / 6%)',
-        placeItems:'center',
+        placeItems: 'center',
         alignItem: 'center',
         marginBottom: '16px'
     },
@@ -434,7 +433,7 @@ const BoxWrapper = styled(Box)({
     '.fresh-food-img': {
         width: '250px',
         height: '160px',
-        objectFit:'cover'
+        objectFit: 'cover'
     },
     '.fresh-food-title': {
         fontFamily: 'Proxima Nova',
@@ -445,7 +444,7 @@ const BoxWrapper = styled(Box)({
         color: '#222222',
         display: 'block',
         paddingBottom: '8px',
-        width:'100%'
+        width: '100%'
     },
     '.fresh-food-sub-details': {
         fontFamily: 'Proxima Nova',
@@ -467,13 +466,13 @@ const BoxWrapper = styled(Box)({
         textAlign: 'center',
         padding: '15px 5px',
     },
-    '.fresh-food-arrow':{
+    '.fresh-food-arrow': {
         fontSize: '40px',
     },
-    '.food-box':{
-        display:'flex',
-        justifyContent:'space-between',
-        alignItems:'center'
+    '.food-box': {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
 
     // !media query for mobile device demo component(Privee and supperClub)
@@ -567,11 +566,41 @@ const BoxWrapper = styled(Box)({
             fontWeight: '600',
             fontSize: '14px',
             lineHeight: '30px',
-            paddingBottom:'0px'
+            paddingBottom: '0px'
         },
         '.fresh-food-img': {
             width: '60px',
             height: '60px',
+        },
+        '.row': {
+            display: 'block'
+        },
+        '.jtable-img': {
+            height: '200px',
+            objectFit: 'cover',
+            width: '100% !important'
+        },
+        '.join-table-title': {
+            padding: '40px'
+        },
+        '.privee-video': {
+            width: '100%',
+            height:'auto'
+        },
+        '.privee-details': {
+            width: '100%',
+            paddingLeft: '0px'
+        },
+        '.privee-desktop': {
+            padding: '40px'
+        },
+        '.supper-details': {
+            width: '100%',
+            paddingLeft: '0px',
+            paddingBottom:'10px'
+        },
+        '.supper-desktop': {
+            padding: '40px'
         },
     },
     '@media(min-width: 426px) and (max-width: 768px)': {
@@ -588,6 +617,29 @@ const BoxWrapper = styled(Box)({
         '.fresh-food-img': {
             width: 'unset',
         },
+        '.row': {
+            display: 'block'
+        },
+        '.jtable-img': {
+            height: '400px',
+            objectFit: 'cover',
+            width: '100% !important'
+        },
+        '.join-table-title': {
+            padding: '40px'
+        },
+        '.privee-video': {
+            width: '100%'
+        },
+        '.privee-details': {
+            width: '100%',
+            paddingLeft: '0px'
+        },
+        '.supper-details': {
+            width: '100%',
+            paddingLeft: '0px',
+            paddingBottom:'10px'
+        },
     },
     '@media(min-width: 769px) and (max-width: 1024px)': {
         '.treat': {
@@ -596,7 +648,19 @@ const BoxWrapper = styled(Box)({
         '.fresh-food-img': {
             width: 'unset',
         },
+
     },
+    '@media(min-width: 1000px) and (max-width: 1440px)': {
+        '.jtable-img': {
+            height: '500px',
+            objectFit: 'cover',
+            width: '600px !important'
+        },
+    },
+    '.join-table-title': {
+        padding: '109px 100px 0px 50px'
+    },
+
 })
 
 function FooterMobile() {
@@ -628,21 +692,21 @@ const HomePage = () => {
             title: 'gallery5',
         },
     ];
-    const freshFoodItems= [
+    const freshFoodItems = [
         {
-            title:"Food Tips",
-            subTitle:"Indian dishes that you can prepare at home this diwali",
-            img:food1
+            title: "Food Tips",
+            subTitle: "Indian dishes that you can prepare at home this diwali",
+            img: food1
         },
         {
-            title:"Global Fusion",
-            subTitle:"Recipes prepared by our chef that have a twist and are easy to make at home",
-            img:food2
+            title: "Global Fusion",
+            subTitle: "Recipes prepared by our chef that have a twist and are easy to make at home",
+            img: food2
         },
         {
-            title:"Latest Trends",
-            subTitle:"Recipes prepared by our chef that have a twist and are easy to make at home",
-            img:food3
+            title: "Latest Trends",
+            subTitle: "Recipes prepared by our chef that have a twist and are easy to make at home",
+            img: food3
         }
     ];
     return (
@@ -802,7 +866,7 @@ const HomePage = () => {
                 </Box>
                 <NeedHelp/>
                 <Footer/>
-               <FooterEnd/>
+                <FooterEnd/>
                 {/* <PrivateProfile /> */}
                 {/* <DiningPage /> */}
             </BoxWrapper>

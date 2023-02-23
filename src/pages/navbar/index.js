@@ -12,6 +12,7 @@ import AppBar from '@mui/material/AppBar';
 import vector from '../../assets/images/vector.svg'
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import LightThemeIcon from '../../assets/images/lightThemeIcon.png'
+import DarkThemeLogo from '../../assets/images/priveeHeaderLogo.png'
 import {Link} from "gatsby";
 import CloseIcon from '@mui/icons-material/Close';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -52,10 +53,11 @@ const Navbar = ({isColor}) => {
             right: '0px',
             zIndex: '999',
             display: 'block',
+            background: `${isColor ? '#080B0E' : '#FBFBFB'}`,
             '.home-stack': {
                 display: 'flex',
                 alignItems: 'center',
-                background: '#FBFBFB',
+                color: `${isColor ? '#080B0E' : '#FBFBFB'}`,
                 paddingLeft: "16px"
             },
             '.browser-hamburger-menu': {
@@ -94,6 +96,9 @@ const Navbar = ({isColor}) => {
             '.light-theme-logo': {
                 cursor: 'pointer'
             },
+        '.dark-theme-logo': {
+            cursor: 'pointer'
+        },
             '.css-2ehmn7-MuiInputBase-root-MuiOutlinedInput-root': {
                 width: '100%',
                 height: '40px',
@@ -115,9 +120,9 @@ const Navbar = ({isColor}) => {
             '.GridContainer': {
                 padding: '10px 120px'
             },
-        '.searchbar-icon':{
-                cursor:'pointer'
-        },
+            '.searchbar-icon': {
+                cursor: 'pointer'
+            },
             '@media(min-width: 320px) and (max-width: 1024px)': {
                 '.header-search-box': {
                     display: 'none',
@@ -146,7 +151,8 @@ const Navbar = ({isColor}) => {
             right: '15px',
             top: '15px',
             fontStyle: 'proxima Nova',
-            alignItem:'center'
+            alignItem: 'center',
+            color: `${isColor ? '#FBFBFB' : '#080B0E'}`,
         },
 
         bmBurgerBars: {
@@ -197,12 +203,12 @@ const Navbar = ({isColor}) => {
             <BrowserView>
                 <BoxWrapper>
                     <AppBar position="fixed" elevation={0}
-                            sx={{  background: `${isColor ? '#101418' : '#FBFBFB'}`}}
+                            sx={{background: `${isColor ? '#101418' : '#FBFBFB'}`}}
                     >
                         <Grid container direction={'row'} columnSpacing={1} sx={{padding: '10px 120px'}}
                               className='GridContainer'>
                             <Grid item md={2}>
-                                <img src={LightThemeIcon} alt='light-theme-logo' className='light-theme-logo'/>
+                                <img src={isColor ? DarkThemeLogo : LightThemeIcon} alt='light-theme-logo' className='light-theme-logo dark-theme-logo'/>
                             </Grid>
                             <Grid className='browser-menu' item xs={8} md={8}>
                                 <Link className='browser-hamburger-menu'
@@ -240,10 +246,12 @@ const Navbar = ({isColor}) => {
                                                 InputProps={{
                                                     disableUnderline: true,
                                                     startAdornment: (<InputAdornment position="start">
-                                                        <SearchIcon className='searchbar-icon' onClick={() => setSearch(false)}/>
+                                                        <SearchIcon className='searchbar-icon'
+                                                                    onClick={() => setSearch(false)}/>
                                                     </InputAdornment>),
                                                     endAdornment: (<InputAdornment position="end">
-                                                        <CloseIcon className='searchbar-icon' onClick={() => setSearch(false)}/>
+                                                        <CloseIcon className='searchbar-icon'
+                                                                   onClick={() => setSearch(false)}/>
                                                     </InputAdornment>)
                                                 }}
                                             />

@@ -37,6 +37,9 @@ import InputAdornment from "@mui/material/InputAdornment";
 import RatingCarousel from "../../components/RatingCarousel";
 import TemplateYet from "../../components/TemplateYet";
 import ImageCarousel from "../../components/ImageCarousel";
+import AvlExperienceCarousel from "../../components/AvlExperienceCarousel";
+import avlExp1 from "../../assets/images/avl-exp1.jpg";
+import avlExp2 from "../../assets/images/avl-exp2.jpg";
 
 const ChefDetails = () => {
 
@@ -221,6 +224,22 @@ const ChefDetails = () => {
                 display: 'none',
                 margin:'5px 0px'
             },
+            '.chef-header': {
+                fontFamily: 'Bon Vivant',
+                fontStyle: 'normal',
+                // fontWeight: '700',
+                fontSize: '30px',
+                lineHeight: '37px',
+                textAlign: 'left',
+                letterSpacing: '0.06em',
+                color: '#FBFBFB',
+                padding: '20px 0px',
+                marginBottom: '10px',
+            },
+            ".available-experiences": {
+                padding: "5px",
+                background: "#101418"
+            },
 
             '@media(min-width: 1px) and (max-width: 768px)': {
                 '.treat-Box': {
@@ -292,7 +311,11 @@ const ChefDetails = () => {
                 '.mbl-chef-name': {
                     textAlign: 'center',
                     marginBottom:'0px !important'
-                }
+                },
+                '.chef-header': {
+                    fontSize: '24px',
+                    lineHeight: '30px',
+                },
             },
 
         }
@@ -511,6 +534,20 @@ const ChefDetails = () => {
                                     </Box>
                                 </Box>
                             </Box>
+                        </Box>
+                        <Box className="available-experiences">
+                            <Typography className="chef-header">Available Experiences</Typography>
+                            <Grid container spacing={2}>
+                                <Grid item xl={4} md={4} sm={6} xs={12}>
+                                    <AvlExperienceCarousel image={avlExp1}/>
+                                </Grid>
+                                <Grid item xl={4} md={4} sm={6} xs={12}>
+                                    <AvlExperienceCarousel image={avlExp2} isLabelShow={true}/>
+                                </Grid>
+                                <Grid item xl={4} md={4} sm={6} xs={12}>
+                                    <AvlExperienceCarousel image={avlExp1} isLabelShow={true}/>
+                                </Grid>
+                            </Grid>
                         </Box>
                         <Box className="treat">
                             <Box className="treat-container">
