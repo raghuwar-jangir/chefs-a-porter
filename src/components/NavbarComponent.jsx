@@ -123,6 +123,12 @@ const Navbar = ({isColor}) => {
             '.searchbar-icon': {
                 cursor: 'pointer'
             },
+        '.search-box': {
+            background: 'gainsboro',
+            height: '40px',
+            display:'flex',
+            alignItems:'center'
+        },
             '@media(min-width: 320px) and (max-width: 1024px)': {
                 '.header-search-box': {
                     display: 'none',

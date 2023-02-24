@@ -49,6 +49,7 @@ import CorporateBooking from "../components/CorporateBooking";
 import PriveeComponentSlider from "../components/PriveeComponentSlider";
 import PriveeCarousel from "../components/PriveeCarousel";
 import TemplateYet from "../components/TemplateYet";
+import FoodCarousel from "../components/FoodCarousel";
 
 
 const MainBoxContent = styled(Box)({
@@ -480,6 +481,10 @@ const BoxWrapper = styled(Box)({
         justifyContent: 'space-between',
         alignItems: 'center'
     },
+    '.up-super-club':{
+        padding: '80px 120px',
+        background: '#DCD7CB'
+    },
 
     // !media query for mobile device demo component(Privee and supperClub)
 
@@ -764,7 +769,7 @@ const HomePage = () => {
                     </Box>
                 </Box>
                 <PriveeMain title='Continue Browsing' subTitle='Chef s you ve checked out previously'/>
-                <MainFoodDetailng/>
+               <MainFoodDetailng/>
                 <PriveeCarousel/>
                 <RatingCarousel/>
                 <DiningPage image={diningPicture} title={'What we cook for'}/>
