@@ -15,6 +15,7 @@ import Treaty from "../../components/Treaty";
 import NeedHelp from "../../components/NeedHelp";
 import sampleText from '../../assets/images/SupperClub.png'
 import arrow from '../../assets/images/arrow.png'
+import Navbar from '../navbar/index'
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -229,6 +230,7 @@ const SupperClubChaefPage = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
+                <Navbar/>
                 <MobileView>
                     <Box className='header-club'>
                         <img src={arrow} alt="title" className='back-aerrow' />
