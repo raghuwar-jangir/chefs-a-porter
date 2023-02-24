@@ -27,7 +27,7 @@ const MainContentBox = styled(Box)({
     '.saff-parent': {
         padding: '16px',
         width: 'auto',
-        height: '88px',
+        height: 'auto',
         backgroundColor: '#101418',
     },
     '.main-chaf-image': {
@@ -42,9 +42,11 @@ const MainContentBox = styled(Box)({
         top: '0px', left: '0px'
     },
     '.top-box': {
-        fontWeight: 300,
-        fontSize: '16px',
-        padding: '8px 12px',
+        fontFamily:'Proxima Nova',
+        fontWeight: '300',
+        fontSize: '12px',
+        lineHeight:'15px',
+        padding: '1px 12px',
         textAlign: 'right',
         letterSpacing: '0.02em',
         color: '#C6A87D',
@@ -87,15 +89,17 @@ const MainContentBox = styled(Box)({
         '.saff-parent': {
             padding: '16px',
             width: 'auto',
-            height: '88px',
+            height: 'auto',
             backgroundColor: '#101418',
         },
         '.sub-box': {
             width: '100%',
         },
         '.top-box': {
-            fontWeight: 300,
+            fontFamily:'Proxima Nova',
+            fontWeight: '300',
             fontSize: '12px',
+            lineHeight:'15px',
             padding: '1px 12px',
             textAlign: 'right',
             letterSpacing: '0.02em',
@@ -121,10 +125,12 @@ const AvlExperienceCarousel = (props) => {
                         </Typography>
                     </Box>
                     <Typography className='description'>
-                        by <b>Chef Mako Ravindran</b>
+                        {props.description}
+                        {/*by <b>Chef Mako Ravindran</b>*/}
                     </Typography>
                     <Typography className='sub-description'>
-                        Starting from ₹5000 per diner
+                        {props.subDescription}
+                        {/*Starting from ₹5000 per diner*/}
                     </Typography>
                     {
                         props.isLabelShow &&

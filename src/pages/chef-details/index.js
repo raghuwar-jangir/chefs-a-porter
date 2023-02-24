@@ -40,6 +40,8 @@ import ImageCarousel from "../../components/ImageCarousel";
 import AvlExperienceCarousel from "../../components/AvlExperienceCarousel";
 import avlExp1 from "../../assets/images/avl-exp1.jpg";
 import avlExp2 from "../../assets/images/avl-exp2.jpg";
+import {isMobile} from "react-device-detect";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const ChefDetails = () => {
 
@@ -51,7 +53,7 @@ const ChefDetails = () => {
         <Typography key="1" color="#FBFBFB">
             Privee
         </Typography>,
-        <Link underline="none" key="2" color="#C6A87D" href="/Privee">
+        <Link underline="none" key="2" color="#C6A87D" href="">
             Chef
         </Link>,
     ];
@@ -216,9 +218,15 @@ const ChefDetails = () => {
                 padding: '14px',
                 display: 'block'
             },
+            '.view-all:hover': {
+                color: '#C6A87D !important',
+            },
             '.book-now': {
                 width: '25%',
                 padding: '0px 12px'
+            },
+            '.mobile-show':{
+              display:'none'
             },
             '.mobileView-chef': {
                 display: 'none',
@@ -240,6 +248,14 @@ const ChefDetails = () => {
                 padding: "5px",
                 background: "#101418"
             },
+            ".header-club": {
+                display: 'none',
+                padding: '15px',
+                backgroundColor: '#080B0E',
+            },
+            '.header-icon': {
+                color: '#FBFBFB'
+            },
 
             '@media(min-width: 1px) and (max-width: 768px)': {
                 '.treat-Box': {
@@ -253,7 +269,7 @@ const ChefDetails = () => {
                     width: 'auto'
                 },
                 '.container-fluid': {
-                    padding: '32px 0px 0px'
+                    padding: '0px 0px 0px'
                 },
             },
             '@media(min-width: 2200px) and (max-width: 2560px)': {
@@ -283,20 +299,23 @@ const ChefDetails = () => {
             "@media (min-width: 320px) and (max-width:425px)": {
                 '.css-5n45bv-MuiPaper-root-MuiMobileStepper-root': {
                     paddingLeft: '130px',
-                    top: '290px !important'
+                    top: '300px !important'
                 },
             },
             "@media (min-width: 320px) and (max-width:350px)": {
                 '.css-5n45bv-MuiPaper-root-MuiMobileStepper-root': {
                     paddingLeft: '105px',
-                    top: '260px  !important'
+                    top: '270px  !important'
                 },
             },
             "@media (min-width: 425px) and (max-width:450px)": {
                 '.css-5n45bv-MuiPaper-root-MuiMobileStepper-root': {
                     paddingLeft: '160px !important',
-                    top: '320px  !important'
+                    top: '330px  !important'
                 },
+                '.header-icon': {
+                    padding: '14px 140px 0px 10px'
+                }
             },
             "@media (min-width: 1px) and (max-width:425px)": {
                 '.supper-chef-details': {
@@ -316,8 +335,49 @@ const ChefDetails = () => {
                     fontSize: '24px',
                     lineHeight: '30px',
                 },
+                '.mobile-show':{
+                    display:'block'
+                },
+                ".header-club": {
+                    padding: '0px',
+                    display: 'flex',
+                },
             },
-
+            '@media(min-width:600px) and (max-width: 768px)': {
+                '.header-club': {
+                    display: 'flex',
+                    background: '#DCD7CB',
+                },
+                '.header-icon': {
+                    color: "#080B0E",
+                },
+                ".chef-mobile-heading": {
+                    fontSize: "24px",
+                    paddingLeft: '280px',
+                    textAlign: 'center',
+                    color: "#080B0E",
+                    fontFamily: 'Bon Vivant'
+                },
+            },
+            "@media (min-width: 320px) and (max-width:767px)": {
+                ".chef-mobile-heading": {
+                    padding: '8px 0px !important',
+                    fontSize: "24px",
+                    textAlign: 'center',
+                    color: '#FBFBFB',
+                    fontFamily: 'Bon Vivant'
+                },
+            },
+            "@media (min-width: 320px) and (max-width:370px)": {
+                '.header-icon': {
+                    padding: '14px 80px 0px 10px'
+                }
+            },
+            "@media (min-width: 371px) and (max-width:400px)": {
+                '.header-icon': {
+                    padding: '14px 110px 0px 10px'
+                }
+            },
         }
     ))
 
@@ -444,7 +504,15 @@ const ChefDetails = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar/>
+                <Navbar isColor={true}/>
+                {isMobile ? (
+                    <Box className='header-club'>
+                        <ArrowBackIcon className="header-icon"/>
+                        <Typography className="chef-mobile-heading">Privee</Typography>
+                    </Box>
+                ) : (
+                    ''
+                )}
                 <Box className="supper-gallery chef-ind">
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">
@@ -548,6 +616,9 @@ const ChefDetails = () => {
                                     <AvlExperienceCarousel image={avlExp1} isLabelShow={true}/>
                                 </Grid>
                             </Grid>
+                        </Box>
+                        <Box className="mobile-show book-now">
+                                <a href="javascript:void(0);" className="view-all">View More</a>
                         </Box>
                         <Box className="treat">
                             <Box className="treat-container">

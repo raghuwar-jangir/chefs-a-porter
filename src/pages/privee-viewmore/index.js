@@ -574,16 +574,16 @@ const PriveeViewMore = () => {
                     <Typography className="chef-header">Available Experiences</Typography>
                     <Grid container spacing={2}>
                         <Grid item xl={4} md={4} sm={6} xs={12}>
-                            <AvlExperienceCarousel image={avlExp1}/>
+                            <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'} subDescription={'Starting from ₹5000 per diner'}/>
                         </Grid>
                         <Grid item xl={4} md={4} sm={6} xs={12}>
-                            <AvlExperienceCarousel image={avlExp2} isLabelShow={true}/>
+                            <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'} subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
                         </Grid>
                         <Grid item xl={4} md={4} sm={6} xs={12}>
-                            <AvlExperienceCarousel image={avlExp1} isLabelShow={true}/>
+                            <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'} subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
                         </Grid>
                         <Grid item xl={4} md={4} sm={6} xs={12}>
-                            <AvlExperienceCarousel image={avlExp2} isLabelShow={true}/>
+                            <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'} subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
                         </Grid>
                     </Grid>
                 </Box>

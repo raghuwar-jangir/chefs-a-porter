@@ -53,7 +53,7 @@ const Navbar = ({isColor}) => {
             right: '0px',
             zIndex: '999',
             display: 'block',
-            background: `${isColor ? '#080B0E' : '#FBFBFB'}`,
+            background: `${isColor ? '#101418' : '#FBFBFB'}`,
             '.home-stack': {
                 display: 'flex',
                 alignItems: 'center',
@@ -156,10 +156,11 @@ const Navbar = ({isColor}) => {
         },
 
         bmBurgerBars: {
-            background: '#373a47'
+            background: `${isColor ? '#FBFBFB' : '#080B0E'}`,
         },
         bmBurgerBarsHover: {
             // background: '#a90000'
+            background: `${isColor ? '#FBFBFB' : '#080B0E'}`,
         },
         bmCrossButton: {
             height: '24px',
