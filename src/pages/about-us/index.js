@@ -28,6 +28,8 @@ import {isMobile} from "react-device-detect";
 import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import OpenPosition from "../../components/OpenPositionComponent";
 
 
 const itemData = [
@@ -144,13 +146,14 @@ const AboutCardComponet = (props) => {
         }, ".btn:hover": { color: '#fff' },
 
         ".some-text": {
-            fontWeight: 600,
+            // fontWeight: 600,
             fontSize: "20px",
             lineHeight: "24px",
-            paddingBottom: '8px'
+            paddingBottom: '8px',
+            color: "#242F35"
         },
         ".some-details": {
-            fontWeight: 300,
+            // fontWeight: 300,
             fontSize: "16px",
             lineHeight: "19px",
             color: "#242F35"
@@ -158,13 +161,13 @@ const AboutCardComponet = (props) => {
         ".lastBox": {
             padding: "40px 120px",
             background: "#DCD7CB",
-            display: 'flex',
+            display: 'none',
             justifyContent: 'space-between'
         },
         ".btn-get-in-touch": {
             background: "#080B0E", color: "#FBFBFB",
             fontSize: "16px", width: '25%',
-            fontWeight: 600,
+            // fontWeight: 600,
             borderRadius: "0px",
             textTransform: "capitalize",
             height: "57px",
@@ -202,13 +205,18 @@ const AboutCardComponet = (props) => {
                 width: '100%'
             },
             ".lastBox": {
+                display:'flex',
                 padding: '40px 16px'
             },
             ".some-text": {
-                fontSize: "16px",
+                fontSize: "14px",
+            },
+            ".some-details": {
+                fontSize: "14px",
             },
             ".btn-get-in-touch": {
-                width: '40%',
+                fontSize:'12px',
+                width: '50%',
                 alignItems: 'center'
             }, '.conscious-option': {
                 padding: '31px',
@@ -428,6 +436,16 @@ const AboutCardComponet = (props) => {
                     </Box>
                 </Box>
                 <NeedHelp/>
+                <OpenPosition/>
+                <Box className="lastBox">
+                    <Box>
+                        <Typography className="some-text">Don’t see an open role for you</Typography>
+                        <Typography className="some-details">We’re always on the look out for top talent to join us.</Typography>
+                    </Box>
+                    <Button className="btn-get-in-touch">
+                        Get in touch
+                    </Button>
+                </Box>
                 <Footer/>
               <FooterEnd/>
             </BoxWrapper>
