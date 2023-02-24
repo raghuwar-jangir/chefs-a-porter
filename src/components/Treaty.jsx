@@ -1,6 +1,7 @@
 import { Button, styled, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
+import {Link} from "gatsby";
 const Treaty = () => {
     const BoxWrapper = styled(Box)(() => ({
         padding: '40px 16px',
@@ -48,7 +49,11 @@ const Treaty = () => {
             backgroundColor: 'unset !important',
             textTransform: "capitalize",
             height: "55px !important",
-            padding: '14px !important',
+            // padding: '14px !important',
+            textDecoration:'none',
+            display:'flex',
+            justifyContent:'center',
+            alignItems:"center",
         },
         ".btn:hover": {color: "#C6A87D!important;"},
         ".sub-div": {
@@ -101,9 +106,9 @@ const Treaty = () => {
                         send a gift card to your friends and family
                     </Typography>
                    <Box className='btn-box'>
-                       <Button className="btn">
+                       <Link href="/become-patron" className="btn">
                            Learn More
-                       </Button>
+                       </Link>
                    </Box>
                 </Box>
             </BoxWrapper>

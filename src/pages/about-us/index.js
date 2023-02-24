@@ -213,6 +213,28 @@ const AboutCardComponet = (props) => {
             }, '.conscious-option': {
                 padding: '31px',
             },
+            ".sub-box-2": {
+                padding: '40px 30px',
+                background: '#101418'
+            },
+            ".sub-box-3": {
+                padding: '40px 30px',
+                background: '#DCD7CB'
+            },
+            ".sub-box-4": {
+                padding: '80px 30px 40px ',
+                background: '#101418'
+            },
+        },
+        "@media (min-width: 1px) and (max-width:325px)": {
+        '.conscious-option': {
+                padding: '20px',
+            },
+        },
+        "@media (min-width: 350px) and (max-width:375px)": {
+            '.conscious-option': {
+                padding: '25px',
+            },
         },
         "@media (min-width: 426px) and (max-width:769px)": {
             ".main-box": {
@@ -220,6 +242,18 @@ const AboutCardComponet = (props) => {
             },
             ".about-heading": {
                 textAlign: 'left', color: '#080B0E',
+            },
+            ".sub-box-2": {
+                padding: '40px 70px',
+                background: '#101418'
+            },
+            ".sub-box-3": {
+                padding: '40px 70px',
+                background: '#DCD7CB'
+            },
+            ".sub-box-4": {
+                padding: '80px 70px 40px ',
+                background: '#101418'
             },
         }
 

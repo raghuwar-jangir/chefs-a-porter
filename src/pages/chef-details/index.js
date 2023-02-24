@@ -651,7 +651,7 @@ const ChefDetails = () => {
                         <RatingCarousel backgroundColor="#DCD7CB"/>
                         <DiningPage image={chef1} title={'Gallery'}/>
                         <Box className="chef-btn book-now">
-                            <a href="javascript:void(0);" className="view-all">View More Chef</a>
+                            <Link href="/our-chefs" className="view-all">View More Chef</Link>
                         </Box>
                     </Box>
                 </Box>

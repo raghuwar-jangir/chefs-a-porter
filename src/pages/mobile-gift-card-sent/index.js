@@ -5,7 +5,7 @@ import ChefsLogo from '../../assets/images/logo-gold.png'
 import ShareIcon from '@mui/icons-material/Share';
 import {isMobile} from "react-device-detect";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
+import {Link} from 'gatsby';
 
 const MobileGiftCardSent = () => {
     const BoxWrapper = styled(Box)(() => ({
@@ -246,8 +246,8 @@ const MobileGiftCardSent = () => {
                 </Box>
                 <Box className="apply_div">
                     <a href="" className="apply_btn">Browse upcoming experiences</a>
-                    <Typography className="need-help">Need Help? <a href="/contact-us" className="need-help-link">Contact
-                        Us</a></Typography>
+                    <Typography className="need-help">Need Help? <Link href="/contact-us" className="need-help-link">Contact
+                        Us</Link></Typography>
                 </Box>
             </BoxWrapper>
         </React.Fragment>

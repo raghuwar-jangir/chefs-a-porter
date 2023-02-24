@@ -124,7 +124,7 @@ const Navbar = ({isColor}) => {
                 cursor: 'pointer'
             },
         '.search-box': {
-            background: 'gainsboro',
+            background: 'rgba(189, 189, 189, 0.6)',
             height: '40px',
             display:'flex',
             alignItems:'center'

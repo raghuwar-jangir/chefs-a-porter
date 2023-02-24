@@ -746,8 +746,8 @@ const HomePage = () => {
                             <Typography className="privee-card-title">Privee</Typography>
                             <Typography className='privee-card-details'>Dine in the comfort of your home with friends
                                 and family</Typography>
-                            <Typography><a href="/privee.html" className="privee-card-link">View
-                                Experiences</a></Typography>
+                            <Typography><Link href="/privee" className="privee-card-link">View
+                                Experiences</Link></Typography>
                         </Box>
                     </Box>
                 </Box>
@@ -757,8 +757,8 @@ const HomePage = () => {
                             <Typography className="supper-card-title">Supper Club</Typography>
                             <Typography className='supper-card-details'>Experience a shared meal at bespoke
                                 locations</Typography>
-                            <Typography><a href="/privee.html" className="supper-card-link">Book a Supper
-                                Club</a></Typography>
+                            <Typography><Link href="/supper-club" className="supper-card-link">Book a Supper
+                                Club</Link></Typography>
                         </Box>
                         <Box className="privee-video">
                             <video autoPlay muted loop className='video'>

@@ -2,6 +2,7 @@ import React from "react";
 import {Box, Grid, Stack, styled, TextField, Typography} from "@mui/material";
 import {isMobile} from "react-device-detect";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import {Link} from "gatsby";
 
 const MobileContact = () => {
     const BoxWrapper = styled(Box)(() => ({
@@ -123,10 +124,10 @@ const MobileContact = () => {
                         <Typography className="allow-details">Allow <strong>Chefs-à-Porter</strong> to
                             access your contacts?</Typography>
                         <Box className="access-btn">
-                            <a href="/mobile-contacts.html"
-                               className="deny-permission-button">Deny</a>
-                            <a href="/mobile-contact"
-                               className="allow-permission-button">Allow</a>
+                            <Link href="/gift-cards"
+                               className="deny-permission-button">Deny</Link>
+                            <Link href="/mobile-contact"
+                               className="allow-permission-button">Allow</Link>
                         </Box>
                     </Box>
                 </Box>

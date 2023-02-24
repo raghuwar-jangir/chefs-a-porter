@@ -18,6 +18,12 @@ const CommanTextCard = ({ mainTitle, details, colors }) => {
             textAlign: 'center',
             color: `${colors}`
         },
+        "@media (min-width: 1px) and (max-width:425px)": {
+            '.details':{
+                fontSize:'16px !important',
+                lineHeight:'24px'
+            },
+        },
     }))
     return (
         <React.Fragment>
