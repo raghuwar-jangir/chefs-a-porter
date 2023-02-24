@@ -14,7 +14,7 @@ import priveeLogo from './../assets/images/priveeHeaderLogo.png'
 import LightThemeIcon from './../assets/images/lightThemeIcon.png'
 
 
-const Navbar = () => {
+const NavbarDemo = () => {
 
     const [isOpen, setOpen] = useState(false);
     const [search, setSearch] = useState(false);
@@ -250,7 +250,7 @@ const Navbar = () => {
     )
 }
 
-export default Navbar;
+export default NavbarDemo;
 
 
 

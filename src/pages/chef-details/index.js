@@ -10,7 +10,7 @@ import {
     Link, ImageListItem, ImageList, Button, TextareaAutosize
 } from "@mui/material";
 import Footer from "../../components/Footer";
-import Navbar from "../navbar";
+import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
 import party from '../../assets/images/party.png';
@@ -767,7 +767,7 @@ const ChefDetails = () => {
                 </Modal>
                 <NeedHelp/>
                 <Footer/>
-                <TemplateYet/>
+                <TemplateYet title={'Book an Experience'}/>
                 <FooterEnd/>
             </BoxWrapper>
         </React.Fragment>

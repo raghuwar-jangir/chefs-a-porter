@@ -8,7 +8,7 @@ import PriveeLogo from '../../assets/images/priveeLogo.png';
 import DownArrow from '../../assets/images/down-arrow.png';
 import priveeEx from '../../assets/images/privee-ex.png';
 import Footer from "../../components/Footer";
-import Navbar from "../navbar";
+import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import priveeVideo from "../../assets/video/privee.mp4";
 import FooterEnd from "../../components/FooterEndSection";
@@ -60,9 +60,10 @@ const BoxWrapper = styled(Box)(() => ({
         lineHeight: "36px"
     },
     '.chef-header': {
+        fontFamily: 'Bon Vivant',
         fontSize: '36px',
         lineHeight: '45px',
-        fontWeight: 700,
+        // fontWeight: 700,
         color: '#FBFBFB',
         textAlign: 'center',
         paddingBottom: '40px'
@@ -734,7 +735,7 @@ const PriveePage = () => {
                 <Box className="frequently-questions-box">
                     <Questions/>
                 </Box>
-                <TemplateYet/>
+                <TemplateYet title={'Book an Experience'}/>
                 <NeedHelp/>
                 <Footer/>
                 <FooterEnd/>

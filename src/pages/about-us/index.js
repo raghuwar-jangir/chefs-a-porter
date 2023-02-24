@@ -25,7 +25,7 @@ import Footer from "../../components/Footer";
 import {Link} from "gatsby";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import {isMobile} from "react-device-detect";
-import Navbar from "../navbar";
+import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
 

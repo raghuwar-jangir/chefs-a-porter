@@ -1,7 +1,7 @@
 import React from "react";
 import {Box, styled, Grid, Typography, Select, MenuItem, TextField, TextareaAutosize} from "@mui/material";
 import Footer from "../../components/Footer";
-import Navbar from "../navbar";
+import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
 import avlExp1 from '../../assets/images/avl-exp1.jpg';

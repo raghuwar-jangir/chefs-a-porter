@@ -8,7 +8,7 @@ import {
 
 } from "@mui/material";
 import Footer from "../../components/Footer";
-import Navbar from "../navbar";
+import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
 import joinChef from "../../assets/images/joinchef-banner.png";

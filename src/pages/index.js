@@ -20,7 +20,7 @@ import Questions from '../components/Questions';
 import Footer from '../components/Footer';
 import MainFoodDetailng from '../components/MainFoodDetailng';
 import NeedHelp from "../components/NeedHelp";
-import Navbar from "./navbar";
+import Navbar from "../components/NavbarComponent";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import {Link} from "gatsby";
 import LightThemeIcon from "../assets/images/lightThemeIcon.png";
@@ -45,6 +45,10 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import FooterEnd from "../components/FooterEndSection";
 import DiningPage from "../components/DiningPage";
 import diningPicture from '../../src/assets/images/cook1.png'
+import CorporateBooking from "../components/CorporateBooking";
+import PriveeComponentSlider from "../components/PriveeComponentSlider";
+import PriveeCarousel from "../components/PriveeCarousel";
+import TemplateYet from "../components/TemplateYet";
 
 
 const MainBoxContent = styled(Box)({
@@ -587,7 +591,7 @@ const BoxWrapper = styled(Box)({
         },
         '.privee-video': {
             width: '100%',
-            height:'auto'
+            height: 'auto'
         },
         '.privee-details': {
             width: '100%',
@@ -599,7 +603,7 @@ const BoxWrapper = styled(Box)({
         '.supper-details': {
             width: '100%',
             paddingLeft: '0px',
-            paddingBottom:'10px'
+            paddingBottom: '10px'
         },
         '.supper-desktop': {
             padding: '40px'
@@ -640,7 +644,7 @@ const BoxWrapper = styled(Box)({
         '.supper-details': {
             width: '100%',
             paddingLeft: '0px',
-            paddingBottom:'10px'
+            paddingBottom: '10px'
         },
     },
     '@media(min-width: 769px) and (max-width: 1024px)': {
@@ -760,9 +764,8 @@ const HomePage = () => {
                     </Box>
                 </Box>
                 <PriveeMain title='Continue Browsing' subTitle='Chef s you ve checked out previously'/>
-                {/* <FoodDetailing /> */}
                 <MainFoodDetailng/>
-                <PriveeMain title='Chefs available for private dining this month' isButtonShow={true}/>
+                <PriveeCarousel/>
                 <RatingCarousel/>
                 <DiningPage image={diningPicture} title={'What we cook for'}/>
                 <TestimonialCarousel/>
@@ -851,7 +854,7 @@ const HomePage = () => {
                         </Box>
                     </Box>
                 </Box>
-                <Questions/>
+                <CorporateBooking/>
                 <Box className="fresh-blog">
                     <Typography className='fresh-food-heading'>Fresh from the blog</Typography>
                     {freshFoodItems.map((item, index) => (
@@ -867,11 +870,11 @@ const HomePage = () => {
                         </Box>
                     ))}
                 </Box>
+                <PriveeComponentSlider/>
+                <TemplateYet title={'View our offerings'}/>
                 <NeedHelp/>
                 <Footer/>
                 <FooterEnd/>
-                {/* <PrivateProfile /> */}
-                {/* <DiningPage /> */}
             </BoxWrapper>
         </React.Fragment>
     )

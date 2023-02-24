@@ -6,7 +6,7 @@ import contacts3 from "../../assets/images/contacts3.png"
 import contacts4 from "../../assets/images/contacts4.png"
 import contacts5 from "../../assets/images/contacts5.png"
 import Footer from "../../components/Footer";
-import Navbar from "../navbar";
+import Navbar from "../../components/NavbarComponent";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import {Link} from "gatsby";
 import {isMobile} from "react-device-detect";

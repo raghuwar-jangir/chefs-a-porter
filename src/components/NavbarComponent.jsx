@@ -2,17 +2,17 @@ import React, {useState} from 'react'
 import {Box, styled} from '@mui/system';
 import {BrowserView, MobileView} from 'react-device-detect';
 import {slide as Menu} from 'react-burger-menu'
-import '../../assets/styles/bergerMenu.css'
-import '../../assets/styles/searchBar.css'
+import '../assets/styles/bergerMenu.css'
+import '../assets/styles/searchBar.css'
 import {Outlet} from 'react-router-dom';
 import {Collapse, Grid, TextField, ListItemText, List, ListItemButton, Typography, ListItem} from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import AppBar from '@mui/material/AppBar';
-import vector from '../../assets/images/vector.svg'
+import vector from '../assets/images/vector.svg'
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
-import LightThemeIcon from '../../assets/images/lightThemeIcon.png'
-import DarkThemeLogo from '../../assets/images/priveeHeaderLogo.png'
+import LightThemeIcon from '../assets/images/lightThemeIcon.png'
+import DarkThemeLogo from '../assets/images/priveeHeaderLogo.png'
 import {Link} from "gatsby";
 import CloseIcon from '@mui/icons-material/Close';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -96,9 +96,9 @@ const Navbar = ({isColor}) => {
             '.light-theme-logo': {
                 cursor: 'pointer'
             },
-        '.dark-theme-logo': {
-            cursor: 'pointer'
-        },
+            '.dark-theme-logo': {
+                cursor: 'pointer'
+            },
             '.css-2ehmn7-MuiInputBase-root-MuiOutlinedInput-root': {
                 width: '100%',
                 height: '40px',

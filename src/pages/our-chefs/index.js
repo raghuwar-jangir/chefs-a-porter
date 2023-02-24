@@ -8,7 +8,7 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { Link } from "gatsby";
 import { isMobile, MobileView } from "react-device-detect";
 import FoodCard from "../../components/FoodCard";
-import Navbar from '../navbar'
+import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
 

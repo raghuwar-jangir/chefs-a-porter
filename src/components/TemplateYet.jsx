@@ -1,7 +1,7 @@
 import { Button, styled, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-const TemplateYet = () => {
+const TemplateYet = (props) => {
     const BoxWrapper = styled(Box)(() => ({
         '.template': {
             display: 'none',
@@ -66,7 +66,8 @@ const TemplateYet = () => {
             <BoxWrapper>
                 <Box className="template show">
                     <Typography className="template-title">Tempted yet?</Typography>
-                    <a href="" className="view-all">Book an Experience</a>
+                    <a href="" className="view-all">{props.title}</a>
+                    {/*<a href="" className="view-all">Book an Experience</a>*/}
                 </Box>
             </BoxWrapper>
         </React.Fragment>

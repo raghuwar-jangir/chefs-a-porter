@@ -15,7 +15,7 @@ import Treaty from "../../components/Treaty";
 import NeedHelp from "../../components/NeedHelp";
 import sampleText from '../../assets/images/SupperClub.png'
 import arrow from '../../assets/images/arrow.png'
-import Navbar from '../navbar/index'
+import Navbar from "../../components/NavbarComponent";
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
