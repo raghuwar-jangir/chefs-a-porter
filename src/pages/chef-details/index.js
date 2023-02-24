@@ -42,6 +42,7 @@ import avlExp1 from "../../assets/images/avl-exp1.jpg";
 import avlExp2 from "../../assets/images/avl-exp2.jpg";
 import {isMobile} from "react-device-detect";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import DiningPage from "../../components/DiningPage";
 
 const ChefDetails = () => {
 
@@ -225,12 +226,12 @@ const ChefDetails = () => {
                 width: '25%',
                 padding: '0px 12px'
             },
-            '.mobile-show':{
-              display:'none'
+            '.mobile-show': {
+                display: 'none'
             },
             '.mobileView-chef': {
                 display: 'none',
-                margin:'5px 0px'
+                margin: '5px 0px'
             },
             '.chef-header': {
                 fontFamily: 'Bon Vivant',
@@ -256,7 +257,19 @@ const ChefDetails = () => {
             '.header-icon': {
                 color: '#FBFBFB'
             },
-
+            '.chef-btn': {
+                display: 'flex',
+                justifyContent: 'center',
+                width:'auto'
+            },
+            '@media(min-width: 1000px) and (max-width: 1024px)': {
+                '.swiper-pagination-bullet': {
+                    width: '145px !important',
+                },
+                '.dining-content': {
+                    padding: '4px 35px !important'
+                },
+            },
             '@media(min-width: 1px) and (max-width: 768px)': {
                 '.treat-Box': {
                     display: 'block',
@@ -329,14 +342,14 @@ const ChefDetails = () => {
                 },
                 '.mbl-chef-name': {
                     textAlign: 'center',
-                    marginBottom:'0px !important'
+                    marginBottom: '0px !important'
                 },
                 '.chef-header': {
                     fontSize: '24px',
                     lineHeight: '30px',
                 },
-                '.mobile-show':{
-                    display:'block'
+                '.mobile-show': {
+                    display: 'block'
                 },
                 ".header-club": {
                     padding: '0px',
@@ -529,7 +542,8 @@ const ChefDetails = () => {
                         </Box>
                         <ImageCarousel/>
                         <Box className="mobileView-chef">
-                            <Typography className="chef-details mbl-chef-name">Specialty:<b> Thai, Japanese</b></Typography>
+                            <Typography className="chef-details mbl-chef-name">Specialty:<b> Thai,
+                                Japanese</b></Typography>
                         </Box>
                         <Box className="tz-gallery">
                             <ImageList variant="masonry"
@@ -618,7 +632,7 @@ const ChefDetails = () => {
                             </Grid>
                         </Box>
                         <Box className="mobile-show book-now">
-                                <a href="javascript:void(0);" className="view-all">View More</a>
+                            <a href="javascript:void(0);" className="view-all">View More</a>
                         </Box>
                         <Box className="treat">
                             <Box className="treat-container">
@@ -635,6 +649,10 @@ const ChefDetails = () => {
                             </Box>
                         </Box>
                         <RatingCarousel backgroundColor="#DCD7CB"/>
+                        <DiningPage image={chef1} title={'Gallery'}/>
+                        <Box className="chef-btn book-now">
+                            <a href="javascript:void(0);" className="view-all">View More Chef</a>
+                        </Box>
                     </Box>
                 </Box>
                 <Modal

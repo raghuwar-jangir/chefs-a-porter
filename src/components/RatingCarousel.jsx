@@ -119,6 +119,39 @@ const RatingCarousel = ({ backgroundColor }) => {
                 marginTop:'-3px',
             },
         },
+        "@media (min-width: 768px) and (max-width:1024px)": {
+            ".mainTitle": {
+                fontSize: '24px ',
+                lineHeight:'30px',
+                textAlign: 'center',
+                fontFamily: 'Bon Vivant',
+                fontStyle: 'normal',
+            },
+            '.css-dqr9h-MuiRating-label':{
+                fontSize:'23px'
+            },
+            ".details": {
+                textAlign: 'center',
+                fontSize: '16px',
+                lineHeight:'17px',
+                fontFamily: 'Proxima Nova !important',
+                padding: '0px 10px',
+            },
+            ".ceoName": {
+                textAlign: "center",
+                fontSize: "14px",
+                fontWeight: 600,
+                padding: '30px 0px 24px 0px ',
+                fontFamily: 'Proxima Nova',
+                textTransform:'uppercase'
+            },
+            '.css-26w9jf-MuiMobileStepper-dot':{
+                backgroundColor:'black !important',
+                width: '12px',
+                height: '12px',
+                marginTop:'-3px',
+            },
+        },
         "@media (min-width: 1px) and (max-width:425px)": {
             padding: '40px 20px',
             ".mainTitle": {

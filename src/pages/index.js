@@ -43,6 +43,8 @@ import food2 from "../assets/images/food2.png";
 import food3 from "../assets/images/food3.png";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import FooterEnd from "../components/FooterEndSection";
+import DiningPage from "../components/DiningPage";
+import diningPicture from '../../src/assets/images/cook1.png'
 
 
 const MainBoxContent = styled(Box)({
@@ -762,6 +764,7 @@ const HomePage = () => {
                 <MainFoodDetailng/>
                 <PriveeMain title='Chefs available for private dining this month' isButtonShow={true}/>
                 <RatingCarousel/>
+                <DiningPage image={diningPicture} title={'What we cook for'}/>
                 <TestimonialCarousel/>
                 <Box className="gallery">
                     <Box>
