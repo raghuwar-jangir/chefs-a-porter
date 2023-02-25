@@ -256,7 +256,7 @@ const DiningPage = (props) => {
         disableOnInteraction: false,
     }}
     speed={500}
-       navigation={true}
+       navigation={false}
        modules={[Pagination,Autoplay]}
        className="mySwiper"
     >

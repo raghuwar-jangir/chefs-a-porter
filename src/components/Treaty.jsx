@@ -8,6 +8,7 @@ const Treaty = () => {
         color: '#080B0E',
         width:'auto',
         textAlign:'left',
+        backgroundColor:'#DCD7CB',
         ".heading": {
             fontSize: "16px",
             lineHeight: "38px",

@@ -3,7 +3,7 @@ import React, { useRef, useState }  from 'react';
 import { Link } from 'gatsby';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { Autoplay} from "swiper";
+import { Autoplay, Pagination} from "swiper";
 import "swiper/css/pagination";
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import diningPicture from '../assets/images/cook1.png'
@@ -11,6 +11,7 @@ import DiningProgress from './DiningProgress';
 import { keyframes } from 'styled-components';
 import { slide } from 'react-burger-menu';
 import { width } from '@mui/system';
+import "swiper/css/pagination";
 
 
 const MainContentBox = styled(Box)({
@@ -43,6 +44,9 @@ const MainContentBox = styled(Box)({
         },
     '.active':{
         padding:'0px !important '
+    },
+    '.swiper':{
+        width:'100%'
     },
     '.img-box':{
         padding:'0px'
@@ -182,8 +186,8 @@ const ChefMakoCarousel = () => {
         disableOnInteraction: false,
     }}
     speed={500}
-       navigation={true}
-       modules={[Autoplay]}
+       navigation={false}
+       modules={[Pagination,Autoplay]}
        className="mySwiper"
     >
       <SwiperSlide><img className='img' src={diningPicture}></img> <Typography className='mako-details'>An agnostic menu that explores a diverse culinary journey with chef mako at the helm</Typography></SwiperSlide>

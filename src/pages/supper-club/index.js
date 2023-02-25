@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-// import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import React, {useState,useRef} from "react";
 import { useTheme } from "@mui/material/styles";
@@ -37,6 +36,7 @@ import { Link } from "gatsby";
 import pLogo from '../../assets/images/valet.png';
 import ChefMakoCarousel from "../../components/ChefMakoCarousel";
 import Navbar from "../../components/NavbarComponent";
+import SuperClubPopCarousel from "../../components/SuperClubPopCarousel";
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -74,8 +74,6 @@ const SupperClubChaefPage = () => {
     setActiveStep(step);
   };
   const BoxWrapper = styled(Box)(() => ({
-    // padding: '40px 120px',
-    // background: "#DCD7CB",
     ".header-club": {
       padding: "20px",
       display: "flex",
@@ -83,7 +81,7 @@ const SupperClubChaefPage = () => {
       backgroundColor: "#DCD7CB",
     },
     ".main-box": {
-      padding: "40px 120px",
+      padding: "120px 120px",
       background: "#DCD7CB",
     },
     ".main-img": {
@@ -96,20 +94,16 @@ const SupperClubChaefPage = () => {
 
     },
     ".main-img-1": {
-    //   border: "1px solid",
       width: "100%",
       height: "165px",
       boxShadow: '0px 8px 16px rgb(0 0 0 / 16%)',
       objectFit:'cover',
-      // display: 'block'
     },
     ".main-img-2": {
-        // border: "1px solid",
         width: "100%",
         height: "205px",
         boxShadow: '0px 8px 16px rgb(0 0 0 / 16%)',
         objectFit:'cover',
-        // display: 'block'
       },
     ".sub-box": {
       padding: "40px 0px",
@@ -131,7 +125,6 @@ const SupperClubChaefPage = () => {
       background: "#FBFBFB",
       padding: "40px 30px",
       marginTop: "40px",
-    //   display:'none'
     },
     ".sub-text-price": {
       fontWeight: 600,
@@ -185,7 +178,8 @@ const SupperClubChaefPage = () => {
       height: "50px",
       display:'inline-grid',
       textTransform:'lowercase',
-      width:'48%'
+      width:'48%',
+      padding: '8px 4px'
     },
     ".time-btn:focus":{
         backgroundColor:'#FBFBFB',
@@ -205,7 +199,9 @@ const SupperClubChaefPage = () => {
       height: "50px",
       display:'inline-grid',
       textTransform:'lowercase',
-      width:'48%'
+      width:'48%',
+      padding: '8px 4px'
+      
 
     },
     ".end-time-btn:focus":{
@@ -316,11 +312,6 @@ const SupperClubChaefPage = () => {
       marginTop: "20px",
       boxShadow: "0px 16.3378px 20.4223px rgb(0 0 0 / 6%)",
       position: "relative",
-      // right:'3%'
-      // // backgroundImage: URL('../../assets/images/menuBackground.png'),
-      // backgroundSize: '212.4px',
-      // backgroundRepeat: 'no-repeat',
-      // backgroundPosition: 'center'
     },
     ".box2": {
       padding: "40px 16px",
@@ -329,7 +320,6 @@ const SupperClubChaefPage = () => {
       marginTop: "20px",
       boxShadow: "0px 16.3378px 20.4223px rgb(0 0 0 / 6%)",
       position: "relative",
-      // left:'2%'
     },
     ".detail-box": {
       marginBottom: "36.69px",
@@ -352,25 +342,14 @@ const SupperClubChaefPage = () => {
       lineHeight: "1.5",
       letterSpacing: "0.00938em",
     },
-    // "button:focus": {
-    //   backgroundColor: "black",
-    //   color: "white",
-    // },
-    // "button:active": {
-    //     backgroundColor: "black",
-    //     color: "white",
-    //   },
     ".css-130r91k-JoyTabList-root": {
       width: "96% !important",
       left: "2% !important",
     },
     ".map-heading": {
       fontFamily: "Bon Vivant",
-      // fontWeight: '100',
       fontSize: "20px",
       lineHeight: "0px",
-      // padding: '0px 8px 0px 10px',
-      // marginLeft:'10px',
       marginBottom: "14px",
       color: "#080B0E",
       marginTop: "5%",
@@ -412,32 +391,27 @@ objectFit: 'contain',
             fontWeight: '100',
             fontSize: "20px",
             lineHeight: "24px",
-            // padding: '0px 8px 0px 10px',
             marginLeft:'10px',
             color: '#080B0E',
             textDecoration: "underline",
     },
     '.child-container':{
-        // position:'relative'
+        position:'relative',
+        paddingLeft:'18px'
     },
     '.show-btn':{
-        position: 'relative',
-    bottom: '52px',
-    left: '170px',
+        position: 'absolute',
+    bottom: '45px',
+    right: '3%',
     fontFamily: 'ProximaNovaA-Regular',
     fontStyle: 'normal',
     fontWeight: '100',
     fontSize: '14px',
     lineHeight: '19px',
     color:'#080B0E',
-    // textDecoration: 'none',
     background: '#FBFBFB',
     boxShadow: '0px 20px 24px rgb(0 0 0 / 6%)',
     borderRadius:'1px'
-    // padding: 8px 12px',
-    // position: absolute;
-    // bottom: 16px;
-    // right: 26px;
     },
     '.show-btn:hover':{
         color:'#C6A87D',
@@ -481,14 +455,15 @@ objectFit: 'contain',
     },
     '.carousel-popup': {
       position: 'fixed',
-      top: '0',
+      top: '0px',
 left: '0',
 width: '100%',
 height: '100%',
 backgroundColor: 'rgba(0, 0, 0, 0.5)',
 display: 'flex',
 justifyContent: 'center',
-alignItems: 'center'
+alignItems: 'center',
+zIndex:'5'
 },
 '.close-button': {
   position: 'absolute',
@@ -499,12 +474,11 @@ alignItems: 'center'
   border: 'none',
   color: 'white',
   cursor: 'pointer',
+  zIndex:'10'
 },
 '.swiper': {
-  // height: '428px',
   width:'75%',
   height:'100%'
-  // paddingBottom:'40px'
 },
 
     "@media (min-width: 768px) and (max-width:1024px)": {
@@ -518,7 +492,7 @@ alignItems: 'center'
             marginRight:'5px',
             fontSize:'13px',
             padding:'0px 0px',
-            lineHeight:'15px'
+            lineHeight:'15px',
         },
         '.end-time-btn':{
             fontSize:'13px',
@@ -534,20 +508,17 @@ alignItems: 'center'
         width: "100% !important",
         maxWidth:'none'
       },
-    //   ".sub-box": {
-    //     display: "none",
-    //   },
-      ".next-grid": {
-        display: "none",
+      ".grid-box-2":{
+        flexDirection:'column'
       },
+      '.grid-child-box':{
+        maxWidth:'100%'
+      }
     },
     "@media (min-width: 1px) and (max-width:425px)": {
       ".main-box": {
         padding: "0px",
       },
-    //   ".sub-box": {
-    //     display: "none",
-    //   },
       ".next-grid": {
         display: "none",
       },
@@ -568,81 +539,14 @@ alignItems: 'center'
         <React.Fragment>
             <BoxWrapper>
                 <Navbar/>
-                <MobileView>
-                    <Box className='header-club'>
-                        <img src={arrow} alt="title" className='back-aerrow' />
-                        <img src={sampleText} alt="title" className='supper-club-image' />
-                    </Box>
-                    <Box>
-                        <Stack
-                            className="date-stack"
-                            direction="row"
-                            divider={<Divider orientation="vertical" flexItem />}
-                            spacing={2}
-                        >
-                            <Typography className="date-description">April 9</Typography>
-                            <Typography className="date-description"> 7:30 PM - 10 PM</Typography>
-                            <Typography className="date-description">Blue Cafe, Kamanahalli</Typography>
-                        </Stack>
-                    </Box>
-                    <Box className="blowOut-description">
-                        <Typography className="blowOut-title">The Big Fat Parsi Blowout</Typography>
-                        <Box className="slots">
-                            <Typography className="slot-title">
-                                Curated by Chef Mako
-                            </Typography>
-                            <Typography className="slot-title2">
-                                2 Slots Left!o
-                            </Typography>
-                        </Box>
-                    </Box>
-        </MobileView>
         <Box className="main-box">
           <Grid container spacing={{ md: 2 }}>
             <Grid item xl={7} md={7} sm={6} xs={12}>
-              {/* {isMobile ? ( */}
-                <Box sx={{ background: "#fff" }}>
-                  {/* <AutoPlaySwipeableViews
-                    axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-                    index={activeStep}
-                    onChangeIndex={handleStepChange}
-                    enableMouseEvents
-                  > */}
-                    {/* {images.map((step) => (
-                      <div> */}
-                        <Box className="main-div">
-                          {/* <img
-                            alt="sample_file"
-                            className="img"
-                            src={step}
-                            style={{
-                              display: "block",
-                              width: "100%",
-                              height: "100%",
-                            }}
-                          /> */}
-                        </Box>
-                      {/* </div> */}
-                    {/* ))} */}
-                  {/* </AutoPlaySwipeableViews> */}
-                  {/* <MobileStepper
-                    steps={maxSteps}
-                    position="static"
-                    activeStep={activeStep}
-                    sx={{
-                      background: "#FBFBFB",
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  /> */}
-                </Box>
-              {/* ) : ( */}
                 <Box className="container">
                   <img
                     src={RestorentImg}
                     alt="RestorentImg"
                     className="main-img"
-                    // className="image"
                     onClick={handleImageClick}
                   />
                    {showCarousel && (
@@ -651,18 +555,52 @@ alignItems: 'center'
             X
           </button>
           <Box className="carousel">
-          <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-        <SwiperSlide><img  src={RestorentImg}/></SwiperSlide>
-        <SwiperSlide><img src={RestorentImg}/></SwiperSlide>
-        <SwiperSlide><img src={RestorentImg}/></SwiperSlide>
-        <SwiperSlide><img src={RestorentImg}/></SwiperSlide>
-        <SwiperSlide><img src={RestorentImg}/></SwiperSlide>
-      </Swiper>
+        <SuperClubPopCarousel/>
           </Box>
         </Box>
       )}
                 </Box>
-              {/* )} */}
+                </Grid>
+                <Grid item md={5} sm={6} xs={12} xl={5} className="next-grid">
+              <Grid className="child-container" container spacing={2}>
+                <Grid item md={6} sm={6} xs={6} xl={6}>
+                  <img
+                    src={RestorentImg}
+                    alt="RestorentImg"
+                    className="main-img-1"
+                    onClick={handleImageClick}
+                  />
+                </Grid>
+                <Grid item md={6} sm={6} xs={6} xl={6}>
+                <img
+                    src={RestorentImg}
+                    alt="RestorentImg"
+                    className="main-img-1"
+                    onClick={handleImageClick}
+                  />
+                </Grid>
+                <Grid item md={6} sm={6} xs={6} xl={6}>
+                <img
+                    src={RestorentImg}
+                    alt="RestorentImg"
+                    className="main-img-2"
+                    onClick={handleImageClick}
+                  />
+                </Grid>
+                <Grid item md={6} sm={6} xs={6} xl={6}>
+                <img
+                    src={RestorentImg}
+                    alt="RestorentImg"
+                    className="main-img-2"
+                    onClick={handleImageClick}
+                  />
+                   <Button className="show-btn">Show All Photos</Button>
+                </Grid>
+                 </Grid>
+                 </Grid>
+                 </Grid>
+              <Grid className="grid-box-2" container spacing={{ md: 2 }}>
+                <Grid  item xl={7} md={7} sm={6} xs={12}>
               <Box className="sub-box">
                 <Typography className="sub-box-heading">
                   The Big Fat Parsi Blowout
@@ -734,7 +672,7 @@ alignItems: 'center'
                     <ChefMakoCarousel/>
                     <ChefCarousel/>
                     <DetailsCarousel />
-              <Treaty />
+              <Treaty/>
               </Box>
                   </TabPanel>
                   <TabPanel value={1} sx={{ p: 0 }}>
@@ -867,50 +805,10 @@ alignItems: 'center'
                                                 </Box>
                   </TabPanel>
                 </Tabs>
-                {/* <CardChefComponent bgColor="#FBFBFB" /> */}
               </Box>
-              {/* <Box sx={{ padding: '16px 16px 40px 16px', background: '#DCD7CB' }}>
-                                <CardChefComponent />
-                            </Box> */}
-              <NeedHelp />
-             </Grid>
-             <Grid item md={5} sm={6} xs={12} xl={5} className="next-grid">
-              <Grid className="child-container" container spacing={2}>
-                <Grid item md={6} sm={6} xs={6} xl={6}>
-                  <img
-                    src={RestorentImg}
-                    alt="RestorentImg"
-                    className="main-img-1"
-                    onClick={handleImageClick}
-                  />
-                </Grid>
-                <Grid item md={6} sm={6} xs={6} xl={6}>
-                <img
-                    src={RestorentImg}
-                    alt="RestorentImg"
-                    className="main-img-1"
-                    onClick={handleImageClick}
-                  />
-                </Grid>
-                <Grid item md={6} sm={6} xs={6} xl={6}>
-                <img
-                    src={RestorentImg}
-                    alt="RestorentImg"
-                    className="main-img-2"
-                    onClick={handleImageClick}
-                  />
-                </Grid>
-                <Grid item md={6} sm={6} xs={6} xl={6}>
-                <img
-                    src={RestorentImg}
-                    alt="RestorentImg"
-                    className="main-img-2"
-                    onClick={handleImageClick}
-                  />
-                   <Button className="show-btn">Show All Photos</Button>
-                </Grid>
-
-                 </Grid>
+              <NeedHelp />      
+              </Grid>
+              <Grid className="grid-child-box" item md={5} sm={6} xs={12} xl={5}>
                  <Box className="sub-box-2">
                  <Box
                   sx={{
@@ -987,39 +885,9 @@ alignItems: 'center'
                 <Box>
                 </Box>
               </Box>
-            </Grid>
-          </Grid>
+              </Grid>
+              </Grid>
         </Box>
-        {isMobile ? (
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              padding: "16px",
-              background: "#DCD7CB",
-            }}
-          >
-            <Box>
-              <Typography className="mobile-view-price-text">
-                ₹ 2,500
-              </Typography>
-              <Typography className="mobile-view-diner">Per diner</Typography>
-            </Box>
-            <Button className="invite-btn">Reserve a Seat</Button>
-          </Box>
-        ) : (
-          <Box className="last-cantain">
-            <Box>
-              <Typography className="invite-friends-text">
-                Invite friends & family
-              </Typography>
-              <Typography className="experience-text">
-                enjoy a shared experience
-              </Typography>
-            </Box>
-            <Button className="invite-btn">Invite</Button>
-          </Box>
-        )}
         <Box className="footer-box">
           <Footer />
         </Box>
