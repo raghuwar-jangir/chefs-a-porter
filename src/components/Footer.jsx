@@ -11,6 +11,8 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Button from "@mui/material/Button";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import InputAdornment from "@mui/material/InputAdornment";
+import ContactsIcon from "@mui/icons-material/Contacts";
 
 
 const Footer = () => {
@@ -54,7 +56,8 @@ const Footer = () => {
         '.social-icon': {
             display: 'flex',
             alignItems: 'center',
-            placeContent: 'flex-end'
+            placeContent: 'flex-end',
+            cursor:'pointer'
         },
         '.icon': {
             display: 'flex',
@@ -68,10 +71,6 @@ const Footer = () => {
         '.input-group': {
             position: 'relative',
         },
-        '.input-group a': {
-            color: '#FBFBFB',
-            textDecoration: 'none',
-        },
         '.input-field': {
             borderRadius: '0px',
             background: '#FBFBFB',
@@ -81,17 +80,20 @@ const Footer = () => {
             fontSize: '14px',
             lineHeight: '25px',
             color: '#BDBDBD',
-            width: '190px'
+            width: '190px !important',
+            height: "36px !important",
         },
         '.btn': {
             background: "#C6A87D",
-            fontSize: '10px',
+            fontSize: '14px !important',
             lineHeight: "25px",
             borderRadius: "0px",
             color: "#080B0E",
-            height: "36px",
+            height: "36px !important",
+            width:'50px !important',
             borderColor: '#C6A87D',
-            margin:'0px'
+            margin:'0px',
+            textTransform: "capitalize !important"
         },
         '.css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input':{
             padding: '8px 14px !important'
@@ -106,7 +108,9 @@ const Footer = () => {
             fontStyle: 'normal',
             fontFamily: 'Proxima Nova',
             fontSize: '14px',
-            textAlign:'left'
+            textAlign:'left',
+            color: '#FBFBFB',
+            textDecoration: 'none',
         },
         '.listItem-subheading:hover': {
             color: "#C6A87D"
@@ -156,19 +160,19 @@ const Footer = () => {
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <a className="listItem-subheading">Became a Patron</a>
+                                        <Link href="/become-a-patron" className="listItem-subheading">Became a Patron</Link>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <a className="listItem-subheading">Corporate Bookings</a>
+                                        <Link className="listItem-subheading" href="/corporate-booking">Corporate Bookings</Link>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <a className="listItem-subheading">Gift Cards</a>
+                                        <Link href="/gift-cards" className="listItem-subheading">Gift Cards</Link>
                                     </List>
                                 </Box>
                             </Grid>
@@ -179,13 +183,13 @@ const Footer = () => {
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <a className="listItem-subheading">Privee</a>
+                                        <Link href="/privee"className="listItem-subheading">Privee</Link>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <a className="listItem-subheading">Supper Clubs</a>
+                                        <Link href="/supper-club" className="listItem-subheading">Supper Clubs</Link>
                                     </List>
                                 </Box>
                             </Grid>
@@ -196,13 +200,13 @@ const Footer = () => {
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <a className="listItem-subheading">About us</a>
+                                        <Link href="/about-us" className="listItem-subheading">About us</Link>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <a className="listItem-subheading">Blogs</a>
+                                        <Link href="" className="listItem-subheading">Blogs</Link>
                                     </List>
                                 </Box>
                             </Grid>
@@ -213,19 +217,19 @@ const Footer = () => {
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <a className="listItem-subheading">As Chef</a>
+                                        <Link href="/join-chef" className="listItem-subheading">As Chef</Link>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <a className="listItem-subheading">As Sponsor Partner</a>
+                                        <Link href="/become-partner" className="listItem-subheading">As Sponsor Partner</Link>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <a className="listItem-subheading">As Vendor</a>
+                                        <Link className="listItem-subheading">As Vendor</Link>
                                     </List>
                                 </Box>
                             </Grid>
@@ -241,14 +245,14 @@ const Footer = () => {
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <a className='listItem-subheading'>Contact Us</a>
+                                        <Link href="/contact-us" className='listItem-subheading'>Contact Us</Link>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <a href="mailto:reservations@chefsaporter.com."
-                                           className='listItem-subheading'>reservations@chefsaporter.com.</a>
+                                        <Link href="mailto:reservations@chefsaporter.com."
+                                           className='listItem-subheading'>reservations@chefsaporter.com.</Link>
                                     </List>
                                 </Box>
                             </Grid>

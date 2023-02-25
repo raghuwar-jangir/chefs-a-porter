@@ -54,26 +54,26 @@ const WrapBox = styled(Box) ({
     }
 })
     return(
-        <WrapBox>                                           
+        <WrapBox>
             <Box className='main-box'>
-            <Box>
-                <Typography className="peek-heading">Peek into our Private Dining Experiences</Typography>
-                <Typography className="peek-name" >@Privée</Typography>
-            </Box>
-            <Box className='slider-box'>
-            <Carousel itemsToShow={3} outerSpacing={500} enableMouseSwipe={true} preventDefaultTouchmoveEvent={false} pagination={false} showArrows={false} showEmptySlots>
+                <Box>
+                    <Typography className="peek-heading">Peek into our Private Dining Experiences</Typography>
+                    <Typography className="peek-name" >@Privée</Typography>
+                </Box>
+                <Box className='slider-box'>
+                    <Carousel itemsToShow={3} outerSpacing={500} enableMouseSwipe={true} preventDefaultTouchmoveEvent={false} pagination={false} showArrows={false} showEmptySlots>
 
-  <Box className='img-box'><img className="img" src={image1}/></Box>
-  <Box className='img-box'><img className="img" src={image2}/></Box>
-  <Box className='img-box'><img className="img" src={image3}/></Box>
-  <Box className='img-box'><img className="img" src={image4}/></Box>
-  <Box className='img-box'><img className="img" src={image5}/></Box>
-  <Box className='img-box'><img className="img" src={image2}/></Box>
-  <Box className='img-box'><img className="img" src={image4}/></Box>
-  <Box className='img-box'><img className="img" src={image5}/></Box>
-  <Box className='img-box'><img className="img" src={image2}/></Box>
-</Carousel>
-            </Box>
+                        <Box className='img-box'><img className="img" src={image1}/></Box>
+                        <Box className='img-box'><img className="img" src={image2}/></Box>
+                        <Box className='img-box'><img className="img" src={image3}/></Box>
+                        <Box className='img-box'><img className="img" src={image4}/></Box>
+                        <Box className='img-box'><img className="img" src={image5}/></Box>
+                        <Box className='img-box'><img className="img" src={image2}/></Box>
+                        <Box className='img-box'><img className="img" src={image4}/></Box>
+                        <Box className='img-box'><img className="img" src={image5}/></Box>
+                        <Box className='img-box'><img className="img" src={image2}/></Box>
+                    </Carousel>
+                </Box>
             </Box>
         </WrapBox>
     )

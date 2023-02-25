@@ -6,21 +6,21 @@ import cop1 from '../assets/images/cop1.png';
 
 
 const CorporateBooking = () => {
-    const BoxWrapper = styled(Box)(()=> ({
+    const BoxWrapper = styled(Box)({
         '.main-box':{
             // display: 'block',
-        background: '#F3F3F3',
-        padding: '70px 0px'
+            background: '#F3F3F3',
+            padding: '70px 0px'
         },
         '.title':{
             textAlign: 'center',
             fontSize: '24px',
             lineHeight: '30px',
             fontFamily: 'Bon Vivant',
-    fontStyle: 'normal',
-    // fontWeight: '700',
-    color: '#080B0E',
-    marginBottom: '0.5rem'
+            fontStyle: 'normal',
+            // fontWeight: '700',
+            color: '#080B0E',
+            marginBottom: '0.5rem'
         },
         '.carousel-box':{
             display: 'flex',
@@ -36,18 +36,19 @@ const CorporateBooking = () => {
         },
         '.person-details': {
             paddingLeft: '0px',
-    paddingTop: '30px',
-    // width:'64%',
-    position:'relative'
+            paddingTop: '30px',
+            // width:'64%',
+            position:'relative'
         },
         '.main-details':{
             fontSize: '16px',
-    marginBottom: '16px',
-    fontFamily: 'ProximaNovaA-Regular',
-    fontStyle: 'normal',
-    fontWeight: '400',
-    lineHeight: '20px',
-    color: '#080B0E'
+            marginBottom: '16px',
+            // fontFamily: 'ProximaNovaA-Regular',
+            fontFamily: 'Proxima Nova',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: '20px',
+            color: '#080B0E'
         },
         '.person-position':{
             fontSize: '16px',
@@ -66,7 +67,7 @@ const CorporateBooking = () => {
             textTransform: 'uppercase',
             marginBottom: '8px'
         },
-        '.btn':{
+        '.btn': {
             fontSize: '16px',
             lineHeight: '19px',
             fontFamily: 'ProximaNovaA-Regular',
@@ -74,14 +75,34 @@ const CorporateBooking = () => {
             fontWeight: '400',
             marginTop: '16px',
             width: '162px',
-    display: 'block',
-    border: '0.694469px solid #080B0E',
-    padding: '12px',
-    textAlign: 'center',
-    borderRadius : '1px',
-    color:'black',
-    background: 'none',
-    // textTransform:'lowercase'
+            display: 'block',
+            border: '0.694469px solid #080B0E',
+            padding: '12px',
+            textAlign: 'center',
+            borderRadius: '1px',
+            color: 'black',
+            background: 'none',
+            // textTransform:'lowercase'
+        },
+        '.booking-btn':{
+            fontSize: '16px !important',
+            lineHeight: '19px',
+            fontFamily: 'Proxima Nova',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            marginTop: '16px',
+            width: '162px !important',
+            display: 'block',
+            border: '0.694469px solid #080B0E',
+            padding: '12px',
+            textAlign: 'center',
+            borderRadius : '1px',
+            color:'black',
+            background: 'none',
+            textTransform: 'capitalize'
+        },
+        '.booking-btn:hover':{
+            color: '#C6A87D !important'
         },
         '.img':{
             width: '195px',
@@ -125,9 +146,9 @@ const CorporateBooking = () => {
         },
         '.InfiniteCarousel':{
             left:'-7%'
-        }
-    }
-    }))
+        },
+    },
+    });
     return(
         <React.Fragment>
             <BoxWrapper>
@@ -170,8 +191,8 @@ const CorporateBooking = () => {
     slidesToShow={1}
     scrollOnDevice={true}
   >
-    
-    
+
+
     <Box className='carousel-box'>
         <Box className='person-parts'>
             <Box className='person-details' >

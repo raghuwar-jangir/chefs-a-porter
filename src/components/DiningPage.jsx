@@ -95,10 +95,10 @@ positionX:'end'
     },
     '@keyframes swiper-pagination-bullet' :{
         '0%' :{
-           
+
             background:'#FBFBFB',
             // width:'100px'
-           
+
         },
         '100%' :{
             background:'#C6A87D',
@@ -114,63 +114,135 @@ positionX:'end'
     },
     // '.carousel-dots li button:before':{
     // '.carousel-dots':{
-      
+
     //             content: `'-'`,
-    //             color:'red !important'       
-           
-        
+    //             color:'red !important'
+
+
     // }
     // '.test':{
     //     color:'red',
     //     content:`'-'`
     // }
-    '@media(min-width: 1px) and (max-width: 768px)': {
-        '.img':{
-            height:'250%',
-            width:'50%',
-            padding:'0px 26%'
-        },
-        '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
-            margin:'0 var(--swiper-pagination-bullet-horizontal-gap,3px) !important'
-    },
-    '.swiper-pagination-bullet':{
-        width:'96px'
-    },
-    '.dining-content': {
-        width:'10px',
-        font:'12px',
-        padding: '4px 46px'
-    },
-    '.content-box':{
-        marginRight:'65px'
-    }
-},
+//     '@media(min-width: 1px) and (max-width: 768px)': {
+//         '.img':{
+//             height:'250%',
+//             width:'50%',
+//             padding:'0px 26%'
+//         },
+//         '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
+//             margin:'0 var(--swiper-pagination-bullet-horizontal-gap,3px) !important'
+//     },
+//     '.swiper-pagination-bullet':{
+//         width:'96px'
+//     },
+//     '.dining-content': {
+//         width:'10px',
+//         font:'12px',
+//         padding: '4px 46px'
+//     },
+//     '.content-box':{
+//         marginRight:'65px'
+//     }
+// },
 '@media(min-width: 320px) and (max-width: 768px)': {
-    '.img':{
-        // height:'250%',
-        width:'94%',
-        padding:'0px 3%'
+    // '.img':{
+    //     // height:'250%',
+    //     width:'94%',
+    //     padding:'0px 3%'
+    // },
+    '.dining-title': {
+        padding: '0px 29px',
+        font: '20px'
     },
-    '.dining-title':{
-        padding:'0px 29px',
-        font:'20px'
-    }
-}
+    '.content-box': {
+        display: 'flex',
+        justifyContent: 'center',
+        marginRight: '34px'
+    },
+    '.active': {
+        padding: '0px !important '
+    },
+    '.img-box': {
+        padding: '0px'
+    },
+    '.img': {
+        width: '100%',
+        height: '550px',
+        objectFit: 'cover'
+    },
+    '.swiper-pagination-bullet': {
+        borderRadius: '0px',
+        width: '200px',
+        height: '3px',
+        background: '#FBFBFB',
+        opacity: '1',
+    },
+    '.swiper-pagination-bullet-active': {
+        animationDuration: '5s',
+        animationName: 'swiper-pagination-bullet',
+        animationDirection: 'normal',
+        animationFillMode: 'forwards',
+        backgroundColor: '#C6A87D',
+        opacity: '1',
+        positionX: 'end'
+    },
+    '@keyframes swiper-pagination-bullet': {
+        '0%': {
+
+            background: '#FBFBFB',
+        },
+        '100%': {
+            background: '#C6A87D',
+        }
+    },
+    '.swiper-pagination': {
+        bottom: '-5px !important',
+    },
+    '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet': {
+        margin: '0 var(--swiper-pagination-bullet-horizontal-gap,19px) !important'
+    },
+},
+    '@media(min-width: 1px) and (max-width: 768px)': {
+        '.img': {
+            height: '250%',
+            width: '50%',
+            padding: '0px 26%'
+        },
+        '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet': {
+            margin: '0 var(--swiper-pagination-bullet-horizontal-gap,3px) !important'
+        },
+        '.swiper-pagination-bullet': {
+            width: '96px'
+        },
+        '.dining-content': {
+            width: '10px',
+            font: '12px',
+            padding: '4px 46px'
+        },
+        '.content-box': {
+            marginRight: '65px'
+        }
+    },
+    // '@media(min-width: 320px) and (max-width: 768px)': {
+    //     '.img': {
+    //         width: '94%',
+    //         padding: '0px 3%'
+    //     },
+    //     '.dining-title': {
+    //         padding: '0px 29px',
+    //         font: '20px'
+    //     }
+    // },
 })
 
-const DiningPage = () => {
-    // const settings = {
-    //     dots: true,
-    //     infinite: true,
-    //     speed: 500,
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1
-    //   };
+const DiningPage = (props) => {
     return (
         <React.Fragment>
             <MainContentBox>
                 <Typography className="dining-title">
-                    What we cook for
+                    {props.title}
+                    {/*What we cook for*/}
                 </Typography>
                 <Swiper
        slidesPerView={1}
@@ -272,32 +344,32 @@ export default DiningPage;
 //             bg: 'rgb(151, 105, 105)'
 //         },
 //     ]
-    
+
 //     const passSlideHandler = () => {
 //         if (minorSlideImg < minorSlides.length - 1) {
 //             setMinorSlideImg(minorSlideImg + 1)
 //         } else {
 //             setMinorSlideImg(0)
 //         }
-//     }   
-    
+//     }
+
 //     React.useEffect(() => {
 //         const interval = setTimeout(() => {
 //             passSlideHandler()
 //         }, 5000);
 //         return () => clearTimeout(interval);
-//     });    
+//     });
 
 
 //     return (
 //         <Fragment>
-//             <div 
-//                 // className={classes.MinorSlider_subContainer} 
+//             <div
+//                 // className={classes.MinorSlider_subContainer}
 //                 style={{backgroundColor: minorSlides[minorSlideImg].bg}} // <= This is what I'd like to remove
 //             >
-//                 <img 
+//                 <img
 //                     src={minorSlides[minorSlideImg].img}
-//                     alt={"img-1"} 
+//                     alt={"img-1"}
 //                 />
 //             </div>
 //         </Fragment>

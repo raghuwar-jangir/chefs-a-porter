@@ -6,7 +6,6 @@ import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { styled } from '@mui/system';
 import CarouselImg from "./../assets/images/team.png"
-
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [

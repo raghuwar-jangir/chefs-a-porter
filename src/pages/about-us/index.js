@@ -16,7 +16,7 @@ import logo3 from "../../assets/images/logo3.png"
 import logo4 from "../../assets/images/logo4.png"
 import IntroChefImg1 from "../../assets/images/IntroChefImg1.png"
 import IntroChefImg2 from "../../assets/images/introChefImg2.png"
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+// import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import CommanTextCard from "../../components/CommanTextCard";
 import IntroCardComponent from "../../components/IntroCardComponent";
 import CommanCarousel from "../../components/CommanCarousel"
@@ -27,7 +27,7 @@ import Footer from "../../components/Footer";
 import { Link } from "gatsby";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import LogoSwiper from "../../components/LogoSwiper";
-import { isMobile } from "react-device-detect";
+// import { isMobile } from "react-device-detect";
 import InfiniteCarousel from 'react-leaf-carousel';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -47,6 +47,12 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 // import { Carousel } from "react-responsive-carousel";
 // import "react-responsive-carousel/lib/styles/carousel.min.css";
 
+import {isMobile} from "react-device-detect";
+import Navbar from "../../components/NavbarComponent";
+import NeedHelp from "../../components/NeedHelp";
+import FooterEnd from "../../components/FooterEndSection";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import OpenPosition from "../../components/OpenPositionComponent";
 
 
 const itemData = [
@@ -113,7 +119,7 @@ const AboutCardComponet = (props) => {
           items: 1
         }
       };
-    
+
     const BoxWrapper = styled(Box)(() => ({
         ".main-box": {
             padding: "40px 120px",
@@ -133,7 +139,7 @@ const AboutCardComponet = (props) => {
             borderWidth: '0px 3px 3px 0'
         },
         ".header-club": {
-            padding: '20px',
+            padding: '10px',
             backgroundColor: '#DCD7CB',
         },
         '.social-icon': {
@@ -165,7 +171,7 @@ const AboutCardComponet = (props) => {
             fontWeight: 700,
             fontSize: "30px",
             lineHeight: "25px",
-            textAlign: 'center', 
+            textAlign: 'center',
             color: '#080B0E',
             fontFamily: 'Bon Vivant'
         },
@@ -301,13 +307,14 @@ const AboutCardComponet = (props) => {
             paddingTop: '20px'
         },
         ".some-text": {
-            fontWeight: 600,
+            // fontWeight: 600,
             fontSize: "20px",
             lineHeight: "24px",
-            paddingBottom: '8px'
+            paddingBottom: '8px',
+            color: "#242F35"
         },
         ".some-details": {
-            fontWeight: 300,
+            // fontWeight: 300,
             fontSize: "16px",
             lineHeight: "19px",
             color: "#242F35"
@@ -315,7 +322,7 @@ const AboutCardComponet = (props) => {
         ".lastBox": {
             padding: "40px 120px",
             background: "#DCD7CB",
-            display: 'flex',
+            display: 'none',
             justifyContent: 'space-between'
         },
         ".open-positions-div": {
@@ -324,7 +331,7 @@ const AboutCardComponet = (props) => {
         ".btn-get-in-touch": {
             background: "#080B0E", color: "#FBFBFB",
             fontSize: "16px", width: '25%',
-            fontWeight: 600,
+            // fontWeight: 600,
             borderRadius: "0px",
             textTransform: "capitalize",
             height: "57px",
@@ -365,13 +372,18 @@ const AboutCardComponet = (props) => {
                 width: '100%'
             },
             ".lastBox": {
+                display:'flex',
                 padding: '40px 16px'
             },
             ".some-text": {
-                fontSize: "16px",
+                fontSize: "14px",
+            },
+            ".some-details": {
+                fontSize: "14px",
             },
             ".btn-get-in-touch": {
-                width: '40%',
+                fontSize:'12px',
+                width: '50%',
                 alignItems: 'center'
             }, '.conscious-option': {
                 padding: '31px',
@@ -399,7 +411,50 @@ const AboutCardComponet = (props) => {
             // '.background':{
             //     background: '#101418'
             // }
+            ".sub-box-2": {
+                padding: '40px 30px',
+                background: '#101418'
+            },
+            ".sub-box-3": {
+                padding: '40px 30px',
+                background: '#DCD7CB'
+            },
+            ".sub-box-4": {
+                padding: '80px 30px 40px ',
+                background: '#101418'
+            },
+        },
+        "@media (min-width: 1px) and (max-width:325px)": {
+        '.conscious-option': {
+                padding: '20px',
+            },
+        },
+        "@media (min-width: 350px) and (max-width:375px)": {
+            '.conscious-option': {
+                padding: '25px',
+            },
+        },
+        "@media (min-width: 426px) and (max-width:769px)": {
+            ".main-box": {
+                padding: "0px",
+            },
+            ".about-heading": {
+                textAlign: 'left', color: '#080B0E',
+            },
+            ".sub-box-2": {
+                padding: '40px 70px',
+                background: '#101418'
+            },
+            ".sub-box-3": {
+                padding: '40px 70px',
+                background: '#DCD7CB'
+            },
+            ".sub-box-4": {
+                padding: '80px 70px 40px ',
+                background: '#101418'
+            },
         }
+
     }))
     return (
         <React.Fragment>
@@ -587,8 +642,8 @@ const AboutCardComponet = (props) => {
             <Typography className="title">Chef Anou Boccasam</Typography>
             <Typography className="position-title">Founder</Typography>
             <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-            {/* <CommanTextCard 
-            mainTitle= "Chef Anou Boccasam" 
+            {/* <CommanTextCard
+            mainTitle= "Chef Anou Boccasam"
             details= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat."
             colors="white"/> */}
               <Box className='social-icon'>
@@ -605,7 +660,7 @@ const AboutCardComponet = (props) => {
             <Typography className="position-title">Chief Chef Curating Officer</Typography>
             <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
       {/* <CommanTextCard
-            mainTitle= "Chef Mako Ravindran" 
+            mainTitle= "Chef Mako Ravindran"
             subTitle= "Chief Chef Curating Officer"
             details= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat."
             colors="white"/> */}
@@ -623,7 +678,7 @@ const AboutCardComponet = (props) => {
             <Typography className="position-title">Founder</Typography>
             <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
       {/* <CommanTextCard
-            mainTitle= "Chef Anou Boccasam" 
+            mainTitle= "Chef Anou Boccasam"
             subTitle= "Founder"
             details= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat."
             colors="white"/> */}
@@ -641,7 +696,7 @@ const AboutCardComponet = (props) => {
             <Typography className="position-title">Chief Chef Curating Officer</Typography>
             <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
      {/* <CommanTextCard
-            mainTitle= "Chef Mako Ravindran" 
+            mainTitle= "Chef Mako Ravindran"
             subTitle= "Chief Chef Curating Officer"
             details= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat."
             colors="white"
@@ -837,26 +892,19 @@ const AboutCardComponet = (props) => {
                         </Box>
                     </Box>
                 </Box>
+                <NeedHelp/>
+                <OpenPosition/>
                 <Box className="lastBox">
                     <Box>
-                        <Typography className="some-text">Don't see an open role for you</Typography>
-                        <Typography className="some-details">We're always on the look out for top talent to join us.</Typography>
+                        <Typography className="some-text">Don’t see an open role for you</Typography>
+                        <Typography className="some-details">We’re always on the look out for top talent to join us.</Typography>
                     </Box>
                     <Button className="btn-get-in-touch">
                         Get in touch
                     </Button>
                 </Box>
-                <Footer />
-                <Box className="footer-end">
-                    <Stack className='footer-text'
-                           divider={<FiberManualRecordIcon sx={{ fontSize: '6px', color: '#C6A87D' }} />}
-                           direction="row" spacing={2}>
-                        <Link className='footer-item' to='/'> FAQs </Link>
-                        <Link className='footer-item' to='/'> Privacy Policy </Link>
-                        <Link className='footer-item' to='/'> T&C </Link>
-                    </Stack>
-                </Box>
-                {/* <FutterComponent /> */}
+                <Footer/>
+              <FooterEnd/>
             </BoxWrapper>
 
         </React.Fragment >
