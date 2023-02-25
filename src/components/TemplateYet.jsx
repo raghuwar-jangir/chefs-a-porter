@@ -1,7 +1,7 @@
 import { Button, styled, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-const TemplateYet = (props) => {
+const TemplateYet = (props,isTempted) => {
     const BoxWrapper = styled(Box)(() => ({
         '.template': {
             display: 'none',
@@ -47,10 +47,11 @@ const TemplateYet = (props) => {
         },
         "@media (min-width: 1px) and (max-width:425px)": {
             '.template': {
-                background: '#080B0E',
+                background: `${isTempted ? '#FBFBFB' :'#080B0E'}`,
             },
             '.template-title': {
-                color: '#FBFBFB',
+                color: `${isTempted ? '#080B0E' :'#FBBFBFB'}`,
+
             },
             '.view-all': {
                 marginTop: '5px',

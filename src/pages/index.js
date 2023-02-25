@@ -876,7 +876,7 @@ const HomePage = () => {
                     ))}
                 </Box>
                 <PriveeComponentSlider/>
-                <TemplateYet title={'View our offerings'}/>
+                <TemplateYet title={'View our offerings'} isTempted={true}/>
                 <NeedHelp/>
                 <Footer/>
                 <FooterEnd/>
