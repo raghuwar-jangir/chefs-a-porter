@@ -214,6 +214,12 @@ const MainParent = styled(Box)({
             },
             ".biYdFZ": {
                 margin: '0px -52px'
+            },
+            '.rec-arrow-right': {
+                right: '0%'
+            },
+            '.rec-arrow-left': {
+                left: '0%'
             }
         },
         '@media(min-width: 770px)and (max-width: 1024px)': {
@@ -247,6 +253,12 @@ const MainParent = styled(Box)({
             },
             '.main-heading': {
                 fontSize: '19px'
+            },
+            '.rec-arrow-right': {
+                right: '0%'
+            },
+            '.rec-arrow-left': {
+                left: '0%'
             }
         },
         '@media(min-width: 430px)and (max-width: 768px)': {
@@ -315,6 +327,7 @@ const MainParent = styled(Box)({
                 position: 'absolute',
                 top: '1090px',
                 left: '0%',
+                borderRadius: '0px',
                 border: '0.5px solid #C6A87D',
                 width: '100%',
                 fontSize: '13px',
@@ -352,8 +365,9 @@ const MainParent = styled(Box)({
                 width: '100%',
                 fontSize: '13px',
                 fontWeight: '200',
+                borderRadius: '0px',
                 color: 'white',
-                fontFamily: 'ProximaNovaA-Regular',
+                fontFamily: 'Proxima NovaA-Regular',
                 height: '65%'
             },
             '.lguFiu': {
