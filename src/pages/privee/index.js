@@ -19,6 +19,10 @@ import PriveeComponentSlider from "../../components/PriveeComponentSlider";
 import {DatePickerInput} from 'rc-datepicker';
 import 'rc-datepicker/lib/style.css';
 import TemplateYet from "../../components/TemplateYet";
+import ExperienceCarousel from "../../components/ExperienceCarousel";
+import AvlExperienceCarousel from "../../components/AvlExperienceCarousel";
+import avlExp1 from "../../assets/images/avl-exp1.jpg";
+import avlExp2 from "../../assets/images/avl-exp2.jpg";
 
 const MainBoxContent = styled(Box)({
     position: 'relative',
@@ -46,6 +50,7 @@ const MainBoxContent = styled(Box)({
 
 const BoxWrapper = styled(Box)(() => ({
     ".available-experiences": {
+        display:'none',
         padding: "40px 120px",
         background: "#080B0E"
     },
@@ -361,6 +366,21 @@ const BoxWrapper = styled(Box)(() => ({
         color: '#080B0E',
         cursor: 'pointer',
     },
+    '.exp-btn': {
+        width: '100%',
+        background: 'transparent',
+        marginTop:'40px',
+        border: '1px solid #C6A87D',
+        borderRadius: '0px',
+        padding: '15px 10px',
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        fontSize: '16px',
+        lineHeight: '19px',
+        color: '#FBFBFB',
+        cursor: 'pointer',
+    },
 
     "@media(width = 1440px)": {
         ".experience-form-box": {
@@ -384,8 +404,9 @@ const BoxWrapper = styled(Box)(() => ({
             background: "#DCD7CB"
         },
         ".available-experiences": {
+            display:'block',
             padding: "40px 16px",
-            background: "#080B0E"
+            background: "#101418"
         },
         ".frequently-questions-box": {
             padding: '0px'
@@ -474,14 +495,11 @@ const PriveePage = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isColor={false}/>
+                <Navbar isColor={true}/>
                 <MainBoxContent>
                     {/* //! privee header section for title */}
                     <MobileView>
                         <Box className='header-club'>
-                            {/*{!search &&*/}
-                            {/*    <img src={vector} alt="vector" onClick={handleChange} />*/}
-                            {/*}*/}
                             <img src={PriveeLogo} alt="privee-logo" className='privee-image'/>
                         </Box>
                     </MobileView>
@@ -490,16 +508,6 @@ const PriveePage = () => {
                             <input type='search' placeholder='Search supper club, city...' className='supper-search'/>
                         </Box>
                     }
-                    {/*{isMobile ? (*/}
-                    {/*    <Box>*/}
-                    {/*        <img src={MobileViewPriveeImg} alt='privee' width={'100%'} style={{ verticalAlign: 'top' }} />*/}
-                    {/*    </Box>*/}
-                    {/*) : (*/}
-                    {/*    <Box>*/}
-                    {/*        <img src={priveeDashboardImg} alt='privee' width={'100%'} style={{ verticalAlign: 'top' }} />*/}
-                    {/*    </Box>*/}
-
-                    {/*)}*/}
 
                 </MainBoxContent>
                 <Box className="home-banner">
@@ -712,23 +720,18 @@ const PriveePage = () => {
                         </Box>
                     </Box>
                 </Box>
-                <Box className="available-experiences">
+                <ExperienceCarousel/>
+                <Box className="available-experiences mobile-view">
                     <Typography className="chef-header">Available Experiences</Typography>
-                    {/*<PriveeExperienceCarousel/>*/}
                     <Grid container spacing={2}>
-                        <Grid item xl={3} md={3} sm={6} xs={12}>
-                            <PriveeDining/>
+                        <Grid item xl={4} md={4} sm={6} xs={12}>
+                            <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'} subDescription={'Starting from ₹5000 per diner'}/>
                         </Grid>
-                        <Grid item xl={3} md={3} sm={6} xs={12}>
-                            <PriveeDining/>
-                        </Grid>
-                        <Grid item xl={3} md={3} sm={6} xs={12}>
-                            <PriveeDining/>
-                        </Grid>
-                        <Grid item xl={3} md={3} sm={6} xs={12}>
-                            <PriveeDining/>
+                        <Grid item xl={4} md={4} sm={6} xs={12}>
+                            <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'} subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
                         </Grid>
                     </Grid>
+                    <button type="submit" className="exp-btn">View More</button>
                 </Box>
                 <RatingCarousel backgroundColor="#DCD7CB"/>
                 <PriveeComponentSlider/>
