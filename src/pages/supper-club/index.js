@@ -37,6 +37,9 @@ import pLogo from '../../assets/images/valet.png';
 import ChefMakoCarousel from "../../components/ChefMakoCarousel";
 import Navbar from "../../components/NavbarComponent";
 import SuperClubPopCarousel from "../../components/SuperClubPopCarousel";
+import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
+import SupperClubTreatyComponent from "../../components/SupperClubTreatyComponent";
+import NeedHelpSmallComponent from "../../components/NeedHelpSmallComponent";
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -448,7 +451,8 @@ objectFit: 'contain',
         width:'57%'
     },
     '.chef-carousel':{
-      border:'1px solid black'
+      borderLeft:'1px solid black',
+      borderRight:'1px solid black'
     },
     '.container': {
       position: 'relative'
@@ -480,7 +484,9 @@ zIndex:'5'
   width:'75%',
   height:'100%'
 },
-
+'.sub-div':{
+  background:'black'
+},
     "@media (min-width: 768px) and (max-width:1024px)": {
         '.box1':{
             width:'87%'
@@ -513,6 +519,9 @@ zIndex:'5'
       },
       '.grid-child-box':{
         maxWidth:'100%'
+      },
+      '.sub-box-2':{
+        marginTop:'0px'
       }
     },
     "@media (min-width: 1px) and (max-width:425px)": {
@@ -635,7 +644,7 @@ zIndex:'5'
               <Box
                 sx={{
                   paddingTop: "16px",
-                  paddingBottom: "16px",
+                  paddingBottom: "0px",
                   background: "#FBFBFB",
                 }}
               >
@@ -671,9 +680,10 @@ zIndex:'5'
                     <Box className='chef-carousel'>
                     <ChefMakoCarousel/>
                     <ChefCarousel/>
-                    <DetailsCarousel />
-              <Treaty/>
+                    <SupperClubDetailsCarousel/>
+              <SupperClubTreatyComponent/> 
               </Box>
+              <NeedHelpSmallComponent/>  
                   </TabPanel>
                   <TabPanel value={1} sx={{ p: 0 }}>
                     <Box className="box-contain">
@@ -805,8 +815,7 @@ zIndex:'5'
                                                 </Box>
                   </TabPanel>
                 </Tabs>
-              </Box>
-              <NeedHelp />      
+              </Box>    
               </Grid>
               <Grid className="grid-child-box" item md={5} sm={6} xs={12} xl={5}>
                  <Box className="sub-box-2">
@@ -888,6 +897,7 @@ zIndex:'5'
               </Grid>
               </Grid>
         </Box>
+        <NeedHelp/>
         <Box className="footer-box">
           <Footer />
         </Box>

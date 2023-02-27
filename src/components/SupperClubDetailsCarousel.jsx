@@ -1,4 +1,3 @@
-// import * as React from 'react';
 import React, { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -12,37 +11,52 @@ import { Rating } from '@mui/material';
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const images = [
     {
-        mainTitle: '"They are the only ones that do Private Dining Well"',
+        mainTitle: '"Mako and his eccentric Personality,',
+        subTitle:'lit up the room and our taste buds!"',
         details: "I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!",
         ceoName: "Arvind Mohan, CEO of Alpha",
     },
     {
-        mainTitle: '“They are the only ones that do Private Dining Well”',
+        mainTitle: '"Mako and his eccentric Personality,',
+        subTitle:'lit up the room and our taste buds!"',
         details: "I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!",
         ceoName: "Arvind Mohan, CEO of Alpha",
     },
     {
-        mainTitle: '“They are the only ones that do Private Dining Well”',
+        mainTitle: '"Mako and his eccentric Personality,',
+        subTitle:'lit up the room and our taste buds!"',
         details: "I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!",
         ceoName: "Arvind Mohan, CEO of Alpha",
     },
     {
-        mainTitle: '“They are the only ones that do Private Dining Well”',
+        mainTitle: '"Mako and his eccentric Personality,',
+        subTitle:'lit up the room and our taste buds!"',
+        details: "I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!",
+        ceoName: "Arvind Mohan, CEO of Alpha",
+    },
+    {
+        mainTitle: '"Mako and his eccentric Personality,',
+        subTitle:'lit up the room and our taste buds!"',
         details: "I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!",
         ceoName: "Arvind Mohan, CEO of Alpha",
     },
 ];
 const BoxWrapper = styled(Box)(() => ({
-    padding: '40px 37px',
+    padding: '80px 80px 40px',
+    background: "#FBFBFB",
     color: '#222222',
     ".mainTitle": {
         fontSize: "24px",
-        textAlign: "center"
+        lineHieght:'150%',
+        textAlign: "center",
+        fontFamily: 'Bon Vivant'
     },
     ".details": {
         textAlign: "center",
-        fontSize: "14px",
-        fontWeight: 400,
+        fontSize: "20px",
+        // fontWeight: 400,
+        lineHeight: '24px',
+        fontFamily:'Proxima Nova Alt'
     },
     ".star": {
         textAlign: "center",
@@ -52,13 +66,38 @@ const BoxWrapper = styled(Box)(() => ({
     ".ceoName": {
         textAlign: "center",
         fontSize: "14px",
-        fontWeight: 600,
-        padding: '30px 0px 24px 0px '
+        padding: '30px 0px 24px 0px ',
+        fontFamily: 'ProximaNovaA-Regular',
+        fonStyle: 'normal',
+        lineHeight: '150%',
+        textTransform: 'uppercase',
+        color: '#080B0E'
     },
+    '.css-114p2tk-MuiMobileStepper-dot':{
+        border:'1px solid black',
+        backgroundColor:'white'
+
+    },
+    '.css-26w9jf-MuiMobileStepper-dot':{
+        backgroundColor:'black',
+        width:'14px',
+        height:'14px'
+    },
+    "@media (min-width: 1px) and (max-width:768px)": {
+        '.css-26w9jf-MuiMobileStepper-dot':{
+            width:'8px',
+            height:'8px'
+        },
+        '.css-114p2tk-MuiMobileStepper-dot':{
+            width:'5px',
+            height:'5px'
+        }
+    }
+
 
 }))
 
-const DetailsCarousel = () => {
+const SupperClubDetailsCarousel = () => {
     const theme = useTheme();
     const [activeStep, setActiveStep] = useState(0);
     const [value, setValue] = useState(4);
@@ -92,6 +131,9 @@ const DetailsCarousel = () => {
                             <Typography className='mainTitle'>
                                 {step.mainTitle}
                             </Typography>
+                            <Typography className='mainTitle'>
+                                {step.subTitle}
+                            </Typography>
                             <Typography
                                 className='star'
                             >
@@ -105,6 +147,7 @@ const DetailsCarousel = () => {
                                     onChange={(newValue) => {
                                         setValue(newValue);
                                     }}
+                                    size="large"
                                 />
                             </Typography>
                             <Typography className='details'>
@@ -128,10 +171,11 @@ const DetailsCarousel = () => {
                     background: "#FBFBFB",
                     display: 'flex',
                     justifyContent: 'center',
+                    Color:'black'
                 }}
             />
         </BoxWrapper>
     );
 }
 
-export default DetailsCarousel;
+export default SupperClubDetailsCarousel;
