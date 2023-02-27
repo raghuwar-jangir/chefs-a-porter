@@ -22,11 +22,6 @@ import ReactReadMoreReadLess from "react-read-more-read-less";
 import chef1 from "../../assets/images/chef5.png";
 import chef2 from "../../assets/images/chef6.png";
 import sGallery from "../../assets/images/sc-gallery.png";
-import gallery4 from "../../assets/images/team.png";
-import gallery5 from "../../assets/images/about3.png";
-import gallery1 from "../../assets/images/gallery1.png";
-import gallery2 from "../../assets/images/gallery2.png";
-import gallery3 from "../../assets/images/gallery3.png";
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
 import {Form, Formik} from "formik";
@@ -592,13 +587,16 @@ const ChefDetails = (props) => {
                                             src={item.img}
                                             alt={item.title}
                                             loading="lazy"
-                                            onClick={() => {handleImageOpen(item.title)}}
+                                            onClick={() => {
+                                                handleImageOpen(item.title)
+                                            }}
                                         />
                                     </ImageListItem>
                                 ))}
                                 {showCarousel && (
                                     <Box className='carousel-popup'>
-                                        <button className='close-button' onClick={handleImageClose}>X</button>
+                                        <button className='close-button' onClick={handleImageClose}><CloseIcon/>
+                                        </button>
                                         <Box className='carousel'>
                                             <ImagePopCarousel title={title}/>
                                         </Box>

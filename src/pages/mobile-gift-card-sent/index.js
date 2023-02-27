@@ -121,6 +121,9 @@ const MobileGiftCardSent = () => {
             textDecorationLine: 'underline',
             color: '#080B0E',
         },
+        '.tell-us:hover': {
+            color: '#C6A87D !important'
+        },
         '.rec-name': {
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
@@ -172,6 +175,9 @@ const MobileGiftCardSent = () => {
             fontFamily: 'Proxima Nova',
             color: '#080B0E',
             textAlign: 'center'
+        },
+        '.need-help-link:hover': {
+            color: '#C6A87D !important'
         },
 
         '@media(min-width: 1px) and (max-width: 768px)': {
@@ -225,9 +231,6 @@ const MobileGiftCardSent = () => {
                                     <Typography className="occasion-heading">Happy Wedding</Typography>
                                     <Typography className="occasion-title-message">Wishing you the best of a lifetime of
                                         memories|</Typography>
-                                    {/*<input type="text" name="text" id="occasion-text1"*/}
-                                    {/*       placeholder="Wishing you the best of a lifetime of memories|"*/}
-                                    {/*       maxLength={70} />*/}
                                     <p className="char-count"><span id="rchars1">₹</span>2,500</p>
                                 </Box>
                             </Box>

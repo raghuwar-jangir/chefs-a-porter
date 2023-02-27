@@ -6,7 +6,7 @@ import {
     ImageList,
     ImageListItem,
     List,
-    ListItemIcon,
+    ListItemIcon, MenuItem, Select,
     Stack,
     TextField,
     Typography
@@ -38,6 +38,7 @@ import gallery2 from "../assets/images/gallery2.png";
 import gallery3 from "../assets/images/gallery3.png";
 import gallery4 from "../assets/images/team.png";
 import gallery5 from "../assets/images/about3.png";
+import homeBanner from "../assets/images/homebanner.png";
 import food1 from "../assets/images/food1.png";
 import food2 from "../assets/images/food2.png";
 import food3 from "../assets/images/food3.png";
@@ -49,7 +50,11 @@ import CorporateBooking from "../components/CorporateBooking";
 import PriveeComponentSlider from "../components/PriveeComponentSlider";
 import PriveeCarousel from "../components/PriveeCarousel";
 import TemplateYet from "../components/TemplateYet";
-import FoodCarousel from "../components/FoodCarousel";
+import joinChef from "../assets/images/joinchef-banner.png";
+import {Form, Formik} from "formik";
+import moment from "moment/moment";
+import * as _ from "lodash";
+import {DatePickerInput} from "rc-datepicker";
 
 
 const MainBoxContent = styled(Box)({
@@ -59,6 +64,146 @@ const MainBoxContent = styled(Box)({
 })
 
 const BoxWrapper = styled(Box)({
+    '.home-banner': {
+        marginTop: '80px',
+        backgroundImage: `url(${homeBanner})`,
+        backgroundSize: 'cover',
+        // padding: '50px 120px',
+        backgroundPosition: 'center',
+        height: '600px',
+        width: 'auto',
+    },
+    '.hotchef-title': {
+        fontFamily: 'Bon Vivant',
+        fontStyle: 'normal',
+        // fontWeight: '700',
+        fontSize: '32px',
+        lineHeight: '24px',
+        textAlign: 'center',
+        color: '#FBFBFB',
+        marginBottom: '30px'
+    },
+    '.home-banner .row': {
+        paddingTop: '320px',
+        margin: '0px',
+        // position: 'relative',
+    },
+    '.justify-content-center': {
+        display: 'flex',
+        justifyContent: 'center',
+    },
+    '.chef-container': {
+        width: '60%',
+        background: 'rgba(8, 11, 14, 0.8)',
+        alignItems: 'bottom'
+    },
+    '.pe-fo-exp': {
+        // position: 'relative',
+        width: 'auto',
+        bottom: '0px',
+        padding: '40px',
+    },
+    '.form-row': {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%'
+    },
+    '.form-group': {
+        width: '100%',
+        flex: '1',
+        border: '1px solid #FBFBFB',
+        padding: '14px',
+        height: '50px',
+    },
+    '.form-group:last-child': {
+        border: 'unset',
+        padding: '0px 16px',
+        height: '75px'
+    },
+    '.form-control': {
+        backgroundColor: 'transparent',
+        border: '0px',
+        borderRadius: '0px',
+        paddingLeft: '0px',
+        paddingRight: '0px',
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontWeight: '300',
+        fontSize: '16px',
+        lineHeight: '19px',
+        color: '#FBFBFB',
+        width: '100%'
+    },
+    '.label': {
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        fontSize: '16px',
+        lineHeight: '19px',
+        color: '#FBFBFB',
+        marginBottom: '8px',
+        display: 'block',
+    },
+    '.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon': {
+        color: '#FBFBFB'
+    },
+    '.react-datepicker-component .react-datepicker-input input': {
+        paddingLeft: '5px',
+        color: '#FBFBFB',
+    },
+    '.icon-rc-datepicker': {
+        color: '#FBFBFB !important',
+    },
+    '.react-datepicker-component .react-datepicker-input': {
+        background: 'transparent',
+        border: '0px',
+        borderRadius: '0px',
+    },
+    '.react-datepicker-component .react-datepicker-input:hover': {
+        background: 'transparent',
+        border: '0px',
+        borderRadius: '0px'
+    },
+    '.react-datepicker-component .react-datepicker-input.has-value input': {
+        color: '#FBFBFB !important',
+    },
+    '.react-datepicker-component .react-datepicker-input.is-open': {
+        background: 'transparent',
+        border: '0px',
+        borderRadius: '0px',
+    },
+    '.edit': {
+        display: 'none',
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontWeight: '250',
+        fontSize: '16px',
+        lineHeight: '19px',
+        color: '#C6A87D',
+        textAlign: 'right',
+        marginBottom: '12px',
+        textDecoration: 'none',
+    },
+    '.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
+        height: '10px',
+        padding: '5px',
+    },
+    '.hot-chef-search-btn': {
+        background: '#C6A87D',
+        border: '0px',
+        borderRadius: '0px',
+        height: '75px',
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontSize: '20px',
+        lineHeight: '24px',
+        color: '#080B0E',
+        display: 'block',
+        padding: '16px',
+        width: '100%',
+        cursor:'pointer'
+    },
     '.main-container': {
         position: 'relative'
     },
@@ -481,7 +626,7 @@ const BoxWrapper = styled(Box)({
         justifyContent: 'space-between',
         alignItems: 'center'
     },
-    '.up-super-club':{
+    '.up-super-club': {
         padding: '80px 120px',
         background: '#DCD7CB'
     },
@@ -613,6 +758,12 @@ const BoxWrapper = styled(Box)({
         '.supper-desktop': {
             padding: '40px'
         },
+        '.justify-content-center': {
+            display: 'none',
+        },
+        '.home-banner': {
+            marginTop: '0px'
+        }
     },
     '@media(min-width: 426px) and (max-width: 768px)': {
         '.treaty-card': {
@@ -652,12 +803,24 @@ const BoxWrapper = styled(Box)({
             paddingBottom: '10px'
         },
     },
+    '@media(min-width: 700px) and (max-width: 768px)': {
+        '.chef-container': {
+            width: 'auto',
+            background: 'rgba(8, 11, 14, 0.8)',
+            alignItems: 'bottom'
+        },
+    },
     '@media(min-width: 769px) and (max-width: 1024px)': {
         '.treat': {
             padding: '80px'
         },
         '.fresh-food-img': {
             width: 'unset',
+        },
+        '.chef-container': {
+            width: 'auto',
+            background: 'rgba(8, 11, 14, 0.8)',
+            alignItems: 'bottom'
         },
 
     },
@@ -734,7 +897,180 @@ const HomePage = () => {
                 </MobileView>
                 {/* //! Browser view for main-home screen */}
 
-                <FrontFood/>
+                <Box className="home-banner">
+                    <Box className="row justify-content-center">
+                        <Box className="chef-container">
+                            <Box className="pe-fo-exp">
+                                <Typography className="hotchef-title">The Hottest Chef’s Tables in Town.</Typography>
+                                <Formik
+                                    initialValues={{
+                                        city: 'Mumbai',
+                                        on: new Date(),
+                                        time: 'Lunch',
+                                        diners: '1'
+                                    }}
+                                    onSubmit={(values) => {
+                                        console.log(values.date)
+                                        const experienceData = {
+                                            ...values,
+                                            on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
+                                        }
+                                        console.log("value===>", values)
+                                        console.log("experienceData===>", experienceData)
+                                    }}
+                                >
+                                    {({values, handleChange, handleSubmit, setFieldValue}) => (
+                                        <Form onSubmit={handleSubmit}>
+                                            <Box className="form-row">
+                                                <Box className="form-group">
+                                                    <label className="label">Where</label>
+                                                    <Select
+                                                        labelId="demo-simple-select-label"
+                                                        id="demo-simple-select"
+                                                        name="city"
+                                                        value={values.city}
+                                                        onChange={handleChange}
+                                                        defaultValue={values.city}
+                                                        className="selectpicker my-select dropdown-toggle form-control"
+                                                        sx={{
+                                                            '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                border: 'none',
+                                                            },
+                                                        }}
+                                                        MenuProps={{
+                                                            PaperProps: {
+                                                                sx: {
+                                                                    background: "#080B0E",
+                                                                    color: '#FBFBFB',
+                                                                    'li:last-child': {
+                                                                        borderBottom: 'none'
+                                                                    },
+                                                                    'li:hover': {
+                                                                        color: '#C6A87D!important',
+                                                                        backgroundColor: '#DCD7CB !important'
+                                                                    },
+                                                                    "&& .Mui-selected": {
+                                                                        backgroundColor: "#0000FF !important"
+                                                                    }
+                                                                },
+                                                            },
+                                                        }}
+                                                    >
+                                                        <MenuItem value="Mumbai">Mumbai</MenuItem>
+                                                        <MenuItem value="Delhi">Delhi</MenuItem>
+                                                        <MenuItem value="Goa">Goa</MenuItem>
+                                                        <MenuItem value="Banglore">Banglore</MenuItem>
+                                                        <MenuItem value="Hydrabad">Hydrabad</MenuItem>
+                                                    </Select>
+                                                </Box>
+                                                <Box className="form-group">
+                                                    <label className="label">On</label>
+                                                    <DatePickerInput
+                                                        name="on"
+                                                        value={values.on}
+                                                        displayFormat="ddd,DD MMM"
+                                                        returnFormat="ddd,DD MMM"
+                                                        className="form-control"
+                                                        onChange={(dateString) => setFieldValue('on', dateString)}
+                                                        defaultValue={values.on}
+                                                    />
+                                                </Box>
+                                                <Box className="form-group">
+                                                    <label className="label">Time</label>
+                                                    <Select
+                                                        labelId="demo-simple-select-label"
+                                                        id="demo-simple-select"
+                                                        name="time"
+                                                        value={values.time}
+                                                        onChange={handleChange}
+                                                        defaultValue={values.time}
+                                                        className="selectpicker my-select dropdown-toggle form-control"
+                                                        sx={{
+                                                            '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                border: 'none',
+                                                            },
+                                                        }}
+                                                        MenuProps={{
+                                                            PaperProps: {
+                                                                sx: {
+                                                                    background: "#080B0E",
+                                                                    color: '#FBFBFB',
+                                                                    'li:last-child': {
+                                                                        borderBottom: 'none'
+                                                                    },
+                                                                    'li:hover': {
+                                                                        color: '#C6A87D!important',
+                                                                        backgroundColor: '#DCD7CB !important'
+                                                                    },
+                                                                    "&& .Mui-selected": {
+                                                                        backgroundColor: "#0000FF !important"
+                                                                    }
+                                                                },
+                                                            },
+                                                        }}
+                                                    >
+                                                        <MenuItem value="Lunch">Lunch</MenuItem>
+                                                        <MenuItem value="Dinner">Dinner</MenuItem>
+                                                        <MenuItem value="BreakFast">BreakFast</MenuItem>
+                                                    </Select>
+                                                </Box>
+                                                <Box className="form-group">
+                                                    <label className="label">Diners</label>
+                                                    <Select
+                                                        labelId="demo-simple-select-label"
+                                                        id="demo-simple-select"
+                                                        name="diners"
+                                                        value={values.diners}
+                                                        onChange={handleChange}
+                                                        defaultValue={values.diners}
+                                                        className="selectpicker my-select dropdown-toggle form-control"
+                                                        sx={{
+                                                            '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                border: 'none',
+                                                            },
+                                                        }}
+                                                        MenuProps={{
+                                                            PaperProps: {
+                                                                sx: {
+                                                                    background: "#080B0E",
+                                                                    color: '#FBFBFB',
+                                                                    'li:last-child': {
+                                                                        borderBottom: 'none'
+                                                                    },
+                                                                    'li:hover': {
+                                                                        color: '#C6A87D!important',
+                                                                        backgroundColor: '#DCD7CB !important'
+                                                                    },
+                                                                    "&& .Mui-selected": {
+                                                                        backgroundColor: "#0000FF !important"
+                                                                    }
+                                                                },
+                                                            },
+                                                        }}
+                                                    >
+                                                        <MenuItem value="1">1</MenuItem>
+                                                        <MenuItem value="2">2</MenuItem>
+                                                        <MenuItem value="3">3</MenuItem>
+
+                                                    </Select>
+                                                </Box>
+                                                <Box className="form-group">
+                                                    <Typography>
+                                                        <button type="submit" className="hot-chef-search-btn">Search
+                                                        </button>
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                        </Form>
+                                    )}
+                                </Formik>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Box>
                 <Box className="privee-desktop">
                     <Box className="row">
                         <Box className="privee-video">
@@ -769,7 +1105,7 @@ const HomePage = () => {
                     </Box>
                 </Box>
                 <PriveeMain title='Continue Browsing' subTitle='Chef s you ve checked out previously'/>
-               <MainFoodDetailng/>
+                <MainFoodDetailng/>
                 <PriveeCarousel/>
                 <RatingCarousel/>
                 <DiningPage image={diningPicture} title={'What we cook for'}/>
