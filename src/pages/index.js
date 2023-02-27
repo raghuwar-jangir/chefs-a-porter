@@ -55,6 +55,9 @@ import {Form, Formik} from "formik";
 import moment from "moment/moment";
 import * as _ from "lodash";
 import {DatePickerInput} from "rc-datepicker";
+import PriveeImg from "../assets/images/priveeImg.png";
+import SupperClubImg from "../assets/images/SupperClubImg.png";
+import ClubSection from "../components/ClubSection";
 
 
 const MainBoxContent = styled(Box)({
@@ -748,7 +751,8 @@ const BoxWrapper = styled(Box)({
             paddingLeft: '0px'
         },
         '.privee-desktop': {
-            padding: '40px'
+            // padding: '40px'
+            display:'none'
         },
         '.supper-details': {
             width: '100%',
@@ -756,7 +760,8 @@ const BoxWrapper = styled(Box)({
             paddingBottom: '10px'
         },
         '.supper-desktop': {
-            padding: '40px'
+            // padding: '40px'
+            display:'none'
         },
         '.justify-content-center': {
             display: 'none',
@@ -1071,6 +1076,7 @@ const HomePage = () => {
                         </Box>
                     </Box>
                 </Box>
+                <ClubSection/>
                 <Box className="privee-desktop">
                     <Box className="row">
                         <Box className="privee-video">
@@ -1101,7 +1107,6 @@ const HomePage = () => {
                                 <source src={supperVideo} type="video/mp4"/>
                             </video>
                         </Box>
-
                     </Box>
                 </Box>
                 <PriveeMain title='Continue Browsing' subTitle='Chef s you ve checked out previously'/>
