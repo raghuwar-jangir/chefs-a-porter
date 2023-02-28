@@ -40,6 +40,7 @@ import SuperClubPopCarousel from "../../components/SuperClubPopCarousel";
 import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
 import SupperClubTreatyComponent from "../../components/SupperClubTreatyComponent";
 import NeedHelpSmallComponent from "../../components/NeedHelpSmallComponent";
+import backgroungLogo from '../../assets/images/menuBackground.png'
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -315,6 +316,10 @@ const SupperClubChaefPage = () => {
       marginTop: "20px",
       boxShadow: "0px 16.3378px 20.4223px rgb(0 0 0 / 6%)",
       position: "relative",
+      backgroundImage:`url(${backgroungLogo})` ,
+      backgroundSize: '212.4px',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center'
     },
     ".box2": {
       padding: "40px 16px",
@@ -400,7 +405,6 @@ objectFit: 'contain',
     },
     '.child-container':{
         position:'relative',
-        paddingLeft:'18px'
     },
     '.show-btn':{
         position: 'absolute',
@@ -687,7 +691,7 @@ zIndex:'5'
                   </TabPanel>
                   <TabPanel value={1} sx={{ p: 0 }}>
                     <Box className="box-contain">
-                      <Box className="box1">
+                      <Box className="box1" style={{ backgroundImage:`url(${backgroungLogo})` }}>
                         <Box className="detail-box">
                           <Typography className="menu-title">
                             Course 1
