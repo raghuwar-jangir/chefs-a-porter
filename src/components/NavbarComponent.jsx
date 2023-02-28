@@ -55,6 +55,15 @@ const Navbar = ({isColor}) => {
                 color: `${isColor ? '#080B0E' : '#FBFBFB'}`,
                 paddingLeft: "16px"
             },
+            '.main-container': {
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: '10px 120px'
+            },
+            '.grid-box': {
+                width: '50%'
+            },
             '.browser-hamburger-menu': {
                 fontSize: '16px',
                 lineHeight: '19px',
@@ -156,6 +165,14 @@ const Navbar = ({isColor}) => {
                 '.header-search-box': {
                     display: 'none !important',
                 },
+                '.main-container': {
+                    padding: '10px 70px'
+                },
+            },
+            '@media(min-width: 1100px) and (max-width: 1450px)': {
+                '.grid-box': {
+                    width: '65%'
+                },
             }
         },
     )
@@ -231,17 +248,12 @@ const Navbar = ({isColor}) => {
                     <AppBar position="fixed" elevation={0}
                             sx={{background: `${isColor ? '#101418' : '#FBFBFB'}`}}
                     >
-                        <Box style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            padding: '10px 120px'
-                        }}>
+                        <Box className="main-container">
                             <Box style={{width: '20%'}}>
                                 <img src={isColor ? DarkThemeLogo : LightThemeIcon} alt='light-theme-logo'
                                      className='light-theme-logo dark-theme-logo'/>
                             </Box>
-                            <Box style={{width: '50%'}} className="grid-box">
+                            <Box className="grid-box">
                                 <Grid container direction={'row'} columnSpacing={1}
                                       className=''>
                                     <Grid className='browser-menu' item xs={8} md={8}>
