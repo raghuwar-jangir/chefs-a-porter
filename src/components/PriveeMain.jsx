@@ -1,41 +1,15 @@
-import React from 'react'
+import React, { useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation,Pagination } from "swiper";
 import { Box, Button, Grid, Hidden, styled, Typography } from '@mui/material';
-// import Privee from './Privee';
-import Carousel from 'react-elastic-carousel';
-// import Carousel from "react-multi-carousel";
-// import "react-multi-carousel/lib/styles.css";
 import chef from './../assets/images/chef1.png'
 import chef2 from './../assets/images/chef2.png'
 import chef3 from '../assets/images/chef3.png';
 import reebok from '../assets/images/rebook.png'
-import zIndex from '@mui/material/styles/zIndex';
-
 
 const MainParent = styled(Box)({
-    // '.slider-class':{
-    //     margin:'30px'
-    // },
-    // '.carousel-container':{
-    //     // display: 'block',
-    //     // width: '100%',
-    // // zIndex: '1',
-    // // position: 'relative',
-    // marginTop: '20px',
-    // // boxSizing:'border-box',
-    // width: '1255px'
-    // },
-    // '.test':{
-    //     width: '293.667px',
-    // marginRight: '20px',
-    // // position: 'relative',
-    // // display: 'block',
-    // width: '100%',
-    // height: '426px',
-    // Object: 'top'
-    // },
-    // // '.test': {
-    // //     paddingLeft:'2%'
-    // // },
     '.continue-browsing-box': {
         background: '#080B0E',
         padding: '80px 120px',
@@ -79,12 +53,6 @@ const MainParent = styled(Box)({
         position: 'relative',
         bottom: '29%'
     },
-    // '.continue-browsing-box MuiBox-root css-0':{
-    //     height:'auto'
-    // },
-    // '.lguFiu':{
-    //     height:'523.641px !important'
-    // },
     '.chef-title':{
         display: 'flex',
         placeContent: 'center',
@@ -98,97 +66,26 @@ const MainParent = styled(Box)({
         textAlign: 'center',
     fontSize: '16px',
     lineHeight: '19px',
-    // fontFamily: 'Proxima Nova Alt !important',
     fontFamily:'Proxima Nova Alt',
     fontStyle: 'normal',
     fontWeight: '250',
-    // fontSize: '12px',
-    // lineHeight: '15px',
     letterSpacing: '0.02em',
     color: 'rgba(198, 168, 125, 0.8)',
     position: 'relative',
     paddingTop: '6px',
-    // content: "|",
-    // position: 'relative',
-    // width: '1px',
-    // height: '100%',
-    // margin: '0 5px'
     },
     '.line':{
-        // content: "|",
     position: 'relative',
     width: '1px',
     height: '100%',
     margin: '0 5px'
     },
-    // ".css-0":{
-    //     height:'520px'
-    // },
     '.img-size':{
-        width:'490.667px'
+        width: '100%',
+    height: '426px',
+    objectFit: 'cover',
+    objectPosition: 'top'
     },
-    '.Slxdj':{
-            fontSize: '16px !important',
-            background: 'none !important'
-    },
-    '.kXteup':{
-        fontSize: '16px !important',
-        background: 'none !important'
-    },
-    '.rec.rec-arrow:disabled': {
-        visibility: 'hidden'
-    },
-    '.rec-arrow-right':{
-        position: 'relative',
-                right: '5%',
-                zIndex: '1',
-                fontSize: '16px',
-                background: 'none',
-                boxShadow: 'none',
-                color:'white'
-    },
-    '.rec-arrow-left':{
-        position: 'relative',
-        left: '5%',
-        zIndex: '1',
-        fontSize: '16px',
-        background: 'none',
-        boxShadow: 'none',
-        color:'white'
-    },
-    '.kXteup:hover:enabled, .kXteup:focus:enabled':{
-            color:'white',
-            boxShadow:'none'
-        },
-        '.css-1akftu3 .kXteup:hover:enabled, .css-1akftu3 .kXteup:focus:enabled': {
-            color: 'white'
-        },
-        // '.rebook':{
-        //     position: 'absolute',
-        //     background: '#101418',
-        //     display: 'flex',
-        //     placeContent: 'flex-end',
-        //     top: '11px',
-        //     width:'22%',
-        //     padding:'5px 24px'
-    //
-    //         fontFamily: 'Proxima Nova Alt',
-    // fontStyle: 'normal',
-    // fontWeight: '300',
-    // fontSize: '12px',
-    // lineHeight: '15px',
-    // textAlign: 'right',
-    // letterSpacing: '0.02em',
-    // color: '#C6A87D',
-    // position: 'absolute',
-    // top: '0px',
-    // width: '100%',
-    // background: '#101418',
-    // display: 'flex',
-    // placeContent: 'flex-end',
-    // padding: '2px 12px',
-    // left: '0px',
-        // },
         '.rebook-title':{
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
@@ -198,362 +95,87 @@ const MainParent = styled(Box)({
     textAlign: 'right',
     letterSpacing: '0.02em',
     color: '#C6A87D',
+    padding:'5px 20px 5px 0px'
         },
         '.rebook-img':{
             objectFit: 'contain',
             marginRight: '4px',
             width:'12px',
-            height:'16px'
+            height:'16px',
+            paddingTop:'5px'
         },
         '.rebook':{
             position: 'absolute',
             background: '#101418',
             display: 'flex',
             placeContent: 'flex-end',
-            top: '11px',
-            width:'22%',
-            padding:'5px 24px'
+            top: '0px',
+            width:'100%',
         },
-    '@media(min-width: 1px) and (max-width: 425px)': {
-        '.continue-browsing-box': {
-            background: '#080B0E',
-            padding: '40px 16px',
-            color: '#fff'
+        '.swiper-slide':{
+            width:'538.667px'
         },
-        '.main-heading': {
-            fontWeight: 700,
-            fontSize: '20px',
-            lineHeight: '25px',
+        '.swiper-button-prev':{
+           height:'17px !important'
         },
-        '.heading-details': {
-            fontWeight: 300,
-            fontSize: '14px',
-            lineHeight: '17px',
-            padding: '4px 0px 20px 0px'
-        },
-        '.view-more': {
-            width: '100%',
-            fontSize: '16px',
-            fontWeight: '600',
-        },
-        
-    },
-    '@media(min-width: 2400px) and (max-width: 2700px)': {
-        '.img-size':{
-            width:'662.667px'
-        },
-        '.name-box':{
-            bottom:'43%'
-        },
-        '.lguFiu':{
-                height:'523.641px !important'
+        '@media(min-width: 426px) and (max-width: 768px)': {
+            '.img-size':{
+                height:'234px'
             },
-            // '.chef-title':{
-            //     fontSize:'30px'
-            // },
-            // '.chef-details':{
-            //     fontSize:'21px'
-            // }
-    },
-    '@media(min-width: 2240px) and (max-width: 2400px)': {
-        '.img-size':{
-            width:'612.667px'
-        },
-        '.name-box':{
-            bottom:'40%'
-        },
-        '.lguFiu':{
-                height:'523.641px !important'
+            '.continue-browsing-box':{
+                padding:'80px 10px'
             },
-    },
-    '@media(min-width: 2160px) and (max-width: 2240px)': {
-        '.img-size':{
-            width:'586.667px'
-        },
-        '.name-box':{
-            bottom:'38%'
-        },
-        '.lguFiu':{
-                height:'523.641px !important'
+            ".main-heading":{
+                fontSize:'20px'
             },
-    },
-    '@media(min-width: 2000px) and (max-width: 2160px)': {
-        '.img-size':{
-            width:'534.667px'
-        },
-        '.name-box':{
-            bottom:'33%'
-        },
-        '.lguFiu':{
-                height:'523.641px !important'
+            '.heading-details':{
+                fontSize:'14px',
+                padding:'0px 0px 30px 0px'
             },
-    },
-    '@media(min-width: 1900px) and (max-width: 2000px)': {
-        '.img-size':{
-            width:'500.667px'
-        },
-        '.name-box':{
-            bottom:'29%'
-        },
-        '.lguFiu':{
-                height:'523.641px !important'
+            '.chef-title':{
+                placeContent:'flex-start',
+                fontSize:'14px',
+                marginBottom:'0px'
             },
-    },
-    '@media(min-width: 1650px) and (max-width: 1900px)': {
-        '.img-size':{
-            width:'423.667px'
-        },
-        '.name-box':{
-            bottom:'19%'
-        },
-        '.lguFiu':{
-                height:'523.641px !important'
+            '.chef-details ':{
+                textAlign:'start',
+                fontSize:'14px'
             },
-    },
-    '@media(min-width: 1570px) and (max-width: 1650px)': {
-        '.img-size':{
-            width:'389.667px'
+            '.name-box':{
+                padding:'16px 8px'
+            }
         },
-        '.name-box':{
-            bottom:'16%'
+        '@media(min-width: 1px) and (max-width: 425px)': {
+            '.img-size':{
+                height:'234px'
+            },
+            '.continue-browsing-box':{
+                padding:'80px 10px'
+            },
+            ".main-heading":{
+                fontSize:'20px'
+            },
+            '.heading-details':{
+                fontSize:'16px',
+                padding:'0px 0px 30px 0px'
+            },
+            '.chef-title':{
+                placeContent:'flex-center',
+                fontSize:'14px',
+                marginBottom:'0px'
+            },
+            '.chef-details ':{
+                textAlign:'center',
+                fontSize:'14px'
+            },
+            '.name-box':{
+                padding:'16px 8px'
+            }
         }
-    },
-    '@media(min-width: 1400px) and (max-width: 1570px)': {
-        '.img-size':{
-            width:'332.667px'
-        },
-        '.name-box':{
-            bottom:'11%'
-        }
-    },
-    '@media(min-width: 1280px) and (max-width: 1400px)': {
-        '.img-size':{
-            width:'295.667px'
-        },
-        '.name-box':{
-            bottom:'7%'
-        },
-    },
-    '@media(min-width: 1155px) and (max-width: 1280px)': {
-        '.img-size':{
-            width:'252.667px',objectFit: 'cover'
-        },
-        '.name-box':{
-            bottom:'6%'
-        },
-    },
-    '@media(min-width: 1085px) and (max-width: 1155px)': {
-        '.img-size':{
-            width:'232.667px',
-            objectFit: 'cover'
-        },
-        '.name-box':{
-            bottom:'5%',
-            padding:'11px 20px'
-        },
-    },
-    '@media(min-width: 1000px) and (max-width: 1085px)': {
-        '.img-size':{
-            width:'206.667px',
-            height:'406px',
-            objectFit: 'cover'
-        },
-        '.name-box':{
-            bottom:'5%',
-            padding:'11px 20px'
-        },
-        '.chef-title':{
-            fontSize:'15px'
-        },
-        '.chef-details':{
-            fontSize:'12px'
-        }
-    },
-    '@media(min-width: 922px) and (max-width: 1000px)': {
-        '.img-size':{
-            width:'297.667px',
-            // height:'372px',
-            objectFit: 'cover'
-        },
-        '.name-box':{
-            bottom:'17%',
-            padding:'11px 20px'
-        },
-        '.chef-title':{
-            fontSize:'15px'
-        },
-        '.chef-details':{
-            fontSize:'12px'
-        },
-        '.lguFiu':{
-            width:'1055px'
-        }
-    },
-    '@media(min-width: 800px) and (max-width: 922px)': {
-        '.img-size':{
-            width:'230.667px',
-            // height:'372px',
-            objectFit: 'cover'
-        },
-        '.name-box':{
-            bottom:'17%',
-            padding:'7px 20px'
-        },
-        '.chef-title':{
-            fontSize:'15px'
-        },
-        '.chef-details':{
-            fontSize:'12px'
-        },
-        '.lguFiu':{
-            width:'970px'
-        }
-    },
-    '@media(min-width: 727px) and (max-width: 800px)': {
-        '.img-size':{
-            width:'210.667px',
-            // height:'372px',
-            objectFit: 'cover'
-        },
-        '.name-box':{
-            bottom:'17%',
-            padding:'7px 20px'
-        },
-        '.chef-title':{
-            fontSize:'15px'
-        },
-        '.chef-details':{
-            fontSize:'12px'
-        },
-        '.lguFiu':{
-            width:'900px'
-        },
-        '.rebook':{
-            position: 'absolute',
-            background: '#101418',
-            display: 'flex',
-            placeContent: 'flex-end',
-            top: '11px',
-            width:'19%',
-            padding:'3px 6px'
-        },
-        '.rebook-title':{
-            fontFamily: 'Proxima Nova Alt',
-            fontStyle: 'normal',
-    fontWeight: '150',
-    fontSize: '12px',
-    lineHeight: '15px',
-    textAlign: 'right',
-    letterSpacing: '0.02em',
-    color: '#C6A87D',
-        },
-        '.rebook-img':{
-            objectFit: 'contain',
-            marginRight: '4px',
-            width:'10px',
-            height:'15px'
-        },
-    },
-    '@media(min-width: 600px) and (max-width: 727px)': {
-        '.img-size':{
-            width:'162.667px',
-            // height:'372px',
-            objectFit: 'cover'
-        },
-        '.name-box':{
-            bottom:'17%',
-            padding:'7px 20px'
-        },
-        '.chef-title':{
-            fontSize:'15px'
-        },
-        '.chef-details':{
-            fontSize:'12px'
-        },
-        '.lguFiu':{
-            width:'710px'
-        }
-    },
-    '@media(min-width: 500px) and (max-width: 600px)': {
-        '.img-size':{
-            width:'234.667px',
-            // height:'372px',
-            objectFit: 'cover'
-        },
-        '.name-box':{
-            bottom:'17%',
-            padding:'7px 20px'
-        },
-        '.chef-title':{
-            fontSize:'18px'
-        },
-        '.chef-details':{
-            fontSize:'14px'
-        },
-        '.lguFiu':{
-            width:'627px'
-        }
-    },
-    '@media(min-width: 320px) and (max-width: 500px)': {
-        '.img-size':{
-            width:'480.667px',
-            // height:'372px',
-            objectFit: 'cover'
-        },
-        '.name-box':{
-            bottom:'10%',
-            padding:'7px 20px'
-        },
-        '.chef-title':{
-            fontSize:'24px'
-        },
-        '.chef-details':{
-            fontSize:'22px'
-        },
-        '.lguFiu':{
-            width:'494px'
-        },
-        '.rebook':{
-            position: 'absolute',
-            background: '#101418',
-            display: 'flex',
-            placeContent: 'flex-end',
-            top: '11px',
-            width:'27%',
-            padding:'3px 13px'
-        },
-    },
-}
+},
 )
 
 const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
-    const breakPoints = [ 
-        {width:1,itemsToShow:1},
-        {width:500,itemsToShow:2},
-        {width:768,itemsToShow:3},
-        {width:1100,itemsToShow:3}
-      ]
-    // const responsive = {
-    //     superLargeDesktop: {
-    //       // the naming can be any, depends on you.
-    //       breakpoint: { max: 4000, min: 3000 },
-    //       items: 5
-    //     },
-    //     desktop: {
-    //       breakpoint: { max: 3000, min: 1024 },
-    //       items: 3,
-    //     //   slidesToSlide: 1
-    //     //   partialVisibilityGutter: 100
-    //     },
-    //     tablet: {
-    //       breakpoint: { max: 1024, min: 464 },
-    //       items: 2
-    //     },
-    //     mobile: {
-    //       breakpoint: { max: 464, min: 0 },
-    //       items: 1
-    //     }
-    //   };
     return (
         <React.Fragment>
             <MainParent>
@@ -564,32 +186,36 @@ const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
                     <Typography className='heading-details'>
                     Chef’s you’ve checked out previously
                      </Typography>
-                    {/* <Carousel responsive={responsive}
-                     partialVisible={true}
-                    //  centerMode={true}
-                    swipeable={false}
-                    draggable={false}
-                    // showDots={true}
-                    ssr={true} // means to render carousel on server-side.
-                    infinite={false}
-                    // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-                    autoPlaySpeed={1000}
-                    keyBoardControl={true}
-                    customTransition="all .5"
-                    transitionDuration={500}
-                    containerClass="carousel-container"
-                    removeArrowOnDeviceType={["tablet", "mobile"]}
-                    // deviceType={this.props.deviceType}
-                    dotListClass="custom-dot-list-style"
-                    sliderClass="slider-class"
-                    itemClass="test">         
-       <div><img src={chef}/></div>
-        <div><img src={chef2}/></div>
-        <div><img src={chef}/></div>
-        <div><img src={chef2}/></div> 
-    </Carousel>    */}
-<Carousel breakPoints={breakPoints} itemsToShow={3} itemsToScroll={1} itemPadding={[10,8 ]} pagination={false}>
-<Box><img className="img-size" src={chef}/>
+<Swiper
+        style={{
+            "--swiper-navigation-color": "white",
+            "--swiper-navigation-size": "17px",
+          }}
+        slidesPerView={3}
+        spaceBetween={20}
+        navigation={true} 
+        modules={[Navigation, Pagination]}
+        breakpoints={{
+            320:{
+                slidesPerView:2,
+                spaceBetween: 8,
+            },
+            375:{
+                slidesPerView:2,
+                spaceBetween: 8,
+            },
+            425: {
+                slidesPerView:2,
+                spaceBetween: 8,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 8,
+            },
+           
+          }}
+        className="mySwiper">
+<SwiperSlide><img className="img-size" src={chef}/>
 <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
 <Box className="chef-details">
 <span>Thai <span className='line'>|</span></span>
@@ -597,43 +223,28 @@ const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
 <span>Parsi</span>
 </Box>
 </Box>
-</Box>
-<Box>
-{/* <Box  className='reebok'>< img src={reebok}/><Typography className='reebok-title'>Reebok</Typography></Box> */}
+</SwiperSlide>
+<SwiperSlide>
     <img className="img-size" src={chef2}
     />
-<Box  className='rebook'><img className='rebook-img' src={reebok}/><Typography className='rebook-title'>Reebook</Typography></Box>
+<Box  className='rebook'><img className='rebook-img' src={reebok}/><Typography className='rebook-title'>Rebook</Typography></Box>
 <Box className="name-box"><Typography className='chef-title'>Kyoumars Freeman</Typography>
 <Box className="chef-details"><span>Persian</span></Box>
 </Box>
-</Box>
-<Box><img className="img-size" src={chef3}/>
+</SwiperSlide>
+<SwiperSlide><img className="img-size" src={chef3}/>
 <Box className="name-box"><Typography className='chef-title'>Mako Ravindran</Typography>
 <Box className="chef-details">
 <span>French <span className='line'>|</span></span>
 <span>Italian <span className='line'>|</span></span>
 <span>Indian </span></Box>
-</Box></Box>
-<Box><img className="img-size" src={chef2}/>
+</Box></SwiperSlide>
+<SwiperSlide><img className="img-size" src={chef2}/>
 <Box  className='rebook'><img className='rebook-img' src={reebok}/><Typography className='rebook-title'>Rebook</Typography></Box>
-<Box className="name-box"><Typography className='chef-title'>Mako Kyoumars Freeman</Typography>
+<Box className="name-box"><Typography className='chef-title'>Kyoumars Freeman</Typography>
 <Box className="chef-details"><span>Persian</span></Box>
-</Box></Box>
-</Carousel>      
-                    {/* <Grid container spacing={2}>
-                        <Grid item xl={3} md={3} sm={6} xs={6}>
-                            <Privee image={chef} />
-                        </Grid>
-                        <Grid item xl={3} md={3} sm={6} xs={6}>
-                            <Privee image={chef2} />
-                        </Grid>
-                        <Grid item xl={3} md={3} sm={6} xs={6}>
-                            <Privee image={chef} />
-                        </Grid>
-                        <Grid item xl={3} md={3} sm={6} xs={6}>
-                            <Privee image={chef2} />
-                        </Grid>
-                    </Grid> */}
+</Box></SwiperSlide>
+</Swiper>
                     {isButtonShow &&
                         <Box className='parent-view-button'>
                             <Button

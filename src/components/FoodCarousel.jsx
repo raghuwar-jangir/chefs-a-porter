@@ -1,14 +1,19 @@
-import React , { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation,Pagination } from "swiper";
 import { Box, Button, Grid, styled, Typography } from '@mui/material';
-import Carousel from 'react-elastic-carousel'
 import testImage from './../assets/images/testImage.png';
 import testImage2 from './../assets/images/testImage2.png';
 import cap from '../assets/images/chef-cap.png';
 import date from '../assets/images/date.png';
 import tag from '../assets/images/tag-chef.png';
+import trending from '../assets/images/trending.png'
 
 
 const MainParent = styled(Box)({
+    padding:'35px 120px 80px',
     '.parent-view-button': {
         textAlign: 'center',
         marginTop: '20px',
@@ -28,11 +33,11 @@ const MainParent = styled(Box)({
         paddingTop: "30px"
     },
     '.supper-info':{
-        padding: '8px 16px',
+        padding: '20px 16px 0px 16px',
         background: '#FFFFFF',
         boxShadow: '0px 16.3378px 20.4223px rgb(0 0 0 / 6%)',
         position: 'relative',
-        bottom: '23px'
+        bottom: '4px'
     },
     '.super-title':{
         fontFamily: 'Proxima Nova Alt Bold',
@@ -70,179 +75,138 @@ const MainParent = styled(Box)({
         lineHeight: '1.5',
         letterSpacing: '0.00938em',
     },
-    '.Slxdj':{
-        fontSize: '16px !important',
-        background: 'none !important',
+    '.swiper-slide':{
+        width:'395.25px'
     },
-    '.kXteup':{
-        fontSize: '16px !important',
-        background: 'none !important'
+    '.test-img':{
+        height:'284px',
+        width:'100%',
+        objectFit:'cover'
     },
-    '.rec.rec-arrow:disabled': {
-        visibility: 'hidden'
+    '.trending':{
+        position: 'absolute',
+        background: '#101418',
+        display: 'flex',
+        placeContent: 'flex-end',
+        top: '0px',
+        width:'100%',
     },
-    '.rec-arrow-right':{
-        position: 'relative',
-        right: '5%',
-        zIndex: '1',
-        fontSize: '16px',
-        background: 'none',
-        boxShadow: 'none',
-        color:'white'
+    '.trending-img':{
+        objectFit: 'contain',
+        marginRight: '4px',
+        width:'12px',
+        height:'16px',
+        paddingTop:'5px'
     },
-    '.rec-arrow-left':{
-        position: 'relative',
-        left: '5%',
-        zIndex: '1',
-        fontSize: '16px',
-        background: 'none',
-        boxShadow: 'none',
-        color:'white'
+    '.trending-title':{
+        fontFamily: 'Proxima Nova Alt',
+        fontStyle: 'normal',
+fontWeight: '150',
+fontSize: '16px',
+lineHeight: '19px',
+textAlign: 'right',
+letterSpacing: '0.02em',
+color: '#C6A87D',
+padding:'5px 20px 5px 0px'
     },
-    '.kXteup:hover:enabled, .kXteup:focus:enabled':{
-        color:'white',
-        boxShadow:'none'
+    '@media(min-width: 426px) and (max-width: 768px)': {
+        padding:'35px 10px 80px'
     },
-    '..css-1akftu3 .kXteup:hover:enabled, .css-1akftu3 .kXteup:focus:enabled': {
-        color: 'white'
-    },
-    '@media(min-width: 2500px) and (max-width: 2700px)':{
+    '@media(min-width: 374px) and (max-width: 425px)': {
+        padding:'35px 10px 80px 10px',
         '.test-img':{
-            height: '351px',
-            width: '525.25px',
-            objectFit:'cover'
-        }
-    },
-    '@media(min-width: 2370px) and (max-width: 2500px)':{
-        '.test-img':{
-            height: '351px',
-            width: '490.25px',
-            objectFit:'cover'
-        }
-    },
-    '@media(min-width: 2100px) and (max-width: 2370px)':{
-        '.test-img':{
-            height: '351px',
-            width: '425.25px',
-            objectFit:'cover'
-        }
-    },
-    '@media(min-width: 1620px) and (max-width: 1850px)':{
-        '.test-img':{
-            height: '351px',
-            width: '300.25px',
-            objectFit:'cover'
-        }
-    },
-    '@media(min-width: 1400px) and (max-width: 1620px)':{
-        '.test-img':{
-            height: '351px',
-            width: '251.25px',
-            objectFit:'cover'
-        }
-    },
-    '@media(min-width: 1265px) and (max-width: 1400px)':{
-        '.test-img':{
-            height: '435px',
-            width: '215.25px',
-            objectFit:'cover'
-        }
-    },
-    '@media(min-width: 1120px) and (max-width: 1265px)':{
-        '.test-img':{
-            height: '435px',
-            width: '179.25px',
-            objectFit:'cover'
+            height:'358px',
+            display:'block',
+            width:'100%'
         },
-        '.supper-info':{
-            padding:'16px 26px'
-        }
+        '.swiper':{
+            height:'1090px'
+        },
+        '.swiper-button-prev':{
+            display:'none'
+        },
+        '.swiper-button-next':{
+            display:'none'
+        },
+        '.swiper-slide':{
+            width:'405.25px'
+        },
     },
-    '@media(min-width: 1024px) and (max-width: 1120px)':{
-        '.test-img':{
-            height: '435px',
-            width: '156.25px',
-            objectFit:'cover'
+        '@media(min-width: 319px) and (max-width: 375px)': {
+            '.swiper-slide':{
+                width:'355.25px'
+            },
         },
-        '.supper-info':{
-            padding:'16px 16px'
-        }
-    },
-    '@media(min-width: 877px) and (max-width: 1024px)':{
-        '.test-img':{
-            height: '435px',
-            width: '200.25px',
-            objectFit:'cover'
-        },
-        '.lguFiu':{
-            width:'980px'
-        }
-    },
-    '@media(min-width: 730px) and (max-width: 877px)':{
-        '.test-img':{
-            height: '435px',
-            width: '202.25px',
-            objectFit:'cover'
-        },
-        '.lguFiu':{
-            width:'820px'
-        }
-    },
-    '@media(min-width: 550px) and (max-width: 730px)':{
-        '.test-img':{
-            height: '435px',
-            width: '505.25px',
-            objectFit:'cover'
-        },
-        '.lguFiu':{
-            width:'820px'
-        }
-    },
-    '@media(min-width: 320px) and (max-width: 550px)':{
-        '.test-img':{
-            height: '435px',
-            width: '310.25px',
-            objectFit:'cover'
-        },
-        '.lguFiu':{
-            width:'600px'
-        },
-        '.css-1fu7jd5-MuiButtonBase-root-MuiButton-root:focus':{
-            color:'#C6A87D !important'
-        },
-        '.view-more':{
-            // position:'absolute',
-            // top: '1090px',
-            // left:'0%',
-            border:'0.5px solid black',
-            width: '100%',
-            fontSize: '13px',
-            fontWeight: '200',
-            color:'white',
-            fontFamily: 'ProximaNovaA-Regular',
-            height:'65%',
-            background:'none'
-
-
-        },
-        '.css-1fu7jd5-MuiButtonBase-root-MuiButton-root:hover':{
-            background:'none '
-        }
+            '@media(min-width: 1px) and (max-width: 320px)': {
+                padding:'35px 10px 80px 10px',
+                '.swiper-slide':{
+                    width:'301.25px'
+                },
+                '.swiper':{
+                    height:'966px'
+                },
+                '.swiper-button-prev':{
+                    display:'none'
+                },
+                '.swiper-button-next':{
+                    display:'none'
+                },
     }
 })
 
 const FoodCarousel = (isButtonShow) =>{
-    const breakPoints = [
-        {width:1,itemsToShow:1,verticalMode:true,enableSwipe:false},
-        {width:500,itemsToShow:3},
-        {width:768,itemsToShow:4},
-        {width:1100,itemsToShow:4}
-    ]
     return (
         <React.Fragment>
             <MainParent>
-                <Carousel breakPoints={breakPoints} itemsToShow={1} itemsToScroll={1} itemPadding={[21, 30]} pagination={false}>
-                    <Box><img className='test-img' src={testImage}/>
+                <Swiper  style={{
+            "--swiper-navigation-color": "white",
+            "--swiper-navigation-size": "17px",
+          }}
+                slidesPerView={4}
+        spaceBetween={20}
+        navigation={true} 
+        modules={[Navigation, Pagination]}
+        breakpoints={{
+            320:{
+                slidesPerView:2,
+                spaceBetween: 0,
+                direction:"vertical",
+                navigation:'false'
+            },
+            375:{
+                slidesPerView:2,
+                spaceBetween: 0,
+                direction:"vertical",
+                navigation:'false'
+            },
+            425: {
+                slidesPerView:2,
+                spaceBetween: 0,
+                direction:"vertical",
+                navigation:'false'
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 8,
+            //   direction:'horizontal'
+            },
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 20,
+            },
+            1440: {
+                slidesPerView: 4,
+                spaceBetween: 20,
+            },
+            2560: {
+                slidesPerView: 4,
+                spaceBetween: 20,
+            },
+           
+          }}
+        className="mySwiper">
+                    <SwiperSlide><img className='test-img' src={testImage}/>
+                    <Box  className='trending'><img className='trending-img' src={trending}/><Typography className='trending-title'>Trending</Typography></Box>
                         <Box className='supper-info' >
                             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography>
                             <Box className='super-chef-details'>
@@ -251,8 +215,8 @@ const FoodCarousel = (isButtonShow) =>{
                                 <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography className='tag-detail'>₹2500/per diner</Typography></span>
                             </Box>
                         </Box>
-                    </Box>
-                    <Box><img className='test-img' src={testImage2}/>
+                    </SwiperSlide>
+                    <SwiperSlide><img className='test-img' src={testImage2}/>
                         <Box className='supper-info' >
                             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography>
                             <Box className='super-chef-details'>
@@ -260,8 +224,8 @@ const FoodCarousel = (isButtonShow) =>{
                                 <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
                                 <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography className='tag-detail'>₹2500/per diner</Typography></span>
                             </Box>
-                        </Box></Box>
-                    <Box><img className='test-img' src={testImage}/>
+                        </Box></SwiperSlide>
+                    <SwiperSlide><img className='test-img' src={testImage}/>
                         <Box className='supper-info' >
                             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography>
                             <Box className='super-chef-details'>
@@ -269,8 +233,9 @@ const FoodCarousel = (isButtonShow) =>{
                                 <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
                                 <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography className='tag-detail'>₹2500/per diner</Typography></span>
                             </Box>
-                        </Box></Box>
-                    <Box><img className='test-img' src={testImage2}/>
+                        </Box></SwiperSlide>
+                    <SwiperSlide><img className='test-img' src={testImage2}/>
+                    <Box  className='trending'><img className='trending-img' src={trending}/><Typography className='trending-title'>Trending</Typography></Box>
                         <Box className='supper-info' >
                             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography>
                             <Box className='super-chef-details'>
@@ -278,8 +243,8 @@ const FoodCarousel = (isButtonShow) =>{
                                 <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
                                 <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography className='tag-detail'>₹2500/per diner</Typography></span>
                             </Box>
-                        </Box></Box>
-                    <Box><img className='test-img' src={testImage2}/>
+                        </Box></SwiperSlide>
+                    <SwiperSlide><img className='test-img' src={testImage2}/>
                         <Box className='supper-info' >
                             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography>
                             <Box className='super-chef-details'>
@@ -287,8 +252,8 @@ const FoodCarousel = (isButtonShow) =>{
                                 <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
                                 <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography className='tag-detail'>₹2500/per diner</Typography></span>
                             </Box>
-                        </Box></Box>
-                </Carousel>
+                        </Box></SwiperSlide>
+                </Swiper>
             </MainParent>
         </React.Fragment >
     )

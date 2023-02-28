@@ -5,8 +5,9 @@ import FoodCarousel from "./FoodCarousel";
 
 
 const MainParent = styled(Box)({
+    backgroundColor: '#DCD7CB',
 '.parent-body': {
-    padding: '80px 120px',
+    padding: '80px 120px 0px 120px',
         backgroundColor: '#DCD7CB',
 },
 '.food-header': {
@@ -46,28 +47,56 @@ const MainParent = styled(Box)({
 },
 
 // ! media query for foodDetails card-component(Mobile-view)
-'@media(min-width: 380px)and (max-width: 425px)': {
+'@media(min-width: 425px)and (max-width: 768px)': {
+'.parent-body':{
+    padding:'36px 5px 0px 19px'
+}
+},
+'@media(min-width: 375px)and (max-width: 425px)': {
     '.view-button':{
         position:'absolute',
-            // top: '1090px',
-            // left:'0%',
             border:'1px solid black',
             width: '100%',
             fontSize: '13px',
             fontWeight: '200',
             fontFamily: 'ProximaNovaA-Regular',
-            top:'663px',
+            top:'1170px',
             right:'0px',
-        // height:'65%'
+            borderRadius:'1px'
     },
     '.css-10vjzfb-MuiButtonBase-root-MuiButton-root:hover ':{
         color:'#C6A87D !important'
     },
 
 },
+'@media(min-width: 320px)and (max-width: 375px)': {
+    '.view-button':{
+        position:'absolute',
+            border:'1px solid black',
+            width: '100%',
+            fontSize: '13px',
+            fontWeight: '200',
+            fontFamily: 'ProximaNovaA-Regular',
+            top:'1195px',
+            right:'0px',
+            borderRadius:'1px'
+    },},
+    '@media(min-width: 1px)and (max-width: 320px)': {
+        '.view-button':{
+            position:'absolute',
+                border:'1px solid black',
+                width: '100%',
+                fontSize: '13px',
+                fontWeight: '200',
+                fontFamily: 'ProximaNovaA-Regular',
+                top:'1068px',
+                right:'0px',
+                borderRadius:'1px'
+        },},
 '@media(min-width: 1px) and (max-width: 425px)': {
     '.parent-body': {
-        padding: '40px 16px',
+        padding: '58px 10px 0px 10px',
+            backgroundColor: '#DCD7CB',
     },
     '.food-header': {
         fontSize: '24px',
@@ -80,10 +109,8 @@ const MainParent = styled(Box)({
     '.view-button': {
         width: '100%',
             fontSize: '16px',
-        // fontWeight: '600'
     },
-
-}
+},
 
 })
 
@@ -111,7 +138,7 @@ const MainFoodDetailng = () => {
                         </Box>
                     </Box>
                     </Box>
-                    <FoodDetailing />
+                    {/* <FoodDetailing /> */}
                     <FoodCarousel/>
                 </Box>
             </MainParent>
