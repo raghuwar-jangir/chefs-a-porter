@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Divider, Stack, styled, Typography } from '@mui/material';
 import Rebook from './../assets/images/rebook.png'
-
+import { navigate } from "gatsby";
 
 const Privee = (props) => {
     const MainContentBox = styled(Box)({
@@ -91,14 +91,16 @@ const Privee = (props) => {
                 color: '#C6A87D',
             }
         }
-
     })
 
+    const handleClick = () =>{
+        navigate('/chef-details');
+    }
 
     return (
-        <React.Fragment >
+        <React.Fragment>
             {/* <div style={{ border: '2px solid green' }}> */}
-            <MainContentBox >
+            <MainContentBox onClick={handleClick}>
                 <img src={props.image} alt="saffImage" style={{ verticalAlign: 'top' }} width={'100%'} className='main-chaf-image' />
                 <Box className='saff-parent'>
                     <Typography className='saff-title'>
@@ -120,7 +122,7 @@ const Privee = (props) => {
                         </Box>
                     }
                 </Box>
-            </MainContentBox >
+            </MainContentBox>
             {/* </div> */}
         </React.Fragment >
     )

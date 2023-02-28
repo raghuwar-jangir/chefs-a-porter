@@ -16,6 +16,7 @@ import {isMobile} from "react-device-detect";
 import gallery from "../../assets/images/sc-gallery.png";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ImageCarousel from "../../components/ImageCarousel";
+import {Link} from "gatsby";
 
 const BecomePartner = () => {
 
@@ -399,7 +400,7 @@ const BecomePartner = () => {
                                 <Typography className="become-detail">Check out the benifits our patron
                                     recieve </Typography>
                             </Box>
-                            <Box><Typography style={{width:'100%'}}><a href="" className="apply">Apply</a></Typography></Box>
+                            <Box><Typography style={{width:'100%'}}><Link href="/become-patron" className="apply">Apply</Link></Typography></Box>
                         </Box>
                     </Box>
                 </Box>

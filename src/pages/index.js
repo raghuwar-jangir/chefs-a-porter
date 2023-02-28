@@ -22,7 +22,7 @@ import MainFoodDetailng from '../components/MainFoodDetailng';
 import NeedHelp from "../components/NeedHelp";
 import Navbar from "../components/NavbarComponent";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
-import {Link} from "gatsby";
+import {Link, navigate} from "gatsby";
 import LightThemeIcon from "../assets/images/lightThemeIcon.png";
 import JoinTableImg from "../assets/images/jointhetable.png";
 import priveeVideo from "../assets/video/privee.mp4";
@@ -888,6 +888,11 @@ const HomePage = () => {
             img: food3
         }
     ];
+
+    const handleClick = () =>{
+        navigate('/privee-viewmore');
+    }
+
     return (
         <React.Fragment>
             <Navbar/>
@@ -1064,7 +1069,7 @@ const HomePage = () => {
                                                 </Box>
                                                 <Box className="form-group">
                                                     <Typography>
-                                                        <button type="submit" className="hot-chef-search-btn">Search
+                                                        <button type="submit" className="hot-chef-search-btn" onClick={handleClick}>Search
                                                         </button>
                                                     </Typography>
                                                 </Box>
