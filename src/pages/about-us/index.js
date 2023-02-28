@@ -16,7 +16,6 @@ import logo3 from "../../assets/images/logo3.png"
 import logo4 from "../../assets/images/logo4.png"
 import IntroChefImg1 from "../../assets/images/IntroChefImg1.png"
 import IntroChefImg2 from "../../assets/images/introChefImg2.png"
-// import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import CommanTextCard from "../../components/CommanTextCard";
 import IntroCardComponent from "../../components/IntroCardComponent";
 import CommanCarousel from "../../components/CommanCarousel"
@@ -31,22 +30,6 @@ import LogoSwiper from "../../components/LogoSwiper";
 import InfiniteCarousel from 'react-leaf-carousel';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-// import InstagramAbout from '../../assets/images/Instagramabout.png';
-// import LinkedInAbout from '../../assets/images/LinkedInAbout.png';
-// import { fontWeight } from "@mui/system";
-// import InstagramIcon from '@mui/icons-material/Instagram';
-// import LinkedInIcon from '@mui/icons-material/LinkedIn';
-// import linkedInImg from "../../assets/images/instaImg.png"
-// import instaImg from "../../assets/images/linkedInImg.png"
-// import { border } from "@mui/system";
-// import MultiCarousel from 'react-multi-carousel';
-// import "react-multi-carousel/lib/styles.css";
-// import $ from 'jquery';
-// import 'owl.carousel/dist/owl.carousel.min.css';
-// import 'owl.carousel/dist/owl.carousel.min.js';
-// import { Carousel } from "react-responsive-carousel";
-// import "react-responsive-carousel/lib/styles/carousel.min.css";
-
 import {isMobile} from "react-device-detect";
 import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
@@ -73,33 +56,6 @@ const logoImg = [
     logo1,
     logo2,
 ]
-// const IntroCardDetails = [
-//     {
-//         title: "Chef Anou Boccasam",
-//         position: "Founder",
-//         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus a mauris lacinia, blandit quam nec, iaculis mi.Cras a est cursus, hendrerit ipsum a, sodales urna.Etiam posuere consectetur tortor ultrices feugiat.Suspendisse vel dui eget turpis rhoncus aliquet. Proin tempor tortor quis pellentesque finibus.Quisque felis urna, pulvinar ut.",
-//         img: IntroChefImg1
-//     },
-//     {
-//         title: "Chef Mako Ravindran",
-//         position: "Chief Chef Curating Officer",
-//         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus a mauris lacinia, blandit quam nec, iaculis mi.Cras a est cursus, hendrerit ipsum a, sodales urna.Etiam posuere consectetur tortor ultrices feugiat.Suspendisse vel dui eget turpis rhoncus aliquet. Proin tempor tortor quis pellentesque finibus.Quisque felis urna, pulvinar ut.",
-//         img: HotelImg1
-//     },
-//     {
-//         title: "Chef Anou Boccasam",
-//         position: "Founder",
-//         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus a mauris lacinia, blandit quam nec, iaculis mi.Cras a est cursus, hendrerit ipsum a, sodales urna.Etiam posuere consectetur tortor ultrices feugiat.Suspendisse vel dui eget turpis rhoncus aliquet. Proin tempor tortor quis pellentesque finibus.Quisque felis urna, pulvinar ut.",
-//         img: IntroChefImg1
-//     },
-//     {
-//         title: "Chef Mako Ravindran",
-//         position: "Chief Chef Curating Officer",
-//         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus a mauris lacinia, blandit quam nec, iaculis mi.Cras a est cursus, hendrerit ipsum a, sodales urna.Etiam posuere consectetur tortor ultrices feugiat.Suspendisse vel dui eget turpis rhoncus aliquet. Proin tempor tortor quis pellentesque finibus.Quisque felis urna, pulvinar ut.",
-//         img: HotelImg1
-//     },
-
-// ]
 const AboutCardComponet = (props) => {
     const responsive = {
         superLargeDesktop: {
@@ -195,13 +151,14 @@ const AboutCardComponet = (props) => {
     textAlign: 'center',
     color: '#FBFBFB',
     marginBottom: '30px',
-    width: '100%'
+    width: '100%',
+    whiteSpace:'normal'
         },
         ".InfiniteCarouselArrowNext": {
             left: "98% !important"
         },
         '.InfiniteCarouselArrowPrev': {
-            left: '-1%'
+            left: '0%'
         },
         '.InfiniteCarouselDots': {
             top:'99%'
@@ -256,14 +213,23 @@ const AboutCardComponet = (props) => {
         },
         ".btn": {
             background: "#C6A87D",
-            fontSize: "16px", fontSize: '24px', lineHeight: "29px",
-            width: '25%',
+            fontSize: "16px",
+             lineHeight: "19px",
+            // width: '25%',
             borderRadius: "0px",
             color: "#080B0E",
             textTransform: "capitalize",
-            height: "57px",
-            marginTop: "40px", paddingTop: "16px 10px"
-        }, ".btn:hover": { color: '#fff' },
+            // height: "57px",
+            marginTop: "40px", 
+            padding: "10px"
+        }, 
+        '.btn:active':{
+            backgroundColor:"#C6A87D",
+            color:'white'
+        },
+        '.btn:focus':{
+            color:'white'
+        },
         ".main-div-open-positions": {
             fontWeight: 700,
             fontSize: "24px",
@@ -397,7 +363,7 @@ const AboutCardComponet = (props) => {
             '.social-icon': {
                 display: 'flex',
                 alignItems: 'center',
-                placeContent: 'flex-end'
+                justifyContent:'center'
             },
             '.icon': {
                 display: 'flex',
@@ -408,9 +374,6 @@ const AboutCardComponet = (props) => {
                 borderRadius: '100%',
                 marginRight: ' 6px',
             },
-            // '.background':{
-            //     background: '#101418'
-            // }
             ".sub-box-2": {
                 padding: '40px 30px',
                 background: '#101418'
@@ -423,6 +386,11 @@ const AboutCardComponet = (props) => {
                 padding: '80px 30px 40px ',
                 background: '#101418'
             },
+            '.InfiniteCarouselScrollTrack':{
+                display:'flex !important',
+                flexDirection:'column !important',
+                height:'1013px !important'
+            }
         },
         "@media (min-width: 1px) and (max-width:325px)": {
         '.conscious-option': {
@@ -453,6 +421,11 @@ const AboutCardComponet = (props) => {
                 padding: '80px 70px 40px ',
                 background: '#101418'
             },
+        },
+        "@media (min-width: 768px) and (max-width:2560px)": {
+            '.btn':{
+                display:'none'
+            }
         }
 
     }))
@@ -583,13 +556,6 @@ const AboutCardComponet = (props) => {
                     </Box>
                     <Box className="sub-box-4">
                         <LogoSwiper />
-                        {/* <Box sx={{ display: 'flex', justifyContent: "space-around" }}>
-                            {logoImg.map((imgItem, index) => (
-                                <Box key={index} className="custom-log">
-                                    <img src={imgItem} alt="logo1" />
-                                </Box>
-                            ))}
-                        </Box> */}
                     </Box>
 
                     <Box sx={{ background: '#101418', padding: "40px 20px" }}>
@@ -610,8 +576,9 @@ const AboutCardComponet = (props) => {
       {
         breakpoint: 500,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 1,
+          slidesToScroll: 0,
+          dots:'false',
         },
       },
       {
@@ -629,7 +596,6 @@ const AboutCardComponet = (props) => {
     showSides={false}
     sidesOpacity={0.5}
     sideSize={0.1}
-    // slidesSpacing={10}
     slidesToScroll={1}
     slidesToShow={3}
     scrollOnDevice={true}
@@ -642,10 +608,6 @@ const AboutCardComponet = (props) => {
             <Typography className="title">Chef Anou Boccasam</Typography>
             <Typography className="position-title">Founder</Typography>
             <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-            {/* <CommanTextCard
-            mainTitle= "Chef Anou Boccasam"
-            details= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat."
-            colors="white"/> */}
               <Box className='social-icon'>
              <InstagramIcon className='icon'/>
              <LinkedInIcon className='icon'/>
@@ -659,11 +621,6 @@ const AboutCardComponet = (props) => {
             <Typography className="title">Chef Mako Ravindran</Typography>
             <Typography className="position-title">Chief Chef Curating Officer</Typography>
             <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-      {/* <CommanTextCard
-            mainTitle= "Chef Mako Ravindran"
-            subTitle= "Chief Chef Curating Officer"
-            details= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat."
-            colors="white"/> */}
            <Box className='social-icon'>
              <InstagramIcon className='icon'/>
              <LinkedInIcon className='icon'/>
@@ -677,11 +634,6 @@ const AboutCardComponet = (props) => {
             <Typography className="title">Chef Anou Boccasam</Typography>
             <Typography className="position-title">Founder</Typography>
             <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-      {/* <CommanTextCard
-            mainTitle= "Chef Anou Boccasam"
-            subTitle= "Founder"
-            details= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat."
-            colors="white"/> */}
             <Box className='social-icon'>
              <InstagramIcon className='icon'/>
              <LinkedInIcon className='icon'/>
@@ -695,12 +647,6 @@ const AboutCardComponet = (props) => {
             <Typography className="title">Chef Mako Ravindran</Typography>
             <Typography className="position-title">Chief Chef Curating Officer</Typography>
             <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-     {/* <CommanTextCard
-            mainTitle= "Chef Mako Ravindran"
-            subTitle= "Chief Chef Curating Officer"
-            details= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat."
-            colors="white"
-            /> */}
             <Box className='social-icon'>
              <InstagramIcon className='icon'/>
              <LinkedInIcon className='icon'/>
@@ -811,59 +757,17 @@ const AboutCardComponet = (props) => {
              </Box>
             </Box>
             </InfiniteCarousel>
-                    {/* <MultiCarousel
-      responsive={responsive}
-      ssr={true} // means to render carousel on server-side.
-      infinite={true}
-      autoPlay={false}
-    draggable={true}
-    swipeable={true}
-      autoPlaySpeed={1000}
-      keyBoardControl={true}
-      customTransition="all .5"
-      transitionDuration={500}
-      containerClass="carousel-container"
-      removeArrowOnDeviceType={["tablet", "mobile"]}
-      deviceType={props.deviceType}
-      dotListClass="custom-dot-list-style"
-      itemClass="carousel-item-padding-40-px"
-    >
-      <div>
-        <img src={IntroChefImg1} />
-      </div>
-      <div>
-        <img src={IntroChefImg1} />
-      </div>
-      <div>
-        <img src={IntroChefImg1} />
-      </div>
-      <div>
-        <img src={IntroChefImg1} />
-      </div>
-      <div>
-        <img src={IntroChefImg1} />
-      </div>
-    </MultiCarousel> */}
-                        {/* <Grid container spacing={2}>
-                            {IntroCardDetails.map((cardItem, index) => {
-                                return (
-                                    <Grid key={index} item xl={3} md={12} sm={6} xs={12}>
-                                        <IntroCardComponent title={cardItem.title} position={cardItem.position} details={cardItem.details} image={cardItem.img} />
-                                    </Grid>
-                                )
-                            })}
-                        </Grid> */}
-                        {/* <Box sx={{
+                    <Box sx={{
                             display: 'flex',
                             justifyContent: 'center'
-                        }}> */}
-                            {/* <Button
+                        }}>
+                            <Button
                                 type="submit"
                                 className="btn"
                             >
                                 View All Members
                             </Button>
-                        </Box> */}
+                        </Box>
                     </Box>
                     <Box className="open-positions-div">
                         <Typography className="main-div-open-positions">Open Positions</Typography>
