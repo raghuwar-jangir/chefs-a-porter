@@ -446,19 +446,19 @@ import {
     styled,
     Typography,
 } from "@mui/material";
-import { Swiper, SwiperSlide } from "swiper/react";
+import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
-import { Navigation } from "swiper";
-import React, {useState,useRef} from "react";
-import { useTheme } from "@mui/material/styles";
+import {Navigation} from "swiper";
+import React, {useState, useRef} from "react";
+import {useTheme} from "@mui/material/styles";
 import RestorentImg from "../../assets/images/RestorentImg.png";
 import RestorentImgMobile from "../../assets/images/RestorentImgMobile.png";
-import { isMobile, MobileView } from "react-device-detect";
+import {isMobile, MobileView} from "react-device-detect";
 import CardChefComponent from "../../components/CardChefComponent";
 import DiningPage from "../../components/DiningPage";
 import ChefCarousel from "../../components/ChefCarousel";
 import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
+import {autoPlay} from "react-swipeable-views-utils";
 import Footer from "../../components/Footer";
 import DetailsCarousel from "../../components/DetailsCarousel (1)";
 import Treaty from "../../components/Treaty";
@@ -470,7 +470,7 @@ import TabList from "@mui/joy/TabList";
 import Tab from "@mui/joy/Tab";
 import TabPanel from "@mui/joy/TabPanel";
 import GoogleMapReact from "google-map-react";
-import { Link } from "gatsby";
+import {Link} from "gatsby";
 import pLogo from '../../assets/images/valet.png';
 import ChefMakoCarousel from "../../components/ChefMakoCarousel";
 import Navbar from "../../components/NavbarComponent";
@@ -506,7 +506,7 @@ const SupperClubChaefPage = () => {
     const handleClose = () => {
         setShowCarousel(false);
     };
-    const AnyReactComponent = ({ text }) => <div>{text}</div>;
+    const AnyReactComponent = ({text}) => <div>{text}</div>;
     const defaultProps = {
         center: {
             lat: 10.99835602,
@@ -535,7 +535,7 @@ const SupperClubChaefPage = () => {
             width: "100%",
             height: "390px",
             display: "block",
-            objectFit:'cover',
+            objectFit: 'cover',
             boxShadow: '0px 8px 16px rgb(0 0 0 / 16%)',
             cursor: 'pointer'
 
@@ -544,13 +544,13 @@ const SupperClubChaefPage = () => {
             width: "100%",
             height: "165px",
             boxShadow: '0px 8px 16px rgb(0 0 0 / 16%)',
-            objectFit:'cover',
+            objectFit: 'cover',
         },
         ".main-img-2": {
             width: "100%",
             height: "205px",
             boxShadow: '0px 8px 16px rgb(0 0 0 / 16%)',
-            objectFit:'cover',
+            objectFit: 'cover',
         },
         ".sub-box": {
             padding: "40px 0px",
@@ -623,38 +623,38 @@ const SupperClubChaefPage = () => {
             color: "#000",
             marginRight: "8px",
             height: "50px",
-            display:'inline-grid',
-            textTransform:'lowercase',
-            width:'48%',
+            display: 'inline-grid',
+            textTransform: 'lowercase',
+            width: '48%',
             padding: '8px 4px'
         },
-        ".time-btn:focus":{
-            backgroundColor:'#FBFBFB',
+        ".time-btn:focus": {
+            backgroundColor: '#FBFBFB',
             color: "#000",
-            border:'0.5px solid #F8A039'
+            border: '0.5px solid #F8A039'
         },
-        ".time-btn:hover":{
-            backgroundColor:'#FBFBFB'
+        ".time-btn:hover": {
+            backgroundColor: '#FBFBFB'
         },
-        ".end-time-btn:hover":{
-            backgroundColor:'#FBFBFB'
+        ".end-time-btn:hover": {
+            backgroundColor: '#FBFBFB'
         },
         ".end-time-btn": {
             border: "0.5px solid #222222",
             borderRadius: "0px",
             color: "#000",
             height: "50px",
-            display:'inline-grid',
-            textTransform:'lowercase',
-            width:'48%',
+            display: 'inline-grid',
+            textTransform: 'lowercase',
+            width: '48%',
             padding: '8px 4px'
 
 
         },
-        ".end-time-btn:focus":{
-            backgroundColor:'#FBFBFB',
+        ".end-time-btn:focus": {
+            backgroundColor: '#FBFBFB',
             color: "#000",
-            border:'0.5px solid #F8A039'
+            border: '0.5px solid #F8A039'
         },
         ".next-grid": {
             display: "inline",
@@ -759,7 +759,7 @@ const SupperClubChaefPage = () => {
             marginTop: "20px",
             boxShadow: "0px 16.3378px 20.4223px rgb(0 0 0 / 6%)",
             position: "relative",
-            backgroundImage:`url(${backgroungLogo})` ,
+            backgroundImage: `url(${backgroungLogo})`,
             backgroundSize: '212.4px',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center'
@@ -818,38 +818,38 @@ const SupperClubChaefPage = () => {
             display: "block",
             marginLeft: "2%",
         },
-        ".map-link:hover":{
-            color:"#C6A87D"
+        ".map-link:hover": {
+            color: "#C6A87D"
         },
-        '.map-container':{
+        '.map-container': {
             backgroundColor: '#DCD7CB',
             paddingTop: '2%',
             marginTop: '2%'
         },
-        '.logo':{
+        '.logo': {
             width: '24px',
             height: '24px',
             objectFit: 'contain',
         },
-        '.valet':{
+        '.valet': {
             display: 'flex',
             alignItems: "center",
             paddingBottom: "8px",
-            marginLeft:'16px'
+            marginLeft: '16px'
         },
-        '.down-heading':{
-            fontFamily:'Bon Vivant',
+        '.down-heading': {
+            fontFamily: 'Bon Vivant',
             fontWeight: '100',
             fontSize: "20px",
             lineHeight: "24px",
-            marginLeft:'10px',
+            marginLeft: '10px',
             color: '#080B0E',
             textDecoration: "underline",
         },
-        '.child-container':{
-            position:'relative',
+        '.child-container': {
+            position: 'relative',
         },
-        '.show-btn':{
+        '.show-btn': {
             position: 'absolute',
             bottom: '45px',
             right: '3%',
@@ -858,29 +858,29 @@ const SupperClubChaefPage = () => {
             fontWeight: '100',
             fontSize: '14px',
             lineHeight: '19px',
-            color:'#080B0E',
+            color: '#080B0E',
             background: '#FBFBFB',
             boxShadow: '0px 20px 24px rgb(0 0 0 / 6%)',
-            borderRadius:'1px'
+            borderRadius: '1px'
         },
-        '.show-btn:hover':{
-            color:'#C6A87D',
-            backgroundColor:'#FBFBFB',
+        '.show-btn:hover': {
+            color: '#C6A87D',
+            backgroundColor: '#FBFBFB',
         },
-        '.show-btn:focus':{
-            backgroundColor:'#FBFBFB',
-            color:'#C6A87D'
+        '.show-btn:focus': {
+            backgroundColor: '#FBFBFB',
+            color: '#C6A87D'
         },
-        '.btn-detail':{
+        '.btn-detail': {
             lineHeight: '0.5',
             fontSize: '13px',
             textTransform: 'lowercase',
             fontFamily: 'ProximaNovaA-Regular',
         },
-        ".submit-request":{
-            color:'#FBFBFB',
-            backgroundColor:'#000',
-            width:'100%',
+        ".submit-request": {
+            color: '#FBFBFB',
+            backgroundColor: '#000',
+            width: '100%',
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '100',
@@ -888,18 +888,18 @@ const SupperClubChaefPage = () => {
             lineHeight: '19px',
             padding: '18.5px 10px',
             marginTop: '20px',
-            borderRadius:'0px',
-            textTransform:'math-auto'
+            borderRadius: '0px',
+            textTransform: 'math-auto'
         },
-        ".submit-request:hover":{
-            backgroundColor:'#000'
+        ".submit-request:hover": {
+            backgroundColor: '#000'
         },
-        '.time-btn-box':{
-            width:'57%'
+        '.time-btn-box': {
+            width: '57%'
         },
-        '.chef-carousel':{
-            borderLeft:'1px solid black',
-            borderRight:'1px solid black'
+        '.chef-carousel': {
+            borderLeft: '1px solid black',
+            borderRight: '1px solid black'
         },
         '.container': {
             position: 'relative'
@@ -914,7 +914,7 @@ const SupperClubChaefPage = () => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            zIndex:'5'
+            zIndex: '5'
         },
         '.close-button': {
             position: 'absolute',
@@ -925,32 +925,32 @@ const SupperClubChaefPage = () => {
             border: 'none',
             color: 'white',
             cursor: 'pointer',
-            zIndex:'10'
+            zIndex: '10'
         },
         '.swiper': {
-            width:'75%',
-            height:'100%'
+            width: '75%',
+            height: '100%'
         },
-        '.sub-div':{
-            background:'black'
+        '.sub-div': {
+            background: 'black'
         },
         "@media (min-width: 768px) and (max-width:1024px)": {
-            '.box1':{
-                width:'87%'
+            '.box1': {
+                width: '87%'
             },
-            '.box2':{
-                width:'87%'
+            '.box2': {
+                width: '87%'
             },
-            '.time-btn':{
-                marginRight:'5px',
-                fontSize:'13px',
-                padding:'0px 0px',
-                lineHeight:'15px',
+            '.time-btn': {
+                marginRight: '5px',
+                fontSize: '13px',
+                padding: '0px 0px',
+                lineHeight: '15px',
             },
-            '.end-time-btn':{
-                fontSize:'13px',
-                padding:'0px 0px',
-                lineHeight:'15px'
+            '.end-time-btn': {
+                fontSize: '13px',
+                padding: '0px 0px',
+                lineHeight: '15px'
             },
             '.time-btn-box': {
                 width: '52%'
@@ -959,16 +959,16 @@ const SupperClubChaefPage = () => {
         "@media (min-width: 1px) and (max-width:768px)": {
             ".css-1fh2pai-MuiGrid-root ": {
                 width: "100% !important",
-                maxWidth:'none'
+                maxWidth: 'none'
             },
-            ".grid-box-2":{
-                flexDirection:'column'
+            ".grid-box-2": {
+                flexDirection: 'column'
             },
-            '.grid-child-box':{
-                maxWidth:'100%'
+            '.grid-child-box': {
+                maxWidth: '100%'
             },
-            '.sub-box-2':{
-                marginTop:'0px'
+            '.sub-box-2': {
+                marginTop: '0px'
             }
         },
         "@media (min-width: 1px) and (max-width:425px)": {
@@ -982,11 +982,11 @@ const SupperClubChaefPage = () => {
             ".footer-box": {
                 display: "none",
             },
-            '.box1':{
-                width:'85%'
+            '.box1': {
+                width: '85%'
             },
-            '.box2':{
-                width:'84%'
+            '.box2': {
+                width: '84%'
             }
         },
     }));
@@ -1189,7 +1189,7 @@ const SupperClubChaefPage = () => {
             <BoxWrapper>
                 <Navbar/>
                 <Box className="main-box">
-                    <Grid container spacing={{ md: 2 }}>
+                    <Grid container spacing={{md: 2}}>
                         <Grid item xl={7} md={7} sm={6} xs={12}>
                             <Box className="container">
                                 <img
@@ -1243,13 +1243,13 @@ const SupperClubChaefPage = () => {
                                         className="main-img-2"
                                         onClick={handleImageClick}
                                     />
-                                    <Button className="show-btn" onClick={handleOpen} >Show All Photos</Button>
+                                    <Button className="show-btn" onClick={handleOpen}>Show All Photos</Button>
                                 </Grid>
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid className="grid-box-2" container spacing={{ md: 2 }}>
-                        <Grid  item xl={7} md={7} sm={6} xs={12}>
+                    <Grid className="grid-box-2" container spacing={{md: 2}}>
+                        <Grid item xl={7} md={7} sm={6} xs={12}>
                             <Box className="sub-box">
                                 <Typography className="sub-box-heading">
                                     The Big Fat Parsi Blowout
@@ -1266,7 +1266,7 @@ const SupperClubChaefPage = () => {
                                 <Stack
                                     className="date-stack"
                                     direction="row"
-                                    divider={<Divider orientation="vertical" flexItem />}
+                                    divider={<Divider orientation="vertical" flexItem/>}
                                     spacing={2}
                                 >
                                     <Typography className="date-description">April 9</Typography>
@@ -1288,14 +1288,14 @@ const SupperClubChaefPage = () => {
                                     background: "#FBFBFB",
                                 }}
                             >
-                                <Tabs defaultValue={0} sx={{ "--Tabs-gap": "0px" , backgroundColor:'#FBFBFB'}}>
-                                    <TabList >
+                                <Tabs defaultValue={0} sx={{"--Tabs-gap": "0px", backgroundColor: '#FBFBFB'}}>
+                                    <TabList>
                                         <Tab sx={{
                                             '&:focus': {
                                                 color: '#FBFBFB',
                                                 backgroundColor: '#101418',
                                             },
-                                        }} className="tab-box"  value={0}>
+                                        }} className="tab-box" value={0}>
                                             Chef
                                         </Tab>
                                         <Tab sx={{
@@ -1303,7 +1303,7 @@ const SupperClubChaefPage = () => {
                                                 color: '#FBFBFB',
                                                 backgroundColor: '#101418',
                                             },
-                                        }}className="tab-box" value={1}>
+                                        }} className="tab-box" value={1}>
                                             Menu
                                         </Tab>
                                         <Tab sx={{
@@ -1315,8 +1315,8 @@ const SupperClubChaefPage = () => {
                                             Venue
                                         </Tab>
                                     </TabList>
-                                    <TabPanel value={0} sx={{ p: 0 }}>
-                                        <CardChefComponent bgColor="#FBFBFB" />
+                                    <TabPanel value={0} sx={{p: 0}}>
+                                        <CardChefComponent bgColor="#FBFBFB"/>
                                         <Box className='chef-carousel'>
                                             <ChefMakoCarousel/>
                                             <ChefCarousel/>
@@ -1325,9 +1325,9 @@ const SupperClubChaefPage = () => {
                                         </Box>
                                         <NeedHelpSmallComponent/>
                                     </TabPanel>
-                                    <TabPanel value={1} sx={{ p: 0 }}>
+                                    <TabPanel value={1} sx={{p: 0}}>
                                         <Box className="box-contain">
-                                            <Box className="box1" style={{ backgroundImage:`url(${backgroungLogo})` }}>
+                                            <Box className="box1" style={{backgroundImage: `url(${backgroungLogo})`}}>
                                                 <Box className="detail-box">
                                                     <Typography className="menu-title">
                                                         Course 1
@@ -1423,9 +1423,9 @@ const SupperClubChaefPage = () => {
                                             </Box>
                                         </Box>
                                     </TabPanel>
-                                    <TabPanel value={2} sx={{ p: 0 }}>
+                                    <TabPanel value={2} sx={{p: 0}}>
                                         <Box className='map-container'>
-                                            <Box style={{backgroundColor:'#FBFBFB',paddingTop:'2%'}}>
+                                            <Box style={{backgroundColor: '#FBFBFB', paddingTop: '2%'}}>
                                                 <Box className="map-heading">Blue Cafe, Kamanahalli</Box>
                                                 <Link className="map-link">Get Directions</Link>
                                                 <Box
@@ -1436,7 +1436,7 @@ const SupperClubChaefPage = () => {
                                                     }}
                                                 >
                                                     <GoogleMapReact
-                                                        bootstrapURLKeys={{ key: "" }}
+                                                        bootstrapURLKeys={{key: ""}}
                                                         defaultCenter={defaultProps.center}
                                                         defaultZoom={defaultProps.zoom}
                                                     >
@@ -1479,7 +1479,7 @@ const SupperClubChaefPage = () => {
                                     </Typography>
                                 </Box>
                                 <Box className="date-time-box">
-                                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                                    <Box sx={{display: "flex", alignItems: "center"}}>
                                         <Typography className="main-date">12</Typography>
                                         <Box>
                                             <Typography className="date-month">November</Typography>
@@ -1487,12 +1487,13 @@ const SupperClubChaefPage = () => {
                                         </Box>
                                     </Box>
                                     <Box className='time-btn-box'>
-                                        <Button size="large"  className="time-btn">12:00 - 1:00pm<Typography className="btn-detail">filling fast</Typography></Button>
+                                        <Button size="large" className="time-btn">12:00 - 1:00pm<Typography
+                                            className="btn-detail">filling fast</Typography></Button>
                                         <Button size="large" className="end-time-btn">7:30 - 9:00pm</Button>
                                     </Box>
                                 </Box>
                                 <Box className="date-time-box">
-                                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                                    <Box sx={{display: "flex", alignItems: "center"}}>
                                         <Typography className="main-date">13</Typography>
                                         <Box>
                                             <Typography className="date-month">November</Typography>
@@ -1500,12 +1501,14 @@ const SupperClubChaefPage = () => {
                                         </Box>
                                     </Box>
                                     <Box className='time-btn-box'>
-                                        <Button size="large" style={{backgroundColor:'#BDBDBD',border:'#BDBDBD'}} disabled className="time-btn">12:00 - 1:00pm<Typography className="btn-detail">Sold Out</Typography></Button>
+                                        <Button size="large" style={{backgroundColor: '#BDBDBD', border: '#BDBDBD'}}
+                                                disabled className="time-btn">12:00 - 1:00pm<Typography
+                                            className="btn-detail">Sold Out</Typography></Button>
                                         <Button size="large" className="end-time-btn">7:30 - 9:00pm</Button>
                                     </Box>
                                 </Box>
                                 <Box className="date-time-box">
-                                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                                    <Box sx={{display: "flex", alignItems: "center"}}>
                                         <Typography className="main-date">14</Typography>
                                         <Box>
                                             <Typography className="date-month">November</Typography>
@@ -1518,7 +1521,7 @@ const SupperClubChaefPage = () => {
                                     </Box>
                                 </Box>
                                 <Box className="date-time-box">
-                                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                                    <Box sx={{display: "flex", alignItems: "center"}}>
                                         <Typography className="main-date">15</Typography>
                                         <Box>
                                             <Typography className="date-month">November</Typography>
@@ -1527,7 +1530,8 @@ const SupperClubChaefPage = () => {
                                     </Box>
                                     <Box className='time-btn-box'>
                                         <Button size="large" className="time-btn">12:00 - 1:00pm</Button>
-                                        <Button size="large" className="end-time-btn">7:30 - 9:00pm<Typography className="btn-detail">filling fast</Typography></Button>
+                                        <Button size="large" className="end-time-btn">7:30 - 9:00pm<Typography
+                                            className="btn-detail">filling fast</Typography></Button>
                                     </Box>
                                 </Box>
                                 <Button type='submit' className="submit-request">Submit Request</Button>
@@ -1591,7 +1595,7 @@ const SupperClubChaefPage = () => {
                     </Box>
                 </Modal>
                 <Box className="footer-box">
-                    <Footer />
+                    <Footer/>
                 </Box>
             </BoxWrapper>
         </React.Fragment>
