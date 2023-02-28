@@ -66,7 +66,7 @@ const Navbar = ({isColor}) => {
             },
             '.browser-hamburger-menu.active:after': {
                 content: `''`,
-                background: `${isColor ? '#FBFBFB' : '#080B0E'}`,
+                background: `${isColor ? '#C6A87D' : '#080B0E'}`,
                 width: '70px',
                 height: '2px',
                 display: 'block',

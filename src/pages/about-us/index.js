@@ -143,7 +143,7 @@ const AboutCardComponet = (props) => {
             textTransform: "capitalize",
             height: "57px",
             marginTop: "40px", paddingTop: "16px 10px"
-        }, ".btn:hover": { color: '#fff' },
+        }, ".btn:hover": {color: '#fff'},
 
         ".some-text": {
             // fontWeight: 600,
@@ -205,7 +205,7 @@ const AboutCardComponet = (props) => {
                 width: '100%'
             },
             ".lastBox": {
-                display:'flex',
+                display: 'flex',
                 padding: '40px 16px'
             },
             ".some-text": {
@@ -215,7 +215,7 @@ const AboutCardComponet = (props) => {
                 fontSize: "14px",
             },
             ".btn-get-in-touch": {
-                fontSize:'12px',
+                fontSize: '12px',
                 width: '50%',
                 alignItems: 'center'
             }, '.conscious-option': {
@@ -235,7 +235,7 @@ const AboutCardComponet = (props) => {
             },
         },
         "@media (min-width: 1px) and (max-width:325px)": {
-        '.conscious-option': {
+            '.conscious-option': {
                 padding: '20px',
             },
         },
@@ -405,10 +405,6 @@ const AboutCardComponet = (props) => {
                                 margin: "40px 0px"
                             }}
                         />
-
-                        {/*<Box sx={{paddingTop: "40px"}}>*/}
-                        {/*    <CommanCarousel/>*/}
-                        {/*</Box>*/}
                     </Box>
 
                     <Box sx={{background: "#080B0E", padding: "40px 16px"}}>
@@ -440,14 +436,15 @@ const AboutCardComponet = (props) => {
                 <Box className="lastBox">
                     <Box>
                         <Typography className="some-text">Don’t see an open role for you</Typography>
-                        <Typography className="some-details">We’re always on the look out for top talent to join us.</Typography>
+                        <Typography className="some-details">We’re always on the look out for top talent to join
+                            us.</Typography>
                     </Box>
                     <Button className="btn-get-in-touch">
                         Get in touch
                     </Button>
                 </Box>
                 <Footer/>
-              <FooterEnd/>
+                <FooterEnd/>
             </BoxWrapper>
 
         </React.Fragment>
