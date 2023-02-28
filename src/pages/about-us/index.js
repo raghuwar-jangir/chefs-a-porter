@@ -30,6 +30,7 @@ import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import OpenPosition from "../../components/OpenPositionComponent";
+import TeamCarousel from "../../components/TeamCarousel";
 
 
 const itemData = [
@@ -406,30 +407,7 @@ const AboutCardComponet = (props) => {
                             }}
                         />
                     </Box>
-
-                    <Box sx={{background: "#080B0E", padding: "40px 16px"}}>
-                        <Grid container spacing={2}>
-                            {IntroCardDetails.map((cardItem, index) => {
-                                return (
-                                    <Grid key={index} item xl={3} md={12} sm={6} xs={12}>
-                                        <IntroCardComponent title={cardItem.title} position={cardItem.position}
-                                                            details={cardItem.details} image={cardItem.img}/>
-                                    </Grid>
-                                )
-                            })}
-                        </Grid>
-                        <Box sx={{
-                            display: 'flex',
-                            justifyContent: 'center'
-                        }}>
-                            <Button
-                                type="submit"
-                                className="btn"
-                            >
-                                View All Members
-                            </Button>
-                        </Box>
-                    </Box>
+                    <TeamCarousel/>
                 </Box>
                 <NeedHelp/>
                 <OpenPosition/>
