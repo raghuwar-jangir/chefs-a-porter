@@ -50,7 +50,7 @@ const  ExperienceCarousel = () => {
                     <Swiper
                         slidesPerView={'auto'}
                         spaceBetween={8}
-                        centeredSlides={true}
+                        centeredSlides={false}
                         className="mySwiper"
                         grabCursor={true}
                     >
