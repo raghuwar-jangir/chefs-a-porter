@@ -11,23 +11,23 @@ const MainParent = styled(Box)({
         backgroundColor: '#DCD7CB',
 },
 '.food-header': {
-    fontSize: '32px',
+    fontSize: '24px',
         lineHeight: '24px',
-        fontWeight: '700',
         color: '#050405',
         padding: '0px 5px',
-        fontFamily: 'Bon Vivant'
+        fontFamily: 'Bon Vivant',
+        letterSpacing:'0.06em'
 },
 '.sub-description': {
     fontSize: '20px',
-        lineHeight: '28px',
-        fontWeight: '400',
+        lineHeight: '24px',
+        letterSpacing:'0.01em',
         color: '#434343',
         padding: '16px 5px 0px 5px'
 
 },
 '.button-component': {
-    textAlign: 'center',
+    marginRight:'-3%'
 },
 '.view-button': {
     textTransform: 'capitalize',
@@ -50,6 +50,10 @@ const MainParent = styled(Box)({
 '@media(min-width: 425px)and (max-width: 768px)': {
 '.parent-body':{
     padding:'36px 5px 0px 19px'
+},
+'.sub-description': {
+    fontSize: '14px',
+        lineHeight: '141.5%',
 }
 },
 '@media(min-width: 375px)and (max-width: 425px)': {
@@ -77,7 +81,7 @@ const MainParent = styled(Box)({
             fontSize: '13px',
             fontWeight: '200',
             fontFamily: 'ProximaNovaA-Regular',
-            top:'1195px',
+            top:'1174px',
             right:'0px',
             borderRadius:'1px'
     },},
@@ -89,7 +93,7 @@ const MainParent = styled(Box)({
                 fontSize: '13px',
                 fontWeight: '200',
                 fontFamily: 'ProximaNovaA-Regular',
-                top:'1068px',
+                top:'1200px',
                 right:'0px',
                 borderRadius:'1px'
         },},
@@ -100,6 +104,8 @@ const MainParent = styled(Box)({
     },
     '.food-header': {
         fontSize: '24px',
+        lineHeight:'24px',
+        marginBottom:'0.5rem'
     },
     '.sub-description': {
         fontSize: '14px',
@@ -109,6 +115,7 @@ const MainParent = styled(Box)({
     '.view-button': {
         width: '100%',
             fontSize: '16px',
+            padding:'10px'
     },
 },
 

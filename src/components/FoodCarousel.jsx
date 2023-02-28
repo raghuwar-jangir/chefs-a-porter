@@ -33,7 +33,7 @@ const MainParent = styled(Box)({
         paddingTop: "30px"
     },
     '.supper-info':{
-        padding: '20px 16px 0px 16px',
+        padding: '20px 16px 10px 16px',
         background: '#FFFFFF',
         boxShadow: '0px 16.3378px 20.4223px rgb(0 0 0 / 6%)',
         position: 'relative',
@@ -71,8 +71,8 @@ const MainParent = styled(Box)({
         margin: '0',
         fontFamily: "Roboto , Helvetica , Arial , sans-serif",
         fontWeight: '400',
-        fontSize: '1rem',
-        lineHeight: '1.5',
+        fontSize: '16px',
+        lineHeight: '19px',
         letterSpacing: '0.00938em',
     },
     '.swiper-slide':{
@@ -110,7 +110,16 @@ color: '#C6A87D',
 padding:'5px 20px 5px 0px'
     },
     '@media(min-width: 426px) and (max-width: 768px)': {
-        padding:'35px 10px 80px'
+        padding: '58px 10px 40px 10px',
+        '.test-img':{
+            height:'358px'
+        },
+        '.trending':{
+            display:'none'
+        },
+        '.tag-detail':{
+            fontSize:'15px'
+        }
     },
     '@media(min-width: 374px) and (max-width: 425px)': {
         padding:'35px 10px 80px 10px',
@@ -131,11 +140,17 @@ padding:'5px 20px 5px 0px'
         '.swiper-slide':{
             width:'405.25px'
         },
+        '.trending':{
+            display:'none'
+        }
     },
         '@media(min-width: 319px) and (max-width: 375px)': {
             '.swiper-slide':{
                 width:'355.25px'
             },
+            '.trending':{
+                display:'none'
+            }
         },
             '@media(min-width: 1px) and (max-width: 320px)': {
                 padding:'35px 10px 80px 10px',
@@ -143,7 +158,7 @@ padding:'5px 20px 5px 0px'
                     width:'301.25px'
                 },
                 '.swiper':{
-                    height:'966px'
+                    height:'1100px'
                 },
                 '.swiper-button-prev':{
                     display:'none'
@@ -151,6 +166,12 @@ padding:'5px 20px 5px 0px'
                 '.swiper-button-next':{
                     display:'none'
                 },
+                '.trending':{
+                    display:'none'
+                },
+                '.test-img':{
+                    height:'358px'
+                }
     }
 })
 
