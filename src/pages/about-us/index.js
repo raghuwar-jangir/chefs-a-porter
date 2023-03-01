@@ -17,21 +17,18 @@ import logo3 from "../../assets/images/logo3.png"
 import logo4 from "../../assets/images/logo4.png"
 import IntroChefImg1 from "../../assets/images/IntroChefImg1.png"
 import CommanTextCard from "../../components/CommanTextCard";
-import IntroCardComponent from "../../components/IntroCardComponent";
 import sustainable from "../../assets/images/sustainable-energy.png"
 import weather from "../../assets/images/weather-app.png"
 import recycling from "../../assets/images/recycling-bin.png"
 import Footer from "../../components/Footer";
-import {Link} from "gatsby";
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import {isMobile} from "react-device-detect";
 import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import OpenPosition from "../../components/OpenPositionComponent";
-import TeamCarousel from "../../components/TeamCarousel";
-
+const ClientSideOnlyLazy = React.lazy(() =>
+    import("../../components/TeamCarousel")
+)
 
 const itemData = [
     HotelImg1,
@@ -78,7 +75,10 @@ const IntroCardDetails = [
     },
 
 ]
-const AboutCardComponet = (props) => {
+const AboutCardComponent = (props) => {
+
+    const isSSR = typeof window === "undefined"
+
     const BoxWrapper = styled(Box)(() => ({
         ".main-box": {
             padding: '130px 160px 40px'
@@ -137,7 +137,7 @@ const AboutCardComponet = (props) => {
         },
         ".btn": {
             background: "#C6A87D",
-            fontSize: "16px", fontSize: '24px', lineHeight: "29px",
+            fontSize: '24px', lineHeight: "29px",
             width: '25%',
             borderRadius: "0px",
             color: "#080B0E",
@@ -407,7 +407,12 @@ const AboutCardComponet = (props) => {
                             }}
                         />
                     </Box>
-                    <TeamCarousel/>
+                    {!isSSR && (
+                        <React.Suspense fallback={<div/>}>
+                            <ClientSideOnlyLazy />
+                        </React.Suspense>
+                    )}
+
                 </Box>
                 <NeedHelp/>
                 <OpenPosition/>
@@ -428,4 +433,4 @@ const AboutCardComponet = (props) => {
         </React.Fragment>
     )
 }
-export default AboutCardComponet
+export default AboutCardComponent
