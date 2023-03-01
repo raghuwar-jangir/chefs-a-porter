@@ -8,10 +8,6 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const TeamCarousel = (props) => {
 
-    // if (typeof window !== 'undefined') {
-    //     f=h(function(){return/msie [6-9]\b/.test(self.navigator.userAgent.toLowerCase())})
-    // }
-
     const BoxWrapper = styled(Box)(() => ({
         ".title":{
             fontFamily: 'Bon Vivant',
