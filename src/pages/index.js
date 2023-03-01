@@ -149,7 +149,8 @@ const BoxWrapper = styled(Box)({
         display: 'block',
     },
     '.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon': {
-        color: '#FBFBFB !important'
+        color: '#FBFBFB !important',
+        right:'-10px'
     },
     '.react-datepicker-component .react-datepicker-input input': {
         paddingLeft: '5px',
@@ -196,7 +197,7 @@ const BoxWrapper = styled(Box)({
     },
    '.MuiSelect-select':{
        padding: '5px !important',
-       fontSize:'20px',
+       fontSize:'17px',
    },
     '.hot-chef-search-btn': {
         background: '#C6A87D',
@@ -830,8 +831,6 @@ const BoxWrapper = styled(Box)({
         },
         '.chef-container': {
             width: 'auto',
-            background: 'rgba(8, 11, 14, 0.8)',
-            alignItems: 'bottom'
         },
 
     },
@@ -840,6 +839,9 @@ const BoxWrapper = styled(Box)({
             height: '500px',
             objectFit: 'cover',
             width: '600px !important'
+        },
+        '.chef-container': {
+            width: 'auto',
         },
     },
     '.join-table-title': {
