@@ -84,10 +84,10 @@ const BoxWrapper = styled(Box)({
         lineHeight: '24px',
         textAlign: 'center',
         color: '#FBFBFB',
-        marginBottom: '30px'
+        marginBottom: '40px'
     },
     '.home-banner .row': {
-        paddingTop: '320px',
+        paddingTop: '330px',
         margin: '0px',
         // position: 'relative',
     },
@@ -96,7 +96,7 @@ const BoxWrapper = styled(Box)({
         justifyContent: 'center',
     },
     '.chef-container': {
-        width: '60%',
+        width: '52%',
         background: 'rgba(8, 11, 14, 0.8)',
         alignItems: 'bottom'
     },
@@ -149,11 +149,12 @@ const BoxWrapper = styled(Box)({
         display: 'block',
     },
     '.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon': {
-        color: '#FBFBFB'
+        color: '#FBFBFB !important'
     },
     '.react-datepicker-component .react-datepicker-input input': {
         paddingLeft: '5px',
         color: '#FBFBFB',
+        fontSize:'17px !important'
     },
     '.icon-rc-datepicker': {
         color: '#FBFBFB !important',
@@ -162,6 +163,7 @@ const BoxWrapper = styled(Box)({
         background: 'transparent',
         border: '0px',
         borderRadius: '0px',
+        height:'30px !important'
     },
     '.react-datepicker-component .react-datepicker-input:hover': {
         background: 'transparent',
@@ -194,6 +196,7 @@ const BoxWrapper = styled(Box)({
     },
    '.MuiSelect-select':{
        padding: '5px !important',
+       fontSize:'20px',
    },
     '.hot-chef-search-btn': {
         background: '#C6A87D',
@@ -207,7 +210,7 @@ const BoxWrapper = styled(Box)({
         color: '#080B0E',
         display: 'block',
         padding: '16px',
-        width: '100%',
+        width: '148px',
         cursor:'pointer'
     },
     '.main-container': {
