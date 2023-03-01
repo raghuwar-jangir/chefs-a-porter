@@ -78,7 +78,7 @@ const RatingCarousel = ({ backgroundColor }) => {
             textTransform:'uppercase'
         },
         '.rating-star': {
-            color: '#222222 !important',
+            color: '#222222 !important ',
             borderColor: '#222222 !important'
         },
         '.css-26w9jf-MuiMobileStepper-dot':{
