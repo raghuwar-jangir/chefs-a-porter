@@ -9,7 +9,8 @@ import {Collapse, Grid, TextField, ListItemText, List, ListItemButton, Typograph
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import AppBar from '@mui/material/AppBar';
-import vector from '../assets/images/vector.svg'
+import telLogo from '../assets/images/tel.png';
+import searchIcon from '../assets/images/search.png';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import LightThemeIcon from '../assets/images/lightThemeIcon.png'
 import DarkThemeLogo from '../assets/images/priveeHeaderLogo.png'
@@ -103,8 +104,9 @@ const Navbar = ({isColor}) => {
                 alignItems: 'center',
             },
             '.telePhoneLogo': {
-                height: '48px',
-                width: '30px',
+                height: '24px',
+                width: '24px',
+                objectFit:'contain',
                 // color: '#000000',
                 color: `${isColor ? '#FBFBFB' : '#080B0E'}`,
                 marginLeft: '10px',
@@ -292,7 +294,8 @@ const Navbar = ({isColor}) => {
                                     </Grid>
                                     <Grid xs={4} className='header-search-box browser-search'>
                                         {!search &&
-                                            <SearchIcon className='telePhoneLogo' onClick={handleOpen}/>
+                                            <img src={searchIcon} className='telePhoneLogo' onClick={handleOpen}/>
+                                            // <SearchIcon className='telePhoneLogo' onClick={handleOpen}/>
                                             // <img src={vector} alt="vector" className='telePhoneLogo' onClick={handleOpen}/>
                                         }
                                         {search &&
@@ -314,7 +317,8 @@ const Navbar = ({isColor}) => {
                                                 />
                                             </Box>
                                         }
-                                        <LocalPhoneOutlinedIcon className='telePhoneLogo'/>
+                                        <img src={telLogo} className='telePhoneLogo'/>
+                                        {/*<LocalPhoneOutlinedIcon className='telePhoneLogo'/>*/}
                                     </Grid>
                                 </Grid>
                             </Box>

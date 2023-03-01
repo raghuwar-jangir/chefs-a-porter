@@ -8,6 +8,7 @@ import chef from './../assets/images/chef1.png'
 import chef2 from './../assets/images/chef2.png'
 import chef3 from '../assets/images/chef3.png';
 import reebok from '../assets/images/rebook.png'
+import {navigate} from "gatsby";
 
 const MainParent = styled(Box)({
         '.continue-browsing-box': {
@@ -176,10 +177,14 @@ const MainParent = styled(Box)({
 )
 
 const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
+
+    const handleClick = () =>{
+        navigate('/chef-details');
+    }
     return (
         <React.Fragment>
             <MainParent>
-                <Box className='continue-browsing-box'>
+                <Box className='continue-browsing-box' onClick={handleClick}>
                     <Typography className='main-heading'>
                         Continue Browsing
                     </Typography>

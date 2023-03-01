@@ -190,8 +190,11 @@ const BoxWrapper = styled(Box)({
     },
     '.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
         height: '10px',
-        padding: '5px',
+        padding: '5px !important',
     },
+   '.MuiSelect-select':{
+       padding: '5px !important',
+   },
     '.hot-chef-search-btn': {
         background: '#C6A87D',
         border: '0px',
