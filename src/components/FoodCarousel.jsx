@@ -122,7 +122,7 @@ padding:'5px 20px 5px 0px'
         }
     },
     '@media(min-width: 374px) and (max-width: 425px)': {
-        padding:'35px 10px 80px 10px',
+        padding:'35px 10px 100px 10px',
         '.test-img':{
             height:'358px',
             display:'block',
@@ -153,7 +153,7 @@ padding:'5px 20px 5px 0px'
             }
         },
             '@media(min-width: 1px) and (max-width: 320px)': {
-                padding:'35px 10px 80px 10px',
+                padding:'35px 10px 100px 10px',
                 '.swiper-slide':{
                     width:'301.25px'
                 },

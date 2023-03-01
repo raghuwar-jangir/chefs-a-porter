@@ -18,9 +18,8 @@ const MainParent = styled(Box)({
     },
     '.main-heading': {
         fontFamily: 'Bon Vivant',
-        fontWeight: 700,
-        fontSize: '32px',
-        lineHeight: '40px',
+        fontSize: '24px',
+        lineHeight: '24px',
         letterSpacing: '0.06em',
         color: '#FBFBFB'
     },
@@ -123,26 +122,40 @@ const MainParent = styled(Box)({
                 height:'234px'
             },
             '.continue-browsing-box':{
-                padding:'80px 10px'
+                padding:'40px 10px'
             },
             ".main-heading":{
-                fontSize:'20px'
+                fontSize:'20px',
+                lineHeight:'25px'
             },
             '.heading-details':{
                 fontSize:'14px',
-                padding:'0px 0px 30px 0px'
+                lineHeight:'17px',
+                padding:'9px 0px 20px 0px'
             },
             '.chef-title':{
                 placeContent:'flex-start',
                 fontSize:'14px',
-                marginBottom:'0px'
+                marginBottom:'0px',
+                lineHeight:'17px'
             },
             '.chef-details ':{
                 textAlign:'start',
-                fontSize:'14px'
+                fontSize:'14px',
+                lineHeight:'17px'
             },
             '.name-box':{
                 padding:'16px 8px'
+            },
+            '.rebook-title':{
+                fontSize:'12px',
+                lineHeight:'15px'
+            },
+            '.swiper-button-next':{
+                display:'none'
+            },
+            '.swiper-button-prev':{
+                display:'none'
             }
         },
         '@media(min-width: 1px) and (max-width: 425px)': {
@@ -150,26 +163,41 @@ const MainParent = styled(Box)({
                 height:'234px'
             },
             '.continue-browsing-box':{
-                padding:'80px 10px'
+                padding:'40px 10px'
             },
             ".main-heading":{
-                fontSize:'20px'
+                fontSize:'20px',
+                lineHeight:'25px',
+                letterSpacing:'0.06em'
             },
             '.heading-details':{
-                fontSize:'16px',
-                padding:'0px 0px 30px 0px'
+                fontSize:'14px',
+                lineHeight:'17px',
+                padding:'9px 0px 15px 0px'
             },
             '.chef-title':{
                 placeContent:'flex-center',
                 fontSize:'14px',
+                lineHeight:'17px',
                 marginBottom:'0px'
             },
             '.chef-details ':{
                 textAlign:'center',
-                fontSize:'14px'
+                fontSize:'14px',
+                lineHeight:'17px',
             },
             '.name-box':{
                 padding:'16px 8px'
+            },
+            '.rebook-title':{
+                fontSize:'12px',
+                lineHeight:'15px'
+            },
+            '.swiper-button-next':{
+                display:'none'
+            },
+            '.swiper-button-prev':{
+                display:'none'
             }
         }
 },

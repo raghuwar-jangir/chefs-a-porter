@@ -115,7 +115,8 @@ const MainParent = styled(Box)({
     '.view-button': {
         width: '100%',
             fontSize: '16px',
-            padding:'10px'
+            padding:'10px',
+            lineHeight:'19px'
     },
 },
 

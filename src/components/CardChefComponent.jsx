@@ -16,8 +16,7 @@ const CardChefComponent = ({ bgColor }) => {
     const longText = ' From Bangalore to the Culinary Institute of America in New York. He has developed his skills and love for the culinary arts. From Bangalore to the Culinary...';<span><u><b>Read less</b></u></span>
     const longText2 = 'Host connections at your place and leave the dinner table to us. Select your chef and let them curate an experience worth enjoying...';
     const BoxWrapper = styled(Box)(() => ({
-        // padding: '40px 16px 16px 16px',
-        background: bgColor,
+        paddingBottom:'4%',
         ".sub-box-card": {
             display: 'flex',
             alignItems: "center",
@@ -30,7 +29,6 @@ const CardChefComponent = ({ bgColor }) => {
             fontSize: "24px",
             lineHeight: "30px",
             margin: '40px 16px 20px',
-            // paddingBottom: "22px",
             letterSpacing: '0.06em',
             color: '#080B0E'
         },
@@ -39,7 +37,6 @@ const CardChefComponent = ({ bgColor }) => {
             fontWeight: '100',
             fontSize: "20px",
             lineHeight: "24px",
-            // padding: '0px 8px 0px 10px',
             marginLeft:'10px',
             color: '#080B0E'
         },
@@ -84,31 +81,16 @@ const CardChefComponent = ({ bgColor }) => {
                     <Typography className="field-ans">Taj</Typography>
                 </Box>
                 <Box className="sub-box-card">
-                    {/* <WorkIcon /> */}
                     <img className="logo" src={culinary} />
                     <Typography className="field-name">Culinary School:</Typography>
                     <Typography className="field-ans">Le Cordon Blue</Typography>
                 </Box>
                 <Box className="sub-box-card">
-                    {/* <WorkIcon /> */}
                     <img className="logo" src={chef} />
                     <Typography className="field-name">Trained under:</Typography>
                     <Typography className="field-ans">Gordan Ramsay</Typography>
                 </Box>
               <Typography className="details">
-                    {/* From Bangalore to the Culinary Institute of
-                    America in New York. He has developed his skills and love for the culinary arts.
-                    From Bangalore to the Culinary...<span><u><b>Read more</b></u></span> */}
-                    {/* <ReadMoreReact
-      text={longText}
-      min={50}
-      ideal={100}
-    //   max={200}
-      readMoreText="Read more"
-      readLessText="Read less"
-      readMoreClassName="my-read-more-class"
-      readLessClassName="my-read-less-class"
-    /> */}
      <ReactReadMoreReadLess
      readMoreStyle={{textDecoration: "underline",fontWeight:'bold'}}
      readLessStyle={{textDecoration: "underline",fontWeight:'bold'}}
@@ -134,17 +116,6 @@ const CardChefComponent = ({ bgColor }) => {
                     <Typography className="field-ans">Freshly Sourced Seafood</Typography>
                 </Box>
                 <Typography className="details">
-                {/* Host connections at your place and leave the dinner table to us. Select your chef and let them curate an experience worth enjoying...<span><u><b>Read more</b></u></span> */}
-                {/* <ReadMoreReact
-      text={longText2}
-      min={50}
-      ideal={100}
-    //   max={200}
-      readMoreText="Read more"
-      readLessText="Read less"
-      readMoreClassName="my-read-more-class"
-      readLessClassName="my-read-less-class"
-    /> */}
     <ReactReadMoreReadLess
      readMoreStyle={{textDecoration: "underline",fontWeight:'bold'}}
      readLessStyle={{textDecoration: "underline",fontWeight:'bold'}}
