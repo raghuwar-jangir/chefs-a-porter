@@ -56,15 +56,15 @@ const BecomePartner = () => {
     });
 
     //for getting file upload name
-    window.pressed = function () {
-        var a = document.getElementById('aa');
-        if (a.value == "") {
-            fileLabel.innerHTML = "Choose a File";
-        } else {
-            var theSplit = a.value.split('\\');
-            fileLabel.innerHTML = theSplit[theSplit.length - 1];
-        }
-    };
+    // window.pressed = function () {
+    //     var a = document.getElementById('aa');
+    //     if (a.value == "") {
+    //         fileLabel.innerHTML = "Choose a File";
+    //     } else {
+    //         var theSplit = a.value.split('\\');
+    //         fileLabel.innerHTML = theSplit[theSplit.length - 1];
+    //     }
+    // };
 
     const CHARACTER_LIMIT = 500;
 
@@ -665,7 +665,7 @@ const BecomePartner = () => {
                                                                title="Choose a video please" id="aa"
                                                                name="workSampleFile"
                                                                value={values.workSampleFile}
-                                                               onChange={handleChange,pressed}/>
+                                                               onChange={handleChange}/>
                                                         <Box className="upload-files">
                                                             <img src={uploadCloud}
                                                                  style={{width: '24px', height: '24px'}}
