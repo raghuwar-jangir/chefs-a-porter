@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
+import {useTheme} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
 import Typography from '@mui/material/Typography';
 import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
-import { styled } from '@mui/system';
+import {autoPlay} from 'react-swipeable-views-utils';
+import {styled} from '@mui/system';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const images = [
@@ -45,22 +45,22 @@ const TestimonialCarousel = () => {
         color: '#222222',
         ".mainTitle": {
             fontSize: '30px ',
-            lineHeight:'30px',
+            lineHeight: '30px',
             textAlign: 'center',
             fontFamily: 'Bon Vivant !important',
             fontStyle: 'normal',
-            letterSpacing:'0.06em',
-            paddingBottom:'20px'
+            letterSpacing: '0.06em',
+            paddingBottom: '20px'
         },
         ".details": {
             textAlign: 'center',
             fontSize: '20px',
-            lineHeight:'24px',
+            lineHeight: '24px',
             fontFamily: 'Proxima Nova !important',
             padding: '0px 250px 20px ',
         },
         ".star": {
-            height:'40px',
+            height: '40px',
             textAlign: "center",
             padding: '22px 0px',
             color: '#000',
@@ -71,27 +71,46 @@ const TestimonialCarousel = () => {
             fontWeight: 600,
             padding: '30px 0px 24px 0px ',
             fontFamily: 'Proxima Nova',
-            textTransform:'uppercase'
+            textTransform: 'uppercase'
         },
         '.rating-star': {
             color: '#222222',
             borderColor: '#222222'
         },
-        '.css-26w9jf-MuiMobileStepper-dot':{
-            backgroundColor:'black !important',
-            width: '14px',
-            height: '14px',
-            marginTop:'-3px',
+        '& .MuiMobileStepper-dot': {
+            height: '10px',
+            width: '10px',
+            marginTop: '1px',
+            backgroundColor: 'transparent',
+            border: '0.5px solid black'
         },
-        '.css-dqr9h-MuiRating-label':{
-            fontSize:'40px'
+        '& .MuiMobileStepper-dotActive': {
+            marginTop: '0px',
+            height: '12px',
+            width: '12px',
+            color: '#000',
+            backgroundColor: '#000',
+        },
+        '.css-dqr9h-MuiRating-label': {
+            fontSize: '40px'
         },
         '@media(min-width: 1px) and (max-width: 768px)': {
             padding: '40px 20px',
-            '.details':{
-                padding:'20px',
-                fontSize:'16px',
+            '.details': {
+                padding: '20px',
+                fontSize: '16px',
                 textAlign: 'center',
+            },
+            '& .MuiMobileStepper-dot': {
+                height: '6px',
+                width: '6px',
+            },
+            '& .MuiMobileStepper-dotActive': {
+                marginTop: '0px',
+                height: '8px',
+                width: '8px',
+                color: '#000',
+                backgroundColor: '#000',
             }
         }
     }))
@@ -128,7 +147,7 @@ const TestimonialCarousel = () => {
                             <Typography className='details'>
                                 {step.details}
                             </Typography>
-                            <Typography >
+                            <Typography>
                                 {step.name}
                             </Typography>
                         </Box>
@@ -140,7 +159,7 @@ const TestimonialCarousel = () => {
                 position="static"
                 activeStep={activeStep}
                 sx={{
-                    background:'#DCD7CB',
+                    background: '#DCD7CB',
                     display: 'flex',
                     justifyContent: 'center',
                 }}
