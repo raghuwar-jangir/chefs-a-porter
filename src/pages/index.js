@@ -148,10 +148,10 @@ const BoxWrapper = styled(Box)({
         marginBottom: '8px',
         display: 'block',
     },
-    '.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon': {
-        color: '#FBFBFB !important',
-        right:'-10px !important'
-    },
+    // '.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon': {
+    //     color: '#FBFBFB !important',
+    //     right:'-10px !important'
+    // },
     '.react-datepicker-component .react-datepicker-input input': {
         paddingLeft: '5px',
         color: '#FBFBFB',
@@ -830,18 +830,18 @@ const BoxWrapper = styled(Box)({
             width: 'unset',
         },
         '.chef-container': {
-            width: 'auto',
+            width: '80%',
         },
 
     },
-    '@media(min-width: 1000px) and (max-width: 1440px)': {
+    '@media(min-width: 1100px) and (max-width: 1440px)': {
         '.jtable-img': {
             height: '500px',
             objectFit: 'cover',
             width: '600px !important'
         },
         '.chef-container': {
-            width: 'auto',
+            width: '60%',
         },
     },
     '.join-table-title': {
@@ -955,6 +955,9 @@ const HomePage = () => {
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
+                                                            '.MuiSelect-icon':{
+                                                                color:'#FBFBFB'
+                                                            }
                                                         }}
                                                         MenuProps={{
                                                             PaperProps: {
@@ -1009,6 +1012,9 @@ const HomePage = () => {
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
+                                                            '.MuiSelect-icon':{
+                                                                color:'#FBFBFB'
+                                                            }
                                                         }}
                                                         MenuProps={{
                                                             PaperProps: {
@@ -1049,6 +1055,9 @@ const HomePage = () => {
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
+                                                            '.MuiSelect-icon':{
+                                                                color:'#FBFBFB'
+                                                            }
                                                         }}
                                                         MenuProps={{
                                                             PaperProps: {
