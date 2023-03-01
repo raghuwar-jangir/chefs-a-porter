@@ -150,7 +150,7 @@ const BoxWrapper = styled(Box)({
     },
     '.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon': {
         color: '#FBFBFB !important',
-        right:'-10px'
+        right:'-10px !important'
     },
     '.react-datepicker-component .react-datepicker-input input': {
         paddingLeft: '5px',
