@@ -155,7 +155,7 @@ const BoxWrapper = styled(Box)({
     '.react-datepicker-component .react-datepicker-input input': {
         paddingLeft: '5px',
         color: '#FBFBFB',
-        fontSize:'17px !important'
+        fontSize:'15px !important'
     },
     '.icon-rc-datepicker': {
         color: '#FBFBFB !important',

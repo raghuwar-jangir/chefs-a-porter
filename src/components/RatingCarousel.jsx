@@ -7,10 +7,14 @@ import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { styled } from '@mui/system';
 import { Rating } from '@mui/material';
-import {brown} from "@mui/material/colors";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const images = [
+    {
+        mainTitle: '"Mako and his eccentric Personality, lit up the room and our taste buds!"',
+        details: "I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!",
+        ceoName: "Arvind Mohan, CEO of Alpha",
+    },
     {
         mainTitle: '"Mako and his eccentric Personality, lit up the room and our taste buds!"',
         details: "I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!",
@@ -74,11 +78,12 @@ const RatingCarousel = ({ backgroundColor }) => {
             textTransform:'uppercase'
         },
         '.rating-star': {
-            color: '#222222',
-            borderColor: '#222222'
+            color: '#222222 !important',
+            borderColor: '#222222 !important'
         },
         '.css-26w9jf-MuiMobileStepper-dot':{
             backgroundColor:'black !important',
+            color:'black !important',
             width: '14px',
             height: '14px',
             marginTop:'-3px',
