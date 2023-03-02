@@ -38,8 +38,8 @@ const NeedHelp = ({isColor}) => {
             marginTop: "0px !important",
         },
         ".btn:hover": {
-            color: "#C6A87D",
-            background: "#080B0E",
+            color: "#C6A87D !important",
+            background: "#080B0E !important",
         },
         ".btn-2": {
             border: `${isColor ? '0.25px solid #080B0E' : '0.25px solid #080B0E'}`,
@@ -57,8 +57,8 @@ const NeedHelp = ({isColor}) => {
             marginRight: '150px !important'
         },
         ".btn-2:hover": {
-            color: "#C6A87D",
-            background: "#FBFBFB",
+            color: "#C6A87D !important",
+            background: "#FBFBFB !important",
         },
         ".main-heading": {
             fontWeight: 500,
