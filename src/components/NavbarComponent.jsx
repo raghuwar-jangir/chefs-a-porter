@@ -12,8 +12,8 @@ import AppBar from '@mui/material/AppBar';
 import telLogo from '../assets/images/tel.png';
 import searchIcon from '../assets/images/search.png';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
-import LightThemeIcon from '../assets/images/lightThemeIcon.png'
-import DarkThemeLogo from '../assets/images/priveeHeaderLogo.png'
+import LightThemeIcon from '../assets/images/Logo.png'
+import DarkThemeLogo from '../assets/images/Logo.png'
 import {Link, navigate} from "gatsby";
 import CloseIcon from '@mui/icons-material/Close';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -39,7 +39,7 @@ const Navbar = ({isColor}) => {
         setOpen(false)
     }
 
-    const handleOnClick = () =>{
+    const handleOnClick = () => {
         navigate('/');
     }
 
@@ -110,17 +110,24 @@ const Navbar = ({isColor}) => {
             '.telePhoneLogo': {
                 height: '24px',
                 width: '24px',
-                objectFit:'contain',
+                objectFit: 'contain',
                 // color: '#000000',
                 color: `${isColor ? '#FBFBFB' : '#080B0E'}`,
                 marginLeft: '10px',
                 cursor: 'pointer'
             },
             '.light-theme-logo': {
-                cursor: 'pointer'
+                cursor: 'pointer',
+                height: '64px',
+                width: '226.29px',
+                objectFit: 'contain',
+                filter:`${isColor ? 'invert(1)' : ''}`
             },
             '.dark-theme-logo': {
-                cursor: 'pointer'
+                height: '64px',
+                width: '226.29px',
+                cursor: 'pointer',
+                objectFit: 'contain',
             },
             '.css-2ehmn7-MuiInputBase-root-MuiOutlinedInput-root': {
                 width: '100%',
@@ -257,7 +264,7 @@ const Navbar = ({isColor}) => {
                         <Box className="main-container">
                             <Box style={{width: '20%'}} onClick={handleOnClick}>
                                 <img src={isColor ? DarkThemeLogo : LightThemeIcon} alt='light-theme-logo'
-                                     className='light-theme-logo dark-theme-logo'/>
+                                     className=' header light-theme-logo dark-theme-logo'/>
                             </Box>
                             <Box className="grid-box">
                                 <Grid container direction={'row'} columnSpacing={1}
