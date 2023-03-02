@@ -391,7 +391,7 @@ const BecomePartner = () => {
                 <Box className="corporate-b">
                     <Box className="container">
                         <Box className="top-10 position-absolute">
-                            <Typography><a href="" className="header-link"><ArrowBackIcon
+                            <Typography><a href="/" className="header-link"><ArrowBackIcon
                                 style={{marginRight: '15px'}}/>Back</a></Typography>
                         </Box>
                         <Box className="position-absolute patron-flex">

@@ -59,6 +59,7 @@ const GiftCards = () => {
         }
     }
 
+
     const [occassionMessage, setOccassionMessage] = useState("");
 
     const BoxWrapper = styled(Box)(() => ({
@@ -869,7 +870,7 @@ const GiftCards = () => {
                     <Box className="corporate-b">
                         <Box className="container">
                             <Box className="top-10 position-absolute">
-                                <Typography><a href="" className="header-link"><ArrowBackIcon
+                                <Typography><a href='/' className="header-link"><ArrowBackIcon
                                     style={{marginRight: '15px'}}/>Back</a></Typography>
                             </Box>
                             <Box className="position-absolute patron-flex">
@@ -878,7 +879,7 @@ const GiftCards = () => {
                                     <Typography className="become-detail">Join as a member and get exclusive member
                                         priviliges</Typography>
                                 </Box>
-                                <Box><Typography style={{width: '100%'}}><a href=""
+                                <Box><Typography style={{width: '100%'}}><a href="#recipientDetails"
                                                                             className="apply">Apply</a></Typography></Box>
                             </Box>
                         </Box>
@@ -979,11 +980,11 @@ const GiftCards = () => {
                                                                        value={count}
                                                                        autoComplete={"off"}
                                                                        sx={{
-                                                                '.MuiOutlinedInput-notchedOutline': {
-                                                                    border: 'none',
-                                                                    outline: 'none'
-                                                                },
-                                                            }}
+                                                                           '.MuiOutlinedInput-notchedOutline': {
+                                                                               border: 'none',
+                                                                               outline: 'none'
+                                                                           },
+                                                                       }}
                                                             />
                                                             <span className="input-group-btn plus">
                                                               <button type="button"
@@ -1411,7 +1412,7 @@ const GiftCards = () => {
                                                 </Tabs>
                                             </Box>
                                         </Box>
-                                        <Box className="recipient">
+                                        <Box className="recipient" id="recipientDetails">
                                             <Typography className="recipient-title">Recipient details</Typography>
                                             <Typography className="recipient-details">Gift card will be sent by email or
                                                 SMS</Typography>

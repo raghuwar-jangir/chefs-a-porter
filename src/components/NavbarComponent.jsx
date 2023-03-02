@@ -14,7 +14,7 @@ import searchIcon from '../assets/images/search.png';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import LightThemeIcon from '../assets/images/lightThemeIcon.png'
 import DarkThemeLogo from '../assets/images/priveeHeaderLogo.png'
-import {Link} from "gatsby";
+import {Link, navigate} from "gatsby";
 import CloseIcon from '@mui/icons-material/Close';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
@@ -37,6 +37,10 @@ const Navbar = ({isColor}) => {
     }
     const closeSideBar = () => {
         setOpen(false)
+    }
+
+    const handleOnClick = () =>{
+        navigate('/');
     }
 
     const BoxWrapper = styled(Box)({
@@ -251,7 +255,7 @@ const Navbar = ({isColor}) => {
                             sx={{background: `${isColor ? '#101418' : '#FBFBFB'}`}}
                     >
                         <Box className="main-container">
-                            <Box style={{width: '20%'}}>
+                            <Box style={{width: '20%'}} onClick={handleOnClick}>
                                 <img src={isColor ? DarkThemeLogo : LightThemeIcon} alt='light-theme-logo'
                                      className='light-theme-logo dark-theme-logo'/>
                             </Box>

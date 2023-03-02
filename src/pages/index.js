@@ -155,7 +155,7 @@ const BoxWrapper = styled(Box)({
     '.react-datepicker-component .react-datepicker-input input': {
         paddingLeft: '5px',
         color: '#FBFBFB',
-        fontSize:'15px !important'
+        fontSize: '15px !important'
     },
     '.icon-rc-datepicker': {
         color: '#FBFBFB !important',
@@ -164,7 +164,7 @@ const BoxWrapper = styled(Box)({
         background: 'transparent',
         border: '0px',
         borderRadius: '0px',
-        height:'30px !important'
+        height: '30px !important'
     },
     '.react-datepicker-component .react-datepicker-input:hover': {
         background: 'transparent',
@@ -195,10 +195,10 @@ const BoxWrapper = styled(Box)({
         height: '10px',
         padding: '5px !important',
     },
-   '.MuiSelect-select':{
-       padding: '5px !important',
-       fontSize:'17px',
-   },
+    '.MuiSelect-select': {
+        padding: '5px !important',
+        fontSize: '17px',
+    },
     '.hot-chef-search-btn': {
         background: '#C6A87D',
         border: '0px',
@@ -212,7 +212,7 @@ const BoxWrapper = styled(Box)({
         display: 'block',
         padding: '16px',
         width: '148px',
-        cursor:'pointer'
+        cursor: 'pointer'
     },
     '.main-container': {
         position: 'relative'
@@ -759,7 +759,7 @@ const BoxWrapper = styled(Box)({
         },
         '.privee-desktop': {
             // padding: '40px'
-            display:'none'
+            display: 'none'
         },
         '.supper-details': {
             width: '100%',
@@ -768,7 +768,7 @@ const BoxWrapper = styled(Box)({
         },
         '.supper-desktop': {
             // padding: '40px'
-            display:'none'
+            display: 'none'
         },
         '.justify-content-center': {
             display: 'none',
@@ -782,7 +782,7 @@ const BoxWrapper = styled(Box)({
             display: "block",
         },
         '.treat': {
-            padding: '0px'
+            padding: '40px 120px'
         },
         '.MuiImageList-root': {
             columnCount: '1 !important',
@@ -832,7 +832,6 @@ const BoxWrapper = styled(Box)({
         '.chef-container': {
             width: '80%',
         },
-
     },
     '@media(min-width: 1100px) and (max-width: 1440px)': {
         '.jtable-img': {
@@ -897,7 +896,7 @@ const HomePage = () => {
         }
     ];
 
-    const handleClick = () =>{
+    const handleClick = () => {
         navigate('/privee-viewmore');
     }
 
@@ -955,8 +954,8 @@ const HomePage = () => {
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
-                                                            '.MuiSelect-icon':{
-                                                                color:'#FBFBFB'
+                                                            '.MuiSelect-icon': {
+                                                                color: '#FBFBFB'
                                                             }
                                                         }}
                                                         MenuProps={{
@@ -1012,8 +1011,8 @@ const HomePage = () => {
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
-                                                            '.MuiSelect-icon':{
-                                                                color:'#FBFBFB'
+                                                            '.MuiSelect-icon': {
+                                                                color: '#FBFBFB'
                                                             }
                                                         }}
                                                         MenuProps={{
@@ -1055,8 +1054,8 @@ const HomePage = () => {
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
-                                                            '.MuiSelect-icon':{
-                                                                color:'#FBFBFB'
+                                                            '.MuiSelect-icon': {
+                                                                color: '#FBFBFB'
                                                             }
                                                         }}
                                                         MenuProps={{
@@ -1086,7 +1085,8 @@ const HomePage = () => {
                                                 </Box>
                                                 <Box className="form-group">
                                                     <Typography>
-                                                        <button type="submit" className="hot-chef-search-btn" onClick={handleClick}>Search
+                                                        <button type="submit" className="hot-chef-search-btn"
+                                                                onClick={handleClick}>Search
                                                         </button>
                                                     </Typography>
                                                 </Box>
@@ -1178,8 +1178,13 @@ const HomePage = () => {
                 </Box>
                 <Box className="treat">
                     <Grid className="treaty-card">
-                        <Grid className="treat-card1" item xs={6} md={4} sm={4}><Treaty/></Grid>
-                        <Grid className="treat-card2" item xs={6} md={4} sm={4}><Treaty/></Grid>
+                        <Grid className="treat-card1" xs={6} md={4} sm={4}><Treaty treatTitle="#Treat your loved ones"
+                                                                                   mainTitle="Give the gift of an unforgettable food experience"
+                                                                                   detail="send a gift card to your friends and family"
+                                                                                   link={'/gift-cards'}/></Grid>
+                        <Grid className="treat-card2" xs={6} md={4} sm={4}><Treaty treatTitle="#Patron Privilage"
+                                                                                   mainTitle="Become a patron and get exclusive access to our top experiences"
+                                                                                   link={'/become-patron'}/></Grid>
                     </Grid>
                 </Box>
                 <Box className="join-table join-table1">

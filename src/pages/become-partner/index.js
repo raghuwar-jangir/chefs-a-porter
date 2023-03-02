@@ -359,7 +359,7 @@ const BecomePartner = () => {
                 <Box className="joinaschef">
                     <Box className="banner">
                         <Box className="become-partner-header">
-                            <Typography><a href="" className="header-link"><ArrowBackIcon
+                            <Typography><a href="/" className="header-link"><ArrowBackIcon
                                 style={{marginRight: '15px'}}/>Back</a></Typography>
                             <Typography className="become-partner-heading">Become a partner</Typography>
                         </Box>
