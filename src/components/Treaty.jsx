@@ -81,6 +81,9 @@ const Treaty = (props) => {
             '.heading': {
                 fontSize: '14px',
                 lineHeight: '24px',
+            },
+            '.sub-div': {
+                width: 'auto'
             }
         },
         '@media(min-width: 426px) and (max-width: 768px)': {
