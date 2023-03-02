@@ -1,9 +1,8 @@
 import React from "react";
 import {Avatar, Box, Button, Grid, ImageList, ImageListItem, Stack, styled, Typography} from "@mui/material";
 import HotelImg1 from "../../assets/images/HotelImg1.png";
-import HotelImg2 from "../../assets/images/HotelImg2.png";
-import HotelImg3 from "../../assets/images/HotelImg3.png";
-import HotelImg4 from "../../assets/images/HotelImg4.png";
+import HotelImg2 from "../../assets/images/HotelImg3.png";
+import HotelImg3 from "../../assets/images/HotelImg4.png";
 import HotelImg5 from "../../assets/images/HotelImg5.png";
 import HotelImg6 from "../../assets/images/HotelImg6.png";
 import HotelImg7 from "../../assets/images/HotelImg7.png";
@@ -26,19 +25,47 @@ import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
 import OpenPosition from "../../components/OpenPositionComponent";
+
 const ClientSideOnlyLazy = React.lazy(() =>
     import("../../components/TeamCarousel")
 )
 
 const itemData = [
-    HotelImg1,
-    HotelImg2,
-    HotelImg3,
-    HotelImg4,
-    HotelImg5,
-    HotelImg6,
-    HotelImg7,
-    HotelImg8,
+    {
+        img: HotelImg1,
+        title: 'HotelImg1',
+        rows: 1.3,
+    },
+    {
+        img: HotelImg2,
+        title: 'HotelImg2',
+        rows: 0.7,
+    },
+    {
+        img: HotelImg3,
+        title: 'HotelImg3',
+        rows: 1,
+    },
+    {
+        img: HotelImg5,
+        title: 'HotelImg5',
+        rows: 1,
+    },
+    {
+        img: HotelImg6,
+        title: 'HotelImg6',
+        rows: 0.7,
+    },
+    {
+        img: HotelImg7,
+        title: 'HotelImg7',
+        rows: 0.6,
+    },
+    {
+        img: HotelImg8,
+        title: 'HotelImg8',
+        rows: 0.7,
+    },
 ]
 const logoImg = [
     logo1,
@@ -174,15 +201,16 @@ const AboutCardComponent = (props) => {
             height: "57px",
         },
         '.conscious-stack': {
-            justifyContent: 'center', padding: '25px'
+            justifyContent: 'center', padding: '20px'
         },
         '.conscious-option': {
-            border: '1px solid #080B0E', padding: '37px', borderRadius: '100%'
+            border: '1px solid #080B0E', padding: '27px', borderRadius: '100%'
         },
-        '.parent-stack': {
-            padding: '40px 0px'
-        }, '.sub-title': {paddingTop: '10px'},
-        '.options-icon': {width: '50px', height: '50px'},
+        // '.parent-stack': {
+        //     padding: '40px 0px'
+        // },
+        '.sub-title': {paddingTop: '10px', fontSize: '12px'},
+        '.options-icon': {width: '41px', height: '41px'},
         '.parent-options': {
             textAlign: 'center',
         },
@@ -194,6 +222,11 @@ const AboutCardComponent = (props) => {
         }, '.footer-item': {
             color: '#DCD7CB',
         },
+        '.team-img': {
+            width: "100%",
+            height: '500px',
+            margin: "40px 0px"
+        },
         "@media (min-width: 1px) and (max-width:425px)": {
             ".main-box": {
                 padding: "0px",
@@ -201,6 +234,9 @@ const AboutCardComponent = (props) => {
             ".hotelview-img": {
                 height: '30%',
                 paddingBottom: "16px"
+            },
+            '.team-img': {
+                height: '200px'
             },
             ".btn": {
                 width: '100%'
@@ -220,7 +256,7 @@ const AboutCardComponent = (props) => {
                 width: '50%',
                 alignItems: 'center'
             }, '.conscious-option': {
-                padding: '31px',
+                padding: '25px',
             },
             ".sub-box-2": {
                 padding: '40px 30px',
@@ -265,7 +301,6 @@ const AboutCardComponent = (props) => {
                 background: '#101418'
             },
         }
-
     }))
     return (
         <React.Fragment>
@@ -290,14 +325,13 @@ const AboutCardComponent = (props) => {
                                     colors='#080B0E'
                                 />
                             </Box>
-                            <ImageList variant="masonry" cols={3} gap={8}>
+                            <ImageList variant="masonry" cols={3} rows={3} gap={10} rowHeight={isMobile ? '150' : '300'}>
                                 {itemData.map((item, index) => (
-                                    <ImageListItem key={item}>
+                                    <ImageListItem key={item} cols={item.cols || 1} rows={item.rows || 1}>
                                         <img
-                                            src={item}
+                                            src={item.img}
                                             alt="img"
                                             loading="lazy"
-                                            width={"394px"}
                                         />
                                     </ImageListItem>
                                 ))}
@@ -315,7 +349,7 @@ const AboutCardComponent = (props) => {
                             <Stack
                                 className="conscious-stack"
                                 direction={{xs: 'row'}}
-                                spacing={{xs: 2, md: 15}}
+                                spacing={{xs: 2, md: 25}}
                             >
                                 <Box className="parent-options">
                                     <Box className="conscious-option">
@@ -331,7 +365,7 @@ const AboutCardComponent = (props) => {
                                 <Box className="parent-options">
                                     <Box className="conscious-option">
                                         <Avatar
-                                            className="options-icon"
+                                            className=""
                                             variant="square"
                                             alt="sustainable"
                                             src={weather}
@@ -361,17 +395,13 @@ const AboutCardComponent = (props) => {
                                 src={hotelImgView}
                                 alt="view"
                                 className="hotelview-img"
-                                style={{
-                                    width: "100%",
-                                    margin: "40px 0px"
-                                }}
+                                className="team-img"
                             />
                             <CommanTextCard
                                 mainTitle="Our Mission"
                                 colors='#FBFBFB'
-                                details="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec efficitur justo eget mollis tincidunt.
-                         Maecenas ullamcorper volutpat diam, vel vulputate orci dictum nec.  In odio metus, rhoncus quis sapien eget,
-                          vehicula ornare erat. Mauris aliquam vitae sem in rhoncus. Vivamus nec convallis ligula."
+                                details="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia,
+                         blandit quam nec, iaculis mi. Cras a est cursus."
                             />
                         </Box>
                     </Box>
@@ -379,10 +409,7 @@ const AboutCardComponent = (props) => {
                         <img
                             src={hotelImgView2}
                             alt="view"
-                            style={{
-                                width: "100%",
-                                margin: "0px 0px 30px"
-                            }}
+                            className="team-img"
                         />
                         <CommanTextCard
                             mainTitle="Our Values"
@@ -401,15 +428,12 @@ const AboutCardComponent = (props) => {
                         <img
                             src={teamImage}
                             alt="view"
-                            style={{
-                                width: "100%",
-                                margin: "40px 0px"
-                            }}
+                            className="team-img"
                         />
                     </Box>
                     {!isSSR && (
                         <React.Suspense fallback={<div/>}>
-                            <ClientSideOnlyLazy />
+                            <ClientSideOnlyLazy/>
                         </React.Suspense>
                     )}
 
