@@ -46,12 +46,14 @@ const GiftCards = () => {
     const CHAR_LIMIT = 70;
     let [count, setCount] = useState(1);
     let Qty = 10;
+
     function incrementCount() {
         if (count < Qty) {
             count = count + 1;
             setCount(count);
         }
     }
+
     function decrementCount() {
         if (count > 0) {
             count = count - 1;
@@ -129,19 +131,6 @@ const GiftCards = () => {
             border: '0px',
             borderBottom: 'unset !important',
         },
-        '.css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input': {
-            height: '149px',
-            background: 'rgba(189, 189, 189, 0.2)',
-            border: '0px',
-            minHeight: '149px',
-            resize: 'none',
-            fontFamily: 'Inter, sans-serif',
-            fontSize: '14px',
-            lineHeight: '17px',
-            fontWeight: '400',
-            color: ' #7D7D7D',
-            padding: '16px 15px',
-        },
         'form label': {
             fontFamily: 'Proxima Nova',
             fontStyle: 'normal',
@@ -179,7 +168,7 @@ const GiftCards = () => {
             color: '#EB4040',
             marginTop: '6px',
         },
-        '.css-1wc848c-MuiFormHelperText-root': {
+        '.MuiFormHelperText-root': {
             textAlign: 'right',
             fontFamily: 'Proxima Nova',
             fontStyle: 'normal',
@@ -1076,7 +1065,7 @@ const GiftCards = () => {
                                                                                     '.css-1rcvvn7-MuiInputBase-root-MuiInput-root:after': {
                                                                                         borderBottom: 'unset'
                                                                                     },
-                                                                                    '.css-1d1r5q-MuiFormHelperText-root': {
+                                                                                    '.MuiFormHelperText-root': {
                                                                                         fontFamily: 'Proxima Nova',
                                                                                         fontStyle: 'normal',
                                                                                         fontWeight: '250',
@@ -1152,7 +1141,7 @@ const GiftCards = () => {
                                                                                     '.css-1rcvvn7-MuiInputBase-root-MuiInput-root:after': {
                                                                                         borderBottom: 'unset'
                                                                                     },
-                                                                                    '.css-1d1r5q-MuiFormHelperText-root': {
+                                                                                    '.MuiFormHelperText-root': {
                                                                                         fontFamily: 'Proxima Nova',
                                                                                         fontStyle: 'normal',
                                                                                         fontWeight: '250',
@@ -1228,7 +1217,7 @@ const GiftCards = () => {
                                                                                     '.css-1rcvvn7-MuiInputBase-root-MuiInput-root:after': {
                                                                                         borderBottom: 'unset'
                                                                                     },
-                                                                                    '.css-1d1r5q-MuiFormHelperText-root': {
+                                                                                    '.MuiFormHelperText-root': {
                                                                                         fontFamily: 'Proxima Nova',
                                                                                         fontStyle: 'normal',
                                                                                         fontWeight: '250',
@@ -1303,7 +1292,7 @@ const GiftCards = () => {
                                                                                     '.css-1rcvvn7-MuiInputBase-root-MuiInput-root:after': {
                                                                                         borderBottom: 'unset'
                                                                                     },
-                                                                                    '.css-1d1r5q-MuiFormHelperText-root': {
+                                                                                    '.MuiFormHelperText-root': {
                                                                                         fontFamily: 'Proxima Nova',
                                                                                         fontStyle: 'normal',
                                                                                         fontWeight: '250',
@@ -1378,7 +1367,7 @@ const GiftCards = () => {
                                                                                     '.css-1rcvvn7-MuiInputBase-root-MuiInput-root:after': {
                                                                                         borderBottom: 'unset'
                                                                                     },
-                                                                                    '.css-1d1r5q-MuiFormHelperText-root': {
+                                                                                    '.MuiFormHelperText-root': {
                                                                                         fontFamily: 'Proxima Nova',
                                                                                         fontStyle: 'normal',
                                                                                         fontWeight: '250',
@@ -1481,6 +1470,22 @@ const GiftCards = () => {
                                                                 border: 'none',
                                                                 outline: 'none'
                                                             },
+                                                            '& .MuiInputBase-input': {
+                                                                height: '149px',
+                                                                background: 'rgba(189, 189, 189, 0.2)',
+                                                                border: '0px',
+                                                                minHeight: '149px',
+                                                                resize: 'none',
+                                                                fontFamily: 'Inter, sans-serif',
+                                                                fontSize: '14px',
+                                                                lineHeight: '17px',
+                                                                fontWeight: '400',
+                                                                color: ' #7D7D7D',
+                                                                padding: '16px 15px',
+                                                            },
+                                                            '& .css-15kq27i': {
+                                                                padding: '0px'
+                                                            }
                                                         }}
                                                         id="validationCustom04"
                                                         name="receiverMessage"

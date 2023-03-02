@@ -172,19 +172,6 @@ const BecomePartner = () => {
             border: '0px',
             borderBottom: 'unset !important',
         },
-        '.css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input': {
-            height: '149px',
-            background: 'rgba(189, 189, 189, 0.2)',
-            border: '0px',
-            minHeight: '149px',
-            resize: 'none',
-            fontFamily: 'Inter, sans-serif',
-            fontSize: '14px',
-            lineHeight: '17px',
-            fontWeight: '400',
-            color: ' #7D7D7D',
-            padding: '16px 15px',
-        },
         '.files': {
             position: 'relative',
             height: '150px',
@@ -294,7 +281,7 @@ const BecomePartner = () => {
             color: '#EB4040',
             marginTop: '6px',
         },
-        '.css-1wc848c-MuiFormHelperText-root': {
+        '.MuiFormHelperText-root': {
             textAlign: 'right',
             fontFamily: 'Proxima Nova',
             fontStyle: 'normal',
@@ -614,6 +601,22 @@ const BecomePartner = () => {
                                                                 border: 'none',
                                                                 outline: 'none'
                                                             },
+                                                            '& .MuiInputBase-input': {
+                                                                height: '149px',
+                                                                background: 'rgba(189, 189, 189, 0.2)',
+                                                                border: '0px',
+                                                                minHeight: '149px',
+                                                                resize: 'none',
+                                                                fontFamily: 'Inter, sans-serif',
+                                                                fontSize: '14px',
+                                                                lineHeight: '17px',
+                                                                fontWeight: '400',
+                                                                color: ' #7D7D7D',
+                                                                padding: '16px 15px',
+                                                            },
+                                                            '& .css-15kq27i': {
+                                                                padding: '0px'
+                                                            }
                                                         }}
                                                         id="validationCustom04"
                                                         name="brandMessage"
@@ -641,6 +644,22 @@ const BecomePartner = () => {
                                                                 border: 'none',
                                                                 outline: 'none'
                                                             },
+                                                            '& .MuiInputBase-input': {
+                                                                height: '149px',
+                                                                background: 'rgba(189, 189, 189, 0.2)',
+                                                                border: '0px',
+                                                                minHeight: '149px',
+                                                                resize: 'none',
+                                                                fontFamily: 'Inter, sans-serif',
+                                                                fontSize: '14px',
+                                                                lineHeight: '17px',
+                                                                fontWeight: '400',
+                                                                color: ' #7D7D7D',
+                                                                padding: '16px 15px',
+                                                            },
+                                                            '& .css-15kq27i': {
+                                                                padding: '0px'
+                                                            }
                                                         }}
                                                         className="form-control remove-bottom-border"
                                                         id="validationCustomaboutbrand"
