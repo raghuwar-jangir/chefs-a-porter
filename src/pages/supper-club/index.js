@@ -138,10 +138,10 @@ const SupperClubChaefPage = () => {
       padding: "20px 0px",
     },
     ".experience-date-text": {
-      fontWeight: 700,
       fontSize: "20px",
       lineHeight: "25px",
       color: "#080B0E",
+      marginBottom:'0.5rem'
     },
     ".experience-date-sub-test": {
       fontWeight: 300,
@@ -157,51 +157,13 @@ const SupperClubChaefPage = () => {
       paddingRight: "10px",
     },
     ".date-month": {
-      fontWeight: 600,
       fontSize: "14px",
       lineHeight: "17px",
     },
     ".date-day": {
       fontWeight: 250,
-      fontSize: "14px",
-      lineHeight: "17px",
-    },
-    ".time-btn": {
-      border: "0.5px solid #222222",
-      borderRadius: "0px",
-      color: "#000",
-      marginRight: "8px",
-      height: "50px",
-      display: "inline-grid",
-      textTransform: "lowercase",
-      width: "48%",
-      padding: "8px 4px",
-    },
-    ".time-btn:focus": {
-      backgroundColor: "#FBFBFB",
-      color: "#000",
-      border: "0.5px solid #F8A039",
-    },
-    ".time-btn:hover": {
-      backgroundColor: "#FBFBFB",
-    },
-    ".end-time-btn:hover": {
-      backgroundColor: "#FBFBFB",
-    },
-    ".end-time-btn": {
-      border: "0.5px solid #222222",
-      borderRadius: "0px",
-      color: "#000",
-      height: "50px",
-      display: "inline-grid",
-      textTransform: "lowercase",
-      width: "48%",
-      padding: "8px 4px",
-    },
-    ".end-time-btn:focus": {
-      backgroundColor: "#FBFBFB",
-      color: "#000",
-      border: "0.5px solid #F8A039",
+      fontSize: "16px",
+      lineHeight: "24px",
     },
     ".next-grid": {
       display: "inline",
@@ -442,9 +404,6 @@ const SupperClubChaefPage = () => {
     ".submit-request:hover": {
       backgroundColor: "#000",
     },
-    ".time-btn-box": {
-      width: "57%",
-    },
     ".chef-carousel": {
       borderLeft: "1px solid black",
       borderRight: "1px solid black",
@@ -490,6 +449,74 @@ const SupperClubChaefPage = () => {
       backgroundColor:'#101418',
       color:'#FBFBFB'
     },
+    '.switch-field' :{
+      display: 'flex',
+      overflow: 'hidden',
+    },
+    '.switch-field input': {
+      position: 'absolute !important',
+      clip: 'rect(0, 0, 0, 0)',
+      height: '1px',
+      width: '1px',
+      border: '0',
+      overflow: 'hidden',
+    },
+    
+    '.switch-field label': {
+      flex: '1',
+        margin: '0 4px',
+        fontFamily: 'ProximaNovaA-Regular',
+        fontStyle: 'normal',
+        fontWeight: '400 !important',
+        fontSize: '14px',
+        lineHeight: '120%',
+        textAlign: 'center',
+        color: '#080B0E',
+        transition: 'all 0.1s ease-in-out',
+        boxShadow: 'none',
+        background: 'transparent',
+        borderRadius: '0px',
+        border: '0.5px solid #222222',
+        height: '50px',
+        display: 'flex',
+        flexDirection: 'column',
+        placeContent: 'center',
+    },
+    '.time-text':{
+      fontFamily: 'ProximaNovaA-Regular',
+        fontStyle: 'normal',
+        fontWeight: '400 !important',
+        fontSize: '14px',
+        lineHeight: '120%',
+    },
+    '.switch-field label:hover': {
+      cursor: 'pointer',
+    },
+    
+    '.switch-field input:checked + label': {
+      background: '#FFFFFF',
+      boxShadow: 'none',
+        border: '0.5px solid #F8A039',
+    },
+    
+    '.switch-field input:checked:disabled + label,.switch-field input:disabled + label':
+    {
+        background: '#BDBDBD',
+        borderColor: '#BDBDBD ',
+        color: '#777777',
+    },
+    ".time-btn-box": {
+      flex: '0 0 auto',
+  width: '58.33333333%'
+    },
+    '.experience-date-sub-text':{
+      fontFamily: 'Proxima Nova Alt',
+    fontStyle: 'normal',
+    fontWeight: '300',
+    fontSize: '16px',
+    lineHeight: '24px',
+    color: '#080B0E',
+    },
     "@media (min-width: 768px) and (max-width:1024px)": {
       ".box1": {
         width: "87%",
@@ -508,9 +535,6 @@ const SupperClubChaefPage = () => {
         padding: "0px 0px",
         lineHeight: "15px",
       },
-      ".time-btn-box": {
-        width: "52%",
-      },
     },
     "@media (min-width: 1px) and (max-width:768px)": {
       ".css-1fh2pai-MuiGrid-root ": {
@@ -526,6 +550,16 @@ const SupperClubChaefPage = () => {
       ".sub-box-2": {
         marginTop: "0px",
       },
+      '.time-btn-box':{
+        width:'100%',
+        flexShrink: '0',
+    width: '100%',
+    maxWidth: '100%',
+      },
+      '.date-time-box':{
+        flexDirection:'column',
+        alignItems:'flex-start'
+      }
     },
     "@media (min-width: 1px) and (max-width:425px)": {
       ".main-box": {
@@ -846,17 +880,16 @@ const SupperClubChaefPage = () => {
                       <Typography className="date-day">Wednesday</Typography>
                     </Box>
                   </Box>
-                  <Box className="time-btn-box">
-                    <Button size="large" className="time-btn">
-                      12:00 - 1:00pm
-                      <Typography className="btn-detail">
-                        filling fast
-                      </Typography>
-                    </Button>
-                    <Button size="large" className="end-time-btn">
-                      7:30 - 9:00pm
-                    </Button>
-                  </Box>
+                  <Box className='time-btn-box'>
+                    <Box className="switch-field">
+                                                    <input type="radio" id="radio-one" name="switch-one" value="yes" checked/>
+                                                    <label for="radio-one"><Typography className="time-text">12:00 - 1:00pm</Typography>
+                                                        <span>filling fast</span>
+                                                    </label>
+                                                    <input type="radio" id="radio-two" name="switch-one" value="no" />
+                                                    <label for="radio-two"><Typography className="time-text">7:30 - 9:00pm</Typography></label>
+                                                </Box>
+                                                </Box>
                 </Box>
                 <Box className="date-time-box">
                   <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -866,20 +899,16 @@ const SupperClubChaefPage = () => {
                       <Typography className="date-day">Thursday</Typography>
                     </Box>
                   </Box>
-                  <Box className="time-btn-box">
-                    <Button
-                      size="large"
-                      style={{ backgroundColor: "#BDBDBD", border: "#BDBDBD" }}
-                      disabled
-                      className="time-btn"
-                    >
-                      12:00 - 1:00pm
-                      <Typography className="btn-detail">Sold Out</Typography>
-                    </Button>
-                    <Button size="large" className="end-time-btn">
-                      7:30 - 9:00pm
-                    </Button>
-                  </Box>
+                  <Box className='time-btn-box'>
+                   <Box className="switch-field">
+                                                    <input type="radio" id="radio-three" name="switch-two" value="yes" disabled/>
+                                                    <label for="radio-three"><Typography className="time-text">12:00 - 1:00pm</Typography>
+                                                        <span>sold out</span>
+                                                    </label>
+                                                    <input type="radio" id="radio-four" name="switch-two" value="no" />
+                                                    <label for="radio-four"><Typography className="time-text">7:30 - 9:00pm</Typography></label>
+                                                </Box>
+                                                </Box>
                 </Box>
                 <Box className="date-time-box">
                   <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -889,14 +918,15 @@ const SupperClubChaefPage = () => {
                       <Typography className="date-day">Friday</Typography>
                     </Box>
                   </Box>
-                  <Box className="time-btn-box">
-                    <Button size="large" className="time-btn">
-                      12:00 - 1:00pm
-                    </Button>
-                    <Button size="large" className="end-time-btn">
-                      7:30 - 9:00pm
-                    </Button>
-                  </Box>
+                  <Box className='time-btn-box'>
+                  <Box className="switch-field">
+                                                    <input type="radio" id="radio-five" name="switch-three" value="no"/>
+                                                    <label for="radio-five"><Typography className="time-text">12:00 - 1:00pm</Typography>
+                                                    </label>
+                                                    <input type="radio" id="radio-six" name="switch-three" value="no" />
+                                                    <label for="radio-six"><Typography className="time-text">7:30 - 9:00pm</Typography></label>
+                                                </Box>
+                                                </Box>
                 </Box>
                 <Box className="date-time-box">
                   <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -906,17 +936,16 @@ const SupperClubChaefPage = () => {
                       <Typography className="date-day">Saturday</Typography>
                     </Box>
                   </Box>
-                  <Box className="time-btn-box">
-                    <Button size="large" className="time-btn">
-                      12:00 - 1:00pm
-                    </Button>
-                    <Button size="large" className="end-time-btn">
-                      7:30 - 9:00pm
-                      <Typography className="btn-detail">
-                        filling fast
-                      </Typography>
-                    </Button>
-                  </Box>
+                  <Box className='time-btn-box'>
+                  <Box className="switch-field">
+                                                    <input type="radio" id="radio-seven" name="switch-four" value="no"/>
+                                                    <label for="radio-seven"><Typography className="time-text">12:00 - 1:00pm</Typography>
+                                                    </label>
+                                                    <input type="radio" id="radio-8" name="switch-four" value="no" checked />
+                                                    <label for="radio-8"><Typography className="time-text">7:30 - 9:00pm</Typography>
+                                                    <span>filling fast</span></label>
+                                                </Box>
+                                                </Box>
                 </Box>
                 <Button type="submit" className="submit-request">
                   Submit Request
