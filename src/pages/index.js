@@ -538,7 +538,7 @@ const BoxWrapper = styled(Box)({
     //gallery
     '.gallery': {
         background: '#FBFBFB',
-        padding: '80px 120px',
+        padding: '80px 100px',
     },
     '.gallery-heading': {
         fontFamily: 'Bon Vivant',
@@ -858,10 +858,12 @@ const HomePage = () => {
         {
             img: gallery2,
             title: 'gallery2',
+            rows: 0.9,
         },
         {
             img: gallery1,
             title: ' gallery1',
+            rows: 1.1,
         },
         {
             img: gallery3,
@@ -872,10 +874,12 @@ const HomePage = () => {
         {
             img: gallery4,
             title: 'gallery4',
+            rows: 1.3,
         },
         {
             img: gallery5,
             title: 'gallery5',
+            rows: 0.7,
         },
     ];
     const freshFoodItems = [
