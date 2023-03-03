@@ -222,7 +222,7 @@ const BoxWrapper = styled(Box)(() => ({
     },
     '.privee-ex-img': {
         width: '100% !important',
-        height: '535px',
+        height: '537px',
         objectFit: 'cover',
         verticalAlign: 'middle'
     },
