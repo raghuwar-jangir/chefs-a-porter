@@ -34,7 +34,7 @@ const MainParent = styled(Box)({
     },
     '.parent-view-button': {
         textAlign: 'center',
-        marginTop: '20px',
+        // marginTop: '20px',
         marginTop: '40px'
     },
     '.view-more': {

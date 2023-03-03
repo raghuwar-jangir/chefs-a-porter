@@ -245,9 +245,6 @@ const CorporateBooking = () => {
                 paddingTop:'0px',
                 paddingBottom:'0px'
             },
-            '.swiper-pagination':{
-                backgroundColor:'#FBFBFB'
-            },
             ".swiper-pagination-bullet-active":{
                 width:'6px',
                 height:"6px"

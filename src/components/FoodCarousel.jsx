@@ -16,7 +16,7 @@ const MainParent = styled(Box)({
     padding:'35px 120px 80px',
     '.parent-view-button': {
         textAlign: 'center',
-        marginTop: '20px',
+        // marginTop: '20px',
         marginTop: '40px'
     },
     '.view-more': {

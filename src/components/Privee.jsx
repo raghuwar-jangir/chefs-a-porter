@@ -45,19 +45,6 @@ const MainParent = styled(Box)({
         color: '#fff'
 
     },
-    '.main-heading': {
-      fontSize: '24px',
-      lineHeight: '24px',
-      marginBottom: '16px',
-      fontFamily: 'Bon Vivant',
-    fontStyle: 'normal',
-    fontWeight: '400',
-    fontSize: '24px',
-    lineHeight: '30px',
-    letterSpacing: '0.06em',
-    color: '#FBFBFB',
-    marginBottom: '0px!important',
-    },
     // '.heading-details': {
     //     fontFamily:'Proxima Nova Alt',
     //     fontWeight: 300,
@@ -69,7 +56,7 @@ const MainParent = styled(Box)({
     '.parent-view-button': {
       width: '16.66666667%',
         textAlign: 'end',
-        marginTop: '20px',
+        // marginTop: '20px',
         marginTop: 'none',
         display: 'contents'
     },
@@ -240,31 +227,31 @@ color: '#C6A87D',
         }
     },
     '@media(min-width: 2000px) and (max-width: 2560px)': {
-        '.img':{
-            height:'629px',
-            width:'521px',
-            objectFit:'cover'
+        '.img': {
+            height: '629px',
+            width: '521px',
+            objectFit: 'cover'
         },
-        '.name-box':{
-            bottom:'36%'
+        '.name-box': {
+            bottom: '36%'
         },
         "@media (min-width: 320px) and (max-width:1024px)": {
             '.main-chaf-image': {
                 height: '220px',
-                objectPosition:'top',
+                objectPosition: 'top',
                 objectFit: 'cover',
-                width:'100%'
+                width: '100%'
             },
             '.saff-parent': {
                 padding: '16px',
-                width:'auto',
-                height:'88px',
+                width: 'auto',
+                height: '88px',
                 backgroundColor: '#101418',
             },
-            '.sub-box':{
-                width:'100%',
+            '.sub-box': {
+                width: '100%',
             },
-            '.top-box':{
+            '.top-box': {
                 fontWeight: 300,
                 fontSize: '12px',
                 padding: '1px 12px',
@@ -273,6 +260,7 @@ color: '#C6A87D',
                 color: '#C6A87D',
             }
         }
+    }
     })
 
     const handleClick = () =>{

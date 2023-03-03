@@ -553,7 +553,7 @@ const SupperClubChaefPage = () => {
       '.time-btn-box':{
         width:'100%',
         flexShrink: '0',
-    width: '100%',
+    // width: '100%',
     maxWidth: '100%',
       },
       '.date-time-box':{
