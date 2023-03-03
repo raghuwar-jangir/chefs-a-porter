@@ -1,13 +1,14 @@
 import React from "react";
-import { Box } from "@mui/system";
+import {Box} from "@mui/system";
 import styled from "styled-components";
-import { Typography } from "@mui/material";
-import Carousel, { consts }  from 'react-elastic-carousel';
+import {Typography} from "@mui/material";
 import image1 from '../assets/images/ig1.png';
 import image2 from '../assets/images/ig2.png';
 import image3 from '../assets/images/ig3.png';
 import image4 from '../assets/images/ig4.png';
 import image5 from '../assets/images/ig5.png';
+import {Swiper, SwiperSlide} from "swiper/react";
+import "swiper/css";
 
 const  PriveeComponentSlider = () => {
 const WrapBox = styled(Box) ({
@@ -58,21 +59,25 @@ const WrapBox = styled(Box) ({
             <Box className='main-box'>
                 <Box>
                     <Typography className="peek-heading">Peek into our Private Dining Experiences</Typography>
-                    <Typography className="peek-name" >@Privée</Typography>
+                    <Typography className="peek-name">@Privée</Typography>
                 </Box>
                 <Box className='slider-box'>
-                    <Carousel itemsToShow={3} outerSpacing={500} enableMouseSwipe={true} preventDefaultTouchmoveEvent={false} pagination={false} showArrows={false} showEmptySlots>
+                    <Swiper
+                        slidesPerView={'auto'}
+                        spaceBetween={8}
+                        centeredSlides={false}
+                        className="mySwiper"
+                        grabCursor={true}
+                    >
 
-                        <Box className='img-box'><img className="img" src={image1}/></Box>
-                        <Box className='img-box'><img className="img" src={image2}/></Box>
-                        <Box className='img-box'><img className="img" src={image3}/></Box>
-                        <Box className='img-box'><img className="img" src={image4}/></Box>
-                        <Box className='img-box'><img className="img" src={image5}/></Box>
-                        <Box className='img-box'><img className="img" src={image2}/></Box>
-                        <Box className='img-box'><img className="img" src={image4}/></Box>
-                        <Box className='img-box'><img className="img" src={image5}/></Box>
-                        <Box className='img-box'><img className="img" src={image2}/></Box>
-                    </Carousel>
+                        <SwiperSlide><img className="img" src={image1}/></SwiperSlide>
+                        <SwiperSlide><img className="img" src={image2}/></SwiperSlide>
+                        <SwiperSlide><img className="img" src={image3}/></SwiperSlide>
+                        <SwiperSlide><img className="img" src={image4}/></SwiperSlide>
+                        <SwiperSlide><img className="img" src={image5}/></SwiperSlide>
+                        <SwiperSlide><img className="img" src={image2}/></SwiperSlide>
+                        <SwiperSlide><img className="img" src={image5}/></SwiperSlide>
+                    </Swiper>
                 </Box>
             </Box>
         </WrapBox>

@@ -19,6 +19,10 @@ import PriveeComponentSlider from "../../components/PriveeComponentSlider";
 import {DatePickerInput} from 'rc-datepicker';
 import 'rc-datepicker/lib/style.css';
 import TemplateYet from "../../components/TemplateYet";
+import ExperienceCarousel from "../../components/ExperienceCarousel";
+import AvlExperienceCarousel from "../../components/AvlExperienceCarousel";
+import avlExp1 from "../../assets/images/avl-exp1.jpg";
+import avlExp2 from "../../assets/images/avl-exp2.jpg";
 
 const MainBoxContent = styled(Box)({
     position: 'relative',
@@ -46,6 +50,7 @@ const MainBoxContent = styled(Box)({
 
 const BoxWrapper = styled(Box)(() => ({
     ".available-experiences": {
+        display: 'none',
         padding: "40px 120px",
         background: "#080B0E"
     },
@@ -330,22 +335,8 @@ const BoxWrapper = styled(Box)(() => ({
         width: '100',
         placeItems: 'center',
         display: 'flex',
-        placeContent: 'space-between',
-    },
-    '.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input': {
-        background: 'transparent',
-        border: '0px',
-        width: '20px !important',
-        fontFamily: 'Proxima Nova',
-        fontStyle: 'normal',
-        fontWeight: '400',
-        fontSize: '14px',
-        lineHeight: '17px',
-        color: '#080B0E',
-        paddingLeft: '0px',
-        paddingRight: '0px',
-        flex: 'none',
-        textAlign: 'center',
+        // placeContent: 'space-between',
+        justifyContent:'space-evenly'
     },
     '.btn-primary': {
         width: '100%',
@@ -359,6 +350,21 @@ const BoxWrapper = styled(Box)(() => ({
         fontSize: '16px',
         lineHeight: '19px',
         color: '#080B0E',
+        cursor: 'pointer',
+    },
+    '.exp-btn': {
+        width: '100%',
+        background: 'transparent',
+        marginTop: '40px',
+        border: '1px solid #C6A87D',
+        borderRadius: '0px',
+        padding: '15px 10px',
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        fontSize: '16px',
+        lineHeight: '19px',
+        color: '#FBFBFB',
         cursor: 'pointer',
     },
 
@@ -384,8 +390,9 @@ const BoxWrapper = styled(Box)(() => ({
             background: "#DCD7CB"
         },
         ".available-experiences": {
+            display: 'block',
             padding: "40px 16px",
-            background: "#080B0E"
+            background: "#101418"
         },
         ".frequently-questions-box": {
             padding: '0px'
@@ -438,6 +445,9 @@ const BoxWrapper = styled(Box)(() => ({
         },
         '.privee-container': {
             display: 'block'
+        },
+        '.home-banner': {
+            marginTop: '0px'
         }
     },
     "@media (min-width: 768px) and (max-width:1460px)": {
@@ -470,18 +480,29 @@ const PriveePage = () => {
             setCount(count);
         }
     }
+    const styles = theme => ({
+        input: {
+            width:40
+        },
+        button: {
+            width: 40
+        },
+        selectRoot: {
+            width: 40,
+        },
+        select: {
+            width: 40,
+        }
+    });
 
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isColor={false}/>
+                <Navbar isColor={true}/>
                 <MainBoxContent>
                     {/* //! privee header section for title */}
                     <MobileView>
                         <Box className='header-club'>
-                            {/*{!search &&*/}
-                            {/*    <img src={vector} alt="vector" onClick={handleChange} />*/}
-                            {/*}*/}
                             <img src={PriveeLogo} alt="privee-logo" className='privee-image'/>
                         </Box>
                     </MobileView>
@@ -490,16 +511,6 @@ const PriveePage = () => {
                             <input type='search' placeholder='Search supper club, city...' className='supper-search'/>
                         </Box>
                     }
-                    {/*{isMobile ? (*/}
-                    {/*    <Box>*/}
-                    {/*        <img src={MobileViewPriveeImg} alt='privee' width={'100%'} style={{ verticalAlign: 'top' }} />*/}
-                    {/*    </Box>*/}
-                    {/*) : (*/}
-                    {/*    <Box>*/}
-                    {/*        <img src={priveeDashboardImg} alt='privee' width={'100%'} style={{ verticalAlign: 'top' }} />*/}
-                    {/*    </Box>*/}
-
-                    {/*)}*/}
 
                 </MainBoxContent>
                 <Box className="home-banner">
@@ -667,7 +678,6 @@ const PriveePage = () => {
                                             <Box className="form-group d-flex">
                                                 <Box><label className="diners">Number of diners</label></Box>
                                                 <Box className="input-group qty">
-                                                    <Box className="input-group qty">
                                                 <span className="input-group-btn">
                                                      <button type="button"
                                                              className="btn btn-default btn-number"
@@ -683,10 +693,38 @@ const PriveePage = () => {
                                                                    value={count}
                                                                    className="input-number"
                                                             // value={count}
+                                                                   InputProps={{
+                                                                       sx: { width: "25px",  background: 'transparent',
+                                                                           border: '0px',
+                                                                           fontFamily: 'Proxima Nova',
+                                                                           fontStyle: 'normal',
+                                                                           fontWeight: '400',
+                                                                           fontSize: '14px',
+                                                                           color: '#080B0E',
+                                                                           lineHeight: '17px',
+                                                                           paddingLeft: '0px',
+                                                                           paddingRight: '0px',
+                                                                           flex: 'none',
+                                                                           textAlign: 'center',},
+                                                                   }}
                                                                    autoComplete={"off"} sx={{
                                                             '.MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
-                                                                outline: 'none'
+                                                                outline: 'none',
+                                                            },
+                                                            '& .MuiInputBase-input': {
+                                                                width: "25px",  background: 'transparent',
+                                                                border: '0px',
+                                                                fontFamily: 'Proxima Nova',
+                                                                fontStyle: 'normal',
+                                                                fontWeight: '400',
+                                                                fontSize: '14px',
+                                                                color: '#080B0E',
+                                                                lineHeight: '17px',
+                                                                paddingLeft: '0px',
+                                                                paddingRight: '0px',
+                                                                flex: 'none',
+                                                                textAlign: 'center'
                                                             },
                                                         }}
                                                         />
@@ -699,7 +737,6 @@ const PriveePage = () => {
                                                 </button>
                                                 </span>
                                                     </Box>
-                                                </Box>
                                             </Box>
                                             <Box className="form-group">
                                                 <button type="submit" className="btn btn-primary">View Experiences
@@ -712,23 +749,20 @@ const PriveePage = () => {
                         </Box>
                     </Box>
                 </Box>
-                <Box className="available-experiences">
+                <ExperienceCarousel/>
+                <Box className="available-experiences mobile-view">
                     <Typography className="chef-header">Available Experiences</Typography>
-                    {/*<PriveeExperienceCarousel/>*/}
                     <Grid container spacing={2}>
-                        <Grid item xl={3} md={3} sm={6} xs={12}>
-                            <PriveeDining/>
+                        <Grid item xl={4} md={4} sm={6} xs={12}>
+                            <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'}
+                                                   subDescription={'Starting from ₹5000 per diner'}/>
                         </Grid>
-                        <Grid item xl={3} md={3} sm={6} xs={12}>
-                            <PriveeDining/>
-                        </Grid>
-                        <Grid item xl={3} md={3} sm={6} xs={12}>
-                            <PriveeDining/>
-                        </Grid>
-                        <Grid item xl={3} md={3} sm={6} xs={12}>
-                            <PriveeDining/>
+                        <Grid item xl={4} md={4} sm={6} xs={12}>
+                            <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'}
+                                                   subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
                         </Grid>
                     </Grid>
+                    <button type="submit" className="exp-btn">View More</button>
                 </Box>
                 <RatingCarousel backgroundColor="#DCD7CB"/>
                 <PriveeComponentSlider/>

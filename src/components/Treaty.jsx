@@ -1,13 +1,13 @@
-import { Button, styled, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import {Button, styled, Typography} from "@mui/material";
+import {Box} from "@mui/system";
 import React from "react";
 import {Link} from "gatsby";
-const Treaty = () => {
+
+const Treaty = (props) => {
     const BoxWrapper = styled(Box)(() => ({
         padding: '40px 16px',
         color: '#080B0E',
-        width:'auto',
-        textAlign:'left',
+        textAlign: 'left',
         ".heading": {
             fontSize: "16px",
             lineHeight: "38px",
@@ -16,13 +16,12 @@ const Treaty = () => {
         },
         ".main-title": {
             fontSize: "31px",
-            width:'80%',
             lineHeight: "40px",
             letterSpacing: "0.03em",
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
             color: '#080B0E',
-            padding:"0px",
+            padding: "0px",
             marginBottom: '13px',
 
         },
@@ -50,20 +49,21 @@ const Treaty = () => {
             textTransform: "capitalize",
             height: "55px !important",
             // padding: '14px !important',
-            textDecoration:'none',
-            display:'flex',
-            justifyContent:'center',
-            alignItems:"center",
+            textDecoration: 'none',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: "center",
         },
         ".btn:hover": {color: "#C6A87D!important;"},
         ".sub-div": {
             background: '#FBFBFB',
             padding: '30px 20px 30px 30px',
-            boxShadow:' 0px 20px 24px rgb(0 0 0 / 6%)',
+            boxShadow: ' 0px 20px 24px rgb(0 0 0 / 6%)',
+            width: '636px'
         },
-        '.btn-box':{
-            display:'flex',
-            justifyContent:'end',
+        '.btn-box': {
+            display: 'flex',
+            justifyContent: 'end',
         },
         '@media(min-width: 1px) and (max-width: 425px)': {
             ".btn": {
@@ -81,13 +81,26 @@ const Treaty = () => {
             '.heading': {
                 fontSize: '14px',
                 lineHeight: '24px',
+            },
+            '.sub-div': {
+                width: 'auto'
             }
         },
         '@media(min-width: 426px) and (max-width: 768px)': {
             ".btn": {
                 width: '100% !important',
-                margin:"0px",
+                margin: "0px",
             },
+        },
+        '@media(min-width: 769px) and (max-width: 1100px)': {
+            '.sub-div': {
+                width: '368px'
+            }
+        },
+        '@media(min-width: 1100px) and (max-width: 1450px)': {
+            '.sub-div': {
+                width: '550px'
+            }
         },
     }))
 
@@ -97,19 +110,19 @@ const Treaty = () => {
             <BoxWrapper>
                 <Box className="sub-div">
                     <Typography className="heading">
-                        #Treat your loved ones
+                        {props.treatTitle}
                     </Typography>
                     <Typography className="main-title">
-                        Give the gift of an unforgettable food experience
+                        {props.mainTitle}
                     </Typography>
                     <Typography className="details">
-                        send a gift card to your friends and family
+                        {props.detail}
                     </Typography>
-                   <Box className='btn-box'>
-                       <Link href="/become-patron" className="btn">
-                           Learn More
-                       </Link>
-                   </Box>
+                    <Box className='btn-box'>
+                        <Link href={props.link} className="btn">
+                            Learn More
+                        </Link>
+                    </Box>
                 </Box>
             </BoxWrapper>
 

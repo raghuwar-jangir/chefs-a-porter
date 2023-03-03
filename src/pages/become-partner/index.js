@@ -56,15 +56,15 @@ const BecomePartner = () => {
     });
 
     //for getting file upload name
-    window.pressed = function () {
-        var a = document.getElementById('aa');
-        if (a.value == "") {
-            fileLabel.innerHTML = "Choose a File";
-        } else {
-            var theSplit = a.value.split('\\');
-            fileLabel.innerHTML = theSplit[theSplit.length - 1];
-        }
-    };
+    // window.pressed = function () {
+    //     var a = document.getElementById('aa');
+    //     if (a.value == "") {
+    //         fileLabel.innerHTML = "Choose a File";
+    //     } else {
+    //         var theSplit = a.value.split('\\');
+    //         fileLabel.innerHTML = theSplit[theSplit.length - 1];
+    //     }
+    // };
 
     const CHARACTER_LIMIT = 500;
 
@@ -171,19 +171,6 @@ const BecomePartner = () => {
         '.remove-bottom-border': {
             border: '0px',
             borderBottom: 'unset !important',
-        },
-        '.css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input': {
-            height: '149px',
-            background: 'rgba(189, 189, 189, 0.2)',
-            border: '0px',
-            minHeight: '149px',
-            resize: 'none',
-            fontFamily: 'Inter, sans-serif',
-            fontSize: '14px',
-            lineHeight: '17px',
-            fontWeight: '400',
-            color: ' #7D7D7D',
-            padding: '16px 15px',
         },
         '.files': {
             position: 'relative',
@@ -294,7 +281,7 @@ const BecomePartner = () => {
             color: '#EB4040',
             marginTop: '6px',
         },
-        '.css-1wc848c-MuiFormHelperText-root': {
+        '.MuiFormHelperText-root': {
             textAlign: 'right',
             fontFamily: 'Proxima Nova',
             fontStyle: 'normal',
@@ -359,7 +346,7 @@ const BecomePartner = () => {
                 <Box className="joinaschef">
                     <Box className="banner">
                         <Box className="become-partner-header">
-                            <Typography><a href="" className="header-link"><ArrowBackIcon
+                            <Typography><a href="/" className="header-link"><ArrowBackIcon
                                 style={{marginRight: '15px'}}/>Back</a></Typography>
                             <Typography className="become-partner-heading">Become a partner</Typography>
                         </Box>
@@ -614,6 +601,22 @@ const BecomePartner = () => {
                                                                 border: 'none',
                                                                 outline: 'none'
                                                             },
+                                                            '& .MuiInputBase-input': {
+                                                                height: '149px',
+                                                                background: 'rgba(189, 189, 189, 0.2)',
+                                                                border: '0px',
+                                                                minHeight: '149px',
+                                                                resize: 'none',
+                                                                fontFamily: 'Inter, sans-serif',
+                                                                fontSize: '14px',
+                                                                lineHeight: '17px',
+                                                                fontWeight: '400',
+                                                                color: ' #7D7D7D',
+                                                                padding: '16px 15px',
+                                                            },
+                                                            '& .css-15kq27i': {
+                                                                padding: '0px'
+                                                            }
                                                         }}
                                                         id="validationCustom04"
                                                         name="brandMessage"
@@ -641,6 +644,22 @@ const BecomePartner = () => {
                                                                 border: 'none',
                                                                 outline: 'none'
                                                             },
+                                                            '& .MuiInputBase-input': {
+                                                                height: '149px',
+                                                                background: 'rgba(189, 189, 189, 0.2)',
+                                                                border: '0px',
+                                                                minHeight: '149px',
+                                                                resize: 'none',
+                                                                fontFamily: 'Inter, sans-serif',
+                                                                fontSize: '14px',
+                                                                lineHeight: '17px',
+                                                                fontWeight: '400',
+                                                                color: ' #7D7D7D',
+                                                                padding: '16px 15px',
+                                                            },
+                                                            '& .css-15kq27i': {
+                                                                padding: '0px'
+                                                            }
                                                         }}
                                                         className="form-control remove-bottom-border"
                                                         id="validationCustomaboutbrand"
@@ -665,7 +684,7 @@ const BecomePartner = () => {
                                                                title="Choose a video please" id="aa"
                                                                name="workSampleFile"
                                                                value={values.workSampleFile}
-                                                               onChange={handleChange,pressed}/>
+                                                               onChange={handleChange}/>
                                                         <Box className="upload-files">
                                                             <img src={uploadCloud}
                                                                  style={{width: '24px', height: '24px'}}

@@ -39,7 +39,7 @@ const MainParent = styled(Box)({
         position: 'relative',
         bottom: '4px'
     },
-    '.super-title':{
+    '.super-title': {
         fontFamily: 'Proxima Nova Alt Bold',
         fontStyle: 'normal',
         fontWeight: '700',
@@ -48,10 +48,10 @@ const MainParent = styled(Box)({
         color: '#050405',
         marginBottom: '0px',
     },
-    '.super-chef-details':{
+    '.super-chef-details': {
         paddingTop: '20px'
     },
-    '.chef-tag':{
+    '.chef-tag': {
         display: 'flex',
         paddingBottom: '13px',
         fontFamily: 'ProximaNovaA-Regular',
@@ -61,13 +61,13 @@ const MainParent = styled(Box)({
         lineHeight: '19px',
         color: '#222222'
     },
-    '.img-tag':{
+    '.img-tag': {
         width: '18px !important',
         height: '18px',
         objectFit: 'contain',
         marginRight: '20px'
     },
-    '.tag-detail':{
+    '.tag-detail': {
         margin: '0',
         fontFamily: "Roboto , Helvetica , Arial , sans-serif",
         fontWeight: '400',
@@ -185,7 +185,7 @@ const FoodCarousel = (isButtonShow) =>{
           }}
                 slidesPerView={4}
         spaceBetween={20}
-        navigation={true} 
+        navigation={true}
         modules={[Navigation, Pagination]}
         breakpoints={{
             320:{
@@ -223,7 +223,7 @@ const FoodCarousel = (isButtonShow) =>{
                 slidesPerView: 4,
                 spaceBetween: 20,
             },
-           
+
           }}
         className="mySwiper">
                     <SwiperSlide><img className='test-img' src={testImage}/>
@@ -231,9 +231,12 @@ const FoodCarousel = (isButtonShow) =>{
                         <Box className='supper-info' >
                             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography>
                             <Box className='super-chef-details'>
-                                <span className='chef-tag'><img className='img-tag' src={cap} alt="chef cap"/><Typography className='tag-detail'>Chef Anna Miocher</Typography></span>
-                                <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
-                                <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography className='tag-detail'>₹2500/per diner</Typography></span>
+                                <span className='chef-tag'><img className='img-tag' src={cap}
+                                                                alt="chef cap"/><Typography className='tag-detail'>Chef Anna Miocher</Typography></span>
+                                <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography
+                                    className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
+                                <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography
+                                    className='tag-detail'>₹2500/per diner</Typography></span>
                             </Box>
                         </Box>
                     </SwiperSlide>
@@ -241,18 +244,24 @@ const FoodCarousel = (isButtonShow) =>{
                         <Box className='supper-info' >
                             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography>
                             <Box className='super-chef-details'>
-                                <span className='chef-tag'><img className='img-tag' src={cap} alt="chef cap"/><Typography className='tag-detail'>Chef Anna Miocher</Typography></span>
-                                <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
-                                <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography className='tag-detail'>₹2500/per diner</Typography></span>
+                                <span className='chef-tag'><img className='img-tag' src={cap}
+                                                                alt="chef cap"/><Typography className='tag-detail'>Chef Anna Miocher</Typography></span>
+                                <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography
+                                    className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
+                                <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography
+                                    className='tag-detail'>₹2500/per diner</Typography></span>
                             </Box>
                         </Box></SwiperSlide>
                     <SwiperSlide><img className='test-img' src={testImage}/>
                         <Box className='supper-info' >
                             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography>
                             <Box className='super-chef-details'>
-                                <span className='chef-tag'><img className='img-tag' src={cap} alt="chef cap"/><Typography className='tag-detail'>Chef Anna Miocher</Typography></span>
-                                <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
-                                <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography className='tag-detail'>₹2500/per diner</Typography></span>
+                                <span className='chef-tag'><img className='img-tag' src={cap}
+                                                                alt="chef cap"/><Typography className='tag-detail'>Chef Anna Miocher</Typography></span>
+                                <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography
+                                    className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
+                                <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography
+                                    className='tag-detail'>₹2500/per diner</Typography></span>
                             </Box>
                         </Box></SwiperSlide>
                     <SwiperSlide><img className='test-img' src={testImage2}/>
@@ -260,23 +269,29 @@ const FoodCarousel = (isButtonShow) =>{
                         <Box className='supper-info' >
                             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography>
                             <Box className='super-chef-details'>
-                                <span className='chef-tag'><img className='img-tag' src={cap} alt="chef cap"/><Typography className='tag-detail'>Chef Anna Miocher</Typography></span>
-                                <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
-                                <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography className='tag-detail'>₹2500/per diner</Typography></span>
+                                <span className='chef-tag'><img className='img-tag' src={cap}
+                                                                alt="chef cap"/><Typography className='tag-detail'>Chef Anna Miocher</Typography></span>
+                                <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography
+                                    className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
+                                <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography
+                                    className='tag-detail'>₹2500/per diner</Typography></span>
                             </Box>
                         </Box></SwiperSlide>
                     <SwiperSlide><img className='test-img' src={testImage2}/>
                         <Box className='supper-info' >
                             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography>
                             <Box className='super-chef-details'>
-                                <span className='chef-tag'><img className='img-tag' src={cap} alt="chef cap"/><Typography className='tag-detail'>Chef Anna Miocher</Typography></span>
-                                <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
-                                <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography className='tag-detail'>₹2500/per diner</Typography></span>
+                                <span className='chef-tag'><img className='img-tag' src={cap}
+                                                                alt="chef cap"/><Typography className='tag-detail'>Chef Anna Miocher</Typography></span>
+                                <span className='chef-tag'><img className='img-tag' src={date} alt="date"/><Typography
+                                    className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography></span>
+                                <span className='chef-tag'><img className='img-tag' src={tag} alt="Rates"/><Typography
+                                    className='tag-detail'>₹2500/per diner</Typography></span>
                             </Box>
                         </Box></SwiperSlide>
                 </Swiper>
             </MainParent>
-        </React.Fragment >
+        </React.Fragment>
     )
 }
 export default FoodCarousel;

@@ -6,7 +6,7 @@ import {
     ImageList,
     ImageListItem,
     List,
-    ListItemIcon,
+    ListItemIcon, MenuItem, Select,
     Stack,
     TextField,
     Typography
@@ -22,7 +22,7 @@ import MainFoodDetailng from '../components/MainFoodDetailng';
 import NeedHelp from "../components/NeedHelp";
 import Navbar from "../components/NavbarComponent";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
-import {Link} from "gatsby";
+import {Link, navigate} from "gatsby";
 import LightThemeIcon from "../assets/images/lightThemeIcon.png";
 import JoinTableImg from "../assets/images/jointhetable.png";
 import priveeVideo from "../assets/video/privee.mp4";
@@ -38,6 +38,7 @@ import gallery2 from "../assets/images/gallery2.png";
 import gallery3 from "../assets/images/gallery3.png";
 import gallery4 from "../assets/images/team.png";
 import gallery5 from "../assets/images/about3.png";
+import homeBanner from "../assets/images/homebanner.png";
 import food1 from "../assets/images/food1.png";
 import food2 from "../assets/images/food2.png";
 import food3 from "../assets/images/food3.png";
@@ -50,7 +51,14 @@ import CorporateBooking from "../components/CorporateBooking";
 import PriveeComponentSlider from "../components/PriveeComponentSlider";
 import PriveeCarousel from "../components/PriveeCarousel";
 import TemplateYet from "../components/TemplateYet";
-import FoodCarousel from "../components/FoodCarousel";
+import joinChef from "../assets/images/joinchef-banner.png";
+import {Form, Formik} from "formik";
+import moment from "moment/moment";
+import * as _ from "lodash";
+import {DatePickerInput} from "rc-datepicker";
+import PriveeImg from "../assets/images/priveeImg.png";
+import SupperClubImg from "../assets/images/SupperClubImg.png";
+import ClubSection from "../components/ClubSection";
 
 
 const MainBoxContent = styled(Box)({
@@ -60,6 +68,153 @@ const MainBoxContent = styled(Box)({
 })
 
 const BoxWrapper = styled(Box)({
+    '.home-banner': {
+        marginTop: '80px',
+        backgroundImage: `url(${homeBanner})`,
+        backgroundSize: 'cover',
+        // padding: '50px 120px',
+        backgroundPosition: 'center',
+        height: '600px',
+        width: 'auto',
+    },
+    '.hotchef-title': {
+        fontFamily: 'Bon Vivant',
+        fontStyle: 'normal',
+        // fontWeight: '700',
+        fontSize: '32px',
+        lineHeight: '24px',
+        textAlign: 'center',
+        color: '#FBFBFB',
+        marginBottom: '40px'
+    },
+    '.home-banner .row': {
+        paddingTop: '330px',
+        margin: '0px',
+        // position: 'relative',
+    },
+    '.justify-content-center': {
+        display: 'flex',
+        justifyContent: 'center',
+    },
+    '.chef-container': {
+        width: '52%',
+        background: 'rgba(8, 11, 14, 0.8)',
+        alignItems: 'bottom'
+    },
+    '.pe-fo-exp': {
+        // position: 'relative',
+        width: 'auto',
+        bottom: '0px',
+        padding: '40px',
+    },
+    '.form-row': {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%'
+    },
+    '.form-group': {
+        width: '100%',
+        flex: '1',
+        border: '1px solid #FBFBFB',
+        padding: '14px',
+        height: '50px',
+    },
+    '.form-group:last-child': {
+        border: 'unset',
+        padding: '0px 16px',
+        height: '75px'
+    },
+    '.form-control': {
+        backgroundColor: 'transparent',
+        border: '0px',
+        borderRadius: '0px',
+        paddingLeft: '0px',
+        paddingRight: '0px',
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontWeight: '300',
+        fontSize: '16px',
+        lineHeight: '19px',
+        color: '#FBFBFB',
+        width: '100%'
+    },
+    '.label': {
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        fontSize: '16px',
+        lineHeight: '19px',
+        color: '#FBFBFB',
+        marginBottom: '8px',
+        display: 'block',
+    },
+    // '.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon': {
+    //     color: '#FBFBFB !important',
+    //     right:'-10px !important'
+    // },
+    '.react-datepicker-component .react-datepicker-input input': {
+        paddingLeft: '5px',
+        color: '#FBFBFB',
+        fontSize: '15px !important'
+    },
+    '.icon-rc-datepicker': {
+        color: '#FBFBFB !important',
+    },
+    '.react-datepicker-component .react-datepicker-input': {
+        background: 'transparent',
+        border: '0px',
+        borderRadius: '0px',
+        height: '30px !important'
+    },
+    '.react-datepicker-component .react-datepicker-input:hover': {
+        background: 'transparent',
+        border: '0px',
+        borderRadius: '0px'
+    },
+    '.react-datepicker-component .react-datepicker-input.has-value input': {
+        color: '#FBFBFB !important',
+    },
+    '.react-datepicker-component .react-datepicker-input.is-open': {
+        background: 'transparent',
+        border: '0px',
+        borderRadius: '0px',
+    },
+    '.edit': {
+        display: 'none',
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontWeight: '250',
+        fontSize: '16px',
+        lineHeight: '19px',
+        color: '#C6A87D',
+        textAlign: 'right',
+        marginBottom: '12px',
+        textDecoration: 'none',
+    },
+    '.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
+        height: '10px',
+        padding: '5px !important',
+    },
+    '.MuiSelect-select': {
+        padding: '5px !important',
+        fontSize: '17px',
+    },
+    '.hot-chef-search-btn': {
+        background: '#C6A87D',
+        border: '0px',
+        borderRadius: '0px',
+        height: '75px',
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontSize: '20px',
+        lineHeight: '24px',
+        color: '#080B0E',
+        display: 'block',
+        padding: '16px',
+        width: '148px',
+        cursor: 'pointer'
+    },
     '.main-container': {
         position: 'relative'
     },
@@ -384,7 +539,7 @@ const BoxWrapper = styled(Box)({
     //gallery
     '.gallery': {
         background: '#FBFBFB',
-        padding: '80px 120px',
+        padding: '80px 100px',
     },
     '.gallery-heading': {
         fontFamily: 'Bon Vivant',
@@ -482,7 +637,7 @@ const BoxWrapper = styled(Box)({
         justifyContent: 'space-between',
         alignItems: 'center'
     },
-    '.up-super-club':{
+    '.up-super-club': {
         padding: '80px 120px',
         background: '#DCD7CB'
     },
@@ -604,7 +759,8 @@ const BoxWrapper = styled(Box)({
             paddingLeft: '0px'
         },
         '.privee-desktop': {
-            padding: '40px'
+            // padding: '40px'
+            display: 'none'
         },
         '.supper-details': {
             width: '100%',
@@ -612,15 +768,22 @@ const BoxWrapper = styled(Box)({
             paddingBottom: '10px'
         },
         '.supper-desktop': {
-            padding: '40px'
+            // padding: '40px'
+            display: 'none'
         },
+        '.justify-content-center': {
+            display: 'none',
+        },
+        '.home-banner': {
+            marginTop: '0px'
+        }
     },
     '@media(min-width: 426px) and (max-width: 768px)': {
         '.treaty-card': {
             display: "block",
         },
         '.treat': {
-            padding: '0px'
+            padding: '40px 120px'
         },
         '.MuiImageList-root': {
             columnCount: '1 !important',
@@ -653,6 +816,13 @@ const BoxWrapper = styled(Box)({
             paddingBottom: '10px'
         },
     },
+    '@media(min-width: 700px) and (max-width: 768px)': {
+        '.chef-container': {
+            width: 'auto',
+            background: 'rgba(8, 11, 14, 0.8)',
+            alignItems: 'bottom'
+        },
+    },
     '@media(min-width: 769px) and (max-width: 1024px)': {
         '.treat': {
             padding: '80px'
@@ -660,13 +830,18 @@ const BoxWrapper = styled(Box)({
         '.fresh-food-img': {
             width: 'unset',
         },
-
+        '.chef-container': {
+            width: '80%',
+        },
     },
-    '@media(min-width: 1000px) and (max-width: 1440px)': {
+    '@media(min-width: 1100px) and (max-width: 1440px)': {
         '.jtable-img': {
             height: '500px',
             objectFit: 'cover',
             width: '600px !important'
+        },
+        '.chef-container': {
+            width: '60%',
         },
     },
     '.join-table-title': {
@@ -684,10 +859,12 @@ const HomePage = () => {
         {
             img: gallery2,
             title: 'gallery2',
+            rows: 0.9,
         },
         {
             img: gallery1,
             title: ' gallery1',
+            rows: 1.1,
         },
         {
             img: gallery3,
@@ -698,10 +875,12 @@ const HomePage = () => {
         {
             img: gallery4,
             title: 'gallery4',
+            rows: 1.3,
         },
         {
             img: gallery5,
             title: 'gallery5',
+            rows: 0.7,
         },
     ];
     const freshFoodItems = [
@@ -721,6 +900,11 @@ const HomePage = () => {
             img: food3
         }
     ];
+
+    const handleClick = () => {
+        navigate('/privee-viewmore');
+    }
+
     return (
         <React.Fragment>
             <Navbar/>
@@ -735,7 +919,191 @@ const HomePage = () => {
                 </MobileView>
                 {/* //! Browser view for main-home screen */}
 
-                <FrontFood/>
+                <Box className="home-banner">
+                    <Box className="row justify-content-center">
+                        <Box className="chef-container">
+                            <Box className="pe-fo-exp">
+                                <Typography className="hotchef-title">The Hottest Chef’s Tables in Town.</Typography>
+                                <Formik
+                                    initialValues={{
+                                        city: 'Mumbai',
+                                        on: new Date(),
+                                        time: 'Lunch',
+                                        diners: '1'
+                                    }}
+                                    onSubmit={(values) => {
+                                        console.log(values.date)
+                                        const experienceData = {
+                                            ...values,
+                                            on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
+                                        }
+                                        console.log("value===>", values)
+                                        console.log("experienceData===>", experienceData)
+                                    }}
+                                >
+                                    {({values, handleChange, handleSubmit, setFieldValue}) => (
+                                        <Form onSubmit={handleSubmit}>
+                                            <Box className="form-row">
+                                                <Box className="form-group">
+                                                    <label className="label">Where</label>
+                                                    <Select
+                                                        labelId="demo-simple-select-label"
+                                                        id="demo-simple-select"
+                                                        name="city"
+                                                        value={values.city}
+                                                        onChange={handleChange}
+                                                        defaultValue={values.city}
+                                                        className="selectpicker my-select dropdown-toggle form-control"
+                                                        sx={{
+                                                            '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                border: 'none',
+                                                            },
+                                                            '.MuiSelect-icon': {
+                                                                color: '#FBFBFB'
+                                                            }
+                                                        }}
+                                                        MenuProps={{
+                                                            PaperProps: {
+                                                                sx: {
+                                                                    background: "#080B0E",
+                                                                    color: '#FBFBFB',
+                                                                    'li:last-child': {
+                                                                        borderBottom: 'none'
+                                                                    },
+                                                                    'li:hover': {
+                                                                        color: '#C6A87D!important',
+                                                                        backgroundColor: '#DCD7CB !important'
+                                                                    },
+                                                                    "&& .Mui-selected": {
+                                                                        backgroundColor: "#0000FF !important"
+                                                                    }
+                                                                },
+                                                            },
+                                                        }}
+                                                    >
+                                                        <MenuItem value="Mumbai">Mumbai</MenuItem>
+                                                        <MenuItem value="Delhi">Delhi</MenuItem>
+                                                        <MenuItem value="Goa">Goa</MenuItem>
+                                                        <MenuItem value="Banglore">Banglore</MenuItem>
+                                                        <MenuItem value="Hydrabad">Hydrabad</MenuItem>
+                                                    </Select>
+                                                </Box>
+                                                <Box className="form-group">
+                                                    <label className="label">On</label>
+                                                    <DatePickerInput
+                                                        name="on"
+                                                        value={values.on}
+                                                        displayFormat="ddd,DD MMM"
+                                                        returnFormat="ddd,DD MMM"
+                                                        className="form-control"
+                                                        onChange={(dateString) => setFieldValue('on', dateString)}
+                                                        defaultValue={values.on}
+                                                    />
+                                                </Box>
+                                                <Box className="form-group">
+                                                    <label className="label">Time</label>
+                                                    <Select
+                                                        labelId="demo-simple-select-label"
+                                                        id="demo-simple-select"
+                                                        name="time"
+                                                        value={values.time}
+                                                        onChange={handleChange}
+                                                        defaultValue={values.time}
+                                                        className="selectpicker my-select dropdown-toggle form-control"
+                                                        sx={{
+                                                            '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                border: 'none',
+                                                            },
+                                                            '.MuiSelect-icon': {
+                                                                color: '#FBFBFB'
+                                                            }
+                                                        }}
+                                                        MenuProps={{
+                                                            PaperProps: {
+                                                                sx: {
+                                                                    background: "#080B0E",
+                                                                    color: '#FBFBFB',
+                                                                    'li:last-child': {
+                                                                        borderBottom: 'none'
+                                                                    },
+                                                                    'li:hover': {
+                                                                        color: '#C6A87D!important',
+                                                                        backgroundColor: '#DCD7CB !important'
+                                                                    },
+                                                                    "&& .Mui-selected": {
+                                                                        backgroundColor: "#0000FF !important"
+                                                                    }
+                                                                },
+                                                            },
+                                                        }}
+                                                    >
+                                                        <MenuItem value="Lunch">Lunch</MenuItem>
+                                                        <MenuItem value="Dinner">Dinner</MenuItem>
+                                                        <MenuItem value="BreakFast">BreakFast</MenuItem>
+                                                    </Select>
+                                                </Box>
+                                                <Box className="form-group">
+                                                    <label className="label">Diners</label>
+                                                    <Select
+                                                        labelId="demo-simple-select-label"
+                                                        id="demo-simple-select"
+                                                        name="diners"
+                                                        value={values.diners}
+                                                        onChange={handleChange}
+                                                        defaultValue={values.diners}
+                                                        className="selectpicker my-select dropdown-toggle form-control"
+                                                        sx={{
+                                                            '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                border: 'none',
+                                                            },
+                                                            '.MuiSelect-icon': {
+                                                                color: '#FBFBFB'
+                                                            }
+                                                        }}
+                                                        MenuProps={{
+                                                            PaperProps: {
+                                                                sx: {
+                                                                    background: "#080B0E",
+                                                                    color: '#FBFBFB',
+                                                                    'li:last-child': {
+                                                                        borderBottom: 'none'
+                                                                    },
+                                                                    'li:hover': {
+                                                                        color: '#C6A87D!important',
+                                                                        backgroundColor: '#DCD7CB !important'
+                                                                    },
+                                                                    "&& .Mui-selected": {
+                                                                        backgroundColor: "#0000FF !important"
+                                                                    }
+                                                                },
+                                                            },
+                                                        }}
+                                                    >
+                                                        <MenuItem value="1">1</MenuItem>
+                                                        <MenuItem value="2">2</MenuItem>
+                                                        <MenuItem value="3">3</MenuItem>
+
+                                                    </Select>
+                                                </Box>
+                                                <Box className="form-group">
+                                                    <Typography>
+                                                        <button type="submit" className="hot-chef-search-btn"
+                                                                onClick={handleClick}>Search
+                                                        </button>
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                        </Form>
+                                    )}
+                                </Formik>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Box>
+                <ClubSection/>
                 <Box className="privee-desktop">
                     <Box className="row">
                         <Box className="privee-video">
@@ -766,11 +1134,10 @@ const HomePage = () => {
                                 <source src={supperVideo} type="video/mp4"/>
                             </video>
                         </Box>
-
                     </Box>
                 </Box>
                 <PriveeMain title='Continue Browsing' subTitle='Chef s you ve checked out previously'/>
-               <MainFoodDetailng/>
+                <MainFoodDetailng/>
                 <PriveeCarousel/>
                 <RatingCarousel/>
                 <DiningPage image={diningPicture} title={'What we cook for'}/>
@@ -816,8 +1183,13 @@ const HomePage = () => {
                 </Box>
                 <Box className="treat">
                     <Grid className="treaty-card">
-                        <Grid className="treat-card1" item xs={6} md={4} sm={4}><Treaty/></Grid>
-                        <Grid className="treat-card2" item xs={6} md={4} sm={4}><Treaty/></Grid>
+                        <Grid className="treat-card1" xs={6} md={4} sm={4}><Treaty treatTitle="#Treat your loved ones"
+                                                                                   mainTitle="Give the gift of an unforgettable food experience"
+                                                                                   detail="send a gift card to your friends and family"
+                                                                                   link={'/gift-cards'}/></Grid>
+                        <Grid className="treat-card2" xs={6} md={4} sm={4}><Treaty treatTitle="#Patron Privilage"
+                                                                                   mainTitle="Become a patron and get exclusive access to our top experiences"
+                                                                                   link={'/become-patron'}/></Grid>
                     </Grid>
                 </Box>
                 <Box className="join-table join-table1">
@@ -877,7 +1249,7 @@ const HomePage = () => {
                     ))}
                 </Box>
                 <PriveeComponentSlider/>
-                <TemplateYet title={'View our offerings'}/>
+                <TemplateYet title={'View our offerings'} isTempted={true}/>
                 <NeedHelp/>
                 <Footer/>
                 <FooterEnd/>

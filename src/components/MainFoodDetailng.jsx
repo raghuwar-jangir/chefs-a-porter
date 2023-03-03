@@ -25,12 +25,12 @@ const MainParent = styled(Box)({
         color: '#434343',
         padding: '16px 5px 0px 5px'
 
-},
-'.button-component': {
-    marginRight:'-3%'
-},
-'.view-button': {
-    textTransform: 'capitalize',
+    },
+    '.button-component': {
+        textAlign: 'center',
+    },
+    '.view-button': {
+        textTransform: 'capitalize',
         backgroundColor: '#DCD7CB',
         color: '#080B0E',
         fontFamily: 'ProximaNovaA-Regular',
@@ -39,12 +39,12 @@ const MainParent = styled(Box)({
         fontWeight: '200',
         fontSize: '16px',
         lineHeight: '19px',
-},
-".btn-container":{
-    display:'flex',
+    },
+    ".btn-container":{
+        display:'flex',
         justifyContent:'space-between',
         position:'relative'
-},
+    },
 
 // ! media query for foodDetails card-component(Mobile-view)
 '@media(min-width: 425px)and (max-width: 768px)': {
@@ -111,9 +111,9 @@ const MainParent = styled(Box)({
         fontSize: '14px',
             lineHeight: '19px',
             paddingTop: '8px'
-    },
-    '.view-button': {
-        width: '100%',
+        },
+        '.view-button': {
+            width: '100%',
             fontSize: '16px',
             padding:'10px',
             lineHeight:'19px'

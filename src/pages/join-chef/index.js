@@ -124,19 +124,6 @@ const ContactUs = () => {
             border: '0px',
             borderBottom: 'unset !important',
         },
-        '.css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input': {
-            height: '149px',
-            background: 'rgba(189, 189, 189, 0.2)',
-            border: '0px',
-            minHeight: '149px',
-            resize: 'none',
-            fontFamily: 'Inter, sans-serif',
-            fontSize: '14px',
-            lineHeight: '17px',
-            fontWeight: '400',
-            color: ' #7D7D7D',
-            padding: '16px 15px',
-        },
         'form label': {
             fontFamily: 'Proxima Nova',
             fontStyle: 'normal',
@@ -174,7 +161,7 @@ const ContactUs = () => {
             color: '#EB4040',
             marginTop: '6px',
         },
-        '.css-1wc848c-MuiFormHelperText-root': {
+        '.MuiFormHelperText-root': {
             textAlign: 'right',
             fontFamily: 'Proxima Nova',
             fontStyle: 'normal',
@@ -227,7 +214,7 @@ const ContactUs = () => {
             },
             '.joinaschef': {
                 paddingTop: '80px',
-                background:'#FBFBFB'
+                background: '#FBFBFB'
             },
             ".header-club": {
                 padding: '0px',
@@ -277,12 +264,12 @@ const ContactUs = () => {
                             as Chef</Typography>
                     </Box>
                 ) : (
-                ''
+                    ''
                 )}
                 <Box className="joinaschef">
                     <Box className="banner">
                         <Box className="become-partner-header">
-                            <Typography><a href="" className="header-link"><ArrowBackIcon
+                            <Typography><a href="/" className="header-link"><ArrowBackIcon
                                 style={{marginRight: '15px'}}/>Back</a></Typography>
                             <Typography className="become-partner-heading">Join as Chef</Typography>
                         </Box>
@@ -370,11 +357,27 @@ const ContactUs = () => {
                                                                 border: 'none',
                                                                 outline: 'none'
                                                             },
+                                                            '& .MuiInputBase-input': {
+                                                                height: '149px',
+                                                                background: 'rgba(189, 189, 189, 0.2)',
+                                                                border: '0px',
+                                                                minHeight: '149px',
+                                                                resize: 'none',
+                                                                fontFamily: 'Inter, sans-serif',
+                                                                fontSize: '14px',
+                                                                lineHeight: '17px',
+                                                                fontWeight: '400',
+                                                                color: ' #7D7D7D',
+                                                                padding: '16px 15px',
+                                                            },
+                                                            '& .css-15kq27i': {
+                                                                padding: '0px'
+                                                            }
                                                         }}
                                                         id="validationCustom04"
-                                                        name="brandMessage"
+                                                        name="coverLetterMessage"
                                                         autoComplete="off"
-                                                        className="form-control remove-bottom-border"
+                                                        className="form-control remove-bottom-border coverLetterMessage"
                                                         value={values.coverLetterMessage}
                                                         placeholder="Do you have any special requests or concerns ?"
                                                         helperText={`${values.coverLetterMessage.length}/${CHARACTER_LIMIT} Characters`}

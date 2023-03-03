@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Autoplay, Pagination} from "swiper";
 import "swiper/css/pagination";
-import ProgressBar from 'react-bootstrap/ProgressBar'
 import diningPicture from '../assets/images/cook1.png'
 import DiningProgress from './DiningProgress';
 import { keyframes } from 'styled-components';
@@ -19,12 +18,12 @@ const MainContentBox = styled(Box)({
     padding: '32px 0px',
     '.dining-content': {
         fontFamily: 'Proxima Nova Alt',
-    fontStyle:'normal',
-    fontWeight: '300',
-    fontSize: '14px',
-    lineHeight: '17px',
-    color: '#FBFBFB',
-    padding: '4px 69px'
+        fontStyle:'normal',
+        fontWeight: '300',
+        fontSize: '14px',
+        lineHeight: '17px',
+        color: '#FBFBFB',
+        padding: '4px 69px'
     },
     '.dining-title': {
         fontFamily: 'Bon Vivant',
@@ -35,13 +34,13 @@ const MainContentBox = styled(Box)({
         letterSpacing: '0.06em',
         color: '#FBFBFB',
         padding: '0px 40px',
-    marginBottom: '20px',
+        marginBottom: '20px',
     },
     '.content-box':{
         display:'flex',
         justifyContent:'center',
         marginRight:'34px'
-        },
+    },
     '.active':{
         padding:'0px !important '
     },
@@ -54,7 +53,7 @@ const MainContentBox = styled(Box)({
     '.img':{
         width:'100%',
         height: '352px',
-    objectFit: 'cover'
+        objectFit: 'cover'
     },
     '.swiper-pagination-bullet':{
         borderRadius:'0px',
@@ -102,7 +101,7 @@ positionX:'end'
             width:'50%',
             // padding:'0px 26%'
         },
-     
+
     '.dining-content': {
         width:'10px',
         font:'12px',

@@ -117,7 +117,7 @@ const SupperClubDetailsCarousel = () => {
 
     return (
         <BoxWrapper
-        // sx={{ maxWidth: 400, flexGrow: 1 }}
+            // sx={{ maxWidth: 400, flexGrow: 1 }}
         >
             <AutoPlaySwipeableViews
                 axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}

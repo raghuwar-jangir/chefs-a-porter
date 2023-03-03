@@ -22,6 +22,7 @@ import bookingImg5 from "../../assets/images/hallmark_channel.png";
 import bookingImg6 from "../../assets/images/good-day-DC-logo.png";
 import ContactUsBox from "../../components/ContactUs";
 import ImageCarousel from "../../components/ImageCarousel";
+import {Link} from "gatsby";
 
 const CorporateBooking = () => {
 
@@ -33,7 +34,6 @@ const CorporateBooking = () => {
         bookingImg5,
         bookingImg6,
     ];
-
     const BoxWrapper = styled(Box)(() => ({
         background: '#FBFBFB',
         '.corporate-b': {
@@ -376,7 +376,7 @@ const CorporateBooking = () => {
                                 <Typography className="become-detail">Join as a member and get exclusive member
                                     priviliges</Typography>
                             </Box>
-                            <Box><Typography style={{width: '100%'}}><a href="" className="apply">Apply</a></Typography></Box>
+                            <Box><Typography style={{width: '100%'}}><Link href="/become-partner" className="apply">Apply</Link></Typography></Box>
                         </Box>
                     </Box>
                 </Box>

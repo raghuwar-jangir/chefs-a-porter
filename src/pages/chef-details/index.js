@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     Box,
     Grid,
@@ -22,11 +22,6 @@ import ReactReadMoreReadLess from "react-read-more-read-less";
 import chef1 from "../../assets/images/chef5.png";
 import chef2 from "../../assets/images/chef6.png";
 import sGallery from "../../assets/images/sc-gallery.png";
-import gallery4 from "../../assets/images/team.png";
-import gallery5 from "../../assets/images/about3.png";
-import gallery1 from "../../assets/images/gallery1.png";
-import gallery2 from "../../assets/images/gallery2.png";
-import gallery3 from "../../assets/images/gallery3.png";
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
 import {Form, Formik} from "formik";
@@ -43,12 +38,23 @@ import avlExp2 from "../../assets/images/avl-exp2.jpg";
 import {isMobile} from "react-device-detect";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import DiningPage from "../../components/DiningPage";
+import ImagePopCarousel from "../../components/ImagePopCarousel";
 
-const ChefDetails = () => {
+const ChefDetails = (props) => {
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const [showCarousel, setShowCarousel] = useState(false);
+    const [title, setTitle] = useState('');
+    const handleImageOpen = (title) => {
+        setShowCarousel(true);
+        setTitle(title);
+    };
+    const handleImageClose = () => {
+        setShowCarousel(false);
+    };
 
     const breadcrumbs = [
         <Typography key="1" color="#FBFBFB">
@@ -70,7 +76,7 @@ const ChefDetails = () => {
         },
         {
             img: sGallery,
-            title: ' sGallery',
+            title: 'sGallery',
             cols: 4,
         },
         {
@@ -260,8 +266,32 @@ const ChefDetails = () => {
             '.chef-btn': {
                 display: 'flex',
                 justifyContent: 'center',
-                width:'auto'
+                width: 'auto'
             },
+            '.carousel-popup': {
+                position: 'fixed',
+                top: '0px',
+                left: '0',
+                width: '100%',
+                height: '100%',
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                zIndex: '5'
+            },
+            '.close-button': {
+                position: 'absolute',
+                top: '90px',
+                right: '50px',
+                fontSize: '24px',
+                backgroundColor: 'transparent',
+                border: 'none',
+                color: 'white',
+                cursor: 'pointer',
+                zIndex: '10'
+            },
+
             '@media(min-width: 1000px) and (max-width: 1024px)': {
                 '.swiper-pagination-bullet': {
                     width: '145px !important',
@@ -547,7 +577,7 @@ const ChefDetails = () => {
                         </Box>
                         <Box className="tz-gallery">
                             <ImageList variant="masonry"
-                                       sx={{width: '100%', height: '100%'}}
+                                       sx={{width: '100%', height: '100%', cursor: 'pointer'}}
                                        cols={2}
                                        gap={10}
                                        rowHeight={200}>
@@ -557,9 +587,22 @@ const ChefDetails = () => {
                                             src={item.img}
                                             alt={item.title}
                                             loading="lazy"
+                                            onClick={() => {
+                                                handleImageOpen(item.title)
+                                            }}
                                         />
                                     </ImageListItem>
                                 ))}
+                                {showCarousel && (
+                                    <Box className='carousel-popup'>
+                                        <button className='close-button' onClick={handleImageClose}><CloseIcon/>
+                                        </button>
+                                        <Box className='carousel'>
+                                            <ImagePopCarousel title={title}/>
+                                        </Box>
+                                    </Box>
+                                )}
+
                                 <a href="javascript:void(0);" className="all-photos" data-bs-toggle="modal"
                                    data-bs-target="#exampleModal" onClick={handleOpen}>Show All Photos</a>
                             </ImageList>

@@ -128,7 +128,7 @@ const NeedHelpSmallComponent = ({isColor}) => {
             },
             '.need-help-child-box':{
                 flexDirection:'column',
-                
+
             },
             '.btn':{
                 marginLeft:'0%'
@@ -177,7 +177,7 @@ const NeedHelpSmallComponent = ({isColor}) => {
             width: '100%'
         },
         '.form-control:focus-visible': {
-         outline:'0px'
+            outline:'0px'
         },
         '.modal-header': {
             padding: '0px',
@@ -264,19 +264,19 @@ const NeedHelpSmallComponent = ({isColor}) => {
         <React.Fragment>
             <BoxWarraper>
                 <Box className='need-help-box'>
-                <Box>
-                    <Typography className="main-heading">Need Help?</Typography>
-                    <Typography className="details">We respond within 24 business hours.</Typography>
-                </Box>
-                <Box className='need-help-child-box'>
                     <Box>
-                    <Button
-                        type="submit"
-                        className="btn" onClick={handleOpen}>Schedule a Call</Button></Box>
-                    <Button
-                        type="submit"
-                        className="btn-2">Email us</Button>
-                </Box>
+                        <Typography className="main-heading">Need Help?</Typography>
+                        <Typography className="details">We respond within 24 business hours.</Typography>
+                    </Box>
+                    <Box className='need-help-child-box'>
+                        <Box>
+                            <Button
+                                type="submit"
+                                className="btn" onClick={handleOpen}>Schedule a Call</Button></Box>
+                        <Button
+                            type="submit"
+                            className="btn-2">Email us</Button>
+                    </Box>
                 </Box>
                 <Modal
                     keepMounted

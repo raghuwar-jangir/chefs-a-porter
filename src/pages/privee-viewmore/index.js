@@ -48,8 +48,8 @@ const BoxWrapper = styled(Box)(() => ({
         padding: '10px 0px',
         marginBottom: '10px',
     },
-    '.main-container': {
-        width: '66%',
+    '.privee-container': {
+        width: '66% !important',
     },
     '.pe-fo-exp': {
         // position: 'relative',
@@ -67,8 +67,12 @@ const BoxWrapper = styled(Box)(() => ({
         width: '100%',
         flex: '1',
         border: '1px solid #FBFBFB',
-        padding: '16px',
-        height: '55px',
+        padding: '13px',
+        height: '50px !important',
+    },
+    '.MuiSelect-select': {
+        padding: '5px !important',
+        fontSize: '17px',
     },
     '.form-control': {
         backgroundColor: 'transparent',
@@ -100,6 +104,7 @@ const BoxWrapper = styled(Box)(() => ({
     '.react-datepicker-component .react-datepicker-input input': {
         paddingLeft: '5px',
         color: '#FBFBFB',
+        fontSize: '15px !important'
     },
     '.icon-rc-datepicker': {
         color: '#FBFBFB !important',
@@ -108,6 +113,7 @@ const BoxWrapper = styled(Box)(() => ({
         background: 'transparent',
         border: '0px',
         borderRadius: '0px',
+        height: '30px !important'
     },
     '.react-datepicker-component .react-datepicker-input:hover': {
         background: 'transparent',
@@ -136,7 +142,7 @@ const BoxWrapper = styled(Box)(() => ({
     },
     '.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
         height: '10px',
-        padding: '5px',
+        padding: '5px !important',
     },
     ".header-club": {
         display: 'none',
@@ -169,8 +175,8 @@ const BoxWrapper = styled(Box)(() => ({
             padding: '5px',
             height: '55px',
         },
-        '.main-container': {
-            width: 'auto',
+        '.privee-container': {
+            width: '100% !important',
         },
         '.label': {
             fontSize: '14px',
@@ -204,6 +210,9 @@ const BoxWrapper = styled(Box)(() => ({
         },
         '.header-club': {
             display: 'flex'
+        },
+        '.privee-container': {
+            width: '80% !important',
         },
     },
     "@media (min-width: 320px) and (max-width:370px)": {
@@ -404,7 +413,7 @@ const PriveeViewMore = () => {
                 )}
                 <Box className="home-banner dark">
                     <Box className="row justify-content-center">
-                        <Box className="main-container">
+                        <Box className="privee-container">
                             <Box className="pe-fo-exp">
                                 <a className="edit" onClick={handleOpen}>Edit</a>
                                 <Formik
@@ -572,18 +581,22 @@ const PriveeViewMore = () => {
                 </Box>
                 <Box className="available-experiences">
                     <Typography className="chef-header">Available Experiences</Typography>
-                    <Grid container spacing={2}>
+                    <Grid container spacing={5}>
                         <Grid item xl={4} md={4} sm={6} xs={12}>
-                            <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'} subDescription={'Starting from ₹5000 per diner'}/>
+                            <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'}
+                                                   subDescription={'Starting from ₹5000 per diner'}/>
                         </Grid>
                         <Grid item xl={4} md={4} sm={6} xs={12}>
-                            <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'} subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
+                            <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'}
+                                                   subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
                         </Grid>
                         <Grid item xl={4} md={4} sm={6} xs={12}>
-                            <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'} subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
+                            <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'}
+                                                   subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
                         </Grid>
                         <Grid item xl={4} md={4} sm={6} xs={12}>
-                            <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'} subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
+                            <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'}
+                                                   subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
                         </Grid>
                     </Grid>
                 </Box>

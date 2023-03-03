@@ -8,13 +8,14 @@ import chef from './../assets/images/chef1.png'
 import chef2 from './../assets/images/chef2.png'
 import chef3 from '../assets/images/chef3.png';
 import reebok from '../assets/images/rebook.png'
+import {navigate} from "gatsby";
 
 const MainParent = styled(Box)({
     '.continue-browsing-box': {
         background: '#080B0E',
         padding: '80px 120px',
         color: '#fff'
-       
+
     },
     '.main-heading': {
         fontFamily: 'Bon Vivant',
@@ -59,7 +60,7 @@ const MainParent = styled(Box)({
     lineHeight: '25px',
     marginBottom: '6px',
     fontFamily:'Bon Vivant ',
-  
+
     },
     '.chef-details':{
         textAlign: 'center',
@@ -204,75 +205,79 @@ const MainParent = styled(Box)({
 )
 
 const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
+
+    const handleClick = () =>{
+        navigate('/chef-details');
+    }
     return (
         <React.Fragment>
             <MainParent>
-                <Box className='continue-browsing-box'>
+                <Box className='continue-browsing-box' onClick={handleClick}>
                     <Typography className='main-heading'>
-                    Continue Browsing
+                        Continue Browsing
                     </Typography>
                     <Typography className='heading-details'>
-                    Chef’s you’ve checked out previously
-                     </Typography>
-<Swiper
-        style={{
-            "--swiper-navigation-color": "white",
-            "--swiper-navigation-size": "17px",
-          }}
-        slidesPerView={3}
-        spaceBetween={20}
-        navigation={true} 
-        modules={[Navigation, Pagination]}
-        breakpoints={{
-            320:{
-                slidesPerView:2,
-                spaceBetween: 8,
-            },
-            375:{
-                slidesPerView:2,
-                spaceBetween: 8,
-            },
-            425: {
-                slidesPerView:2,
-                spaceBetween: 8,
-            },
-            768: {
-              slidesPerView: 3,
-              spaceBetween: 8,
-            },
-           
-          }}
-        className="mySwiper">
-<SwiperSlide><img className="img-size" src={chef}/>
-<Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
-<Box className="chef-details">
-<span>Thai <span className='line'>|</span></span>
-<span>Japanese <span className='line'>|</span></span>
-<span>Parsi</span>
-</Box>
-</Box>
-</SwiperSlide>
-<SwiperSlide>
-    <img className="img-size" src={chef2}
-    />
-<Box  className='rebook'><img className='rebook-img' src={reebok}/><Typography className='rebook-title'>Rebook</Typography></Box>
-<Box className="name-box"><Typography className='chef-title'>Kyoumars Freeman</Typography>
-<Box className="chef-details"><span>Persian</span></Box>
-</Box>
-</SwiperSlide>
-<SwiperSlide><img className="img-size" src={chef3}/>
-<Box className="name-box"><Typography className='chef-title'>Mako Ravindran</Typography>
-<Box className="chef-details">
-<span>French <span className='line'>|</span></span>
-<span>Italian <span className='line'>|</span></span>
-<span>Indian </span></Box>
-</Box></SwiperSlide>
-<SwiperSlide><img className="img-size" src={chef2}/>
-<Box  className='rebook'><img className='rebook-img' src={reebok}/><Typography className='rebook-title'>Rebook</Typography></Box>
-<Box className="name-box"><Typography className='chef-title'>Kyoumars Freeman</Typography>
-<Box className="chef-details"><span>Persian</span></Box>
-</Box></SwiperSlide>
-</Swiper>
+                        Chef’s you’ve checked out previously
+                    </Typography>
+                    <Swiper
+                        style={{
+                            "--swiper-navigation-color": "white",
+                            "--swiper-navigation-size": "17px",
+                        }}
+                        slidesPerView={3}
+                        spaceBetween={20}
+                        navigation={true}
+                        modules={[Navigation, Pagination]}
+                        breakpoints={{
+                            320:{
+                                slidesPerView:2,
+                                spaceBetween: 8,
+                            },
+                            375:{
+                                slidesPerView:2,
+                                spaceBetween: 8,
+                            },
+                            425: {
+                                slidesPerView:2,
+                                spaceBetween: 8,
+                            },
+                            768: {
+                                slidesPerView: 3,
+                                spaceBetween: 8,
+                            },
+
+                        }}
+                        className="mySwiper">
+                        <SwiperSlide><img className="img-size" src={chef}/>
+                            <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
+                                <Box className="chef-details">
+                                    <span>Thai <span className='line'>|</span></span>
+                                    <span>Japanese <span className='line'>|</span></span>
+                                    <span>Parsi</span>
+                                </Box>
+                            </Box>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <img className="img-size" src={chef2}
+                            />
+                            <Box  className='rebook'><img className='rebook-img' src={reebok}/><Typography className='rebook-title'>Rebook</Typography></Box>
+                            <Box className="name-box"><Typography className='chef-title'>Kyoumars Freeman</Typography>
+                                <Box className="chef-details"><span>Persian</span></Box>
+                            </Box>
+                        </SwiperSlide>
+                        <SwiperSlide><img className="img-size" src={chef3}/>
+                            <Box className="name-box"><Typography className='chef-title'>Mako Ravindran</Typography>
+                                <Box className="chef-details">
+                                    <span>French <span className='line'>|</span></span>
+                                    <span>Italian <span className='line'>|</span></span>
+                                    <span>Indian </span></Box>
+                            </Box></SwiperSlide>
+                        <SwiperSlide><img className="img-size" src={chef2}/>
+                            <Box  className='rebook'><img className='rebook-img' src={reebok}/><Typography className='rebook-title'>Rebook</Typography></Box>
+                            <Box className="name-box"><Typography className='chef-title'>Kyoumars Freeman</Typography>
+                                <Box className="chef-details"><span>Persian</span></Box>
+                            </Box></SwiperSlide>
+                    </Swiper>
                     {isButtonShow &&
                         <Box className='parent-view-button'>
                             <Button

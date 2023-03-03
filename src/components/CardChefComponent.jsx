@@ -59,8 +59,8 @@ const CardChefComponent = ({ bgColor }) => {
         },
         '.logo':{
             width: '24px',
-    height: '24px',
-    objectFit: 'contain',
+            height: '24px',
+            objectFit: 'contain',
         },
         "@media (min-width: 1px) and (max-width:425px)": {
         }

@@ -32,6 +32,11 @@ const Footer = () => {
             padding: '10px 0px',
             fontFamily: 'Proxima Nova',
         },
+        '.footerLogo':{
+            height: '50px',
+            width: '226.29px',
+            objectFit: 'contain',
+        },
         '.details': {
             fontWeight: 250,
             fontSize: '14px',

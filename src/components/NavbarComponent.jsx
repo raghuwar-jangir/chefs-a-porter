@@ -9,11 +9,12 @@ import {Collapse, Grid, TextField, ListItemText, List, ListItemButton, Typograph
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import AppBar from '@mui/material/AppBar';
-import vector from '../assets/images/vector.svg'
+import telLogo from '../assets/images/tel.png';
+import searchIcon from '../assets/images/search.png';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
-import LightThemeIcon from '../assets/images/lightThemeIcon.png'
-import DarkThemeLogo from '../assets/images/priveeHeaderLogo.png'
-import {Link} from "gatsby";
+import LightThemeIcon from '../assets/images/Logo.png'
+import DarkThemeLogo from '../assets/images/Logo.png'
+import {Link, navigate} from "gatsby";
 import CloseIcon from '@mui/icons-material/Close';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
@@ -34,14 +35,13 @@ const Navbar = ({isColor}) => {
     const handleIsOpen = () => {
         setOpen(!isOpen)
     }
-
     const closeSideBar = () => {
         setOpen(false)
     }
 
-    // console.log("navbar", location.pathname);
-    // const dark =
-    // console.log("--->  dark", dark)
+    const handleOnClick = () => {
+        navigate('/');
+    }
 
     const BoxWrapper = styled(Box)({
             flexGrow: 1,
@@ -60,13 +60,35 @@ const Navbar = ({isColor}) => {
                 color: `${isColor ? '#080B0E' : '#FBFBFB'}`,
                 paddingLeft: "16px"
             },
+            '.main-container': {
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: '10px 120px'
+            },
+            '.grid-box': {
+                width: '50%'
+            },
             '.browser-hamburger-menu': {
                 fontSize: '16px',
                 lineHeight: '19px',
-                fontWeight: 300,
+                padding: '0 1rem',
                 textDecoration: 'none',
+                position: 'relative',
                 color: `${isColor ? '#FBFBFB' : '#080B0E'}`,
                 fontFamily: 'Proxima Nova',
+            },
+            '.browser-hamburger-menu.active:after': {
+                content: `''`,
+                background: `${isColor ? '#C6A87D' : '#080B0E'}`,
+                width: '70px',
+                height: '2px',
+                display: 'block',
+                margin: 'auto',
+                bottom: '-12.5px',
+                position: 'absolute',
+                left: '0',
+                right: '0px',
             },
             '.food-title': {
                 fontSize: 10,
@@ -86,18 +108,27 @@ const Navbar = ({isColor}) => {
                 alignItems: 'center',
             },
             '.telePhoneLogo': {
-                height: '48px',
-                width: '30px',
+                height: '24px',
+                width: '24px',
+                objectFit: 'contain',
                 // color: '#000000',
                 color: `${isColor ? '#FBFBFB' : '#080B0E'}`,
+                filter: `${isColor ? 'invert(1)' : ''}`,
                 marginLeft: '10px',
                 cursor: 'pointer'
             },
             '.light-theme-logo': {
-                cursor: 'pointer'
+                cursor: 'pointer',
+                height: '64px',
+                width: '226.29px',
+                objectFit: 'contain',
+                filter: `${isColor ? 'invert(1)' : ''}`
             },
             '.dark-theme-logo': {
-                cursor: 'pointer'
+                height: '64px',
+                width: '226.29px',
+                cursor: 'pointer',
+                objectFit: 'contain',
             },
             '.css-2ehmn7-MuiInputBase-root-MuiOutlinedInput-root': {
                 width: '100%',
@@ -114,29 +145,48 @@ const Navbar = ({isColor}) => {
             },
             '.header-search-box':
                 {
-                    paddingLeft: '20px',
-                    display: 'flex'
+                    // paddingLeft: '20px',
+                    display: 'flex',
                 },
             '.GridContainer': {
-                padding: '10px 120px'
+                justifyContent: 'space-between'
             },
             '.searchbar-icon': {
                 cursor: 'pointer'
             },
-        '.search-box': {
-            background: 'rgba(189, 189, 189, 0.6)',
-            height: '40px',
-            display:'flex',
-            alignItems:'center'
-        },
+            '.search-box': {
+                background: 'rgba(189, 189, 189, 0.6)',
+                height: '40px',
+                display: 'flex',
+                alignItems: 'center',
+            },
             '@media(min-width: 320px) and (max-width: 1024px)': {
                 '.header-search-box': {
                     display: 'none',
                 },
                 '.browser-menu': {
-                    maxWidth: '65%',
-                    flexBasis: '70%'
+                    maxWidth: '80%',
+                    flexBasis: '80%'
                 }
+            },
+            '@media(min-width: 1000px) and (max-width: 1024px)': {
+                '.GridContainer': {
+                    justifyContent: 'end'
+                },
+                '.grid-box': {
+                    width: '70% !important'
+                },
+                '.header-search-box': {
+                    display: 'none !important',
+                },
+                '.main-container': {
+                    padding: '10px 70px'
+                },
+            },
+            '@media(min-width: 1100px) and (max-width: 1450px)': {
+                '.grid-box': {
+                    width: '65%'
+                },
             }
         },
     )
@@ -212,71 +262,75 @@ const Navbar = ({isColor}) => {
                     <AppBar position="fixed" elevation={0}
                             sx={{background: `${isColor ? '#101418' : '#FBFBFB'}`}}
                     >
-                        <Grid container direction={'row'} columnSpacing={1} sx={{padding: '10px 120px'}}
-                              className='GridContainer'>
-                            <Grid item md={2}>
-                                <img src={isColor ? DarkThemeLogo : LightThemeIcon} alt='light-theme-logo' className='light-theme-logo dark-theme-logo'/>
-                            </Grid>
-                            <Grid className='browser-menu' item xs={8} md={8}>
-                                <Link className='browser-hamburger-menu'
-                                      to='/privee'>
-                                    Privee
-                                </Link>
-                                <Link className='browser-hamburger-menu'
-                                      to='/supper-club'>
-                                    Supper Clubs
-                                </Link>
-                                <Link className='browser-hamburger-menu'
-                                      to='/our-chefs'>
-                                    Our Chefs
-                                </Link>
-                                <Link className='browser-hamburger-menu'
-                                      to='/contact-us'>
-                                    Contact
-                                </Link>
-                                <Link className='browser-hamburger-menu'
-                                      to='/about-us'>
-                                    About Us
-                                </Link>
-                                {/*</Grid>*/}
-                                {/*<Grid className='browser-search' item md={3}>*/}
-                                <Box className='header-search-box browser-search'>
-                                    {!search &&
-                                        <SearchIcon className='telePhoneLogo' onClick={handleOpen}/>
-                                        // <img src={vector} alt="vector" className='telePhoneLogo' onClick={handleOpen}/>
-                                    }
-                                    {search &&
-                                        <Box className='search-box'>
-                                            <TextField
-                                                type='search' placeholder='Search'
-                                                variant='standard'
-                                                InputProps={{
-                                                    disableUnderline: true,
-                                                    startAdornment: (<InputAdornment position="start">
-                                                        <SearchIcon className='searchbar-icon'
-                                                                    onClick={() => setSearch(false)}/>
-                                                    </InputAdornment>),
-                                                    endAdornment: (<InputAdornment position="end">
-                                                        <CloseIcon className='searchbar-icon'
-                                                                   onClick={() => setSearch(false)}/>
-                                                    </InputAdornment>)
-                                                }}
-                                            />
-                                        </Box>
-                                    }
-                                    <LocalPhoneOutlinedIcon className='telePhoneLogo'/>
-                                </Box>
-                            </Grid>
-                        </Grid>
-                        {/* <Search>
-                                <SearchIconWrapper>
-                                    <SearchIcon />
-                                </SearchIconWrapper>
-                                <StyledInputBase
-                                    placeholder="Search…"
-                                    inputProps={{ 'aria-label': 'search' }}
-                                />
-                            </Search> */}
+                        <Box className="main-container">
+                            <Box style={{width: '20%'}} onClick={handleOnClick}>
+                                <img src={isColor ? DarkThemeLogo : LightThemeIcon} alt='light-theme-logo'
+                                     className=' header light-theme-logo dark-theme-logo'/>
+                            </Box>
+                            <Box className="grid-box">
+                                <Grid container direction={'row'} columnSpacing={1}
+                                      className=''>
+                                    <Grid className='browser-menu' item xs={8} md={8}>
+                                        <Link
+                                            className={`browser-hamburger-menu`}
+                                            activeClassName={'browser-hamburger-menu active'}
+                                            to='/privee'>
+                                            Privee
+                                        </Link>
+                                        <Link
+                                            className={`browser-hamburger-menu`}
+                                            activeClassName={'browser-hamburger-menu active'}
+                                            to='/supper-club'>
+                                            Supper Clubs
+                                        </Link>
+                                        <Link
+                                            className={`browser-hamburger-menu`}
+                                            activeClassName={'browser-hamburger-menu active'}
+                                            to='/our-chefs'>
+                                            Our Chefs
+                                        </Link>
+                                        <Link
+                                            className={`browser-hamburger-menu`}
+                                            activeClassName={'browser-hamburger-menu active'}
+                                            to='/contact-us'>
+                                            Contact
+                                        </Link>
+                                        <Link
+                                            className={`browser-hamburger-menu`}
+                                            activeClassName={'browser-hamburger-menu active'}
+                                            to='/about-us'>
+                                            About Us
+                                        </Link>
+                                    </Grid>
+                                    <Grid xs={4} className='header-search-box browser-search'>
+                                        {!search &&
+                                            <img src={searchIcon} className='telePhoneLogo' onClick={handleOpen}/>
+                                        }
+                                        {search &&
+                                            <Box className='search-box'>
+                                                <TextField
+                                                    type='search' placeholder='Search'
+                                                    variant='standard'
+                                                    InputProps={{
+                                                        disableUnderline: true,
+                                                        startAdornment: (<InputAdornment position="start">
+                                                            <SearchIcon className='searchbar-icon'
+                                                                        onClick={() => setSearch(false)}/>
+                                                        </InputAdornment>),
+                                                        endAdornment: (<InputAdornment position="end">
+                                                            <CloseIcon className='searchbar-icon'
+                                                                       onClick={() => setSearch(false)}/>
+                                                        </InputAdornment>)
+                                                    }}
+                                                />
+                                            </Box>
+                                        }
+                                        <img src={telLogo} className='telePhoneLogo'/>
+                                        {/*<LocalPhoneOutlinedIcon className='telePhoneLogo'/>*/}
+                                    </Grid>
+                                </Grid>
+                            </Box>
+                        </Box>
                     </AppBar>
                 </BoxWrapper>
             </BrowserView>

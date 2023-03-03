@@ -46,18 +46,21 @@ const GiftCards = () => {
     const CHAR_LIMIT = 70;
     let [count, setCount] = useState(1);
     let Qty = 10;
+
     function incrementCount() {
         if (count < Qty) {
             count = count + 1;
             setCount(count);
         }
     }
+
     function decrementCount() {
         if (count > 0) {
             count = count - 1;
             setCount(count);
         }
     }
+
 
     const [occassionMessage, setOccassionMessage] = useState("");
 
@@ -128,19 +131,6 @@ const GiftCards = () => {
             border: '0px',
             borderBottom: 'unset !important',
         },
-        '.css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input': {
-            height: '149px',
-            background: 'rgba(189, 189, 189, 0.2)',
-            border: '0px',
-            minHeight: '149px',
-            resize: 'none',
-            fontFamily: 'Inter, sans-serif',
-            fontSize: '14px',
-            lineHeight: '17px',
-            fontWeight: '400',
-            color: ' #7D7D7D',
-            padding: '16px 15px',
-        },
         'form label': {
             fontFamily: 'Proxima Nova',
             fontStyle: 'normal',
@@ -178,7 +168,7 @@ const GiftCards = () => {
             color: '#EB4040',
             marginTop: '6px',
         },
-        '.css-1wc848c-MuiFormHelperText-root': {
+        '.MuiFormHelperText-root': {
             textAlign: 'right',
             fontFamily: 'Proxima Nova',
             fontStyle: 'normal',
@@ -401,40 +391,11 @@ const GiftCards = () => {
             display: 'flex',
             justifyContent: 'space-between'
         },
-        '.css-1q6at85-MuiInputBase-root-MuiOutlinedInput-root': {
-            background: '#FBFBFB',
-            border: '0px',
-            height: '35px',
-            width: '75%',
-            borderRadius: '0px',
-            fontFamily: 'Proxima Nova',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            fontSize: '16px',
-            lineHeight: '19px',
-            color: '#080B0E',
-            paddingLeft: '0px',
-        },
         '.qty': {
             width: '100',
             placeItems: 'center',
             display: 'flex',
             placeContent: 'space-between',
-        },
-        '.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input': {
-            background: 'transparent',
-            border: '0px',
-            width: '20px !important',
-            fontFamily: 'Proxima Nova',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            fontSize: '14px',
-            lineHeight: '17px',
-            color: '#FBFBFB',
-            paddingLeft: '0px',
-            paddingRight: '0px',
-            flex: 'none',
-            textAlign: 'center',
         },
         '.input-group-btn button': {
             width: '24px',
@@ -535,7 +496,7 @@ const GiftCards = () => {
         // 'ul#piils-tab': {
         //     gap: '8px'
         // },
-        '.css-cr824o-JoyTab-root': {
+        '.Joy-selected': {
             border: '0.5px solid #080B0E',
             borderRadius: '0px',
             fontFamily: 'Proxima Nova',
@@ -543,40 +504,13 @@ const GiftCards = () => {
             fontHeight: '400',
             fontSize: '12px',
             lineHeight: '15px',
-            color: '#FBFBFB',
+            color: '#FBFBFB !important',
             background: '#080B0E',
             padding: '8px 0px',
             width: '100.9px',
             height: '38px',
         },
-        '.css-6gpojs-JoyTab-root': {
-            border: '0.5px solid #080B0E',
-            borderRadius: '0px',
-            fontFamily: 'Proxima Nova',
-            fontStyle: 'normal',
-            fontHeight: '400',
-            fontSize: '12px',
-            lineHeight: '15px',
-            color: '#FBFBFB',
-            background: '#080B0E',
-            padding: '8px 0px',
-            width: '100.9px',
-            height: '38px',
-        },
-        '.css-p8bp3u-JoyTab-root': {
-            border: '0.5px solid #080B0E',
-            borderRadius: '0px',
-            fontFamily: 'Proxima Nova',
-            fontStyle: 'normal',
-            fontHeight: '400',
-            fontSize: '12px',
-            lineHeight: '15px',
-            color: '#080B0E',
-            padding: '8px 0px',
-            width: '100.9px',
-            height: '38px',
-        },
-        '.css-9qqdig-JoyTab-root': {
+        '.MuiTab-variantPlain': {
             border: '0.5px solid #080B0E',
             borderRadius: '0px',
             fontFamily: 'Proxima Nova',
@@ -690,25 +624,15 @@ const GiftCards = () => {
                 fontSize: '25px',
                 lineHeight: '25px',
             },
-            '.css-cr824o-JoyTab-root': {
-                width: '60px',
-                height: '35px',
-                fontSize: '9px'
-            },
-            '.css-6gpojs-JoyTab-root': {
-                width: '60px',
-                height: '35px',
-                fontSize: '9px'
-            },
-            '.css-p8bp3u-JoyTab-root': {
+            '.Joy-selected': {
                 width: '58px',
                 height: '35px',
-                fontSize: '8px'
+                fontSize: '9px'
             },
-            '.css-9qqdig-JoyTab-root': {
-                width: '60px',
+            '.MuiTab-variantPlain': {
+                width: '58px',
                 height: '35px',
-                fontSize: '8px'
+                fontSize: '9px'
             },
             '.occasion': {
                 width: '100%',
@@ -800,7 +724,7 @@ const GiftCards = () => {
             },
             '.qty-box': {
                 maxWidth: '100%',
-                paddingTop: '5px'
+                paddingTop: '15px'
             },
         },
         "@media (min-width: 320px) and (max-width:767px)": {
@@ -869,7 +793,7 @@ const GiftCards = () => {
                     <Box className="corporate-b">
                         <Box className="container">
                             <Box className="top-10 position-absolute">
-                                <Typography><a href="" className="header-link"><ArrowBackIcon
+                                <Typography><a href='/' className="header-link"><ArrowBackIcon
                                     style={{marginRight: '15px'}}/>Back</a></Typography>
                             </Box>
                             <Box className="position-absolute patron-flex">
@@ -878,7 +802,7 @@ const GiftCards = () => {
                                     <Typography className="become-detail">Join as a member and get exclusive member
                                         priviliges</Typography>
                                 </Box>
-                                <Box><Typography style={{width: '100%'}}><a href=""
+                                <Box><Typography style={{width: '100%'}}><a href="#recipientDetails"
                                                                             className="apply">Apply</a></Typography></Box>
                             </Box>
                         </Box>
@@ -940,25 +864,55 @@ const GiftCards = () => {
                                                                htmlFor="gift-amount">Enter Gift Card
                                                             Amount</label>
                                                         <TextField type="text" name="giftCardAmount"
-                                                                   className="form-control"
+                                                            // className="form-control"
                                                                    value={values.giftCardAmount}
                                                                    onChange={handleChange}
                                                                    autoComplete="off"
                                                                    variant="outlined"
                                                                    id="gift-amount"
                                                                    sx={{
-                                                                       '.MuiOutlinedInput-notchedOutline': {
-                                                                           border: 'none',
-                                                                           outline: 'none'
+                                                                       '& .MuiInputBase-formControl ': {
+                                                                           paddingLeft: '0px',
+                                                                           paddingTop: '14px'
                                                                        },
+                                                                       '& .MuiOutlinedInput-notchedOutline': {
+                                                                           border: 'none',
+                                                                           outline: 'none',
+                                                                       },
+                                                                       '& .MuiInputBase-input': {
+                                                                           background: '#FBFBFB',
+                                                                           height: '31px',
+                                                                           borderRadius: '0px',
+                                                                           fontFamily: 'Proxima Nova',
+                                                                           fontStyle: 'normal',
+                                                                           fontWeight: '400',
+                                                                           fontSize: '16px',
+                                                                           lineHeight: '19px',
+                                                                           color: '#080B0E',
+                                                                           padding: '0px'
+                                                                       },
+
                                                                    }}
                                                                    InputProps={{
                                                                        disableUnderline: true,
                                                                        startAdornment: <InputAdornment
-                                                                           position="start"><CurrencyRupeeIcon sx={{
-                                                                           paddingLeft: '10px',
-                                                                           fontSize: '18px',
-                                                                           color: 'black',
+                                                                           position="start"
+                                                                           sx={{
+                                                                               background: '#FBFBFB',
+                                                                               height: '31px',
+                                                                               border: '0px',
+                                                                               borderRadius: '0px',
+                                                                               fontFamily: 'Proxima Nova',
+                                                                               fontStyle: 'normal',
+                                                                               fontWeight: '400',
+                                                                               lineHeight: '19px',
+                                                                               color: '#080B0E',
+                                                                               fontSize: '18px',
+                                                                               margin: '0px',
+                                                                           }}><CurrencyRupeeIcon sx={{
+                                                                           background: '#FBFBFB',
+                                                                           height: '20px',
+                                                                           color: '#080B0E',
                                                                            borderRight: '1px solid black'
                                                                        }}/></InputAdornment>,
                                                                    }}/>
@@ -979,11 +933,25 @@ const GiftCards = () => {
                                                                        value={count}
                                                                        autoComplete={"off"}
                                                                        sx={{
-                                                                '.MuiOutlinedInput-notchedOutline': {
-                                                                    border: 'none',
-                                                                    outline: 'none'
-                                                                },
-                                                            }}
+                                                                           '.MuiOutlinedInput-notchedOutline': {
+                                                                               border: 'none',
+                                                                               outline: 'none'
+                                                                           },
+                                                                           '& .MuiInputBase-input': {
+                                                                               width: "25px", background: 'transparent',
+                                                                               border: '0px',
+                                                                               fontFamily: 'Proxima Nova',
+                                                                               fontStyle: 'normal',
+                                                                               fontWeight: '400',
+                                                                               fontSize: '14px',
+                                                                               color: '#FBFBFB',
+                                                                               lineHeight: '17px',
+                                                                               paddingLeft: '0px',
+                                                                               paddingRight: '0px',
+                                                                               flex: 'none',
+                                                                               textAlign: 'center'
+                                                                           },
+                                                                       }}
                                                             />
                                                             <span className="input-group-btn plus">
                                                               <button type="button"
@@ -1068,14 +1036,30 @@ const GiftCards = () => {
                                                                                 }}
                                                                                 sx={{
                                                                                     disableUnderline: true,
+                                                                                    '.MuiInputBase-root ': {
+                                                                                        padding: '0px'
+                                                                                    },
                                                                                     '.MuiOutlinedInput-notchedOutline': {
                                                                                         border: 'none',
-                                                                                        outline: 'none'
+                                                                                        outline: 'none',
                                                                                     },
-                                                                                    '.css-1rcvvn7-MuiInputBase-root-MuiInput-root:after': {
-                                                                                        borderBottom: 'unset'
+                                                                                    '& .MuiInputBase-input': {
+                                                                                        width: '100%',
+                                                                                        background: 'transparent',
+                                                                                        border: '0px',
+                                                                                        borderBottom: '0.377697px solid #FBFBFB',
+                                                                                        fontFamily: 'Proxima Nova',
+                                                                                        fontStyle: 'normal',
+                                                                                        fontSize: '20px',
+                                                                                        lineHeight: '24px',
+                                                                                        color: '#FBFBFB !important',
+                                                                                        paddingBottom: '12px',
+                                                                                        outline: 'none',
+                                                                                        borderRadius: '0px',
+                                                                                        paddingLeft: '0px',
+                                                                                        opacity: '1'
                                                                                     },
-                                                                                    '.css-1d1r5q-MuiFormHelperText-root': {
+                                                                                    '.MuiFormHelperText-root': {
                                                                                         fontFamily: 'Proxima Nova',
                                                                                         fontStyle: 'normal',
                                                                                         fontWeight: '250',
@@ -1086,6 +1070,12 @@ const GiftCards = () => {
                                                                                         marginBottom: '0px',
                                                                                         opacity: '1',
                                                                                     },
+                                                                                    '@media(min-width: 1px) and (max-width: 425px)': {
+                                                                                        '& .MuiInputBase-input': {
+                                                                                            fontSize: '12px',
+                                                                                            lineHeight: '15px',
+                                                                                        },
+                                                                                    }
                                                                                 }}
                                                                                 name="occassionMessage1"
                                                                                 autoComplete="off"
@@ -1095,7 +1085,7 @@ const GiftCards = () => {
                                                                                 helperText={`${values.occassionMessage1.length}/${CHAR_LIMIT} Characters`}
                                                                                 onChange={handleChange("occassionMessage1")}
                                                                                 margin="normal"
-                                                                                variant="standard"
+                                                                                variant="outlined"
                                                                                 fullWidth
                                                                                 multiline
                                                                                 autoComplete="off"
@@ -1144,14 +1134,30 @@ const GiftCards = () => {
                                                                                 }}
                                                                                 sx={{
                                                                                     disableUnderline: true,
+                                                                                    '.MuiInputBase-root ': {
+                                                                                        padding: '0px'
+                                                                                    },
                                                                                     '.MuiOutlinedInput-notchedOutline': {
                                                                                         border: 'none',
                                                                                         outline: 'none'
                                                                                     },
-                                                                                    '.css-1rcvvn7-MuiInputBase-root-MuiInput-root:after': {
-                                                                                        borderBottom: 'unset'
+                                                                                    '& .MuiInputBase-input': {
+                                                                                        width: '100%',
+                                                                                        background: 'transparent',
+                                                                                        border: '0px',
+                                                                                        borderBottom: '0.377697px solid #FBFBFB',
+                                                                                        fontFamily: 'Proxima Nova',
+                                                                                        fontStyle: 'normal',
+                                                                                        fontSize: '20px',
+                                                                                        lineHeight: '24px',
+                                                                                        color: '#FBFBFB !important',
+                                                                                        paddingBottom: '12px',
+                                                                                        outline: 'none',
+                                                                                        borderRadius: '0px',
+                                                                                        paddingLeft: '0px',
+                                                                                        opacity: '1'
                                                                                     },
-                                                                                    '.css-1d1r5q-MuiFormHelperText-root': {
+                                                                                    '.MuiFormHelperText-root': {
                                                                                         fontFamily: 'Proxima Nova',
                                                                                         fontStyle: 'normal',
                                                                                         fontWeight: '250',
@@ -1162,6 +1168,12 @@ const GiftCards = () => {
                                                                                         marginBottom: '0px',
                                                                                         opacity: '1',
                                                                                     },
+                                                                                    '@media(min-width: 1px) and (max-width: 425px)': {
+                                                                                        '& .MuiInputBase-input': {
+                                                                                            fontSize: '12px',
+                                                                                            lineHeight: '15px',
+                                                                                        },
+                                                                                    }
                                                                                 }}
                                                                                 name="occassionMessage2"
                                                                                 autoComplete="off"
@@ -1171,7 +1183,7 @@ const GiftCards = () => {
                                                                                 helperText={`${values.occassionMessage2.length}/${CHAR_LIMIT} Characters`}
                                                                                 onChange={handleChange("occassionMessage2")}
                                                                                 margin="normal"
-                                                                                variant="standard"
+                                                                                variant="outlined"
                                                                                 fullWidth
                                                                                 multiline
                                                                                 autoComplete="off"
@@ -1219,15 +1231,31 @@ const GiftCards = () => {
                                                                                     maxlength: CHAR_LIMIT,
                                                                                 }}
                                                                                 sx={{
+                                                                                    '.MuiInputBase-root ': {
+                                                                                        padding: '0px'
+                                                                                    },
                                                                                     disableUnderline: true,
                                                                                     '.MuiOutlinedInput-notchedOutline': {
                                                                                         border: 'none',
                                                                                         outline: 'none'
                                                                                     },
-                                                                                    '.css-1rcvvn7-MuiInputBase-root-MuiInput-root:after': {
-                                                                                        borderBottom: 'unset'
+                                                                                    '& .MuiInputBase-input': {
+                                                                                        width: '100%',
+                                                                                        background: 'transparent',
+                                                                                        border: '0px',
+                                                                                        borderBottom: '0.377697px solid #FBFBFB',
+                                                                                        fontFamily: 'Proxima Nova',
+                                                                                        fontStyle: 'normal',
+                                                                                        fontSize: '20px',
+                                                                                        lineHeight: '24px',
+                                                                                        color: '#FBFBFB !important',
+                                                                                        paddingBottom: '12px',
+                                                                                        outline: 'none',
+                                                                                        borderRadius: '0px',
+                                                                                        paddingLeft: '0px',
+                                                                                        opacity: '1'
                                                                                     },
-                                                                                    '.css-1d1r5q-MuiFormHelperText-root': {
+                                                                                    '.MuiFormHelperText-root': {
                                                                                         fontFamily: 'Proxima Nova',
                                                                                         fontStyle: 'normal',
                                                                                         fontWeight: '250',
@@ -1238,6 +1266,12 @@ const GiftCards = () => {
                                                                                         marginBottom: '0px',
                                                                                         opacity: '1',
                                                                                     },
+                                                                                    '@media(min-width: 1px) and (max-width: 425px)': {
+                                                                                        '& .MuiInputBase-input': {
+                                                                                            fontSize: '12px',
+                                                                                            lineHeight: '15px',
+                                                                                        },
+                                                                                    }
                                                                                 }}
                                                                                 name="occassionMessage3"
                                                                                 autoComplete="off"
@@ -1247,7 +1281,7 @@ const GiftCards = () => {
                                                                                 helperText={`${values.occassionMessage3.length}/${CHAR_LIMIT} Characters`}
                                                                                 onChange={handleChange("occassionMessage3")}
                                                                                 margin="normal"
-                                                                                variant="standard"
+                                                                                variant="outlined"
                                                                                 fullWidth
                                                                                 multiline
                                                                                 autoComplete="off"
@@ -1295,14 +1329,30 @@ const GiftCards = () => {
                                                                                 }}
                                                                                 sx={{
                                                                                     disableUnderline: true,
+                                                                                    '.MuiInputBase-root ': {
+                                                                                        padding: '0px'
+                                                                                    },
                                                                                     '.MuiOutlinedInput-notchedOutline': {
                                                                                         border: 'none',
                                                                                         outline: 'none'
                                                                                     },
-                                                                                    '.css-1rcvvn7-MuiInputBase-root-MuiInput-root:after': {
-                                                                                        borderBottom: 'unset'
+                                                                                    '& .MuiInputBase-input': {
+                                                                                        width: '100%',
+                                                                                        background: 'transparent',
+                                                                                        border: '0px',
+                                                                                        borderBottom: '0.377697px solid #FBFBFB',
+                                                                                        fontFamily: 'Proxima Nova',
+                                                                                        fontStyle: 'normal',
+                                                                                        fontSize: '20px',
+                                                                                        lineHeight: '24px',
+                                                                                        color: '#FBFBFB !important',
+                                                                                        paddingBottom: '12px',
+                                                                                        outline: 'none',
+                                                                                        borderRadius: '0px',
+                                                                                        paddingLeft: '0px',
+                                                                                        opacity: '1'
                                                                                     },
-                                                                                    '.css-1d1r5q-MuiFormHelperText-root': {
+                                                                                    '.MuiFormHelperText-root': {
                                                                                         fontFamily: 'Proxima Nova',
                                                                                         fontStyle: 'normal',
                                                                                         fontWeight: '250',
@@ -1313,6 +1363,13 @@ const GiftCards = () => {
                                                                                         marginBottom: '0px',
                                                                                         opacity: '1',
                                                                                     },
+                                                                                    '@media(min-width: 1px) and (max-width: 425px)': {
+                                                                                        '& .MuiInputBase-input': {
+                                                                                            fontSize: '12px',
+                                                                                            lineHeight: '15px',
+                                                                                        },
+                                                                                    }
+
                                                                                 }}
                                                                                 name="occassionMessage4"
                                                                                 autoComplete="off"
@@ -1322,7 +1379,7 @@ const GiftCards = () => {
                                                                                 helperText={`${values.occassionMessage4.length}/${CHAR_LIMIT} Characters`}
                                                                                 onChange={handleChange("occassionMessage4")}
                                                                                 margin="normal"
-                                                                                variant="standard"
+                                                                                variant="outlined"
                                                                                 fullWidth
                                                                                 multiline
                                                                                 autoComplete="off"
@@ -1370,14 +1427,30 @@ const GiftCards = () => {
                                                                                 }}
                                                                                 sx={{
                                                                                     disableUnderline: true,
+                                                                                    '.MuiInputBase-root ': {
+                                                                                        padding: '0px'
+                                                                                    },
                                                                                     '.MuiOutlinedInput-notchedOutline': {
                                                                                         border: 'none',
                                                                                         outline: 'none'
                                                                                     },
-                                                                                    '.css-1rcvvn7-MuiInputBase-root-MuiInput-root:after': {
-                                                                                        borderBottom: 'unset'
+                                                                                    '& .MuiInputBase-input': {
+                                                                                        width: '100%',
+                                                                                        background: 'transparent',
+                                                                                        border: '0px',
+                                                                                        borderBottom: '0.377697px solid #FBFBFB',
+                                                                                        fontFamily: 'Proxima Nova',
+                                                                                        fontStyle: 'normal',
+                                                                                        fontSize: '20px',
+                                                                                        lineHeight: '24px',
+                                                                                        color: '#FBFBFB !important',
+                                                                                        paddingBottom: '12px',
+                                                                                        outline: 'none',
+                                                                                        borderRadius: '0px',
+                                                                                        paddingLeft: '0px',
+                                                                                        opacity: '1'
                                                                                     },
-                                                                                    '.css-1d1r5q-MuiFormHelperText-root': {
+                                                                                    '.MuiFormHelperText-root': {
                                                                                         fontFamily: 'Proxima Nova',
                                                                                         fontStyle: 'normal',
                                                                                         fontWeight: '250',
@@ -1388,6 +1461,12 @@ const GiftCards = () => {
                                                                                         marginBottom: '0px',
                                                                                         opacity: '1',
                                                                                     },
+                                                                                    '@media(min-width: 1px) and (max-width: 425px)': {
+                                                                                        '& .MuiInputBase-input': {
+                                                                                            fontSize: '12px',
+                                                                                            lineHeight: '15px',
+                                                                                        },
+                                                                                    }
                                                                                 }}
                                                                                 name="occassionMessage5"
                                                                                 autoComplete="off"
@@ -1397,7 +1476,7 @@ const GiftCards = () => {
                                                                                 helperText={`${values.occassionMessage5.length}/${CHAR_LIMIT} Characters`}
                                                                                 onChange={handleChange("occassionMessage5")}
                                                                                 margin="normal"
-                                                                                variant="standard"
+                                                                                variant="outlined"
                                                                                 fullWidth
                                                                                 multiline
                                                                                 autoComplete="off"
@@ -1411,7 +1490,7 @@ const GiftCards = () => {
                                                 </Tabs>
                                             </Box>
                                         </Box>
-                                        <Box className="recipient">
+                                        <Box className="recipient" id="recipientDetails">
                                             <Typography className="recipient-title">Recipient details</Typography>
                                             <Typography className="recipient-details">Gift card will be sent by email or
                                                 SMS</Typography>
@@ -1480,6 +1559,22 @@ const GiftCards = () => {
                                                                 border: 'none',
                                                                 outline: 'none'
                                                             },
+                                                            '& .MuiInputBase-input': {
+                                                                height: '149px',
+                                                                background: 'rgba(189, 189, 189, 0.2)',
+                                                                border: '0px',
+                                                                minHeight: '149px',
+                                                                resize: 'none',
+                                                                fontFamily: 'Inter, sans-serif',
+                                                                fontSize: '14px',
+                                                                lineHeight: '17px',
+                                                                fontWeight: '400',
+                                                                color: ' #7D7D7D',
+                                                                padding: '16px 15px',
+                                                            },
+                                                            '& .css-15kq27i': {
+                                                                padding: '0px'
+                                                            }
                                                         }}
                                                         id="validationCustom04"
                                                         name="receiverMessage"

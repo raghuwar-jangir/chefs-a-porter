@@ -36,11 +36,11 @@ import backgroungLogo from "../../assets/images/menuBackground.png";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
-  RestorentImgMobile,
-  RestorentImgMobile,
-  RestorentImgMobile,
-  RestorentImgMobile,
-  RestorentImgMobile,
+    RestorentImgMobile,
+    RestorentImgMobile,
+    RestorentImgMobile,
+    RestorentImgMobile,
+    RestorentImgMobile,
 ];
 
 const SupperClubChaefPage = () => {
@@ -461,7 +461,7 @@ const SupperClubChaefPage = () => {
       border: '0',
       overflow: 'hidden',
     },
-    
+
     '.switch-field label': {
       flex: '1',
         margin: '0 4px',
@@ -492,13 +492,13 @@ const SupperClubChaefPage = () => {
     '.switch-field label:hover': {
       cursor: 'pointer',
     },
-    
+
     '.switch-field input:checked + label': {
       background: '#FFFFFF',
       boxShadow: 'none',
         border: '0.5px solid #F8A039',
     },
-    
+
     '.switch-field input:checked:disabled + label,.switch-field input:disabled + label':
     {
         background: '#BDBDBD',
@@ -687,7 +687,7 @@ const SupperClubChaefPage = () => {
               >
                 <Tabs
                   defaultValue={0}
-                  sx={{ "--Tabs-gap": "0px", backgroundColor: "#FBFBFB"}} 
+                  sx={{ "--Tabs-gap": "0px", backgroundColor: "#FBFBFB"}}
                 >
                   <TabList>
                     <Tab  className="tab-box" value={0}>
