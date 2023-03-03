@@ -436,15 +436,15 @@ const SupperClubChaefPage = () => {
             zIndex: "5",
         },
         ".close-button": {
-            position: "absolute",
-            top: "10px",
-            right: "10px",
-            fontSize: "24px",
-            backgroundColor: "transparent",
-            border: "none",
-            color: "white",
-            cursor: "pointer",
-            zIndex: "10",
+            position: 'absolute',
+            top: '90px',
+            right: '50px',
+            fontSize: '24px',
+            backgroundColor: 'transparent',
+            border: 'none',
+            color: 'white',
+            cursor: 'pointer',
+            zIndex: '10'
         },
         ".swiper": {
             width: "75%",
@@ -727,9 +727,7 @@ const SupperClubChaefPage = () => {
                                 />
                                 {showCarousel && (
                                     <Box className="carousel-popup">
-                                        <button className="close-button" onClick={handleClose}>
-                                            X
-                                        </button>
+                                        <button className='close-button' onClick={handleClose}><CloseIcon/></button>
                                         <Box className="carousel">
                                             <SuperClubPopUpCarousel/>
                                         </Box>
