@@ -86,7 +86,7 @@ const MobileContact = () => {
 
         '@media(min-width: 320px) and (max-width: 375px)': {
             '.mobile-heading': {
-                paddingRight:'110px'
+                paddingRight: '110px'
             },
         },
 
@@ -102,6 +102,10 @@ const MobileContact = () => {
                 padding: '12px',
                 justifyContent: 'space-between',
                 backgroundColor: 'rgba(220, 215, 203, 1)!important',
+            },
+            '.back-arw': {
+                textDecoration: 'none',
+                color: 'rgba(0, 0, 0, 0.9)',
             },
             '.mobile-heading': {
                 fontFamily: 'Proxima Nova',
@@ -141,9 +145,9 @@ const MobileContact = () => {
             },
         },
         '@media(min-width: 769px) and (max-width: 2560px)': {
-        '.mobile-header':{
-            display:'none'
-        }
+            '.mobile-header': {
+                display: 'none'
+            }
         }
     }))
     return (
@@ -151,8 +155,8 @@ const MobileContact = () => {
             <BoxWrapper>
                 {isMobile ? (
                     <Box className="mobile-header">
-                        <ArrowBackIcon/>
-                        <Typography><a href="/" className="mobile-heading" style={{textAlign:'center !important'}}>Contacts</a></Typography>
+                        <a href="/gift-cards" className="back-arw"><ArrowBackIcon/></a>
+                        <Typography><a className="mobile-heading" style={{textAlign: 'center !important'}}>Contacts</a></Typography>
                     </Box>
                 ) : <Navbar/>}
 

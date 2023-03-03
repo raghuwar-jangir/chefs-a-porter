@@ -1034,6 +1034,9 @@ const GiftCards = () => {
             marginTop: '16px',
             justifyContent: 'center'
         },
+        '@media(min-width: 1px) and (max-width: 425px)': {
+            width: '300px'
+        }
     }
     return (
         <React.Fragment>
