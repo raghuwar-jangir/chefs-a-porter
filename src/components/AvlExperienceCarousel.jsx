@@ -3,6 +3,7 @@ import {Box,Typography} from '@mui/material';
 import {styled} from '@mui/system';
 import StarIcon from '@mui/icons-material/Star';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
+import '../assets/styles/searchBar.css'
 
 const MainContentBox = styled(Box)({
     position: 'relative',
@@ -31,7 +32,7 @@ const MainContentBox = styled(Box)({
         backgroundColor: '#101418',
     },
     '.main-chaf-image': {
-        height: '309px',
+        height: '307px',
         objectFit: 'cover',
         width: '100%'
     },
@@ -126,18 +127,15 @@ const AvlExperienceCarousel = (props) => {
                     </Box>
                     <Typography className='description'>
                         {props.description}
-                        {/*by <b>Chef Mako Ravindran</b>*/}
                     </Typography>
                     <Typography className='sub-description'>
                         {props.subDescription}
-                        {/*Starting from ₹5000 per diner*/}
                     </Typography>
                     {
                         props.isLabelShow &&
                         <Box className='sub-box'>
                             <Box className='top-box'>
                                 <ElectricBoltIcon className="trending-icon"/>  Trending
-                                {/*<img src={Trending} alt='RebookImg' className="trending-icon"/>*/}
                             </Box>
                         </Box>
                     }

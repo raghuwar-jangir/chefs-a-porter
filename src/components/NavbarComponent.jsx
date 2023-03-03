@@ -113,6 +113,7 @@ const Navbar = ({isColor}) => {
                 objectFit: 'contain',
                 // color: '#000000',
                 color: `${isColor ? '#FBFBFB' : '#080B0E'}`,
+                filter: `${isColor ? 'invert(1)' : ''}`,
                 marginLeft: '10px',
                 cursor: 'pointer'
             },
@@ -121,7 +122,7 @@ const Navbar = ({isColor}) => {
                 height: '64px',
                 width: '226.29px',
                 objectFit: 'contain',
-                filter:`${isColor ? 'invert(1)' : ''}`
+                filter: `${isColor ? 'invert(1)' : ''}`
             },
             '.dark-theme-logo': {
                 height: '64px',
@@ -300,14 +301,10 @@ const Navbar = ({isColor}) => {
                                             to='/about-us'>
                                             About Us
                                         </Link>
-                                        {/*</Grid>*/}
-                                        {/*<Grid className='browser-search' item md={3}>*/}
                                     </Grid>
                                     <Grid xs={4} className='header-search-box browser-search'>
                                         {!search &&
                                             <img src={searchIcon} className='telePhoneLogo' onClick={handleOpen}/>
-                                            // <SearchIcon className='telePhoneLogo' onClick={handleOpen}/>
-                                            // <img src={vector} alt="vector" className='telePhoneLogo' onClick={handleOpen}/>
                                         }
                                         {search &&
                                             <Box className='search-box'>
