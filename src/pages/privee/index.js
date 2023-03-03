@@ -50,7 +50,7 @@ const MainBoxContent = styled(Box)({
 
 const BoxWrapper = styled(Box)(() => ({
     ".available-experiences": {
-        display:'none',
+        display: 'none',
         padding: "40px 120px",
         background: "#080B0E"
     },
@@ -335,22 +335,8 @@ const BoxWrapper = styled(Box)(() => ({
         width: '100',
         placeItems: 'center',
         display: 'flex',
-        placeContent: 'space-between',
-    },
-    '.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input': {
-        background: 'transparent',
-        border: '0px',
-        width: '20px !important',
-        fontFamily: 'Proxima Nova',
-        fontStyle: 'normal',
-        fontWeight: '400',
-        fontSize: '14px',
-        lineHeight: '17px',
-        color: '#080B0E',
-        paddingLeft: '0px',
-        paddingRight: '0px',
-        flex: 'none',
-        textAlign: 'center',
+        // placeContent: 'space-between',
+        justifyContent:'space-evenly'
     },
     '.btn-primary': {
         width: '100%',
@@ -369,7 +355,7 @@ const BoxWrapper = styled(Box)(() => ({
     '.exp-btn': {
         width: '100%',
         background: 'transparent',
-        marginTop:'40px',
+        marginTop: '40px',
         border: '1px solid #C6A87D',
         borderRadius: '0px',
         padding: '15px 10px',
@@ -404,7 +390,7 @@ const BoxWrapper = styled(Box)(() => ({
             background: "#DCD7CB"
         },
         ".available-experiences": {
-            display:'block',
+            display: 'block',
             padding: "40px 16px",
             background: "#101418"
         },
@@ -459,6 +445,9 @@ const BoxWrapper = styled(Box)(() => ({
         },
         '.privee-container': {
             display: 'block'
+        },
+        '.home-banner': {
+            marginTop: '0px'
         }
     },
     "@media (min-width: 768px) and (max-width:1460px)": {
@@ -491,6 +480,20 @@ const PriveePage = () => {
             setCount(count);
         }
     }
+    const styles = theme => ({
+        input: {
+            width:40
+        },
+        button: {
+            width: 40
+        },
+        selectRoot: {
+            width: 40,
+        },
+        select: {
+            width: 40,
+        }
+    });
 
     return (
         <React.Fragment>
@@ -675,7 +678,6 @@ const PriveePage = () => {
                                             <Box className="form-group d-flex">
                                                 <Box><label className="diners">Number of diners</label></Box>
                                                 <Box className="input-group qty">
-                                                    <Box className="input-group qty">
                                                 <span className="input-group-btn">
                                                      <button type="button"
                                                              className="btn btn-default btn-number"
@@ -691,10 +693,38 @@ const PriveePage = () => {
                                                                    value={count}
                                                                    className="input-number"
                                                             // value={count}
+                                                                   InputProps={{
+                                                                       sx: { width: "25px",  background: 'transparent',
+                                                                           border: '0px',
+                                                                           fontFamily: 'Proxima Nova',
+                                                                           fontStyle: 'normal',
+                                                                           fontWeight: '400',
+                                                                           fontSize: '14px',
+                                                                           color: '#080B0E',
+                                                                           lineHeight: '17px',
+                                                                           paddingLeft: '0px',
+                                                                           paddingRight: '0px',
+                                                                           flex: 'none',
+                                                                           textAlign: 'center',},
+                                                                   }}
                                                                    autoComplete={"off"} sx={{
                                                             '.MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
-                                                                outline: 'none'
+                                                                outline: 'none',
+                                                            },
+                                                            '& .MuiInputBase-input': {
+                                                                width: "25px",  background: 'transparent',
+                                                                border: '0px',
+                                                                fontFamily: 'Proxima Nova',
+                                                                fontStyle: 'normal',
+                                                                fontWeight: '400',
+                                                                fontSize: '14px',
+                                                                color: '#080B0E',
+                                                                lineHeight: '17px',
+                                                                paddingLeft: '0px',
+                                                                paddingRight: '0px',
+                                                                flex: 'none',
+                                                                textAlign: 'center'
                                                             },
                                                         }}
                                                         />
@@ -707,7 +737,6 @@ const PriveePage = () => {
                                                 </button>
                                                 </span>
                                                     </Box>
-                                                </Box>
                                             </Box>
                                             <Box className="form-group">
                                                 <button type="submit" className="btn btn-primary">View Experiences
@@ -725,10 +754,12 @@ const PriveePage = () => {
                     <Typography className="chef-header">Available Experiences</Typography>
                     <Grid container spacing={2}>
                         <Grid item xl={4} md={4} sm={6} xs={12}>
-                            <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'} subDescription={'Starting from ₹5000 per diner'}/>
+                            <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'}
+                                                   subDescription={'Starting from ₹5000 per diner'}/>
                         </Grid>
                         <Grid item xl={4} md={4} sm={6} xs={12}>
-                            <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'} subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
+                            <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'}
+                                                   subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
                         </Grid>
                     </Grid>
                     <button type="submit" className="exp-btn">View More</button>
