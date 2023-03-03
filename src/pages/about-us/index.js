@@ -14,28 +14,19 @@ import logo1 from "../../assets/images/logo1.png"
 import logo2 from "../../assets/images/logo2.png"
 import logo3 from "../../assets/images/logo3.png"
 import logo4 from "../../assets/images/logo4.png"
-import IntroChefImg1 from "../../assets/images/IntroChefImg1.png"
-import IntroChefImg2 from "../../assets/images/introChefImg2.png"
 import CommanTextCard from "../../components/CommanTextCard";
-import IntroCardComponent from "../../components/IntroCardComponent";
 import CommanCarousel from "../../components/CommanCarousel"
 import sustainable from "../../assets/images/sustainable-energy.png"
 import weather from "../../assets/images/weather-app.png"
 import recycling from "../../assets/images/recycling-bin.png"
 import Footer from "../../components/Footer";
-import { Link } from "gatsby";
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import LogoSwiper from "../../components/LogoSwiper";
-// import { isMobile } from "react-device-detect";
-import InfiniteCarousel from 'react-leaf-carousel';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import {isMobile} from "react-device-detect";
-import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import OpenPosition from "../../components/OpenPositionComponent";
+import TeamCarousel from "../../components/TeamCarousel.jsx";
 
 
 const itemData = [
@@ -80,48 +71,9 @@ const AboutCardComponet = (props) => {
         ".main-box": {
             padding: "40px 120px",
         },
-        ".title":{
-            fontFamily: 'Bon Vivant',
-    fontStyle: "normal",
-    fontWeight: '700',
-    fontSize: '20px',
-    lineHeight: '25px',
-    textAlign: 'center',
-    color: '#FBFBFB',
-    marginBottom: '8px'
-        },
-        '.InfiniteCarouselArrowIcon':{
-            padding: "7px",
-            borderWidth: '0px 3px 3px 0'
-        },
         ".header-club": {
             padding: '10px',
             backgroundColor: '#DCD7CB',
-        },
-        '.social-icon': {
-            display: 'flex',
-            alignItems: 'center',
-            placeContent: 'center',
-            marginTop: "30px"
-        },
-        '.icon': {
-            display: 'flex',
-            placeContent: 'flex-end',
-            color: 'black',
-            background: '#fff',
-            padding: '4px',
-            borderRadius: '100%',
-            marginRight: ' 6px',
-        },
-        ".slider-background":{
-            background: '#101418',
-             padding:'40px'
-        },
-        ".slider-img":{
-            width:'132px',
-            display:'block',
-            margin:'auto',
-            marginBottom: '30px'
         },
         ".main-heading": {
             fontWeight: 700,
@@ -130,54 +82,6 @@ const AboutCardComponet = (props) => {
             textAlign: 'center',
             color: '#080B0E',
             fontFamily: 'Bon Vivant'
-        },
-        ".position-title":{
-            fontFamily: 'Proxima Nova Alt',
-    fontStyle: 'normal',
-    fontWeight: '300',
-    fontSize: '16px',
-    lineHeight: '19px',
-    textAlign: 'center',
-    color: '#FBFBFB',
-    marginBottom: '30px',
-    display: 'block'
-        },
-        ".position-details":{
-            fontFamily: 'Proxima Nova Alt',
-    fontStyle: 'normal',
-    fontWeight: '400',
-    fontSize: '14px',
-    lineHeight: '24px',
-    textAlign: 'center',
-    color: '#FBFBFB',
-    marginBottom: '30px',
-    width: '100%',
-    whiteSpace:'normal'
-        },
-        ".InfiniteCarouselArrowNext": {
-            left: "98% !important"
-        },
-        '.InfiniteCarouselArrowPrev': {
-            left: '0%'
-        },
-        '.InfiniteCarouselDots': {
-            top:'99%'
-        },
-        '.InfiniteCarouselDotActiveIcon': {
-            backgroundColor: "#C6A87D !important",
-            border: '1px solid white',
-            width: '14px',
-            height: '14px'
-        },
-        '.InfiniteCarouselDotIcon':{
-            border: '1px solid white',
-            backgroundColor:'black'
-        },
-        ".details": {
-            fontWeight: 400,
-            fontSize: "14px",
-            lineHeight: "24px",
-            textAlign: 'center',
         },
         ".grid-box": {
             border: '1px solid'
@@ -210,25 +114,6 @@ const AboutCardComponet = (props) => {
             width: "100%",
             height: '500px',
             paddingBottom: "16px"
-        },
-        ".btn": {
-            background: "#C6A87D",
-            fontSize: "16px",
-             lineHeight: "19px",
-            // width: '25%',
-            borderRadius: "0px",
-            color: "#080B0E",
-            textTransform: "capitalize",
-            // height: "57px",
-            marginTop: "40px", 
-            padding: "10px"
-        }, 
-        '.btn:active':{
-            backgroundColor:"#C6A87D",
-            color:'white'
-        },
-        '.btn:focus':{
-            color:'white'
         },
         ".main-div-open-positions": {
             fontWeight: 700,
@@ -273,14 +158,12 @@ const AboutCardComponet = (props) => {
             paddingTop: '20px'
         },
         ".some-text": {
-            // fontWeight: 600,
             fontSize: "20px",
             lineHeight: "24px",
             paddingBottom: '8px',
             color: "#242F35"
         },
         ".some-details": {
-            // fontWeight: 300,
             fontSize: "16px",
             lineHeight: "19px",
             color: "#242F35"
@@ -297,7 +180,6 @@ const AboutCardComponet = (props) => {
         ".btn-get-in-touch": {
             background: "#080B0E", color: "#FBFBFB",
             fontSize: "16px", width: '25%',
-            // fontWeight: 600,
             borderRadius: "0px",
             textTransform: "capitalize",
             height: "57px",
@@ -360,20 +242,6 @@ const AboutCardComponet = (props) => {
             '.img-link':{
                 background:'color'
             },
-            '.social-icon': {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent:'center'
-            },
-            '.icon': {
-                display: 'flex',
-                placeContent: 'flex-end',
-                color: 'black',
-                background: '#fff !important',
-                padding: '4px',
-                borderRadius: '100%',
-                marginRight: ' 6px',
-            },
             ".sub-box-2": {
                 padding: '40px 30px',
                 background: '#101418'
@@ -386,11 +254,6 @@ const AboutCardComponet = (props) => {
                 padding: '80px 30px 40px ',
                 background: '#101418'
             },
-            '.InfiniteCarouselScrollTrack':{
-                display:'flex !important',
-                flexDirection:'column !important',
-                height:'1013px !important'
-            }
         },
         "@media (min-width: 1px) and (max-width:325px)": {
         '.conscious-option': {
@@ -569,206 +432,7 @@ const AboutCardComponet = (props) => {
                             <CommanCarousel />
                         </Box>
                     </Box>
-
-                    <Box sx={{ background: "#080B0E", padding: "40px 16px" }}>
-  <InfiniteCarousel
-    breakpoints={[
-      {
-        breakpoint: 500,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 0,
-          dots:'false',
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-    ]}
-    dots={true}
-    infinte={true}
-    swipe={true}
-    animationDuration={500}
-    showSides={false}
-    sidesOpacity={0.5}
-    sideSize={0.1}
-    slidesToScroll={1}
-    slidesToShow={3}
-    scrollOnDevice={true}
-  >
-    <Box className="slider-background" >
-      <img className="slider-img"
-        alt=""
-        src={IntroChefImg1}
-      />
-            <Typography className="title">Chef Anou Boccasam</Typography>
-            <Typography className="position-title">Founder</Typography>
-            <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-              <Box className='social-icon'>
-             <InstagramIcon className='icon'/>
-             <LinkedInIcon className='icon'/>
-             </Box>
-    </Box>
-    <Box className="slider-background">
-      <img className="slider-img"
-        alt=""
-        src={IntroChefImg2}
-      />
-            <Typography className="title">Chef Mako Ravindran</Typography>
-            <Typography className="position-title">Chief Chef Curating Officer</Typography>
-            <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-           <Box className='social-icon'>
-             <InstagramIcon className='icon'/>
-             <LinkedInIcon className='icon'/>
-             </Box>
-             </Box>
-    <Box className="slider-background">
-      <img className="slider-img"
-        alt=""
-        src={IntroChefImg1}
-      />
-            <Typography className="title">Chef Anou Boccasam</Typography>
-            <Typography className="position-title">Founder</Typography>
-            <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-            <Box className='social-icon'>
-             <InstagramIcon className='icon'/>
-             <LinkedInIcon className='icon'/>
-             </Box>
-            </Box>
-    <Box className="slider-background">
-      <img className="slider-img"
-        alt=""
-        src={IntroChefImg2}
-      />
-            <Typography className="title">Chef Mako Ravindran</Typography>
-            <Typography className="position-title">Chief Chef Curating Officer</Typography>
-            <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-            <Box className='social-icon'>
-             <InstagramIcon className='icon'/>
-             <LinkedInIcon className='icon'/>
-             </Box>
-      </Box>
-      <Box className="slider-background">
-      <img className="slider-img"
-        alt=""
-        src={IntroChefImg1}
-      />
-            <Typography className="title">Chef Anou Boccasam</Typography>
-            <Typography className="position-title">Founder</Typography>
-            <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-            <Box className='social-icon'>
-             <InstagramIcon className='icon'/>
-             <LinkedInIcon className='icon'/>
-             </Box>
-            </Box>
-  <Box className="slider-background">
-      <img className="slider-img"
-        alt=""
-        src={IntroChefImg2}
-      />
-            <Typography className="title">Chef Mako Ravindran</Typography>
-            <Typography className="position-title">Chief Chef Curating Officer</Typography>
-            <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-            <Box className='social-icon'>
-             <InstagramIcon className='icon'/>
-             <LinkedInIcon className='icon'/>
-             </Box>
-            </Box>
-            <Box className="slider-background">
-      <img className="slider-img"
-        alt=""
-        src={IntroChefImg1}
-      />
-            <Typography className="title">Chef Anou Boccasam</Typography>
-            <Typography className="position-title">Founder</Typography>
-            <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-            <Box className='social-icon'>
-             <InstagramIcon className='icon'/>
-             <LinkedInIcon className='icon'/>
-             </Box>
-            </Box>
-            <Box className="slider-background">
-      <img className="slider-img"
-        alt=""
-        src={IntroChefImg2}
-      />
-            <Typography className="title">Chef Mako Ravindran</Typography>
-            <Typography className="position-title">Chief Chef Curating Officer</Typography>
-            <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-            <Box className='social-icon'>
-             <InstagramIcon className='icon'/>
-             <LinkedInIcon className='icon'/>
-             </Box>
-            </Box>
-            <Box className="slider-background">
-      <img className="slider-img"
-        alt=""
-        src={IntroChefImg1}
-      />
-            <Typography className="title">Chef Anou Boccasam</Typography>
-            <Typography className="position-title">Founder</Typography>
-            <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-            <Box className='social-icon'>
-             <InstagramIcon className='icon'/>
-             <LinkedInIcon className='icon'/>
-             </Box>
-            </Box>
-            <Box className="slider-background">
-      <img className="slider-img"
-        alt=""
-        src={IntroChefImg1}
-      />
-            <Typography className="title">Chef Anou Boccasam</Typography>
-            <Typography className="position-title">Founder</Typography>
-            <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-            <Box className='social-icon'>
-             <InstagramIcon className='icon'/>
-             <LinkedInIcon className='icon'/>
-             </Box>
-            </Box>
-            <Box className="slider-background">
-      <img className="slider-img"
-        alt=""
-        src={IntroChefImg2}
-      />
-            <Typography className="title">Chef Mako Ravindran</Typography>
-            <Typography className="position-title">Chief Chef Curating Officer</Typography>
-            <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-            <Box className='social-icon'>
-             <InstagramIcon className='icon'/>
-             <LinkedInIcon className='icon'/>
-             </Box>
-            </Box>
-            <Box className="slider-background">
-      <img className="slider-img"
-        alt=""
-        src={IntroChefImg1}
-      />
-            <Typography className="title">Chef Anou Boccasam</Typography>
-            <Typography className="position-title">Founder</Typography>
-            <Typography className="position-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere consectetur tortor ultrices feugiat.</Typography>
-            <Box className='social-icon'>
-             <InstagramIcon className='icon'/>
-             <LinkedInIcon className='icon'/>
-             </Box>
-            </Box>
-            </InfiniteCarousel>
-                    <Box sx={{
-                            display: 'flex',
-                            justifyContent: 'center'
-                        }}>
-                            <Button
-                                type="submit"
-                                className="btn"
-                            >
-                                View All Members
-                            </Button>
-                        </Box>
-                    </Box>
+<TeamCarousel/>
                     <Box className="open-positions-div">
                         <Typography className="main-div-open-positions">Open Positions</Typography>
                         <Typography className="positions" >Engineers</Typography>
