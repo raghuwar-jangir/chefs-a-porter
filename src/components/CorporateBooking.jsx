@@ -1,20 +1,21 @@
 import React from "react";
 import {Box, styled} from '@mui/system';
-import {Button, Typography} from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import cop1 from '../assets/images/cop1.png';
-import {Swiper, SwiperSlide} from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import {Pagination} from "swiper";
+import { Pagination } from "swiper";
+import { Opacity } from "@mui/icons-material";
 
 
 const CorporateBooking = () => {
     const BoxWrapper = styled(Box)({
-        '.main-box': {
+        '.main-box':{
             background: '#F3F3F3',
-            padding: '70px 0px'
+            padding: '40px 0px'
         },
-        '.title': {
+        '.title':{
             textAlign: 'center',
             fontSize: '24px',
             lineHeight: '30px',
@@ -23,24 +24,23 @@ const CorporateBooking = () => {
             color: '#080B0E',
             marginBottom: '0.5rem'
         },
-        '.carousel-box': {
+        '.carousel-box':{
             display: 'flex',
             background: '#FFFFFF',
-            boxShadow: '0px 20px 24px rgb(0 0 0 / 6%)',
             padding: '20px',
             margin: '30px auto 0px',
             width: '598px'
         },
-        '.person-parts': {
-            display: 'flex',
-            position: 'relative'
+        '.person-parts':{
+            display:'flex',
+            position:'relative'
         },
         '.person-details': {
             paddingLeft: '0px',
             paddingTop: '30px',
-            position: 'relative'
+            position:'relative'
         },
-        '.main-details': {
+        '.main-details':{
             fontSize: '16px',
             marginBottom: '16px',
             fontFamily: 'Proxima Nova',
@@ -49,15 +49,15 @@ const CorporateBooking = () => {
             lineHeight: '20px',
             color: '#080B0E'
         },
-        '.person-position': {
+        '.person-position':{
             fontSize: '16px',
-            lineHeight: '20px',
+            lineHeight: '19px',
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '300',
             marginBottom: '4px'
         },
-        '.person-name': {
+        '.person-name':{
             fontFamily: 'ProximaNovaA-Regular',
             fontSize: '16px',
             lineHeight: '24px',
@@ -81,162 +81,195 @@ const CorporateBooking = () => {
             borderRadius: '1px',
             color: 'black',
             background: 'none',
+            textTransform:'math-auto'
         },
-        '.btn:hover': {
+        '.booking-btn:hover':{
             color: '#C6A87D !important',
-            backgroundColor: 'white'
+            backgroundColor:'white'
         },
-        '.img': {
-            width: '195px',
+        '.img':{
+            width: '212px',
             height: '260px',
-            marginLeft: '15px'
+            marginLeft: '40px',
+            objectFit:'cover'
         },
-        '.swiper': {
-            width: '625px'
+        '.swiper':{
+            width:'625px'
         },
-        '.swiper-slide': {
-            width: '586px !important'
+        '.swiper-slide':{
+            width:'586px !important',
+            boxShadow: '0px 20px 24px rgb(0 0 0 / 6%)'
         },
-        '.swiper-pagination': {
-            position: 'relative',
-            paddingTop: '4%',
-            bottom: '0px',
-            background: '#F3F3F3'
+        '.swiper-pagination':{
+            position:'relative',
+            paddingTop:'10px',
+            bottom:'0px',
+            background:'#F3F3F3',
+            display:'flex',
+            placeContent:'center',
+            alignItems:'center'
+
         },
-        '.swiper-pagination-bullet': {
+        '.swiper-pagination-bullet':{
             width: '9px',
             height: '9px',
             margin: '5px 7px',
             background: '#D6D6D6',
-            border: '1px solid black',
+            border:'1px solid black',
         },
-        '.swiper-pagination-bullet-active': {
+        '.swiper-pagination-bullet:hover':{
+            backgroundColor:'black'
+        },
+        '.swiper-pagination-horizontal':{
+            bottom:'0px !important'
+        },
+        '.swiper-pagination-bullet-active':{
             background: '#222222!important',
-            width: '10px',
-            height: '10px',
+            width: '14px',
+            height: '14px',
         },
         '@media(min-width: 375px) and (max-width: 425px)': {
-            '.person-parts': {
-                flexFlow: 'row-reverse'
+            '.person-parts':{
+                flexFlow:'row-reverse'
             },
-            '.carousel-box': {
-                width: '367px',
-                padding: '0px'
+            '.carousel-box':{
+                width:'367px',
+                padding:'0px'
             },
-            '.person-details': {
-                marginLeft: '6px',
-                paddingTop: '0px'
+            '.person-details':{
+                marginLeft:'6px',
+                paddingTop:'0px'
             },
-            '.img': {
-                marginLeft: '0px',
-                width: '143px',
-                height: '222px'
+            '.img':{
+                marginLeft:'0px',
+                width:'130px',
+                height:'205px'
             },
-            '.swiper': {
-                width: '410px'
+            '.swiper':{
+                width:'410px'
             },
-            '.swiper-slide': {
-                width: '412px !important'
+            '.swiper-slide':{
+                width:'412px !important'
             },
-            ".title": {
-                marginLeft: '4%',
-                textAlign: 'start'
+            ".title":{
+                marginLeft:'4%',
+                textAlign:'start'
             },
-            '.main-box': {
-                backgroundColor: '#FBFBFB'
+            '.main-box':{
+                backgroundColor:'#FBFBFB'
             },
-            '.booking-btn': {
-                width: '96% !important'
+            '.booking-btn':{
+                width:'96% !important'
             },
-            '.swiper-pagination': {
-                backgroundColor: '#FBFBFB'
+            '.swiper-pagination':{
+                backgroundColor:'#FBFBFB'
             },
-            ".swiper-pagination-bullet-active": {
-                width: '8px',
-                height: "8px"
+            ".swiper-pagination-bullet-active":{
+                width:'6px',
+                height:"6px"
             },
         },
-        '@media(min-width: 320px) and (max-width: 375px)': {
-            '.swiper-slide': {
-                width: '340px !important'
+        '@media(min-width: 322px) and (max-width: 375px)': {
+            '.swiper-slide':{
+                width:'340px !important'
             },
-            '.swiper': {
-                width: '339px'
+            '.swiper':{
+                width:'339px'
             },
-            ".main-details": {
-                marginBottom: '2px'
+            ".main-details":{
+                marginBottom:'8px',
+                fontSize:'14px'
             },
-            '.booking-btn': {
-                marginTop: '8px'
+            '.booking-btn':{
+                marginTop:'8px',
+                lineHeight:'17px',
+                fontSize:'14px'
+            },
+            '.person-position':{
+                fontSize:'14px',
+                lineHeight:'17px'
+            },
+            '.person-name':{
+                fontSize:'14px',
+                lineHeight:'150%'
             }
         },
         '@media(min-width: 1px) and (max-width: 320px)': {
-            '.person-parts': {
-                flexFlow: 'row-reverse'
+            '.person-parts':{
+                flexFlow:'row-reverse'
             },
-            '.img': {
-                height: '275px',
-                width: '161px',
-                marginLeft: '-12px',
-                objectFit: 'cover'
+            '.img':{
+                marginLeft:'0px',
+                width:'130px',
+                height:'246px'
             },
-            '.swiper': {
-                width: '314px'
+            '.swiper':{
+                width:'303px !important'
             },
-            '.swiper-slide': {
-                width: '272px !important'
+            '.swiper-slide':{
+                width:'286px !important'
             },
-            '.booking-btn': {
-                width: '100% !important',
-                fontSize: '14px',
-                padding: '10px'
+            '.booking-btn':{
+                width:'100% !important',
+                fontSize:'14px',
+                padding:'10px'
             },
-            '.person-details': {
-                paddingLeft: '3%',
-                paddingTop: '0px',
-                fontSize: '14px'
+            '.person-details':{
+                paddingLeft:'3%',
+                paddingTop:'0px',
+                fontSize:'14px'
             },
-            '.person-position': {
-                fontSize: '14px'
+            '.person-position':{
+                fontSize:'14px'
             },
-            '.person-name': {
-                fontSize: '13px'
+            '.person-name':{
+                fontSize:'13px'
             },
-            '.main-details': {
-                fontSize: '13px'
+            '.main-details':{
+                fontSize:'13px'
             },
-            '.swiper-pagination': {
-                backgroundColor: '#FBFBFB'
+            '.swiper-pagination':{
+                backgroundColor:'#FBFBFB'
             },
-            '.main-box': {
-                backgroundColor: '#FBFBFB'
+            '.main-box':{
+                backgroundColor:'#FBFBFB'
             },
-            ".title": {
-                marginLeft: '4%',
-                textAlign: 'start'
+            ".title":{
+                marginLeft:'4%',
+                textAlign:'start',
+                fontSize:'20px',
+                lineHeight:'25px'
+            },
+            '.carousel-box':{
+                paddingLeft:'0.5rem',
+                paddingRight:'0.5rem',
+                paddingTop:'0px',
+                paddingBottom:'0px'
+            },
+            '.swiper-pagination':{
+                backgroundColor:'#FBFBFB'
+            },
+            ".swiper-pagination-bullet-active":{
+                width:'6px',
+                height:"6px"
             },
         },
     });
-    return (
+    return(
         <React.Fragment>
             <BoxWrapper>
                 <Box className='main-box'>
                     <Box>
                         <Typography className="title">Corporate bookings</Typography>
                     </Box>
-                    <Swiper pagination={true} modules={[Pagination]} className="mySwiper" grabCursor={true} loop={true}
-                            pagination={{
-                                clickable: true,
-                            }}>
+                    <Swiper  loop={true} modules={[Pagination]} className="mySwiper"  grabCursor={true} pagination={{clickable: true }}>
                         <SwiperSlide className='carousel-box'>
                             <Box className='person-parts'>
-                                <Box className='person-details'>
-                                    <Typography className="main-details">I had chef Mako over to host a few business
-                                        partners. The dinner experience was absolutely amazing and he makes amazing
-                                        Sushi!</Typography>
+                                <Box className='person-details' >
+                                    <Typography className="main-details">I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!</Typography>
                                     <Typography className="person-position">CEO, Accenture</Typography>
                                     <Typography className="person-name">Pratyush Shah</Typography>
-                                    <Button className="booking-btn">Know More</Button>
+                                    <Button className="booking-btn" href="/corporate-booking">Know More</Button>
                                 </Box>
                                 <Box>
                                     <img className="img"
@@ -247,13 +280,11 @@ const CorporateBooking = () => {
                         </SwiperSlide>
                         <SwiperSlide className='carousel-box'>
                             <Box className='person-parts'>
-                                <Box className='person-details'>
-                                    <Typography className="main-details">I had chef Mako over to host a few business
-                                        partners. The dinner experience was absolutely amazing and he makes amazing
-                                        Sushi!</Typography>
+                                <Box className='person-details' >
+                                    <Typography className="main-details">I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!</Typography>
                                     <Typography className="person-position">CEO, Accenture</Typography>
                                     <Typography className="person-name">Pratyush Shah</Typography>
-                                    <Button className="booking-btn">Know More</Button>
+                                    <Button className="booking-btn" href="/corporate-booking">Know More</Button>
                                 </Box>
                                 <Box>
                                     <img className="img"
@@ -264,13 +295,11 @@ const CorporateBooking = () => {
                         </SwiperSlide>
                         <SwiperSlide className='carousel-box'>
                             <Box className='person-parts'>
-                                <Box className='person-details'>
-                                    <Typography className="main-details">I had chef Mako over to host a few business
-                                        partners. The dinner experience was absolutely amazing and he makes amazing
-                                        Sushi!</Typography>
+                                <Box className='person-details' >
+                                    <Typography className="main-details">I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!</Typography>
                                     <Typography className="person-position">CEO, Accenture</Typography>
                                     <Typography className="person-name">Pratyush Shah</Typography>
-                                    <Button className="booking-btn">Know More</Button>
+                                    <Button className="booking-btn" href="/corporate-booking">Know More</Button>
                                 </Box>
                                 <Box>
                                     <img className="img"
@@ -281,13 +310,11 @@ const CorporateBooking = () => {
                         </SwiperSlide>
                         <SwiperSlide className='carousel-box'>
                             <Box className='person-parts'>
-                                <Box className='person-details'>
-                                    <Typography className="main-details">I had chef Mako over to host a few business
-                                        partners. The dinner experience was absolutely amazing and he makes amazing
-                                        Sushi!</Typography>
+                                <Box className='person-details' >
+                                    <Typography className="main-details">I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!</Typography>
                                     <Typography className="person-position">CEO, Accenture</Typography>
                                     <Typography className="person-name">Pratyush Shah</Typography>
-                                    <Button className="booking-btn">Know More</Button>
+                                    <Button className="booking-btn" href="/corporate-booking">Know More</Button>
                                 </Box>
                                 <Box>
                                     <img className="img"
