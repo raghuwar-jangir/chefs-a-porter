@@ -33,6 +33,11 @@ import CloseIcon from "@mui/icons-material/Close";
 import ChefsLogo from "../../assets/images/logo-gold.png";
 import {Link} from "gatsby";
 import Occasion from "../../assets/images/occasion.png";
+import contacts1 from "../../assets/images/contacts1.png";
+import contacts2 from "../../assets/images/contacts2.png";
+import contacts3 from "../../assets/images/contacts3.png";
+import contacts4 from "../../assets/images/contacts4.png";
+import contacts5 from "../../assets/images/contacts5.png";
 
 const GiftCards = () => {
 
@@ -44,12 +49,14 @@ const GiftCards = () => {
         receiverMessage: Yup.string().required('Please enter text'),
     });
 
-
     const [occassionMessage, setOccassionMessage] = useState("");
 
     const [open, setOpen] = React.useState(false);
     const handleOpenPopUp = () => setOpen(true);
     const handleClosePopUp = () => setOpen(false);
+    const [contactPopUp, setContactPopUp] = React.useState(false);
+    const ContactOpen = () => setContactPopUp(true);
+    const ContactClose = () => setContactPopUp(false);
     //for Cover Letter
     const CHARACTER_LIMIT = 500;
 
@@ -970,6 +977,63 @@ const GiftCards = () => {
         '.need-help-link:hover': {
             color: '#C6A87D !important'
         },
+        '.allow-access': {
+            padding: '20px',
+            background: '#DCD7CB',
+        },
+        '.access-box': {
+            background: '#DCD7CB',
+            display: 'block',
+        },
+        '.allow-details': {
+            fontFamily: 'Barlow, sans-serif',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '18px',
+            lineHeight: '22px',
+            textAlign: 'center',
+            color: '#000000',
+        },
+        '.allow-permission-button': {
+            background: '#080B0E',
+            padding: '15px 10px',
+            fontSize: '16px',
+            lineHeight: '20px',
+            fontWeight: '600',
+            fontFamily: 'Proxima Nova',
+            textDecoration: 'none',
+            display: 'block',
+            color: ' #FBFBFB !important',
+            textAlign: 'center',
+            border: '0.5px solid #080B0E',
+            flex: '1'
+        },
+        '.deny-permission-button': {
+            padding: '15px 10px',
+            fontSize: '16px',
+            lineHeight: '20px',
+            fontWeight: '600',
+            fontFamily: 'Proxima Nova',
+            textDecoration: 'none',
+            display: 'block',
+            color: ' #080B0E!important',
+            textAlign: 'center',
+            border: '0.5px solid #080B0E',
+            flex: '1'
+        },
+        '.deny-permission-button:hover': {
+            color: '#C6A87D!important',
+        },
+        '.allow-permission-button:hover': {
+            color: '#C6A87D!important',
+        },
+        '.access-btn': {
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '8px',
+            marginTop: '16px',
+            justifyContent: 'center'
+        },
     }
     return (
         <React.Fragment>
@@ -1733,7 +1797,8 @@ const GiftCards = () => {
                                                                        startAdornment: <InputAdornment
                                                                            position="start">91+</InputAdornment>,
                                                                        endAdornment: <InputAdornment
-                                                                           position="end"><ContactsIcon
+                                                                           position="end"
+                                                                           onClick={ContactOpen}><ContactsIcon
                                                                            sx={{
                                                                                color: 'black',
                                                                                cursor: 'pointer'
@@ -1865,6 +1930,34 @@ const GiftCards = () => {
                                     <Typography className="need-help">Need Help? <Link href="/contact-us"
                                                                                        className="need-help-link">Contact
                                         Us</Link></Typography>
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Modal>
+                <Modal
+                    keepMounted
+                    open={contactPopUp}
+                    onClose={ContactClose}
+                    aria-labelledby="keep-mounted-modal-title"
+                    aria-describedby="keep-mounted-modal-description"
+                >
+                    <Box sx={style}>
+                        <Box className="allow-access">
+                            <Box className="modal-header">
+                                <button type="button" data-bs-dismiss="modal" aria-label="Close" className="close"
+                                        onClick={ContactClose}>
+                                    <CloseIcon/>
+                                </button>
+                            </Box>
+                            <Box className="access-box">
+                                <Typography className="allow-details">Allow <strong>Chefs-à-Porter</strong> to
+                                    access your contacts?</Typography>
+                                <Box className="access-btn">
+                                    <Link href="/gift-cards"
+                                          className="deny-permission-button">Deny</Link>
+                                    <Link href="/mobile-contact"
+                                          className="allow-permission-button">Allow</Link>
                                 </Box>
                             </Box>
                         </Box>
