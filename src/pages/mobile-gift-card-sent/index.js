@@ -248,7 +248,7 @@ const MobileGiftCardSent = () => {
                     </Grid>
                 </Box>
                 <Box className="apply_div">
-                    <a href="" className="apply_btn">Browse upcoming experiences</a>
+                    <a href="/" className="apply_btn">Browse upcoming experiences</a>
                     <Typography className="need-help">Need Help? <Link href="/contact-us" className="need-help-link">Contact
                         Us</Link></Typography>
                 </Box>
