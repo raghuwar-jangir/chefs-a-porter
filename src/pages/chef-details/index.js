@@ -39,6 +39,7 @@ import {isMobile} from "react-device-detect";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import DiningPage from "../../components/DiningPage";
 import ImagePopCarousel from "../../components/ImagePopCarousel";
+import GalleryCarousel from "../../components/GalleryCarousel";
 
 const ChefDetails = (props) => {
 
@@ -211,7 +212,7 @@ const ChefDetails = (props) => {
                 padding: '0px 12px',
                 width: '75%'
             },
-            '.view-all': {
+            '.view-all-gallery':{
                 fontSize: '16px',
                 lineHeight: '19px',
                 color: '#FBFBFB',
@@ -219,6 +220,20 @@ const ChefDetails = (props) => {
                 fontStyle: 'normal',
                 letterSpacing: '0.06em',
                 marginBottom: '8px',
+                textAlign: 'center',
+                textDecoration: 'none',
+                border: '1px solid #C6A87D',
+                padding: '15px 50px',
+                display: 'block'
+            },
+            '.view-all': {
+                fontSize: '16px',
+                lineHeight: '19px',
+                color: '#FBFBFB',
+                fontFamily: 'Proxima nova',
+                fontStyle: 'normal',
+                letterSpacing: '0.06em',
+                marginBottom: '40px',
                 textAlign: 'center',
                 textDecoration: 'none',
                 border: '1px solid #C6A87D',
@@ -291,10 +306,9 @@ const ChefDetails = (props) => {
                 cursor: 'pointer',
                 zIndex: '10'
             },
-
             '@media(min-width: 1000px) and (max-width: 1024px)': {
                 '.swiper-pagination-bullet': {
-                    width: '145px !important',
+                    width: '145px',
                 },
                 '.dining-content': {
                     padding: '4px 35px !important'
@@ -314,6 +328,9 @@ const ChefDetails = (props) => {
                 '.container-fluid': {
                     padding: '0px 0px 0px'
                 },
+                '.view-all-gallery':{
+                    marginBottom:'40px'
+                }
             },
             '@media(min-width: 2200px) and (max-width: 2560px)': {
                 '.all-photos': {
@@ -385,6 +402,9 @@ const ChefDetails = (props) => {
                     padding: '0px',
                     display: 'flex',
                 },
+                '.view-all-gallery':{
+                    width:'100%'
+                }
             },
             '@media(min-width:600px) and (max-width: 768px)': {
                 '.header-club': {
@@ -692,9 +712,9 @@ const ChefDetails = (props) => {
                             </Box>
                         </Box>
                         <RatingCarousel backgroundColor="#DCD7CB"/>
-                        <DiningPage image={chef1} title={'Gallery'}/>
+                        <GalleryCarousel image={chef1} title={'Gallery'}/>
                         <Box className="chef-btn book-now">
-                            <Link href="/our-chefs" className="view-all">View More Chef</Link>
+                            <Link href="/our-chefs" className="view-all-gallery">View More Chef</Link>
                         </Box>
                     </Box>
                 </Box>
