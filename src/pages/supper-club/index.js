@@ -252,8 +252,16 @@ const SupperClubChaefPage = () => {
       marginLeft: "6px",
     },
     ".tab-box": {
-      border: "1px solid black",
-      borderRadius: "1px",
+      border: '1px solid black',
+    textAlign: 'center',
+    borderRight: '1px solid #222',
+    borderRadius: '0px',
+    fontFamily: 'Proxima Nova Alt',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontSize: '20px',
+    lineHeight: '24px',
+    padding: '8px',
     },
     ".box-contain": {
       display: "grid",
