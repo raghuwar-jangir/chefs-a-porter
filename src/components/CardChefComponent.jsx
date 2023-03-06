@@ -1,6 +1,5 @@
 import { Box, styled, Typography } from "@mui/material";
 import React, {useState} from "react";
-// import WorkIcon from '@mui/icons-material/Work';
 import party from '../assets/images/party.png';
 import work from '../assets/images/mdi_bag.png';
 import culinary from '../assets/images/culinary.png';
@@ -8,12 +7,11 @@ import chef from '../assets/images/cheflogo.png';
 import dish from '../assets/images/meal.png';
 import glass from '../assets/images/wine-glass.png';
 import star from '../assets/images/chef-star.png';
-// import ReadMoreReact from 'read-more-react';
 import ReactReadMoreReadLess from "react-read-more-read-less";
 
 
 const CardChefComponent = ({ bgColor }) => {
-    const longText = ' From Bangalore to the Culinary Institute of America in New York. He has developed his skills and love for the culinary arts. From Bangalore to the Culinary...';<span><u><b>Read less</b></u></span>
+    const longText = ' From Bangalore to the Culinary Institute of America in New York. He has developed his skills and love for the culinary arts. From Bangalore to the Culinary...';
     const longText2 = 'Host connections at your place and leave the dinner table to us. Select your chef and let them curate an experience worth enjoying...';
     const BoxWrapper = styled(Box)(() => ({
         paddingBottom:'4%',
@@ -62,6 +60,9 @@ const CardChefComponent = ({ bgColor }) => {
             height: '24px',
             objectFit: 'contain',
         },
+        '.read-more-less--more':{
+            display:'block'
+        },
         "@media (min-width: 1px) and (max-width:425px)": {
         }
     }))
@@ -97,6 +98,8 @@ const CardChefComponent = ({ bgColor }) => {
                 charLimit={125}
                 readMoreText={"Read more"}
                 readLessText={"Read less"}
+                readMoreClassName="read-more-less--more"
+                readLessClassName="read-more-less--less"
             >
                 {longText}
             </ReactReadMoreReadLess>
@@ -122,6 +125,8 @@ const CardChefComponent = ({ bgColor }) => {
                 charLimit={125}
                 readMoreText={"Read more"}
                 readLessText={"Read less"}
+                readMoreClassName="read-more-less--more"
+                readLessClassName="read-more-less--less"
             >
                 {longText2}
             </ReactReadMoreReadLess>
