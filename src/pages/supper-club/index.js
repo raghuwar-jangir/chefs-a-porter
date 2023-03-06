@@ -361,17 +361,19 @@ const SupperClubChaefPage = () => {
     },
     ".show-btn": {
       position: "absolute",
-      bottom: "45px",
-      right: "3%",
+      bottom: "16px",
+      right: "19px",
       fontFamily: "ProximaNovaA-Regular",
       fontStyle: "normal",
       fontWeight: "100",
-      fontSize: "14px",
+      fontSize: "16px",
       lineHeight: "19px",
       color: "#080B0E",
+      textTransform:'math-auto',
       background: "#FBFBFB",
       boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
       borderRadius: "1px",
+      padding:'8px 12px'
     },
     ".show-btn:hover": {
       color: "#C6A87D",
