@@ -259,6 +259,12 @@ const Footer = () => {
                                         <Link href="mailto:reservations@chefsaporter.com."
                                            className='listItem-subheading'>reservations@chefsaporter.com.</Link>
                                     </List>
+                                    <List>
+                                        <ListItemIcon className="listItem">
+                                            <img src={footerArrow}/>
+                                        </ListItemIcon>
+                                        <Link href="/" className='listItem-subheading'>Join Our Community</Link>
+                                    </List>
                                 </Box>
                             </Grid>
                         </Grid>

@@ -11,17 +11,17 @@ import avlExp2 from "../assets/images/avl-exp2.jpg";
 const ExperienceCarousel = () => {
     const WrapBox = styled(Box)({
         '.main-box': {
-            background: '#101418',
+            background: '#101418 !important',
             padding: '80px 0px',
             textAlign: 'center'
         },
         '.peek-heading': {
-            fontFamily: 'Bon Vivant',
-            fontSize: '36px',
-            lineHeight: '45px',
-            color: '#FBFBFB',
-            textAlign: 'center',
-            paddingBottom: '40px'
+            fontFamily: 'Bon Vivant !important',
+            fontSize: '36px !important',
+            lineHeight: '45px !important',
+            color: '#FBFBFB !important',
+            textAlign: 'center !important',
+            paddingBottom: '40px !important'
         },
         '.slider-box': {
             marginTop: '30px'

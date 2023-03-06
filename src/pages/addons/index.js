@@ -431,14 +431,14 @@ const Addons = () => {
                                                     </Box>
                                                 </Box>
                                             </Box>
-                                            <div className="row viewbreak">
-                                                <div className="col-lg-12">
+                                            <Box className="row viewbreak">
+                                                <Box className="col-lg-12">
                                                     <button type="submit" className="submit-req">Next</button>
-                                                </div>
+                                                </Box>
                                                 <Typography className="contact-text">Our team will contact you regarding
                                                     your protein and allergeen
                                                     Information after booking is confirmed</Typography>
-                                            </div>
+                                            </Box>
                                         </Box>
                                     </Grid>
                                 </Grid>
