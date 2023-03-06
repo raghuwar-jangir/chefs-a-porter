@@ -12,6 +12,7 @@ import AddonsCard from "../../components/AddonsCard";
 import sGallery from "../../assets/images/sc-gallery.png";
 import StarIcon from "@mui/icons-material/Star";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import {isMobile} from "react-device-detect";
 
 
 const Addons = () => {
@@ -117,16 +118,6 @@ const Addons = () => {
             letterSpacing: '0.06em',
             color: '#FBFBFB',
         },
-        '.event-title': {
-            fontFamily: 'Bon Vivant',
-            fontStyle: 'normal',
-            // fontWeight: '700',
-            fontSize: '20px',
-            lineHeight: '25px',
-            letterSpacing: '0.06em',
-            color: '#FBFBFB',
-            marginBottom: '8px'
-        },
         '.event-subtitle': {
             fontFamily: 'Proxima Nova',
             fontStyle: 'normal',
@@ -205,16 +196,154 @@ const Addons = () => {
             textAlign: 'center',
             color: 'rgba(251, 251, 251, 0.6)',
         },
-        'table': {
+        '.table': {
             marginTop: '20px',
             marginBottom: '0px'
-        }
+        },
+        '.table-box': {
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between'
+        },
+        '.table-details': {
+            fontFamily: 'Proxima Nova',
+            fontStyle: 'normal',
+            // fontWeight: '300',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#FBFBFB',
+            padding: '0px 0px 16px',
+        },
+        '.grand-total': {
+            fontFamily: 'Proxima Nova',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '20px',
+            lineHeight: '24px',
+            color: '#FBFBFB',
+            padding: '22px 0px',
+        },
+        '.border': {
+            borderTop: '1px solid rgba(255, 255, 255, 0.6)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.6)',
+        },
+        '.tax1': {
+            paddingTop: '20px',
+        },
+        ".header-club": {
+            display: 'none',
+            padding: '15px',
+            backgroundColor: '#080B0E',
+        },
+        "@media (min-width: 1px) and (max-width:425px)": {
+            '.supper-gallery .container-fluid': {
+                padding: '20px 10px'
+            },
+            ".header-club": {
+                padding: '0px 110px',
+                display: 'flex',
+            },
+            ".addones-mobile-heading": {
+                padding: '8px 0px !important',
+                fontSize: "24px",
+                textAlign: 'center',
+                color: '#FBFBFB !important',
+                fontFamily: 'Bon Vivant'
+            },
+            '.addons-title': {
+                fontSize: '28px',
+                lineHeight: '30px',
+            },
+            '.per-dinner': {
+                padding: '20px 0px'
+            },
+            '.table-details': {
+                fontSize: '12px',
+                lineHeight: '15px',
+            },
+            '.grand-total': {
+                fontSize: '16px',
+                lineHeight: '20px',
+            },
+            '.ex-heading': {
+                fontSize: '16px',
+                lineHeight: '20px',
+                letterSpacing: '0.04em',
+            },
+            '.event-title': {
+                fontSize: '14px',
+                lineHeight: '18px',
+                letterSpacing: '0.04em',
+            },
+            '.event-link': {
+                fontSize: '14px',
+                lineHeight: '18px',
+            },
+            '.rating-star': {
+                fontSize: '14px',
+                lineHeight: '18px',
+            },
+            '.submit-req': {
+                fontSize: '16px',
+                lineHeight: '18px',
+            },
+        },
+        "@media (min-width: 371px) and (max-width:400px)": {
+            '.header-club': {
+                padding: '0px 150px'
+            }
+        },
+        "@media (min-width: 425px) and (max-width:450px)": {
+            '.header-club': {
+                padding: '0px 170px'
+            }
+        },
+        "@media (min-width: 426px) and (max-width:768px)": {
+            '.supper-gallery .container-fluid': {
+                padding: '40px 80px'
+            },
+            '.header-club': {
+                display: 'flex'
+            },
+        },
+        "@media (min-width: 320px) and (max-width:767px)": {
+            ".addones-mobile-heading": {
+                padding: '8px 0px !important',
+                fontSize: "24px",
+                textAlign: 'center',
+                color: '#FBFBFB',
+                fontFamily: 'Bon Vivant'
+            },
+        },
+        '@media(min-width:600px) and (max-width: 768px)': {
+            '.header-club': {
+                display: 'flex',
+                background: '#DCD7CB',
+            },
+            '.bm-burger-bars': {
+                background: '#080B0E !important',
+            },
+        },
+        ".addones-mobile-heading": {
+            fontSize: "24px",
+            paddingLeft: '280px',
+            textAlign: 'center',
+            color: "#080B0E",
+            fontFamily: 'Bon Vivant'
+        },
     }))
 
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar/>
+                <Navbar isColor={true}/>
+                {isMobile ? (
+                    <Box className='header-club'>
+                        <Typography className="addones-mobile-heading">Privee</Typography>
+                    </Box>
+                ) : (
+                    ''
+                )}
                 <Box className="supper-gallery cust-details">
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">
@@ -224,7 +353,7 @@ const Addons = () => {
                             </Box>
                             <Box className="row customer-details addons-div">
                                 <Grid container>
-                                    <Grid xs={7} className="partner">
+                                    <Grid xl={7} lg={7} xs={7} md={7} sm={12} xs={12} className="partner">
                                         <Box className="addons">
                                             <Typography className="addons-heading">Our partners help you get set up with
                                                 the perfect custom experience</Typography>
@@ -237,9 +366,9 @@ const Addons = () => {
                                             </Grid>
                                         </Box>
                                     </Grid>
-                                    <Grid xs={5} className="cust-details">
-                                        <div className="per-dinner adsss">
-                                            <div className="event-div">
+                                    <Grid xl={5} lg={5} xs={5} md={5} sm={12} xs={12} className="cust-details">
+                                        <Box className="per-dinner adsss">
+                                            <Box className="event-div">
                                                 <img src={sGallery} alt="" className="per-dinner-img"/>
                                                 <Box sx={{marginLeft: '12px'}}>
                                                     <Typography className="event-title">The Big Fat Parsi
@@ -252,51 +381,56 @@ const Addons = () => {
                                                             sx={{color: '#C6A87D', height: '20px', width: '20px'}}/> 4.7
                                                     </Typography>
                                                 </Box>
-                                            </div>
-                                            <div className="experience-breakup">
-                                                <div className="ex-details">
+                                            </Box>
+                                            <Box className="experience-breakup">
+                                                <Box className="ex-details">
                                                     <Typography className="ex-heading">Experience Breakup</Typography>
                                                     <Typography className="ex-detail">This is an estimate, final price
                                                         will be <br/>communicated on
                                                         call
                                                     </Typography>
                                                     <ExpandMoreIcon className="ex-icon"/>
-                                                </div>
-                                                <table className="table table-borderless">
-                                                    <tbody>
-                                                    <tr>
-                                                        <th scope="row">Food</th>
-                                                        <td>₹ 2,500</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Service Charge</th>
-                                                        <td>₹ 2,500</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Tax</th>
-                                                        <td>₹ 2,500</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Venue</th>
-                                                        <td>₹ 2,500</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Additional Courses +2</th>
-                                                        <td>₹ 2,500</td>
-                                                    </tr>
-                                                    <tr className="grand-total">
-                                                        <th scope="row">Grand Total</th>
-                                                        <td>₹ 2,5000</td>
-                                                    </tr>
-                                                    <tr className="tax tax1">
-                                                        <td>+Incl Of GST</td>
-                                                    </tr>
-                                                    <tr className="tax">
-                                                        <td>++1.95% + GST</td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                </Box>
+                                                <Box className="table table-borderless">
+                                                    <Box className="table-box">
+                                                        <Typography
+                                                            className="table-details">Food</Typography>
+                                                        <Typography className="table-details">₹ 2,500</Typography>
+                                                    </Box>
+                                                    <Box className="table-box">
+                                                        <Typography className="table-details">Service
+                                                            Charge</Typography>
+                                                        <Typography className="table-details">₹ 2,500</Typography>
+                                                    </Box>
+                                                    <Box className="table-box">
+                                                        <Typography className="table-details"
+                                                        >Tax</Typography>
+                                                        <Typography className="table-details">₹ 2,500</Typography>
+                                                    </Box>
+                                                    <Box className="table-box">
+                                                        <Typography className="table-details"
+                                                        >Venue</Typography>
+                                                        <Typography className="table-details">₹ 2,500</Typography>
+                                                    </Box>
+                                                    <Box className="table-box">
+                                                        <Box className="table-details">Additional Courses
+                                                            +2</Box>
+                                                        <Box className="table-details">₹ 2,500</Box>
+                                                    </Box>
+                                                    <Box className="table-box border">
+                                                        <Typography className=" grand-total table-details">Grand
+                                                            Total</Typography>
+                                                        <Typography className="table-details grand-total">₹
+                                                            2,5000</Typography>
+                                                    </Box>
+                                                    <Box className="tax tax1 table-box">
+                                                        <Typography className="table-details">+Incl Of GST</Typography>
+                                                    </Box>
+                                                    <Box className="tax">
+                                                        <Typography className="table-details">++1.95% + GST</Typography>
+                                                    </Box>
+                                                </Box>
+                                            </Box>
                                             <div className="row viewbreak">
                                                 <div className="col-lg-12">
                                                     <button type="submit" className="submit-req">Next</button>
@@ -305,7 +439,7 @@ const Addons = () => {
                                                     your protein and allergeen
                                                     Information after booking is confirmed</Typography>
                                             </div>
-                                        </div>
+                                        </Box>
                                     </Grid>
                                 </Grid>
 

@@ -54,7 +54,7 @@ const MainContentBox = styled(Box)({
     },
     "@media (min-width: 1px) and (max-width:425px)": {
         '.addons-parent': {
-            padding: '8px',
+            padding: '6px',
             width: 'auto',
             height: 'auto',
             backgroundColor: '#101418',
@@ -63,7 +63,7 @@ const MainContentBox = styled(Box)({
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
             // fontWeight: 700,
-            fontSize: '14px',
+            fontSize: '12px',
             lineHeight: '20px',
             letterSpacing: '0.06em',
             color: '#FBFBFB',
