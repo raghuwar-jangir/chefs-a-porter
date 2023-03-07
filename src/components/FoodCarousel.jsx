@@ -227,7 +227,7 @@ const FoodCarousel = (isButtonShow) =>{
           }}
         className="mySwiper">
                     <SwiperSlide><img className='test-img' src={testImage}/>
-                    <Box  className='trending'><img className='trending-img' src={trending}/><Typography className='trending-title'>Trending</Typography></Box>
+                        <Box  className='trending'><img className='trending-img' src={trending}/><Typography className='trending-title'>Trending</Typography></Box>
                         <Box className='supper-info' >
                             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography>
                             <Box className='super-chef-details'>
@@ -265,7 +265,7 @@ const FoodCarousel = (isButtonShow) =>{
                             </Box>
                         </Box></SwiperSlide>
                     <SwiperSlide><img className='test-img' src={testImage2}/>
-                    <Box  className='trending'><img className='trending-img' src={trending}/><Typography className='trending-title'>Trending</Typography></Box>
+                        <Box  className='trending'><img className='trending-img' src={trending}/><Typography className='trending-title'>Trending</Typography></Box>
                         <Box className='supper-info' >
                             <Typography className='super-title'>The Big Fat Parsi Blowout</Typography>
                             <Box className='super-chef-details'>

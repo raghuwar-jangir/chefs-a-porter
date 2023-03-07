@@ -1,5 +1,5 @@
-import React from "react";
-import {Box} from "@mui/system";
+import React, { useRef, useState } from "react";
+import { Box } from "@mui/system";
 import styled from "styled-components";
 import {Typography} from "@mui/material";
 import image1 from '../assets/images/ig1.png';
@@ -63,11 +63,9 @@ const WrapBox = styled(Box) ({
                 </Box>
                 <Box className='slider-box'>
                     <Swiper
-                        slidesPerView={'auto'}
+                        slidesPerView={6}
                         spaceBetween={8}
-                        centeredSlides={false}
                         className="mySwiper"
-                        grabCursor={true}
                     >
 
                         <SwiperSlide><img className="img" src={image1}/></SwiperSlide>

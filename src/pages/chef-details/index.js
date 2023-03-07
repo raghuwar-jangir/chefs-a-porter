@@ -166,7 +166,7 @@ const ChefDetails = (props) => {
                 padding: '8px 12px',
                 position: 'relative',
                 bottom: '50px',
-                left: '550px',
+                left: '650px',
             },
             '.read-more-less--more, .read-more-less--less': {
                 all: 'unset',
@@ -353,7 +353,7 @@ const ChefDetails = (props) => {
             '@media(min-width: 700px) and (max-width: 768px)': {
                 '.all-photos': {
                     bottom: '50px',
-                    left: '3px',
+                    left: '220px',
                 },
             },
             "@media (min-width: 320px) and (max-width:425px)": {

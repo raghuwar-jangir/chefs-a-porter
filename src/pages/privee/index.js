@@ -222,7 +222,7 @@ const BoxWrapper = styled(Box)(() => ({
     },
     '.privee-ex-img': {
         width: '100% !important',
-        height: '491px',
+        height: '537px',
         objectFit: 'cover',
         verticalAlign: 'middle'
     },
@@ -336,7 +336,7 @@ const BoxWrapper = styled(Box)(() => ({
         placeItems: 'center',
         display: 'flex',
         // placeContent: 'space-between',
-        justifyContent:'space-evenly'
+        justifyContent: 'space-evenly'
     },
     '.btn-primary': {
         width: '100%',
@@ -480,9 +480,10 @@ const PriveePage = () => {
             setCount(count);
         }
     }
+
     const styles = theme => ({
         input: {
-            width:40
+            width: 40
         },
         button: {
             width: 40
@@ -686,49 +687,51 @@ const PriveePage = () => {
                                                              onClick={decrementCount}>-
                                                      </button>
                                                 </span>
-                                                        <TextField type="text" name="numberOfDiner" id="Qty"
-                                                                   name="numberOfDiner"
-                                                                   onChange={handleChange}
-                                                                   value={values.numberOfDiner}
-                                                                   value={count}
-                                                                   className="input-number"
-                                                            // value={count}
-                                                                   InputProps={{
-                                                                       sx: { width: "25px",  background: 'transparent',
-                                                                           border: '0px',
-                                                                           fontFamily: 'Proxima Nova',
-                                                                           fontStyle: 'normal',
-                                                                           fontWeight: '400',
-                                                                           fontSize: '14px',
-                                                                           color: '#080B0E',
-                                                                           lineHeight: '17px',
-                                                                           paddingLeft: '0px',
-                                                                           paddingRight: '0px',
-                                                                           flex: 'none',
-                                                                           textAlign: 'center',},
-                                                                   }}
-                                                                   autoComplete={"off"} sx={{
-                                                            '.MuiOutlinedInput-notchedOutline': {
-                                                                border: 'none',
-                                                                outline: 'none',
-                                                            },
-                                                            '& .MuiInputBase-input': {
-                                                                width: "25px",  background: 'transparent',
-                                                                border: '0px',
-                                                                fontFamily: 'Proxima Nova',
-                                                                fontStyle: 'normal',
-                                                                fontWeight: '400',
-                                                                fontSize: '14px',
-                                                                color: '#080B0E',
-                                                                lineHeight: '17px',
-                                                                paddingLeft: '0px',
-                                                                paddingRight: '0px',
-                                                                flex: 'none',
-                                                                textAlign: 'center'
-                                                            },
-                                                        }}
-                                                        />
-                                                        <span className="input-group-btn plus">
+                                                    <TextField type="text" name="numberOfDiner" id="Qty"
+                                                               name="numberOfDiner"
+                                                               onChange={handleChange}
+                                                               value={values.numberOfDiner}
+                                                               value={count}
+                                                               className="input-number"
+                                                        // value={count}
+                                                               InputProps={{
+                                                                   sx: {
+                                                                       width: "25px", background: 'transparent',
+                                                                       border: '0px',
+                                                                       fontFamily: 'Proxima Nova',
+                                                                       fontStyle: 'normal',
+                                                                       fontWeight: '400',
+                                                                       fontSize: '14px',
+                                                                       color: '#080B0E',
+                                                                       lineHeight: '17px',
+                                                                       paddingLeft: '0px',
+                                                                       paddingRight: '0px',
+                                                                       flex: 'none',
+                                                                       textAlign: 'center',
+                                                                   },
+                                                               }}
+                                                               autoComplete={"off"} sx={{
+                                                        '.MuiOutlinedInput-notchedOutline': {
+                                                            border: 'none',
+                                                            outline: 'none',
+                                                        },
+                                                        '& .MuiInputBase-input': {
+                                                            width: "25px", background: 'transparent',
+                                                            border: '0px',
+                                                            fontFamily: 'Proxima Nova',
+                                                            fontStyle: 'normal',
+                                                            fontWeight: '400',
+                                                            fontSize: '14px',
+                                                            color: '#080B0E',
+                                                            lineHeight: '17px',
+                                                            paddingLeft: '0px',
+                                                            paddingRight: '0px',
+                                                            flex: 'none',
+                                                            textAlign: 'center'
+                                                        },
+                                                    }}
+                                                    />
+                                                    <span className="input-group-btn plus">
                                                 <button type="button"
                                                         className="btn btn-default btn-number"
                                                         disabled={count == 10 ? true : false}
@@ -736,7 +739,7 @@ const PriveePage = () => {
                                                         onClick={incrementCount}>+
                                                 </button>
                                                 </span>
-                                                    </Box>
+                                                </Box>
                                             </Box>
                                             <Box className="form-group">
                                                 <button type="submit" className="btn btn-primary">View Experiences

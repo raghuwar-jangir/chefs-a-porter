@@ -80,13 +80,13 @@ const CorporateBooking = () => {
             borderRadius: '1px',
             color: 'black',
             background: 'none',
-            textTransform:'math-auto'
+            textTransform: 'math-auto'
         },
-        '.booking-btn:hover':{
+        '.booking-btn:hover': {
             color: '#C6A87D !important',
             backgroundColor:'white'
         },
-        '.img':{
+        '.img': {
             width: '212px',
             height: '260px',
             marginLeft: '40px',
@@ -95,8 +95,8 @@ const CorporateBooking = () => {
         '.swiper':{
             width:'625px'
         },
-        '.swiper-slide':{
-            width:'586px !important',
+        '.swiper-slide': {
+            width: '586px !important',
             boxShadow: '0px 20px 24px rgb(0 0 0 / 6%)'
         },
         '.swiper-pagination':{
@@ -116,61 +116,61 @@ const CorporateBooking = () => {
     background: '#D6D6D6',
     border:'1px solid black',
         },
-        '.swiper-pagination-bullet:hover':{
-            backgroundColor:'black'
+        '.swiper-pagination-bullet:hover': {
+            backgroundColor: 'black'
         },
-        '.swiper-pagination-horizontal':{
-            bottom:'0px !important'
+        '.swiper-pagination-horizontal': {
+            bottom: '0px !important'
         },
-        '.swiper-pagination-bullet-active':{
+        '.swiper-pagination-bullet-active': {
             background: '#222222!important',
             width: '14px',
             height: '14px',
         },
-    '@media(min-width: 375px) and (max-width: 425px)': {
-        '.person-parts':{
-            flexFlow:'row-reverse'
+        '@media(min-width: 375px) and (max-width: 425px)': {
+            '.person-parts': {
+                flexFlow: 'row-reverse'
+            },
+            '.carousel-box': {
+                width: '367px',
+                padding: '0px'
+            },
+            '.person-details': {
+                marginLeft: '6px',
+                paddingTop: '0px'
+            },
+            '.img': {
+                marginLeft: '0px',
+                width: '130px',
+                height: '205px'
+            },
+            '.swiper': {
+                width: '410px'
+            },
+            '.swiper-slide': {
+                width: '412px !important'
+            },
+            ".title": {
+                marginLeft: '4%',
+                textAlign: 'start'
+            },
+            '.main-box': {
+                backgroundColor: '#FBFBFB'
+            },
+            '.booking-btn': {
+                width: '96% !important'
+            },
+            '.swiper-pagination': {
+                backgroundColor: '#FBFBFB'
+            },
+            ".swiper-pagination-bullet-active": {
+                width: '6px',
+                height: "6px"
+            },
         },
-        '.carousel-box':{
-            width:'367px',
-            padding:'0px'
-        },
-        '.person-details':{
-            marginLeft:'6px',
-            paddingTop:'0px'
-        },
-        '.img':{
-            marginLeft:'0px',
-            width:'130px',
-            height:'205px'
-        },
-        '.swiper':{
-            width:'410px'
-        },
-        '.swiper-slide':{
-            width:'412px !important'
-        },
-        ".title":{
-            marginLeft:'4%',
-            textAlign:'start'
-        },
-        '.main-box':{
-            backgroundColor:'#FBFBFB'
-        },
-        '.booking-btn':{
-            width:'96% !important'
-        },
-        '.swiper-pagination':{
-            backgroundColor:'#FBFBFB'
-        },
-        ".swiper-pagination-bullet-active":{
-            width:'6px',
-            height:"6px"
-        },
-    },
         '@media(min-width: 322px) and (max-width: 375px)': {
-            '.swiper-slide':{
-                width:'340px !important'
+            '.swiper-slide': {
+                width: '340px !important'
             },
             '.swiper':{
                 width:'339px'
@@ -179,18 +179,18 @@ const CorporateBooking = () => {
                 marginBottom:'8px',
                 fontSize:'14px'
             },
-            '.booking-btn':{
-                marginTop:'8px',
-                lineHeight:'17px',
-                fontSize:'14px'
+            '.booking-btn': {
+                marginTop: '8px',
+                lineHeight: '17px',
+                fontSize: '14px'
             },
-            '.person-position':{
-                fontSize:'14px',
-                lineHeight:'17px'
+            '.person-position': {
+                fontSize: '14px',
+                lineHeight: '17px'
             },
-            '.person-name':{
-                fontSize:'14px',
-                lineHeight:'150%'
+            '.person-name': {
+                fontSize: '14px',
+                lineHeight: '150%'
             }
         },
         '@media(min-width: 1px) and (max-width: 320px)': {

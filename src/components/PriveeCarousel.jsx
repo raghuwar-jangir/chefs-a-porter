@@ -1,16 +1,16 @@
-import React, { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React from "react";
+import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation, Pagination } from "swiper";
-import { Box, Button, Grid, Hidden, styled, Typography } from "@mui/material";
+import {Navigation, Pagination} from "swiper";
+import {Box, Button, Grid, Hidden, styled, Typography} from "@mui/material";
 import chef from "../../src/assets/images/chef1.png";
 import chef2 from "../../src/assets/images/chef2.png";
 import chef3 from "../../src/assets/images/chef3.png";
 import chef4 from "../../src/assets/images/chef4.png";
 import reebok from "../assets/images/rebook.png";
-import { isMobile } from "react-device-detect";
-import { Link } from "gatsby";
+import {isMobile} from "react-device-detect";
+import {Link} from "gatsby";
 
 const MainParent = styled(Box)({
   ".continue-browsing-box": {

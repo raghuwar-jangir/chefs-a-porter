@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Autoplay, Pagination} from "swiper";
 import "swiper/css/pagination";
-import diningPicture from '../assets/images/cook1.png'
 
 const MainContentBox = styled(Box)({
     backgroundColor: '#101418',
@@ -174,34 +173,8 @@ positionX:'end'
     '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet': {
         margin: '0 var(--swiper-pagination-bullet-horizontal-gap,7px) !important'
     },
-    '.swiper-pagination':{
-        fontSize:'12px'
-    }
 
-}
-    // '@media(min-width: 1px) and (max-width: 768px)': {
-    //     '.img': {
-    //         height: '250%',
-    //         width: '50%',
-    //         padding: '0px 26%'
-    //     },
-    //     '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet': {
-    //         margin: '0 var(--swiper-pagination-bullet-horizontal-gap,3px) !important'
-    //     },
-    //     '.swiper-pagination-bullet': {
-    //         width: '96px'
-    //     },
-    //     '.dining-content': {
-    //         width: '10px',
-    //         font: '12px',
-    //         padding: '4px 46px'
-    //     },
-    //     '.content-box': {
-    //         marginRight: '65px'
-    //     }
-    // },
 })
-
 const DiningPage = (props) => {
     let labels = ['Conscious Dining', 'Championing Chefs', 'Community'];
     return (
@@ -217,9 +190,9 @@ const DiningPage = (props) => {
        pagination={{
          clickable: true,
          renderBullet: function (index, className) {
-            return '<div class="' + className + '">' + (labels[index]) + 
+            return '<div class="' + className + '">' + (labels[index]) +
            '</div>';
-          
+
           },
        }}
        autoplay={{
