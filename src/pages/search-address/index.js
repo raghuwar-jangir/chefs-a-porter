@@ -33,7 +33,7 @@ const validationSchema = Yup.object({
 });
 
 
-const CustomerDetails = () => {
+const SearchAddress = () => {
     const CHARACTER_LIMIT = 40;
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -658,46 +658,12 @@ const CustomerDetails = () => {
             width: "100%",
             marginBottom: '30px'
         },
-        '.label': {
-            fontFamily: 'ProximaNovaA-Regular',
-            fontStyle: 'normal',
-            fontWeight: '600',
-            fontSize: '16px',
-            lineHeight: '19px',
-            color: '#FBFBFB',
-            marginBottom: '8px'
-        },
-        '.form-control': {
-            backgroundColor: 'transparent',
-            border: '0px',
-            borderBottom: '0.25px solid #FBFBFB',
-            borderRadius: '0px',
-            paddingLeft: '0px',
-            paddingRight: '0px',
+        '.address-title': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
-            fontSize: '16px',
-            lineHeight: '19px',
-            color: '#FBFBFB',
-            width: '100%'
-        },
-        '.loc-ad': {
-            display: 'flex',
-            borderBottom: '0.25px solid #FBFBFB',
-            padding: '30px 0px',
-        },
-        '.loc-ad img': {
-            width: '17px',
-            height: '20px',
-            objectFit: 'contain',
-        },
-        '.address-title': {
-            fontFamily: 'ProximaNovaA-Regular',
-            fontStyle: 'normal',
-            fontWeight: '600',
-            fontSize: '14px',
-            lineHeight: '17px',
+            fontSize: '20px',
+            lineHeight: '24px',
             color: '#FBFBFB',
             marginBottom: '0.5rem'
         },
@@ -708,10 +674,31 @@ const CustomerDetails = () => {
             fontSize: '14px',
             lineHeight: '17px',
             color: 'rgba(251, 251, 251, 0.6)',
-            marginBottom: '0px!important',
+            marginBottom: '30px',
         },
-        '.address-box': {
-            marginLeft: '15px'
+        '.change-detail': {
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '16px',
+            lineHeight: '19px',
+            textDecorationLine: 'underline',
+            color: '#C6A87D',
+            position: 'absolute',
+            right: '0px',
+            top: '0px',
+        },
+        '.add-flat': {
+            background: '#C6A87D',
+            color: '#080B0E',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontSize: '20px',
+            lineHeight: '24px',
+            border: '0px',
+            padding: '14.5px 10px',
+            width: '100%',
+            fontWeight: '600',
+            cursor: 'pointer'
         },
         "@media (min-width: 426px) and (max-width:768px)": {
             width: '500px'
@@ -911,7 +898,7 @@ const CustomerDetails = () => {
                                                         <Typography className="sp-occ ex-detail">Is there a special
                                                             occasion being
                                                             celebrated ?</Typography>
-                                                        <Tabs aria-label="Basic tabs" defaultValue={0}  sx={{
+                                                        <Tabs aria-label="Basic tabs" defaultValue={0} sx={{
                                                             "& .MuiTab-root": {
                                                                 marginRight: 1,
                                                             },
@@ -1137,73 +1124,31 @@ const CustomerDetails = () => {
                             </Box>
                             <Box className="modal-body">
                                 <Box className="container-fluid">
-                                    <form action className="needs-validation">
-                                        <Box className="row">
-                                            <Box className="col-lg-12">
-                                                <Box className="map-box">
-                                                    <GoogleMapReact
-                                                        bootstrapURLKeys={{key: ""}}
-                                                        defaultCenter={defaultProps.center}
-                                                        defaultZoom={defaultProps.zoom}
-                                                    >
-                                                        <AnyReactComponent
-                                                            lat={59.955413}
-                                                            lng={30.337844}
-                                                            text="My Marker"
-                                                        />
-                                                    </GoogleMapReact>
-                                                </Box>
-                                                <Typography className="label">Experience Location</Typography>
-                                                <TextField type="tel" name="address"
-                                                           className="form-control"
-                                                           id="validationCustom03"
-                                                           placeholder="Enter Location"
-                                                    // value={values.address}
-                                                    // onChange={handleChange}
-                                                           autoComplete="off"
-                                                           variant="standard"
-                                                           InputProps={{
-                                                               disableUnderline: true,
-                                                           }}
-                                                           sx={{
-                                                               '& .MuiInputBase-input': {
-                                                                   background: 'transparent',
-                                                                   height: '31px',
-                                                                   borderRadius: '0px',
-                                                                   fontFamily: 'Proxima Nova',
-                                                                   fontStyle: 'normal',
-                                                                   fontWeight: '400',
-                                                                   fontSize: '16px',
-                                                                   lineHeight: '19px',
-                                                                   color: '#FBFBFB',
-                                                                   padding: '0px'
-                                                               },
-
-                                                           }}
-                                                />
+                                    <Box className="row">
+                                        <Box className="col-lg-12">
+                                            <Box className="map-box">
+                                                <GoogleMapReact
+                                                    bootstrapURLKeys={{key: ""}}
+                                                    defaultCenter={defaultProps.center}
+                                                    defaultZoom={defaultProps.zoom}
+                                                >
+                                                    <AnyReactComponent
+                                                        lat={59.955413}
+                                                        lng={30.337844}
+                                                        text="My Marker"
+                                                    />
+                                                </GoogleMapReact>
                                             </Box>
-                                        </Box>
-                                    </form>
-                                    <Box className="location-add">
-                                        <Box className="loc-ad">
-                                            <img src={location} alt=""/>
-                                            <Box className="address-box">
-                                                <Typography className="address-title">Theobroma Food Pvt
-                                                    Ltd</Typography>
+                                            <Box sx={{position: 'relative'}}>
+                                                <Typography className="address-title">Silver Bunglows</Typography>
                                                 <Typography className="address-detail">Deonar Village Road, Deonar,
-                                                    Govandi East,
-                                                    Mumbai...</Typography>
+                                                    Govandi East, MumbaI, Karnataka,
+                                                    India.</Typography>
+                                                <a href="javascript:void(0);" className="change-detail">Change</a>
                                             </Box>
-                                        </Box>
-                                        <Box className="loc-ad">
-                                            <img src={location} alt=""/>
-                                            <Box className="address-box">
-                                                <Typography className="address-title">Theobroma Food Pvt
-                                                    Ltd</Typography>
-                                                <Typography className="address-detail">Deonar Village Road, Deonar,
-                                                    Govandi East,
-                                                    Mumbai...</Typography>
-                                            </Box>
+                                            <button type="button" className="add-flat">Add Flat No/ House No/
+                                                Buidling
+                                            </button>
                                         </Box>
                                     </Box>
                                 </Box>
@@ -1215,4 +1160,4 @@ const CustomerDetails = () => {
         </React.Fragment>
     )
 }
-export default CustomerDetails;
+export default SearchAddress;
