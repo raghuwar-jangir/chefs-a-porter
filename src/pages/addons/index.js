@@ -13,6 +13,7 @@ import sGallery from "../../assets/images/sc-gallery.png";
 import StarIcon from "@mui/icons-material/Star";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {isMobile} from "react-device-detect";
+import "../../assets/styles/fontStyle.css"
 
 
 const Addons = () => {
@@ -46,7 +47,6 @@ const Addons = () => {
 
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
-
         '.supper-gallery': {
             marginTop: '40px',
         },
@@ -60,7 +60,7 @@ const Addons = () => {
             paddingLeft: '0px !important',
         },
         '.addons-title': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '32px',
@@ -105,17 +105,18 @@ const Addons = () => {
             objectFit: 'cover',
         },
         '.rating-star': {
-            fontStyle: 'Proxima Nova',
+            fontStyle: 'Proxima Nova Alt',
             display: 'flex',
+            fontWeight: '100',
             alignItems: 'center',
-            fontSize: '20px',
-            lineHeight: '24px',
+            fontSize: '18px',
+            lineHeight: '20px',
             color: '#FBFBFB'
         },
         '.event-title': {
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
-            // fontWeight: '700',
+            fontWeight: '700',
             fontSize: '20px',
             lineHeight: '25px',
             letterSpacing: '0.06em',
@@ -123,9 +124,9 @@ const Addons = () => {
             marginBottom: '8px'
         },
         '.event-subtitle': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
-            // fontWeight: '400',
+            fontWeight: '400',
             fontSize: '12px',
             lineHeight: '15px',
             letterSpacing: '0.06em',
@@ -133,9 +134,9 @@ const Addons = () => {
             marginBottom: '11px',
         },
         '.event-link': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
-            // fontWeight: '700',
+            fontWeight: '700',
             fontSize: '16px',
             lineHeight: '19px',
             textDecoration: 'none',
@@ -162,10 +163,9 @@ const Addons = () => {
         '.ex-detail': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
-            // fontWeight: '400',
+            fontWeight: '300',
             fontSize: '14px',
             lineHeight: '17px',
-            letterSpacing: '0.06em',
             color: '#FBFBFB',
             marginBottom: '0px',
         },
@@ -181,7 +181,7 @@ const Addons = () => {
         '.submit-req': {
             background: '#C6A87D',
             color: '#080B0E',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontSize: '20px',
             lineHeight: '24px',
             border: '0px',
@@ -192,7 +192,7 @@ const Addons = () => {
             padding: '18px 10px'
         },
         '.contact-text': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
             fontSize: '14px',
@@ -210,16 +210,16 @@ const Addons = () => {
             justifyContent: 'space-between'
         },
         '.table-details': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
-            // fontWeight: '300',
+            fontWeight: '300',
             fontSize: '16px',
             lineHeight: '19px',
             color: '#FBFBFB',
             padding: '0px 0px 16px',
         },
         '.grand-total': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '400',
             fontSize: '20px',
@@ -386,7 +386,7 @@ const Addons = () => {
                                                         Mako</a></Typography>
                                                     <Typography className='rating-star'>
                                                         <StarIcon
-                                                            sx={{color: '#C6A87D', height: '20px', width: '20px'}}/> 4.7
+                                                            sx={{color: '#C6A87D', height: '24px', width: '24px'}}/> 4.7
                                                     </Typography>
                                                 </Box>
                                             </Box>

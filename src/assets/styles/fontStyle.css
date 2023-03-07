@@ -1,0 +1,35 @@
+@font-face {
+    font-family: "BonVivant-Regular";
+    src: url("../fonts/BonVivant-Regular.ttf") format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Bon Vivant";
+    src: url("../fonts/BonVivantSerif.ttf") format('truetype');
+    font-display: swap;
+}
+
+/*@font-face {
+    font-family: "BonVivantSerifBold";
+    src: url("../fonts/BonVivantSerifBold.ttf") format('truetype');
+    font-display: swap;
+}
+*/
+@font-face {
+    font-family: "ProximaNovaA-Regular";
+    src: url("../fonts/ProximaNovaA-Regular.ttf") format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Proxima Nova Alt";
+    src: url("../fonts/ProximaNovaA-Light.ttf") format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Proxima Nova Alt Bold";
+    src: url("../fonts/ProximaNovaA-Bold.ttf") format('truetype');
+    font-display: swap;
+}
