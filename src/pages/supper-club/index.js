@@ -86,7 +86,7 @@ const SupperClubChaefPage = () => {
             backgroundColor: "#DCD7CB",
         },
         ".main-box": {
-            padding: "120px 120px",
+            padding: "80px 120px",
             background: "#DCD7CB",
         },
         ".main-img": {
@@ -113,7 +113,7 @@ const SupperClubChaefPage = () => {
             padding: "40px 0px",
         },
         ".sub-box-heading": {
-            fontFamily: 'Bon Vivant',
+            fontFamily:'Bon Vivant',
             fontSize: "36px",
             lineHeight: "45px",
             letterSpacing: "0.06em",
@@ -125,9 +125,9 @@ const SupperClubChaefPage = () => {
             fontSize: "16px",
             lineHeight: "19px",
         },
-        '.sub-box-link': {
+        '.sub-box-link':{
             fontWeight: 400,
-            textDecoration: 'underline'
+            textDecoration:'underline'
         },
         ".sub-box-2": {
             background: "#FBFBFB",
@@ -153,7 +153,7 @@ const SupperClubChaefPage = () => {
             fontSize: "20px",
             lineHeight: "25px",
             color: "#080B0E",
-            marginBottom: '0.5rem'
+            marginBottom:'0.5rem'
         },
         ".experience-date-sub-test": {
             fontWeight: 300,
@@ -234,7 +234,7 @@ const SupperClubChaefPage = () => {
             fontFamily: "ProximaNovaA-Regular",
             lineHeight: "24px",
             letterSpacing: " 0.06em",
-            textAlign: 'center'
+            textAlign:'center'
         },
         ".blowOut-description": {
             padding: "20px 16px",
@@ -268,7 +268,7 @@ const SupperClubChaefPage = () => {
             textAlign: 'center',
             borderRight: '1px solid #222',
             borderRadius: '0px',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '400',
             fontSize: '20px',
@@ -279,13 +279,12 @@ const SupperClubChaefPage = () => {
             display: "grid",
             gridTemplate: "repeat(1, 1fr) / repeat(2, 1fr)",
             background: "#DCD7CB",
-            gap: "12px",
+            gap: "16px",
             marginTop: "20px",
         },
         ".box1": {
-            padding: "40px 16px",
+            padding: "40px 16px 0px 16px",
             background: "#FBFBFB",
-            width: "92%",
             marginTop: "20px",
             boxShadow: "0px 16.3378px 20.4223px rgb(0 0 0 / 6%)",
             position: "relative",
@@ -295,15 +294,17 @@ const SupperClubChaefPage = () => {
             backgroundPosition: "center",
         },
         ".box2": {
-            padding: "40px 16px",
+            padding: "40px 16px 0px 16px",
             background: "#FBFBFB",
-            width: "93%",
             marginTop: "20px",
             boxShadow: "0px 16.3378px 20.4223px rgb(0 0 0 / 6%)",
             position: "relative",
         },
         ".detail-box": {
             marginBottom: "36.69px",
+        },
+        ".detail-box-margin": {
+            marginBottom: "40px",
         },
         ".menu-title": {
             margin: "0px",
@@ -319,8 +320,8 @@ const SupperClubChaefPage = () => {
         ".menu-sub": {
             margin: "0px",
             fontWeight: "400",
-            fontSize: "1rem",
-            lineHeight: "1.5",
+            fontSize: "14px",
+            lineHeight: "20px",
             letterSpacing: "0.00938em",
         },
         ".css-130r91k-JoyTabList-root": {
@@ -334,7 +335,6 @@ const SupperClubChaefPage = () => {
             marginBottom: "14px",
             color: "#080B0E",
             marginTop: "5%",
-            marginLeft: "2%",
         },
         ".map-link": {
             fontFamily: "ProximaNovaA-Regular",
@@ -346,7 +346,6 @@ const SupperClubChaefPage = () => {
             color: "#080B0E",
             marginBottom: "16px",
             display: "block",
-            marginLeft: "2%",
         },
         ".map-link:hover": {
             color: "#C6A87D",
@@ -364,7 +363,7 @@ const SupperClubChaefPage = () => {
         ".valet": {
             display: "flex",
             alignItems: "center",
-            paddingBottom: "8px",
+            paddingBottom: "40px",
             marginLeft: "16px",
         },
         ".down-heading": {
@@ -378,6 +377,7 @@ const SupperClubChaefPage = () => {
         },
         ".child-container": {
             position: "relative",
+            marginLeft:'2px'
         },
         ".show-btn": {
             position: "absolute",
@@ -389,11 +389,11 @@ const SupperClubChaefPage = () => {
             fontSize: "16px",
             lineHeight: "19px",
             color: "#080B0E",
-            textTransform: 'math-auto',
+            textTransform:'math-auto',
             background: "#FBFBFB",
             boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
             borderRadius: "1px",
-            padding: '8px 12px'
+            padding:'8px 12px'
         },
         ".show-btn:hover": {
             color: "#C6A87D",
@@ -408,6 +408,17 @@ const SupperClubChaefPage = () => {
             fontSize: "13px",
             textTransform: "lowercase",
             fontFamily: "ProximaNovaA-Regular",
+        },
+        ".close-button": {
+            position: 'absolute',
+            top: '90px',
+            right: '50px',
+            fontSize: '24px',
+            backgroundColor: 'transparent',
+            border: 'none',
+            color: 'white',
+            cursor: 'pointer',
+            zIndex: '10'
         },
         ".submit-request": {
             color: "#FBFBFB",
@@ -445,17 +456,6 @@ const SupperClubChaefPage = () => {
             alignItems: "center",
             zIndex: "5",
         },
-        ".close-button": {
-            position: 'absolute',
-            top: '90px',
-            right: '50px',
-            fontSize: '24px',
-            backgroundColor: 'transparent',
-            border: 'none',
-            color: 'white',
-            cursor: 'pointer',
-            zIndex: '10'
-        },
         ".swiper": {
             width: "75%",
             height: "100%",
@@ -463,15 +463,15 @@ const SupperClubChaefPage = () => {
         ".sub-div": {
             background: "black",
         },
-        '.css-cr824o-JoyTab-root': {
-            backgroundColor: '#101418',
-            color: '#FBFBFB'
+        '.css-cr824o-JoyTab-root':{
+            backgroundColor:'#101418',
+            color:'#FBFBFB'
         },
-        '.css-6gpojs-JoyTab-root': {
-            backgroundColor: '#101418',
-            color: '#FBFBFB'
+        '.css-6gpojs-JoyTab-root':{
+            backgroundColor:'#101418',
+            color:'#FBFBFB'
         },
-        '.switch-field': {
+        '.switch-field' :{
             display: 'flex',
             overflow: 'hidden',
         },
@@ -504,7 +504,7 @@ const SupperClubChaefPage = () => {
             flexDirection: 'column',
             placeContent: 'center',
         },
-        '.time-text': {
+        '.time-text':{
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '400 !important',
@@ -531,13 +531,16 @@ const SupperClubChaefPage = () => {
             flex: '0 0 auto',
             width: '58.33333333%'
         },
-        '.experience-date-sub-text': {
+        '.experience-date-sub-text':{
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
             fontSize: '16px',
             lineHeight: '24px',
             color: '#080B0E',
+        },
+        '.grid-item':{
+            paddingRight:'5px'
         },
         "@media (min-width: 768px) and (max-width:1024px)": {
             ".box1": {
@@ -567,20 +570,20 @@ const SupperClubChaefPage = () => {
                 flexDirection: "column",
             },
             ".grid-child-box": {
-                maxWidth: "100%",
+                maxWidth: "99%",
             },
             ".sub-box-2": {
                 marginTop: "0px",
             },
-            '.time-btn-box': {
-                width: '100%',
+            '.time-btn-box':{
+                width:'100%',
                 flexShrink: '0',
-                width: '100%',
+                // width: '100%',
                 maxWidth: '100%',
             },
-            '.date-time-box': {
-                flexDirection: 'column',
-                alignItems: 'flex-start'
+            '.date-time-box':{
+                flexDirection:'column',
+                alignItems:'flex-start'
             }
         },
         "@media (min-width: 1px) and (max-width:425px)": {
@@ -599,6 +602,12 @@ const SupperClubChaefPage = () => {
             },
             ".box2": {
                 width: "84%",
+            },
+            '.grid-item':{
+                paddingRight:"0px"
+            },
+            ".grid-child-box": {
+                maxWidth: "100%",
             },
         },
     }));
@@ -783,8 +792,8 @@ const SupperClubChaefPage = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid className="grid-box-2" container spacing={{md: 2}}>
-                        <Grid item xl={7} md={7} sm={6} xs={12}>
+                    <Grid className="grid-box-2" container spacing={{ md: 2 }}>
+                        <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
                             <Box className="sub-box">
                                 <Typography className="sub-box-heading">
                                     The Big Fat Parsi Blowout
@@ -890,7 +899,7 @@ const SupperClubChaefPage = () => {
                                                         withh cashew crumble and potato cappuccino
                                                     </Typography>
                                                 </Box>
-                                                <Box className="detail-box">
+                                                <Box className="detail-box-margin">
                                                     <Typography className="menu-title">
                                                         Course 5
                                                     </Typography>
@@ -937,7 +946,7 @@ const SupperClubChaefPage = () => {
                                                         withh cashew crumble and potato cappuccino
                                                     </Typography>
                                                 </Box>
-                                                <Box className="detail-box">
+                                                <Box className="detail-box-margin">
                                                     <Typography className="menu-title">
                                                         Course 5
                                                     </Typography>
@@ -952,7 +961,7 @@ const SupperClubChaefPage = () => {
                                     <TabPanel value={2} sx={{p: 0}}>
                                         <Box className="map-container">
                                             <Box
-                                                style={{backgroundColor: "#FBFBFB", paddingTop: "2%"}}
+                                                style={{ backgroundColor: "#FBFBFB", padding: "16px 16px 20px 16px" }}
                                             >
                                                 <Box className="map-heading">
                                                     Blue Cafe, Kamanahalli
@@ -960,9 +969,8 @@ const SupperClubChaefPage = () => {
                                                 <Link className="map-link">Get Directions</Link>
                                                 <Box
                                                     style={{
-                                                        height: "70vh",
-                                                        width: "97%",
-                                                        padding: "16px 16px 16px 16px",
+                                                        height: "380px",
+                                                        width: "100%",
                                                     }}
                                                 >
                                                     <GoogleMapReact

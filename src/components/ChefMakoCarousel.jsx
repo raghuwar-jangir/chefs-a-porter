@@ -1,15 +1,10 @@
 import { Box, Stack, styled, Typography } from '@mui/material';
 import React, { useRef, useState }  from 'react';
-import { Link } from 'gatsby';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Autoplay, Pagination} from "swiper";
 import "swiper/css/pagination";
 import diningPicture from '../assets/images/cook1.png'
-import DiningProgress from './DiningProgress';
-import { keyframes } from 'styled-components';
-import { slide } from 'react-burger-menu';
-import { width } from '@mui/system';
 import "swiper/css/pagination";
 
 
@@ -33,7 +28,7 @@ const MainContentBox = styled(Box)({
         lineHeight: '30px',
         letterSpacing: '0.06em',
         color: '#FBFBFB',
-        padding: '0px 40px',
+        padding: '0px 16px',
         marginBottom: '20px',
     },
     '.content-box':{
@@ -143,10 +138,9 @@ const MainContentBox = styled(Box)({
     '@media(min-width: 320px) and (max-width: 768px)': {
         '.img':{
             width:'100%',
-            // padding:'0px 3%'
         },
         '.dining-title':{
-            padding:'0px 29px',
+            padding:'0px 16px',
             font:'20px'
         },
         '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
