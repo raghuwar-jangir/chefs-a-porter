@@ -85,7 +85,10 @@ const Addons = () => {
             lineHeight: '20px',
             marginBottom: '16px',
         },
-        '.cust-details': {
+        // '.cust-details': {
+        //     padding: '0px 15px'
+        // },
+        '.dinner-box': {
             padding: '0px 15px'
         },
         '.per-dinner': {
@@ -117,6 +120,7 @@ const Addons = () => {
             lineHeight: '25px',
             letterSpacing: '0.06em',
             color: '#FBFBFB',
+            marginBottom: '8px'
         },
         '.event-subtitle': {
             fontFamily: 'Proxima Nova',
@@ -148,7 +152,7 @@ const Addons = () => {
         '.ex-heading': {
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
-            // fontWeight: '700',
+            fontWeight: '700',
             fontSize: '20px',
             lineHeight: '25px',
             letterSpacing: '0.06em',
@@ -156,7 +160,7 @@ const Addons = () => {
             marginBottom: '10px'
         },
         '.ex-detail': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             // fontWeight: '400',
             fontSize: '14px',
@@ -234,6 +238,9 @@ const Addons = () => {
             display: 'none',
             padding: '15px',
             backgroundColor: '#080B0E',
+        },
+        '.addons-div': {
+            padding: '0px 12px'
         },
         "@media (min-width: 1px) and (max-width:425px)": {
             '.supper-gallery .container-fluid': {
@@ -366,7 +373,8 @@ const Addons = () => {
                                             </Grid>
                                         </Box>
                                     </Grid>
-                                    <Grid xl={5} lg={5} xs={5} md={5} sm={12} xs={12} className="cust-details">
+                                    <Grid xl={5} lg={5} xs={5} md={5} sm={12} xs={12}
+                                          className="cust-details dinner-box">
                                         <Box className="per-dinner adsss">
                                             <Box className="event-div">
                                                 <img src={sGallery} alt="" className="per-dinner-img"/>
@@ -442,7 +450,6 @@ const Addons = () => {
                                         </Box>
                                     </Grid>
                                 </Grid>
-
                             </Box>
                         </Box>
                     </Box>
