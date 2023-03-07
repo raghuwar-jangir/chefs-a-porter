@@ -4,6 +4,7 @@ import {styled} from '@mui/system';
 import StarIcon from '@mui/icons-material/Star';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 import '../assets/styles/searchBar.css'
+import "../assets/styles/fontStyle.css"
 
 const MainContentBox = styled(Box)({
     position: 'relative',

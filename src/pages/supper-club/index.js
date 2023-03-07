@@ -853,8 +853,8 @@ const SupperClubChaefPage = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid className="grid-box-2" container spacing={{md: 2}}>
-                        <Grid item xl={7} md={7} sm={6} xs={12}>
+                    <Grid className="grid-box-2" container spacing={{ md: 2 }}>
+                        <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
                             <Box className="sub-box">
                                 <Typography className="sub-box-heading">
                                     The Big Fat Parsi Blowout
@@ -864,310 +864,429 @@ const SupperClubChaefPage = () => {
                                     <span>
                     <b className="sub-box-link">Chef Mako</b>
                   </span>
-                </Typography>
-                <Typography className="sub-box-text">2 Slots Left!</Typography>
-              </Box>
-              <Box>
-                <Stack
-                  className="date-stack"
-                  direction="row"
-                  divider={<Divider orientation="vertical" flexItem />}
-                  spacing={2}
+                                </Typography>
+                                <Typography className="sub-box-text">2 Slots Left!</Typography>
+                            </Box>
+                            <Box>
+                                <Stack
+                                    className="date-stack"
+                                    direction="row"
+                                    divider={<Divider orientation="vertical" flexItem/>}
+                                    spacing={2}
+                                >
+                                    <Typography className="date-description">April 9</Typography>
+                                    <span className="line">|</span>
+                                    <Typography className="date-description">
+                                        {" "}
+                                        7:30 PM - 10 PM
+                                    </Typography>
+                                    <span className="line">|</span>
+                                    <Typography className="date-description">
+                                        Blue Cafe, Kamanahalli
+                                    </Typography>
+                                </Stack>
+                            </Box>
+                            <Box
+                                sx={{
+                                    paddingTop: "16px",
+                                    paddingBottom: "0px",
+                                    background: "#FBFBFB",
+                                }}
+                            >
+                                <Tabs
+                                    defaultValue={0}
+                                    sx={{"--Tabs-gap": "0px", backgroundColor: "#FBFBFB"}}
+                                >
+                                    <TabList>
+                                        <Tab className="tab-box" value={0}>
+                                            Chef
+                                        </Tab>
+                                        <Tab className="tab-box" value={1}>
+                                            Menu
+                                        </Tab>
+                                        <Tab className="tab-box" value={2}>
+                                            Venue
+                                        </Tab>
+                                    </TabList>
+                                    <TabPanel value={0} sx={{p: 0}}>
+                                        <CardChefComponent bgColor="#FBFBFB"/>
+                                        <Box className="chef-carousel">
+                                            <ChefMakoCarousel/>
+                                            <ChefCarousel/>
+                                            <SupperClubDetailsCarousel/>
+                                            <SupperClubTreatyComponent/>
+                                        </Box>
+                                        <NeedHelpSmallComponent/>
+                                    </TabPanel>
+                                    <TabPanel value={1} sx={{p: 0}}>
+                                        <Box className="box-contain">
+                                            <Box
+                                                className="box1"
+                                                style={{backgroundImage: `url(${backgroungLogo})`}}
+                                            >
+                                                <Box className="detail-box">
+                                                    <Typography className="menu-title">
+                                                        Course 1
+                                                    </Typography>
+                                                    <Typography className="menu-sub">
+                                                        Seafood Soup | Roasted Garlic Foam | Snail butter
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="detail-box">
+                                                    <Typography className="menu-title">
+                                                        Course 2
+                                                    </Typography>
+                                                    <Typography className="menu-sub">
+                                                        Beetrott Sweet and Sour | Granny Smiith | Chicken
+                                                        Liver Spread | Tamarind served with croutons, curry
+                                                        leaves powder and oil, onion pickles
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="detail-box">
+                                                    <Typography className="menu-title">
+                                                        Course 3
+                                                    </Typography>
+                                                    <Typography className="menu-sub">
+                                                        Bread Skinned Fish | Grenoblaise | Smoked Pumpkin
+                                                        Served with white wine and mushroom sauce
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="detail-box">
+                                                    <Typography className="menu-title">
+                                                        Course 4
+                                                    </Typography>
+                                                    <Typography className="menu-sub">
+                                                        Braised Lamb & Vadouvan | Gremolata | Carrot Served
+                                                        withh cashew crumble and potato cappuccino
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="detail-box-margin">
+                                                    <Typography className="menu-title">
+                                                        Course 5
+                                                    </Typography>
+                                                    <Typography className="menu-sub">
+                                                        Citrus Variation| Walnut | Yogurt Paired with Five
+                                                        reserves Chemin Blanc & Five Reserves Pintoge
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                            <Box className="box2">
+                                                <Box className="detail-box">
+                                                    <Typography className="menu-title">
+                                                        Course 1
+                                                    </Typography>
+                                                    <Typography className="menu-sub">
+                                                        Seafood Soup | Roasted Garlic Foam | Snail butter
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="detail-box">
+                                                    <Typography className="menu-title">
+                                                        Course 2
+                                                    </Typography>
+                                                    <Typography className="menu-sub">
+                                                        Beetrott Sweet and Sour | Granny Smiith | Chicken
+                                                        Liver Spread | Tamarind served with croutons, curry
+                                                        leaves powder and oil, onion pickles
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="detail-box">
+                                                    <Typography className="menu-title">
+                                                        Course 3
+                                                    </Typography>
+                                                    <Typography className="menu-sub">
+                                                        Bread Skinned Fish | Grenoblaise | Smoked Pumpkin
+                                                        Served with white wine and mushroom sauce
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="detail-box">
+                                                    <Typography className="menu-title">
+                                                        Course 4
+                                                    </Typography>
+                                                    <Typography className="menu-sub">
+                                                        Braised Lamb & Vadouvan | Gremolata | Carrot Served
+                                                        withh cashew crumble and potato cappuccino
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="detail-box-margin">
+                                                    <Typography className="menu-title">
+                                                        Course 5
+                                                    </Typography>
+                                                    <Typography className="menu-sub">
+                                                        Citrus Variation| Walnut | Yogurt Paired with Five
+                                                        reserves Chemin Blanc & Five Reserves Pintoge
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                        </Box>
+                                    </TabPanel>
+                                    <TabPanel value={2} sx={{p: 0}}>
+                                        <Box className="map-container">
+                                            <Box
+                                                style={{ backgroundColor: "#FBFBFB", padding: "16px 16px 20px 16px" }}
+                                            >
+                                                <Box className="map-heading">
+                                                    Blue Cafe, Kamanahalli
+                                                </Box>
+                                                <Link className="map-link">Get Directions</Link>
+                                                <Box
+                                                    style={{
+                                                        height: "380px",
+                                                        width: "100%",
+                                                    }}
+                                                >
+                                                    <GoogleMapReact
+                                                        bootstrapURLKeys={{key: ""}}
+                                                        defaultCenter={defaultProps.center}
+                                                        defaultZoom={defaultProps.zoom}
+                                                    >
+                                                        <AnyReactComponent
+                                                            lat={59.955413}
+                                                            lng={30.337844}
+                                                            text="My Marker"
+                                                        />
+                                                    </GoogleMapReact>
+                                                </Box>
+                                            </Box>
+                                        </Box>
+                                        <Box class="valet">
+                                            <img className="logo" src={pLogo}/>
+                                            <Typography className="down-heading">
+                                                Valet Available
+                                            </Typography>
+                                        </Box>
+                                    </TabPanel>
+                                </Tabs>
+                            </Box>
+                        </Grid>
+                        <Grid className="grid-child-box" item md={5} sm={6} xs={12} xl={5}>
+                            <Box className="sub-box-2">
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        paddingBottom: "20px",
+                                        borderBottom: "0.5px solid #080B0E",
+                                    }}
+                                >
+                                    <Typography className="sub-text-price">
+                                        ₹ 2,500 <sub className="sub-text">Per Diner</sub>
+                                    </Typography>
+                                </Box>
+                                <Box className="experience-date-box">
+                                    <Typography className="experience-date-text">
+                                        Experience Date
+                                    </Typography>
+                                    <Typography className="experience-date-sub-text">
+                                        Pick your preferred experience date
+                                    </Typography>
+                                </Box>
+                                <Box className="date-time-box">
+                                    <Box sx={{display: "flex", alignItems: "center"}}>
+                                        <Typography className="main-date">12</Typography>
+                                        <Box>
+                                            <Typography className="date-month">November</Typography>
+                                            <Typography className="date-day">Wednesday</Typography>
+                                        </Box>
+                                    </Box>
+                                    <Box className='time-btn-box'>
+                                        <Box className="switch-field">
+                                            <input type="radio" id="radio-one" name="switch-one" value="yes" checked/>
+                                            <label for="radio-one"><Typography className="time-text">12:00 -
+                                                1:00pm</Typography>
+                                                <span>filling fast</span>
+                                            </label>
+                                            <input type="radio" id="radio-two" name="switch-one" value="no"/>
+                                            <label for="radio-two"><Typography className="time-text">7:30 -
+                                                9:00pm</Typography></label>
+                                        </Box>
+                                    </Box>
+                                </Box>
+                                <Box className="date-time-box">
+                                    <Box sx={{display: "flex", alignItems: "center"}}>
+                                        <Typography className="main-date">13</Typography>
+                                        <Box>
+                                            <Typography className="date-month">November</Typography>
+                                            <Typography className="date-day">Thursday</Typography>
+                                        </Box>
+                                    </Box>
+                                    <Box className='time-btn-box'>
+                                        <Box className="switch-field">
+                                            <input type="radio" id="radio-three" name="switch-two" value="yes"
+                                                   disabled/>
+                                            <label for="radio-three"><Typography className="time-text">12:00 -
+                                                1:00pm</Typography>
+                                                <span>sold out</span>
+                                            </label>
+                                            <input type="radio" id="radio-four" name="switch-two" value="no"/>
+                                            <label for="radio-four"><Typography className="time-text">7:30 -
+                                                9:00pm</Typography></label>
+                                        </Box>
+                                    </Box>
+                                </Box>
+                                <Box className="date-time-box">
+                                    <Box sx={{display: "flex", alignItems: "center"}}>
+                                        <Typography className="main-date">14</Typography>
+                                        <Box>
+                                            <Typography className="date-month">November</Typography>
+                                            <Typography className="date-day">Friday</Typography>
+                                        </Box>
+                                    </Box>
+                                    <Box className='time-btn-box'>
+                                        <Box className="switch-field">
+                                            <input type="radio" id="radio-five" name="switch-three" value="no"/>
+                                            <label for="radio-five"><Typography className="time-text">12:00 -
+                                                1:00pm</Typography>
+                                            </label>
+                                            <input type="radio" id="radio-six" name="switch-three" value="no"/>
+                                            <label for="radio-six"><Typography className="time-text">7:30 -
+                                                9:00pm</Typography></label>
+                                        </Box>
+                                    </Box>
+                                </Box>
+                                <Box className="date-time-box">
+                                    <Box sx={{display: "flex", alignItems: "center"}}>
+                                        <Typography className="main-date">15</Typography>
+                                        <Box>
+                                            <Typography className="date-month">November</Typography>
+                                            <Typography className="date-day">Saturday</Typography>
+                                        </Box>
+                                    </Box>
+                                    <Box className='time-btn-box'>
+                                        <Box className="switch-field">
+                                            <input type="radio" id="radio-seven" name="switch-four" value="no"/>
+                                            <label for="radio-seven"><Typography className="time-text">12:00 -
+                                                1:00pm</Typography>
+                                            </label>
+                                            <input type="radio" id="radio-8" name="switch-four" value="no" checked/>
+                                            <label for="radio-8"><Typography className="time-text">7:30 -
+                                                9:00pm</Typography>
+                                                <span>filling fast</span></label>
+                                        </Box>
+                                    </Box>
+                                </Box>
+                                <Button type="submit" className="submit-request">
+                                    Submit Request
+                                </Button>
+                                <Box></Box>
+                            </Box>
+                        </Grid>
+                    </Grid>
+                </Box>
+                <NeedHelp/>
+                <Modal
+                    keepMounted
+                    open={open}
+                    onClose={handleClosePopup}
+                    aria-labelledby="keep-mounted-modal-title"
+                    aria-describedby="keep-mounted-modal-description"
                 >
-                  <Typography className="date-description">April 9</Typography>
-                  <span className="line">|</span>
-                  <Typography className="date-description">
-                    {" "}
-                    7:30 PM - 10 PM
-                  </Typography>
-                  <span className="line">|</span>
-                  <Typography className="date-description">
-                    Blue Cafe, Kamanahalli
-                  </Typography>
-                </Stack>
-              </Box>
-              <Box
-                sx={{
-                  paddingTop: "16px",
-                  paddingBottom: "0px",
-                  background: "#FBFBFB",
-                }}
-              >
-                <Tabs
-                  defaultValue={0}
-                  sx={{ "--Tabs-gap": "0px", backgroundColor: "#FBFBFB"}}
-                >
-                  <TabList>
-                    <Tab  className="tab-box" value={0}>
-                      Chef
-                    </Tab>
-                    <Tab className="tab-box" value={1}>
-                      Menu
-                    </Tab>
-                    <Tab className="tab-box" value={2}>
-                      Venue
-                    </Tab>
-                  </TabList>
-                  <TabPanel value={0} sx={{ p: 0 }}>
-                    <CardChefComponent bgColor="#FBFBFB" />
-                    <Box className="chef-carousel">
-                      <ChefMakoCarousel />
-                      <ChefCarousel />
-                      <SupperClubDetailsCarousel />
-                      <SupperClubTreatyComponent />
+                    <Box sx={style}>
+                        <Box className="modal-content">
+                            <Box className="modal-header">
+                                <Typography id="exampleModalLabel" className='schedule-heading modal-title'>Schedule a
+                                    call</Typography>
+                                <button type="button" data-bs-dismiss="modal" aria-label="Close" className="close"
+                                        onClick={handleClosePopup}>
+                                    <CloseIcon/>
+                                </button>
+                            </Box>
+                            <Box className="container-fluid">
+                                <Formik
+                                    initialValues={{
+                                        day: new Date(),
+                                        time: new Date().getHours() + ':' + new Date().getMinutes(),
+                                        contactNumber: '',
+                                        queryMessage: '',
+                                    }}
+                                    onSubmit={(values) => {
+                                        const experienceData = {
+                                            ...values,
+                                            day: moment(_.get(values, 'day')).format("ddd,DD MMM "),
+                                        }
+                                        console.log("value===>", values)
+                                        console.log("experienceData===>", experienceData)
+                                    }}
+                                >
+                                    {({values, handleChange, handleSubmit, setFieldValue}) => (
+                                        <Form onSubmit={handleSubmit}>
+                                            <Box className="row">
+                                                <Box className="mb-3">
+                                                    <label className="schedule-label">Day</label>
+                                                    <DatePickerInput
+                                                        name="day"
+                                                        value={values.day}
+                                                        displayFormat="ddd,DD MMM"
+                                                        returnFormat="ddd,DD MMM"
+                                                        className="form-control"
+                                                        onChange={(dateString) => setFieldValue('day', dateString)}
+                                                        defaultValue={values.day}
+                                                    />
+                                                </Box>
+                                                <Box className="mb-3  ">
+                                                    <label className="schedule-label">Time</label>
+                                                    <Box
+                                                        className="input-group">
+                                                        <TextField type="time" name="time"
+                                                                   value={values.time}
+                                                                   onChange={handleChange}
+                                                                   defaultValue={values.time}
+                                                                   className="form-control"
+                                                                   autoComplete="off"
+                                                                   variant="standard"
+                                                                   InputProps={{
+                                                                       disableUnderline: true,
+                                                                       autoCapitalize: true,
+                                                                   }}/>
+                                                    </Box>
+
+                                                </Box>
+                                                <Box className="mb-3">
+                                                    <label className="schedule-label">Contact
+                                                        Number</label>
+                                                    <Box className="form-group">
+                                                        <TextField type="tel" name="contactNumber"
+                                                                   className="form-control"
+                                                                   placeholder="10 digit number"
+                                                                   value={values.contactNumber}
+                                                                   onChange={handleChange}
+                                                                   autoComplete="off"
+                                                                   variant="standard"
+                                                                   InputProps={{
+                                                                       disableUnderline: true,
+                                                                       startAdornment: <InputAdornment
+                                                                           position="start">91+</InputAdornment>
+                                                                   }}/>
+                                                    </Box>
+                                                </Box>
+                                                <Box className="mb-3">
+                                                    <label className="schedule-label">Write your query below</label>
+                                                    <TextareaAutosize
+                                                        name="queryMessage"
+                                                        value={values.queryMessage}
+                                                        onChange={handleChange}
+                                                        className="form-control"
+                                                        maxRows={2}
+                                                        maxLength={500}
+                                                        placeholder="Eg. Menu, Decor, Cancellation  "
+                                                    />
+                                                </Box>
+                                            </Box>
+                                            <Box>
+                                                <button className="btn btn-primary" type="submit"
+                                                        style={{width: '100% !important'}}>Apply
+                                                </button>
+                                            </Box>
+                                        </Form>
+                                    )}
+                                </Formik>
+                            </Box>
+                        </Box>
                     </Box>
-                    <NeedHelpSmallComponent />
-                  </TabPanel>
-                  <TabPanel value={1} sx={{ p: 0 }}>
-                    <Box className="box-contain">
-                      <Box
-                        className="box1"
-                        style={{ backgroundImage: `url(${backgroungLogo})` }}
-                      >
-                        <Box className="detail-box">
-                          <Typography className="menu-title">
-                            Course 1
-                          </Typography>
-                          <Typography className="menu-sub">
-                            Seafood Soup | Roasted Garlic Foam | Snail butter
-                          </Typography>
-                        </Box>
-                        <Box className="detail-box">
-                          <Typography className="menu-title">
-                            Course 2
-                          </Typography>
-                          <Typography className="menu-sub">
-                            Beetrott Sweet and Sour | Granny Smiith | Chicken
-                            Liver Spread | Tamarind served with croutons, curry
-                            leaves powder and oil, onion pickles
-                          </Typography>
-                        </Box>
-                        <Box className="detail-box">
-                          <Typography className="menu-title">
-                            Course 3
-                          </Typography>
-                          <Typography className="menu-sub">
-                            Bread Skinned Fish | Grenoblaise | Smoked Pumpkin
-                            Served with white wine and mushroom sauce
-                          </Typography>
-                        </Box>
-                        <Box className="detail-box">
-                          <Typography className="menu-title">
-                            Course 4
-                          </Typography>
-                          <Typography className="menu-sub">
-                            Braised Lamb & Vadouvan | Gremolata | Carrot Served
-                            withh cashew crumble and potato cappuccino
-                          </Typography>
-                        </Box>
-                        <Box className="detail-box-margin">
-                          <Typography className="menu-title">
-                            Course 5
-                          </Typography>
-                          <Typography className="menu-sub">
-                            Citrus Variation| Walnut | Yogurt Paired with Five
-                            reserves Chemin Blanc & Five Reserves Pintoge
-                          </Typography>
-                        </Box>
-                      </Box>
-                      <Box className="box2">
-                        <Box className="detail-box">
-                          <Typography className="menu-title">
-                            Course 1
-                          </Typography>
-                          <Typography className="menu-sub">
-                            Seafood Soup | Roasted Garlic Foam | Snail butter
-                          </Typography>
-                        </Box>
-                        <Box className="detail-box">
-                          <Typography className="menu-title">
-                            Course 2
-                          </Typography>
-                          <Typography className="menu-sub">
-                            Beetrott Sweet and Sour | Granny Smiith | Chicken
-                            Liver Spread | Tamarind served with croutons, curry
-                            leaves powder and oil, onion pickles
-                          </Typography>
-                        </Box>
-                        <Box className="detail-box">
-                          <Typography className="menu-title">
-                            Course 3
-                          </Typography>
-                          <Typography className="menu-sub">
-                            Bread Skinned Fish | Grenoblaise | Smoked Pumpkin
-                            Served with white wine and mushroom sauce
-                          </Typography>
-                        </Box>
-                        <Box className="detail-box">
-                          <Typography className="menu-title">
-                            Course 4
-                          </Typography>
-                          <Typography className="menu-sub">
-                            Braised Lamb & Vadouvan | Gremolata | Carrot Served
-                            withh cashew crumble and potato cappuccino
-                          </Typography>
-                        </Box>
-                        <Box className="detail-box-margin">
-                          <Typography className="menu-title">
-                            Course 5
-                          </Typography>
-                          <Typography className="menu-sub">
-                            Citrus Variation| Walnut | Yogurt Paired with Five
-                            reserves Chemin Blanc & Five Reserves Pintoge
-                          </Typography>
-                        </Box>
-                      </Box>
-                    </Box>
-                  </TabPanel>
-                  <TabPanel value={2} sx={{ p: 0 }}>
-                    <Box className="map-container">
-                      <Box
-                        style={{ backgroundColor: "#FBFBFB", padding: "16px 16px 20px 16px" }}
-                      >
-                        <Box className="map-heading">
-                          Blue Cafe, Kamanahalli
-                        </Box>
-                        <Link className="map-link">Get Directions</Link>
-                        <Box
-                          style={{
-                            height: "380px",
-                            width: "100%",
-                          }}
-                        >
-                          <GoogleMapReact
-                            bootstrapURLKeys={{ key: "" }}
-                            defaultCenter={defaultProps.center}
-                            defaultZoom={defaultProps.zoom}
-                          >
-                            <AnyReactComponent
-                              lat={59.955413}
-                              lng={30.337844}
-                              text="My Marker"
-                            />
-                          </GoogleMapReact>
-                        </Box>
-                      </Box>
-                    </Box>
-                    <Box class="valet">
-                      <img className="logo" src={pLogo} />
-                      <Typography className="down-heading">
-                        Valet Available
-                      </Typography>
-                    </Box>
-                  </TabPanel>
-                </Tabs>
-              </Box>
-            </Grid>
-            <Grid className="grid-child-box" item md={5} sm={6} xs={12} xl={5}>
-              <Box className="sub-box-2">
-                <Box
-                  sx={{
-                    display: "flex",
-                    paddingBottom: "20px",
-                    borderBottom: "0.5px solid #080B0E",
-                  }}
-                >
-                  <Typography className="sub-text-price">
-                    ₹ 2,500 <sub className="sub-text">Per Diner</sub>
-                  </Typography>
+                </Modal>
+                <Box className="footer-box">
+                    <Footer/>
                 </Box>
-                <Box className="experience-date-box">
-                  <Typography className="experience-date-text">
-                    Experience Date
-                  </Typography>
-                  <Typography className="experience-date-sub-text">
-                    Pick your preferred experience date
-                  </Typography>
-                </Box>
-                <Box className="date-time-box">
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Typography className="main-date">12</Typography>
-                    <Box>
-                      <Typography className="date-month">November</Typography>
-                      <Typography className="date-day">Wednesday</Typography>
-                    </Box>
-                  </Box>
-                  <Box className='time-btn-box'>
-                    <Box className="switch-field">
-                                                    <input type="radio" id="radio-one" name="switch-one" value="yes" checked/>
-                                                    <label for="radio-one"><Typography className="time-text">12:00 - 1:00pm</Typography>
-                                                        <span>filling fast</span>
-                                                    </label>
-                                                    <input type="radio" id="radio-two" name="switch-one" value="no" />
-                                                    <label for="radio-two"><Typography className="time-text">7:30 - 9:00pm</Typography></label>
-                                                </Box>
-                                                </Box>
-                </Box>
-                <Box className="date-time-box">
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Typography className="main-date">13</Typography>
-                    <Box>
-                      <Typography className="date-month">November</Typography>
-                      <Typography className="date-day">Thursday</Typography>
-                    </Box>
-                  </Box>
-                  <Box className='time-btn-box'>
-                   <Box className="switch-field">
-                                                    <input type="radio" id="radio-three" name="switch-two" value="yes" disabled/>
-                                                    <label for="radio-three"><Typography className="time-text">12:00 - 1:00pm</Typography>
-                                                        <span>sold out</span>
-                                                    </label>
-                                                    <input type="radio" id="radio-four" name="switch-two" value="no" />
-                                                    <label for="radio-four"><Typography className="time-text">7:30 - 9:00pm</Typography></label>
-                                                </Box>
-                                                </Box>
-                </Box>
-                <Box className="date-time-box">
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Typography className="main-date">14</Typography>
-                    <Box>
-                      <Typography className="date-month">November</Typography>
-                      <Typography className="date-day">Friday</Typography>
-                    </Box>
-                  </Box>
-                  <Box className='time-btn-box'>
-                  <Box className="switch-field">
-                                                    <input type="radio" id="radio-five" name="switch-three" value="no"/>
-                                                    <label for="radio-five"><Typography className="time-text">12:00 - 1:00pm</Typography>
-                                                    </label>
-                                                    <input type="radio" id="radio-six" name="switch-three" value="no" />
-                                                    <label for="radio-six"><Typography className="time-text">7:30 - 9:00pm</Typography></label>
-                                                </Box>
-                                                </Box>
-                </Box>
-                <Box className="date-time-box">
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Typography className="main-date">15</Typography>
-                    <Box>
-                      <Typography className="date-month">November</Typography>
-                      <Typography className="date-day">Saturday</Typography>
-                    </Box>
-                  </Box>
-                  <Box className='time-btn-box'>
-                  <Box className="switch-field">
-                                                    <input type="radio" id="radio-seven" name="switch-four" value="no"/>
-                                                    <label for="radio-seven"><Typography className="time-text">12:00 - 1:00pm</Typography>
-                                                    </label>
-                                                    <input type="radio" id="radio-8" name="switch-four" value="no" checked />
-                                                    <label for="radio-8"><Typography className="time-text">7:30 - 9:00pm</Typography>
-                                                    <span>filling fast</span></label>
-                                                </Box>
-                                                </Box>
-                </Box>
-                <Button type="submit" className="submit-request">
-                  Submit Request
-                </Button>
-                <Box></Box>
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
-        <NeedHelp />
-        <Box className="footer-box">
-          <Footer />
-        </Box>
-      </BoxWrapper>
-    </React.Fragment>
-  );
+            </BoxWrapper>
+        </React.Fragment>
+    );
 };
 export default SupperClubChaefPage;

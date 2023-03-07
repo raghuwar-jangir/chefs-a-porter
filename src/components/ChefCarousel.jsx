@@ -2,7 +2,7 @@ import React, { useContext,useRef,useState,useEffect } from "react";
 import { Box, styled, Typography } from "@mui/material";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import masterChef from "./../assets/images/masterChef.png"
-import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
+import {ScrollMenu, VisibilityContext} from "react-horizontal-scrolling-menu";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import "swiper/css";
@@ -72,7 +72,7 @@ const ChefCarousel = () => {
             height:'fit-content',
           },
           '.supper-img':{
-            objectFit:'cover', 
+            objectFit:'cover',
             height:'370px',
             width:'100%'
           },
@@ -97,7 +97,7 @@ const ChefCarousel = () => {
             <Typography className="chef-details">Surburbia, Banglore East</Typography>
             </Box>
         </SwiperSlide>
-        <SwiperSlide class="swiper-slide"><video  autoPlay muted loop controls={false}  className="supper-img" src={supperChef2} 
+        <SwiperSlide class="swiper-slide"><video  autoPlay muted loop controls={false}  className="supper-img" src={supperChef2}
           />
         <Box>
             <Typography className="chef-name">Chef Karan Thakker</Typography>
@@ -116,7 +116,7 @@ const ChefCarousel = () => {
             <Typography className="chef-details">Surburbia, Banglore East</Typography>
             </Box>
             </SwiperSlide>
-            <SwiperSlide class="swiper-slide"><video  autoPlay muted loop controls={false}  className="supper-img" src={supperChef2} 
+            <SwiperSlide class="swiper-slide"><video  autoPlay muted loop controls={false}  className="supper-img" src={supperChef2}
           />
         <Box>
             <Typography className="chef-name">Chef Karan Thakker</Typography>
