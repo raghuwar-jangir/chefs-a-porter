@@ -1,8 +1,7 @@
 import React, {useState} from "react";
-import {Form, Formik,Field } from "formik";
-import {DatePickerInput} from "rc-datepicker";
-import InputAdornment from "@mui/material/InputAdornment";
-import { Box, Grid, Modal, styled, Typography, CloseIcon,TextField,TextareaAutosize } from "@mui/material";
+import * as Yup from 'yup';
+import {Form, Formik,Field,ErrorMessage } from "formik";
+import { Box, Grid, Modal, styled, Typography,TextField,TextareaAutosize } from "@mui/material";
 import Navbar from "../../components/NavbarComponent";
 import add1 from "../../assets/images/add1.png";
 import add2 from "../../assets/images/add2.png";
@@ -26,12 +25,37 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import done from "../../assets/images/done.png";
 import support from "../../assets/images/support.png";
 import "../../assets/styles/fontStyle.css";
+import CloseIcon from '@mui/icons-material/Close';
 import { Button } from "react-bootstrap";
 
 const BookingSummary = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const openForm = () => setIsOpen(true);
-    const closeForm = () => setIsOpen(false);
+  const validationSchema = Yup.object().shape({
+    number: Yup.string()
+      .required('Number is required'),
+    name: Yup.string()
+      .required('Name is required'),
+    flatNumber: Yup.string()
+      .required('Flat number is required'),
+    address: Yup.string()
+      .required('Address is required'),
+    pincode: Yup.string()
+      .required('Pincode is required')
+  });
+  
+  const initialValues = {
+    number:'9876543210',
+    name:'Teqzo International',
+    flatNumber:'111',
+    address:'Manchester',
+    pincode:'400022'
+  };
+    const handleSubmit = (values, { setSubmitting }) => {
+      console.log(values);
+      setSubmitting(false);
+    }
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const addonsCardDetail = [
     {
       image: add1,
@@ -114,9 +138,6 @@ const BookingSummary = () => {
       lineHeight: "20px",
       marginBottom: "16px",
     },
-    // '.cust-details': {
-    //     padding: '0px 15px'
-    // },
     ".dinner-box": {
       padding: "0px 15px",
     },
@@ -210,7 +231,7 @@ const BookingSummary = () => {
     ".submit-req": {
       background: "#C6A87D",
       color: "#080B0E",
-      fontFamily: "Proxima Nova",
+      fontFamily: "ProximaNovaA-Regular",
       fontSize: "20px",
       lineHeight: "24px",
       border: "0px",
@@ -384,7 +405,7 @@ const BookingSummary = () => {
       minHeight: "1.5rem",
     },
     ".form-check-input": {
-      backgroundColor: "#C6A87D",
+      accentColor: "#C6A87D",
       borderColor: "#C6A87D",
       borderRadius: "0px",
       width: "18px",
@@ -446,26 +467,6 @@ const BookingSummary = () => {
       marginLeft: "2.5px",
       marginRight: "2.5px",
     },
-    ".form-control": {
-      paddingLeft: "10px",
-      flex: "1",
-      backgroundColor: "transparent",
-      border: "0px",
-      borderBottom: "0.25px solid #FBFBFB",
-      borderRadius: "0px",
-      paddingLeft: "0px",
-      paddingRight: "0px",
-      fontFamily: "Proxima Nova Alt",
-      fontStyle: "normal",
-      fontWeight: "300",
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#FBFBFB",
-      display: "block",
-      width: "100%",
-      padding: "0.375rem 0.75rem",
-      transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
-    },
     ".chef-profile": {
       marginTop: "5px",
     },
@@ -495,14 +496,6 @@ const BookingSummary = () => {
       color: "#C6A87D",
       textDecoration: "underLine",
     },
-    '.form-heading':{
-        fontFamily: 'ProximaNovaA-Regular',
-      fontStyle: "normal",
-      fontWeight: "600",
-      fontSize: "20px",
-      lineHeight: "24px",
-      color: "#FBFBFB",
-    },
     '.form-head-box':{
         display:'flex',
         padding: '0px',
@@ -510,11 +503,6 @@ const BookingSummary = () => {
     borderBottom: 'none',
     position:'relative',
     justifyContent: 'flex-start',
-    },
-    '.form-arrow':{
-        color: '#FBFBFB',
-    fontSize: '20px',
-    marginRight: '16px',
     },
     '.form-close-btn':{
         fontSize: '20px',
@@ -528,18 +516,38 @@ const BookingSummary = () => {
         position:'relative',
         flex:'1 1 auto'
     },
-    '.form-field':{
-       padding:'0px 0px 56px'
-    },
-    '.form-label':{
-        fontFamily: 'ProximaNovaA-Regular',
+    ".form-control": {
+      paddingLeft: "10px",
+      flex: "1",
+      outline:'none',
+      backgroundColor: "transparent",
+      border: "0px",
+      borderBottom: "0.25px solid #FBFBFB",
+      borderRadius: "0px",
+      paddingLeft: "0px",
+      paddingRight: "0px",
+      fontFamily: "Proxima Nova Alt",
       fontStyle: "normal",
-      fontWeight: "600",
+      fontWeight: "300",
       fontSize: "16px",
       lineHeight: "19px",
       color: "#FBFBFB",
-      marginBottom:'8px'
+      display: "block",
+      width: "100%",
+      padding: "0.375rem 0.75rem 0.375rem 0px",
+      transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
     },
+    '.hr':{
+      boxSizing: 'content-box',
+    height: '0',
+    overflow: 'visible',
+    margin: '1rem 0',
+    border: '0',
+    borderTop: '1px solid',
+    color: 'rgba(255, 255, 255, 0.6)',
+    opacity: '1',
+    },
+
     "@media (min-width: 1px) and (max-width:425px)": {
       ".supper-gallery .container-fluid": {
         padding: "20px 10px",
@@ -638,6 +646,123 @@ const BookingSummary = () => {
     },
   }));
   
+  const style={
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    width: '100%',
+    zIndex:'12000',
+    height: '100%',
+    overflowX: 'hidden',
+    overflowY: 'auto',
+    outline: '0',
+    '.modal-content':{
+      padding:'40px 20px',
+      backgroundColor:'#101418!important',
+      position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+  width: '255px',
+  pointerEvents: 'auto',
+  top:'8%',
+  left:'42.5%',
+  backgroundClip: 'padding-box',
+  outline: '0',
+  boxShadow:'0px 8px 12px rgb(0 0 0 / 16%)'
+      },
+      '.modal-header':{
+        display:'flex',
+        padding: '0px',
+    marginBottom: '30px',
+    borderBottom: 'none',
+    position:'relative',
+    justifyContent: 'flex-start',
+    flexShrink:'0',
+    alignItems:'center'
+      },
+      '.form-arrow':{
+        color: '#FBFBFB !important',
+    fontSize: '20px',
+    marginRight: '16px',
+    },
+    '.modal-title':{
+      fontFamily: 'ProximaNovaA-Regular',
+      fontStyle: "normal",
+      fontWeight: "600",
+      fontSize: "20px",
+      lineHeight: "24px",
+      color: "#FBFBFB",
+    },
+    '.close':{
+      position:'absolute',
+      padding:' 0px',
+    border:' 0px',
+    background: 'transparent',
+      right:'0px'
+    },
+    '.close-icon':{
+      fontSize:'28px',
+      marginRight:'0px',
+      color:'#FBFBFB'
+    },
+    '.modal-body':{
+      padding:'0px',
+      position:'relative',
+      flex:'1 1 auto'
+    },
+    '.container-fluid':{
+      width:'100%',
+      marginRight:'auto',
+      marginLeft:'auto'
+    },
+    '.form-field':{
+      padding:'0px 0px 56px'
+   },
+   '.form-label':{
+    fontFamily: 'ProximaNovaA-Regular',
+  fontStyle: "normal",
+  fontWeight: "600",
+  fontSize: "16px",
+  lineHeight: "19px",
+  color: "#FBFBFB",
+  marginBottom:'8px'
+},
+".form-control": {
+  outline:'none',
+  paddingLeft: "10px",
+  flex: "1",
+  backgroundColor: "transparent",
+  border: "0px",
+  borderBottom: "0.25px solid #FBFBFB",
+  borderRadius: "0px",
+  paddingLeft: "0px",
+  paddingRight: "0px",
+  fontFamily: "Proxima Nova Alt",
+  fontStyle: "normal",
+  fontWeight: "300",
+  fontSize: "16px",
+  lineHeight: "19px",
+  color: "#FBFBFB",
+  display: "block",
+  width: "95%",
+  padding: "0.780rem 0.75rem 0.375rem 0px",
+  transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
+  },
+  ".btn-primary": {
+    border: 'none !important',
+    background: "#C6A87D",
+    width: '100% !important',
+    padding:"14.5px 10px",
+    fontSize: "20px",
+    fontWeight: 600,
+    lineHeight: "24px",
+    borderRadius: "0px",
+    color: "#080B0E",
+    textTransform: "capitalize",
+    fontFamily: 'ProximaNovaA-Regular',
+    marginTop: "0px",
+},
+}
 
   return (
     <React.Fragment>
@@ -722,7 +847,7 @@ const BookingSummary = () => {
                           </li>
                           <li className="exp-li">Decor not included</li>
                         </ul>
-                        <hr />
+                        <hr className="hr"/>
                       </Box>
                     </Box>
                     <Box className="contact">
@@ -741,53 +866,9 @@ const BookingSummary = () => {
                           Enter GSTIN for tax benefits (Optional)
                         </label>
                         <KeyboardArrowRightIcon data-bs-toggle="modal"
-                                   data-bs-target="#exampleModal" onClick={openForm} className="forward-arrow" />
-                                   {isOpen && (
-        <Box className="popup-form">
-            <Box className='form-head-box'>
-                <ArrowBackIcon className="form-arrow"/>
-            <Typography className="form-heading">GST Details</Typography>
-          <button className="form-close-btn" onClick={closeForm}>X</button>
-          </Box>
-          <Formik
-      initialValues={{
-        firstName: '',
-        lastName: '',
-        email: '',
-      }}
-      onSubmit={async (values) => {
-        await new Promise((r) => setTimeout(r, 500));
-        alert(JSON.stringify(values, null, 2));
-      }}
-    >
-      <Form className="form-details">
-        <Box className='form-field'>
-      <label className="form-label" for="">GST Number</label>
-      <Field type="text" name="" id="" placeholder="Enter Location" class="form-control" value="9876543210"/>
-      </Box>
-      <Box className='form-field'>
-      <label className="form-label" for="">Registered Company Name</label>
-      <Field type="text" name="" id="" placeholder="Enter Location" class="form-control" value="Teqzo International"/>
-      </Box>
-      <Box className='form-field'>
-      <label className="form-label" for="">Building/ FlatNumber</label>
-      <Field type="text" name="" id="" placeholder="Enter Location" class="form-control" value="111"/>
-      </Box>
-      <Box className='form-field'>
-      <label className="form-label" for="">Street/area/ Road name</label>
-      <Field type="text" name="" id="" placeholder="Enter Location" class="form-control" value="Manchester"/>
-      </Box>
-      <Box className='form-field'>
-      <label className="form-label" for="">Pincode</label>
-      <Field type="number" name="" id="" placeholder="Enter Location" class="form-control" value="400022"/>
-      </Box>
-        {/* <button type="submit">Submit</button> */}
-      </Form>
-    </Formik>
-        </Box>
-      )}
+                                   data-bs-target="#exampleModal" onClick={handleOpen} className="forward-arrow" />
                       </Box>
-                      <hr />
+                      <hr className="hr" />
                     </Box>
                     <Box className="booking-box">
                       <Typography className="email-text">
@@ -817,9 +898,11 @@ const BookingSummary = () => {
                       </Box>
                     </Box>
                     <Box className="booking-box">
+                    <Box className="contact">
                       <label className="contact-number" for="">
                         Email{" "}
                       </label>
+                      <Box className="form-group">
                       <input
                         type="email"
                         name=""
@@ -827,9 +910,11 @@ const BookingSummary = () => {
                         placeholder="Kachwallasana@gmail.com"
                         class="form-control"
                       />
+                      </Box>
+                    </Box>
                     </Box>
                     <Box className="booking-box">
-                      <Box class="chef-profile">
+                      <Box className="chef-profile">
                         <Box className="chef-profile-box">
                           <img className="chef-profile-logo" src={done} />
                           <Typography className="chef-profile-dis">
@@ -984,7 +1069,7 @@ const BookingSummary = () => {
                       <Box className="row viewbreak">
                         <Box className="col-lg-12">
                           <button type="submit" className="submit-req">
-                            Next
+                          Proceed to pay ₹25,000 
                           </button>
                         </Box>
                         <Typography className="contact-text">
@@ -998,6 +1083,75 @@ const BookingSummary = () => {
             </Box>
           </Box>
         </Box>
+        <Modal
+                    keepMounted
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="keep-mounted-modal-title"
+                    aria-describedby="keep-mounted-modal-description"
+                >
+                  <Box sx={style}>
+           <Box className="modal-content">
+              <Box className="modal-header">
+              <ArrowBackIcon className="form-arrow"/>
+                 <Typography className="modal-title" id="exampleModalLabel">GST Details</Typography>
+                 <button type="button" data-bs-dismiss="modal" aria-label="Close" className="close"
+                                        onClick={handleClose}>
+                                           <CloseIcon className="close-icon"/>
+                                </button>
+              </Box>
+                  <Box class="modal-body">
+                 <Box class="container-fluid">
+                 <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      {({ isSubmitting }) => (
+        <Form>
+          <Box  className="row">
+          <Box className='form-field'>
+            <label className="form-label" htmlFor="number">GST Number</label>
+            <Field className="form-control" type="text" id="number" name="number" placeholder='Enter Location'/>
+            {/* <ErrorMessage name="number" /> */}
+          </Box>
+
+          <Box className='form-field'>
+            <label className="form-label" htmlFor="name">Registered Company Name</label>
+            <Field className="form-control" type="text" id="name" name="name" placeholder="Enter Location" />
+            {/* <ErrorMessage name="name" /> */}
+          </Box>
+
+          <Box className='form-field'>
+            <label className="form-label" htmlFor="flatNumber">Building/ FlatNumber</label>
+            <Field className="form-control" type="text" id="flatNumber" name="flatNumber" placeholder='Enter Location'/>
+            {/* <ErrorMessage name="flatNumber" /> */}
+          </Box>
+
+          <Box className='form-field'>
+            <label className="form-label" htmlFor="address">Street/area/ Road name</label>
+            <Field className="form-control" type="text" id="address" name="address" placeholder="Enter Locationr" />
+            {/* <ErrorMessage name="address" /> */}
+          </Box>
+
+          <Box className='form-field'>
+            <label className="form-label" htmlFor="pincode">Pincode</label>
+            <Field className="form-control" type="text" id="pincode" name="pincode" placeholder='Enter Location' />
+            {/* <ErrorMessage name="pincode" /> */}
+          </Box>
+
+          <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+            Save
+          </button>
+          </Box>
+        </Form>
+      )}
+    </Formik>
+                 </Box>
+              </Box>
+              </Box>
+              </Box>
+              </Modal>
       </BoxWrapper>
     </React.Fragment>
   );
