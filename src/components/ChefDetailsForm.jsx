@@ -24,7 +24,7 @@ const ChefDetailsForm = () => {
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
         color: '#FBFBFB',
-        padding: '16px',
+        padding: '40px 31px',
         ".heading": {
             fontWeight: 700,
             fontSize: "20px",
@@ -50,7 +50,18 @@ const ChefDetailsForm = () => {
 
         },
         ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
-            color: "#fff !important",
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: 'rgba(251, 251, 251, 1)',
+            background: 'transparent',
+            border: '0px',
+            borderBottom: '1px solid #FBFBFB',
+            borderRadius: '0px',
+            paddingLeft: '0px',
+            paddingRight: '0px'
         },
         ".input-field": {
             borderBottom: '1px solid #FBFBFB',
@@ -66,17 +77,23 @@ const ChefDetailsForm = () => {
             fontWeight: 600,
             fontSize: "16px",
             lineHeight: "19px",
-            padding: '0px 0px 12px 0px',
+            padding: '0px 0px 10px 0px',
+            fontFamily: 'ProximaNovaA-Regular',
+	fontStyle: 'normal',
+	color: '#FBFBFB',
         },
         ".experience-btn": {
+            fontFamily: 'ProximaNovaA-Regular',
             background: "#C6A87D",
-            fontSize: "16px",
+            fontSize: "20px",
+            lineHeight:'24px',
             width: '100%',
             fontWeight: 600,
             borderRadius: "0px",
             color: "#080B0E",
-            textTransform: "capitalize",
-            height: "48px",
+            textTransform: "math-auto",
+            padding:'18.5px 10px',
+            marginTop:'20px'
         },
 
         ".error-msg": {
@@ -103,9 +120,14 @@ const ChefDetailsForm = () => {
             marginRight: "6px"
         },
         ".last-text": {
-            fontWeight: 300,
-            fontSize: "12px",
-            lineHeight: "15px", paddingTop: '6px'
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '12px',
+            lineHeight: '15px',
+            color: 'rgba(251, 251, 251, 0.6)',
+            display: 'block',
+            marginTop: '4px',
         },
         ".sub-box-counter": {
             display: 'flex',
@@ -140,7 +162,23 @@ const ChefDetailsForm = () => {
             padding: '16px',
             background: '#080B0E',
             marginBottom: '16px'
-        }
+        },
+        ".sub-text-price": {
+            fontWeight: 600,
+            fontSize: "36px",
+            lineHeight: "44px",
+            color: "#FBFBFB",
+            fontFamily: 'ProximaNovaA-Regular',
+	fontStyle: 'normal',
+          },
+          ".sub-text": {
+            fontWeight: 300,
+            fontSize: "20px",
+            lineHeight: "24px",
+            color: "#FBFBFB",
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+          },
 
     }))
 
@@ -163,6 +201,9 @@ const ChefDetailsForm = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
+            <Typography className="sub-text-price">
+                                        ₹ 2,500 <sub className="sub-text">Per Diner</sub>
+                                    </Typography>
                 <Formik
                     initialValues={{
                         yourName: "",
@@ -180,13 +221,13 @@ const ChefDetailsForm = () => {
                             {console.log("errors", errors)}
                             <Box sx={{}}>
                                 <Box className="comman-field-box" >
-                                    <Typography className='field-title'>Enter your full name</Typography>
+                                    <Typography className='field-title'>Your Name</Typography>
                                     <TextField
                                         className='input-field'
                                         name="yourName"
                                         value={values.yourName}
                                         id="standard-size-normal"
-                                        placeholder='Enter Specify Occassion'
+                                        placeholder='Enter your full name'
                                         onChange={handleChange}
                                         variant="standard"
                                         fullWidth
@@ -224,10 +265,6 @@ const ChefDetailsForm = () => {
                                         />
                                         {touched.experienceDate && errors.experienceDate && <Typography className='error-msg'>{errors.experienceDate}</Typography>}
                                     </Box>
-
-
-
-
                                     <Box className="comman-field-box" sx={{ width: "48.5%" }}>
                                         <Typography className='field-title' sx={{
                                             display: "flex",
@@ -316,7 +353,7 @@ const ChefDetailsForm = () => {
                                     className="experience-btn"
                                     type="submit"
                                 >
-                                    Host this Experience
+                                    Book this Experience
                                 </Button>
                             </Box>
                         </Form>
