@@ -113,7 +113,7 @@ const SupperClubChaefPage = () => {
             padding: "40px 0px",
         },
         ".sub-box-heading": {
-            fontFamily:'Bon Vivant',
+            fontFamily: 'Bon Vivant',
             fontSize: "36px",
             lineHeight: "45px",
             letterSpacing: "0.06em",
@@ -125,9 +125,9 @@ const SupperClubChaefPage = () => {
             fontSize: "16px",
             lineHeight: "19px",
         },
-        '.sub-box-link':{
+        '.sub-box-link': {
             fontWeight: 400,
-            textDecoration:'underline'
+            textDecoration: 'underline'
         },
         ".sub-box-2": {
             background: "#FBFBFB",
@@ -153,7 +153,7 @@ const SupperClubChaefPage = () => {
             fontSize: "20px",
             lineHeight: "25px",
             color: "#080B0E",
-            marginBottom:'0.5rem'
+            marginBottom: '0.5rem'
         },
         ".experience-date-sub-test": {
             fontWeight: 300,
@@ -234,7 +234,7 @@ const SupperClubChaefPage = () => {
             fontFamily: "ProximaNovaA-Regular",
             lineHeight: "24px",
             letterSpacing: " 0.06em",
-            textAlign:'center'
+            textAlign: 'center'
         },
         ".blowOut-description": {
             padding: "20px 16px",
@@ -324,7 +324,37 @@ const SupperClubChaefPage = () => {
             lineHeight: "20px",
             letterSpacing: "0.00938em",
         },
-        ".css-130r91k-JoyTabList-root": {
+        '.Joy-selected': {
+            border: '0.5px solid #080B0E',
+            borderRadius: '0px',
+            fontFamily: 'Proxima Nova',
+            fontStyle: 'normal',
+            fontHeight: '400',
+            fontSize: '12px',
+            lineHeight: '15px',
+            color: '#FBFBFB !important',
+            background: '#080B0E',
+            padding: '8px 0px',
+            width: '100.9px',
+            height: '38px',
+        },
+        '.MuiTab-variantPlain': {
+            border: '0.5px solid #080B0E',
+            borderRadius: '0px',
+            fontFamily: 'Proxima Nova',
+            fontStyle: 'normal',
+            fontHeight: '400',
+            fontSize: '12px',
+            lineHeight: '15px',
+            color: '#080B0E',
+            padding: '8px 0px',
+            width: '100.9px',
+            height: '38px',
+        },
+        '.css-1lhe3ax-JoyTabPanel-root': {
+            padding: '0px'
+        },
+        ".MuiTabList-root": {
             width: "96% !important",
             left: "2% !important",
         },
@@ -377,7 +407,7 @@ const SupperClubChaefPage = () => {
         },
         ".child-container": {
             position: "relative",
-            marginLeft:'2px'
+            marginLeft: '2px'
         },
         ".show-btn": {
             position: "absolute",
@@ -389,11 +419,11 @@ const SupperClubChaefPage = () => {
             fontSize: "16px",
             lineHeight: "19px",
             color: "#080B0E",
-            textTransform:'math-auto',
+            textTransform: 'math-auto',
             background: "#FBFBFB",
             boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
             borderRadius: "1px",
-            padding:'8px 12px'
+            padding: '8px 12px'
         },
         ".show-btn:hover": {
             color: "#C6A87D",
@@ -463,15 +493,7 @@ const SupperClubChaefPage = () => {
         ".sub-div": {
             background: "black",
         },
-        '.css-cr824o-JoyTab-root':{
-            backgroundColor:'#101418',
-            color:'#FBFBFB'
-        },
-        '.css-6gpojs-JoyTab-root':{
-            backgroundColor:'#101418',
-            color:'#FBFBFB'
-        },
-        '.switch-field' :{
+        '.switch-field': {
             display: 'flex',
             overflow: 'hidden',
         },
@@ -504,7 +526,7 @@ const SupperClubChaefPage = () => {
             flexDirection: 'column',
             placeContent: 'center',
         },
-        '.time-text':{
+        '.time-text': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '400 !important',
@@ -531,7 +553,7 @@ const SupperClubChaefPage = () => {
             flex: '0 0 auto',
             width: '58.33333333%'
         },
-        '.experience-date-sub-text':{
+        '.experience-date-sub-text': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
@@ -539,8 +561,8 @@ const SupperClubChaefPage = () => {
             lineHeight: '24px',
             color: '#080B0E',
         },
-        '.grid-item':{
-            paddingRight:'5px'
+        '.grid-item': {
+            paddingRight: '5px'
         },
         "@media (min-width: 768px) and (max-width:1024px)": {
             ".box1": {
@@ -575,16 +597,22 @@ const SupperClubChaefPage = () => {
             ".sub-box-2": {
                 marginTop: "0px",
             },
-            '.time-btn-box':{
-                width:'100%',
+            '.time-btn-box': {
+                width: '100%',
                 flexShrink: '0',
                 // width: '100%',
                 maxWidth: '100%',
             },
-            '.date-time-box':{
-                flexDirection:'column',
-                alignItems:'flex-start'
-            }
+            '.date-time-box': {
+                flexDirection: 'column',
+                alignItems: 'flex-start'
+            },
+            '.Joy-selected': {
+                width: '80px',
+            },
+            '.MuiTab-variantPlain': {
+                width: '80px',
+            },
         },
         "@media (min-width: 1px) and (max-width:425px)": {
             ".main-box": {
@@ -603,8 +631,8 @@ const SupperClubChaefPage = () => {
             ".box2": {
                 width: "84%",
             },
-            '.grid-item':{
-                paddingRight:"0px"
+            '.grid-item': {
+                paddingRight: "0px"
             },
             ".grid-child-box": {
                 maxWidth: "100%",
@@ -792,7 +820,7 @@ const SupperClubChaefPage = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid className="grid-box-2" container spacing={{ md: 2 }}>
+                    <Grid className="grid-box-2" container spacing={{md: 2}}>
                         <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
                             <Box className="sub-box">
                                 <Typography className="sub-box-heading">
@@ -961,7 +989,7 @@ const SupperClubChaefPage = () => {
                                     <TabPanel value={2} sx={{p: 0}}>
                                         <Box className="map-container">
                                             <Box
-                                                style={{ backgroundColor: "#FBFBFB", padding: "16px 16px 20px 16px" }}
+                                                style={{backgroundColor: "#FBFBFB", padding: "16px 16px 20px 16px"}}
                                             >
                                                 <Box className="map-heading">
                                                     Blue Cafe, Kamanahalli
