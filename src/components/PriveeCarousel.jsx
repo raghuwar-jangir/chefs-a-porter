@@ -6,11 +6,12 @@ import {Navigation, Pagination} from "swiper";
 import {Box, Button, Grid, Hidden, styled, Typography} from "@mui/material";
 import chef from "../../src/assets/images/chef1.png";
 import chef2 from "../../src/assets/images/chef2.png";
-import chef3 from "../../src/assets/images/chef3.png";
+import chef3 from '../assets/images/chef3.png'
 import chef4 from "../../src/assets/images/chef4.png";
 import reebok from "../assets/images/rebook.png";
 import {isMobile} from "react-device-detect";
 import {Link} from "gatsby";
+import '../assets/styles/fontStyle.css'
 
 const MainParent = styled(Box)({
   ".continue-browsing-box": {
@@ -39,7 +40,7 @@ const MainParent = styled(Box)({
   ".view-more": {
     fontFamily: "ProximaNovaA-Regular",
     fontStyle: "normal",
-    fontWeight: "300",
+    fontWeight: "600",
     fontSize: "16px",
     lineHeight: "19px",
     textAlign: "right",
@@ -77,14 +78,15 @@ textTransform:'math-auto',
     lineHeight: "25px",
     marginBottom: "6px",
     fontFamily: "Bon Vivant ",
+    fontWeight:700
   },
   ".chef-details": {
     textAlign: "center",
     fontSize: "16px",
     lineHeight: "19px",
-    fontFamily: "Proxima Nova",
+    fontFamily: "Proxima Nova Alt",
     fontStyle: "normal",
-    fontWeight: "250",
+    fontWeight: 250,
     letterSpacing: "0.02em",
     color: "rgba(198, 168, 125, 0.8)",
     position: "relative",
@@ -99,7 +101,7 @@ textTransform:'math-auto',
   ".rebook-title": {
     fontFamily: "Proxima Nova Alt",
     fontStyle: "normal",
-    fontWeight: "150",
+    fontWeight: "300",
     fontSize: "16px",
     lineHeight: "19px",
     textAlign: "right",
@@ -219,7 +221,7 @@ textTransform:'math-auto',
         width: '100%',
 fontSize: '16px',
 lineHeight:'19px',
-fontWeight: '200',
+fontWeight: 600,
 color:'white',
 fontFamily: 'ProximaNovaA-Regular',
 padding:'10px',

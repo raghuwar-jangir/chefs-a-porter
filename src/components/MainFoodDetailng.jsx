@@ -2,7 +2,7 @@ import { Box, Button, styled, Typography } from '@mui/material';
 import React from 'react'
 import FoodDetailing from './FoodDetailing';
 import FoodCarousel from "./FoodCarousel";
-
+import '../assets/styles/fontStyle.css'
 
 const MainParent = styled(Box)({
     backgroundColor: '#DCD7CB',
@@ -16,15 +16,17 @@ const MainParent = styled(Box)({
         color: '#050405',
         padding: '0px 5px',
         fontFamily: 'Bon Vivant',
-        letterSpacing:'0.06em'
+        letterSpacing:'0.06em',
+        fontWeight:700
 },
 '.sub-description': {
     fontSize: '20px',
         lineHeight: '24px',
         letterSpacing:'0.01em',
         color: '#434343',
-        padding: '16px 5px 0px 5px'
-
+        padding: '16px 5px 0px 5px',
+        fontWeight:400,
+        fontFamily:'ProximaNovaA-Regular'
     },
     '.button-component': {
         textAlign: 'center',
@@ -34,9 +36,8 @@ const MainParent = styled(Box)({
         backgroundColor: '#DCD7CB',
         color: '#080B0E',
         fontFamily: 'ProximaNovaA-Regular',
-        right:'86%',
         fontStyle: 'normal',
-        fontWeight: '200',
+        fontWeight: 600,
         fontSize: '16px',
         lineHeight: '19px',
     },
@@ -62,7 +63,7 @@ const MainParent = styled(Box)({
             border:'1px solid black',
             width: '100%',
             fontSize: '13px',
-            fontWeight: '200',
+            fontWeight: '600',
             fontFamily: 'ProximaNovaA-Regular',
             top:'1170px',
             right:'0px',
@@ -79,9 +80,9 @@ const MainParent = styled(Box)({
             border:'1px solid black',
             width: '100%',
             fontSize: '13px',
-            fontWeight: '200',
+            fontWeight: '600',
             fontFamily: 'ProximaNovaA-Regular',
-            top:'1174px',
+            top:'1193px',
             right:'0px',
             borderRadius:'1px'
     },},
@@ -91,7 +92,7 @@ const MainParent = styled(Box)({
                 border:'1px solid black',
                 width: '100%',
                 fontSize: '13px',
-                fontWeight: '200',
+                fontWeight: '600',
                 fontFamily: 'ProximaNovaA-Regular',
                 top:'1200px',
                 right:'0px',

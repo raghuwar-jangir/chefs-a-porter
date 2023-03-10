@@ -6,6 +6,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import {Pagination} from "swiper";
+import '../assets/styles/fontStyle.css';
 
 
 const CorporateBooking = () => {
@@ -18,6 +19,7 @@ const CorporateBooking = () => {
             textAlign: 'center',
             fontSize: '24px',
             lineHeight: '30px',
+            fontWeight:700,
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
             color: '#080B0E',
@@ -42,7 +44,7 @@ const CorporateBooking = () => {
         '.main-details': {
             fontSize: '16px',
             marginBottom: '16px',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '400',
             lineHeight: '20px',
@@ -50,8 +52,8 @@ const CorporateBooking = () => {
         },
         '.person-position': {
             fontSize: '16px',
-            lineHeight: '20px',
-            fontFamily: 'ProximaNovaA-Regular',
+            lineHeight: '19px',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
             marginBottom: '4px'
@@ -61,7 +63,7 @@ const CorporateBooking = () => {
             fontSize: '16px',
             lineHeight: '24px',
             fontStyle: 'normal',
-            fontWeight: '400',
+            fontWeight: '600',
             textTransform: 'uppercase',
             marginBottom: '8px'
         },
@@ -70,7 +72,7 @@ const CorporateBooking = () => {
             lineHeight: '19px',
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
-            fontWeight: '400',
+            fontWeight: 600,
             marginTop: '16px',
             width: '162px !important',
             display: 'block',
@@ -133,7 +135,8 @@ const CorporateBooking = () => {
             },
             '.carousel-box': {
                 width: '367px',
-                padding: '0px'
+                padding: '0px',
+                margin: '0px auto 0px',
             },
             '.person-details': {
                 marginLeft: '6px',
@@ -152,13 +155,18 @@ const CorporateBooking = () => {
             },
             ".title": {
                 marginLeft: '4%',
-                textAlign: 'start'
+                textAlign: 'start',
+                fontSize:'20px',
+                lineHeight:'25px',
+                marginBottom:'1.5rem'
             },
             '.main-box': {
                 backgroundColor: '#FBFBFB'
             },
             '.booking-btn': {
-                width: '96% !important'
+                width: '96% !important',
+                fontSize:'14px',
+                lineHeight:'17px'
             },
             '.swiper-pagination': {
                 backgroundColor: '#FBFBFB'
@@ -167,10 +175,28 @@ const CorporateBooking = () => {
                 width: '6px',
                 height: "6px"
             },
+            '.main-details':{
+                fontSize:'14px',
+                lineHeight:'20px'
+            },
+            '.person-position':{
+                fontSize:'14px',
+                lineHeight:'17px'
+            },
+            '.person-name':{
+                fontSize:'14px',
+                lineHeight:'150%'
+            }
         },
         '@media(min-width: 322px) and (max-width: 375px)': {
             '.swiper-slide': {
                 width: '340px !important'
+            },
+            ".title": {
+                marginBottom:'1.5rem'
+            },
+            '.carousel-box': {
+                margin: '0px auto 0px',
             },
             '.swiper':{
                 width:'339px'
@@ -198,9 +224,12 @@ const CorporateBooking = () => {
                 flexFlow:'row-reverse'
             },
             '.img':{
-                marginLeft:'0px',
+                marginLeft:'-6px',
                 width:'130px',
-                height:'246px'
+                height:'256px'
+            },
+            ".title": {
+                marginBottom:'-0.5rem'
             },
             '.swiper':{
                 width:'303px !important'
@@ -211,7 +240,8 @@ const CorporateBooking = () => {
             '.booking-btn':{
                 width:'100% !important',
                 fontSize:'14px',
-                padding:'10px'
+                padding:'10px',
+                lineHeight:'17px'
             },
             '.person-details':{
                 paddingLeft:'3%',
@@ -222,10 +252,11 @@ const CorporateBooking = () => {
                 fontSize:'14px'
             },
             '.person-name':{
-                fontSize:'13px'
+                fontSize:'14px',
+                lineHeight:'150%'
             },
             '.main-details':{
-                fontSize:'13px'
+                fontSize:'14px'
             },
             '.swiper-pagination':{
                 backgroundColor:'#FBFBFB'

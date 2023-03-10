@@ -19,6 +19,7 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import '../assets/styles/fontStyle.css';
 
 const TeamCarousel = (props) => {
   const BoxWrapper = styled(Box)(() => ({
@@ -30,6 +31,7 @@ const TeamCarousel = (props) => {
       textAlign: "center",
       color: "#FBFBFB",
       marginBottom: "8px",
+      fontWeight:700
     },
     ".social-icon": {
       display: "flex",
@@ -144,6 +146,8 @@ borderRadius:'30px'
     "@media (min-width: 1px) and (max-width:425px)": {
       ".btn": {
         width: "100%",
+        fontWeight:600,
+        height:'auto'
       },
       ".social-icon": {
         display: "flex",

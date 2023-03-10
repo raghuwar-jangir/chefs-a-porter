@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Autoplay, Pagination} from "swiper";
 import "swiper/css/pagination";
+import '../assets/styles/fontStyle.css';
 
 const MainContentBox = styled(Box)({
     backgroundColor: '#101418',
@@ -20,7 +21,7 @@ const MainContentBox = styled(Box)({
     '.dining-title': {
         fontFamily: 'Bon Vivant',
         fontStyle: 'normal',
-        fontWeight: '400',
+        fontWeight: '700',
         fontSize: '24px',
         lineHeight: '30px',
         letterSpacing: '0.06em',
@@ -46,8 +47,9 @@ const MainContentBox = styled(Box)({
     },
     '.swiper-pagination-bullet':{
         borderRadius:'0px',
+        height:'2px',
         width:'200px',
-        height:'3px',
+        height:'2px',
         background:'#FBFBFB',
         opacity:'1',
     },
@@ -107,7 +109,7 @@ positionX:'end'
     '.swiper-pagination-bullet': {
         borderRadius: '0px',
         width: '200px',
-        height: '3px',
+        height: '2px',
         background: '#FBFBFB',
         opacity: '1',
     },
@@ -144,6 +146,9 @@ positionX:'end'
         padding: '0px 29px',
         font: '20px'
     },
+    '.swiper-pagination':{
+        fontSize:'12px'
+    },
     '.swiper':{
         paddingLeft:'0.5rem',
         paddingRight:'0.5rem'
@@ -155,7 +160,7 @@ positionX:'end'
         margin: '0 var(--swiper-pagination-bullet-horizontal-gap,7px) !important'
     },
 },
-'@media(min-width: 1px) and (max-width: 375px)': {
+'@media(min-width: 319px) and (max-width: 375px)': {
     '.img':{
         height:'250px'
     },
@@ -168,12 +173,34 @@ positionX:'end'
         paddingRight:'0.5rem'
     },
     '.swiper-pagination-bullet':{
-        width:'122px'
+        width:'105px'
     },
     '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet': {
         margin: '0 var(--swiper-pagination-bullet-horizontal-gap,7px) !important'
     },
-
+},
+'@media(min-width: 1px) and (max-width: 320px)': {
+    '.img':{
+        height:'250px'
+    },
+    '.dining-title': {
+        padding: '0px 10px',
+        font: '20px'
+    },
+    '.swiper':{
+        paddingLeft:'0.5rem',
+        paddingRight:'0.5rem'
+    },
+    '.swiper-pagination-bullet':{
+        width:'89px'
+    },
+    '.swiper-pagination':{
+        lineHeight:'20px'
+    },
+    '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet': {
+        margin: '0 var(--swiper-pagination-bullet-horizontal-gap,6px) !important'
+    },
+}
 })
 const DiningPage = (props) => {
     let labels = ['Conscious Dining', 'Championing Chefs', 'Community'];
@@ -204,9 +231,9 @@ const DiningPage = (props) => {
        modules={[Pagination,Autoplay]}
        className="mySwiper"
     >
-      <SwiperSlide><img className='img' src={diningPicture}></img></SwiperSlide>
-      <SwiperSlide><img className='img'  src={diningPicture}></img></SwiperSlide>
-      <SwiperSlide><img className='img' src={diningPicture}></img></SwiperSlide>
+      <SwiperSlide><img className='img' src={props.image}></img></SwiperSlide>
+      <SwiperSlide><img className='img'  src={props.image}></img></SwiperSlide>
+      <SwiperSlide><img className='img' src={props.image}></img></SwiperSlide>
       ...
     </Swiper>
     {/* <Box className='content-box'>
