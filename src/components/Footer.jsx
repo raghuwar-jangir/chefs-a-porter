@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Box, styled, TextField, Typography, List, ListItemText, ListItemIcon, Input, Grid, Stack, Link
+    Box, styled, TextField, Typography, List, ListItemIcon, Grid, Link
 } from '@mui/material';
 import footerLogo from './../assets/images/logo-gold.png';
 import footerArrow from './../assets/images/footer-arrow.png';
@@ -10,9 +10,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Button from "@mui/material/Button";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
-import InputAdornment from "@mui/material/InputAdornment";
-import ContactsIcon from "@mui/icons-material/Contacts";
+import '../assets/styles/fontStyle.css'
 
 
 const Footer = () => {
@@ -26,26 +24,16 @@ const Footer = () => {
             fontWeight: 700,
             fontSize: '20px',
             fontStyle: 'normal',
-            lineHeight: '30px',
+            lineHeight: '24px',
             color: '#FBFBFB',
             textAlign: 'left',
-            padding: '10px 0px',
-            fontFamily: 'Proxima Nova',
+            marginBottom: '20px',
+            fontFamily: 'ProximaNovaA-Regular',
         },
-        '.footerLogo':{
+        '.footerLogo': {
             height: '50px',
             width: '226.29px',
             objectFit: 'contain',
-        },
-        '.details': {
-            fontWeight: 250,
-            fontSize: '14px',
-            lineHeight: '17px',
-            color: '#FBFBFB',
-            padding: '10px 0px',
-            fontFamily: 'Proxima Nova',
-            fontStyle: 'normal',
-            textAlign:'left'
         },
         '.sub-div': {
             display: 'flex',
@@ -57,12 +45,13 @@ const Footer = () => {
             display: 'flex',
             justifyContent: 'space-between',
             borderBottom: '0.25px solid white',
+            paddingBottom: '16px'
         },
         '.social-icon': {
             display: 'flex',
             alignItems: 'center',
             placeContent: 'flex-end',
-            cursor:'pointer'
+            cursor: 'pointer'
         },
         '.icon': {
             display: 'flex',
@@ -95,26 +84,29 @@ const Footer = () => {
             borderRadius: "0px",
             color: "#080B0E",
             height: "36px !important",
-            width:'50px !important',
+            width: '50px !important',
             borderColor: '#C6A87D',
-            margin:'0px',
+            margin: '0px',
             textTransform: "capitalize !important"
-        },
-        '.css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input':{
-            padding: '8px 14px !important'
         },
         ".btn:hover": {color: "#080B0E", background: "#C6A87D",},
         '.listItem': {
             minWidth: '18px',
             height: '14px'
         },
+        '.MuiList-root': {
+            marginBottom: '24px',
+            padding: '0px'
+        },
         '.listItem-subheading': {
             cursor: 'pointer',
             fontStyle: 'normal',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontSize: '14px',
-            textAlign:'left',
+            lineHeight: '17px',
+            textAlign: 'left',
             color: '#FBFBFB',
+            fontWeight: '250px',
             textDecoration: 'none',
         },
         '.listItem-subheading:hover': {
@@ -144,7 +136,6 @@ const Footer = () => {
                     <Box className='social-heading'>
                         <Box>
                             <img src={footerLogo} alt='footer-Logo' className='footerLogo' style={{
-                                padding: '10px 0px 20px 0px',
                                 // width: '226.29px',
                                 height: '50px',
                             }}/>
@@ -157,7 +148,7 @@ const Footer = () => {
                         </Box>
                     </Box>
                     <Box className='sub-div'>
-                        <Grid container spacing={2}>
+                        <Grid container sx={{padding: '0px 12px'}}>
                             <Grid item xs={2} sm={2}>
                                 <Box>
                                     <Typography className='main-heading'>Chef a porter</Typography>
@@ -165,13 +156,15 @@ const Footer = () => {
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <Link href="/become-a-patron" className="listItem-subheading">Became a Patron</Link>
+                                        <Link href="/become-a-patron" className="listItem-subheading">Became a
+                                            Patron</Link>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <Link className="listItem-subheading" href="/corporate-booking">Corporate Bookings</Link>
+                                        <Link className="listItem-subheading" href="/corporate-booking">Corporate
+                                            Bookings</Link>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
@@ -188,7 +181,7 @@ const Footer = () => {
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <Link href="/privee"className="listItem-subheading">Privee</Link>
+                                        <Link href="/privee" className="listItem-subheading">Privee</Link>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
@@ -228,7 +221,8 @@ const Footer = () => {
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <Link href="/become-partner" className="listItem-subheading">As Sponsor Partner</Link>
+                                        <Link href="/become-partner" className="listItem-subheading">As Sponsor
+                                            Partner</Link>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
@@ -243,7 +237,21 @@ const Footer = () => {
                                     <Typography className='main-heading'>Reach out to us</Typography>
                                     <Box style={{width: '100%'}}>
                                         <TextField className='input-field' id='email-address' size='small'
-                                                   placeholder='Your email address' variant='outlined'/>
+                                                   placeholder='Your email address' variant='outlined'
+                                                   sx={{
+                                                       '.MuiInputBase-input': {
+                                                           borderRadius: '0px',
+                                                           background: '#FBFBFB',
+                                                           fontFamily: 'Proxima Nova Alt',
+                                                           fontStyle: 'normal',
+                                                           fontWeight: '300',
+                                                           fontSize: '14px',
+                                                           lineHeight: '25px',
+                                                           color: '#BDBDBD',
+                                                           padding: '8px 14px'
+                                                       }
+                                                   }}
+                                        />
                                         <Button className='btn'>Submit</Button>
                                     </Box>
                                     <List>
@@ -257,7 +265,7 @@ const Footer = () => {
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
                                         <Link href="mailto:reservations@chefsaporter.com."
-                                           className='listItem-subheading'>reservations@chefsaporter.com.</Link>
+                                              className='listItem-subheading'>reservations@chefsaporter.com.</Link>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">

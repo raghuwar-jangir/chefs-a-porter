@@ -2,6 +2,7 @@ import React from "react";
 import {Box, styled} from "@mui/material";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import {Link} from "gatsby";
+import '../assets/styles/fontStyle.css'
 
 const FooterEnd = () => {
     const BoxWrapper = styled(Box)(() => ({
@@ -18,11 +19,13 @@ const FooterEnd = () => {
             listStyle: "none"
         },
         '.footer-item': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontSize: '12px',
+            fontWeight: '400',
             lineHeight: '15px',
             color: '#FBFBFB',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            fontStyle: 'normal'
         },
         '.footer-end': {
             display: 'flex',
@@ -45,7 +48,7 @@ const FooterEnd = () => {
                 padding: '16px',
             },
             '.dot-icon': {
-              display:'none'
+                display: 'none'
             },
         },
     }))
