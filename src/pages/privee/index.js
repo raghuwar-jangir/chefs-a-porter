@@ -229,7 +229,7 @@ const BoxWrapper = styled(Box)(() => ({
     '.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
         height: '10px',
         padding: '5px',
-        fontSize: '16px',
+        fontSize: '20px',
     },
     '.form-control': {
         backgroundColor: 'transparent',
@@ -253,7 +253,7 @@ const BoxWrapper = styled(Box)(() => ({
     '.exp-heading': {
         fontFamily: 'Bon Vivant',
         fontStyle: 'normal',
-        // fontWeight: '700',
+        fontWeight: '700',
         fontSize: '24px',
         lineHeight: '30px',
         textAlign: 'center',
@@ -270,6 +270,9 @@ const BoxWrapper = styled(Box)(() => ({
     '.react-datepicker-component .react-datepicker-input input': {
         paddingLeft: '5px',
         color: '#080B0E',
+        fontSize: '20px',
+        fontWeight: '100',
+        fontFamily: 'Proxima Nova Alt',
     },
     '.icon-rc-datepicker': {
         color: '#080B0E !important',
@@ -297,10 +300,10 @@ const BoxWrapper = styled(Box)(() => ({
         position: 'relative',
     },
     '.diners': {
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'Proxima Nova Alt',
         fontStyle: 'normal',
         fontWeight: '600',
-        fontSize: '16px',
+        fontSize: '20px',
         lineHeight: '19px',
         color: '#080B0E',
         marginBottom: '8px',
@@ -344,10 +347,10 @@ const BoxWrapper = styled(Box)(() => ({
         border: '0.5px solid #080B0E',
         borderRadius: '0px',
         padding: '15px 10px',
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'ProximaNovaA-Regular',
         fontStyle: 'normal',
         fontWeight: '600',
-        fontSize: '16px',
+        fontSize: '20px',
         lineHeight: '19px',
         color: '#080B0E',
         cursor: 'pointer',
@@ -481,20 +484,20 @@ const PriveePage = () => {
         }
     }
 
-    const styles = theme => ({
-        input: {
-            width: 40
-        },
-        button: {
-            width: 40
-        },
-        selectRoot: {
-            width: 40,
-        },
-        select: {
-            width: 40,
-        }
-    });
+    // const styles = theme => ({
+    //     input: {
+    //         width: 40
+    //     },
+    //     button: {
+    //         width: 40
+    //     },
+    //     selectRoot: {
+    //         width: 40,
+    //     },
+    //     select: {
+    //         width: 40,
+    //     }
+    // });
 
     return (
         <React.Fragment>
@@ -588,17 +591,25 @@ const PriveePage = () => {
                                                     defaultValue={values.city}
                                                     className="selectpicker my-select dropdown-toggle form-control"
                                                     sx={{
+                                                        fontSize: '20px',
                                                         '.MuiOutlinedInput-notchedOutline': {border: 0},
                                                         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                             border: 'none',
                                                         },
+                                                        '.MuiSelect-select': {
+                                                            padding: '0px 5px',
+                                                            fontSize: '20px',
+                                                            fontWeight:'100'
+                                                        }
                                                     }}
                                                     MenuProps={{
                                                         PaperProps: {
                                                             sx: {
                                                                 backgroundColor: '#DCD7CB !important',
                                                                 li: {
-                                                                    borderBottom: "1px solid black"
+                                                                    borderBottom: "1px solid black",
+                                                                    fontSize: '20px',
+                                                                    fontWeight: '100'
                                                                 },
                                                                 'li:hover': {
                                                                     color: '#C6A87D!important',
@@ -646,13 +657,19 @@ const PriveePage = () => {
                                                         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                             border: 'none',
                                                         },
+                                                        '.MuiSelect-select': {
+                                                            padding: '0px 5px',
+                                                            fontSize: '20px'
+                                                        }
                                                     }}
                                                     MenuProps={{
                                                         PaperProps: {
                                                             sx: {
                                                                 backgroundColor: '#DCD7CB !important',
                                                                 li: {
-                                                                    borderBottom: "1px solid black"
+                                                                    borderBottom: "1px solid black",
+                                                                    fontSize: '20px',
+                                                                    fontWeight: '100'
                                                                 },
                                                                 'li:hover': {
                                                                     color: '#C6A87D!important',
@@ -663,7 +680,11 @@ const PriveePage = () => {
                                                                 },
                                                                 "&& .Mui-selected": {
                                                                     backgroundColor: "unset !important"
-                                                                }
+                                                                },
+                                                                '.MuiSelect-select': {
+                                                                    padding: '5px !important',
+                                                                    fontSize: '17px',
+                                                                },
                                                             },
                                                         },
                                                     }}
