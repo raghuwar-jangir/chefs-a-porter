@@ -330,13 +330,13 @@ const ChefDetails = (props) => {
             '@media(min-width: 800px) and (max-width: 1024px)': {
                 '.all-photos': {
                     bottom: '50px',
-                    left: '100px',
+                    left: '110px',
                 },
             },
             '@media(min-width: 700px) and (max-width: 768px)': {
                 '.all-photos': {
                     bottom: '50px',
-                    left: '3px',
+                    left: '220px',
                 },
             },
             "@media (min-width: 320px) and (max-width:425px)": {

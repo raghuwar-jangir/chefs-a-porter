@@ -58,6 +58,7 @@ import {DatePickerInput} from "rc-datepicker";
 import PriveeImg from "../assets/images/priveeImg.png";
 import SupperClubImg from "../assets/images/SupperClubImg.png";
 import ClubSection from "../components/ClubSection";
+import DiningExperienceCarousel from "../components/DiningExperienceCarousel";
 
 
 const MainBoxContent = styled(Box)({
@@ -1247,7 +1248,7 @@ const HomePage = () => {
                         </Box>
                     ))}
                 </Box>
-                <PriveeComponentSlider/>
+                <DiningExperienceCarousel/>
                 <TemplateYet title={'View our offerings'} isTempted={true}/>
                 <NeedHelp/>
                 <Footer/>
