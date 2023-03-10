@@ -3,11 +3,14 @@ import { Field, Form, Formik } from "formik";
 import React, { useRef, useState } from "react";
 // import styled from "styled-components";
 import * as Yup from 'yup';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import InfoIcon from '@mui/icons-material/Info';
-
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import moment from "moment";
+import gCal from '../assets/images/date-gold.png'
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import Checkbox from '@mui/material/Checkbox';
 
 const DisplayingErrorMessagesSchema = Yup.object().shape({
     yourName: Yup.string().required('Your Name Required'),
@@ -19,6 +22,8 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
 });
 
 const ChefDetailsForm = () => {
+    const [startDate, setStartDate] = useState(new Date());
+    console.log("startDate=",moment(startDate).format("dddd, MMMM DD, YYYY"));
     const [numberOfDenner, setNumberOfDenner] = useState(0)
     const [numberOfCourses, setNumberOfCourses] = useState(0)
     const BoxWrapper = styled(Box)(() => ({
@@ -50,18 +55,46 @@ const ChefDetailsForm = () => {
 
         },
         ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
-            fontFamily: 'Proxima Nova Alt',
-            fontStyle: 'normal',
-            fontWeight: '300',
-            fontSize: '16px',
-            lineHeight: '19px',
-            color: 'rgba(251, 251, 251, 1)',
-            background: 'transparent',
-            border: '0px',
-            borderBottom: '1px solid #FBFBFB',
-            borderRadius: '0px',
-            paddingLeft: '0px',
-            paddingRight: '0px'
+            paddingLeft: "10px",
+            flex: "1",
+            outline:'none',
+            backgroundColor: "transparent",
+            border: "0px",
+            borderBottom: "0.25px solid #FBFBFB",
+            borderRadius: "0px",
+            paddingLeft: "0px",
+            paddingRight: "0px",
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: "300",
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#FBFBFB",
+            display: "block",
+            width: "100%",
+            padding: "0.375rem 0.75rem 0.375rem 0px",
+            transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
+        },
+        '.form-control':{
+            paddingLeft: "10px",
+            flex: "1",
+            outline:'none',
+            backgroundColor: "transparent",
+            border: "0px",
+            borderBottom: "0.25px solid #FBFBFB",
+            borderRadius: "0px",
+            paddingLeft: "0px",
+            paddingRight: "0px",
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: "300",
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#FBFBFB",
+            display: "block",
+            width: "95%",
+            padding: "0.375rem 0.75rem 0.375rem 0px",
+            transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
         },
         ".input-field": {
             borderBottom: '1px solid #FBFBFB',
@@ -137,12 +170,20 @@ const ChefDetailsForm = () => {
             marginBottom: '16px'
         },
         ".left-btn": {
-            color: "#C6A87D",
-            background: "none"
+            width: '24px',
+            height: '24px',
+            borderRadius: '0px',
+            color: '#C6A87D',
+            border: '0.25px solid #C6A87D',
+            backgroundColor:'black'
         },
         ".right-btn": {
-            border: "0px solid",
-            background: "#C6A87D"
+            width: '24px',
+            height: '24px',
+            borderRadius: '0px',
+            color: 'black',
+            border: '0.25px solid #C6A87D',
+            backgroundColor:'#C6A87D'
         },
         ".details-box": {
             display: 'flex',
@@ -179,7 +220,92 @@ const ChefDetailsForm = () => {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
           },
-
+          '.min-2-3':{
+            flex: '1',
+    marginBottom: '0px',
+    fontFamily: 'Proxima Nova Alt',
+    fontWeight: '300',
+    fontSize: '16px',
+    lineHeight: '19px',
+    color: '#FBFBFB',
+          },
+          '.gold-cal':{
+            height: '22.8px',
+    objectFit: 'contain',
+    position: 'absolute',
+    right: '15px',
+    bottom: '25px',
+    zIndex:' 0'
+          },
+          '.input-group-btn button': {
+            width: '24px',
+            height: '24px',
+            borderRadius: '0px',
+            color: '#c6a87d',
+            background: 'transparent',
+            border: '0.25px solid #c6a87d',
+        },
+        '.input-group-btn button:disabled': {
+            opacity: '0.65',
+        },
+        '.number-ans':{
+            width: '24px',
+    fontFamily: 'Proxima Nova Alt',
+    fontStyle: 'normal',
+    fontWeight: '300',
+    fontSize: '16px',
+    marginLeft: '5px',
+    marginRight: '5px',
+    color: 'rgba(251, 251, 251, 1)',
+    background: 'transparent',
+    textAlign:'center'
+        },
+        '.surprise-box':{
+            background: '#080B0E',
+    padding: '16px',
+    position: 'relative',
+    marginBottom: '16px'
+        },
+        '.form-check':{
+            display: 'block',
+    minHeight: '1.5rem',
+    marginBottom: '0.125rem',
+},
+'.form-check-input':{
+    backgroundColor: '#C6A87D',
+    borderColor: '#C6A87D',
+    borderRadius: '0px',
+},
+".form-check-label":{
+    fontFamily: 'Bon Vivant',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    fontSize: '16px',
+    lineHeight: '20px',
+    color: '#FBFBFB',
+},
+'.email-confirm':{
+    fontFamily: 'Proxima Nova Alt',
+    fontStyle: 'normal',
+    fontWeight: '300',
+    fontSize: '12px',
+    lineHeight: '15px',
+    color: 'rgba(251, 251, 251, 0.6)',
+    display: 'block',
+    marginTop: '4px',
+    marginLeft:'1.5rem'
+},
+'.surprise-check-box':{
+    display:'flex',
+    placeItems:'center'
+},
+'.input-check':{
+    paddingRight:'5px !important',
+    padding:'0px',
+    marginBottom:'0.125rem',
+    color:'#C6A87D'
+}
+        
     }))
 
 
@@ -253,7 +379,7 @@ const ChefDetailsForm = () => {
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <Box className="comman-field-box" sx={{ width: "49%" }}>
                                         <Typography className='field-title'>Experience Date</Typography>
-                                        <TextField
+                                        {/* <TextField
                                             className='input-field'
                                             value={values.experienceDate}
                                             onChange={handleChange}
@@ -262,7 +388,9 @@ const ChefDetailsForm = () => {
                                             id="standard-size-normal"
                                             variant="standard"
                                             fullWidth
-                                        />
+                                        /> */}
+                                        <DatePicker selected={startDate}  className='form-control' onChange={(date) => setStartDate(date)} value={moment(startDate).format("ddd,DD MMM YYYY")}/>
+                                        <img src={gCal}/>
                                         {touched.experienceDate && errors.experienceDate && <Typography className='error-msg'>{errors.experienceDate}</Typography>}
                                     </Box>
                                     <Box className="comman-field-box" sx={{ width: "48.5%" }}>
@@ -311,43 +439,42 @@ const ChefDetailsForm = () => {
                                     </Box>
                                 </Box>
                                 <Box className="sub-box-counter">
-                                    <Typography>Number of Diners <span>(min 2)</span></Typography>
+                                    <Typography className="min-2-3">Number of Diners <span>(min 2)</span></Typography>
                                     <Box sx={{ display: 'flex' }}>
-                                        <button
-                                            className="left-btn"
+                                        <RemoveIcon 
+                                           className="left-btn"
                                             onClick={() => { setNumberOfDenner((numberOfDenner - 1 > 0)) }}
-                                        >
-                                            -
-                                        </button>
-                                        <Typography sx={{ width: '20px', textAlign: 'center' }}>{numberOfDenner}</Typography>
-                                        <button
+                                        />
+                                        <Typography className="number-ans">{numberOfDenner}</Typography>
+                                        <AddIcon
                                             className="right-btn"
                                             onClick={() => { setNumberOfDenner(numberOfDenner + 1) }}
-                                        >
-                                            +
-                                        </button>
+                                        />
                                     </Box>
                                 </Box>
                                 <Box className="sub-box-counter">
-                                    <Typography>Number of Courses<span>(min 3)</span></Typography>
+                                    <Typography className="min-2-3">Number of Diners <span>(min 3)</span></Typography>
                                     <Box sx={{ display: 'flex' }}>
-                                        <button
-                                            className="left-btn"
-                                            onClick={() => { setNumberOfCourses(numberOfCourses - 1 > 0) }}
-                                        >
-                                            -
-                                        </button>
-                                        <Typography sx={{ width: '20px', textAlign: 'center' }}>{numberOfCourses}</Typography>
-                                        <button
+                                    <RemoveIcon 
+                                           className="left-btn"
+                                            onClick={() => { setNumberOfDenner((numberOfDenner - 1 > 0)) }}
+                                        />
+                                        <Typography className="number-ans">{numberOfCourses}</Typography>
+                                        <AddIcon
                                             className="right-btn"
-                                            onClick={() => { setNumberOfCourses(numberOfCourses + 1) }}
-                                        >
-                                            +
-                                        </button>
+                                            onClick={() => { setNumberOfDenner(numberOfDenner + 1) }}
+                                        />
                                     </Box>
                                 </Box>
                             </Box>
-
+                                                <Box className='surprise-box'>
+                                                <Box className="form-check">
+                                                    <Box className='surprise-check-box'>
+                                                <Checkbox className="input-check" defaultChecked  />
+                                    <Typography className="form-check-label" for="flexCheckChecked">Surprise me</Typography></Box>
+                                        <Typography className="email-confirm">An agnostic menu that explores a diverse culinary journey with chef mako at the helm.</Typography>
+                                  </Box>
+                                                </Box>
                             <Box sx={{ paddingBottom: '40px' }}>
                                 <Button
                                     className="experience-btn"

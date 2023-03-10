@@ -24,6 +24,7 @@ import {isMobile} from "react-device-detect";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
 import OpenPosition from "../../components/OpenPositionComponent";
+import teamImage from '../../assets/images/team.png'
 import TeamCarousel from "../../components/TeamCarousel.jsx";
 
 const ClientSideOnlyLazy = React.lazy(() =>
@@ -362,7 +363,7 @@ const AboutCardComponent = (props) => {
                             <img
                                 src={hotelImgView}
                                 alt="view"
-                                className="hotelview-img"
+                                // className="hotelview-img"
                                 className="team-img"
                             />
                             <CommanTextCard

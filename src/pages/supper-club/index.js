@@ -7,10 +7,18 @@ import {
   Stack,
   styled,
   Typography,
+  Modal,
+  TextField,
+  TextareaAutosize
 } from "@mui/material";
+import {DatePickerInput} from "rc-datepicker";
+import InputAdornment from "@mui/material/InputAdornment";
+
+import CloseIcon from '@mui/icons-material/Close';
+import { Formik,Form } from "formik";
 import React, { useState, useRef } from "react";
 import { useTheme } from "@mui/material/styles";
-import RestorentImg from "../../assets/images/RestorentImg.png";
+import RestorentImg from "../../assets/images/sc-gallery.png";
 import RestorentImgMobile from "../../assets/images/RestorentImgMobile.png";
 import CardChefComponent from "../../components/CardChefComponent";
 import ChefCarousel from "../../components/ChefCarousel";
@@ -42,16 +50,17 @@ const images = [
     RestorentImgMobile,
     RestorentImgMobile,
 ];
-
 const SupperClubChaefPage = () => {
   const [showCarousel, setShowCarousel] = useState(false);
   const handleImageClick = () => {
     setShowCarousel(true);
   };
-
-  const handleClose = () => {
+  const handleCloseCarousel = () => {
     setShowCarousel(false);
   };
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
   const defaultProps = {
     center: {
@@ -74,7 +83,7 @@ const SupperClubChaefPage = () => {
       backgroundColor: "#DCD7CB",
     },
     ".main-box": {
-      padding: "80px 120px",
+      padding: "120px 120px 80px 120px",
       background: "#DCD7CB",
     },
     ".main-img": {
@@ -167,6 +176,7 @@ const SupperClubChaefPage = () => {
     },
     ".next-grid": {
       display: "inline",
+      paddingLeft:'0px !important'
     },
     ".date-time-box": {
       display: "flex",
@@ -421,6 +431,11 @@ const SupperClubChaefPage = () => {
     ".container": {
       position: "relative",
     },
+    '.pop-close-icon':{
+      width:'100px',
+      height:'40px',
+      color:'rgb(160, 160, 160)'
+    },
     ".carousel-popup": {
       position: "fixed",
       top: "0px",
@@ -431,18 +446,18 @@ const SupperClubChaefPage = () => {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      zIndex: "5",
+      zIndex: "9999",
     },
     ".close-button": {
-      position: "absolute",
-      top: "10px",
-      right: "10px",
-      fontSize: "24px",
-      backgroundColor: "transparent",
-      border: "none",
-      color: "white",
-      cursor: "pointer",
-      zIndex: "10",
+      position: 'absolute',
+                top: '30px',
+                right: '50px',
+                fontSize: '24px',
+                backgroundColor: 'transparent',
+                border: 'none',
+                color: 'white',
+                cursor: 'pointer',
+                zIndex: '999',
     },
     ".swiper": {
       width: "75%",
@@ -599,198 +614,124 @@ const SupperClubChaefPage = () => {
       },
     },
   }));
-
-  return (
-    <React.Fragment>
-      <BoxWrapper>
-        <Navbar />
-        <Box className="main-box">
-          <Grid container spacing={{ md: 2 }}>
-            <Grid item xl={7} md={7} sm={6} xs={12}>
-              <Box className="container">
-                <img
-                  src={RestorentImg}
-                  alt="RestorentImg"
-                  className="main-img"
-                  onClick={handleImageClick}
-                />
-                {showCarousel && (
-                  <Box className="carousel-popup">
-                    <button className="close-button" onClick={handleClose}>
-                      X
-                    </button>
-                    <Box className="carousel">
-                      <SuperClubPopCarousel />
-                    </Box>
-                  </Box>
-                )}
-              </Box>
-            </Grid>
-            <Grid item md={5} sm={6} xs={12} xl={5} className="next-grid">
-              <Grid className="child-container" container spacing={2}>
-                <Grid item md={6} sm={6} xs={6} xl={6}>
-                  <img
-                    src={RestorentImg}
-                    alt="RestorentImg"
-                    className="main-img-1"
-                    onClick={handleImageClick}
-                  />
-                </Grid>
-                <Grid item md={6} sm={6} xs={6} xl={6}>
-                  <img
-                    src={RestorentImg}
-                    alt="RestorentImg"
-                    className="main-img-1"
-                    onClick={handleImageClick}
-                  />
-                </Grid>
-                <Grid item md={6} sm={6} xs={6} xl={6}>
-                  <img
-                    src={RestorentImg}
-                    alt="RestorentImg"
-                    className="main-img-2"
-                    onClick={handleImageClick}
-                  />
-                </Grid>
-                <Grid item md={6} sm={6} xs={6} xl={6}>
-                  <img
-                    src={RestorentImg}
-                    alt="RestorentImg"
-                    className="main-img-2"
-                    onClick={handleImageClick}
-                  />
-                  <Button className="show-btn">Show All Photos</Button>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid className="grid-box-2" container spacing={{ md: 2 }}>
-            <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
-              <Box className="sub-box">
-                <Typography className="sub-box-heading">
-                  The Big Fat Parsi Blowout
-                </Typography>
-                <Typography className="sub-box-text">
-                  Curated by{" "}
-                  <span>
-    const style = {
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 398,
+    boxShadow: 24,
+    '.modal-content': {
+        backgroundColor: '#DCD7CB !important',
+        boxShadow: '0px 8px 12px rgb(0 0 0 / 16%)',
+        padding: '40px 30px 20px',
+        // position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        // width: '100%',
+        pointerEvents: 'auto',
+        backgroundClip: 'paddingBox',
+        outline: '0'
+    },
+    '.form-control': {
+        backgroundColor: 'transparent',
+        border: '0px',
+        borderBottom: '0.25px solid #080B0E',
+        borderRadius: '0px',
+        paddingLeft: '0px',
+        paddingRight: '0px',
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontWeight: '300',
+        fontSize: '16px',
+        lineHeight: '19px',
+        color: '#222222',
+        width: '100%'
+    },
+    '.form-control:focus-visible': {
+        outline: '0px'
+    },
+    '.modal-header': {
+        padding: '0px',
+        marginBottom: '30px',
+        borderBottom: 'none',
+        position: 'relative',
+        justifyContent: 'flex-start',
+    },
+    '.modal-header button': {
+        padding: '0px',
+        border: '0px',
         position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 398,
-        boxShadow: 24,
-        '.modal-content': {
-            backgroundColor: '#DCD7CB !important',
-            boxShadow: '0px 8px 12px rgb(0 0 0 / 16%)',
-            padding: '40px 30px 20px',
-            // position: 'relative',
-            display: 'flex',
-            flexDirection: 'column',
-            // width: '100%',
-            pointerEvents: 'auto',
-            backgroundClip: 'paddingBox',
-            outline: '0'
-        },
-        '.form-control': {
-            backgroundColor: 'transparent',
-            border: '0px',
-            borderBottom: '0.25px solid #080B0E',
-            borderRadius: '0px',
-            paddingLeft: '0px',
-            paddingRight: '0px',
-            fontFamily: 'Proxima Nova',
-            fontStyle: 'normal',
-            fontWeight: '300',
-            fontSize: '16px',
-            lineHeight: '19px',
-            color: '#222222',
-            width: '100%'
-        },
-        '.form-control:focus-visible': {
-            outline: '0px'
-        },
-        '.modal-header': {
-            padding: '0px',
-            marginBottom: '30px',
-            borderBottom: 'none',
-            position: 'relative',
-            justifyContent: 'flex-start',
-        },
-        '.modal-header button': {
-            padding: '0px',
-            border: '0px',
-            position: 'absolute',
-            right: '0px',
-            bottom: '8px',
-            background: 'transparent',
-            cursor: 'pointer'
-        },
-        '.schedule-label': {
-            fontFamily: 'Proxima Nova',
-            fontStyle: 'normal',
-            fontWeight: '600',
-            fontSize: '16px',
-            lineHeight: '19px',
-            color: '#080B0E',
-            marginBottom: '8px',
-            display: 'block',
-        },
-        '.schedule-heading': {
-            fontFamily: 'Proxima Nova',
-            fontStyle: 'normal',
-            fontWeight: '600',
-            fontSize: '24px',
-            lineHeight: '30px',
-            color: '#080B0E',
-            marginBottom: '8px',
-            marginTop: '0px',
-            display: 'block',
-            textAlign: 'center'
-        },
-        '.mb-3': {
-            marginBottom: '1rem'
-        },
-        ".btn-primary": {
-            border: 'none !important',
-            background: "#080B0E",
-            width: '100% !important',
-            fontSize: "16px",
-            fontWeight: 600,
-            lineHeight: "19px",
-            borderRadius: "0px",
-            color: "#FBFBFB",
-            textTransform: "capitalize",
-            fontFamily: 'Proxima Nova',
-            height: "40px !important",
-            marginTop: "0px",
-        },
-        '.react-datepicker-component .react-datepicker-input input': {
-            paddingLeft: '5px',
-            color: '#080B0E',
-        },
-        '.icon-rc-datepicker': {
-            color: '#080B0E !important',
-        },
-        '.react-datepicker-component .react-datepicker-input.is-open': {
-            background: 'transparent',
-            border: '0px',
-            borderRadius: '0px',
-        },
-        '.react-datepicker-component .react-datepicker-input': {
-            background: 'transparent',
-            border: '0px',
-            borderRadius: '0px',
-        },
-        '.react-datepicker-component .react-datepicker-input:hover': {
-            background: 'transparent',
-            border: '0px',
-            borderRadius: '0px'
-        },
-        '.react-datepicker-component .react-datepicker-input.has-value input': {
-            color: '#080B0E !important',
-        },
-    };
+        right: '0px',
+        bottom: '8px',
+        background: 'transparent',
+        cursor: 'pointer'
+    },
+    '.schedule-label': {
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        fontSize: '16px',
+        lineHeight: '19px',
+        color: '#080B0E',
+        marginBottom: '8px',
+        display: 'block',
+    },
+    '.schedule-heading': {
+        fontFamily: 'Proxima Nova',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        fontSize: '24px',
+        lineHeight: '30px',
+        color: '#080B0E',
+        marginBottom: '8px',
+        marginTop: '0px',
+        display: 'block',
+        textAlign: 'center'
+    },
+    '.mb-3': {
+        marginBottom: '1rem'
+    },
+    ".btn-primary": {
+        border: 'none !important',
+        background: "#080B0E",
+        width: '100% !important',
+        fontSize: "16px",
+        fontWeight: 600,
+        lineHeight: "19px",
+        borderRadius: "0px",
+        color: "#FBFBFB",
+        textTransform: "capitalize",
+        fontFamily: 'Proxima Nova',
+        height: "40px !important",
+        marginTop: "0px",
+    },
+    '.react-datepicker-component .react-datepicker-input input': {
+        paddingLeft: '5px',
+        color: '#080B0E',
+    },
+    '.icon-rc-datepicker': {
+        color: '#080B0E !important',
+    },
+    '.react-datepicker-component .react-datepicker-input.is-open': {
+        background: 'transparent',
+        border: '0px',
+        borderRadius: '0px',
+    },
+    '.react-datepicker-component .react-datepicker-input': {
+        background: 'transparent',
+        border: '0px',
+        borderRadius: '0px',
+    },
+    '.react-datepicker-component .react-datepicker-input:hover': {
+        background: 'transparent',
+        border: '0px',
+        borderRadius: '0px'
+    },
+    '.react-datepicker-component .react-datepicker-input.has-value input': {
+        color: '#080B0E !important',
+    },
+}
     return (
         <React.Fragment>
             <BoxWrapper>
@@ -807,9 +748,9 @@ const SupperClubChaefPage = () => {
                                 />
                                 {showCarousel && (
                                     <Box className="carousel-popup">
-                                        <button className='close-button' onClick={handleClose}><CloseIcon/></button>
+                                        <button className='close-button' onClick={handleCloseCarousel}><CloseIcon className="pop-close-icon"/></button>
                                         <Box className="carousel">
-                                            <SuperClubPopUpCarousel/>
+                                            <SuperClubPopCarousel/>
                                         </Box>
                                     </Box>
                                 )}
@@ -848,7 +789,8 @@ const SupperClubChaefPage = () => {
                                         className="main-img-2"
                                         onClick={handleImageClick}
                                     />
-                                    <Button className="show-btn" onClick={handleOpenPopup}>Show All Photos</Button>
+                                    <Button className="show-btn"onClick={handleOpen} data-bs-toggle="modal"
+                                   data-bs-target="#exampleModal" >Show All Photos</Button>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -1171,11 +1113,10 @@ const SupperClubChaefPage = () => {
                         </Grid>
                     </Grid>
                 </Box>
-                <NeedHelp/>
                 <Modal
                     keepMounted
                     open={open}
-                    onClose={handleClosePopup}
+                    onClose={handleClose}
                     aria-labelledby="keep-mounted-modal-title"
                     aria-describedby="keep-mounted-modal-description"
                 >
@@ -1185,7 +1126,7 @@ const SupperClubChaefPage = () => {
                                 <Typography id="exampleModalLabel" className='schedule-heading modal-title'>Schedule a
                                     call</Typography>
                                 <button type="button" data-bs-dismiss="modal" aria-label="Close" className="close"
-                                        onClick={handleClosePopup}>
+                                        onClick={handleClose}>
                                     <CloseIcon/>
                                 </button>
                             </Box>
@@ -1282,6 +1223,7 @@ const SupperClubChaefPage = () => {
                         </Box>
                     </Box>
                 </Modal>
+                <NeedHelp/>
                 <Box className="footer-box">
                     <Footer/>
                 </Box>
