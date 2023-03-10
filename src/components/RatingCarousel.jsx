@@ -41,7 +41,7 @@ const images = [
 const RatingCarousel = ({backgroundColor}) => {
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
-    const [value, setValue] = React.useState(4);
+    const [value, setValue] = React.useState(5);
     const maxSteps = images.length;
 
     const StyledRating = styled(Rating)({
@@ -70,7 +70,7 @@ const RatingCarousel = ({backgroundColor}) => {
             textAlign: 'center',
             fontSize: '24px',
             lineHeight: '29px',
-            fontFamily: 'Proxima Nova !important',
+            fontFamily: 'ProximaNovaA-Regular',
             padding: '0px 200px',
         },
         ".star": {
@@ -84,7 +84,7 @@ const RatingCarousel = ({backgroundColor}) => {
             fontSize: "20px",
             fontWeight: 600,
             padding: '30px 0px 24px 0px ',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             textTransform: 'uppercase'
         },
         '.rating-star': {
@@ -98,8 +98,8 @@ const RatingCarousel = ({backgroundColor}) => {
             height: '10px',
             width: '10px',
             marginTop: '1px',
-            backgroundColor:'transparent',
-            border:'0.5px solid black'
+            backgroundColor: 'transparent',
+            border: '0.5px solid black'
         },
         '& .MuiMobileStepper-dotActive': {
             marginTop: '0px',
@@ -113,8 +113,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 fontSize: '24px ',
                 lineHeight: '30px',
                 textAlign: 'center',
-                fontFamily: 'Bon Vivant',
-                fontStyle: 'normal',
             },
             '.css-dqr9h-MuiRating-label': {
                 fontSize: '23px'
@@ -123,7 +121,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 textAlign: 'center',
                 fontSize: '14px',
                 lineHeight: '17px',
-                fontFamily: 'Proxima Nova !important',
                 // padding: '0px 50px',
             },
             ".ceoName": {
@@ -131,7 +128,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 fontSize: "14px",
                 fontWeight: 600,
                 padding: '30px 0px 24px 0px ',
-                fontFamily: 'Proxima Nova',
                 textTransform: 'uppercase'
             },
         },
@@ -141,8 +137,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 fontSize: '24px ',
                 lineHeight: '30px',
                 textAlign: 'center',
-                fontFamily: 'Bon Vivant',
-                fontStyle: 'normal',
             },
             '.css-dqr9h-MuiRating-label': {
                 fontSize: '23px'
@@ -151,7 +145,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 textAlign: 'center',
                 fontSize: '16px',
                 lineHeight: '17px',
-                fontFamily: 'Proxima Nova !important',
                 padding: '0px 10px',
             },
             ".ceoName": {
@@ -159,7 +152,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 fontSize: "14px",
                 fontWeight: 600,
                 padding: '30px 0px 24px 0px ',
-                fontFamily: 'Proxima Nova',
                 textTransform: 'uppercase'
             },
         },
@@ -170,7 +162,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 textAlign: 'center',
                 fontSize: '24px',
                 lineHeight: '29px',
-                fontFamily: 'Proxima Nova !important',
                 padding: '0px 100px',
             },
         },
@@ -180,7 +171,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 fontSize: '22px ',
                 lineHeight: '30px',
                 textAlign: 'center',
-                fontFamily: 'Bon Vivant',
                 fontStyle: 'normal',
             },
             '.css-dqr9h-MuiRating-label': {
@@ -190,7 +180,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 textAlign: 'center',
                 fontSize: '14px',
                 lineHeight: '17px',
-                fontFamily: 'Proxima Nova !important',
                 padding: '0px 5px',
             },
             ".ceoName": {
@@ -198,7 +187,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 fontSize: "14px",
                 fontWeight: 600,
                 padding: '30px 0px 24px 0px ',
-                fontFamily: 'Proxima Nova',
                 textTransform: 'uppercase'
             },
             '& .MuiMobileStepper-dot': {
@@ -238,7 +226,7 @@ const RatingCarousel = ({backgroundColor}) => {
                     index={activeStep}
                     onChangeIndex={handleStepChange}
                     enableMouseEvents
-                    springConfig= {{duration: '1s'}}
+                    springConfig={{duration: '1s'}}
                     // hysteresis={0.9}
                     // animateTransitions={true}
                 >

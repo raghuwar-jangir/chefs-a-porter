@@ -12,7 +12,7 @@ const FooterEnd = () => {
             justifyContent: 'space-evenly',
             backgroundColor: "#222222",
             padding: '18px',
-            width: '50%',
+            width: '35%',
             margin: '0px 0px'
         },
         '.footer-text li': {
@@ -34,8 +34,9 @@ const FooterEnd = () => {
             width: '100%'
         },
         '.dot-icon': {
-            color: '#FBFBFB',
-            fontSize: '10px'
+            color: 'rgba(251, 251, 251, 0.6)',
+            fontSize: '6px',
+            opacity: '1'
         },
         "@media (min-width: 1px) and (max-width:768px)": {
             '.footer-item': {

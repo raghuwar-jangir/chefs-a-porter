@@ -44,8 +44,9 @@ const TestimonialCarousel = () => {
         background: '#DCD7CB',
         color: '#222222',
         ".mainTitle": {
-            fontSize: '30px ',
+            fontSize: '24px ',
             lineHeight: '30px',
+            fontWeight:'700',
             textAlign: 'center',
             fontFamily: 'Bon Vivant !important',
             fontStyle: 'normal',
@@ -56,7 +57,8 @@ const TestimonialCarousel = () => {
             textAlign: 'center',
             fontSize: '20px',
             lineHeight: '24px',
-            fontFamily: 'Proxima Nova !important',
+            fontWeight:'400',
+            fontFamily: 'ProximaNovaA-Regular',
             padding: '0px 250px 20px ',
         },
         ".star": {

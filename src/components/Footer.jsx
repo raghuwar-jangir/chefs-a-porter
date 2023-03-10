@@ -271,7 +271,7 @@ const Footer = () => {
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <Link href="/" className='listItem-subheading'>Join Our Community</Link>
+                                        <Link href="/" className='listItem-subheading'>Join as Community</Link>
                                     </List>
                                 </Box>
                             </Grid>

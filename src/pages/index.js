@@ -447,7 +447,7 @@ const BoxWrapper = styled(Box)({
     '.jtable-img': {
         height: '500px',
         objectFit: 'cover',
-        width: '952px !important'
+        width: '100% !important'
     },
     '.join-table-image': {
         padding: '0px',
@@ -468,7 +468,7 @@ const BoxWrapper = styled(Box)({
         marginTop: '7px',
     },
     '.join-table-title': {
-        padding: '109px 200px 0px 120px'
+        padding: '109px 242px 0px 120px'
     },
     '.social-icon': {
         display: 'flex',
@@ -833,6 +833,11 @@ const BoxWrapper = styled(Box)({
         '.chef-container': {
             width: '80%',
         },
+        '.jtable-img': {
+            height: '500px',
+            objectFit: 'cover',
+            width: '100% !important'
+        },
     },
     '@media(min-width: 1100px) and (max-width: 1440px)': {
         '.jtable-img': {
@@ -843,9 +848,6 @@ const BoxWrapper = styled(Box)({
         '.chef-container': {
             width: '60%',
         },
-    },
-    '.join-table-title': {
-        padding: '109px 100px 0px 50px'
     },
 
 })
@@ -1194,11 +1196,11 @@ const HomePage = () => {
                 </Box>
                 <Box className="join-table join-table1">
                     <Box className="container-fluid">
-                        <Box className="row">
-                            <Box className="join-table-image">
+                        <Grid container className="row">
+                            <Grid xl={6} className="join-table-image">
                                 <img src={JoinTableImg} alt="Join The Table" className="jtable-img"/>
-                            </Box>
-                            <Box className="join-table-title">
+                            </Grid>
+                            <Grid xl={6} className="join-table-title">
                                 <Typography className='join-table-heading'>Join our table</Typography>
                                 <Typography className='join-table-details'>Receive recipes , tips and tricks from top
                                     chefs from around the globe, and exclusive
@@ -1228,8 +1230,8 @@ const HomePage = () => {
                                         <LinkedInIcon className='icon'/>
                                     </Box>
                                 </Box>
-                            </Box>
-                        </Box>
+                            </Grid>
+                        </Grid>
                     </Box>
                 </Box>
                 <CorporateBooking/>

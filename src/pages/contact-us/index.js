@@ -231,13 +231,14 @@ const ContactUs = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
+                <Navbar/>
                 {isMobile ? (
                     <Box className="mobile-header">
                         <ArrowBackIcon/>
                         <Typography><a href="/" className="mobile-heading" style={{textAlign: 'center !important'}}>Get
                             In Touch</a></Typography>
                     </Box>
-                ) : (<Navbar/>)}
+                ) : ''}
                 <Box className="joinaschef">
                     <Box className="banner">
                         <Box className="become-partner-header">
