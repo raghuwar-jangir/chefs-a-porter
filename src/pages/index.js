@@ -49,7 +49,7 @@ import diningPicture from '../../src/assets/images/cook1.png'
 import CorporateBooking from "../components/CorporateBooking";
 import PriveeComponentSlider from "../components/PriveeComponentSlider";
 import PriveeCarousel from "../components/PriveeCarousel";
-import TemplateYet from "../components/TemplateYet";
+import TemptedYet from "../components/TemptedYet";
 import joinChef from "../assets/images/joinchef-banner.png";
 import {Form, Formik} from "formik";
 import moment from "moment/moment";
@@ -1249,7 +1249,7 @@ const HomePage = () => {
                     ))}
                 </Box>
                 <DiningExperienceCarousel/>
-                <TemplateYet title={'View our offerings'} isTempted={true}/>
+                <TemptedYet title={'View our offerings'}/>
                 <NeedHelp/>
                 <Footer/>
                 <FooterEnd/>

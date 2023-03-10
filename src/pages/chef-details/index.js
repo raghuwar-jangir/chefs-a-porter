@@ -30,7 +30,7 @@ import * as _ from "lodash";
 import {DatePickerInput} from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
 import RatingCarousel from "../../components/RatingCarousel";
-import TemplateYet from "../../components/TemplateYet";
+import TemptedYet from "../../components/TemptedYet";
 import ImageCarousel from "../../components/ImageCarousel";
 import AvlExperienceCarousel from "../../components/AvlExperienceCarousel";
 import avlExp1 from "../../assets/images/avl-exp1.jpg";
@@ -89,7 +89,8 @@ const ChefDetails = (props) => {
     const BoxWrapper = styled(Box)(() => ({
             background: '#080B0E',
             '.supper-gallery': {
-                marginTop: '40px'
+                marginTop: '40px',
+                padding:'0px 20px'
             },
             '.container-fluid': {
                 padding: '80px 235px'
@@ -810,7 +811,7 @@ const ChefDetails = (props) => {
                 </Modal>
                 <NeedHelp/>
                 <Footer/>
-                <TemplateYet title={'Book an Experience'}/>
+                <TemptedYet title={'Book an Experience'}/>
                 <FooterEnd/>
             </BoxWrapper>
         </React.Fragment>

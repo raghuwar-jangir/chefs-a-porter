@@ -18,7 +18,7 @@ import * as _ from "lodash";
 import PriveeComponentSlider from "../../components/PriveeComponentSlider";
 import {DatePickerInput} from 'rc-datepicker';
 import 'rc-datepicker/lib/style.css';
-import TemplateYet from "../../components/TemplateYet";
+import TemptedYet from "../../components/TemptedYet";
 import ExperienceCarousel from "../../components/ExperienceCarousel";
 import AvlExperienceCarousel from "../../components/AvlExperienceCarousel";
 import avlExp1 from "../../assets/images/avl-exp1.jpg";
@@ -772,7 +772,7 @@ const PriveePage = () => {
                 <Box className="frequently-questions-box">
                     <Questions/>
                 </Box>
-                <TemplateYet title={'Book an Experience'}/>
+                <TemptedYet title={'Book an Experience'} isTempted={true}/>
                 <NeedHelp/>
                 <Footer/>
                 <FooterEnd/>
