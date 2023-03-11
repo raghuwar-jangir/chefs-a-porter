@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import MobileStepper from '@mui/material/MobileStepper';
 import Typography from '@mui/material/Typography';
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
 import { styled } from '@mui/system';
 import { Rating } from '@mui/material';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import {  Autoplay,Pagination } from "swiper";
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
 const images = [
     {
         mainTitle: '"Mako and his eccentric Personality,',
@@ -47,16 +47,18 @@ const BoxWrapper = styled(Box)(() => ({
     color: '#222222',
     ".mainTitle": {
         fontSize: "24px",
-        lineHieght:'150%',
+        lineHeight:'150% ',
         textAlign: "center",
-        fontFamily: 'Bon Vivant'
+        fontFamily: 'Bon Vivant',
+        fontWeight:700,
+        fonStyle:'normal'
     },
     ".details": {
         textAlign: "center",
         fontSize: "20px",
-        // fontWeight: 400,
+        fontWeight: 400,
         lineHeight: '24px',
-        fontFamily:'Proxima Nova Alt'
+        fontFamily:'ProximaNovaA-Regular'
     },
     ".star": {
         textAlign: "center",
@@ -65,32 +67,43 @@ const BoxWrapper = styled(Box)(() => ({
     },
     ".ceoName": {
         textAlign: "center",
-        fontSize: "14px",
+        fontSize: "16px",
         padding: '30px 0px 24px 0px ',
         fontFamily: 'ProximaNovaA-Regular',
         fonStyle: 'normal',
-        lineHeight: '150%',
+        lineHeight: '20px',
         textTransform: 'uppercase',
-        color: '#080B0E'
+        color: '#080B0E',
+        marginBottom:'32px',
+        fontWeight:600
     },
-    '.css-114p2tk-MuiMobileStepper-dot':{
-        border:'1px solid black',
-        backgroundColor:'white'
-
+    '.swiper-pagination-bullet':{
+        width:'8px',
+        height:'8px',
+        background:'transparent',
+        opacity:1,
+        border:'0.672852px solid rgba(34, 34, 34, 0.5)',
+        borderRadius:'100px',
+        margin:'0px 5px !important'
     },
-    '.css-26w9jf-MuiMobileStepper-dot':{
-        backgroundColor:'black',
-        width:'14px',
-        height:'14px'
+    '.swiper-pagination-bullet-active':{
+        width:'12px',
+        height:'12px',
+        background:'#222222',
+    },
+    '.swiper-pagination':{
+        display:'flex',
+        placeItems:'center',
+        justifyContent:'center'
+    },
+    '.swiper':{
+        width:'100%'
     },
     "@media (min-width: 1px) and (max-width:768px)": {
-        '.css-26w9jf-MuiMobileStepper-dot':{
-            width:'8px',
-            height:'8px'
-        },
-        '.css-114p2tk-MuiMobileStepper-dot':{
-            width:'5px',
-            height:'5px'
+        '.swiper-pagination-bullet':{
+            width:'4px',
+        height:'4px',
+        margin:'0px 8px !important'
         }
     }
 
@@ -98,36 +111,19 @@ const BoxWrapper = styled(Box)(() => ({
 }))
 
 const SupperClubDetailsCarousel = () => {
-    const theme = useTheme();
-    const [activeStep, setActiveStep] = useState(0);
     const [value, setValue] = useState(4);
-    const maxSteps = images.length;
-
-    // const handleNext = () => {
-    //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    // };
-
-    // const handleBack = () => {
-    //     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    // };
-
-    const handleStepChange = (step) => {
-        setActiveStep(step);
-    };
-
     return (
-        <BoxWrapper
-            // sx={{ maxWidth: 400, flexGrow: 1 }}
-        >
-            <AutoPlaySwipeableViews
-                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                index={activeStep}
-                onChangeIndex={handleStepChange}
-                enableMouseEvents
-            >
+        <BoxWrapper>
+           <Swiper autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+            pagination={{
+          clickable: true,
+        }} modules={[Autoplay,Pagination]} className="mySwiper">
                 {images.map((step, index) => (
                     <div key={index}>
-                        <Box className='main-div'>
+                        <SwiperSlide className='main-div'>
                             <Typography className='mainTitle'>
                                 {step.mainTitle}
                             </Typography>
@@ -159,21 +155,10 @@ const SupperClubDetailsCarousel = () => {
                             <Typography className='ceoName'>
                                 {step.ceoName}
                             </Typography>
-                        </Box>
+                        </SwiperSlide>
                     </div>
                 ))}
-            </AutoPlaySwipeableViews>
-            <MobileStepper
-                steps={maxSteps}
-                position="static"
-                activeStep={activeStep}
-                sx={{
-                    background: "#FBFBFB",
-                    display: 'flex',
-                    justifyContent: 'center',
-                    Color:'black'
-                }}
-            />
+            </Swiper>
         </BoxWrapper>
     );
 }

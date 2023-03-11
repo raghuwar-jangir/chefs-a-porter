@@ -1,14 +1,14 @@
 import * as React from 'react';
-import {useTheme} from '@mui/material/styles';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
-import MobileStepper from '@mui/material/MobileStepper';
 import Typography from '@mui/material/Typography';
-import SwipeableViews from 'react-swipeable-views';
-import {autoPlay} from 'react-swipeable-views-utils';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import {  Autoplay,Pagination } from "swiper";
 import {styled} from '@mui/system';
 import {Rating} from '@mui/material';
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const images = [
     {
         mainTitle: '"Mako and his eccentric Personality, lit up the room and our taste buds!"',
@@ -39,10 +39,7 @@ const images = [
 
 
 const RatingCarousel = ({backgroundColor}) => {
-    const theme = useTheme();
-    const [activeStep, setActiveStep] = React.useState(0);
-    const [value, setValue] = React.useState(4);
-    const maxSteps = images.length;
+    const [value, setValue] = useState(4);
 
     const StyledRating = styled(Rating)({
         '& .MuiRating-icon': {
@@ -85,7 +82,8 @@ const RatingCarousel = ({backgroundColor}) => {
             fontWeight: 600,
             padding: '30px 0px 24px 0px ',
             fontFamily: 'Proxima Nova',
-            textTransform: 'uppercase'
+            textTransform: 'uppercase',
+            marginBottom:'20px'
         },
         '.rating-star': {
             color: '#222222 !important ',
@@ -94,19 +92,24 @@ const RatingCarousel = ({backgroundColor}) => {
         '.css-dqr9h-MuiRating-label': {
             fontSize: '40px'
         },
-        '& .MuiMobileStepper-dot': {
-            height: '10px',
-            width: '10px',
-            marginTop: '1px',
-            backgroundColor:'transparent',
-            border:'0.5px solid black'
+        '.swiper-pagination-bullet':{
+            width:'8px',
+            height:'8px',
+            background:'transparent',
+            opacity:1,
+            border:'0.672852px solid rgba(34, 34, 34, 0.5)',
+            borderRadius:'100px',
+            margin:'0px 10px !important'
         },
-        '& .MuiMobileStepper-dotActive': {
-            marginTop: '0px',
-            height: '12px',
-            width: '12px',
-            color: '#000',
-            backgroundColor: '#000',
+        '.swiper-pagination-bullet-active':{
+            width:'12px',
+            height:'12px',
+            background:'#222222',
+        },
+        '.swiper-pagination':{
+            display:'flex',
+            placeItems:'center',
+            justifyContent:'center'
         },
         "@media (min-width: 700px) and (max-width:768px)": {
             ".mainTitle": {
@@ -201,50 +204,39 @@ const RatingCarousel = ({backgroundColor}) => {
                 fontFamily: 'Proxima Nova',
                 textTransform: 'uppercase'
             },
-            '& .MuiMobileStepper-dot': {
-                height: '6px',
-                width: '6px',
+            '.swiper-pagination-bullet-active':{
+                width:'7px !important',
+                height:'7px !important'
             },
-            '& .MuiMobileStepper-dotActive': {
-                marginTop: '0px',
-                height: '8px',
-                width: '8px',
-                color: '#000',
-                backgroundColor: '#000',
+            '.swiper-pagination-bullet':{
+                width:'4px',
+            height:'4px',
+            margin:'0px 5px !important'
             }
         },
+        "@media (min-width: 430px) and (max-width:768px)": {
+            '.swiper-pagination-bullet':{
+                width:'4px',
+            height:'4px',
+            margin:'0px 5px !important'
+            }
+        }
     }))
-
-
-    // const handleNext = () => {
-    //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    // };
-
-    // const handleBack = () => {
-    //     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    // };
-
-    const handleStepChange = (step) => {
-        setActiveStep(step);
-    };
-
     return (
         <BoxWrapper
             // sx={{ maxWidth: 400, flexGrow: 1 }}
         >
             <Box>
-                <AutoPlaySwipeableViews
-                    axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                    index={activeStep}
-                    onChangeIndex={handleStepChange}
-                    enableMouseEvents
-                    springConfig= {{duration: '1s'}}
-                    // hysteresis={0.9}
-                    // animateTransitions={true}
-                >
+            <Swiper autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+            pagination={{
+          clickable: true,
+        }} modules={[Autoplay,Pagination]} className="mySwiper">
                     {images.map((step, index) => (
                         <div key={index}>
-                            <Box className='main-div'>
+                            <SwiperSlide className='main-div'>
                                 <Typography className='mainTitle'>
                                     {step.mainTitle}
                                 </Typography>
@@ -268,32 +260,10 @@ const RatingCarousel = ({backgroundColor}) => {
                                 <Typography className='ceoName'>
                                     {step.ceoName}
                                 </Typography>
-                            </Box>
+                            </SwiperSlide>
                         </div>
                     ))}
-                </AutoPlaySwipeableViews>
-                <MobileStepper
-                    steps={maxSteps}
-                    position="static"
-                    activeStep={activeStep}
-                    sx={{
-                        background: `${backgroundColor}`,
-                        display: 'flex',
-                        justifyContent: 'center',
-                        // '& .MuiMobileStepper-dot': {
-                        //     height: '12px',
-                        //     width: '12px',
-                        //     marginTop: '1px',
-                        // },
-                        // '& .MuiMobileStepper-dotActive': {
-                        //     marginTop: '0px',
-                        //     height: '14px',
-                        //     width: '14px',
-                        //     color: '#000',
-                        //     backgroundColor: '#000',
-                        // }
-                    }}
-                />
+                </Swiper>
             </Box>
         </BoxWrapper>
     );
