@@ -188,11 +188,6 @@ const ChefMakoCarousel = () => {
       <SwiperSlide><img className='img' src={diningPicture}></img><Typography className='mako-details'>An agnostic menu that explores a diverse culinary journey with chef mako at the helm</Typography></SwiperSlide>
       ...
     </Swiper>
-    {/* <Box className='content-box'>
-        <Typography className='dining-content'>Conscious Dining</Typography>
-        <Typography className='dining-content'>Championing Chefs</Typography>
-        <Typography className='dining-content'>Community</Typography>
-      </Box> */}
             </MainContentBox>
         </React.Fragment>
     )

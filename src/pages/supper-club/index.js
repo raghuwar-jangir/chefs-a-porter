@@ -40,6 +40,7 @@ import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarouse
 import SupperClubTreatyComponent from "../../components/SupperClubTreatyComponent";
 import NeedHelpSmallComponent from "../../components/NeedHelpSmallComponent";
 import backgroungLogo from "../../assets/images/menuBackground.png";
+import '../../assets/styles/fontStyle.css';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -112,19 +113,35 @@ const SupperClubChaefPage = () => {
     ".sub-box-heading": {
       fontFamily:'Bon Vivant',
       fontSize: "36px",
+      fontWeight:700,
+      fontStyle:'normal',
       lineHeight: "45px",
       letterSpacing: "0.06em",
       color: "#080B0E",
     },
     ".sub-box-text": {
+      fontFamily:'ProximaNovaA-Regular',
+      fontStyle:'normal',
+      paddingTop: "8px",
+      fontWeight: 400,
+      fontSize: "16px",
+      lineHeight: "19px",
+      letterSpacing:'0.06em'
+    },
+    ".sub-box-text-2": {
+      fontFamily:'Proxima Nova Alt',
+      fontStyle:'normal',
       paddingTop: "8px",
       fontWeight: 400,
       fontSize: "16px",
       lineHeight: "19px",
     },
     '.sub-box-link':{
-      fontWeight: 400,
-      textDecoration:'underline'
+      fontFamily:'ProximaNovaA-Regular',
+      fontStyle:'normal',
+      fontWeight: 'bold',
+      textDecoration:'underline',
+      letterSpacing:'0.06em'
     },
     ".sub-box-2": {
       background: "#FBFBFB",
@@ -133,11 +150,15 @@ const SupperClubChaefPage = () => {
     },
     ".sub-text-price": {
       fontWeight: 600,
+      fontStyle:'normal',
+      fontFamily:'ProximaNovaA-Regular',
       fontSize: "36px",
       lineHeight: "44px",
       color: "#080B0E",
     },
     ".sub-text": {
+      fontStyle:'normal',
+      fontFamily:'Proxima Nova Alt',
       fontWeight: 300,
       fontSize: "20px",
       lineHeight: "24px",
@@ -147,6 +168,9 @@ const SupperClubChaefPage = () => {
       padding: "20px 0px",
     },
     ".experience-date-text": {
+      fontFamily:'Bon Vivant',
+      fontStyle:'normal',
+      fontWeight:700,
       fontSize: "20px",
       lineHeight: "25px",
       color: "#080B0E",
@@ -159,6 +183,8 @@ const SupperClubChaefPage = () => {
       color: "#080B0E",
     },
     ".main-date": {
+      fontFamily:'ProximaNovaA-Regular',
+      fontStyle:'normal',
       fontWeight: 400,
       fontSize: "32px",
       lineHeight: "39px",
@@ -168,9 +194,14 @@ const SupperClubChaefPage = () => {
     ".date-month": {
       fontSize: "14px",
       lineHeight: "17px",
+      fontFamily:'ProximaNovaA-Regular',
+      fontStyle:'normal',
+      fontWeight: 600,
     },
     ".date-day": {
-      fontWeight: 250,
+      fontFamily:'Proxima Nova Alt',
+      fontStyle:'normal',
+      fontWeight: 300,
       fontSize: "16px",
       lineHeight: "24px",
     },
@@ -379,11 +410,11 @@ const SupperClubChaefPage = () => {
     },
     ".show-btn": {
       position: "absolute",
-      bottom: "16px",
-      right: "19px",
+      bottom: "22px",
+      right: "29px",
       fontFamily: "ProximaNovaA-Regular",
       fontStyle: "normal",
-      fontWeight: "100",
+      fontWeight: 400,
       fontSize: "16px",
       lineHeight: "19px",
       color: "#080B0E",
@@ -411,9 +442,9 @@ const SupperClubChaefPage = () => {
       color: "#FBFBFB",
       backgroundColor: "#000",
       width: "100%",
-      fontFamily: "Proxima Nova Alt",
+      fontFamily: 'ProximaNovaA-Regular',
       fontStyle: "normal",
-      fontWeight: "100",
+      fontWeight: 600,
       fontSize: "16px",
       lineHeight: "19px",
       padding: "18.5px 10px",
@@ -442,7 +473,7 @@ const SupperClubChaefPage = () => {
       left: "0",
       width: "100%",
       height: "100%",
-      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      backgroundColor: "rgba(0, 0, 0, 0.8)",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -450,8 +481,8 @@ const SupperClubChaefPage = () => {
     },
     ".close-button": {
       position: 'absolute',
-                top: '30px',
-                right: '50px',
+                top: '20px',
+                right: '0px',
                 fontSize: '24px',
                 backgroundColor: 'transparent',
                 border: 'none',
@@ -460,7 +491,7 @@ const SupperClubChaefPage = () => {
                 zIndex: '999',
     },
     ".swiper": {
-      width: "75%",
+      width: "76%",
       height: "100%",
     },
     ".sub-div": {
@@ -510,7 +541,7 @@ const SupperClubChaefPage = () => {
     '.time-text':{
       fontFamily: 'ProximaNovaA-Regular',
         fontStyle: 'normal',
-        fontWeight: '400 !important',
+        fontWeight: 'bolder',
         fontSize: '14px',
         lineHeight: '120%',
     },
@@ -545,6 +576,13 @@ const SupperClubChaefPage = () => {
     '.grid-item':{
       paddingRight:'5px'
     },
+    '.restorent-1':{
+      paddingRight:'10px'
+    },
+    '.restorent-2':{
+      paddingLeft:'10px !important',
+      paddingRight:'14px'
+    },
     "@media (min-width: 768px) and (max-width:1024px)": {
       ".box1": {
         width: "87%",
@@ -565,15 +603,21 @@ const SupperClubChaefPage = () => {
       },
     },
     "@media (min-width: 1px) and (max-width:768px)": {
-      ".css-1fh2pai-MuiGrid-root ": {
-        width: "100% !important",
-        maxWidth: "none",
+      ".parent-container ": {
+        flex: '0 0 auto',
+    width: '58.33333333%',
+    maxWidth:'none'
       },
       ".grid-box-2": {
         flexDirection: "column",
       },
+      '.next-grid':{
+        flex:' 0 0 auto',
+    width: '41.66666667%',
+    maxWidth:'none'
+      },
       ".grid-child-box": {
-        maxWidth: "99%",
+        maxWidth: "100%",
       },
       ".sub-box-2": {
         marginTop: "0px",
@@ -587,7 +631,11 @@ const SupperClubChaefPage = () => {
       '.date-time-box':{
         flexDirection:'column',
         alignItems:'flex-start'
-      }
+      },
+      '.grid-item':{
+        maxWidth:'100%',
+        paddingRight:'0px'
+      },
     },
     "@media (min-width: 1px) and (max-width:425px)": {
       ".main-box": {
@@ -738,7 +786,7 @@ const SupperClubChaefPage = () => {
                 <Navbar/>
                 <Box className="main-box">
                     <Grid container spacing={{md: 2}}>
-                        <Grid item xl={7} md={7} sm={6} xs={12}>
+                        <Grid className="parent-container" item xl={7} md={7} sm={6} xs={12}>
                             <Box className="container">
                                 <img
                                     src={RestorentImg}
@@ -758,7 +806,7 @@ const SupperClubChaefPage = () => {
                         </Grid>
                         <Grid item md={5} sm={6} xs={12} xl={5} className="next-grid">
                             <Grid className="child-container" container spacing={2}>
-                                <Grid item md={6} sm={6} xs={6} xl={6}>
+                                <Grid className="restorent-1" item md={6} sm={6} xs={6} xl={6}>
                                     <img
                                         src={RestorentImg}
                                         alt="RestorentImg"
@@ -766,7 +814,7 @@ const SupperClubChaefPage = () => {
                                         onClick={handleImageClick}
                                     />
                                 </Grid>
-                                <Grid item md={6} sm={6} xs={6} xl={6}>
+                                <Grid className="restorent-2" item md={6} sm={6} xs={6} xl={6}>
                                     <img
                                         src={RestorentImg}
                                         alt="RestorentImg"
@@ -774,7 +822,7 @@ const SupperClubChaefPage = () => {
                                         onClick={handleImageClick}
                                     />
                                 </Grid>
-                                <Grid item md={6} sm={6} xs={6} xl={6}>
+                                <Grid className="restorent-1" item md={6} sm={6} xs={6} xl={6}>
                                     <img
                                         src={RestorentImg}
                                         alt="RestorentImg"
@@ -782,7 +830,7 @@ const SupperClubChaefPage = () => {
                                         onClick={handleImageClick}
                                     />
                                 </Grid>
-                                <Grid item md={6} sm={6} xs={6} xl={6}>
+                                <Grid className="restorent-2" item md={6} sm={6} xs={6} xl={6}>
                                     <img
                                         src={RestorentImg}
                                         alt="RestorentImg"
@@ -807,7 +855,7 @@ const SupperClubChaefPage = () => {
                     <b className="sub-box-link">Chef Mako</b>
                   </span>
                                 </Typography>
-                                <Typography className="sub-box-text">2 Slots Left!</Typography>
+                                <Typography className="sub-box-text-2">2 Slots Left!</Typography>
                             </Box>
                             <Box>
                                 <Stack
@@ -1006,7 +1054,7 @@ const SupperClubChaefPage = () => {
                                     sx={{
                                         display: "flex",
                                         paddingBottom: "20px",
-                                        borderBottom: "0.5px solid #080B0E",
+                                        borderBottom: "0.5px solid rgba(220, 215, 203, 1)",
                                     }}
                                 >
                                     <Typography className="sub-text-price">
