@@ -11,7 +11,7 @@ import {
     Typography,
 } from "@mui/material";
 import IntroChefImg1 from "../assets/images/IntroChefImg1.png";
-import IntroChefImg2 from "../assets/images/introChefImg2.png" ;
+import IntroChefImg2 from "../assets/images/introChefImg2.png";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -19,6 +19,7 @@ import "swiper/css/pagination";
 import {Navigation, Pagination} from "swiper";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import '../assets/styles/fontStyle.css';
 
 const TeamCarousel = (props) => {
     const BoxWrapper = styled(Box)(() => ({
@@ -30,6 +31,7 @@ const TeamCarousel = (props) => {
             textAlign: "center",
             color: "#FBFBFB",
             marginBottom: "8px",
+            fontWeight: 700
         },
         ".social-icon": {
             display: "flex",
@@ -140,9 +142,12 @@ const TeamCarousel = (props) => {
         },
         '.swiper-pagination-horizontal': {
             bottom: '-10px !important'
-        }, "@media (min-width: 1px) and (max-width:425px)": {
+        },
+        "@media (min-width: 1px) and (max-width:425px)": {
             ".btn": {
                 width: "100%",
+                fontWeight: 600,
+                height: 'auto'
             },
             ".social-icon": {
                 display: "flex",

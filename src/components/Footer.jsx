@@ -68,7 +68,7 @@ const Footer = () => {
         '.input-field': {
             borderRadius: '0px',
             background: '#FBFBFB',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
             fontSize: '14px',
@@ -76,8 +76,10 @@ const Footer = () => {
             color: '#BDBDBD',
             width: '190px !important',
             height: "36px !important",
+            marginBottom: '20px',
         },
         '.btn': {
+            fontFamily: 'ProximaNovaA-Regular',
             background: "#C6A87D",
             fontSize: '14px !important',
             lineHeight: "25px",
@@ -86,7 +88,7 @@ const Footer = () => {
             height: "36px !important",
             width: '50px !important',
             borderColor: '#C6A87D',
-            margin: '0px',
+            margin: '0px !important',
             textTransform: "capitalize !important"
         },
         ".btn:hover": {color: "#080B0E", background: "#C6A87D",},
@@ -239,6 +241,10 @@ const Footer = () => {
                                         <TextField className='input-field' id='email-address' size='small'
                                                    placeholder='Your email address' variant='outlined'
                                                    sx={{
+                                                       '.MuiOutlinedInput-notchedOutline': {
+                                                           border: 'none',
+                                                           outline: 'none'
+                                                       },
                                                        '.MuiInputBase-input': {
                                                            borderRadius: '0px',
                                                            background: '#FBFBFB',

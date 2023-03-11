@@ -25,6 +25,7 @@ import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
 import OpenPosition from "../../components/OpenPositionComponent";
+import '../../assets/styles/fontStyle.css'
 
 const ClientSideOnlyLazy = React.lazy(() =>
     import("../../components/TeamCarousel")
@@ -108,33 +109,38 @@ const AboutCardComponent = (props) => {
 
     const BoxWrapper = styled(Box)(() => ({
         ".main-box": {
-            padding: '130px 160px 40px'
+            padding: '120px 160px 40px'
         },
         ".header-club": {
             padding: '10px',
             backgroundColor: '#DCD7CB',
         },
         ".main-heading": {
-            fontWeight: 'normal !important',
+            fontStyle: 'normal !important',
             fontSize: "24px !important",
+            fontWeight: '700',
             lineHeight: "30px",
             textAlign: 'center', color: '#080B0E',
             fontFamily: 'Bon Vivant !important',
         },
         ".about-heading": {
-            fontWeight: 'normal !important',
+            fontStyle: 'normal !important',
             fontSize: "32px !important",
             lineHeight: "30px",
-            textAlign: 'center', color: '#080B0E',
+            fontWeight: '700',
+            textAlign: 'center',
+            letterSpacing: '0.06em',
+            color: '#080B0E',
             fontFamily: 'Bon Vivant !important',
         },
-        ".details": {
-            fontWeight: 400,
-            fontSize: "24px !important",
-            lineHeight: "24px",
-            textAlign: 'center',
-            fontFamily: 'Proxima Nova',
-        },
+        // ".details": {
+        //     fontWeight: '400',
+        //     fontStyle: 'normal',
+        //     fontSize: "20px !important",
+        //     lineHeight: "24px",
+        //     textAlign: 'center',
+        //     fontFamily: 'ProximaNovaA-Regular',
+        // },
         ".grid-box": {
             border: '1px solid'
         },
@@ -209,7 +215,16 @@ const AboutCardComponent = (props) => {
         // '.parent-stack': {
         //     padding: '40px 0px'
         // },
-        '.sub-title': {paddingTop: '10px', fontSize: '12px'},
+        '.sub-title': {
+            paddingTop: '10px',
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '14px',
+            lineHeight: '16px',
+            marginTop: '10px',
+            color: '#000000',
+        },
         '.options-icon': {width: '41px', height: '41px'},
         '.parent-options': {
             textAlign: 'center',
@@ -225,7 +240,7 @@ const AboutCardComponent = (props) => {
         '.team-img': {
             width: "100%",
             height: '500px',
-            margin: "40px 0px"
+            marginBottom: "40px"
         },
         "@media (min-width: 1px) and (max-width:425px)": {
             ".main-box": {
@@ -255,8 +270,6 @@ const AboutCardComponent = (props) => {
                 fontSize: '12px',
                 width: '50%',
                 alignItems: 'center'
-            }, '.conscious-option': {
-                padding: '25px',
             },
             ".sub-box-2": {
                 padding: '40px 30px',
@@ -270,6 +283,9 @@ const AboutCardComponent = (props) => {
                 padding: '80px 30px 40px ',
                 background: '#101418'
             },
+            '.conscious-option': {
+                padding: '28px',
+            },
         },
         "@media (min-width: 1px) and (max-width:325px)": {
             '.conscious-option': {
@@ -278,7 +294,7 @@ const AboutCardComponent = (props) => {
         },
         "@media (min-width: 350px) and (max-width:375px)": {
             '.conscious-option': {
-                padding: '25px',
+                padding: '27px',
             },
         },
         "@media (min-width: 426px) and (max-width:769px)": {
@@ -323,9 +339,11 @@ const AboutCardComponent = (props) => {
                                     mainTitle="Who are we"
                                     details="We are home to the hottest food tribe in the world! We offer our diners a unique chance to experience curated, conscious-dining in different formats.."
                                     colors='#080B0E'
+                                    fontSize='20px'
                                 />
                             </Box>
-                            <ImageList variant="masonry" cols={3} rows={3} gap={10} rowHeight={isMobile ? '150' : '300'}>
+                            <ImageList variant="masonry" cols={3} rows={3} gap={10}
+                                       rowHeight={isMobile ? '150' : '300'}>
                                 {itemData.map((item, index) => (
                                     <ImageListItem key={item} cols={item.cols || 1} rows={item.rows || 1}>
                                         <img
@@ -343,6 +361,7 @@ const AboutCardComponent = (props) => {
                                 colors='#080B0E'
                                 details="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Donec efficitur justo eget mollis tincidunt. Maecenas ullamcorper"
+                                fontSize="20px"
                             />
                         </Box>
                         <Box className="parent-stack">
@@ -355,7 +374,7 @@ const AboutCardComponent = (props) => {
                                     <Box className="conscious-option">
                                         <Avatar
                                             className="options-icon"
-                                            variant="square"
+                                            variant="rounded"
                                             alt="sustainable"
                                             src={sustainable}
                                         />
@@ -365,10 +384,11 @@ const AboutCardComponent = (props) => {
                                 <Box className="parent-options">
                                     <Box className="conscious-option">
                                         <Avatar
-                                            className=""
-                                            variant="square"
+                                            className="options-icon"
+                                            variant="rounded"
                                             alt="sustainable"
                                             src={weather}
+                                            sx={{ margin: '0px',height:'35px',width:'35px' }}
                                         />
                                     </Box>
                                     <Typography className="sub-title">Seasonal & Local</Typography>
@@ -377,9 +397,10 @@ const AboutCardComponent = (props) => {
                                     <Box className="conscious-option">
                                         <Avatar
                                             className="options-icon"
-                                            variant="square"
+                                            variant="rounded"
                                             alt="sustainable"
                                             src={recycling}
+                                            sx={{height:'35px',width:'35px'}}
                                         />
                                     </Box>
                                     <Typography className="sub-title">Zero Waste</Typography>
@@ -402,6 +423,7 @@ const AboutCardComponent = (props) => {
                                 colors='#FBFBFB'
                                 details="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia,
                          blandit quam nec, iaculis mi. Cras a est cursus."
+                                fontSize='16px'
                             />
                         </Box>
                     </Box>
@@ -415,6 +437,7 @@ const AboutCardComponent = (props) => {
                             mainTitle="Our Values"
                             details="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia,
                          blandit quam nec, iaculis mi. Cras a est cursus."
+                            fontSize='16px'
                         />
                     </Box>
 
@@ -424,11 +447,13 @@ const AboutCardComponent = (props) => {
                             colors='#FBFBFB'
                             details="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit
                          quam nec, iaculis mi. Cras a est cursus."
+                            fontSize='16px'
                         />
                         <img
                             src={teamImage}
                             alt="view"
                             className="team-img"
+                            style={{marginTop: '40px'}}
                         />
                     </Box>
                     {!isSSR && (

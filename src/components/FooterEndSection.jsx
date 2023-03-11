@@ -40,6 +40,7 @@ const FooterEnd = () => {
         },
         "@media (min-width: 1px) and (max-width:768px)": {
             '.footer-item': {
+                fontSize: '16px',
                 textDecoration: 'underline'
             },
             '.footer-text li': {
@@ -50,6 +51,9 @@ const FooterEnd = () => {
             },
             '.dot-icon': {
                 display: 'none'
+            },
+            '.footer-text': {
+                width: '100%',
             },
         },
     }))

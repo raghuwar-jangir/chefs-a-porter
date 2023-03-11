@@ -4,13 +4,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation,Pagination } from "swiper";
 import { Box, Button, Grid, styled, Typography } from '@mui/material';
-import testImage from './../assets/images/testImage.png';
+import testImage from './../assets/images/supper-1.png';
 import testImage2 from './../assets/images/testImage2.png';
 import cap from '../assets/images/chef-cap.png';
 import date from '../assets/images/date.png';
 import tag from '../assets/images/tag-chef.png';
 import trending from '../assets/images/trending.png'
-
+import '../assets/styles/fontStyle.css'
 
 const MainParent = styled(Box)({
     padding:'35px 120px 80px',
@@ -42,11 +42,12 @@ const MainParent = styled(Box)({
     '.super-title': {
         fontFamily: 'Proxima Nova Alt Bold',
         fontStyle: 'normal',
-        fontWeight: '700',
+        fontWeight: 700,
         fontSize: '20px',
         lineHeight: '24px',
         color: '#050405',
         marginBottom: '0px',
+        letterSpacing:'0.01em'
     },
     '.super-chef-details': {
         paddingTop: '20px'
@@ -69,8 +70,8 @@ const MainParent = styled(Box)({
     },
     '.tag-detail': {
         margin: '0',
-        fontFamily: "Roboto , Helvetica , Arial , sans-serif",
-        fontWeight: '400',
+        fontFamily: 'ProximaNovaA-Regular',
+        fontWeight: 300,
         fontSize: '16px',
         lineHeight: '19px',
         letterSpacing: '0.00938em',
@@ -101,7 +102,7 @@ const MainParent = styled(Box)({
     '.trending-title':{
         fontFamily: 'Proxima Nova Alt',
         fontStyle: 'normal',
-        fontWeight: '150',
+        fontWeight: 300,
         fontSize: '16px',
         lineHeight: '19px',
         textAlign: 'right',

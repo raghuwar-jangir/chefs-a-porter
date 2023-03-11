@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -6,11 +6,12 @@ import {Navigation, Pagination} from "swiper";
 import {Box, Button, Grid, Hidden, styled, Typography} from "@mui/material";
 import chef from "../../src/assets/images/chef1.png";
 import chef2 from "../../src/assets/images/chef2.png";
-import chef3 from "../../src/assets/images/chef3.png";
+import chef3 from '../assets/images/chef3.png'
 import chef4 from "../../src/assets/images/chef4.png";
 import reebok from "../assets/images/rebook.png";
 import {isMobile} from "react-device-detect";
 import {Link} from "gatsby";
+import '../assets/styles/fontStyle.css'
 
 const MainParent = styled(Box)({
     ".continue-browsing-box": {
@@ -39,7 +40,7 @@ const MainParent = styled(Box)({
     ".view-more": {
         fontFamily: "ProximaNovaA-Regular",
         fontStyle: "normal",
-        fontWeight: "300",
+        fontWeight: "600",
         fontSize: "16px",
         lineHeight: "19px",
         textAlign: "right",
@@ -49,7 +50,7 @@ const MainParent = styled(Box)({
         border: "0px",
         marginTop: "10px",
         background: "none",
-        textTransform: 'math-auto',
+        textTransform:'math-auto',
 
     },
     ".btn-view": {
@@ -77,14 +78,15 @@ const MainParent = styled(Box)({
         lineHeight: "25px",
         marginBottom: "6px",
         fontFamily: "Bon Vivant ",
+        fontWeight:700
     },
     ".chef-details": {
         textAlign: "center",
         fontSize: "16px",
         lineHeight: "19px",
-        fontFamily: "Proxima Nova",
+        fontFamily: "Proxima Nova Alt",
         fontStyle: "normal",
-        fontWeight: "250",
+        fontWeight: 250,
         letterSpacing: "0.02em",
         color: "rgba(198, 168, 125, 0.8)",
         position: "relative",
@@ -99,7 +101,7 @@ const MainParent = styled(Box)({
     ".rebook-title": {
         fontFamily: "Proxima Nova Alt",
         fontStyle: "normal",
-        fontWeight: "150",
+        fontWeight: "300",
         fontSize: "16px",
         lineHeight: "19px",
         textAlign: "right",
@@ -133,103 +135,104 @@ const MainParent = styled(Box)({
         width: "100%",
     },
     '@media(min-width: 426px) and (max-width: 768px)': {
-        '.continue-browsing-box': {
-            padding: '40px 10px'
+        '.continue-browsing-box':{
+            padding:'40px 10px'
         },
         ".img": {
             height: "553px",
         },
-        ".main-heading": {
-            fontSize: '20px',
-            lineHeight: '25px'
+        ".main-heading":{
+            fontSize:'20px',
+            lineHeight:'25px'
         },
-        '.heading-details': {
-            fontSize: '14px',
-            lineHeight: '17px',
-            padding: '9px 0px 20px 0px'
+        '.heading-details':{
+            fontSize:'14px',
+            lineHeight:'17px',
+            padding:'9px 0px 20px 0px'
         },
-        '.chef-title': {
-            placeContent: 'flex-start',
-            fontSize: '14px',
-            marginBottom: '0px',
-            lineHeight: '17px'
+        '.chef-title':{
+            placeContent:'flex-start',
+            fontSize:'14px',
+            marginBottom:'0px',
+            lineHeight:'17px'
         },
-        '.chef-details ': {
-            textAlign: 'start',
-            fontSize: '14px',
-            lineHeight: '17px'
+        '.chef-details ':{
+            textAlign:'start',
+            fontSize:'14px',
+            lineHeight:'17px'
         },
-        '.name-box': {
-            padding: '16px 8px'
+        '.name-box':{
+            padding:'16px 8px'
         },
-        '.rebook-title': {
-            fontSize: '12px',
-            lineHeight: '15px'
+        '.rebook-title':{
+            fontSize:'12px',
+            lineHeight:'15px'
         },
     },
     '@media(min-width: 1px) and (max-width: 425px)': {
         ".img": {
             height: "553px",
         },
-        '.continue-browsing-box': {
-            padding: '40px 10px 100px 10px'
+        '.continue-browsing-box':{
+            padding:'40px 10px 100px 10px'
         },
-        ".main-heading": {
-            fontSize: '24px',
-            lineHeight: '30px',
-            letterSpacing: '0.06em'
+        ".main-heading":{
+            fontSize:'24px',
+            lineHeight:'30px',
+            letterSpacing:'0.06em'
         },
-        '.heading-details': {
-            fontSize: '14px',
-            lineHeight: '17px',
-            padding: '9px 0px 15px 0px'
+        '.heading-details':{
+            fontSize:'14px',
+            lineHeight:'17px',
+            padding:'9px 0px 15px 0px'
         },
-        '.chef-title': {
-            placeContent: 'flex-center',
-            fontSize: '20px',
-            lineHeight: '17px',
-            marginBottom: '10px'
+        '.chef-title':{
+            placeContent:'flex-center',
+            fontSize:'20px',
+            lineHeight:'17px',
+            marginBottom:'10px'
         },
-        '.chef-details ': {
-            textAlign: 'center',
-            fontSize: '16px',
-            lineHeight: '15px',
+        '.chef-details ':{
+            textAlign:'center',
+            fontSize:'16px',
+            lineHeight:'15px',
         },
-        '.name-box': {
-            padding: '16px 8px'
+        '.name-box':{
+            padding:'16px 8px'
         },
-        '.rebook-title': {
-            fontSize: '12px',
-            lineHeight: '15px'
+        '.rebook-title':{
+            fontSize:'12px',
+            lineHeight:'15px'
         },
-        '.swiper-button-next': {
-            display: 'none'
+        '.swiper-button-next':{
+            display:'none'
         },
-        '.swiper-button-prev': {
-            display: 'none'
+        '.swiper-button-prev':{
+            display:'none'
         },
-        '.swiper': {
-            height: '1180px'
+        '.swiper':{
+            height:'1180px'
         },
-        '.view-more': {
-            position: 'absolute',
+        '.view-more':{
+            position:'absolute',
             top: '1290px',
-            left: '0%',
-            border: '0.5px solid #C6A87D',
+            left:'0%',
+            border:'0.5px solid #C6A87D',
             width: '100%',
             fontSize: '16px',
-            lineHeight: '19px',
-            fontWeight: '200',
-            color: 'white',
+            lineHeight:'19px',
+            fontWeight: 600,
+            color:'white',
             fontFamily: 'ProximaNovaA-Regular',
-            padding: '10px',
-            textTransform: 'math-auto',
-            borderRadius: '1px',
-            marginTop: '15px'
+            padding:'10px',
+            textTransform:'math-auto',
+            borderRadius:'1px',
+            marginTop:'15px'
         },
     }
 });
-const PriveeCarousel = ({title, subTitle, isButtonShow = true}) => {
+
+const PriveeCarousel = ({ title, subTitle, isButtonShow = true }) => {
     return (
         <React.Fragment>
             <MainParent>
@@ -268,20 +271,20 @@ const PriveeCarousel = ({title, subTitle, isButtonShow = true}) => {
                         navigation={true}
                         modules={[Navigation, Pagination]}
                         breakpoints={{
-                            320: {
-                                slidesPerView: 2,
+                            320:{
+                                slidesPerView:2,
                                 spaceBetween: 8,
-                                direction: "vertical",
+                                direction:"vertical",
                             },
-                            375: {
-                                slidesPerView: 2,
+                            375:{
+                                slidesPerView:2,
                                 spaceBetween: 8,
-                                direction: "vertical",
+                                direction:"vertical",
                             },
                             425: {
-                                slidesPerView: 2,
+                                slidesPerView:2,
                                 spaceBetween: 8,
-                                direction: "vertical",
+                                direction:"vertical",
                             },
                             768: {
                                 slidesPerView: 3,
@@ -304,7 +307,7 @@ const PriveeCarousel = ({title, subTitle, isButtonShow = true}) => {
                         className="mySwiper"
                     >
                         <SwiperSlide>
-                            <img className="img" src={chef}/>
+                            <img className="img" src={chef} />
                             <Box className="name-box">
                                 <Typography className="chef-title">Madhav Dayal</Typography>
                                 <Box className="chef-details">
@@ -319,9 +322,9 @@ const PriveeCarousel = ({title, subTitle, isButtonShow = true}) => {
                             </Box>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img className="img" src={chef2}/>
+                            <img className="img" src={chef2} />
                             <Box className="rebook">
-                                <img className="rebook-img" src={reebok}/>
+                                <img className="rebook-img" src={reebok} />
                                 <Typography className="rebook-title">Rebook</Typography>
                             </Box>
                             <Box className="name-box">
@@ -339,7 +342,7 @@ const PriveeCarousel = ({title, subTitle, isButtonShow = true}) => {
                             </Box>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img className="img" src={chef3}/>
+                            <img className="img" src={chef3} />
                             <Box className="name-box">
                                 <Typography className="chef-title">Kyoumars Freeman</Typography>
                                 <Box className="chef-details">
@@ -348,9 +351,9 @@ const PriveeCarousel = ({title, subTitle, isButtonShow = true}) => {
                             </Box>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img className="img" src={chef4}/>
+                            <img className="img" src={chef4} />
                             <Box className="rebook">
-                                <img className="rebook-img" src={reebok}/>
+                                <img className="rebook-img" src={reebok} />
                                 <Typography className="rebook-title">Rebook</Typography>
                             </Box>
                             <Box className="name-box">
@@ -367,9 +370,9 @@ const PriveeCarousel = ({title, subTitle, isButtonShow = true}) => {
                             </Box>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img className="img" src={chef2}/>
+                            <img className="img" src={chef2} />
                             <Box className="rebook">
-                                <img className="rebook-img" src={reebok}/>
+                                <img className="rebook-img" src={reebok} />
                                 <Typography className="rebook-title">Rebook</Typography>
                             </Box>
                             <Box className="name-box">

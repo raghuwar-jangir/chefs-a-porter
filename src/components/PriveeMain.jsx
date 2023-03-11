@@ -9,6 +9,7 @@ import chef2 from './../assets/images/chef2.png'
 import chef3 from '../assets/images/chef3.png';
 import reebok from '../assets/images/rebook.png'
 import {navigate} from "gatsby";
+import '../assets/styles/fontStyle.css'
 
 const MainParent = styled(Box)({
         '.continue-browsing-box': {
@@ -22,7 +23,8 @@ const MainParent = styled(Box)({
             fontSize: '24px',
             lineHeight: '24px',
             letterSpacing: '0.06em',
-            color: '#FBFBFB'
+            color: '#FBFBFB',
+            fontWeight:700
         },
         '.heading-details': {
             fontFamily:'Proxima Nova Alt',
@@ -60,6 +62,7 @@ const MainParent = styled(Box)({
             lineHeight: '25px',
             marginBottom: '6px',
             fontFamily:'Bon Vivant ',
+            fontWeight:700
 
         },
         '.chef-details':{
@@ -89,7 +92,7 @@ const MainParent = styled(Box)({
         '.rebook-title':{
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
-            fontWeight: '150',
+            fontWeight: 300,
             fontSize: '16px',
             lineHeight: '19px',
             textAlign: 'right',
@@ -184,8 +187,8 @@ const MainParent = styled(Box)({
             },
             '.chef-details ':{
                 textAlign:'center',
-                fontSize:'14px',
-                lineHeight:'17px',
+                fontSize:'12px',
+                lineHeight:'15px',
             },
             '.name-box':{
                 padding:'16px 8px'
@@ -224,8 +227,6 @@ const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
                             "--swiper-navigation-color": "white",
                             "--swiper-navigation-size": "17px",
                         }}
-                        slidesPerView={3}
-                        spaceBetween={20}
                         navigation={true}
                         modules={[Navigation, Pagination]}
                         breakpoints={{
@@ -245,6 +246,18 @@ const PriveeMain = ({ title, subTitle, isButtonShow = false }) => {
                                 slidesPerView: 3,
                                 spaceBetween: 8,
                             },
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 20,
+                            },
+                            1440:{
+                                slidesPerView: 3,
+                                spaceBetween: 20,
+                            },
+                            2560:{
+                                slidesPerView: 3,
+                                spaceBetween: 20,
+                            }
 
                         }}
                         className="mySwiper">
