@@ -1,13 +1,14 @@
-import * as React from 'react';
-import {useTheme} from '@mui/material/styles';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import MobileStepper from '@mui/material/MobileStepper';
 import Typography from '@mui/material/Typography';
-import SwipeableViews from 'react-swipeable-views';
-import {autoPlay} from 'react-swipeable-views-utils';
-import {styled} from '@mui/system';
+import { styled } from '@mui/system';
+import { Rating } from '@mui/material';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import {  Autoplay,Pagination } from "swiper";
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
 const images = [
     {
         mainTitle: 'Times Of India',
@@ -33,11 +34,7 @@ const images = [
 
 
 const TestimonialCarousel = () => {
-    const theme = useTheme();
-    const [activeStep, setActiveStep] = React.useState(0);
-    const [value, setValue] = React.useState(4);
-    const maxSteps = images.length;
-
+    const [value, setValue] = useState(4);
 
     const BoxWrapper = styled(Box)(() => ({
         padding: '40px 0px',
@@ -60,6 +57,7 @@ const TestimonialCarousel = () => {
             fontWeight:'400',
             fontFamily: 'ProximaNovaA-Regular',
             padding: '0px 250px 20px ',
+            marginBottom:'30px'
         },
         ".star": {
             height: '40px',
@@ -79,70 +77,80 @@ const TestimonialCarousel = () => {
             color: '#222222',
             borderColor: '#222222'
         },
-        '& .MuiMobileStepper-dot': {
-            height: '10px',
-            width: '10px',
-            marginTop: '1px',
-            backgroundColor: 'transparent',
-            border: '0.5px solid black'
-        },
-        '& .MuiMobileStepper-dotActive': {
-            marginTop: '0px',
-            height: '12px',
-            width: '12px',
-            color: '#000',
-            backgroundColor: '#000',
-        },
         '.css-dqr9h-MuiRating-label': {
             fontSize: '40px'
         },
-        '@media(min-width: 1px) and (max-width: 768px)': {
+        '.swiper-pagination-bullet':{
+            width:'8px',
+            height:'8px',
+            background:'transparent',
+            opacity:1,
+            border:'0.672852px solid rgba(34, 34, 34, 0.5)',
+            borderRadius:'100px',
+            margin:'0px 10px !important'
+        },
+        '.swiper-pagination-bullet-active':{
+            width:'12px',
+            height:'12px',
+            background:'#222222',
+        },
+        '.swiper-pagination':{
+            display:'flex',
+            placeItems:'center',
+            justifyContent:'center'
+        },
+        '@media(min-width: 430px) and (max-width: 768px)': {
             padding: '40px 20px',
             '.details': {
                 padding: '20px',
                 fontSize: '16px',
                 textAlign: 'center',
             },
-            '& .MuiMobileStepper-dot': {
-                height: '6px',
-                width: '6px',
+            '.swiper-pagination-bullet':{
+                width:'4px',
+                height:'4px',
+                margin:'0px 5px !important'
             },
-            '& .MuiMobileStepper-dotActive': {
-                marginTop: '0px',
-                height: '8px',
-                width: '8px',
-                color: '#000',
-                backgroundColor: '#000',
+            ".details": {
+                marginBottom:'10px',
+                padding: '0px 0px 20px ',
             }
-        }
+        },
+        '@media(min-width: 1px) and (max-width: 425px)': {
+            padding: '40px 20px',
+            '.details': {
+                padding: '20px',
+                fontSize: '16px',
+                textAlign: 'center',
+            },
+            '.swiper-pagination-bullet':{
+                width:'4px',
+                height:'4px',
+                margin:'0px 5px !important'
+            },
+            ".details": {
+                marginBottom:'10px',
+                padding: '0px 0px 20px ',
+            },
+            '.swiper-pagination-bullet-active':{
+                width:'7px !important',
+                height:'7px !important'
+            },
+        },
     }))
 
-
-    // const handleNext = () => {
-    //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    // };
-
-    // const handleBack = () => {
-    //     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    // };
-
-    const handleStepChange = (step) => {
-        setActiveStep(step);
-    };
-
     return (
-        <BoxWrapper
-            // sx={{ maxWidth: 400, flexGrow: 1 }}
-        >
-            <AutoPlaySwipeableViews
-                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                index={activeStep}
-                onChangeIndex={handleStepChange}
-                enableMouseEvents
-            >
+        <BoxWrapper>
+            <Swiper autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+            }}
+                    pagination={{
+                        clickable: true,
+                    }} modules={[Autoplay,Pagination]} className="mySwiper">
                 {images.map((step, index) => (
                     <div key={index}>
-                        <Box className='main-div'>
+                        <SwiperSlide className='main-div'>
                             <Typography className='mainTitle'>
                                 {step.mainTitle}
                             </Typography>
@@ -152,20 +160,10 @@ const TestimonialCarousel = () => {
                             <Typography>
                                 {step.name}
                             </Typography>
-                        </Box>
+                        </SwiperSlide>
                     </div>
                 ))}
-            </AutoPlaySwipeableViews>
-            <MobileStepper
-                steps={maxSteps}
-                position="static"
-                activeStep={activeStep}
-                sx={{
-                    background: '#DCD7CB',
-                    display: 'flex',
-                    justifyContent: 'center',
-                }}
-            />
+            </Swiper>
         </BoxWrapper>
     );
 }

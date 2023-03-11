@@ -15,9 +15,13 @@ import {Link, navigate} from "gatsby";
 import CloseIcon from '@mui/icons-material/Close';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
+import {makeStyles} from '@material-ui/core/styles';
+import {Drawer, IconButton, Toolbar} from "@material-ui/core";
+import MenuIcon from "@mui/icons-material/Menu";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
-const Navbar = ({isColor}) => {
+const Navbar = (props, {isColor}) => {
 
     const [isOpen, setOpen] = useState(false);
     const [search, setSearch] = useState(false);
@@ -40,12 +44,65 @@ const Navbar = ({isColor}) => {
         navigate('/');
     }
 
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            flexGrow: 1
+        },
+        menuButton: {
+            // marginRight: theme.spacing(2),
+        },
+        title: {
+            flexGrow: 1,
+            textAlign: "center",
+            color: '#000000 !important'
+        },
+        list: {
+            width: "310px",
+            height: '100%',
+            backgroundColor: '#080B0E',
+        },
+        '@media(min-width: 1px) and (max-width: 320px)': {
+            list: {
+                width: "319px",
+            },
+        },
+        '@media(min-width: 321px) and (max-width: 375px)': {
+            list: {
+                width: "374px",
+            },
+        },
+        '@media(min-width: 376px) and (max-width: 768px)': {
+            list: {
+                width: "399px",
+            },
+        },
+        '@media(min-width: 426px) and (max-width: 768px)': {
+            title: {
+                textAlign: 'left'
+            },
+        },
+
+    }));
+
+    const classes = useStyles();
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+    const toggleDrawer = (open) => (event) => {
+        if (
+            event.type === 'keydown' &&
+            (event.key === 'Tab' || event.key === 'Shift')
+        ) {
+            return;
+        }
+        setIsDrawerOpen(open);
+    };
+
     const BoxWrapper = styled(Box)({
             // flexGrow: 1,
             position: 'fixed',
             width: '100%',
             maxWidth: '100%',
-            height: '82px',
+            height: '80px',
             top: '0px',
             left: '0px',
             right: '0px',
@@ -124,6 +181,15 @@ const Navbar = ({isColor}) => {
                 cursor: 'pointer',
                 objectFit: 'contain',
             },
+            '.mobile-navbar-img': {
+                display: 'flex',
+                justifyContent: 'center !important',
+                cursor: 'pointer',
+                height: '35px',
+                width: '172px',
+                objectFit: 'contain',
+                paddingLeft: '60px'
+            },
             '.css-2ehmn7-MuiInputBase-root-MuiOutlinedInput-root': {
                 width: '100%',
                 height: '40px',
@@ -165,6 +231,21 @@ const Navbar = ({isColor}) => {
                     flexBasis: '100%'
                 }
             },
+            '@media(min-width: 375px) and (max-width: 400px)': {
+                '.mobile-navbar-img': {
+                    paddingLeft: '90px'
+                },
+            },
+            '@media(min-width: 400px) and (max-width: 425px)': {
+                '.mobile-navbar-img': {
+                    paddingLeft: '120px'
+                },
+            },
+            '@media(min-width: 426px) and (max-width: 768px)': {
+                '.mobile-navbar-img': {
+                    paddingLeft: '10px'
+                },
+            },
             '@media(min-width: 1000px) and (max-width: 1024px)': {
                 '.grid-box': {
                     width: '70% !important'
@@ -179,75 +260,44 @@ const Navbar = ({isColor}) => {
                 },
             },
             '@media(min-width: 1px) and (max-width: 768px)': {
+                display: 'unset',
+                height: 'unset',
                 '.mobile-navbar': {
                     display: 'block'
                 },
                 '.desktop-navbar': {
                     display: 'none'
                 },
+            },
+
+            //mobile navbar
+            // '.css-hip9hq-MuiPaper-root-MuiAppBar-root': {
+            //     backgroundColor: `${isColor ? '#080B0E' : '#dcd7cb'}`
+            // },
+            '.MuiToolbar-gutters': {
+                padding: '0px 8px !important'
+            },
+            '.MuiIconButton-root': {
+                padding: '8px 8px 8px 0px',
+                fontWeight: 'unset'
+            },
+            '.css-fpvc7o-MuiList-root': {
+                paddingBottom: '0px !important',
+                paddingTop: '0px !important'
+            },
+            '.MuiToolbar-regular': {
+                height: '56px !important',
+                minHeight: '56px !important'
+            },
+            '.appbar': {
+                backgroundColor: `${isColor ? '#080B0E' : '#dcd7cb'}`
             }
         },
     )
-
-    let styles = {
-        bmBurgerButton: {
-            position: 'absolute',
-            width: '2.1rem',
-            height: '1.4rem',
-            right: '15px',
-            top: '15px',
-            fontStyle: 'proxima Nova Alt',
-            alignItem: 'center',
-            color: `${isColor ? '#FBFBFB' : '#080B0E'}`,
-        },
-        bmBurgerBars: {
-            background: `${isColor ? '#FBFBFB' : '#080B0E'}`,
-        },
-        bmBurgerBarsHover: {
-            // background: '#a90000'
-            background: `${isColor ? '#FBFBFB' : '#080B0E'}`,
-        },
-        bmCrossButton: {
-            right: '1.1rem',
-            top: '0.8rem',
-            height:'32px',
-            width:'32px'
-        },
-        bmCross: {
-            background: '#C6A87D'
-        },
-        bmMenuWrap: {
-            position: 'fixed',
-            height: '100%'
-        },
-        bmMenu: {
-            // background: '#373a47',
-            // padding: '2.5em 1.5em 0',
-            padding: '16px',
-        },
-        bmMorphShape: {
-            fill: '#373a47'
-        },
-        bmItemList: {
-            color: '#b8b7ad',
-            // padding: '0.8em'
-            paddingTop: '2.2rem',
-        },
-        bmItem: {
-            display: 'inline-block',
-            padding: '8px 0px'
-        },
-        bmOverlay: {
-            background: 'transparent',
-        },
-    }
-
     return (
         <React.Fragment>
 
             {/* //! browser view for the navbar component */}
-
-            {/*<BrowserView>*/}
             <BoxWrapper>
                 <AppBar position="fixed" elevation={0}
                         sx={{background: `${isColor ? '#101418' : '#FBFBFB'}`}}
@@ -323,64 +373,135 @@ const Navbar = ({isColor}) => {
                     </Box>
                 </AppBar>
                 <Box className="mobile-navbar">
-                    <AppBar position="fixed" elevation={0} className="mobile-menu">
-                        <Menu
-                            isOpen={isOpen}
-                            onOpen={handleIsOpen}
-                            onClose={handleIsOpen}
-                            styles={styles} left width={'100%'}>
-                            <Link onClick={closeSideBar}
-                                  className='hamburger-title' to='/home'> Home </Link>
-                            <Link onClick={closeSideBar}
-                                  className="hamburger-title" to='/privee'> Privee </Link>
-                            <Link onClick={closeSideBar}
-                                  className="hamburger-title" to='/super-club'> Supper Clubs </Link>
-                            <Link onClick={closeSideBar}
-                                  className="hamburger-title" to='/our-chef'> Our Chefs </Link>
-                            <Link onClick={closeSideBar}
-                                  className="hamburger-title" to='/privee'> Corporate Bookings </Link>
-                            <Link onClick={closeSideBar}
-                                  className="hamburger-title" to='/patron'> Become a Patron </Link>
-                            <Link onClick={closeSideBar}
-                                  className="hamburger-title" to='/cards'> Gift Cards </Link>
-                            <List
-                                sx={{width: '100%', maxWidth: '100%'}}
-                                component="nav"
+                    <Box className={classes.root}>
+                        <AppBar position="static" className="appbar">
+                            <Toolbar>
+                                {props.isIcon && <ArrowBackIcon sx={{color: '#000000 !important'}}/>}
+                                {props.isImage &&
+                                    <img src={LightThemeIcon} className='mobile-navbar-img'/>}
+                                <Typography variant="h6" className={classes.title}>
+                                    {props.heading}
+                                </Typography>
+                                <IconButton
+                                    edge="end"
+                                    className={classes.menuButton}
+                                    color="inherit"
+                                    aria-label="menu"
+                                    onClick={toggleDrawer(true)}
+                                >
+                                    <MenuIcon sx={{color: '#000000 !important', fontSize: '40px'}}/>
+                                </IconButton>
+                            </Toolbar>
+                        </AppBar>
+                        <Drawer open={isDrawerOpen} onClose={toggleDrawer(false)} transitionDuration={50}>
+                            <div
+                                className={classes.list}
+                                role="presentation"
+                                // onClick={toggleDrawer(false)}
+                                // onKeyDown={toggleDrawer(false)}
                             >
-                                <ListItemButton onClick={handleClick} sx={{
-                                    padding: '0px !important'
-                                }}>
-                                    <ListItemText disableTypography primary="Join Us" className='hamburger-title'
-                                                  sx={{fontSize: '18px', padding: '0px !important'}}/>
-                                    {expanded ? <ExpandLess/> : <ExpandMore/>}
-                                </ListItemButton>
-                                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                                    <List component="div" disablePadding>
-                                        <ListItemButton sx={{
-                                            padding: '8px 0px !important'
-                                        }}>
-                                            <Link to={'/our-chef-page'} className="hamburger-subtitle">Chef</Link>
-                                        </ListItemButton>
-                                        <ListItemButton sx={{
-                                            padding: '8px 0px !important'
-                                        }}>
-                                            <Link to={'/'} className="hamburger-subtitle">Sponsor Partner</Link>
-                                        </ListItemButton>
-                                        <ListItemButton sx={{
-                                            padding: '8px 0px !important'
-                                        }}>
-                                            <Link to={'/'} className="hamburger-subtitle">Vendor<br/>(decor, venue,
-                                                crockery, cultery, produce, etc)</Link>
-                                        </ListItemButton>
-                                    </List>
-                                </Collapse>
-                            </List>
-                            <Link onClick={closeSideBar}
-                                  className="hamburger-title" to='/about-us/'> About us </Link>
-                            <Link onClick={closeSideBar}
-                                  className="hamburger-title" to='/contact'> Contact </Link>
-                        </Menu>
-                    </AppBar>
+                                <List>
+                                    <ListItem button sx={{display: 'flex', justifyContent: 'end'}}>
+                                        <CloseIcon sx={{color: '#c6a87d', display: 'flex', justifyContent: 'end'}}
+                                                   onClick={toggleDrawer(false)}/>
+                                    </ListItem>
+                                    <ListItem button>
+                                        <Link className='hamburger-title' to='/'> Home </Link>
+                                    </ListItem>
+                                    <ListItem button>
+                                        <Link
+                                            className="hamburger-title" to='/privee'> Privee </Link>
+                                    </ListItem>
+                                    <ListItem button>
+                                        <Link
+                                            className="hamburger-title" to='/supper-club'> Supper Clubs </Link>
+                                    </ListItem>
+                                    <ListItem button>
+                                        <Link
+                                            className="hamburger-title" to='/our-chefs'> Our Chefs </Link>
+                                    </ListItem>
+                                    <ListItem button>
+                                        <Link
+                                            className="hamburger-title" to='/privee'> Corporate Bookings </Link>
+                                    </ListItem>
+                                    <ListItem button>
+                                        <Link
+                                            className="hamburger-title" to='/become-a-patron'> Become a Patron </Link>
+                                    </ListItem>
+                                    <ListItem button>
+                                        <Link
+                                            className="hamburger-title" to='/gift-cards'> Gift Cards </Link>
+                                    </ListItem>
+                                    <ListItem button>
+                                        <List
+                                            sx={{
+                                                width: '100%', maxWidth: '100%', '.css-fpvc7o-MuiList-root': {
+                                                    paddingBottom: '0px !important',
+                                                    paddingTop: '0px !important'
+                                                },
+                                            }}
+                                            component="nav"
+                                        >
+                                            <ListItemButton onClick={handleClick} sx={{
+                                                padding: '0px !important',
+                                                '.css-fpvc7o-MuiList-root': {
+                                                    paddingBottom: '0px !important',
+                                                    paddingTop: '0px !important'
+                                                },
+                                                '.MuiListItemText-root': {
+                                                    marginBottom: '0px !important',
+                                                    marginTop: '0px !important'
+                                                },
+                                            }}>
+                                                <ListItemText disableTypography primary="Join Us"
+                                                              className='hamburger-title'
+                                                              sx={{
+                                                                  fontSize: '18px',
+                                                                  '.css-fpvc7o-MuiList-root': {
+                                                                      paddingBottom: '0px !important',
+                                                                      paddingTop: '0px !important'
+                                                                  },
+                                                              }}/>
+                                                {expanded ? <ExpandLess sx={{color: '#FBFBFB'}}/> :
+                                                    <ExpandMore sx={{color: '#FBFBFB'}}/>}
+                                            </ListItemButton>
+                                            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                                <List component="div" disablePadding>
+                                                    <ListItemButton sx={{
+                                                        padding: '8px 0px !important'
+                                                    }}>
+                                                        <Link to={'/our-chef-page'}
+                                                              className="hamburger-subtitle">Chef</Link>
+                                                    </ListItemButton>
+                                                    <ListItemButton sx={{
+                                                        padding: '8px 0px !important'
+                                                    }}>
+                                                        <Link to={'/become-partner'} className="hamburger-subtitle">Sponsor
+                                                            Partner</Link>
+                                                    </ListItemButton>
+                                                    <ListItemButton sx={{
+                                                        padding: '8px 0px !important'
+                                                    }}>
+                                                        <Link to={'/'} className="hamburger-subtitle">Vendor<br/>(decor,
+                                                            venue,
+                                                            crockery, cultery, produce, etc)</Link>
+                                                    </ListItemButton>
+                                                </List>
+                                            </Collapse>
+                                        </List>
+                                    </ListItem>
+                                    <ListItem button>
+                                        <Link
+                                            className="hamburger-title" to='/about-us/'> About us </Link>
+                                    </ListItem>
+                                    <ListItem button>
+                                        <Link
+                                            className="hamburger-title" to='/contact'> Contact </Link>
+                                    </ListItem>
+                                </List>
+                            </div>
+                        </Drawer>
+                    </Box>
                 </Box>
             </BoxWrapper>
             {/*</BrowserView>*/}

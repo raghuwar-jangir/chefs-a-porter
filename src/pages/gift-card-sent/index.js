@@ -733,7 +733,7 @@ const GiftCardSent = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar/>
+                <Navbar isImage={true}/>
                 <Box className="main-box">
                     <Grid container spacing={{md: 2}}>
                         <Grid item xl={7} md={7} sm={6} xs={12}>

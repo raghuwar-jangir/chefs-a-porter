@@ -560,15 +560,15 @@ const ChefDetails = (props) => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isColor={true}/>
-                {isMobile ? (
-                    <Box className='header-club'>
-                        <ArrowBackIcon className="header-icon"/>
-                        <Typography className="chef-mobile-heading">Privee</Typography>
-                    </Box>
-                ) : (
-                    ''
-                )}
+                <Navbar heading="Privee" isColor={true}/>
+                {/*{isMobile ? (*/}
+                {/*    <Box className='header-club'>*/}
+                {/*        <ArrowBackIcon className="header-icon"/>*/}
+                {/*        <Typography className="chef-mobile-heading">Privee</Typography>*/}
+                {/*    </Box>*/}
+                {/*) : (*/}
+                {/*    ''*/}
+                {/*)}*/}
                 <Box className="supper-gallery chef-ind">
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">

@@ -215,11 +215,11 @@ const MobileGiftCardSent = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                {isMobile ? (
-                    <Box className="mobile-header">
-                        <ArrowBackIcon/>
-                    </Box>
-                ) : ''}
+                {/*{isMobile ? (*/}
+                {/*    <Box className="mobile-header">*/}
+                {/*        <ArrowBackIcon/>*/}
+                {/*    </Box>*/}
+                {/*) : ''}*/}
                 <Box className="patron-submitted">
                     <Grid container>
                         <Grid item xs={12} md={12} className="occasion-cards">

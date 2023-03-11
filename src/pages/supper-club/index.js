@@ -63,7 +63,7 @@ const SupperClubChaefPage = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const AnyReactComponent = ({ text }) => <div>{text}</div>;
+    const AnyReactComponent = ({text}) => <div>{text}</div>;
     const defaultProps = {
         center: {
             lat: 10.99835602,
@@ -112,37 +112,37 @@ const SupperClubChaefPage = () => {
             padding: "40px 0px",
         },
         ".sub-box-heading": {
-            fontFamily:'Bon Vivant',
+            fontFamily: 'Bon Vivant',
             fontSize: "36px",
-            fontWeight:700,
-            fontStyle:'normal',
+            fontWeight: 700,
+            fontStyle: 'normal',
             lineHeight: "45px",
             letterSpacing: "0.06em",
             color: "#080B0E",
         },
         ".sub-box-text": {
-            fontFamily:'ProximaNovaA-Regular',
-            fontStyle:'normal',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
             paddingTop: "8px",
             fontWeight: 400,
             fontSize: "16px",
             lineHeight: "19px",
-            letterSpacing:'0.06em'
+            letterSpacing: '0.06em'
         },
         ".sub-box-text-2": {
-            fontFamily:'Proxima Nova Alt',
-            fontStyle:'normal',
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
             paddingTop: "8px",
             fontWeight: 400,
             fontSize: "16px",
             lineHeight: "19px",
         },
-        '.sub-box-link':{
-            fontFamily:'ProximaNovaA-Regular',
-            fontStyle:'normal',
+        '.sub-box-link': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
             fontWeight: 'bold',
-            textDecoration:'underline',
-            letterSpacing:'0.06em'
+            textDecoration: 'underline',
+            letterSpacing: '0.06em'
         },
         ".sub-box-2": {
             background: "#FBFBFB",
@@ -151,15 +151,15 @@ const SupperClubChaefPage = () => {
         },
         ".sub-text-price": {
             fontWeight: 600,
-            fontStyle:'normal',
-            fontFamily:'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontFamily: 'ProximaNovaA-Regular',
             fontSize: "36px",
             lineHeight: "44px",
             color: "#080B0E",
         },
         ".sub-text": {
-            fontStyle:'normal',
-            fontFamily:'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontFamily: 'Proxima Nova Alt',
             fontWeight: 300,
             fontSize: "20px",
             lineHeight: "24px",
@@ -169,13 +169,13 @@ const SupperClubChaefPage = () => {
             padding: "20px 0px",
         },
         ".experience-date-text": {
-            fontFamily:'Bon Vivant',
-            fontStyle:'normal',
-            fontWeight:700,
+            fontFamily: 'Bon Vivant',
+            fontStyle: 'normal',
+            fontWeight: 700,
             fontSize: "20px",
             lineHeight: "25px",
             color: "#080B0E",
-            marginBottom:'0.5rem'
+            marginBottom: '0.5rem'
         },
         ".experience-date-sub-test": {
             fontWeight: 300,
@@ -184,8 +184,8 @@ const SupperClubChaefPage = () => {
             color: "#080B0E",
         },
         ".main-date": {
-            fontFamily:'ProximaNovaA-Regular',
-            fontStyle:'normal',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
             fontWeight: 400,
             fontSize: "32px",
             lineHeight: "39px",
@@ -195,20 +195,20 @@ const SupperClubChaefPage = () => {
         ".date-month": {
             fontSize: "14px",
             lineHeight: "17px",
-            fontFamily:'ProximaNovaA-Regular',
-            fontStyle:'normal',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
             fontWeight: 600,
         },
         ".date-day": {
-            fontFamily:'Proxima Nova Alt',
-            fontStyle:'normal',
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
             fontWeight: 300,
             fontSize: "16px",
             lineHeight: "24px",
         },
         ".next-grid": {
             display: "inline",
-            paddingLeft:'0px !important'
+            paddingLeft: '0px !important'
         },
         ".date-time-box": {
             display: "flex",
@@ -264,7 +264,7 @@ const SupperClubChaefPage = () => {
             fontFamily: "ProximaNovaA-Regular",
             lineHeight: "24px",
             letterSpacing: " 0.06em",
-            textAlign:'center'
+            textAlign: 'center'
         },
         ".blowOut-description": {
             padding: "20px 16px",
@@ -358,11 +358,11 @@ const SupperClubChaefPage = () => {
         '.Joy-selected': {
             border: '0.5px solid #080B0E',
             borderRadius: '0px',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontHeight: '400',
-            fontSize: '12px',
-            lineHeight: '15px',
+            fontSize: '20px',
+            lineHeight: '24px',
             color: '#FBFBFB !important',
             background: '#080B0E',
             padding: '8px 0px',
@@ -372,11 +372,11 @@ const SupperClubChaefPage = () => {
         '.MuiTab-variantPlain': {
             border: '0.5px solid #080B0E',
             borderRadius: '0px',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontHeight: '400',
-            fontSize: '12px',
-            lineHeight: '15px',
+            fontSize: '20px',
+            lineHeight: '24px',
             color: '#080B0E',
             padding: '8px 0px',
             width: '100.9px',
@@ -393,7 +393,7 @@ const SupperClubChaefPage = () => {
             fontFamily: 'Proxima Nova Alt',
             fontSize: "20px",
             lineHeight: "0px",
-            fontWeight:300,
+            fontWeight: 300,
             marginBottom: "14px",
             color: "#080B0E",
             marginTop: "5%",
@@ -408,7 +408,7 @@ const SupperClubChaefPage = () => {
             color: "#080B0E",
             marginBottom: "16px",
             display: "block",
-            paddingTop:'8px'
+            paddingTop: '8px'
         },
         ".map-link:hover": {
             color: "#C6A87D",
@@ -440,7 +440,7 @@ const SupperClubChaefPage = () => {
         },
         ".child-container": {
             position: "relative",
-            marginLeft:'2px'
+            marginLeft: '2px'
         },
         ".show-btn": {
             position: "absolute",
@@ -452,11 +452,11 @@ const SupperClubChaefPage = () => {
             fontSize: "16px",
             lineHeight: "19px",
             color: "#080B0E",
-            textTransform:'math-auto',
+            textTransform: 'math-auto',
             background: "#FBFBFB",
             boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
             borderRadius: "1px",
-            padding:'8px 12px'
+            padding: '8px 12px'
         },
         ".show-btn:hover": {
             color: "#C6A87D",
@@ -496,10 +496,10 @@ const SupperClubChaefPage = () => {
         ".container": {
             position: "relative",
         },
-        '.pop-close-icon':{
-            width:'100px',
-            height:'40px',
-            color:'rgb(160, 160, 160)'
+        '.pop-close-icon': {
+            width: '100px',
+            height: '40px',
+            color: 'rgb(160, 160, 160)'
         },
         ".carousel-popup": {
             position: "fixed",
@@ -531,15 +531,15 @@ const SupperClubChaefPage = () => {
         ".sub-div": {
             background: "black",
         },
-        '.css-cr824o-JoyTab-root':{
-            backgroundColor:'#101418',
-            color:'#FBFBFB'
+        '.css-cr824o-JoyTab-root': {
+            backgroundColor: '#101418',
+            color: '#FBFBFB'
         },
-        '.css-6gpojs-JoyTab-root':{
-            backgroundColor:'#101418',
-            color:'#FBFBFB'
+        '.css-6gpojs-JoyTab-root': {
+            backgroundColor: '#101418',
+            color: '#FBFBFB'
         },
-        '.switch-field' :{
+        '.switch-field': {
             display: 'flex',
             overflow: 'hidden',
         },
@@ -572,7 +572,7 @@ const SupperClubChaefPage = () => {
             flexDirection: 'column',
             placeContent: 'center',
         },
-        '.time-text':{
+        '.time-text': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: 'bolder',
@@ -599,7 +599,7 @@ const SupperClubChaefPage = () => {
             flex: '0 0 auto',
             width: '58.33333333%'
         },
-        '.experience-date-sub-text':{
+        '.experience-date-sub-text': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
@@ -607,15 +607,15 @@ const SupperClubChaefPage = () => {
             lineHeight: '24px',
             color: '#080B0E',
         },
-        '.grid-item':{
-            paddingRight:'5px'
+        '.grid-item': {
+            paddingRight: '5px'
         },
-        '.restorent-1':{
-            paddingRight:'10px'
+        '.restorent-1': {
+            paddingRight: '10px'
         },
-        '.restorent-2':{
-            paddingLeft:'10px !important',
-            paddingRight:'14px'
+        '.restorent-2': {
+            paddingLeft: '10px !important',
+            paddingRight: '14px'
         },
         "@media (min-width: 768px) and (max-width:1024px)": {
             ".box1": {
@@ -640,15 +640,15 @@ const SupperClubChaefPage = () => {
             ".parent-container ": {
                 flex: '0 0 auto',
                 width: '58.33333333%',
-                maxWidth:'none'
+                maxWidth: 'none'
             },
             ".grid-box-2": {
                 flexDirection: "column",
             },
-            '.next-grid':{
-                flex:' 0 0 auto',
+            '.next-grid': {
+                flex: ' 0 0 auto',
                 width: '41.66666667%',
-                maxWidth:'none'
+                maxWidth: 'none'
             },
             ".grid-child-box": {
                 maxWidth: "100%",
@@ -656,19 +656,19 @@ const SupperClubChaefPage = () => {
             ".sub-box-2": {
                 marginTop: "0px",
             },
-            '.time-btn-box':{
-                width:'100%',
+            '.time-btn-box': {
+                width: '100%',
                 flexShrink: '0',
                 // width: '100%',
                 maxWidth: '100%',
             },
-            '.date-time-box':{
-                flexDirection:'column',
-                alignItems:'flex-start'
+            '.date-time-box': {
+                flexDirection: 'column',
+                alignItems: 'flex-start'
             },
-            '.grid-item':{
-                maxWidth:'100%',
-                paddingRight:'0px'
+            '.grid-item': {
+                maxWidth: '100%',
+                paddingRight: '0px'
             },
             '.Joy-selected': {
                 width: '80px',
@@ -694,8 +694,8 @@ const SupperClubChaefPage = () => {
             ".box2": {
                 width: "84%",
             },
-            '.grid-item':{
-                paddingRight:"0px"
+            '.grid-item': {
+                paddingRight: "0px"
             },
             ".grid-child-box": {
                 maxWidth: "100%",
@@ -836,7 +836,8 @@ const SupperClubChaefPage = () => {
                                 />
                                 {showCarousel && (
                                     <Box className="carousel-popup">
-                                        <button className='close-button' onClick={handleCloseCarousel}><CloseIcon className="pop-close-icon"/></button>
+                                        <button className='close-button' onClick={handleCloseCarousel}><CloseIcon
+                                            className="pop-close-icon"/></button>
                                         <Box className="carousel">
                                             <SuperClubPopCarousel/>
                                         </Box>
@@ -877,13 +878,13 @@ const SupperClubChaefPage = () => {
                                         className="main-img-2"
                                         onClick={handleImageClick}
                                     />
-                                    <Button className="show-btn"onClick={handleOpen} data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal" >Show All Photos</Button>
+                                    <Button className="show-btn" onClick={handleOpen} data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">Show All Photos</Button>
                                 </Grid>
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid className="grid-box-2" container spacing={{ md: 2 }}>
+                    <Grid className="grid-box-2" container spacing={{md: 2}}>
                         <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
                             <Box className="sub-box">
                                 <Typography className="sub-box-heading">

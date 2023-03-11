@@ -17,23 +17,20 @@ const NeedHelpSmallComponent = ({isColor}) => {
 
     const BoxWarraper = styled(Box)(() => ({
         padding: '20px 16px',
-        // display: 'flex',
-        // justifyContent: 'space-between',
         background: `${isColor ? '#101418' : '#FBFBFB'}`,
         borderTop: '0.5px solid #080B0E',
+
         ".btn": {
-            // border: '0.25px solid #fff',
             border: 'none !important',
             background: "#080B0E",
-            width: '200px !important',
+            width: '220px !important',
             fontSize: "16px",
-            fontWeight: 600,
+            fontWeight: 400,
             lineHeight: "19px",
             borderRadius: "0px",
             color: "#FBFBFB",
-            // color: `${isColor ? '#FBFBFB' : '#FBFBFB'}`,
             textTransform: "capitalize",
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             height: "55px !important",
             marginTop: "0px",
             marginLeft:'-6%'
@@ -45,45 +42,40 @@ const NeedHelpSmallComponent = ({isColor}) => {
         ".btn-2": {
             border: `${isColor ? '0.25px solid #080B0E' : '0.25px solid #080B0E'}`,
             background: "#FBFBFB",
-            width: '200px !important',
+            width: '218px !important',
             fontSize: "16px",
-            fontWeight: 400,
+            fontWeight: 600,
             lineHeight: "19px",
             borderRadius: "0px",
             color: "#080B0E",
             textTransform: "capitalize",
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             height: "55px",
-            // marginLeft: '24px',
-            // marginRight: '150px'
         },
         ".btn-2:hover": {
             color: "#C6A87D",
             background: "#FBFBFB",
         },
         ".main-heading": {
-            fontWeight: 500,
+            fontWeight: 700,
             fontSize: '20px',
             fontStyle: 'normal',
             fontFamily: 'Bon Vivant',
             lineHeight: "25px",
             letterSpacing: "0.06em",
             color: '#080B0E',
-            // color: `${ isColor? '#FBFBFB' : '#080B0E' }`,
             paddingBottom: "8px",
             paddingTop: '0px!important',
             textAlign: 'left'
         },
         ".details": {
-            fontWeight: 300,
-            fontFamily: 'Proxima Nova',
+            fontWeight: 400,
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontSize: "16px !important",
             lineHeight: "24px",
             color: '#080B0E',
             textAlign: 'left'
-            // color: `${ isColor? '#FBFBFB' : '#080B0E' }`,
-            // paddingBottom: "20px"
         },
         '.need-help-box':{
             display:'flex',
@@ -97,7 +89,6 @@ const NeedHelpSmallComponent = ({isColor}) => {
                 fontWeight: 300,
                 fontSize: "16px",
                 lineHeight: "24px",
-                // color: "#FBFBFB",
                 paddingBottom: "20px"
             },
             ".btn": {
@@ -120,7 +111,6 @@ const NeedHelpSmallComponent = ({isColor}) => {
                 fontWeight: 300,
                 fontSize: "16px",
                 lineHeight: "24px",
-                // color: "#FBFBFB",
                 paddingBottom: "20px"
             },
             ".need-help-box":{
@@ -153,10 +143,8 @@ const NeedHelpSmallComponent = ({isColor}) => {
             backgroundColor: '#DCD7CB !important',
             boxShadow: '0px 8px 12px rgb(0 0 0 / 16%)',
             padding: '40px 30px 20px',
-            // position: 'relative',
             display: 'flex',
             flexDirection: 'column',
-            // width: '100%',
             pointerEvents: 'auto',
             backgroundClip: 'paddingBox',
             outline: '0'

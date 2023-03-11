@@ -289,16 +289,16 @@ const EventDetails = () => {
     return (
         <React.Fragment>
             <MainBox>
-                <Navbar isColor={true}/>
+                <Navbar isColor={true} heading="Privée"/>
                 <Box className="main-box">
-                    {isMobile ? (
-                        <Box className="header-club">
-                            <ArrowBackIcon className="header-icon"/>
-                            <Typography className="chef-mobile-heading">Privée</Typography>
-                        </Box>
-                    ) : (
-                        ""
-                    )}
+                    {/*{isMobile ? (*/}
+                    {/*    <Box className="header-club">*/}
+                    {/*        <ArrowBackIcon className="header-icon"/>*/}
+                    {/*        <Typography className="chef-mobile-heading">Privée</Typography>*/}
+                    {/*    </Box>*/}
+                    {/*) : (*/}
+                    {/*    ""*/}
+                    {/*)}*/}
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">
                             <Box className="details">

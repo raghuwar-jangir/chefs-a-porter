@@ -240,7 +240,7 @@ const AboutCardComponent = (props) => {
         '.team-img': {
             width: "100%",
             height: '500px',
-            objectFit:'cover',
+            objectFit: 'cover',
             marginBottom: "40px"
         },
         "@media (min-width: 1px) and (max-width:425px)": {
@@ -287,6 +287,12 @@ const AboutCardComponent = (props) => {
             '.conscious-option': {
                 padding: '28px',
             },
+            ".about-heading": {
+                display: 'none'
+            },
+            ".main-heading": {
+                marginTop: '40px'
+            },
         },
         "@media (min-width: 1px) and (max-width:325px)": {
             '.conscious-option': {
@@ -303,7 +309,8 @@ const AboutCardComponent = (props) => {
                 padding: "0px",
             },
             ".about-heading": {
-                textAlign: 'left', color: '#080B0E',
+                paddingTop: '80px',
+                marginTop: '40px'
             },
             ".sub-box-2": {
                 padding: '40px 70px',
@@ -322,19 +329,11 @@ const AboutCardComponent = (props) => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar title="About Us"/>
+                <Navbar heading="About Us"/>
                 <Box>
                     <Box className="main-box">
                         <Box>
-                            {isMobile ? (
-                                <Box className='header-club'>
-                                    <Typography className="about-heading">About Us</Typography>
-                                </Box>
-                            ) : (
-                                <Typography className="about-heading">About Us</Typography>
-                            )}
-
-
+                            <Typography className="about-heading">About Us</Typography>
                             <Box className="sub-box">
                                 <CommanTextCard
                                     mainTitle="Who are we"
@@ -389,7 +388,7 @@ const AboutCardComponent = (props) => {
                                             variant="rounded"
                                             alt="sustainable"
                                             src={weather}
-                                            sx={{ margin: '0px',height:'35px',width:'35px' }}
+                                            sx={{margin: '0px', height: '35px', width: '35px'}}
                                         />
                                     </Box>
                                     <Typography className="sub-title">Seasonal & Local</Typography>
@@ -401,7 +400,7 @@ const AboutCardComponent = (props) => {
                                             variant="rounded"
                                             alt="sustainable"
                                             src={recycling}
-                                            sx={{height:'35px',width:'35px'}}
+                                            sx={{height: '35px', width: '35px'}}
                                         />
                                     </Box>
                                     <Typography className="sub-title">Zero Waste</Typography>

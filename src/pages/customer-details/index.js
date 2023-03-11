@@ -727,14 +727,14 @@ const CustomerDetails = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isColor={true}/>
-                {isMobile ? (
-                    <Box className='header-club'>
-                        <Typography className="addones-mobile-heading">Privee</Typography>
-                    </Box>
-                ) : (
-                    ''
-                )}
+                <Navbar isColor={true} heading="Privee"/>
+                {/*{isMobile ? (*/}
+                {/*    <Box className='header-club'>*/}
+                {/*        <Typography className="addones-mobile-heading">Privee</Typography>*/}
+                {/*    </Box>*/}
+                {/*) : (*/}
+                {/*    ''*/}
+                {/*)}*/}
                 <Box className="supper-gallery cust-details">
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">

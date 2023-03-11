@@ -153,13 +153,13 @@ const MobileContact = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                {isMobile ? (
-                    <Box className="mobile-header">
-                        <a href="/gift-cards" className="back-arw"><ArrowBackIcon/></a>
-                        <Typography><a className="mobile-heading" style={{textAlign: 'center !important'}}>Contacts</a></Typography>
-                    </Box>
-                ) : <Navbar/>}
-
+                {/*{isMobile ? (*/}
+                {/*    <Box className="mobile-header">*/}
+                {/*        <a href="/gift-cards" className="back-arw"><ArrowBackIcon/></a>*/}
+                {/*        <Typography><a className="mobile-heading" style={{textAlign: 'center !important'}}>Contacts</a></Typography>*/}
+                {/*    </Box>*/}
+                {/*) : <Navbar/>}*/}
+                <Navbar heading="Contacts"/>
                 <Box className="joinaschef">
                     <form className="form-inline">
                         <Box className="form-group">
