@@ -347,20 +347,49 @@ const SupperClubChaefPage = () => {
       marginBottom: "8px",
     },
     ".menu-sub": {
+      fontFamily: 'ProximaNovaA-Regular',
       margin: "0px",
       fontWeight: "400",
       fontSize: "14px",
       lineHeight: "20px",
       letterSpacing: "0.00938em",
     },
-    ".css-130r91k-JoyTabList-root": {
+    '.Joy-selected': {
+      border: '1px solid black',
+      textAlign: 'center',
+      borderRight: '1px solid #222',
+      borderRadius: '0px',
+      fontFamily: 'Proxima Nova Alt',
+      fontStyle: 'normal',
+      fontWeight: '400',
+      fontSize: '20px',
+      lineHeight: '24px',
+      padding: '8px',
+  },
+  '.MuiTab-variantPlain': {
+    border: '1px solid black',
+    textAlign: 'center',
+    borderRight: '1px solid #222',
+    borderRadius: '0px',
+    fontFamily: 'Proxima Nova Alt',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontSize: '20px',
+    lineHeight: '24px',
+    padding: '8px',
+  },
+  '.css-1lhe3ax-JoyTabPanel-root': {
+      padding: '0px'
+  },
+  ".MuiTabList-root": {
       width: "96% !important",
       left: "2% !important",
-    },
+  },
     ".map-heading": {
-      fontFamily: "Bon Vivant",
+      fontFamily: 'Proxima Nova Alt',
       fontSize: "20px",
       lineHeight: "0px",
+      fontWeight:300,
       marginBottom: "14px",
       color: "#080B0E",
       marginTop: "5%",
@@ -375,6 +404,7 @@ const SupperClubChaefPage = () => {
       color: "#080B0E",
       marginBottom: "16px",
       display: "block",
+      paddingTop:'8px'
     },
     ".map-link:hover": {
       color: "#C6A87D",
@@ -396,8 +426,8 @@ const SupperClubChaefPage = () => {
       marginLeft: "16px",
     },
     ".down-heading": {
-      fontFamily: "Bon Vivant",
-      fontWeight: "100",
+      fontFamily: 'ProximaNovaA-Regular',
+      fontWeight: 400,
       fontSize: "20px",
       lineHeight: "24px",
       marginLeft: "10px",
@@ -636,6 +666,12 @@ const SupperClubChaefPage = () => {
         maxWidth:'100%',
         paddingRight:'0px'
       },
+      '.Joy-selected': {
+    width: '80px',
+},
+'.MuiTab-variantPlain': {
+    width: '80px',
+}
     },
     "@media (min-width: 1px) and (max-width:425px)": {
       ".main-box": {
