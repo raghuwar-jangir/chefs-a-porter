@@ -50,7 +50,7 @@ import Privee from '../components/Privee';
 import CorporateBooking from "../components/CorporateBooking";
 import PriveeComponentSlider from "../components/PriveeComponentSlider";
 import PriveeCarousel from "../components/PriveeCarousel";
-import TemplateYet from "../components/TemplateYet";
+import TemptedYet from "../components/TemptedYet";
 import joinChef from "../assets/images/joinchef-banner.png";
 import {Form, Formik} from "formik";
 import moment from "moment/moment";
@@ -59,6 +59,7 @@ import {DatePickerInput} from "rc-datepicker";
 import PriveeImg from "../assets/images/priveeImg.png";
 import SupperClubImg from "../assets/images/SupperClubImg.png";
 import ClubSection from "../components/ClubSection";
+import DiningExperienceCarousel from "../components/DiningExperienceCarousel";
 
 
 const MainBoxContent = styled(Box)({
@@ -447,7 +448,7 @@ const BoxWrapper = styled(Box)({
     '.jtable-img': {
         height: '500px',
         objectFit: 'cover',
-        width: '952px !important'
+        width: '100% !important'
     },
     '.join-table-image': {
         padding: '0px',
@@ -468,7 +469,7 @@ const BoxWrapper = styled(Box)({
         marginTop: '7px',
     },
     '.join-table-title': {
-        padding: '109px 200px 0px 120px'
+        padding: '109px 242px 0px 120px'
     },
     '.social-icon': {
         display: 'flex',
@@ -833,6 +834,11 @@ const BoxWrapper = styled(Box)({
         '.chef-container': {
             width: '80%',
         },
+        '.jtable-img': {
+            height: '500px',
+            objectFit: 'cover',
+            width: '100% !important'
+        },
     },
     '@media(min-width: 1100px) and (max-width: 1440px)': {
         '.jtable-img': {
@@ -843,9 +849,6 @@ const BoxWrapper = styled(Box)({
         '.chef-container': {
             width: '60%',
         },
-    },
-    '.join-table-title': {
-        padding: '109px 100px 0px 50px'
     },
 
 })
@@ -1194,11 +1197,11 @@ const HomePage = () => {
                 </Box>
                 <Box className="join-table join-table1">
                     <Box className="container-fluid">
-                        <Box className="row">
-                            <Box className="join-table-image">
+                        <Grid container className="row">
+                            <Grid xl={6} className="join-table-image">
                                 <img src={JoinTableImg} alt="Join The Table" className="jtable-img"/>
-                            </Box>
-                            <Box className="join-table-title">
+                            </Grid>
+                            <Grid xl={6} className="join-table-title">
                                 <Typography className='join-table-heading'>Join our table</Typography>
                                 <Typography className='join-table-details'>Receive recipes , tips and tricks from top
                                     chefs from around the globe, and exclusive
@@ -1228,8 +1231,8 @@ const HomePage = () => {
                                         <LinkedInIcon className='icon'/>
                                     </Box>
                                 </Box>
-                            </Box>
-                        </Box>
+                            </Grid>
+                        </Grid>
                     </Box>
                 </Box>
                 <CorporateBooking/>
@@ -1248,8 +1251,8 @@ const HomePage = () => {
                         </Box>
                     ))}
                 </Box>
-                <PriveeComponentSlider/>
-                <TemplateYet title={'View our offerings'} isTempted={true}/>
+                <DiningExperienceCarousel/>
+                <TemptedYet title={'View our offerings'}/>
                 <NeedHelp/>
                 <Footer/>
                 <FooterEnd/>

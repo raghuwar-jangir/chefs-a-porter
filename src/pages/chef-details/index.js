@@ -30,7 +30,7 @@ import * as _ from "lodash";
 import {DatePickerInput} from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
 import RatingCarousel from "../../components/RatingCarousel";
-import TemplateYet from "../../components/TemplateYet";
+import TemptedYet from "../../components/TemptedYet";
 import ImageCarousel from "../../components/ImageCarousel";
 import AvlExperienceCarousel from "../../components/AvlExperienceCarousel";
 import avlExp1 from "../../assets/images/avl-exp1.jpg";
@@ -90,7 +90,8 @@ const ChefDetails = (props) => {
     const BoxWrapper = styled(Box)(() => ({
             background: '#080B0E',
             '.supper-gallery': {
-                marginTop: '40px'
+                marginTop: '40px',
+                padding: '0px 20px'
             },
             '.container-fluid': {
                 padding: '80px 235px'
@@ -166,7 +167,7 @@ const ChefDetails = (props) => {
                 padding: '8px 12px',
                 position: 'relative',
                 bottom: '50px',
-                left: '650px',
+                left: '530px',
             },
             '.read-more-less--more, .read-more-less--less': {
                 all: 'unset',
@@ -353,7 +354,10 @@ const ChefDetails = (props) => {
             '@media(min-width: 700px) and (max-width: 768px)': {
                 '.all-photos': {
                     bottom: '50px',
-                    left: '220px',
+                    left: '200px',
+                },
+                '.bm-burger-bars': {
+                    background: '#080B0E !important',
                 },
             },
             "@media (min-width: 320px) and (max-width:425px)": {
@@ -830,7 +834,7 @@ const ChefDetails = (props) => {
                 </Modal>
                 <NeedHelp/>
                 <Footer/>
-                <TemplateYet title={'Book an Experience'}/>
+                <TemptedYet title={'Book an Experience'}/>
                 <FooterEnd/>
             </BoxWrapper>
         </React.Fragment>

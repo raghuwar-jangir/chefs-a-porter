@@ -1048,7 +1048,7 @@ const SupperClubChaefPage = () => {
                                     <TabPanel value={2} sx={{p: 0}}>
                                         <Box className="map-container">
                                             <Box
-                                                style={{ backgroundColor: "#FBFBFB", padding: "16px 16px 20px 16px" }}
+                                                style={{backgroundColor: "#FBFBFB", padding: "16px 16px 20px 16px"}}
                                             >
                                                 <Box className="map-heading">
                                                     Blue Cafe, Kamanahalli

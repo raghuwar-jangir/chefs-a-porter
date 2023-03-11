@@ -67,7 +67,7 @@ const RatingCarousel = ({backgroundColor}) => {
             textAlign: 'center',
             fontSize: '24px',
             lineHeight: '29px',
-            fontFamily: 'Proxima Nova !important',
+            fontFamily: 'ProximaNovaA-Regular',
             padding: '0px 200px',
         },
         ".star": {
@@ -81,9 +81,8 @@ const RatingCarousel = ({backgroundColor}) => {
             fontSize: "20px",
             fontWeight: 600,
             padding: '30px 0px 24px 0px ',
-            fontFamily: 'Proxima Nova',
-            textTransform: 'uppercase',
-            marginBottom:'20px'
+            fontFamily: 'ProximaNovaA-Regular',
+            textTransform: 'uppercase'
         },
         '.rating-star': {
             color: '#222222 !important ',
@@ -116,8 +115,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 fontSize: '24px ',
                 lineHeight: '30px',
                 textAlign: 'center',
-                fontFamily: 'Bon Vivant',
-                fontStyle: 'normal',
             },
             '.css-dqr9h-MuiRating-label': {
                 fontSize: '23px'
@@ -126,7 +123,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 textAlign: 'center',
                 fontSize: '14px',
                 lineHeight: '17px',
-                fontFamily: 'Proxima Nova !important',
                 // padding: '0px 50px',
             },
             ".ceoName": {
@@ -134,7 +130,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 fontSize: "14px",
                 fontWeight: 600,
                 padding: '30px 0px 24px 0px ',
-                fontFamily: 'Proxima Nova',
                 textTransform: 'uppercase'
             },
         },
@@ -144,8 +139,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 fontSize: '24px ',
                 lineHeight: '30px',
                 textAlign: 'center',
-                fontFamily: 'Bon Vivant',
-                fontStyle: 'normal',
             },
             '.css-dqr9h-MuiRating-label': {
                 fontSize: '23px'
@@ -154,7 +147,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 textAlign: 'center',
                 fontSize: '16px',
                 lineHeight: '17px',
-                fontFamily: 'Proxima Nova !important',
                 padding: '0px 10px',
             },
             ".ceoName": {
@@ -162,7 +154,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 fontSize: "14px",
                 fontWeight: 600,
                 padding: '30px 0px 24px 0px ',
-                fontFamily: 'Proxima Nova',
                 textTransform: 'uppercase'
             },
         },
@@ -173,7 +164,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 textAlign: 'center',
                 fontSize: '24px',
                 lineHeight: '29px',
-                fontFamily: 'Proxima Nova !important',
                 padding: '0px 100px',
             },
         },
@@ -183,7 +173,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 fontSize: '22px ',
                 lineHeight: '30px',
                 textAlign: 'center',
-                fontFamily: 'Bon Vivant',
                 fontStyle: 'normal',
             },
             '.css-dqr9h-MuiRating-label': {
@@ -193,7 +182,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 textAlign: 'center',
                 fontSize: '14px',
                 lineHeight: '17px',
-                fontFamily: 'Proxima Nova !important',
                 padding: '0px 5px',
             },
             ".ceoName": {
@@ -201,7 +189,6 @@ const RatingCarousel = ({backgroundColor}) => {
                 fontSize: "14px",
                 fontWeight: 600,
                 padding: '30px 0px 24px 0px ',
-                fontFamily: 'Proxima Nova',
                 textTransform: 'uppercase'
             },
             '.swiper-pagination-bullet-active':{

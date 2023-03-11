@@ -3,7 +3,7 @@ import {
     Box,
     styled,
     Typography,
-  } from "@mui/material";
+} from "@mui/material";
 import gMeal from '../assets/images/meal-gold.png';
 import gStar from '../assets/images/star-gold.png';
 import gGlass from '../assets/images/wine-glass-gold.png';

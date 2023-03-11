@@ -49,7 +49,6 @@ const MainContentBox = styled(Box)({
         borderRadius:'0px',
         height:'2px',
         width:'200px',
-        height:'2px',
         background:'#FBFBFB',
         opacity:'1',
     },
@@ -220,27 +219,22 @@ const DiningPage = (props) => {
             return '<div class="' + className + '">' + (labels[index]) +
            '</div>';
 
-          },
-       }}
-       autoplay={{
-        delay: 8000,
-        disableOnInteraction: false,
-    }}
-    speed={500}
-       navigation={false}
-       modules={[Pagination,Autoplay]}
-       className="mySwiper"
-    >
-      <SwiperSlide><img className='img' src={props.image}></img></SwiperSlide>
-      <SwiperSlide><img className='img'  src={props.image}></img></SwiperSlide>
-      <SwiperSlide><img className='img' src={props.image}></img></SwiperSlide>
-      ...
-    </Swiper>
-    {/* <Box className='content-box'>
-        <Typography className='dining-content'>Conscious Dining</Typography>
-        <Typography className='dining-content'>Championing Chefs</Typography>
-        <Typography className='dining-content'>Community</Typography>
-      </Box> */}
+                        },
+                    }}
+                    autoplay={{
+                        delay: 8000,
+                        disableOnInteraction: false,
+                    }}
+                    speed={500}
+                    navigation={false}
+                    modules={[Pagination,Autoplay]}
+                    className="mySwiper"
+                >
+                    <SwiperSlide><img className='img' src={props.image}></img></SwiperSlide>
+                    <SwiperSlide><img className='img'  src={props.image}></img></SwiperSlide>
+                    <SwiperSlide><img className='img' src={props.image}></img></SwiperSlide>
+                    ...
+                </Swiper>
             </MainContentBox>
         </React.Fragment>
     )

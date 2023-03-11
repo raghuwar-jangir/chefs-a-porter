@@ -6,32 +6,32 @@
     --basic-title: #FBFBFB;
 }
 
-
-
 .hamburger-title {
     text-decoration: none;
     font-size: 24px !important;
     color: var(--basic-title);
-    font-family: 'proxima-nova', sans-serif;
+    font-family: 'Proxima Nova Alt' !important;
     padding: 18px 16px;
     /*overflow-y: scroll;*/
     width: 92%;
     line-height: 29px;
     font-weight: 300;
-
 }
+
 .hamburger-title:hover {
-     color: #C6A87D;
- }
+    color: #C6A87D;
+}
+
 .hamburger-subtitle {
     text-decoration: none;
-    font-size: 20px !important;
+    font-size: 18px !important;
     color: var(--basic-title);
-    font-family: 'proxima-nova', sans-serif;
+    font-family: 'Proxima Nova Alt' !important;
     width: 92%;
-    line-height: 29px;
+    line-height: 24px;
     font-weight: 300;
 }
+
 .hamburger-subtitle:hover {
     color: #C6A87D;
 }
@@ -40,8 +40,8 @@
     color: var(--active-color);
     text-decoration: none;
     font-size: 24px;
-    font-family: 'proxima-nova', sans-serif;
-    padding: 1.18rem 1rem;
+    font-family: 'Proxima Nova Alt' !important;
+    /*padding: 1.18rem 1rem;*/
     /* overflow-y: scroll; */
 }
 

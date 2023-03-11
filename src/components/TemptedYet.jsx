@@ -1,12 +1,13 @@
-import { Button, styled, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import {styled, Typography} from "@mui/material";
+import {Box} from "@mui/system";
 import React from "react";
-const TemplateYet = (props,isTempted) => {
+
+const TemptedYet = (props, {isTempted}) => {
     const BoxWrapper = styled(Box)(() => ({
         '.template': {
             display: 'none',
-            background: '#FBFBFB',
-            padding: '0px 10px 24px'
+            padding: '0px 10px 24px',
+            backgroundColor: `${isTempted ? '#080B0E' : ''}`,
         },
         '.template-title': {
             fontFamily: 'Bon Vivant',
@@ -16,10 +17,10 @@ const TemplateYet = (props,isTempted) => {
             lineHeight: '30px',
             textAlign: 'center',
             letterSpacing: '0.06em',
-            color: '#080B0E',
+            color: `${isTempted ? '#FBFBFB' : '#080B0E'}`,
             marginBottom: '0px',
             paddingBottom: '34px',
-            // paddingTop: '20px',
+            paddingTop: '20px',
         },
         '.view-all': {
             marginTop: '40px',
@@ -28,7 +29,7 @@ const TemplateYet = (props,isTempted) => {
             padding: '10px',
             textAlign: 'center',
             border: '0.5px solid #080B0E',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '16px',
@@ -46,13 +47,6 @@ const TemplateYet = (props,isTempted) => {
             },
         },
         "@media (min-width: 1px) and (max-width:425px)": {
-            '.template': {
-                background: `${isTempted ? '#FBFBFB' :'#080B0E'}`,
-            },
-            '.template-title': {
-                color: `${isTempted ? '#080B0E' :'#FBBFBFB'}`,
-
-            },
             '.view-all': {
                 marginTop: '5px',
                 color: '#080B0E',
@@ -68,10 +62,9 @@ const TemplateYet = (props,isTempted) => {
                 <Box className="template show">
                     <Typography className="template-title">Tempted yet?</Typography>
                     <a href="" className="view-all">{props.title}</a>
-                    {/*<a href="" className="view-all">Book an Experience</a>*/}
                 </Box>
             </BoxWrapper>
         </React.Fragment>
     )
 }
-export default TemplateYet;
+export default TemptedYet;

@@ -33,7 +33,7 @@ const validationSchema = Yup.object({
 });
 
 
-const CustomerDetails = () => {
+const SearchAddress = () => {
     const CHARACTER_LIMIT = 40;
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -654,7 +654,7 @@ const CustomerDetails = () => {
             marginRight: '16px',
         },
         '.map-box': {
-            height: "380px",
+            height: "100px",
             width: "100%",
             marginBottom: '30px'
         },
@@ -712,6 +712,18 @@ const CustomerDetails = () => {
         },
         '.address-box': {
             marginLeft: '15px'
+        },
+        '.save-btn':{
+                background: '#C6A87D',
+                color: '#080B0E',
+                fontFamily: 'ProximaNovaA-Regular',
+                fontSize: '20px',
+                lineHeight: '24px',
+                border: '0px',
+                padding: '14.5px 10px',
+                width: '100%',
+                fontWeight: '600',
+                cursor: 'pointer'
         },
         "@media (min-width: 426px) and (max-width:768px)": {
             width: '500px'
@@ -911,7 +923,7 @@ const CustomerDetails = () => {
                                                         <Typography className="sp-occ ex-detail">Is there a special
                                                             occasion being
                                                             celebrated ?</Typography>
-                                                        <Tabs aria-label="Basic tabs" defaultValue={0}  sx={{
+                                                        <Tabs aria-label="Basic tabs" defaultValue={0} sx={{
                                                             "& .MuiTab-root": {
                                                                 marginRight: 1,
                                                             },
@@ -1153,59 +1165,130 @@ const CustomerDetails = () => {
                                                         />
                                                     </GoogleMapReact>
                                                 </Box>
-                                                <Typography className="label">Experience Location</Typography>
-                                                <TextField type="tel" name="address"
-                                                           className="form-control"
-                                                           id="validationCustom03"
-                                                           placeholder="Enter Location"
-                                                    // value={values.address}
-                                                    // onChange={handleChange}
-                                                           autoComplete="off"
-                                                           variant="standard"
-                                                           InputProps={{
-                                                               disableUnderline: true,
-                                                           }}
-                                                           sx={{
-                                                               '& .MuiInputBase-input': {
-                                                                   background: 'transparent',
-                                                                   height: '31px',
-                                                                   borderRadius: '0px',
-                                                                   fontFamily: 'Proxima Nova',
-                                                                   fontStyle: 'normal',
-                                                                   fontWeight: '400',
-                                                                   fontSize: '16px',
-                                                                   lineHeight: '19px',
-                                                                   color: '#FBFBFB',
-                                                                   padding: '0px'
-                                                               },
+                                                <Box sx={{marginBottom: '30px'}}>
+                                                    <Typography className="label">House/Flat Floor No</Typography>
+                                                    <TextField type="tel" name="address"
+                                                               className="form-control"
+                                                               id="validationCustom03"
+                                                               placeholder="Enter Location"
+                                                        // value={values.address}
+                                                        // onChange={handleChange}
+                                                               autoComplete="off"
+                                                               variant="standard"
+                                                               InputProps={{
+                                                                   disableUnderline: true,
+                                                               }}
+                                                               sx={{
+                                                                   '& .MuiInputBase-input': {
+                                                                       background: 'transparent',
+                                                                       height: '31px',
+                                                                       borderRadius: '0px',
+                                                                       fontFamily: 'Proxima Nova',
+                                                                       fontStyle: 'normal',
+                                                                       fontWeight: '400',
+                                                                       fontSize: '16px',
+                                                                       lineHeight: '19px',
+                                                                       color: '#FBFBFB',
+                                                                       padding: '0px'
+                                                                   },
 
-                                                           }}
-                                                />
+                                                               }}
+                                                    />
+                                                </Box>
+                                                <Box sx={{marginBottom: '30px'}}>
+                                                    <Typography className="label">Experience Location</Typography>
+                                                    <TextField type="tel" name="address"
+                                                               className="form-control"
+                                                               id="validationCustom03"
+                                                               placeholder="Enter Location"
+                                                        // value={values.address}
+                                                        // onChange={handleChange}
+                                                               autoComplete="off"
+                                                               variant="standard"
+                                                               InputProps={{
+                                                                   disableUnderline: true,
+                                                               }}
+                                                               sx={{
+                                                                   '& .MuiInputBase-input': {
+                                                                       background: 'transparent',
+                                                                       height: '31px',
+                                                                       borderRadius: '0px',
+                                                                       fontFamily: 'Proxima Nova',
+                                                                       fontStyle: 'normal',
+                                                                       fontWeight: '400',
+                                                                       fontSize: '16px',
+                                                                       lineHeight: '19px',
+                                                                       color: '#FBFBFB',
+                                                                       padding: '0px'
+                                                                   },
+
+                                                               }}
+                                                    />
+                                                </Box>
+                                                <Box sx={{marginBottom: '30px'}}>
+                                                    <Typography className="label">Landmark</Typography>
+                                                    <TextField type="tel" name="address"
+                                                               className="form-control"
+                                                               id="validationCustom03"
+                                                               placeholder="Enter Location"
+                                                        // value={values.address}
+                                                        // onChange={handleChange}
+                                                               autoComplete="off"
+                                                               variant="standard"
+                                                               InputProps={{
+                                                                   disableUnderline: true,
+                                                               }}
+                                                               sx={{
+                                                                   '& .MuiInputBase-input': {
+                                                                       background: 'transparent',
+                                                                       height: '31px',
+                                                                       borderRadius: '0px',
+                                                                       fontFamily: 'Proxima Nova',
+                                                                       fontStyle: 'normal',
+                                                                       fontWeight: '400',
+                                                                       fontSize: '16px',
+                                                                       lineHeight: '19px',
+                                                                       color: '#FBFBFB',
+                                                                       padding: '0px'
+                                                                   },
+
+                                                               }}
+                                                    />
+                                                </Box>
+                                                <Box sx={{marginBottom: '30px'}}>
+                                                    <Typography className="label">Society Locality</Typography>
+                                                    <TextField type="tel" name="address"
+                                                               className="form-control"
+                                                               id="validationCustom03"
+                                                               placeholder="Enter Location"
+                                                        // value={values.address}
+                                                        // onChange={handleChange}
+                                                               autoComplete="off"
+                                                               variant="standard"
+                                                               InputProps={{
+                                                                   disableUnderline: true,
+                                                               }}
+                                                               sx={{
+                                                                   '& .MuiInputBase-input': {
+                                                                       background: 'transparent',
+                                                                       height: '31px',
+                                                                       borderRadius: '0px',
+                                                                       fontFamily: 'Proxima Nova',
+                                                                       fontStyle: 'normal',
+                                                                       fontWeight: '400',
+                                                                       fontSize: '16px',
+                                                                       lineHeight: '19px',
+                                                                       color: '#FBFBFB',
+                                                                       padding: '0px'
+                                                                   },
+
+                                                               }}
+                                                    />
+                                                </Box>
+                                                <button type="button" className="save-btn">Save Address</button>
                                             </Box>
                                         </Box>
                                     </form>
-                                    <Box className="location-add">
-                                        <Box className="loc-ad">
-                                            <img src={location} alt=""/>
-                                            <Box className="address-box">
-                                                <Typography className="address-title">Theobroma Food Pvt
-                                                    Ltd</Typography>
-                                                <Typography className="address-detail">Deonar Village Road, Deonar,
-                                                    Govandi East,
-                                                    Mumbai...</Typography>
-                                            </Box>
-                                        </Box>
-                                        <Box className="loc-ad">
-                                            <img src={location} alt=""/>
-                                            <Box className="address-box">
-                                                <Typography className="address-title">Theobroma Food Pvt
-                                                    Ltd</Typography>
-                                                <Typography className="address-detail">Deonar Village Road, Deonar,
-                                                    Govandi East,
-                                                    Mumbai...</Typography>
-                                            </Box>
-                                        </Box>
-                                    </Box>
                                 </Box>
                             </Box>
                         </Box>
@@ -1215,4 +1298,4 @@ const CustomerDetails = () => {
         </React.Fragment>
     )
 }
-export default CustomerDetails;
+export default SearchAddress;

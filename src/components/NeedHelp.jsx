@@ -8,6 +8,7 @@ import Modal from '@mui/material/Modal';
 import moment from "moment";
 import * as _ from "lodash";
 import {Formik, Form} from "formik";
+import '../assets/styles/fontStyle.css'
 
 const NeedHelp = ({isColor}) => {
 
@@ -27,13 +28,13 @@ const NeedHelp = ({isColor}) => {
             background: "#080B0E !important",
             width: '214px !important',
             fontSize: "16px !important",
-            // fontWeight: '600',
+            fontWeight: '400',
             lineHeight: "19px",
             borderRadius: "0px",
             color: "#FBFBFB !important",
             // color: `${isColor ? '#FBFBFB' : '#FBFBFB'}`,
             textTransform: "capitalize !important",
-            fontFamily: 'Proxima Nova !important',
+            fontFamily: 'ProximaNovaA-Regular',
             height: "55px !important",
             marginTop: "0px !important",
         },
@@ -51,7 +52,7 @@ const NeedHelp = ({isColor}) => {
             borderRadius: "0px !important",
             color: "#080B0E !important",
             textTransform: "capitalize !important",
-            fontFamily: 'Proxima Nova !important',
+            fontFamily: 'ProximaNovaA-Regular',
             height: "55px !important",
             marginLeft: '24px !important ',
             marginRight: '150px !important'
@@ -61,7 +62,7 @@ const NeedHelp = ({isColor}) => {
             background: "#FBFBFB !important",
         },
         ".main-heading": {
-            fontWeight: 500,
+            fontWeight: '700',
             fontSize: '24px',
             fontStyle: 'normal',
             fontFamily: 'Bon Vivant',
@@ -74,15 +75,15 @@ const NeedHelp = ({isColor}) => {
             textAlign: 'left'
         },
         ".details": {
-            fontWeight: 300,
-            fontFamily: 'Proxima Nova',
+            fontWeight: '300',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontSize: "16px !important",
             lineHeight: "24px",
             color: '#080B0E',
-            textAlign: 'left'
+            textAlign: 'left',
             // color: `${ isColor? '#FBFBFB' : '#080B0E' }`,
-            // paddingBottom: "20px"
+            paddingBottom: "0px"
         },
         "@media (min-width: 1px) and (max-width:425px)": {
             ".details": {
@@ -154,7 +155,7 @@ const NeedHelp = ({isColor}) => {
             width: '100%'
         },
         '.form-control:focus-visible': {
-         outline:'0px'
+            outline: '0px'
         },
         '.modal-header': {
             padding: '0px',
@@ -218,7 +219,7 @@ const NeedHelp = ({isColor}) => {
         '.icon-rc-datepicker': {
             color: '#080B0E !important',
         },
-        '.react-datepicker-component .react-datepicker-input.is-open':{
+        '.react-datepicker-component .react-datepicker-input.is-open': {
             background: 'transparent',
             border: '0px',
             borderRadius: '0px',
