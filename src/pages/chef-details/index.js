@@ -39,6 +39,7 @@ import {isMobile} from "react-device-detect";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import DiningPage from "../../components/DiningPage";
 import ImagePopCarousel from "../../components/ImagePopCarousel";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const ChefDetails = (props) => {
 
@@ -57,10 +58,11 @@ const ChefDetails = (props) => {
     };
 
     const breadcrumbs = [
-        <Typography key="1" color="#FBFBFB">
+        <Typography key="1" color="#FBFBFB" fontFamily="Proxima Nova Alt" fontWeight="600" fontSize="16px">
             Privee
         </Typography>,
-        <Link underline="none" key="2" color="#C6A87D" href="">
+        <Link underline="none" key="2" color="#C6A87D" fontFamily="Proxima Nova Alt" fontWeight="600" fontSize="16px"
+              href="">
             Chef
         </Link>,
     ];
@@ -72,17 +74,16 @@ const ChefDetails = (props) => {
             img: chef1,
             title: 'chef1',
             rows: 2,
-            cols: 3,
         },
         {
             img: sGallery,
             title: 'sGallery',
-            cols: 4,
+            // cols: 4,
         },
         {
             img: chef2,
             title: 'chef2',
-            cols: 4,
+            // cols: 4,
         },
     ];
 
@@ -90,14 +91,15 @@ const ChefDetails = (props) => {
             background: '#080B0E',
             '.supper-gallery': {
                 marginTop: '40px',
-                padding: '0px 20px'
+                // padding: '0px 20px'
             },
             '.container-fluid': {
                 padding: '80px 235px'
             },
             '.chef-name': {
-                fontSize: '23px',
+                fontSize: '24px',
                 lineHeight: '30px',
+                fontWeight: '700',
                 color: '#FBFBFB',
                 marginTop: '8px',
                 fontFamily: 'Bon Vivant',
@@ -106,14 +108,18 @@ const ChefDetails = (props) => {
                 marginBottom: '8px',
             },
             '.chef-details': {
-                fontFamily: 'Proxima Nova',
+                fontFamily: 'Proxima Nova Alt',
                 fontStyle: 'normal',
+                fontSize: '16px',
+                lineHeight: '19px',
                 fontWeight: '300',
                 color: '#FBFBFB',
+                letterSpacing: '0.06em',
                 marginBottom: '20px',
             },
             '#pills-home': {
-                background: '#DCD7CB'
+                background: '#DCD7CB',
+                padding: '20px 20px 40px 20px'
             },
             '.about-chef-heading': {
                 fontFamily: 'Bon Vivant',
@@ -123,10 +129,10 @@ const ChefDetails = (props) => {
                 lineHeight: '30px',
                 letterSpacing: '0.06em',
                 color: '#080B0E',
-                margin: '5px',
+                marginBottom: '20px',
             },
             '.about-chef-details': {
-                fontfamily: 'Proxima Nova',
+                fontFamily: 'ProximaNovaA-Regular',
                 fontStyle: 'normal',
                 // fontWeight: '300',
                 color: '#080B0E',
@@ -146,15 +152,16 @@ const ChefDetails = (props) => {
                 alignItems: 'center'
             },
             '.read-more': {
-                fontFamily: 'Proxima Nova',
+                fontFamily: 'Proxima Nova Alt',
                 fontStyle: 'normal',
-                // fontWeight: 300,
+                fontWeight: 300,
                 fontSize: '16px',
                 lineHeight: '19px !important',
                 color: '#080B0E',
+                marginTop: '20px'
             },
             '.all-photos': {
-                fontFamily: 'Proxima Nova',
+                fontFamily: 'ProximaNovaA-Regular',
                 fontStyle: 'normal',
                 fontWeight: '400',
                 fontSize: '16px',
@@ -171,11 +178,11 @@ const ChefDetails = (props) => {
             '.read-more-less--more, .read-more-less--less': {
                 all: 'unset',
                 color: '#080B0E',
-                textSecoration: 'underline',
+                textDecoration: 'underline',
                 textUnderlineOffset: '3px',
                 cursor: 'pointer',
                 fontWeight: '700',
-                fontFamily: 'Proxima Nova',
+                fontFamily: 'Proxima Nova Alt',
             },
             '.treat': {
                 padding: '40px 20px',
@@ -197,15 +204,16 @@ const ChefDetails = (props) => {
                 color: '#FBFBFB',
                 fontFamily: 'Bon Vivant',
                 fontStyle: 'normal',
-                // fontWeight: '700',
+                fontWeight: '700',
                 letterSpacing: '0.06em',
                 marginBottom: '8px',
             },
             '.surpirse-details': {
-                fontSize: '15px',
+                fontSize: '16px',
                 lineHeight: '24px',
                 color: '#FBFBFB',
-                fontFamily: 'Proxima Nova',
+                fontWeight: '400',
+                fontFamily: 'Proxima Nova Alt',
                 fontStyle: 'normal',
             },
             '.surprise-Box': {
@@ -216,7 +224,7 @@ const ChefDetails = (props) => {
                 fontSize: '16px',
                 lineHeight: '19px',
                 color: '#FBFBFB',
-                fontFamily: 'Proxima nova',
+                fontFamily: 'Proxima nova Alt',
                 fontStyle: 'normal',
                 letterSpacing: '0.06em',
                 marginBottom: '8px',
@@ -243,14 +251,15 @@ const ChefDetails = (props) => {
             '.chef-header': {
                 fontFamily: 'Bon Vivant',
                 fontStyle: 'normal',
-                // fontWeight: '700',
-                fontSize: '30px',
-                lineHeight: '37px',
+                fontWeight: '700',
+                fontSize: '24px',
+                lineHeight: '30px',
                 textAlign: 'left',
                 letterSpacing: '0.06em',
                 color: '#FBFBFB',
-                padding: '20px 0px',
-                marginBottom: '10px',
+                paddingTop: '80px',
+                paddingBottom: '40px',
+                marginBottom: '8px',
             },
             ".available-experiences": {
                 padding: "5px",
@@ -564,7 +573,9 @@ const ChefDetails = (props) => {
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">
                             <Box className="details">
-                                <Breadcrumbs separator="›" aria-label="breadcrumb" color="white">
+                                <Breadcrumbs separator={<ArrowForwardIosIcon
+                                    sx={{fontSize: '12px', '-webkit-text-stroke': '0.2px', fontWeight: 'unset'}}/>}
+                                             aria-label="breadcrumb" color="white">
                                     {breadcrumbs}
                                 </Breadcrumbs>
                                 <Typography className="chef-name">Chef Mako Ravindran</Typography>
@@ -581,16 +592,16 @@ const ChefDetails = (props) => {
                         </Box>
                         <Box className="tz-gallery">
                             <ImageList variant="masonry"
-                                       sx={{width: '100%', height: '100%', cursor: 'pointer'}}
                                        cols={2}
                                        gap={10}
-                                       rowHeight={200}>
+                                       rowHeight={190}>
                                 {itemData.map((item) => (
                                     <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
                                         <img
                                             src={item.img}
                                             alt={item.title}
                                             loading="lazy"
+                                            sx={{width: '100%', cursor: 'pointer', objectFit: 'cover'}}
                                             onClick={() => {
                                                 handleImageOpen(item.title)
                                             }}

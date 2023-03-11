@@ -240,6 +240,7 @@ const AboutCardComponent = (props) => {
         '.team-img': {
             width: "100%",
             height: '500px',
+            objectFit:'cover',
             marginBottom: "40px"
         },
         "@media (min-width: 1px) and (max-width:425px)": {
@@ -321,7 +322,7 @@ const AboutCardComponent = (props) => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar/>
+                <Navbar title="About Us"/>
                 <Box>
                     <Box className="main-box">
                         <Box>

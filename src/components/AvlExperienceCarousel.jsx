@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box,Typography} from '@mui/material';
+import {Box, Typography} from '@mui/material';
 import {styled} from '@mui/system';
 import StarIcon from '@mui/icons-material/Star';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
@@ -15,8 +15,8 @@ const MainContentBox = styled(Box)({
     '.rating-star': {
         display: 'flex',
         alignItems: 'center',
-        fontSize: '14px',
-        lineHeight: '17px',
+        fontSize: '14px !important',
+        lineHeight: '17px !important',
         color: '#FBFBFB'
 
     },
@@ -24,6 +24,8 @@ const MainContentBox = styled(Box)({
         color: '#C6A87D',
         fontWeight: '250',
         fontSize: '16px',
+        lineHeight: '19px',
+        fontFamily: 'Proxima Nova Alt',
     },
     '.saff-parent': {
         padding: '16px',
@@ -43,21 +45,22 @@ const MainContentBox = styled(Box)({
         top: '0px', left: '0px'
     },
     '.top-box': {
-        fontFamily:'Proxima Nova',
+        fontFamily: 'Proxima Nova Alt',
         fontWeight: '300',
         fontSize: '12px',
-        lineHeight:'15px',
+        lineHeight: '15px',
         padding: '1px 12px',
         textAlign: 'right',
         letterSpacing: '0.02em',
         color: '#C6A87D',
-        display:'flex',
-        justifyContent:'end',
-        alignItems:'center'
+        display: 'flex',
+        justifyContent: 'end',
+        alignItems: 'center'
     },
     '.description': {
         fontSize: '20px',
-        lignHeight: '24px',
+        fontWeight: '400',
+        lineHeight: '24px',
         fontFamily: 'Bon Vivant',
         color: '#FBFBFB'
     },
@@ -70,7 +73,7 @@ const MainContentBox = styled(Box)({
     '.trending-icon': {
         width: '16px',
         height: '16px',
-        paddingRight:'5px'
+        paddingRight: '5px'
     },
 
     "@media (min-width: 1px) and (max-width:1024px)": {
@@ -97,10 +100,10 @@ const MainContentBox = styled(Box)({
             width: '100%',
         },
         '.top-box': {
-            fontFamily:'Proxima Nova',
+            fontFamily: 'Proxima Nova',
             fontWeight: '300',
             fontSize: '12px',
-            lineHeight:'15px',
+            lineHeight: '15px',
             padding: '1px 12px',
             textAlign: 'right',
             letterSpacing: '0.02em',
@@ -122,7 +125,7 @@ const AvlExperienceCarousel = (props) => {
                             A Traditional Oma Kase
                         </Typography>
                         <Typography className='rating-star'>
-                            <StarIcon sx={{color: '#C6A87D',}}/>  4.7
+                            <StarIcon sx={{color: '#C6A87D',}}/> 4.7
                         </Typography>
                     </Box>
                     <Typography className='description'>
@@ -135,7 +138,7 @@ const AvlExperienceCarousel = (props) => {
                         props.isLabelShow &&
                         <Box className='sub-box'>
                             <Box className='top-box'>
-                                <ElectricBoltIcon className="trending-icon"/>  Trending
+                                <ElectricBoltIcon className="trending-icon"/> Trending
                             </Box>
                         </Box>
                     }

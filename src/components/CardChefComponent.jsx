@@ -23,7 +23,7 @@ const CardChefComponent = ({ bgColor }) => {
         },
         ".heading": {
             fontFamily:'Bon Vivant',
-            fontWeight: '300',
+            fontWeight: 700,
             fontSize: "24px",
             lineHeight: "30px",
             margin: '40px 16px 20px',
@@ -31,8 +31,8 @@ const CardChefComponent = ({ bgColor }) => {
             color: '#080B0E'
         },
         ".field-name": {
-            fontFamily:'Bon Vivant',
-            fontWeight: '100',
+            fontFamily:'Proxima Nova Alt',
+            fontWeight: '300',
             fontSize: "20px",
             lineHeight: "24px",
             marginLeft:'10px',
@@ -47,7 +47,7 @@ const CardChefComponent = ({ bgColor }) => {
             marginLeft:'10px'
         },
         ".details": {
-            fontFamily:'ProximaNovaA-Regular',
+            fontFamily:'Proxima Nova Alt',
             fontWeight: 300,
             fontSize: "16px",
             lineHeight: "24px",
@@ -61,7 +61,19 @@ const CardChefComponent = ({ bgColor }) => {
             objectFit: 'contain',
         },
         '.read-more-less--more':{
-            display:'block'
+            display:'block',
+            fontFamily:'ProximaNovaA-Regular',
+            fontWeight:700
+        },
+        '.read-more-less--less':{
+            display:'block',
+            fontFamily:'ProximaNovaA-Regular',
+            fontWeight:700
+        },
+        "@media (min-width: 425px) and (max-width:768px)": {
+            '.details':{
+                padding:'12px 16px 0px 0px'
+            }
         },
         "@media (min-width: 1px) and (max-width:425px)": {
         }
@@ -93,8 +105,8 @@ const CardChefComponent = ({ bgColor }) => {
                 </Box>
                 <Typography className="details">
                     <ReactReadMoreReadLess
-                        readMoreStyle={{textDecoration: "underline",fontWeight:'bold'}}
-                        readLessStyle={{textDecoration: "underline",fontWeight:'bold'}}
+                        readMoreStyle={{textDecoration: "underline"}}
+                        readLessStyle={{textDecoration: "underline"}}
                         charLimit={125}
                         readMoreText={"Read more"}
                         readLessText={"Read less"}
