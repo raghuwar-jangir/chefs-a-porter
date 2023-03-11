@@ -7,6 +7,7 @@ import "swiper/css";
 import AvlExperienceCarousel from "./AvlExperienceCarousel";
 import avlExp1 from "../assets/images/avl-exp1.jpg";
 import avlExp2 from "../assets/images/avl-exp2.jpg";
+import '../assets/styles/fontStyle.css'
 
 const ExperienceCarousel = () => {
     const WrapBox = styled(Box)({
@@ -17,14 +18,15 @@ const ExperienceCarousel = () => {
         },
         '.peek-heading': {
             fontFamily: 'Bon Vivant !important',
-            fontSize: '36px !important',
-            lineHeight: '45px !important',
+            fontSize: '24px !important',
+            lineHeight: '30px !important',
             color: '#FBFBFB !important',
             textAlign: 'center !important',
-            paddingBottom: '40px !important'
+            letterSpacing:'0.06em',
+            fontWeight:700
         },
         '.slider-box': {
-            marginTop: '30px'
+            marginTop: '40px'
         },
         ".swiper-slide": {
             width: '350px !important'

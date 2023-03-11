@@ -2,8 +2,6 @@ import React, {useState} from "react";
 import {Box, MenuItem, Select, styled, Grid, TextField, Typography} from "@mui/material";
 import {MobileView} from "react-device-detect";
 import PriveeDining from "../../components/PriveeDining";
-import RatingCarousel from "../../components/RatingCarousel";
-import Questions from "../../components/Questions";
 import PriveeLogo from '../../assets/images/priveeLogo.png';
 import DownArrow from '../../assets/images/down-arrow.png';
 import priveeEx from '../../assets/images/privee-ex.png';
@@ -23,6 +21,9 @@ import ExperienceCarousel from "../../components/ExperienceCarousel";
 import AvlExperienceCarousel from "../../components/AvlExperienceCarousel";
 import avlExp1 from "../../assets/images/avl-exp1.jpg";
 import avlExp2 from "../../assets/images/avl-exp2.jpg";
+import '../../assets/styles/fontStyle.css';
+import PriveeRatingComponent from "../../components/PriveeRatingComponent";
+import PriveeQuestions from "../../components/PriveeQuestions";
 
 const MainBoxContent = styled(Box)({
     position: 'relative',
@@ -138,9 +139,9 @@ const BoxWrapper = styled(Box)(() => ({
     '.how-work-heading': {
         fontFamily: 'Bon Vivant',
         fontStyle: 'normal',
-        fontWeight: '100',
-        fontSize: '29.8333px',
-        lineHeight: '37px',
+        fontWeight: 700,
+        fontSize: '24px',
+        lineHeight: '30px',
         textAlign: 'center',
         letterSpacing: '0.06em',
         color: '#FBFBFB',
@@ -247,7 +248,7 @@ const BoxWrapper = styled(Box)(() => ({
         width: '100%'
     },
     '.px-last': {
-        padding: '30px 120px',
+        padding: '60px 120px 30px 120px',
         width: '75%'
     },
     '.exp-heading': {
@@ -767,10 +768,10 @@ const PriveePage = () => {
                     </Grid>
                     <button type="submit" className="exp-btn">View More</button>
                 </Box>
-                <RatingCarousel backgroundColor="#DCD7CB"/>
+                <PriveeRatingComponent/>
                 <PriveeComponentSlider/>
                 <Box className="frequently-questions-box">
-                    <Questions/>
+                <PriveeQuestions/>
                 </Box>
                 <TemplateYet title={'Book an Experience'}/>
                 <NeedHelp/>

@@ -23,6 +23,7 @@ import bookingImg6 from "../../assets/images/good-day-DC-logo.png";
 import ContactUsBox from "../../components/ContactUs";
 import ImageCarousel from "../../components/ImageCarousel";
 import {Link} from "gatsby";
+import '../../assets/styles/fontStyle.css';
 
 const CorporateBooking = () => {
 
@@ -55,9 +56,9 @@ const CorporateBooking = () => {
         },
         ".header-link": {
             display: 'flex',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
-            fontWeight: '700',
+            fontWeight: '600',
             fontSize: '20px',
             lineHeight: '24px',
             color: '#FBFBFB',
@@ -78,11 +79,11 @@ const CorporateBooking = () => {
             fontSize: '32px',
             lineHeight: '39px',
             color: '#FBFBFB',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             marginBottom: '8px',
         },
         '.become-detail': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
             fontSize: '18px',
@@ -91,7 +92,7 @@ const CorporateBooking = () => {
             marginBottom: '0px',
         },
         '.apply': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '20px',
@@ -122,9 +123,9 @@ const CorporateBooking = () => {
             backgroundColor: '#DCD7CB',
         },
         '.save-booking-details': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
-            fontweight: '400',
+            fontWeight: '400',
             fontSize: '14px',
             lineHeight: '17px',
             textAlign: 'center',
@@ -153,7 +154,7 @@ const CorporateBooking = () => {
             marginBottom: '25px',
         },
         '.book-title': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '700',
             fontSize: '20px',
@@ -163,10 +164,11 @@ const CorporateBooking = () => {
             marginBottom: '4px',
         },
         '.book-detail': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontSize: '18px',
             lineHeight: '24px',
+            fontWeight:300,
             letterSpacing: '-0.01em',
             color: '#FBFBFB',
             marginBottom: '0px',
@@ -192,6 +194,7 @@ const CorporateBooking = () => {
         },
         '.corporate-booking-heading': {
             fontFamily: 'Bon Vivant',
+            fontWeight:700,
             fontStyle: 'normal',
             fontSize: '24px',
             lineHeight: '30px',
@@ -368,7 +371,7 @@ const CorporateBooking = () => {
                     <Box className="container">
                         <Box className="top-10 position-absolute">
                             <Typography><a href="" className="header-link"><ArrowBackIcon
-                                style={{marginRight: '15px'}}/>Back</a></Typography>
+                                style={{marginRight: '4px'}}/>Back</a></Typography>
                         </Box>
                         <Box className="position-absolute patron-flex">
                             <Box>
