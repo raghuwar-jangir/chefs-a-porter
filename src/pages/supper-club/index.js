@@ -41,6 +41,7 @@ import moment from "moment";
 import * as _ from "lodash";
 import {DatePickerInput} from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
+import '../../assets/styles/fontStyle.css';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -51,20 +52,18 @@ const images = [
     RestorentImgMobile,
     RestorentImgMobile,
 ];
-
 const SupperClubChaefPage = () => {
     const [showCarousel, setShowCarousel] = useState(false);
-    const [open, setOpen] = React.useState(false);
-    const handleOpenPopup = () => setOpen(true);
-    const handleClosePopup = () => setOpen(false);
     const handleImageClick = () => {
         setShowCarousel(true);
     };
-
-    const handleClose = () => {
+    const handleCloseCarousel = () => {
         setShowCarousel(false);
     };
-    const AnyReactComponent = ({text}) => <div>{text}</div>;
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const AnyReactComponent = ({ text }) => <div>{text}</div>;
     const defaultProps = {
         center: {
             lat: 10.99835602,
@@ -86,7 +85,7 @@ const SupperClubChaefPage = () => {
             backgroundColor: "#DCD7CB",
         },
         ".main-box": {
-            padding: "80px 120px",
+            padding: "120px 120px 80px 120px",
             background: "#DCD7CB",
         },
         ".main-img": {
@@ -113,21 +112,37 @@ const SupperClubChaefPage = () => {
             padding: "40px 0px",
         },
         ".sub-box-heading": {
-            fontFamily: 'Bon Vivant',
+            fontFamily:'Bon Vivant',
             fontSize: "36px",
+            fontWeight:700,
+            fontStyle:'normal',
             lineHeight: "45px",
             letterSpacing: "0.06em",
             color: "#080B0E",
         },
         ".sub-box-text": {
+            fontFamily:'ProximaNovaA-Regular',
+            fontStyle:'normal',
+            paddingTop: "8px",
+            fontWeight: 400,
+            fontSize: "16px",
+            lineHeight: "19px",
+            letterSpacing:'0.06em'
+        },
+        ".sub-box-text-2": {
+            fontFamily:'Proxima Nova Alt',
+            fontStyle:'normal',
             paddingTop: "8px",
             fontWeight: 400,
             fontSize: "16px",
             lineHeight: "19px",
         },
-        '.sub-box-link': {
-            fontWeight: 400,
-            textDecoration: 'underline'
+        '.sub-box-link':{
+            fontFamily:'ProximaNovaA-Regular',
+            fontStyle:'normal',
+            fontWeight: 'bold',
+            textDecoration:'underline',
+            letterSpacing:'0.06em'
         },
         ".sub-box-2": {
             background: "#FBFBFB",
@@ -136,11 +151,15 @@ const SupperClubChaefPage = () => {
         },
         ".sub-text-price": {
             fontWeight: 600,
+            fontStyle:'normal',
+            fontFamily:'ProximaNovaA-Regular',
             fontSize: "36px",
             lineHeight: "44px",
             color: "#080B0E",
         },
         ".sub-text": {
+            fontStyle:'normal',
+            fontFamily:'Proxima Nova Alt',
             fontWeight: 300,
             fontSize: "20px",
             lineHeight: "24px",
@@ -150,10 +169,13 @@ const SupperClubChaefPage = () => {
             padding: "20px 0px",
         },
         ".experience-date-text": {
+            fontFamily:'Bon Vivant',
+            fontStyle:'normal',
+            fontWeight:700,
             fontSize: "20px",
             lineHeight: "25px",
             color: "#080B0E",
-            marginBottom: '0.5rem'
+            marginBottom:'0.5rem'
         },
         ".experience-date-sub-test": {
             fontWeight: 300,
@@ -162,6 +184,8 @@ const SupperClubChaefPage = () => {
             color: "#080B0E",
         },
         ".main-date": {
+            fontFamily:'ProximaNovaA-Regular',
+            fontStyle:'normal',
             fontWeight: 400,
             fontSize: "32px",
             lineHeight: "39px",
@@ -171,14 +195,20 @@ const SupperClubChaefPage = () => {
         ".date-month": {
             fontSize: "14px",
             lineHeight: "17px",
+            fontFamily:'ProximaNovaA-Regular',
+            fontStyle:'normal',
+            fontWeight: 600,
         },
         ".date-day": {
-            fontWeight: 250,
+            fontFamily:'Proxima Nova Alt',
+            fontStyle:'normal',
+            fontWeight: 300,
             fontSize: "16px",
             lineHeight: "24px",
         },
         ".next-grid": {
             display: "inline",
+            paddingLeft:'0px !important'
         },
         ".date-time-box": {
             display: "flex",
@@ -234,7 +264,7 @@ const SupperClubChaefPage = () => {
             fontFamily: "ProximaNovaA-Regular",
             lineHeight: "24px",
             letterSpacing: " 0.06em",
-            textAlign: 'center'
+            textAlign:'center'
         },
         ".blowOut-description": {
             padding: "20px 16px",
@@ -318,6 +348,7 @@ const SupperClubChaefPage = () => {
             marginBottom: "8px",
         },
         ".menu-sub": {
+            fontFamily: 'ProximaNovaA-Regular',
             margin: "0px",
             fontWeight: "400",
             fontSize: "14px",
@@ -359,9 +390,10 @@ const SupperClubChaefPage = () => {
             left: "2% !important",
         },
         ".map-heading": {
-            fontFamily: "Bon Vivant",
+            fontFamily: 'Proxima Nova Alt',
             fontSize: "20px",
             lineHeight: "0px",
+            fontWeight:300,
             marginBottom: "14px",
             color: "#080B0E",
             marginTop: "5%",
@@ -376,6 +408,7 @@ const SupperClubChaefPage = () => {
             color: "#080B0E",
             marginBottom: "16px",
             display: "block",
+            paddingTop:'8px'
         },
         ".map-link:hover": {
             color: "#C6A87D",
@@ -397,8 +430,8 @@ const SupperClubChaefPage = () => {
             marginLeft: "16px",
         },
         ".down-heading": {
-            fontFamily: "Bon Vivant",
-            fontWeight: "100",
+            fontFamily: 'ProximaNovaA-Regular',
+            fontWeight: 400,
             fontSize: "20px",
             lineHeight: "24px",
             marginLeft: "10px",
@@ -407,23 +440,23 @@ const SupperClubChaefPage = () => {
         },
         ".child-container": {
             position: "relative",
-            marginLeft: '2px'
+            marginLeft:'2px'
         },
         ".show-btn": {
             position: "absolute",
-            bottom: "16px",
-            right: "19px",
+            bottom: "22px",
+            right: "29px",
             fontFamily: "ProximaNovaA-Regular",
             fontStyle: "normal",
-            fontWeight: "100",
+            fontWeight: 400,
             fontSize: "16px",
             lineHeight: "19px",
             color: "#080B0E",
-            textTransform: 'math-auto',
+            textTransform:'math-auto',
             background: "#FBFBFB",
             boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
             borderRadius: "1px",
-            padding: '8px 12px'
+            padding:'8px 12px'
         },
         ".show-btn:hover": {
             color: "#C6A87D",
@@ -439,24 +472,13 @@ const SupperClubChaefPage = () => {
             textTransform: "lowercase",
             fontFamily: "ProximaNovaA-Regular",
         },
-        ".close-button": {
-            position: 'absolute',
-            top: '90px',
-            right: '50px',
-            fontSize: '24px',
-            backgroundColor: 'transparent',
-            border: 'none',
-            color: 'white',
-            cursor: 'pointer',
-            zIndex: '10'
-        },
         ".submit-request": {
             color: "#FBFBFB",
             backgroundColor: "#000",
             width: "100%",
-            fontFamily: "Proxima Nova Alt",
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: "normal",
-            fontWeight: "100",
+            fontWeight: 600,
             fontSize: "16px",
             lineHeight: "19px",
             padding: "18.5px 10px",
@@ -474,26 +496,50 @@ const SupperClubChaefPage = () => {
         ".container": {
             position: "relative",
         },
+        '.pop-close-icon':{
+            width:'100px',
+            height:'40px',
+            color:'rgb(160, 160, 160)'
+        },
         ".carousel-popup": {
             position: "fixed",
             top: "0px",
             left: "0",
             width: "100%",
             height: "100%",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backgroundColor: "rgba(0, 0, 0, 0.8)",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            zIndex: "5",
+            zIndex: "9999",
+        },
+        ".close-button": {
+            position: 'absolute',
+            top: '20px',
+            right: '0px',
+            fontSize: '24px',
+            backgroundColor: 'transparent',
+            border: 'none',
+            color: 'white',
+            cursor: 'pointer',
+            zIndex: '999',
         },
         ".swiper": {
-            width: "75%",
+            width: "76%",
             height: "100%",
         },
         ".sub-div": {
             background: "black",
         },
-        '.switch-field': {
+        '.css-cr824o-JoyTab-root':{
+            backgroundColor:'#101418',
+            color:'#FBFBFB'
+        },
+        '.css-6gpojs-JoyTab-root':{
+            backgroundColor:'#101418',
+            color:'#FBFBFB'
+        },
+        '.switch-field' :{
             display: 'flex',
             overflow: 'hidden',
         },
@@ -526,10 +572,10 @@ const SupperClubChaefPage = () => {
             flexDirection: 'column',
             placeContent: 'center',
         },
-        '.time-text': {
+        '.time-text':{
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
-            fontWeight: '400 !important',
+            fontWeight: 'bolder',
             fontSize: '14px',
             lineHeight: '120%',
         },
@@ -553,7 +599,7 @@ const SupperClubChaefPage = () => {
             flex: '0 0 auto',
             width: '58.33333333%'
         },
-        '.experience-date-sub-text': {
+        '.experience-date-sub-text':{
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
@@ -561,8 +607,15 @@ const SupperClubChaefPage = () => {
             lineHeight: '24px',
             color: '#080B0E',
         },
-        '.grid-item': {
-            paddingRight: '5px'
+        '.grid-item':{
+            paddingRight:'5px'
+        },
+        '.restorent-1':{
+            paddingRight:'10px'
+        },
+        '.restorent-2':{
+            paddingLeft:'10px !important',
+            paddingRight:'14px'
         },
         "@media (min-width: 768px) and (max-width:1024px)": {
             ".box1": {
@@ -584,35 +637,45 @@ const SupperClubChaefPage = () => {
             },
         },
         "@media (min-width: 1px) and (max-width:768px)": {
-            ".css-1fh2pai-MuiGrid-root ": {
-                width: "100% !important",
-                maxWidth: "none",
+            ".parent-container ": {
+                flex: '0 0 auto',
+                width: '58.33333333%',
+                maxWidth:'none'
             },
             ".grid-box-2": {
                 flexDirection: "column",
             },
+            '.next-grid':{
+                flex:' 0 0 auto',
+                width: '41.66666667%',
+                maxWidth:'none'
+            },
             ".grid-child-box": {
-                maxWidth: "99%",
+                maxWidth: "100%",
             },
             ".sub-box-2": {
                 marginTop: "0px",
             },
-            '.time-btn-box': {
-                width: '100%',
+            '.time-btn-box':{
+                width:'100%',
                 flexShrink: '0',
                 // width: '100%',
                 maxWidth: '100%',
             },
-            '.date-time-box': {
-                flexDirection: 'column',
-                alignItems: 'flex-start'
+            '.date-time-box':{
+                flexDirection:'column',
+                alignItems:'flex-start'
+            },
+            '.grid-item':{
+                maxWidth:'100%',
+                paddingRight:'0px'
             },
             '.Joy-selected': {
                 width: '80px',
             },
             '.MuiTab-variantPlain': {
                 width: '80px',
-            },
+            }
         },
         "@media (min-width: 1px) and (max-width:425px)": {
             ".main-box": {
@@ -631,15 +694,14 @@ const SupperClubChaefPage = () => {
             ".box2": {
                 width: "84%",
             },
-            '.grid-item': {
-                paddingRight: "0px"
+            '.grid-item':{
+                paddingRight:"0px"
             },
             ".grid-child-box": {
                 maxWidth: "100%",
             },
         },
     }));
-
     const style = {
         position: 'absolute',
         top: '50%',
@@ -757,14 +819,14 @@ const SupperClubChaefPage = () => {
         '.react-datepicker-component .react-datepicker-input.has-value input': {
             color: '#080B0E !important',
         },
-    };
+    }
     return (
         <React.Fragment>
             <BoxWrapper>
                 <Navbar/>
                 <Box className="main-box">
                     <Grid container spacing={{md: 2}}>
-                        <Grid item xl={7} md={7} sm={6} xs={12}>
+                        <Grid className="parent-container" item xl={7} md={7} sm={6} xs={12}>
                             <Box className="container">
                                 <img
                                     src={RestorentImg}
@@ -774,9 +836,9 @@ const SupperClubChaefPage = () => {
                                 />
                                 {showCarousel && (
                                     <Box className="carousel-popup">
-                                        <button className='close-button' onClick={handleClose}><CloseIcon/></button>
+                                        <button className='close-button' onClick={handleCloseCarousel}><CloseIcon className="pop-close-icon"/></button>
                                         <Box className="carousel">
-                                            <SuperClubPopUpCarousel/>
+                                            <SuperClubPopCarousel/>
                                         </Box>
                                     </Box>
                                 )}
@@ -784,7 +846,7 @@ const SupperClubChaefPage = () => {
                         </Grid>
                         <Grid item md={5} sm={6} xs={12} xl={5} className="next-grid">
                             <Grid className="child-container" container spacing={2}>
-                                <Grid item md={6} sm={6} xs={6} xl={6}>
+                                <Grid className="restorent-1" item md={6} sm={6} xs={6} xl={6}>
                                     <img
                                         src={RestorentImg}
                                         alt="RestorentImg"
@@ -792,7 +854,7 @@ const SupperClubChaefPage = () => {
                                         onClick={handleImageClick}
                                     />
                                 </Grid>
-                                <Grid item md={6} sm={6} xs={6} xl={6}>
+                                <Grid className="restorent-2" item md={6} sm={6} xs={6} xl={6}>
                                     <img
                                         src={RestorentImg}
                                         alt="RestorentImg"
@@ -800,7 +862,7 @@ const SupperClubChaefPage = () => {
                                         onClick={handleImageClick}
                                     />
                                 </Grid>
-                                <Grid item md={6} sm={6} xs={6} xl={6}>
+                                <Grid className="restorent-1" item md={6} sm={6} xs={6} xl={6}>
                                     <img
                                         src={RestorentImg}
                                         alt="RestorentImg"
@@ -808,19 +870,20 @@ const SupperClubChaefPage = () => {
                                         onClick={handleImageClick}
                                     />
                                 </Grid>
-                                <Grid item md={6} sm={6} xs={6} xl={6}>
+                                <Grid className="restorent-2" item md={6} sm={6} xs={6} xl={6}>
                                     <img
                                         src={RestorentImg}
                                         alt="RestorentImg"
                                         className="main-img-2"
                                         onClick={handleImageClick}
                                     />
-                                    <Button className="show-btn" onClick={handleOpenPopup}>Show All Photos</Button>
+                                    <Button className="show-btn"onClick={handleOpen} data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal" >Show All Photos</Button>
                                 </Grid>
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid className="grid-box-2" container spacing={{md: 2}}>
+                    <Grid className="grid-box-2" container spacing={{ md: 2 }}>
                         <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
                             <Box className="sub-box">
                                 <Typography className="sub-box-heading">
@@ -832,7 +895,7 @@ const SupperClubChaefPage = () => {
                     <b className="sub-box-link">Chef Mako</b>
                   </span>
                                 </Typography>
-                                <Typography className="sub-box-text">2 Slots Left!</Typography>
+                                <Typography className="sub-box-text-2">2 Slots Left!</Typography>
                             </Box>
                             <Box>
                                 <Stack
@@ -1031,7 +1094,7 @@ const SupperClubChaefPage = () => {
                                     sx={{
                                         display: "flex",
                                         paddingBottom: "20px",
-                                        borderBottom: "0.5px solid #080B0E",
+                                        borderBottom: "0.5px solid rgba(220, 215, 203, 1)",
                                     }}
                                 >
                                     <Typography className="sub-text-price">
@@ -1138,11 +1201,10 @@ const SupperClubChaefPage = () => {
                         </Grid>
                     </Grid>
                 </Box>
-                <NeedHelp/>
                 <Modal
                     keepMounted
                     open={open}
-                    onClose={handleClosePopup}
+                    onClose={handleClose}
                     aria-labelledby="keep-mounted-modal-title"
                     aria-describedby="keep-mounted-modal-description"
                 >
@@ -1152,7 +1214,7 @@ const SupperClubChaefPage = () => {
                                 <Typography id="exampleModalLabel" className='schedule-heading modal-title'>Schedule a
                                     call</Typography>
                                 <button type="button" data-bs-dismiss="modal" aria-label="Close" className="close"
-                                        onClick={handleClosePopup}>
+                                        onClick={handleClose}>
                                     <CloseIcon/>
                                 </button>
                             </Box>
@@ -1249,6 +1311,7 @@ const SupperClubChaefPage = () => {
                         </Box>
                     </Box>
                 </Modal>
+                <NeedHelp/>
                 <Box className="footer-box">
                     <Footer/>
                 </Box>
