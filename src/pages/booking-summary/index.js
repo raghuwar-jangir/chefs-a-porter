@@ -645,28 +645,23 @@ const BookingSummary = () => {
     }));
 
     const style = {
-        position: 'fixed',
-        top: '0',
-        left: '0',
-        width: '100%',
-        zIndex: '12000',
-        height: '100%',
-        overflowX: 'hidden',
-        overflowY: 'auto',
-        outline: '0',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 300,
+        boxShadow: 24,
         '.modal-content': {
-            padding: '40px 20px',
             backgroundColor: '#101418!important',
-            position: 'relative',
+            boxShadow: '0px 8px 12px rgb(0 0 0 / 16%)',
+            padding: '40px 20px',
+            // position: 'relative',
             display: 'flex',
             flexDirection: 'column',
-            width: '255px',
+            // width: '100%',
             pointerEvents: 'auto',
-            top: '8%',
-            left: '42.5%',
-            backgroundClip: 'padding-box',
-            outline: '0',
-            boxShadow: '0px 8px 12px rgb(0 0 0 / 16%)'
+            backgroundClip: 'paddingBox',
+            outline: '0'
         },
         '.modal-header': {
             display: 'flex',
@@ -759,6 +754,12 @@ const BookingSummary = () => {
             textTransform: "capitalize",
             fontFamily: 'ProximaNovaA-Regular',
             marginTop: "0px",
+        },
+        "@media(min-width:1px) and (max-width: 400px)": {
+            width: '310px'
+        },
+        "@media(min-width:401px) and (max-width: 768px)": {
+            width: '420px'
         },
     }
 

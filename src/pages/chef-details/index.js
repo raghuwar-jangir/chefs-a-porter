@@ -775,7 +775,7 @@ const ChefDetails = (props) => {
                                             Boxerse culinary<br/>journey with chef mako at the helm</Typography>
                                     </Box>
                                     <Box className="book-now">
-                                        <a href="javascript:void(0);" className="view-all">Book Now</a>
+                                        <a href="/event-details" className="view-all">Book Now</a>
                                     </Box>
                                 </Box>
                             </Box>

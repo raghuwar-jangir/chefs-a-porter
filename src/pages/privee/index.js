@@ -76,7 +76,7 @@ const BoxWrapper = styled(Box)(() => ({
         paddingBottom: '40px'
     },
     '.home-banner': {
-        marginTop: '80px'
+        marginTop: '25px'
     },
     '.container-fluid': {
         padding: '0px',
