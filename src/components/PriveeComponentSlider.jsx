@@ -14,7 +14,7 @@ import '../assets/styles/fontStyle.css'
 const  PriveeComponentSlider = () => {
 const WrapBox = styled(Box) ({
     '.main-box':{
-        background: '#101418 !important',
+        background: '#101418',
     padding: '80px 0px',
     textAlign: 'center'
     },
@@ -41,10 +41,18 @@ const WrapBox = styled(Box) ({
     '.slider-box':{
         marginTop:'30px'
     },
+    '.img-box':{
+        width: '306.833px',
+    marginRight: '8px',
+    padding:'0px 0px !important'
+    },
     '.img':{
         width: '100%',
-    height: '230.54px !important',
+    height: '230.54px',
     objectFit: 'cover'
+    },
+    '.biYdFZ':{
+        left:'31% important'
     },
     '@media(min-width: 430px) and (max-width: 768px)': {
         '.main-box':{
@@ -54,7 +62,7 @@ const WrapBox = styled(Box) ({
     '@media(min-width: 1px) and (max-width: 425px)': {
         '.img':{
             width: '100%',
-        height: '111px !important',
+        height: '111px',
         objectFit: 'cover'
         },
         '.peek-heading':{

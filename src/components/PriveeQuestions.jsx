@@ -167,8 +167,8 @@ const PriveeQuestions = ({isLightTheme = false}) => {
                                 expandIcon={expanded === 'panel3' ?
                                     <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
                                     <AddIcon sx={{fontSize:'19px',color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel3a-content"
-                                id="panel3a-header"
+                                aria-controls="panel2a-content"
+                                id="panel2a-header"
                             >
                                 <Typography className='frequently-questions'>Whats the cancellation policy?</Typography>
 
@@ -189,8 +189,8 @@ const PriveeQuestions = ({isLightTheme = false}) => {
                                 expandIcon={expanded === 'panel4' ?
                                     <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
                                     <AddIcon sx={{fontSize:'19px',color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel4a-content"
-                                id="panel4a-header"
+                                aria-controls="panel2a-content"
+                                id="panel2a-header"
                             >
                                 <Typography className='frequently-questions'>Will the cutlery be provided?</Typography>
 
@@ -211,8 +211,8 @@ const PriveeQuestions = ({isLightTheme = false}) => {
                                 expandIcon={expanded === 'panel5' ?
                                     <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
                                     <AddIcon sx={{fontSize:'19px',color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel5a-content"
-                                id="panel5a-header"
+                                aria-controls="panel2a-content"
+                                id="panel2a-header"
                             >
                                 <Typography className='frequently-questions'>Is it possible to pay the entiresum in EMIs?</Typography>
 
@@ -227,14 +227,14 @@ const PriveeQuestions = ({isLightTheme = false}) => {
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
-                        <Accordion expanded={expanded === 'panel6'} onChange={handleChange('panel6')}
+                        <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}
                                    className='accordion'>
                             <AccordionSummary
-                                expandIcon={expanded === 'panel6' ?
+                                expandIcon={expanded === 'panel5' ?
                                     <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
                                     <AddIcon sx={{fontSize:'19px',color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel6a-content"
-                                id="panel6a-header"
+                                aria-controls="panel2a-content"
+                                id="panel2a-header"
                             >
                                 <Typography className='frequently-questions'>Is it possible to pay the entiresum in EMIs?</Typography>
 
@@ -249,14 +249,14 @@ const PriveeQuestions = ({isLightTheme = false}) => {
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
-                        <Accordion expanded={expanded === 'panel7'} onChange={handleChange('panel7')}
+                        <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}
                                    className='accordion'>
                             <AccordionSummary
-                                expandIcon={expanded === 'panel7' ?
+                                expandIcon={expanded === 'panel5' ?
                                     <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
                                     <AddIcon sx={{fontSize:'19px',color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel7a-content"
-                                id="panel7a-header"
+                                aria-controls="panel2a-content"
+                                id="panel2a-header"
                             >
                                 <Typography className='frequently-questions'>How many guest can i invite for a private dinner?</Typography>
 
