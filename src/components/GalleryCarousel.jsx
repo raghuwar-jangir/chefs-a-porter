@@ -102,13 +102,13 @@ const MainContentBox = styled(Box)({
     },
     '@media(min-width: 770px) and (max-width: 1024px)': {
         '.swiper-pagination-bullet': {
-            width:'29% !important'
+            width:'31% !important'
         },
         '.swiper-pagination-bullet-active': {
-            width:'29% !important'
+            width:'31% !important'
         },
         '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
-            margin:'0 var(--swiper-pagination-bullet-horizontal-gap,12px) !important'
+            margin:'0 var(--swiper-pagination-bullet-horizontal-gap,6px) !important'
         },
         '.swiper-pagination':{
             lineHeight:'40px'
@@ -216,13 +216,13 @@ const MainContentBox = styled(Box)({
         textAlign:'center'
     },
     '.swiper-pagination-bullet':{
-        width:'97px'
+        width:'95px'
     },
     '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet': {
-        margin: '0 var(--swiper-pagination-bullet-horizontal-gap,2px) !important'
+        margin: '0 var(--swiper-pagination-bullet-horizontal-gap,5px) !important'
     },
     '.swiper-pagination':{
-        fontSize:'12px',
+        fontSize:'11px',
         lineHeight:'30px'
     }
 },

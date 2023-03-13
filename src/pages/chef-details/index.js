@@ -29,7 +29,6 @@ import moment from "moment/moment";
 import * as _ from "lodash";
 import {DatePickerInput} from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
-import RatingCarousel from "../../components/RatingCarousel";
 import TemptedYet from "../../components/TemptedYet";
 import ImageCarousel from "../../components/ImageCarousel";
 import AvlExperienceCarousel from "../../components/AvlExperienceCarousel";
@@ -40,6 +39,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import DiningPage from "../../components/DiningPage";
 import ImagePopCarousel from "../../components/ImagePopCarousel";
 import GalleryCarousel from "../../components/GalleryCarousel";
+import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
 
 const ChefDetails = (props) => {
 
@@ -91,7 +91,7 @@ const ChefDetails = (props) => {
             background: '#080B0E',
             '.supper-gallery': {
                 marginTop: '40px',
-                padding: '0px 20px'
+                // padding: '0px 20px'
             },
             '.container-fluid': {
                 padding: '80px 235px'
@@ -119,17 +119,18 @@ const ChefDetails = (props) => {
             '.about-chef-heading': {
                 fontFamily: 'Bon Vivant',
                 fontStyle: 'normal',
-                // fontWeight: '700',
+                fontWeight: '700',
                 fontSize: '24px',
                 lineHeight: '30px',
                 letterSpacing: '0.06em',
                 color: '#080B0E',
-                margin: '5px',
+                margin: '0px 16px 20px',
+                paddingTop:'20px'
             },
             '.about-chef-details': {
                 fontfamily: 'Proxima Nova',
                 fontStyle: 'normal',
-                // fontWeight: '300',
+                fontWeight: '300',
                 color: '#080B0E',
                 marginLeft: '10px',
                 fontSize: '16px',
@@ -149,10 +150,12 @@ const ChefDetails = (props) => {
             '.read-more': {
                 fontFamily: 'Proxima Nova',
                 fontStyle: 'normal',
-                // fontWeight: 300,
+                fontWeight: 300,
                 fontSize: '16px',
                 lineHeight: '19px !important',
                 color: '#080B0E',
+                margin:'0px 16px',
+                paddingBottom:'40px'
             },
             '.all-photos': {
                 fontFamily: 'Proxima Nova',
@@ -165,14 +168,16 @@ const ChefDetails = (props) => {
                 background: '#FBFBFB',
                 boxShadow: '0px 20px 24px rgb(0 0 0 / 6%)',
                 padding: '8px 12px',
-                position: 'relative',
-                bottom: '50px',
-                left: '530px',
+                position: 'absolute',
+                bottom: '22px',
+                right: '18px',
+                borderRadius:'1px',
+                textTransform:'math-auto'
             },
             '.read-more-less--more, .read-more-less--less': {
                 all: 'unset',
                 color: '#080B0E',
-                textSecoration: 'underline',
+                textDecoration: 'underline',
                 textUnderlineOffset: '3px',
                 cursor: 'pointer',
                 fontWeight: '700',
@@ -198,7 +203,7 @@ const ChefDetails = (props) => {
                 color: '#FBFBFB',
                 fontFamily: 'Bon Vivant',
                 fontStyle: 'normal',
-                // fontWeight: '700',
+                fontWeight: '700',
                 letterSpacing: '0.06em',
                 marginBottom: '8px',
             },
@@ -224,7 +229,7 @@ const ChefDetails = (props) => {
                 textAlign: 'center',
                 textDecoration: 'none',
                 border: '1px solid #C6A87D',
-                padding: '15px 50px',
+                padding: '15px 45px',
                 display: 'block'
             },
             '.view-all': {
@@ -258,7 +263,7 @@ const ChefDetails = (props) => {
             '.chef-header': {
                 fontFamily: 'Bon Vivant',
                 fontStyle: 'normal',
-                // fontWeight: '700',
+                fontWeight: '700',
                 fontSize: '30px',
                 lineHeight: '37px',
                 textAlign: 'left',
@@ -307,6 +312,49 @@ const ChefDetails = (props) => {
                 cursor: 'pointer',
                 zIndex: '10'
             },
+            ".main-img": {
+                width: "100%",
+                height: "390px",
+                display: "block",
+                objectFit: "cover",
+                boxShadow: "0px 8px 16px rgb(0 0 0 / 16%)",
+                cursor: "pointer",
+              },
+              ".main-img-1": {
+                width: "100%",
+                height: "180px",
+                boxShadow: "0px 8px 16px rgb(0 0 0 / 16%)",
+                objectFit: "cover",
+              },
+              ".main-img-2": {
+                width: "100%",
+                height: "190px",
+                boxShadow: "0px 8px 16px rgb(0 0 0 / 16%)",
+                objectFit: "cover",
+              },
+              '.child-container':{
+                display:'flex',
+                flexDirection:'column',
+                position:'relative'
+              },
+              '.restorent-1':{
+                maxWidth:'100% !important',
+              },
+              '.next-grid':{
+                maxWidth:'100% !important'
+              },
+              '.main-2':{
+                paddingLeft:"20px !important"
+              },
+              '.container-spacing':{
+                marginTop:'5px'
+              },
+              '.supper-chef-details': {
+                paddingTop:'20px'
+              },
+              '.chef-icon':{
+                margin:' 0px 16px 20px'
+              },
             '@media(min-width: 1000px) and (max-width: 1024px)': {
                 '.swiper-pagination-bullet': {
                     width: '145px',
@@ -333,29 +381,7 @@ const ChefDetails = (props) => {
                     marginBottom:'40px'
                 }
             },
-            '@media(min-width: 2200px) and (max-width: 2560px)': {
-                '.all-photos': {
-                    bottom: '50px',
-                    left: '850px',
-                },
-            },
-            '@media(min-width: 1100px) and (max-width: 1440px)': {
-                '.all-photos': {
-                    bottom: '50px',
-                    left: '300px',
-                },
-            },
-            '@media(min-width: 800px) and (max-width: 1024px)': {
-                '.all-photos': {
-                    bottom: '50px',
-                    left: '100px',
-                },
-            },
             '@media(min-width: 700px) and (max-width: 768px)': {
-                '.all-photos': {
-                    bottom: '50px',
-                    left: '200px',
-                },
                 '.bm-burger-bars': {
                     background: '#080B0E !important',
                 },
@@ -408,6 +434,9 @@ const ChefDetails = (props) => {
                 },
                 '.view-all-gallery':{
                     width:'100%'
+                },
+                '.container-spacing':{
+                    display:'none'
                 }
             },
             '@media(min-width:600px) and (max-width: 768px)': {
@@ -599,38 +628,51 @@ const ChefDetails = (props) => {
                             <Typography className="chef-details mbl-chef-name">Specialty:<b> Thai,
                                 Japanese</b></Typography>
                         </Box>
-                        <Box className="tz-gallery">
-                            <ImageList variant="masonry"
-                                       sx={{width: '100%', height: '100%', cursor: 'pointer'}}
-                                       cols={2}
-                                       gap={10}
-                                       rowHeight={200}>
-                                {itemData.map((item) => (
-                                    <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
-                                        <img
-                                            src={item.img}
-                                            alt={item.title}
-                                            loading="lazy"
-                                            onClick={() => {
-                                                handleImageOpen(item.title)
-                                            }}
-                                        />
-                                    </ImageListItem>
-                                ))}
+                        <Grid container spacing={{md: 2}} className="container-spacing">
+                        <Grid className="parent-container" item xl={7} md={7} sm={6} xs={12}>
+                            <Box className="container">
+                                <img
+                                    src={chef1}
+                                    alt="RestorentImg"
+                                    className="main-img"
+                                    onClick={handleImageOpen}
+                                />
                                 {showCarousel && (
-                                    <Box className='carousel-popup'>
-                                        <button className='close-button' onClick={handleImageClose}><CloseIcon/>
-                                        </button>
-                                        <Box className='carousel'>
-                                            <ImagePopCarousel title={title}/>
+                                    <Box className="carousel-popup">
+                                        <button className='close-button' onClick={handleImageClose}><CloseIcon className="pop-close-icon"/></button>
+                                        <Box className="carousel">
+                                        <ImagePopCarousel title={title}/>
                                         </Box>
                                     </Box>
                                 )}
+                            </Box>
+                        </Grid>
+                        <Grid item md={5} sm={6} xs={12} xl={5} className="main-2">
+                            <Grid className="child-container" container spacing={2}>
+                        <Grid className="restorent-1" item md={6} sm={6} xs={6} xl={6}>
+                                    <img
+                                        src={sGallery}
+                                        alt="RestorentImg"
+                                        className="main-img-1"
+                                        onClick={handleImageOpen}
+                                    />
+                                </Grid>
+                        <Grid item md={5} sm={6} xs={12} xl={5} className="next-grid">
+                        <Grid className="restorent-1" item md={6} sm={6} xs={6} xl={6}>
+                                    <img
+                                        src={chef2}
+                                        alt="RestorentImg"
+                                        className="main-img-2"
+                                        onClick={handleImageOpen}
+                                    />
+                                </Grid>
+                                <Button className="all-photos"onClick={handleOpen} data-bs-toggle="modal"
+                                   data-bs-target="#exampleModal" >Show All Photos</Button>
+                            </Grid>
+                            </Grid>
+                            </Grid>
+                        </Grid>
 
-                                <a href="javascript:void(0);" className="all-photos" data-bs-toggle="modal"
-                                   data-bs-target="#exampleModal" onClick={handleOpen}>Show All Photos</a>
-                            </ImageList>
-                        </Box>
                         <Box className="row supper-chef-details">
                             <Box className="col-lg-12">
                                 <Box className="details">
@@ -639,7 +681,7 @@ const ChefDetails = (props) => {
                                             <Box className="tab-pane fade show active" id="pills-home" role="tabpanel"
                                                  aria-labelledby="pills-home-tab">
                                                 <Typography className="about-chef-heading">About the Chef</Typography>
-                                                <Box>
+                                                <Box className='chef-icon'>
                                                     <Box className='about-container'>
                                                         <img src={party} className="about-chef-icon" alt=""/>
                                                         <Typography className="about-chef-details">Fun facts: <b>Food
@@ -715,7 +757,7 @@ const ChefDetails = (props) => {
                                 </Box>
                             </Box>
                         </Box>
-                        <RatingCarousel backgroundColor="#DCD7CB"/>
+                        <SupperClubDetailsCarousel changeDetails={{fontSize:'16px'}} changeFont={{fontSize:'20px'}} backgroundColor='#DCD7CB'/>
                         <GalleryCarousel image={chef1} title={'Gallery'}/>
                         <Box className="chef-btn book-now">
                             <Link href="/our-chefs" className="view-all-gallery">View More Chef</Link>
