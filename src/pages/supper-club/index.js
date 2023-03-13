@@ -832,7 +832,8 @@ const SupperClubChaefPage = () => {
                                 />
                                 {showCarousel && (
                                     <Box className="carousel-popup">
-                                        <button className='close-button' onClick={handleCloseCarousel}><CloseIcon className="pop-close-icon"/></button>
+                                        <button className='close-button' onClick={handleCloseCarousel}><CloseIcon
+                                            className="pop-close-icon"/></button>
                                         <Box className="carousel">
                                             <SuperClubPopCarousel/>
                                         </Box>
@@ -879,7 +880,7 @@ const SupperClubChaefPage = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid className="grid-box-2" container spacing={{ md: 2 }}>
+                    <Grid className="grid-box-2" container spacing={{md: 2}}>
                         <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
                             <Box className="sub-box">
                                 <Typography className="sub-box-heading">

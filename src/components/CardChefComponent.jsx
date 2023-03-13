@@ -31,8 +31,8 @@ const CardChefComponent = ({ bgColor }) => {
             color: '#080B0E'
         },
         ".field-name": {
-            fontFamily:'Proxima Nova Alt',
-            fontWeight: '300',
+            fontFamily:'Bon Vivant',
+            fontWeight: '100',
             fontSize: "20px",
             lineHeight: "24px",
             marginLeft:'10px',

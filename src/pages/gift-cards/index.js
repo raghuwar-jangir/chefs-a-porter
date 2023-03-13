@@ -1041,15 +1041,15 @@ const GiftCards = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar/>
-                {isMobile ? (
-                    <Box className='header-club'>
-                        <ShareIcon className="header-icon"/>
-                        <Typography className="chef-mobile-heading"> Gift Cards</Typography>
-                    </Box>
-                ) : (
-                    ''
-                )}
+                <Navbar heading="Gift Cards"/>
+                {/*{isMobile ? (*/}
+                {/*    <Box className='header-club'>*/}
+                {/*        <ShareIcon className="header-icon"/>*/}
+                {/*        <Typography className="chef-mobile-heading"> Gift Cards</Typography>*/}
+                {/*    </Box>*/}
+                {/*) : (*/}
+                {/*    ''*/}
+                {/*)}*/}
                 <Box className="gallery-carousel"><ImageCarousel/></Box>
                 <Box className="joinaschef">
                     <Box className="corporate-b">

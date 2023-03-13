@@ -816,6 +816,9 @@ const BoxWrapper = styled(Box)({
             paddingLeft: '0px',
             paddingBottom: '10px'
         },
+        '.home-banner': {
+            marginTop: '60px'
+        }
     },
     '@media(min-width: 700px) and (max-width: 768px)': {
         '.chef-container': {
@@ -910,16 +913,15 @@ const HomePage = () => {
 
     return (
         <React.Fragment>
-            <Navbar/>
+            <Navbar isIcon={false} isImage={true}/>
             <BoxWrapper>
-
                 {/* //! Header for home Screen with title (Mobile-screen)  */}
 
-                <MobileView>
-                    <MainBoxContent>
-                        <img src={LightThemeIcon} alt="title-text" className='MobileLightThemeIcon'/>
-                    </MainBoxContent>
-                </MobileView>
+                {/*<MobileView>*/}
+                {/*    <MainBoxContent>*/}
+                {/*        <img src={LightThemeIcon} alt="title-text" className='MobileLightThemeIcon'/>*/}
+                {/*    </MainBoxContent>*/}
+                {/*</MobileView>*/}
                 {/* //! Browser view for main-home screen */}
 
                 <Box className="home-banner">

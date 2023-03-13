@@ -257,15 +257,15 @@ const ContactUs = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar/>
-                {isMobile ? (
-                    <Box className='header-club'>
-                        <Typography className="chef-mobile-heading">Join
-                            as Chef</Typography>
-                    </Box>
-                ) : (
-                    ''
-                )}
+                <Navbar heading="Join as Chef"/>
+                {/*{isMobile ? (*/}
+                {/*    <Box className='header-club'>*/}
+                {/*        <Typography className="chef-mobile-heading">Join*/}
+                {/*            as Chef</Typography>*/}
+                {/*    </Box>*/}
+                {/*) : (*/}
+                {/*    ''*/}
+                {/*)}*/}
                 <Box className="joinaschef">
                     <Box className="banner">
                         <Box className="become-partner-header">

@@ -336,13 +336,14 @@ const BecomePartner = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                {isMobile ? (
-                    <Box className="mobile-header">
-                        <ArrowBackIcon/>
-                        <Typography><a href="/" className="mobile-heading" style={{textAlign: 'center !important'}}>Become
-                            a partner</a></Typography>
-                    </Box>
-                ) : (<Navbar/>)}
+                <Navbar heading="Become a partner"/>
+                {/*{isMobile ? (*/}
+                {/*    <Box className="mobile-header">*/}
+                {/*        <ArrowBackIcon/>*/}
+                {/*        <Typography><a href="/" className="mobile-heading" style={{textAlign: 'center !important'}}>Become*/}
+                {/*            a partner</a></Typography>*/}
+                {/*    </Box>*/}
+                {/*) : (<Navbar/>)}*/}
                 <Box className="joinaschef">
                     <Box className="banner">
                         <Box className="become-partner-header">

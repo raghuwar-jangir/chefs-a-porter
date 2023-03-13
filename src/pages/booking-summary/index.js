@@ -41,7 +41,7 @@ const BookingSummary = () => {
     pincode: Yup.string()
       .required('Pincode is required')
   });
-  
+
   const initialValues = {
     number:'9876543210',
     name:'Teqzo International',
@@ -645,7 +645,7 @@ const BookingSummary = () => {
       fontFamily: "Bon Vivant",
     },
   }));
-  
+
   const style={
     position: 'fixed',
     top: '0',
@@ -764,123 +764,124 @@ const BookingSummary = () => {
 },
 }
 
-  return (
-    <React.Fragment>
-      <BoxWrapper>
-        <Navbar isColor={true} />
-        {isMobile ? (
-          <Box className="header-club">
-            <Typography className="addones-mobile-heading">Privee</Typography>
-          </Box>
-        ) : (
-          ""
-        )}
-        <Box className="supper-gallery cust-details">
-          <Box className="container-fluid">
-            <Box className="row supper-chef-details">
-              <Box className="book-trad">
-                <ArrowBackIcon className="arrow-left" />
-                <Typography className="addons-title">
-                  Booking Summary
-                </Typography>
-              </Box>
-              <Box className="row customer-details addons-div">
-                <Grid container>
-                  <Grid
-                    xl={7}
-                    lg={7}
-                    xs={7}
-                    md={7}
-                    sm={12}
-                    xs={12}
-                    className="partner"
-                  >
-                    <Box className="booking-box">
-                      <Typography className="booking-summary-title">
-                        Booking Summary
-                      </Typography>
-                      <Typography className="booking-summary-sub-title">
-                        Confirm Details before proceeding to pay
-                      </Typography>
-                    </Box>
-                    <Box className="booking-box">
-                      <Box class="chef-edit">
-                        <img className="chef-edit-img" src={chefImg} />
-                        <Typography className="chef-edit-title">
-                          Chef Mako Ravindran
-                        </Typography>
-                        <CreateIcon className="pencil-icon" />
-                      </Box>
-                      <Box class="chef-profile">
-                        <Box className="chef-profile-detail">
-                          <img className="chef-profile-icon" src={dateGold} />
-                          <Typography className="chef-profile-date">
-                            April 9 | 7:30 PM - 10 PM
-                          </Typography>
-                        </Box>
-                        <Box className="chef-profile-detail">
-                          <img className="chef-profile-icon" src={location} />
-                          <Typography className="chef-profile-date">
-                            Silver bar, Downtown
-                          </Typography>
-                        </Box>
-                        <Box className="chef-profile-detail">
-                          <img className="chef-profile-icon" src={people} />
-                          <Typography className="chef-profile-date">
-                            6 Diners
-                          </Typography>
-                        </Box>
-                      </Box>
-                    </Box>
-                    <Box className="booking-box">
-                      <Box class="exp-info-imp">
-                        <Typography className="exp-info-heading">
-                          Important Experience Info
-                        </Typography>
-                        <KeyboardArrowDownIcon className="drop-down" />
-                        <ul className="exp-ul">
-                          <li className="exp-li">Service Includes</li>
-                          <li className="exp-li">Service Excludes</li>
-                          <li className="exp-li">Table set upincludes</li>
-                          <li className="exp-li">
-                            Confirm Details before proceeding to pay
-                          </li>
-                          <li className="exp-li">Decor not included</li>
-                        </ul>
-                        <hr className="hr"/>
-                      </Box>
-                    </Box>
-                    <Box className="contact">
-                      <Box className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id="flexCheckDefault"
-                          checked
-                        />
-                        <label
-                          className="form-check-label"
-                          for="flexCheckDefault"
-                        >
-                          Enter GSTIN for tax benefits (Optional)
-                        </label>
-                        <KeyboardArrowRightIcon data-bs-toggle="modal"
-                                   data-bs-target="#exampleModal" onClick={handleOpen} className="forward-arrow" />
-                      </Box>
-                      <hr className="hr" />
-                    </Box>
-                    <Box className="booking-box">
-                      <Typography className="email-text">
-                        An Email Confirmation will be sent to
-                      </Typography>
-                    </Box>
-                    <Box class="booking-box">
-                      <Box class="contact">
-                        <label className="contact-number" for="contact-number">
-                          Mobile
-                        </label>
-                        <Box className="form-group">
+    return (
+        <React.Fragment>
+            <BoxWrapper>
+                <Navbar isColor={true} heading="Privee"/>
+                {/*{isMobile ? (*/}
+                {/*    <Box className="header-club">*/}
+                {/*        <Typography className="addones-mobile-heading">Privee</Typography>*/}
+                {/*    </Box>*/}
+                {/*) : (*/}
+                {/*    ""*/}
+                {/*)}*/}
+                <Box className="supper-gallery cust-details">
+                    <Box className="container-fluid">
+                        <Box className="row supper-chef-details">
+                            <Box className="book-trad">
+                                <ArrowBackIcon className="arrow-left"/>
+                                <Typography className="addons-title">
+                                    Booking Summary
+                                </Typography>
+                            </Box>
+                            <Box className="row customer-details addons-div">
+                                <Grid container>
+                                    <Grid
+                                        xl={7}
+                                        lg={7}
+                                        xs={7}
+                                        md={7}
+                                        sm={12}
+                                        xs={12}
+                                        className="partner"
+                                    >
+                                        <Box className="booking-box">
+                                            <Typography className="booking-summary-title">
+                                                Booking Summary
+                                            </Typography>
+                                            <Typography className="booking-summary-sub-title">
+                                                Confirm Details before proceeding to pay
+                                            </Typography>
+                                        </Box>
+                                        <Box className="booking-box">
+                                            <Box class="chef-edit">
+                                                <img className="chef-edit-img" src={chefImg}/>
+                                                <Typography className="chef-edit-title">
+                                                    Chef Mako Ravindran
+                                                </Typography>
+                                                <CreateIcon className="pencil-icon"/>
+                                            </Box>
+                                            <Box class="chef-profile">
+                                                <Box className="chef-profile-detail">
+                                                    <img className="chef-profile-icon" src={dateGold}/>
+                                                    <Typography className="chef-profile-date">
+                                                        April 9 | 7:30 PM - 10 PM
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="chef-profile-detail">
+                                                    <img className="chef-profile-icon" src={location}/>
+                                                    <Typography className="chef-profile-date">
+                                                        Silver bar, Downtown
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="chef-profile-detail">
+                                                    <img className="chef-profile-icon" src={people}/>
+                                                    <Typography className="chef-profile-date">
+                                                        6 Diners
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                        </Box>
+                                        <Box className="booking-box">
+                                            <Box class="exp-info-imp">
+                                                <Typography className="exp-info-heading">
+                                                    Important Experience Info
+                                                </Typography>
+                                                <KeyboardArrowDownIcon className="drop-down"/>
+                                                <ul className="exp-ul">
+                                                    <li className="exp-li">Service Includes</li>
+                                                    <li className="exp-li">Service Excludes</li>
+                                                    <li className="exp-li">Table set upincludes</li>
+                                                    <li className="exp-li">
+                                                        Confirm Details before proceeding to pay
+                                                    </li>
+                                                    <li className="exp-li">Decor not included</li>
+                                                </ul>
+                                                <hr className="hr"/>
+                                            </Box>
+                                        </Box>
+                                        <Box className="contact">
+                                            <Box className="form-check">
+                                                <input
+                                                    className="form-check-input"
+                                                    type="checkbox"
+                                                    value=""
+                                                    id="flexCheckDefault"
+                                                    checked
+                                                />
+                                                <label
+                                                    className="form-check-label"
+                                                    for="flexCheckDefault"
+                                                >
+                                                    Enter GSTIN for tax benefits (Optional)
+                                                </label>
+                                                <KeyboardArrowRightIcon data-bs-toggle="modal"
+                                                                        data-bs-target="#exampleModal"
+                                                                        onClick={handleOpen} className="forward-arrow"/>
+                                            </Box>
+                                            <hr className="hr"/>
+                                        </Box>
+                                        <Box className="booking-box">
+                                            <Typography className="email-text">
+                                                An Email Confirmation will be sent to
+                                            </Typography>
+                                        </Box>
+                                        <Box class="booking-box">
+                                            <Box class="contact">
+                                                <label className="contact-number" for="contact-number">
+                                                    Mobile
+                                                </label>
+                                                <Box className="form-group">
                           <span className="country-code">
                             +91{" "}
                             <KeyboardArrowDownIcon className="drop-down-2" />
@@ -1069,7 +1070,7 @@ const BookingSummary = () => {
                       <Box className="row viewbreak">
                         <Box className="col-lg-12">
                           <button type="submit" className="submit-req">
-                          Proceed to pay ₹25,000 
+                          Proceed to pay ₹25,000
                           </button>
                         </Box>
                         <Typography className="contact-text">

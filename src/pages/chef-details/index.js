@@ -40,6 +40,7 @@ import DiningPage from "../../components/DiningPage";
 import ImagePopCarousel from "../../components/ImagePopCarousel";
 import GalleryCarousel from "../../components/GalleryCarousel";
 import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const ChefDetails = (props) => {
 
@@ -58,10 +59,11 @@ const ChefDetails = (props) => {
     };
 
     const breadcrumbs = [
-        <Typography key="1" color="#FBFBFB">
+        <Typography key="1" color="#FBFBFB" fontFamily="Proxima Nova Alt" fontWeight="600" fontSize="16px">
             Privee
         </Typography>,
-        <Link underline="none" key="2" color="#C6A87D" href="">
+        <Link underline="none" key="2" color="#C6A87D" fontFamily="Proxima Nova Alt" fontWeight="600" fontSize="16px"
+              href="">
             Chef
         </Link>,
     ];
@@ -73,17 +75,16 @@ const ChefDetails = (props) => {
             img: chef1,
             title: 'chef1',
             rows: 2,
-            cols: 3,
         },
         {
             img: sGallery,
             title: 'sGallery',
-            cols: 4,
+            // cols: 4,
         },
         {
             img: chef2,
             title: 'chef2',
-            cols: 4,
+            // cols: 4,
         },
     ];
 
@@ -97,8 +98,9 @@ const ChefDetails = (props) => {
                 padding: '80px 235px'
             },
             '.chef-name': {
-                fontSize: '23px',
+                fontSize: '24px',
                 lineHeight: '30px',
+                fontWeight: '700',
                 color: '#FBFBFB',
                 marginTop: '8px',
                 fontFamily: 'Bon Vivant',
@@ -107,14 +109,18 @@ const ChefDetails = (props) => {
                 marginBottom: '8px',
             },
             '.chef-details': {
-                fontFamily: 'Proxima Nova',
+                fontFamily: 'Proxima Nova Alt',
                 fontStyle: 'normal',
+                fontSize: '16px',
+                lineHeight: '19px',
                 fontWeight: '300',
                 color: '#FBFBFB',
+                letterSpacing: '0.06em',
                 marginBottom: '20px',
             },
             '#pills-home': {
-                background: '#DCD7CB'
+                background: '#DCD7CB',
+                padding: '20px 20px 40px 20px'
             },
             '.about-chef-heading': {
                 fontFamily: 'Bon Vivant',
@@ -128,7 +134,7 @@ const ChefDetails = (props) => {
                 paddingTop:'20px'
             },
             '.about-chef-details': {
-                fontfamily: 'Proxima Nova',
+                fontFamily: 'ProximaNovaA-Regular',
                 fontStyle: 'normal',
                 fontWeight: '300',
                 color: '#080B0E',
@@ -148,7 +154,7 @@ const ChefDetails = (props) => {
                 alignItems: 'center'
             },
             '.read-more': {
-                fontFamily: 'Proxima Nova',
+                fontFamily: 'Proxima Nova Alt',
                 fontStyle: 'normal',
                 fontWeight: 300,
                 fontSize: '16px',
@@ -158,7 +164,7 @@ const ChefDetails = (props) => {
                 paddingBottom:'40px'
             },
             '.all-photos': {
-                fontFamily: 'Proxima Nova',
+                fontFamily: 'ProximaNovaA-Regular',
                 fontStyle: 'normal',
                 fontWeight: '400',
                 fontSize: '16px',
@@ -181,7 +187,7 @@ const ChefDetails = (props) => {
                 textUnderlineOffset: '3px',
                 cursor: 'pointer',
                 fontWeight: '700',
-                fontFamily: 'Proxima Nova',
+                fontFamily: 'Proxima Nova Alt',
             },
             '.treat': {
                 padding: '40px 20px',
@@ -208,10 +214,11 @@ const ChefDetails = (props) => {
                 marginBottom: '8px',
             },
             '.surpirse-details': {
-                fontSize: '15px',
+                fontSize: '16px',
                 lineHeight: '24px',
                 color: '#FBFBFB',
-                fontFamily: 'Proxima Nova',
+                fontWeight: '400',
+                fontFamily: 'Proxima Nova Alt',
                 fontStyle: 'normal',
             },
             '.surprise-Box': {
@@ -236,7 +243,7 @@ const ChefDetails = (props) => {
                 fontSize: '16px',
                 lineHeight: '19px',
                 color: '#FBFBFB',
-                fontFamily: 'Proxima nova',
+                fontFamily: 'Proxima nova Alt',
                 fontStyle: 'normal',
                 letterSpacing: '0.06em',
                 marginBottom: '40px',
@@ -264,13 +271,14 @@ const ChefDetails = (props) => {
                 fontFamily: 'Bon Vivant',
                 fontStyle: 'normal',
                 fontWeight: '700',
-                fontSize: '30px',
-                lineHeight: '37px',
+                fontSize: '24px',
+                lineHeight: '30px',
                 textAlign: 'left',
                 letterSpacing: '0.06em',
                 color: '#FBFBFB',
-                padding: '20px 0px',
-                marginBottom: '10px',
+                paddingTop: '80px',
+                paddingBottom: '40px',
+                marginBottom: '8px',
             },
             ".available-experiences": {
                 padding: "5px",
@@ -600,20 +608,22 @@ const ChefDetails = (props) => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isColor={true}/>
-                {isMobile ? (
-                    <Box className='header-club'>
-                        <ArrowBackIcon className="header-icon"/>
-                        <Typography className="chef-mobile-heading">Privee</Typography>
-                    </Box>
-                ) : (
-                    ''
-                )}
+                <Navbar heading="Privee" isColor={true}/>
+                {/*{isMobile ? (*/}
+                {/*    <Box className='header-club'>*/}
+                {/*        <ArrowBackIcon className="header-icon"/>*/}
+                {/*        <Typography className="chef-mobile-heading">Privee</Typography>*/}
+                {/*    </Box>*/}
+                {/*) : (*/}
+                {/*    ''*/}
+                {/*)}*/}
                 <Box className="supper-gallery chef-ind">
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">
                             <Box className="details">
-                                <Breadcrumbs separator="›" aria-label="breadcrumb" color="white">
+                                <Breadcrumbs separator={<ArrowForwardIosIcon
+                                    sx={{fontSize: '12px', '-webkit-text-stroke': '0.2px', fontWeight: 'unset'}}/>}
+                                             aria-label="breadcrumb" color="white">
                                     {breadcrumbs}
                                 </Breadcrumbs>
                                 <Typography className="chef-name">Chef Mako Ravindran</Typography>

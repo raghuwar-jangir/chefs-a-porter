@@ -503,7 +503,7 @@ const PriveePage = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isColor={true}/>
+                <Navbar isColor={true} heading="Privee"/>
                 <MainBoxContent>
                     {/* //! privee header section for title */}
                     <MobileView>
@@ -600,7 +600,7 @@ const PriveePage = () => {
                                                         '.MuiSelect-select': {
                                                             padding: '0px 5px',
                                                             fontSize: '20px',
-                                                            fontWeight:'100'
+                                                            fontWeight: '100'
                                                         }
                                                     }}
                                                     MenuProps={{

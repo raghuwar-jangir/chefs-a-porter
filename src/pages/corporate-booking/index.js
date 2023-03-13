@@ -361,12 +361,12 @@ const CorporateBooking = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar/>
-                {isMobile ? (
-                    <Box className='header-club'>
-                        <Typography className="patron-mobile-heading">Corporate Booking</Typography>
-                    </Box>
-                ) : ('')}
+                <Navbar heading="Corporate Booking"/>
+                {/*{isMobile ? (*/}
+                {/*    <Box className='header-club'>*/}
+                {/*        <Typography className="patron-mobile-heading">Corporate Booking</Typography>*/}
+                {/*    </Box>*/}
+                {/*) : ('')}*/}
                 <Box className="corporate-b">
                     <Box className="container">
                         <Box className="top-10 position-absolute">
