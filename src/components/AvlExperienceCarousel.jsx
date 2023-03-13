@@ -114,6 +114,7 @@ const MainContentBox = styled(Box)({
 })
 
 const AvlExperienceCarousel = (props) => {
+
     return (
         <React.Fragment>
             <MainContentBox>

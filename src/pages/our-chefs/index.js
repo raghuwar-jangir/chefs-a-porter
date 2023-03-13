@@ -120,16 +120,16 @@ const OurChefsPage = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar/>
+                <Navbar heading="Our Chefs"/>
                 <Box className="main-parent-box">
-                    {isMobile ? (
-                        <Box className='header-club'>
-                            <Typography className="chef-mobile-heading">Our Chefs</Typography>
-                        </Box>
-                    ) : (
-                        <Typography className="main-heading">Our Chefs</Typography>
-                    )}
+                    {/*{isMobile ? (*/}
+                    {/*    <Box className='header-club'>*/}
+                    {/*        <Typography className="chef-mobile-heading">Our Chefs</Typography>*/}
+                    {/*    </Box>*/}
+                    {/*) : (*/}
 
+                    {/*)}*/}
+                    <Typography className="main-heading">Our Chefs</Typography>
                     <Box className="chef-content">
                         <Grid container spacing={{ xs: 2, md: 2 }}>
                             <Grid item xl={4} sm={4} xs={6}>

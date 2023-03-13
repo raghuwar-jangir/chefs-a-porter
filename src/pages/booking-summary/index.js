@@ -765,7 +765,7 @@ const BookingSummary = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isColor={true} heading="Privee"/>
+                <Navbar isColor={true} isIcon={true} heading="Privee"/>
                 {/*{isMobile ? (*/}
                 {/*    <Box className="header-club">*/}
                 {/*        <Typography className="addones-mobile-heading">Privee</Typography>*/}

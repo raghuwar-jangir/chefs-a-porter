@@ -227,10 +227,13 @@ const BecomePatronForm = () => {
                 paddingTop: '80px',
                 backgroundColor: '#FBFBFB'
             },
+            '.become-partner-form': {
+                marginTop: '55px'
+            },
         },
         '@media(min-width: 615px) and (max-width: 768px)': {
             '.banner': {
-                marginTop: '10px'
+                marginTop: '40px'
             }
         },
         '@media(min-width: 1px) and (max-width: 768px)': {
@@ -290,7 +293,7 @@ const BecomePatronForm = () => {
                 {/*            a Patron</a></Typography>*/}
                 {/*    </Box>*/}
                 {/*) : (<Navbar/>)}*/}
-                <Navbar heading="Become a Patron"/>
+                <Navbar isIcon={true} heading="Become a Patron"/>
                 <Box className="joinaschef">
                     <Box className="banner">
                         <Box className="become-partner-header">

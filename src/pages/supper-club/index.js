@@ -29,7 +29,7 @@ import {Link} from "gatsby";
 import pLogo from "../../assets/images/valet.png";
 import ChefMakoCarousel from "../../components/ChefMakoCarousel";
 import Navbar from "../../components/NavbarComponent";
-import SuperClubPopUpCarousel from "../../components/SuperClubPopUpCarousel";
+import SuperClubPopCarousel from "../../components/SuperClubPopUpCarousel";
 import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
 import SupperClubTreatyComponent from "../../components/SupperClubTreatyComponent";
 import NeedHelpSmallComponent from "../../components/NeedHelpSmallComponent";
@@ -823,7 +823,7 @@ const SupperClubChaefPage = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar/>
+                <Navbar isImage={true}/>
                 <Box className="main-box">
                     <Grid container spacing={{md: 2}}>
                         <Grid className="parent-container" item xl={7} md={7} sm={6} xs={12}>

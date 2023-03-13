@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import InfoIcon from '@mui/icons-material/Info';
+import {navigate} from "gatsby";
 
 
 
@@ -160,6 +161,11 @@ const ChefDetailsForm = () => {
             popperRef.current.update();
         }
     };
+
+    const handleClick = () => {
+        navigate('/customer-details');
+    }
+
     return (
         <React.Fragment>
             <BoxWrapper>
@@ -315,8 +321,9 @@ const ChefDetailsForm = () => {
                                 <Button
                                     className="experience-btn"
                                     type="submit"
+                                    onClick={handleClick}
                                 >
-                                    Host this Experience
+                                    Book this Experience
                                 </Button>
                             </Box>
                         </Form>

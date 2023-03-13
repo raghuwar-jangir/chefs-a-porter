@@ -200,7 +200,7 @@ const BecomePatronForm = () => {
             lineheight: '22px',
             color: '#222222',
             marginBottom: '0px',
-            backgroundColor:'white',
+            backgroundColor: 'white',
         },
         '.agree-link': {
             fontWeight: '700',
@@ -227,10 +227,13 @@ const BecomePatronForm = () => {
                 paddingTop: '80px',
                 backgroundColor: '#FBFBFB'
             },
+            '.become-partner-form':{
+              marginTop:'55px'
+            },
         },
         '@media(min-width: 615px) and (max-width: 768px)': {
             '.banner': {
-                marginTop: '10px'
+                marginTop: '40px'
             }
         },
         '@media(min-width: 1px) and (max-width: 768px)': {
@@ -283,13 +286,7 @@ const BecomePatronForm = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                {isMobile ? (
-                    <Box className="mobile-header">
-                        <ArrowBackIcon/>
-                        <Typography><a href="/" className="mobile-heading" style={{textAlign: 'center !important'}}>Become
-                            a Patron</a></Typography>
-                    </Box>
-                ) : (<Navbar/>)}
+                <Navbar isIcon={true}/>
                 <Box className="joinaschef">
                     <Box className="banner">
                         <Box className="become-partner-header">

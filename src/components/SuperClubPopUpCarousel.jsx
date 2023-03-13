@@ -37,7 +37,7 @@ const MainBox = styled(Box)({
     }
 });
 
-const SuperClubPopUpCarousel = () =>{
+const SuperClubPopCarousel = () =>{
     return(
         <React.Fragment>
             <MainBox>
@@ -53,4 +53,4 @@ const SuperClubPopUpCarousel = () =>{
             </MainBox>
         </React.Fragment>
     )}
-export default SuperClubPopUpCarousel;
+export default SuperClubPopCarousel;

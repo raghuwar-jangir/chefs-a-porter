@@ -24,6 +24,7 @@ import avlExp2 from "../../assets/images/avl-exp2.jpg";
 import '../../assets/styles/fontStyle.css';
 import PriveeRatingComponent from "../../components/PriveeRatingComponent";
 import PriveeQuestions from "../../components/PriveeQuestions";
+import {navigate} from "gatsby";
 
 const MainBoxContent = styled(Box)({
     position: 'relative',
@@ -178,7 +179,7 @@ const BoxWrapper = styled(Box)(() => ({
         zIndex: 0,
     },
     '.step-1-detail': {
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'ProximaNovaA-Regular',
         fontStyle: 'normal',
         fontWeight: '300',
         fontSize: '20.8833px',
@@ -195,10 +196,10 @@ const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
     },
     '.step-1-sub-detail': {
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'Proxima Nova Alt',
         fontStyle: 'normal',
         fontWeight: '250',
-        fontSize: '16px',
+        fontSize: '18px',
         lineHeight: '19px',
         textAlign: 'center',
         color: '#FBFBFB',
@@ -485,6 +486,10 @@ const PriveePage = () => {
         }
     }
 
+    const handleClick = () => {
+        navigate('/privee-viewmore', {state: true});
+    }
+
     // const styles = theme => ({
     //     input: {
     //         width: 40
@@ -764,7 +769,8 @@ const PriveePage = () => {
                                                 </Box>
                                             </Box>
                                             <Box className="form-group">
-                                                <button type="submit" className="btn btn-primary">View Experiences
+                                                <button type="submit" className="btn btn-primary"
+                                                        onClick={handleClick}>View Experiences
                                                 </button>
                                             </Box>
                                         </Form>

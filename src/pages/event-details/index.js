@@ -289,7 +289,7 @@ const EventDetails = () => {
     return (
         <React.Fragment>
             <MainBox>
-                <Navbar isColor={true} heading="Privée"/>
+                <Navbar isColor={true} isIcon={true} heading="Privee"/>
                 <Box className="main-box">
                     {/*{isMobile ? (*/}
                     {/*    <Box className="header-club">*/}

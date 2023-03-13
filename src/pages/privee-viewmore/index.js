@@ -17,6 +17,7 @@ import Modal from "@mui/material/Modal";
 import {isMobile} from "react-device-detect";
 import ShareIcon from "@mui/icons-material/Share";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import {navigate} from "gatsby";
 
 const BoxWrapper = styled(Box)(() => ({
     background: "#080B0E",
@@ -102,9 +103,11 @@ const BoxWrapper = styled(Box)(() => ({
         color: '#FBFBFB'
     },
     '.react-datepicker-component .react-datepicker-input input': {
-        paddingLeft: '5px',
-        color: '#FBFBFB',
-        fontSize: '15px !important'
+        paddingLeft: '0px',
+        color: '#080B0E',
+        fontSize: '18px',
+        fontWeight: '100',
+        fontFamily: 'Proxima Nova Alt',
     },
     '.icon-rc-datepicker': {
         color: '#FBFBFB !important',
@@ -191,7 +194,7 @@ const BoxWrapper = styled(Box)(() => ({
         },
         '.pe-fo-exp': {
             width: 'auto',
-            padding: '30px 10px'
+            padding: '60px 10px 30px 10px'
         },
         '.edit': {
             display: 'block'
@@ -253,6 +256,9 @@ const BoxWrapper = styled(Box)(() => ({
             textAlign: 'center',
             color: "#080B0E",
             fontFamily: 'Bon Vivant'
+        },
+        '.home-banner': {
+            marginTop: '55px'
         },
     },
 }));
@@ -399,18 +405,23 @@ const PriveeViewMore = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const handleClick = () => {
+        navigate('/chef-details');
+    }
+
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isColor={true}/>
-                {isMobile ? (
-                    <Box className='header-club'>
-                        <ArrowBackIcon className="header-icon"/>
-                        <Typography className="chef-mobile-heading">Privee</Typography>
-                    </Box>
-                ) : (
-                    ''
-                )}
+                <Navbar isColor={true} isIcon={true} heading="Privee"/>
+
+                {/*{isMobile ? (*/}
+                {/*    <Box className='header-club'>*/}
+                {/*        <ArrowBackIcon className="header-icon"/>*/}
+                {/*        <Typography className="chef-mobile-heading">Privee</Typography>*/}
+                {/*    </Box>*/}
+                {/*) : (*/}
+                {/*    ''*/}
+                {/*)}*/}
                 <Box className="home-banner dark">
                     <Box className="row justify-content-center">
                         <Box className="privee-container">
@@ -447,16 +458,29 @@ const PriveeViewMore = () => {
                                                         defaultValue={values.city}
                                                         className="selectpicker my-select dropdown-toggle form-control"
                                                         sx={{
+                                                            fontSize: '20px',
                                                             '.MuiOutlinedInput-notchedOutline': {border: 0},
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
+                                                            '.MuiSelect-icon': {
+                                                                color: '#FBFBFB'
+                                                            },
+                                                            '.MuiSelect-select': {
+                                                                padding: '0px 5px',
+                                                                fontSize: '20px',
+                                                                fontWeight: '100'
+                                                            }
                                                         }}
                                                         MenuProps={{
                                                             PaperProps: {
                                                                 sx: {
                                                                     background: "#080B0E",
                                                                     color: '#FBFBFB',
+                                                                    li: {
+                                                                        fontSize: '20px',
+                                                                        fontWeight: '100'
+                                                                    },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'
                                                                     },
@@ -501,16 +525,29 @@ const PriveeViewMore = () => {
                                                         defaultValue={values.time}
                                                         className="selectpicker my-select dropdown-toggle form-control"
                                                         sx={{
+                                                            fontSize: '20px',
                                                             '.MuiOutlinedInput-notchedOutline': {border: 0},
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
+                                                            '.MuiSelect-icon': {
+                                                                color: '#FBFBFB'
+                                                            },
+                                                            '.MuiSelect-select': {
+                                                                padding: '0px 5px',
+                                                                fontSize: '20px',
+                                                                fontWeight: '100'
+                                                            }
                                                         }}
                                                         MenuProps={{
                                                             PaperProps: {
                                                                 sx: {
                                                                     background: "#080B0E",
                                                                     color: '#FBFBFB',
+                                                                    li: {
+                                                                        fontSize: '20px',
+                                                                        fontWeight: '100'
+                                                                    },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'
                                                                     },
@@ -541,16 +578,29 @@ const PriveeViewMore = () => {
                                                         defaultValue={values.diners}
                                                         className="selectpicker my-select dropdown-toggle form-control"
                                                         sx={{
+                                                            fontSize: '20px',
                                                             '.MuiOutlinedInput-notchedOutline': {border: 0},
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
+                                                            '.MuiSelect-icon': {
+                                                                color: '#FBFBFB'
+                                                            },
+                                                            '.MuiSelect-select': {
+                                                                padding: '0px 5px',
+                                                                fontSize: '20px',
+                                                                fontWeight: '100'
+                                                            }
                                                         }}
                                                         MenuProps={{
                                                             PaperProps: {
                                                                 sx: {
                                                                     background: "#080B0E",
                                                                     color: '#FBFBFB',
+                                                                    li: {
+                                                                        fontSize: '20px',
+                                                                        fontWeight: '100'
+                                                                    },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'
                                                                     },
@@ -582,19 +632,19 @@ const PriveeViewMore = () => {
                 <Box className="available-experiences">
                     <Typography className="chef-header">Available Experiences</Typography>
                     <Grid container spacing={5}>
-                        <Grid item xl={4} md={4} sm={6} xs={12}>
+                        <Grid item xl={4} md={4} sm={6} xs={12} onClick={handleClick}>
                             <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'}
                                                    subDescription={'Starting from ₹5000 per diner'}/>
                         </Grid>
-                        <Grid item xl={4} md={4} sm={6} xs={12}>
+                        <Grid item xl={4} md={4} sm={6} xs={12} onClick={handleClick}>
                             <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'}
                                                    subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
                         </Grid>
-                        <Grid item xl={4} md={4} sm={6} xs={12}>
+                        <Grid item xl={4} md={4} sm={6} xs={12} onClick={handleClick}>
                             <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'}
                                                    subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
                         </Grid>
-                        <Grid item xl={4} md={4} sm={6} xs={12}>
+                        <Grid item xl={4} md={4} sm={6} xs={12} onClick={handleClick}>
                             <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'}
                                                    subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
                         </Grid>

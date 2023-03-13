@@ -155,8 +155,10 @@ const BoxWrapper = styled(Box)({
     // },
     '.react-datepicker-component .react-datepicker-input input': {
         paddingLeft: '5px',
-        color: '#FBFBFB',
-        fontSize: '15px !important'
+        color: '#080B0E',
+        fontSize: '18px',
+        fontWeight: '100',
+        fontFamily: 'Proxima Nova Alt',
     },
     '.icon-rc-datepicker': {
         color: '#FBFBFB !important',
@@ -165,7 +167,6 @@ const BoxWrapper = styled(Box)({
         background: 'transparent',
         border: '0px',
         borderRadius: '0px',
-        height: '30px !important'
     },
     '.react-datepicker-component .react-datepicker-input:hover': {
         background: 'transparent',
@@ -775,7 +776,11 @@ const BoxWrapper = styled(Box)({
             display: 'none',
         },
         '.home-banner': {
-            marginTop: '0px'
+            marginTop: '35px',
+            width: '100%',
+            height: '486px',
+            objectFit: 'cover',
+            objectPosition: '0px 50px',
         }
     },
     '@media(min-width: 426px) and (max-width: 768px)': {
@@ -816,7 +821,7 @@ const BoxWrapper = styled(Box)({
             paddingBottom: '10px'
         },
         '.home-banner': {
-            marginTop: '60px'
+            marginTop: '55px'
         }
     },
     '@media(min-width: 700px) and (max-width: 768px)': {
@@ -907,7 +912,7 @@ const HomePage = () => {
     ];
 
     const handleClick = () => {
-        navigate('/privee-viewmore');
+        navigate('/privee-viewmore', {state: true});
     }
 
     return (
@@ -959,12 +964,18 @@ const HomePage = () => {
                                                         defaultValue={values.city}
                                                         className="selectpicker my-select dropdown-toggle form-control"
                                                         sx={{
+                                                            fontSize: '20px',
                                                             '.MuiOutlinedInput-notchedOutline': {border: 0},
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
                                                             '.MuiSelect-icon': {
                                                                 color: '#FBFBFB'
+                                                            },
+                                                            '.MuiSelect-select': {
+                                                                padding: '0px 5px',
+                                                                fontSize: '20px',
+                                                                fontWeight: '100'
                                                             }
                                                         }}
                                                         MenuProps={{
@@ -972,6 +983,10 @@ const HomePage = () => {
                                                                 sx: {
                                                                     background: "#080B0E",
                                                                     color: '#FBFBFB',
+                                                                    li: {
+                                                                        fontSize: '20px',
+                                                                        fontWeight: '100'
+                                                                    },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'
                                                                     },
@@ -1016,12 +1031,18 @@ const HomePage = () => {
                                                         defaultValue={values.time}
                                                         className="selectpicker my-select dropdown-toggle form-control"
                                                         sx={{
+                                                            fontSize: '20px',
                                                             '.MuiOutlinedInput-notchedOutline': {border: 0},
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
                                                             '.MuiSelect-icon': {
                                                                 color: '#FBFBFB'
+                                                            },
+                                                            '.MuiSelect-select': {
+                                                                padding: '0px 5px',
+                                                                fontSize: '20px',
+                                                                fontWeight: '100'
                                                             }
                                                         }}
                                                         MenuProps={{
@@ -1029,6 +1050,10 @@ const HomePage = () => {
                                                                 sx: {
                                                                     background: "#080B0E",
                                                                     color: '#FBFBFB',
+                                                                    li: {
+                                                                        fontSize: '20px',
+                                                                        fontWeight: '100'
+                                                                    },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'
                                                                     },
@@ -1059,12 +1084,18 @@ const HomePage = () => {
                                                         defaultValue={values.diners}
                                                         className="selectpicker my-select dropdown-toggle form-control"
                                                         sx={{
+                                                            fontSize: '20px',
                                                             '.MuiOutlinedInput-notchedOutline': {border: 0},
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
                                                             '.MuiSelect-icon': {
                                                                 color: '#FBFBFB'
+                                                            },
+                                                            '.MuiSelect-select': {
+                                                                padding: '0px 5px',
+                                                                fontSize: '20px',
+                                                                fontWeight: '100'
                                                             }
                                                         }}
                                                         MenuProps={{
@@ -1072,6 +1103,10 @@ const HomePage = () => {
                                                                 sx: {
                                                                     background: "#080B0E",
                                                                     color: '#FBFBFB',
+                                                                    li: {
+                                                                        fontSize: '20px',
+                                                                        fontWeight: '100'
+                                                                    },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'
                                                                     },
@@ -1199,10 +1234,10 @@ const HomePage = () => {
                 <Box className="join-table join-table1">
                     <Box className="container-fluid">
                         <Grid container className="row">
-                            <Grid xl={6} className="join-table-image">
+                            <Grid xl={6} lg={6} xs={6} md={6} sm={12} xs={12} className="join-table-image">
                                 <img src={JoinTableImg} alt="Join The Table" className="jtable-img"/>
                             </Grid>
-                            <Grid xl={6} className="join-table-title">
+                            <Grid xl={6} lg={6} xs={6} md={6} sm={12} xs={12} className="join-table-title">
                                 <Typography className='join-table-heading'>Join our table</Typography>
                                 <Typography className='join-table-details'>Receive recipes , tips and tricks from top
                                     chefs from around the globe, and exclusive

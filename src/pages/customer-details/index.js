@@ -27,6 +27,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Modal from "@mui/material/Modal";
 import GoogleMapReact from "google-map-react";
 import location from "../../assets/images/location.png";
+import {navigate} from "gatsby";
 
 const validationSchema = Yup.object({
     contactNumber: Yup.number().typeError("Incorrect Contact Number").required('please enter contact number'),
@@ -47,6 +48,10 @@ const CustomerDetails = () => {
         },
         zoom: 11,
     };
+
+    const handleClick = () => {
+        navigate('/addons');
+    }
 
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
@@ -727,7 +732,7 @@ const CustomerDetails = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isColor={true} heading="Privee"/>
+                <Navbar isColor={true} isIcon={true} heading="Privee"/>
                 {/*{isMobile ? (*/}
                 {/*    <Box className='header-club'>*/}
                 {/*        <Typography className="addones-mobile-heading">Privee</Typography>*/}
@@ -911,7 +916,7 @@ const CustomerDetails = () => {
                                                         <Typography className="sp-occ ex-detail">Is there a special
                                                             occasion being
                                                             celebrated ?</Typography>
-                                                        <Tabs aria-label="Basic tabs" defaultValue={0}  sx={{
+                                                        <Tabs aria-label="Basic tabs" defaultValue={0} sx={{
                                                             "& .MuiTab-root": {
                                                                 marginRight: 1,
                                                             },
@@ -1095,7 +1100,8 @@ const CustomerDetails = () => {
                                                         </Box>
                                                         <Box className="row viewbreak">
                                                             <Box className="col-lg-12">
-                                                                <button type="submit" className="submit-req">Next
+                                                                <button type="submit" className="submit-req"
+                                                                        onClick={handleClick}>Next
                                                                 </button>
                                                             </Box>
                                                             <Typography className="contact-text">Our team will contact

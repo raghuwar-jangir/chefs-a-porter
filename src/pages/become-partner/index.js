@@ -118,7 +118,6 @@ const BecomePartner = () => {
             padding: '30px',
             width: '596px',
             marginBottom: '36px',
-
         },
         '.form-details': {
             fontFamily: 'Proxima Nova',
@@ -307,10 +306,13 @@ const BecomePartner = () => {
             '.joinaschef': {
                 paddingTop: '80px'
             },
+            '.become-partner-form': {
+                marginTop: '55px'
+            },
         },
         '@media(min-width: 615px) and (max-width: 768px)': {
             '.banner': {
-                marginTop: '10px'
+                marginTop: '40px'
             }
         },
         '@media(min-width: 1px) and (max-width: 768px)': {
@@ -336,7 +338,7 @@ const BecomePartner = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar heading="Become a partner"/>
+                <Navbar heading="Become a partner" isIcon={true}/>
                 {/*{isMobile ? (*/}
                 {/*    <Box className="mobile-header">*/}
                 {/*        <ArrowBackIcon/>*/}
@@ -414,7 +416,7 @@ const BecomePartner = () => {
                                                                     },
                                                                     'li:hover': {
                                                                         color: '#C6A87D!important',
-                                                                        backgroundColor:'unset !important'
+                                                                        backgroundColor: 'unset !important'
                                                                     },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'
@@ -510,7 +512,7 @@ const BecomePartner = () => {
                                                                     },
                                                                     'li:hover': {
                                                                         color: '#C6A87D!important',
-                                                                        backgroundColor:'unset !important'
+                                                                        backgroundColor: 'unset !important'
                                                                     },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'
