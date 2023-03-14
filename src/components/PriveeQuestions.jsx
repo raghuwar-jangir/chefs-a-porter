@@ -73,6 +73,9 @@ const PriveeQuestions = ({isLightTheme = false}) => {
 		lineHeight: '1.5',
 		fontSize:'1rem'
         },
+        '.accordionSummary':{
+            display:'flex !important'
+        },
         // !media query for accodion component(mobileView) 
 
         '@media(min-width: 1px) and (max-width: 425px)': {
@@ -116,10 +119,9 @@ const PriveeQuestions = ({isLightTheme = false}) => {
                         Frequently Asked Questions
                     </Typography>
                     <Box className='parent-accordion'>
-
                         <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}
                                    className='accordion'>
-                            <AccordionSummary
+                            <AccordionSummary className='accordionSummary'
                                 // expandIcon={<AddIcon sx={{ color: '#fff' }} />}
                                 expandIcon={expanded === 'panel1' ? <RemoveIcon sx={{
                                     color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
@@ -141,7 +143,7 @@ const PriveeQuestions = ({isLightTheme = false}) => {
                         </Accordion>
                         <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}
                                    className='accordion'>
-                            <AccordionSummary
+                            <AccordionSummary className='accordionSummary'
                                 expandIcon={expanded === 'panel2' ?
                                     <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
                                     <AddIcon sx={{fontSize:'19px',color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
@@ -163,12 +165,12 @@ const PriveeQuestions = ({isLightTheme = false}) => {
                         </Accordion>
                         <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}
                                    className='accordion'>
-                            <AccordionSummary
+                            <AccordionSummary className='accordionSummary'
                                 expandIcon={expanded === 'panel3' ?
                                     <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
                                     <AddIcon sx={{fontSize:'19px',color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
+                                aria-controls="panel3a-content"
+                                id="panel3a-header"
                             >
                                 <Typography className='frequently-questions'>Whats the cancellation policy?</Typography>
 
@@ -185,12 +187,12 @@ const PriveeQuestions = ({isLightTheme = false}) => {
                         </Accordion>
                         <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}
                                    className='accordion'>
-                            <AccordionSummary
+                            <AccordionSummary className='accordionSummary'
                                 expandIcon={expanded === 'panel4' ?
                                     <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
                                     <AddIcon sx={{fontSize:'19px',color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
+                                aria-controls="panel4a-content"
+                                id="panel4a-header"
                             >
                                 <Typography className='frequently-questions'>Will the cutlery be provided?</Typography>
 
@@ -207,12 +209,12 @@ const PriveeQuestions = ({isLightTheme = false}) => {
                         </Accordion>
                         <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}
                                    className='accordion'>
-                            <AccordionSummary
+                            <AccordionSummary className='accordionSummary'
                                 expandIcon={expanded === 'panel5' ?
                                     <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
                                     <AddIcon sx={{fontSize:'19px',color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
+                                aria-controls="panel5a-content"
+                                id="panel5a-header"
                             >
                                 <Typography className='frequently-questions'>Is it possible to pay the entiresum in EMIs?</Typography>
 
@@ -227,14 +229,14 @@ const PriveeQuestions = ({isLightTheme = false}) => {
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
-                        <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}
+                        <Accordion expanded={expanded === 'panel6'} onChange={handleChange('panel6')}
                                    className='accordion'>
-                            <AccordionSummary
-                                expandIcon={expanded === 'panel5' ?
+                            <AccordionSummary className='accordionSummary'
+                                expandIcon={expanded === 'panel6' ?
                                     <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
                                     <AddIcon sx={{fontSize:'19px',color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
+                                aria-controls="panel6a-content"
+                                id="panel6a-header"
                             >
                                 <Typography className='frequently-questions'>Is it possible to pay the entiresum in EMIs?</Typography>
 
@@ -249,14 +251,14 @@ const PriveeQuestions = ({isLightTheme = false}) => {
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
-                        <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}
+                        <Accordion expanded={expanded === 'panel7'} onChange={handleChange('panel7')}
                                    className='accordion'>
-                            <AccordionSummary
-                                expandIcon={expanded === 'panel5' ?
+                            <AccordionSummary className='accordionSummary'
+                                expandIcon={expanded === 'panel7' ?
                                     <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
                                     <AddIcon sx={{fontSize:'19px',color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
+                                aria-controls="panel7a-content"
+                                id="panel7a-header"
                             >
                                 <Typography className='frequently-questions'>How many guest can i invite for a private dinner?</Typography>
 

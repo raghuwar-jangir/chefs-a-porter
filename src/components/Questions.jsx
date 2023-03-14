@@ -71,6 +71,13 @@ const Questions = ({isLightTheme = false}) => {
 		lineHeight: '1.5',
 		fontSize:'1rem'
         },
+        '.accordionSummary':{
+            display:'flex !important',
+            padding:'6px 10px !important'
+        },
+        '.css-67l5gl:before':{
+           opacity:'0'
+        },
         // !media query for accodion component(mobileView) 
 
         '@media(min-width: 1px) and (max-width: 425px)': {
@@ -117,7 +124,7 @@ const Questions = ({isLightTheme = false}) => {
 
                         <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}
                                    className='accordion'>
-                            <AccordionSummary
+                            <AccordionSummary className='accordionSummary'
                                 // expandIcon={<AddIcon sx={{ color: '#fff' }} />}
                                 expandIcon={expanded === 'panel1' ? <RemoveIcon sx={{
                                     color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
@@ -139,7 +146,7 @@ const Questions = ({isLightTheme = false}) => {
                         </Accordion>
                         <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}
                                    className='accordion'>
-                            <AccordionSummary
+                            <AccordionSummary className='accordionSummary'
                                 expandIcon={expanded === 'panel2' ?
                                     <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
                                     <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
@@ -161,7 +168,7 @@ const Questions = ({isLightTheme = false}) => {
                         </Accordion>
                         <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}
                                    className='accordion'>
-                            <AccordionSummary
+                            <AccordionSummary className='accordionSummary'
                                 expandIcon={expanded === 'panel3' ?
                                     <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
                                     <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
@@ -183,7 +190,7 @@ const Questions = ({isLightTheme = false}) => {
                         </Accordion>
                         <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}
                                    className='accordion'>
-                            <AccordionSummary
+                            <AccordionSummary className='accordionSummary'
                                 expandIcon={expanded === 'panel4' ?
                                     <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
                                     <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
@@ -205,7 +212,7 @@ const Questions = ({isLightTheme = false}) => {
                         </Accordion>
                         <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}
                                    className='accordion'>
-                            <AccordionSummary
+                            <AccordionSummary className='accordionSummary'
                                 expandIcon={expanded === 'panel5' ?
                                     <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
                                     <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
