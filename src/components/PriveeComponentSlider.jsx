@@ -1,7 +1,5 @@
-import React, { useRef, useState } from "react";
-import { Box } from "@mui/system";
-import styled from "styled-components";
-import {Typography} from "@mui/material";
+import React from "react";
+import {Box, styled, Typography} from "@mui/material";
 import image1 from '../assets/images/ig1.png';
 import image2 from '../assets/images/ig2.png';
 import image3 from '../assets/images/ig3.png';

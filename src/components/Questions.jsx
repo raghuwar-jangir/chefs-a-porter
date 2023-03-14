@@ -56,7 +56,7 @@ const Questions = ({isLightTheme = false}) => {
         '.css-ahj2mt-MuiTypography-root': {
             fontWeight: '200'
         },
-        '.frequently-questions': {
+        '.frequently-questions':{
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '400',
@@ -64,12 +64,12 @@ const Questions = ({isLightTheme = false}) => {
             lineHeight: '19px',
             color: '#080B0E',
         },
-        '.frequently-ans': {
+        '.frequently-ans':{
             fontStyle: 'normal',
             fontWeight: '400 !important',
-            fontVariant: 'normal',
+            fontVariant:'normal',
             lineHeight: '1.5',
-            fontSize: '1rem'
+            fontSize:'1rem'
         },
         // !media query for accodion component(mobileView)
 
@@ -82,19 +82,19 @@ const Questions = ({isLightTheme = false}) => {
             '.WrapperBox': {
                 padding: '20px 16px'
             },
-            '.frequently-questions': {
+            '.frequently-questions':{
                 fontFamily: 'Proxima Nova Alt',
                 fontStyle: 'normal',
                 fontWeight: 400,
                 fontSize: '14px',
                 lineHeight: '17px',
             },
-            '.frequently-ans': {
+            '.frequently-ans':{
                 fontStyle: 'normal',
                 fontWeight: '400 !important',
                 lineHeight: '17px',
-                fontSize: '14px',
-                fontFamily: 'Proxima Nova Alt'
+                fontSize:'14px',
+                fontFamily:'Proxima Nova Alt'
             },
         }
 
@@ -125,8 +125,7 @@ const Questions = ({isLightTheme = false}) => {
                                 aria- controls="panel1a-content"
                                 id="panel1a-header"
                             >
-                                <Typography className='frequently-questions'>Would there be any pure vegetarian
-                                    options?</Typography>
+                                <Typography className='frequently-questions'>Would there be any pure vegetarian options?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography className='frequently-ans'>
@@ -147,8 +146,7 @@ const Questions = ({isLightTheme = false}) => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography className='frequently-questions'>How long does the meal last for
-                                    ?</Typography>
+                                <Typography className='frequently-questions'>How long does the meal last for ?</Typography>
 
                             </AccordionSummary>
                             <AccordionDetails>
@@ -214,8 +212,7 @@ const Questions = ({isLightTheme = false}) => {
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography className='frequently-questions'>Is it possible to pay the entiresum in
-                                    EMIs</Typography>
+                                <Typography className='frequently-questions'>Is it possible to pay the entiresum in EMIs</Typography>
 
                             </AccordionSummary>
                             <AccordionDetails>

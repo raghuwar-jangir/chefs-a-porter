@@ -1,7 +1,5 @@
 import React from "react";
-import {Box} from "@mui/system";
-import styled from "styled-components";
-import {Typography} from "@mui/material";
+import {Box, styled, Typography} from "@mui/material";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import AvlExperienceCarousel from "./AvlExperienceCarousel";
