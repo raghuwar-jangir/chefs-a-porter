@@ -1228,7 +1228,7 @@ const HomePage = () => {
                                                                                    link={'/gift-cards'}/></Grid>
                         <Grid className="treat-card2" xs={6} md={4} sm={4}><Treaty treatTitle="#Patron Privilage"
                                                                                    mainTitle="Become a patron and get exclusive access to our top experiences"
-                                                                                   link={'/become-patron'}/></Grid>
+                                                                                   link={'/become-a-patron'}/></Grid>
                     </Grid>
                 </Box>
                 <Box className="join-table join-table1">
