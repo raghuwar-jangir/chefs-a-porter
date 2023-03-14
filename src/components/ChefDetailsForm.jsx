@@ -7,7 +7,8 @@ import InfoIcon from '@mui/icons-material/Info';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
-import gCal from '../assets/images/date-gold.png'
+import gCal from '../assets/images/date-gold.png';
+import gInfo from '../assets/images/info.png';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Checkbox from '@mui/material/Checkbox';
@@ -24,8 +25,27 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
 const ChefDetailsForm = () => {
     const [startDate, setStartDate] = useState(new Date());
     console.log("startDate=",moment(startDate).format("dddd, MMMM DD, YYYY"));
-    const [numberOfDenner, setNumberOfDenner] = useState(0)
-    const [numberOfCourses, setNumberOfCourses] = useState(0)
+    const [numberOfDenner, setNumberOfDenner] = useState(2)
+    const [numberOfCourses, setNumberOfCourses] = useState(3)
+
+    const handleDecrement = () => {
+        if (numberOfDenner > 2) {
+          setNumberOfDenner(numberOfDenner - 1);
+        }
+      }
+    
+      const handleIncrement = () => {
+        setNumberOfDenner(numberOfDenner + 1);
+      }
+      const handleCoursesDecrement = () => {
+        if (numberOfCourses > 3) {
+          setNumberOfCourses(numberOfCourses - 1);
+        }
+      }
+    
+      const handleCoursesIncrement = () => {
+        setNumberOfCourses(numberOfCourses + 1);
+      }
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
         color: '#FBFBFB',
@@ -303,10 +323,23 @@ const ChefDetailsForm = () => {
     paddingRight:'5px !important',
     padding:'0px',
     marginBottom:'0.125rem',
-    color:'#C6A87D'
-}
-        
+    color:'#C6A87D !important'
+},
+'.date-box':{
+    position:'relative'
+},
+'.gcal':{
+    height:'22.8px',
+},
+'.gcal-icon':{
+    position:'absolute',
+    right:'18px',
+    bottom:'19px'
+}, 
     }))
+    const disabledStyle = {
+        opacity: 0.5,
+      }
 
 
     // for tooltip
@@ -336,6 +369,7 @@ const ChefDetailsForm = () => {
                         email: "",
                         experienceDate: "",
                         startTime: "",
+                        time: new Date().getHours() + ":" + new Date().getMinutes(),
                     }}
                     validationSchema={DisplayingErrorMessagesSchema}
                     onSubmit={values => {
@@ -377,27 +411,20 @@ const ChefDetailsForm = () => {
                                     {touched.email && errors.email && <Typography className='error-msg'>{errors.email}</Typography>}
                                 </Box>
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <Box className="comman-field-box" sx={{ width: "49%" }}>
+                                    <Box className="comman-field-box date-box" sx={{ width: "49%" }}>
                                         <Typography className='field-title'>Experience Date</Typography>
-                                        {/* <TextField
-                                            className='input-field'
-                                            value={values.experienceDate}
-                                            onChange={handleChange}
-                                            name="experienceDate"
-                                            type="date"
-                                            id="standard-size-normal"
-                                            variant="standard"
-                                            fullWidth
-                                        /> */}
                                         <DatePicker selected={startDate}  className='form-control' onChange={(date) => setStartDate(date)} value={moment(startDate).format("ddd,DD MMM YYYY")}/>
-                                        <img src={gCal}/>
                                         {touched.experienceDate && errors.experienceDate && <Typography className='error-msg'>{errors.experienceDate}</Typography>}
+                                        <Box className="gcal-icon">
+                                        <img className="gcal" src={gCal}/>
+                                        </Box>
                                     </Box>
                                     <Box className="comman-field-box" sx={{ width: "48.5%" }}>
                                         <Typography className='field-title' sx={{
                                             display: "flex",
                                             alignItems: "center",
-                                            paddingRight: '10px'
+                                            paddingRight: '10px',
+                                            paddingBottom:'6px !important'
                                         }}>
                                             Start Time
                                             <Tooltip
@@ -420,20 +447,26 @@ const ChefDetailsForm = () => {
                                                 }}
                                             >
                                                 <InfoIcon
+                                                    sx={{color:"#C6A87D",fontSize:'17px',marginLeft:'8px'}}
                                                     ref={areaRef}
                                                     onMouseMove={handleMouseMove}
                                                 />
                                             </Tooltip>
                                         </Typography>
                                         <TextField
-                                            className='input-field'
-                                            value={values.experienceDate}
-                                            onChange={handleChange}
-                                            name="startTime"
-                                            type="Time"
-                                            id="standard-size-normal"
-                                            variant="standard"
-                                            fullWidth
+                                             type="time"
+                                             name="time"
+                                             value={values.time}
+                                             onChange={handleChange}
+                                             defaultValue={values.time}
+                                             style={{width:'100%'}}
+                                            //  className="form-control"
+                                             autoComplete="off"
+                                             variant="standard"
+                                             InputProps={{
+                                               disableUnderline: true,
+                                               autoCapitalize: true,
+                                             }}
                                         />
                                         {touched.startTime && errors.startTime && <Typography className='error-msg'>{errors.startTime}</Typography>}
                                     </Box>
@@ -442,13 +475,14 @@ const ChefDetailsForm = () => {
                                     <Typography className="min-2-3">Number of Diners <span>(min 2)</span></Typography>
                                     <Box sx={{ display: 'flex' }}>
                                         <RemoveIcon 
+                                            style={numberOfDenner === 2 ? disabledStyle : {}}
                                            className="left-btn"
-                                            onClick={() => { setNumberOfDenner((numberOfDenner - 1 > 0)) }}
+                                           onClick={handleDecrement}  disabled={numberOfDenner === 2}
                                         />
                                         <Typography className="number-ans">{numberOfDenner}</Typography>
                                         <AddIcon
                                             className="right-btn"
-                                            onClick={() => { setNumberOfDenner(numberOfDenner + 1) }}
+                                            onClick={handleIncrement}
                                         />
                                     </Box>
                                 </Box>
@@ -456,13 +490,14 @@ const ChefDetailsForm = () => {
                                     <Typography className="min-2-3">Number of Diners <span>(min 3)</span></Typography>
                                     <Box sx={{ display: 'flex' }}>
                                     <RemoveIcon 
+                                    style={numberOfCourses === 3 ? disabledStyle : {}}
                                            className="left-btn"
-                                            onClick={() => { setNumberOfDenner((numberOfDenner - 1 > 0)) }}
+                                           onClick={handleCoursesDecrement} disabled={numberOfCourses === 3}
                                         />
                                         <Typography className="number-ans">{numberOfCourses}</Typography>
                                         <AddIcon
                                             className="right-btn"
-                                            onClick={() => { setNumberOfDenner(numberOfDenner + 1) }}
+                                            onClick={handleCoursesIncrement}
                                         />
                                     </Box>
                                 </Box>
@@ -470,7 +505,7 @@ const ChefDetailsForm = () => {
                                                 <Box className='surprise-box'>
                                                 <Box className="form-check">
                                                     <Box className='surprise-check-box'>
-                                                <Checkbox className="input-check" defaultChecked  />
+                                                <Checkbox className="input-check" defaultChecked/>
                                     <Typography className="form-check-label" for="flexCheckChecked">Surprise me</Typography></Box>
                                         <Typography className="email-confirm">An agnostic menu that explores a diverse culinary journey with chef mako at the helm.</Typography>
                                   </Box>

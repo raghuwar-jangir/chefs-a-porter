@@ -27,7 +27,8 @@ const images = [
     {
         mainTitle: '"Mako and his eccentric Personality,',
         subTitle:'lit up the room and our taste buds!"',
-        details: "I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!",
+        details: "I had chef Mako over to host a few business partners.",
+        details2:" The dinner experience was absolutely amazing and he makes amazing Sushi!",
         ceoName: "Arvind Mohan, CEO of Alpha",
     },
     {
@@ -46,9 +47,9 @@ const images = [
     },
 ];
 
-const SupperClubDetailsCarousel = ({backgroundColor,changeFont,changeDetails}) => {
+const SupperClubDetailsCarousel = ({backgroundColor,changeFont,changeDetails,mainBox}) => {
     const [value, setValue] = useState(4);
-    const BoxWrapper = styled(Box)(() => ({
+    const BoxWrapper = styled(Box)(() => ([{
         padding: '80px 80px 40px',
         background: `${backgroundColor}`,
         color: '#222222',
@@ -123,7 +124,7 @@ const SupperClubDetailsCarousel = ({backgroundColor,changeFont,changeDetails}) =
         }
     
     
-    }))
+    },mainBox]))
     return (
         <BoxWrapper>
            <Swiper autoplay={{
@@ -160,6 +161,8 @@ const SupperClubDetailsCarousel = ({backgroundColor,changeFont,changeDetails}) =
                             </Typography>
                             <Typography className='details'>
                                 {step.details}
+                            </Typography>
+                            <Typography className='details'>
                                 {step.details2}
                             </Typography>
                             <Typography >
