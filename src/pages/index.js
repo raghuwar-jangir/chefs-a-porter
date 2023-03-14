@@ -88,7 +88,7 @@ const BoxWrapper = styled(Box)({
         marginBottom: '40px'
     },
     '.home-banner .row': {
-        paddingTop: '330px',
+        paddingTop: '325px',
         margin: '0px',
         // position: 'relative',
     },
@@ -97,7 +97,8 @@ const BoxWrapper = styled(Box)({
         justifyContent: 'center',
     },
     '.chef-container': {
-        width: '52%',
+        width: '987px',
+        height: '240px',
         background: 'rgba(8, 11, 14, 0.8)',
         alignItems: 'bottom'
     },
@@ -118,12 +119,12 @@ const BoxWrapper = styled(Box)({
         flex: '1',
         border: '1px solid #FBFBFB',
         padding: '14px',
-        height: '50px',
+        height: '46px',
     },
     '.form-group:last-child': {
         border: 'unset',
         padding: '0px 16px',
-        height: '75px'
+        height: '77px'
     },
     '.form-control': {
         backgroundColor: 'transparent',
@@ -153,12 +154,15 @@ const BoxWrapper = styled(Box)({
     //     color: '#FBFBFB !important',
     //     right:'-10px !important'
     // },
+    // '.react-datepicker-component':{
+    //     top:'-5px'
+    // },
     '.react-datepicker-component .react-datepicker-input input': {
         paddingLeft: '5px',
         color: '#080B0E',
-        fontSize: '18px',
+        fontSize: '20px',
         fontWeight: '100',
-        fontFamily: 'Proxima Nova Alt',
+        fontFamily: 'ProximaNovaA-Regular',
     },
     '.icon-rc-datepicker': {
         color: '#FBFBFB !important',
@@ -175,6 +179,11 @@ const BoxWrapper = styled(Box)({
     },
     '.react-datepicker-component .react-datepicker-input.has-value input': {
         color: '#FBFBFB !important',
+        padding: '8px 0px',
+        // top: '-5px'
+    },
+    '.react-datepicker-component': {
+        top: '-5px'
     },
     '.react-datepicker-component .react-datepicker-input.is-open': {
         background: 'transparent',
@@ -198,8 +207,10 @@ const BoxWrapper = styled(Box)({
         padding: '5px !important',
     },
     '.MuiSelect-select': {
-        padding: '5px !important',
-        fontSize: '17px',
+        padding: '1px !important',
+    },
+    '.MuiSelect-icon': {
+        top: 0
     },
     '.hot-chef-search-btn': {
         background: '#C6A87D',
@@ -826,10 +837,14 @@ const BoxWrapper = styled(Box)({
     },
     '@media(min-width: 700px) and (max-width: 768px)': {
         '.chef-container': {
-            width: 'auto',
+            width: '100%',
             background: 'rgba(8, 11, 14, 0.8)',
             alignItems: 'bottom'
         },
+        '.pe-fo-exp': {
+            padding: '40px 10px',
+            width: '750px'
+        }
     },
     '@media(min-width: 769px) and (max-width: 1024px)': {
         '.treat': {
@@ -839,7 +854,7 @@ const BoxWrapper = styled(Box)({
             width: 'unset',
         },
         '.chef-container': {
-            width: '80%',
+            width: '987px',
         },
         '.jtable-img': {
             height: '500px',
@@ -854,7 +869,7 @@ const BoxWrapper = styled(Box)({
             width: '600px !important'
         },
         '.chef-container': {
-            width: '60%',
+            width: '987px',
         },
     },
 
@@ -975,7 +990,9 @@ const HomePage = () => {
                                                             '.MuiSelect-select': {
                                                                 padding: '0px 5px',
                                                                 fontSize: '20px',
-                                                                fontWeight: '100'
+                                                                fontWeight: '100',
+                                                                display: 'flex',
+                                                                flexDirection: 'column'
                                                             }
                                                         }}
                                                         MenuProps={{
@@ -1009,7 +1026,8 @@ const HomePage = () => {
                                                     </Select>
                                                 </Box>
                                                 <Box className="form-group">
-                                                    <label className="label">On</label>
+                                                    <label className="label"
+                                                           style={{marginBottom: '1px !important'}}>On</label>
                                                     <DatePickerInput
                                                         name="on"
                                                         value={values.on}

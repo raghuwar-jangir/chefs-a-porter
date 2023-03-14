@@ -46,11 +46,11 @@ const BoxWrapper = styled(Box)(() => ({
         textAlign: 'left',
         letterSpacing: '0.06em',
         color: '#FBFBFB',
-        padding: '10px 0px',
-        marginBottom: '10px',
+        padding: '10px 12px',
+        marginBottom: '15px',
     },
     '.privee-container': {
-        width: '66% !important',
+        width: '1190px !important',
     },
     '.pe-fo-exp': {
         // position: 'relative',
@@ -68,12 +68,14 @@ const BoxWrapper = styled(Box)(() => ({
         width: '100%',
         flex: '1',
         border: '1px solid #FBFBFB',
-        padding: '13px',
+        padding: '12px',
         height: '50px !important',
     },
     '.MuiSelect-select': {
-        padding: '5px !important',
-        fontSize: '17px',
+        padding: '1px !important',
+    },
+    '.MuiSelect-icon': {
+        top: 0
     },
     '.form-control': {
         backgroundColor: 'transparent',
@@ -105,9 +107,9 @@ const BoxWrapper = styled(Box)(() => ({
     '.react-datepicker-component .react-datepicker-input input': {
         paddingLeft: '0px',
         color: '#080B0E',
-        fontSize: '18px',
+        fontSize: '20px',
         fontWeight: '100',
-        fontFamily: 'Proxima Nova Alt',
+        fontFamily: 'ProximaNovaA-Regular',
     },
     '.icon-rc-datepicker': {
         color: '#FBFBFB !important',
@@ -125,6 +127,7 @@ const BoxWrapper = styled(Box)(() => ({
     },
     '.react-datepicker-component .react-datepicker-input.has-value input': {
         color: '#FBFBFB !important',
+        padding: '8px 0px'
     },
     '.react-datepicker-component .react-datepicker-input.is-open': {
         background: 'transparent',
@@ -145,7 +148,7 @@ const BoxWrapper = styled(Box)(() => ({
     },
     '.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
         height: '10px',
-        padding: '5px !important',
+        padding: '1px !important',
     },
     ".header-club": {
         display: 'none',
@@ -215,7 +218,17 @@ const BoxWrapper = styled(Box)(() => ({
             display: 'flex'
         },
         '.privee-container': {
-            width: '80% !important',
+            width: '688px !important',
+        },
+    },
+    "@media (min-width: 769px) and (max-width:1024px)": {
+        '.privee-container': {
+            width: '688px !important',
+        },
+    },
+    "@media (min-width: 1025px) and (max-width:1500px)": {
+        '.privee-container': {
+            width: '880px !important',
         },
     },
     "@media (min-width: 320px) and (max-width:370px)": {
@@ -376,14 +389,12 @@ const style = {
     '.react-datepicker-component .react-datepicker-input input': {
         paddingLeft: '5px',
         color: '#080B0E',
+        fontSize: '20px',
+        fontWeight: '100',
+        fontFamily: 'Proxima Nova Alt',
     },
     '.icon-rc-datepicker': {
-        color: '#080B0E !important',
-    },
-    '.react-datepicker-component .react-datepicker-input.is-open': {
-        background: 'transparent',
-        border: '0px',
-        borderRadius: '0px',
+        color: '#FBFBFB !important',
     },
     '.react-datepicker-component .react-datepicker-input': {
         background: 'transparent',
@@ -396,7 +407,12 @@ const style = {
         borderRadius: '0px'
     },
     '.react-datepicker-component .react-datepicker-input.has-value input': {
-        color: '#080B0E !important',
+        color: '#FBFBFB !important',
+    },
+    '.react-datepicker-component .react-datepicker-input.is-open': {
+        background: 'transparent',
+        border: '0px',
+        borderRadius: '0px',
     },
 }
 const PriveeViewMore = () => {

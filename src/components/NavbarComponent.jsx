@@ -157,6 +157,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading}) => {
                 display: 'flex',
                 justifyContent: 'space-evenly',
                 alignItems: 'center',
+                height: '20px'
             },
             '.browser-search': {
                 display: 'flex',
@@ -178,13 +179,15 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading}) => {
                 height: '64px',
                 width: '226.29px',
                 objectFit: 'contain',
-                filter: `${isColor ? 'invert(1)' : ''}`
+                filter: `${isColor ? 'invert(1)' : ''}`,
+                paddingLeft: '10px'
             },
             '.dark-theme-logo': {
                 height: '64px',
                 width: '226.29px',
                 cursor: 'pointer',
                 objectFit: 'contain',
+                paddingLeft: '12px'
             },
             '.mobile-navbar-img': {
                 display: 'flex',
@@ -312,7 +315,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading}) => {
             {/* //! browser view for the navbar component */}
             <BoxWrapper>
                 <AppBar position="fixed" elevation={0}
-                        sx={{background: `${isColor ? '#101418' : '#FBFBFB'}`}}
+                        sx={{background: `${isColor ? '#101418' : '#FBFBFB'}`, height: '80px'}}
                 >
                     <Box className="main-container desktop-navbar">
                         <Box sx={{width: 'auto'}} onClick={handleOnClick}>
@@ -322,7 +325,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading}) => {
                         <Box className="grid-box">
                             <Grid container direction={'row'} xl={12}
                                   className=''>
-                                <Grid className='browser-menu' xl={8} md={8}>
+                                <Grid className='browser-menu' xl={8} md={8} sx={{marginRight:'9px'}}>
                                     <Link
                                         className={`browser-hamburger-menu`}
                                         activeClassName={'browser-hamburger-menu active'}
@@ -355,7 +358,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading}) => {
                                         About Us
                                     </Link>
                                 </Grid>
-                                <Grid className='header-search-box browser-search' item xl={3.5} md={3.5}
+                                <Grid className='header-search-box browser-search' item xl={3.7} md={3.7}
                                       sx={{flex: 'none'}}>
                                     {!search &&
                                         <img src={searchIcon} className='telePhoneLogo' onClick={handleOpen}/>
