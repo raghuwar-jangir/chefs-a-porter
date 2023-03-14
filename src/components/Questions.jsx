@@ -22,7 +22,7 @@ const Questions = ({isLightTheme = false}) => {
             fontSize: '24px',
             fontFamily: 'Bon Vivant',
             lineHeight: '30px',
-            fontWeight:'700 !important',
+            fontWeight: '700 !important',
             letterSpacing: '0.06em',
             color: `${isLightTheme ? '#080B0E' : "#FBFBFB"}`
         },
@@ -56,7 +56,7 @@ const Questions = ({isLightTheme = false}) => {
         '.css-ahj2mt-MuiTypography-root': {
             fontWeight: '200'
         },
-        '.frequently-questions':{
+        '.frequently-questions': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '400',
@@ -64,12 +64,19 @@ const Questions = ({isLightTheme = false}) => {
             lineHeight: '19px',
             color: '#080B0E',
         },
-        '.frequently-ans':{
+        '.frequently-ans': {
             fontStyle: 'normal',
             fontWeight: '400 !important',
-            fontVariant:'normal',
+            fontVariant: 'normal',
             lineHeight: '1.5',
-            fontSize:'1rem'
+            fontSize: '1rem'
+        },
+        '.accordionSummary': {
+            display: 'flex !important',
+            padding: '6px 10px !important'
+        },
+        '.css-67l5gl:before': {
+            opacity: '0'
         },
         // !media query for accodion component(mobileView)
 
@@ -82,19 +89,19 @@ const Questions = ({isLightTheme = false}) => {
             '.WrapperBox': {
                 padding: '20px 16px'
             },
-            '.frequently-questions':{
+            '.frequently-questions': {
                 fontFamily: 'Proxima Nova Alt',
                 fontStyle: 'normal',
                 fontWeight: 400,
                 fontSize: '14px',
                 lineHeight: '17px',
             },
-            '.frequently-ans':{
+            '.frequently-ans': {
                 fontStyle: 'normal',
                 fontWeight: '400 !important',
                 lineHeight: '17px',
-                fontSize:'14px',
-                fontFamily:'Proxima Nova Alt'
+                fontSize: '14px',
+                fontFamily: 'Proxima Nova Alt'
             },
         }
 
@@ -117,15 +124,16 @@ const Questions = ({isLightTheme = false}) => {
 
                         <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}
                                    className='accordion'>
-                            <AccordionSummary
+                            <AccordionSummary className='accordionSummary'
                                 // expandIcon={<AddIcon sx={{ color: '#fff' }} />}
-                                expandIcon={expanded === 'panel1' ? <RemoveIcon sx={{
-                                    color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
-                                }}/> : <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria- controls="panel1a-content"
-                                id="panel1a-header"
+                                              expandIcon={expanded === 'panel1' ? <RemoveIcon sx={{
+                                                  color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
+                                              }}/> : <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
+                                              aria- controls="panel1a-content"
+                                              id="panel1a-header"
                             >
-                                <Typography className='frequently-questions'>Would there be any pure vegetarian options?</Typography>
+                                <Typography className='frequently-questions'>Would there be any pure vegetarian
+                                    options?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography className='frequently-ans'>
@@ -139,14 +147,16 @@ const Questions = ({isLightTheme = false}) => {
                         </Accordion>
                         <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}
                                    className='accordion'>
-                            <AccordionSummary
-                                expandIcon={expanded === 'panel2' ?
-                                    <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
-                                    <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
+                            <AccordionSummary className='accordionSummary'
+                                              expandIcon={expanded === 'panel2' ?
+                                                  <RemoveIcon
+                                                      sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
+                                                  <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
+                                              aria-controls="panel2a-content"
+                                              id="panel2a-header"
                             >
-                                <Typography className='frequently-questions'>How long does the meal last for ?</Typography>
+                                <Typography className='frequently-questions'>How long does the meal last for
+                                    ?</Typography>
 
                             </AccordionSummary>
                             <AccordionDetails>
@@ -161,12 +171,13 @@ const Questions = ({isLightTheme = false}) => {
                         </Accordion>
                         <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}
                                    className='accordion'>
-                            <AccordionSummary
-                                expandIcon={expanded === 'panel3' ?
-                                    <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
-                                    <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
+                            <AccordionSummary className='accordionSummary'
+                                              expandIcon={expanded === 'panel3' ?
+                                                  <RemoveIcon
+                                                      sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
+                                                  <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
+                                              aria-controls="panel2a-content"
+                                              id="panel2a-header"
                             >
                                 <Typography className='frequently-questions'>Whats the cancellation policy?</Typography>
 
@@ -183,12 +194,13 @@ const Questions = ({isLightTheme = false}) => {
                         </Accordion>
                         <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}
                                    className='accordion'>
-                            <AccordionSummary
-                                expandIcon={expanded === 'panel4' ?
-                                    <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
-                                    <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
+                            <AccordionSummary className='accordionSummary'
+                                              expandIcon={expanded === 'panel4' ?
+                                                  <RemoveIcon
+                                                      sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
+                                                  <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
+                                              aria-controls="panel2a-content"
+                                              id="panel2a-header"
                             >
                                 <Typography className='frequently-questions'>Will the cutlery be provided?</Typography>
 
@@ -205,14 +217,16 @@ const Questions = ({isLightTheme = false}) => {
                         </Accordion>
                         <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}
                                    className='accordion'>
-                            <AccordionSummary
-                                expandIcon={expanded === 'panel5' ?
-                                    <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
-                                    <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
+                            <AccordionSummary className='accordionSummary'
+                                              expandIcon={expanded === 'panel5' ?
+                                                  <RemoveIcon
+                                                      sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
+                                                  <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
+                                              aria-controls="panel2a-content"
+                                              id="panel2a-header"
                             >
-                                <Typography className='frequently-questions'>Is it possible to pay the entiresum in EMIs</Typography>
+                                <Typography className='frequently-questions'>Is it possible to pay the entiresum in
+                                    EMIs</Typography>
 
                             </AccordionSummary>
                             <AccordionDetails>
