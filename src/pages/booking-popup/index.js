@@ -131,7 +131,7 @@ const CustomerDetails = () => {
         '.bookingBox': {
             marginTop: '40px',
         },
-        '.booking-sum h4': {
+        '.booking-summary': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
@@ -139,13 +139,14 @@ const CustomerDetails = () => {
             lineHeight: '24px',
             color: '#FBFBFB',
             marginBottom: '16px',
+            marginTop: '0px'
         },
         '.chef-edit': {
-        display: 'flex',
-        placeItems: 'center',
-        position: 'relative',
-        marginBottom: '20px',
-    },
+            display: 'flex',
+            placeItems: 'center',
+            position: 'relative',
+            marginBottom: '20px',
+        },
         '.chef-edit img': {
             width: '48px',
             height: '48px',
@@ -164,6 +165,23 @@ const CustomerDetails = () => {
         '.chef-profile div': {
             marginBottom: '16px',
             display: 'flex',
+        },
+        '.grid-box': {
+            borderLeft: '10px solid #101418',
+            background: '#080B0E',
+            padding: '16px',
+        },
+        '.chef-profile img': {
+            height: '16px',
+            width: '16px',
+        },
+        '.chef-profile span': {
+            fontFamily: 'Proxima Nova Alt';
+    fontStyle: normal;
+    fontWeight: 300;
+    fontSize: 16px;
+    line-height: 19px;
+    color: #FBFBFB;
         },
         "@media (min-width: 426px) and (max-width:768px)": {
             width: '500px'
@@ -209,10 +227,10 @@ const CustomerDetails = () => {
                                     </div>
                                     <div className="bookingBox">
                                         <Grid container className="row booking-sum">
-                                            <Grid xl={6}>
+                                            <Grid xl={6} className="grid-box">
                                                 <div className="row">
                                                     <div className="col-lg-12">
-                                                        <h4>Booking Summary</h4>
+                                                        <h4 className="booking-summary">Booking Summary</h4>
                                                     </div>
                                                     <div className="col-lg-12">
                                                         <div className="chef-edit">
@@ -249,7 +267,7 @@ const CustomerDetails = () => {
                                                     </div>
                                                 </div>
                                             </Grid>
-                                            <Grid xl={6}>
+                                            <Grid xl={6} className="grid-box">
                                                 <div className="per-dinner">
                                                     <div className="experience-breakup">
                                                         <div className="ex-details">
