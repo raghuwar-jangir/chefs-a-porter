@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     Box,
     Grid,
@@ -36,10 +36,21 @@ const validationSchema = Yup.object({
 
 const CustomerDetails = () => {
     const CHARACTER_LIMIT = 40;
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [open, setOpen] = useState(false);
+    const [currentModal, setCurrentModal] = useState(0);
 
+    const handleOpen = () => {
+        setOpen(true);
+        setCurrentModal(0);
+    };
+
+    const handleClose = () => {
+        if (currentModal < modals.length - 1) {
+            setCurrentModal(currentModal + 1);
+        } else {
+            setOpen(false);
+        }
+    };
     const AnyReactComponent = ({text}) => <div>{text}</div>;
     const defaultProps = {
         center: {
@@ -48,6 +59,681 @@ const CustomerDetails = () => {
         },
         zoom: 11,
     };
+
+    const handleModal = () => {
+        if (currentModal == 1) {
+            setCurrentModal(currentModal + 1);
+        }
+    }
+
+    const styleModel1 = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '800px',
+        height: '800px',
+        boxShadow: 24,
+        '.modal-content': {
+            backgroundColor: '#101418!important',
+            boxShadow: '0px 8px 12px rgb(0 0 0 / 16%)',
+            padding: '40px 30px 20px',
+            // position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+            // width: '100%',
+            pointerEvents: 'auto',
+            backgroundClip: 'paddingBox',
+            outline: '0'
+        },
+        ".btn-primary": {
+            border: 'none !important',
+            background: "transparent",
+            fontSize: "20px",
+            fontWeight: '600',
+            borderRadius: "0px",
+            color: "#FBFBFB",
+            fontFamily: 'Proxima Nova',
+            height: "40px !important",
+            cursor: 'pointer'
+        },
+        '.modal-header': {
+            padding: '0px',
+            paddingBottom: '30px',
+            borderBottom: 'none',
+            display: 'flex',
+            position: 'relative',
+            justifyContent: 'space-between',
+        },
+        '.modal-title': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '20px',
+            lineHeight: '24px',
+            color: '#FBFBFB',
+        },
+        '.arrow-left': {
+            color: '#FBFBFB',
+            fontSize: '20px',
+            marginRight: '16px',
+        },
+        '.map-box': {
+            height: "380px",
+            width: "100%",
+            marginBottom: '30px'
+        },
+        '.label': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#FBFBFB',
+            marginBottom: '8px'
+        },
+        '.form-control': {
+            backgroundColor: 'transparent',
+            border: '0px',
+            borderBottom: '0.25px solid #FBFBFB',
+            borderRadius: '0px',
+            paddingLeft: '0px',
+            paddingRight: '0px',
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#FBFBFB',
+            width: '100%'
+        },
+        '.loc-ad': {
+            display: 'flex',
+            borderBottom: '0.25px solid #FBFBFB',
+            padding: '30px 0px',
+        },
+        '.loc-ad img': {
+            width: '17px',
+            height: '20px',
+            objectFit: 'contain',
+        },
+        '.address-title': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '14px',
+            lineHeight: '17px',
+            color: '#FBFBFB',
+            marginBottom: '0.5rem'
+        },
+        '.address-detail': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '14px',
+            lineHeight: '17px',
+            color: 'rgba(251, 251, 251, 0.6)',
+            marginBottom: '0px!important',
+        },
+        '.address-box': {
+            marginLeft: '15px'
+        },
+        "@media (min-width: 426px) and (max-width:768px)": {
+            width: '500px'
+        },
+        "@media (min-width: 1px) and (max-width:400px)": {
+            width: '320px !important',
+        },
+        "@media (min-width: 400px) and (max-width:425px)": {
+            width: '400px !important',
+        },
+    };
+    const styleModel2 = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '800px',
+        height: '800px',
+        boxShadow: 24,
+        '.modal-content': {
+            backgroundColor: '#101418!important',
+            boxShadow: '0px 8px 12px rgb(0 0 0 / 16%)',
+            padding: '40px 30px 20px',
+            // position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+            // width: '100%',
+            pointerEvents: 'auto',
+            backgroundClip: 'paddingBox',
+            outline: '0'
+        },
+        ".btn-primary": {
+            border: 'none !important',
+            background: "transparent",
+            fontSize: "20px",
+            fontWeight: '600',
+            borderRadius: "0px",
+            color: "#FBFBFB",
+            fontFamily: 'Proxima Nova',
+            height: "40px !important",
+            cursor: 'pointer'
+        },
+        '.modal-header': {
+            padding: '0px',
+            paddingBottom: '30px',
+            borderBottom: 'none',
+            display: 'flex',
+            position: 'relative',
+            justifyContent: 'space-between',
+        },
+        '.modal-title': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '20px',
+            lineHeight: '24px',
+            color: '#FBFBFB',
+        },
+        '.arrow-left': {
+            color: '#FBFBFB',
+            fontSize: '20px',
+            marginRight: '16px',
+        },
+        '.map-box': {
+            height: "380px",
+            width: "100%",
+            marginBottom: '30px'
+        },
+        '.address-title': {
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '20px',
+            lineHeight: '24px',
+            color: '#FBFBFB',
+            marginBottom: '0.5rem'
+        },
+        '.address-detail': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '14px',
+            lineHeight: '17px',
+            color: 'rgba(251, 251, 251, 0.6)',
+            marginBottom: '30px',
+        },
+        '.change-detail': {
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '16px',
+            lineHeight: '19px',
+            textDecorationLine: 'underline',
+            color: '#C6A87D',
+            position: 'absolute',
+            right: '0px',
+            top: '0px',
+        },
+        '.add-flat': {
+            background: '#C6A87D',
+            color: '#080B0E',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontSize: '20px',
+            lineHeight: '24px',
+            border: '0px',
+            padding: '14.5px 10px',
+            width: '100%',
+            fontWeight: '600',
+            cursor: 'pointer'
+        },
+        "@media (min-width: 426px) and (max-width:768px)": {
+            width: '500px'
+        },
+        "@media (min-width: 1px) and (max-width:400px)": {
+            width: '320px !important',
+        },
+        "@media (min-width: 400px) and (max-width:425px)": {
+            width: '400px !important',
+        },
+    };
+    const styleModel3 = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '800px',
+        height: '800px',
+        boxShadow: 24,
+        '.modal-content': {
+            backgroundColor: '#101418!important',
+            boxShadow: '0px 8px 12px rgb(0 0 0 / 16%)',
+            padding: '40px 30px 20px',
+            // position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+            // width: '100%',
+            pointerEvents: 'auto',
+            backgroundClip: 'paddingBox',
+            outline: '0'
+        },
+        ".btn-primary": {
+            border: 'none !important',
+            background: "transparent",
+            fontSize: "20px",
+            fontWeight: '600',
+            borderRadius: "0px",
+            color: "#FBFBFB",
+            fontFamily: 'Proxima Nova',
+            height: "40px !important",
+            cursor: 'pointer'
+        },
+        '.modal-header': {
+            padding: '0px',
+            paddingBottom: '30px',
+            borderBottom: 'none',
+            display: 'flex',
+            position: 'relative',
+            justifyContent: 'space-between',
+        },
+        '.modal-title': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '20px',
+            lineHeight: '24px',
+            color: '#FBFBFB',
+        },
+        '.arrow-left': {
+            color: '#FBFBFB',
+            fontSize: '20px',
+            marginRight: '16px',
+        },
+        '.map-box': {
+            height: "100px",
+            width: "100%",
+            marginBottom: '30px'
+        },
+        '.label': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#FBFBFB',
+            marginBottom: '8px'
+        },
+        '.form-control': {
+            backgroundColor: 'transparent',
+            border: '0px',
+            borderBottom: '0.25px solid #FBFBFB',
+            borderRadius: '0px',
+            paddingLeft: '0px',
+            paddingRight: '0px',
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#FBFBFB',
+            width: '100%'
+        },
+        '.loc-ad': {
+            display: 'flex',
+            borderBottom: '0.25px solid #FBFBFB',
+            padding: '30px 0px',
+        },
+        '.loc-ad img': {
+            width: '17px',
+            height: '20px',
+            objectFit: 'contain',
+        },
+        '.address-title': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '14px',
+            lineHeight: '17px',
+            color: '#FBFBFB',
+            marginBottom: '0.5rem'
+        },
+        '.address-detail': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '14px',
+            lineHeight: '17px',
+            color: 'rgba(251, 251, 251, 0.6)',
+            marginBottom: '0px!important',
+        },
+        '.address-box': {
+            marginLeft: '15px'
+        },
+        '.save-btn': {
+            background: '#C6A87D',
+            color: '#080B0E',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontSize: '20px',
+            lineHeight: '24px',
+            border: '0px',
+            padding: '14.5px 10px',
+            width: '100%',
+            fontWeight: '600',
+            cursor: 'pointer'
+        },
+        "@media (min-width: 426px) and (max-width:768px)": {
+            width: '500px'
+        },
+        "@media (min-width: 1px) and (max-width:400px)": {
+            width: '320px !important',
+        },
+        "@media (min-width: 400px) and (max-width:425px)": {
+            width: '400px !important',
+        },
+    };
+
+    const modals = [
+        <Box sx={styleModel1}>
+            <Box className="modal-content">
+                <Box className="modal-header">
+                    <Box sx={{display: 'flex', alignItems: 'center'}}>
+                        <ArrowBackIcon className="arrow-left"/>
+                        <Typography id="exampleModalLabel" className='modal-title'>Address</Typography>
+                    </Box>
+                    <Box>
+                        <button type="button" data-bs-dismiss="modal" aria-label="Close"
+                                className="btn-primary"
+                                onClick={handleClose}>
+                            <CloseIcon/>
+                        </button>
+                    </Box>
+                </Box>
+                <Box className="modal-body">
+                    <Box className="container-fluid">
+                        <form action className="needs-validation">
+                            <Box className="row">
+                                <Box className="col-lg-12">
+                                    <Box className="map-box">
+                                        <GoogleMapReact
+                                            bootstrapURLKeys={{key: ""}}
+                                            defaultCenter={defaultProps.center}
+                                            defaultZoom={defaultProps.zoom}
+                                        >
+                                            <AnyReactComponent
+                                                lat={59.955413}
+                                                lng={30.337844}
+                                                text="My Marker"
+                                            />
+                                        </GoogleMapReact>
+                                    </Box>
+                                    <Typography className="label">Experience Location</Typography>
+                                    <TextField type="tel" name="address"
+                                               className="form-control"
+                                               id="validationCustom03"
+                                               placeholder="Enter Location"
+                                        // value={values.address}
+                                        // onChange={handleChange}
+                                               autoComplete="off"
+                                               variant="standard"
+                                               InputProps={{
+                                                   disableUnderline: true,
+                                               }}
+                                               sx={{
+                                                   '& .MuiInputBase-input': {
+                                                       background: 'transparent',
+                                                       height: '31px',
+                                                       borderRadius: '0px',
+                                                       fontFamily: 'Proxima Nova',
+                                                       fontStyle: 'normal',
+                                                       fontWeight: '400',
+                                                       fontSize: '16px',
+                                                       lineHeight: '19px',
+                                                       color: '#FBFBFB',
+                                                       padding: '0px'
+                                                   },
+
+                                               }}
+                                    />
+                                </Box>
+                            </Box>
+                        </form>
+                        <Box className="location-add">
+                            <Box className="loc-ad">
+                                <img src={location} alt=""/>
+                                <Box className="address-box">
+                                    <Typography className="address-title">Theobroma Food Pvt
+                                        Ltd</Typography>
+                                    <Typography className="address-detail">Deonar Village Road, Deonar,
+                                        Govandi East,
+                                        Mumbai...</Typography>
+                                </Box>
+                            </Box>
+                            <Box className="loc-ad">
+                                <img src={location} alt=""/>
+                                <Box className="address-box">
+                                    <Typography className="address-title">Theobroma Food Pvt
+                                        Ltd</Typography>
+                                    <Typography className="address-detail">Deonar Village Road, Deonar,
+                                        Govandi East,
+                                        Mumbai...</Typography>
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Box>
+            </Box>
+        </Box>,
+        <Box sx={styleModel2}>
+            <Box className="modal-content">
+                <Box className="modal-header">
+                    <Box sx={{display: 'flex', alignItems: 'center'}}>
+                        <ArrowBackIcon className="arrow-left"/>
+                        <Typography id="exampleModalLabel" className='modal-title'>Address</Typography>
+                    </Box>
+                    <Box>
+                        <button type="button" data-bs-dismiss="modal" aria-label="Close"
+                                className="btn-primary"
+                                onClick={handleClose}>
+                            <CloseIcon/>
+                        </button>
+                    </Box>
+                </Box>
+                <Box className="modal-body">
+                    <Box className="container-fluid">
+                        <Box className="row">
+                            <Box className="col-lg-12">
+                                <Box className="map-box">
+                                    <GoogleMapReact
+                                        bootstrapURLKeys={{key: ""}}
+                                        defaultCenter={defaultProps.center}
+                                        defaultZoom={defaultProps.zoom}
+                                    >
+                                        <AnyReactComponent
+                                            lat={59.955413}
+                                            lng={30.337844}
+                                            text="My Marker"
+                                        />
+                                    </GoogleMapReact>
+                                </Box>
+                                <Box sx={{position: 'relative'}}>
+                                    <Typography className="address-title">Silver Bunglows</Typography>
+                                    <Typography className="address-detail">Deonar Village Road, Deonar,
+                                        Govandi East, MumbaI, Karnataka,
+                                        India.</Typography>
+                                    <a href="javascript:void(0);" className="change-detail">Change</a>
+                                </Box>
+                                <button type="button" className="add-flat" onClick={handleModal}>Add Flat No/ House No/
+                                    Buidling
+                                </button>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Box>
+            </Box>
+        </Box>,
+        <Box sx={styleModel3}>
+            <Box className="modal-content">
+                <Box className="modal-header">
+                    <Box sx={{display: 'flex', alignItems: 'center'}}>
+                        <ArrowBackIcon className="arrow-left"/>
+                        <Typography id="exampleModalLabel" className='modal-title'>Address</Typography>
+                    </Box>
+                    <Box>
+                        <button type="button" data-bs-dismiss="modal" aria-label="Close"
+                                className="btn-primary"
+                                onClick={handleClose}>
+                            <CloseIcon/>
+                        </button>
+                    </Box>
+                </Box>
+                <Box className="modal-body">
+                    <Box className="container-fluid">
+                        <form action className="needs-validation">
+                            <Box className="row">
+                                <Box className="col-lg-12">
+                                    <Box className="map-box">
+                                        <GoogleMapReact
+                                            bootstrapURLKeys={{key: ""}}
+                                            defaultCenter={defaultProps.center}
+                                            defaultZoom={defaultProps.zoom}
+                                        >
+                                            <AnyReactComponent
+                                                lat={59.955413}
+                                                lng={30.337844}
+                                                text="My Marker"
+                                            />
+                                        </GoogleMapReact>
+                                    </Box>
+                                    <Box sx={{marginBottom: '30px'}}>
+                                        <Typography className="label">House/Flat Floor No</Typography>
+                                        <TextField type="tel" name="address"
+                                                   className="form-control"
+                                                   id="validationCustom03"
+                                                   placeholder="Enter Location"
+                                            // value={values.address}
+                                            // onChange={handleChange}
+                                                   autoComplete="off"
+                                                   variant="standard"
+                                                   InputProps={{
+                                                       disableUnderline: true,
+                                                   }}
+                                                   sx={{
+                                                       '& .MuiInputBase-input': {
+                                                           background: 'transparent',
+                                                           height: '31px',
+                                                           borderRadius: '0px',
+                                                           fontFamily: 'Proxima Nova',
+                                                           fontStyle: 'normal',
+                                                           fontWeight: '400',
+                                                           fontSize: '16px',
+                                                           lineHeight: '19px',
+                                                           color: '#FBFBFB',
+                                                           padding: '0px'
+                                                       },
+
+                                                   }}
+                                        />
+                                    </Box>
+                                    <Box sx={{marginBottom: '30px'}}>
+                                        <Typography className="label">Experience Location</Typography>
+                                        <TextField type="tel" name="address"
+                                                   className="form-control"
+                                                   id="validationCustom03"
+                                                   placeholder="Enter Location"
+                                            // value={values.address}
+                                            // onChange={handleChange}
+                                                   autoComplete="off"
+                                                   variant="standard"
+                                                   InputProps={{
+                                                       disableUnderline: true,
+                                                   }}
+                                                   sx={{
+                                                       '& .MuiInputBase-input': {
+                                                           background: 'transparent',
+                                                           height: '31px',
+                                                           borderRadius: '0px',
+                                                           fontFamily: 'Proxima Nova',
+                                                           fontStyle: 'normal',
+                                                           fontWeight: '400',
+                                                           fontSize: '16px',
+                                                           lineHeight: '19px',
+                                                           color: '#FBFBFB',
+                                                           padding: '0px'
+                                                       },
+
+                                                   }}
+                                        />
+                                    </Box>
+                                    <Box sx={{marginBottom: '30px'}}>
+                                        <Typography className="label">Landmark</Typography>
+                                        <TextField type="tel" name="address"
+                                                   className="form-control"
+                                                   id="validationCustom03"
+                                                   placeholder="Enter Location"
+                                            // value={values.address}
+                                            // onChange={handleChange}
+                                                   autoComplete="off"
+                                                   variant="standard"
+                                                   InputProps={{
+                                                       disableUnderline: true,
+                                                   }}
+                                                   sx={{
+                                                       '& .MuiInputBase-input': {
+                                                           background: 'transparent',
+                                                           height: '31px',
+                                                           borderRadius: '0px',
+                                                           fontFamily: 'Proxima Nova',
+                                                           fontStyle: 'normal',
+                                                           fontWeight: '400',
+                                                           fontSize: '16px',
+                                                           lineHeight: '19px',
+                                                           color: '#FBFBFB',
+                                                           padding: '0px'
+                                                       },
+
+                                                   }}
+                                        />
+                                    </Box>
+                                    <Box sx={{marginBottom: '30px'}}>
+                                        <Typography className="label">Society Locality</Typography>
+                                        <TextField type="tel" name="address"
+                                                   className="form-control"
+                                                   id="validationCustom03"
+                                                   placeholder="Enter Location"
+                                            // value={values.address}
+                                            // onChange={handleChange}
+                                                   autoComplete="off"
+                                                   variant="standard"
+                                                   InputProps={{
+                                                       disableUnderline: true,
+                                                   }}
+                                                   sx={{
+                                                       '& .MuiInputBase-input': {
+                                                           background: 'transparent',
+                                                           height: '31px',
+                                                           borderRadius: '0px',
+                                                           fontFamily: 'Proxima Nova',
+                                                           fontStyle: 'normal',
+                                                           fontWeight: '400',
+                                                           fontSize: '16px',
+                                                           lineHeight: '19px',
+                                                           color: '#FBFBFB',
+                                                           padding: '0px'
+                                                       },
+
+                                                   }}
+                                        />
+                                    </Box>
+                                    <button type="button" className="save-btn" onClick={handleClose}>Save Address
+                                    </button>
+                                </Box>
+                            </Box>
+                        </form>
+                    </Box>
+                </Box>
+            </Box>
+        </Box>
+    ];
 
     const handleClick = () => {
         navigate('/addons');
@@ -606,129 +1292,6 @@ const CustomerDetails = () => {
     }))
 
 
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: '800px',
-        height: '800px',
-        boxShadow: 24,
-        '.modal-content': {
-            backgroundColor: '#101418!important',
-            boxShadow: '0px 8px 12px rgb(0 0 0 / 16%)',
-            padding: '40px 30px 20px',
-            // position: 'relative',
-            display: 'flex',
-            flexDirection: 'column',
-            // width: '100%',
-            pointerEvents: 'auto',
-            backgroundClip: 'paddingBox',
-            outline: '0'
-        },
-        ".btn-primary": {
-            border: 'none !important',
-            background: "transparent",
-            fontSize: "20px",
-            fontWeight: '600',
-            borderRadius: "0px",
-            color: "#FBFBFB",
-            fontFamily: 'Proxima Nova',
-            height: "40px !important",
-            cursor: 'pointer'
-        },
-        '.modal-header': {
-            padding: '0px',
-            paddingBottom: '30px',
-            borderBottom: 'none',
-            display: 'flex',
-            position: 'relative',
-            justifyContent: 'space-between',
-        },
-        '.modal-title': {
-            fontFamily: 'ProximaNovaA-Regular',
-            fontStyle: 'normal',
-            fontWeight: '600',
-            fontSize: '20px',
-            lineHeight: '24px',
-            color: '#FBFBFB',
-        },
-        '.arrow-left': {
-            color: '#FBFBFB',
-            fontSize: '20px',
-            marginRight: '16px',
-        },
-        '.map-box': {
-            height: "380px",
-            width: "100%",
-            marginBottom: '30px'
-        },
-        '.label': {
-            fontFamily: 'ProximaNovaA-Regular',
-            fontStyle: 'normal',
-            fontWeight: '600',
-            fontSize: '16px',
-            lineHeight: '19px',
-            color: '#FBFBFB',
-            marginBottom: '8px'
-        },
-        '.form-control': {
-            backgroundColor: 'transparent',
-            border: '0px',
-            borderBottom: '0.25px solid #FBFBFB',
-            borderRadius: '0px',
-            paddingLeft: '0px',
-            paddingRight: '0px',
-            fontFamily: 'Proxima Nova Alt',
-            fontStyle: 'normal',
-            fontWeight: '300',
-            fontSize: '16px',
-            lineHeight: '19px',
-            color: '#FBFBFB',
-            width: '100%'
-        },
-        '.loc-ad': {
-            display: 'flex',
-            borderBottom: '0.25px solid #FBFBFB',
-            padding: '30px 0px',
-        },
-        '.loc-ad img': {
-            width: '17px',
-            height: '20px',
-            objectFit: 'contain',
-        },
-        '.address-title': {
-            fontFamily: 'ProximaNovaA-Regular',
-            fontStyle: 'normal',
-            fontWeight: '600',
-            fontSize: '14px',
-            lineHeight: '17px',
-            color: '#FBFBFB',
-            marginBottom: '0.5rem'
-        },
-        '.address-detail': {
-            fontFamily: 'ProximaNovaA-Regular',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            fontSize: '14px',
-            lineHeight: '17px',
-            color: 'rgba(251, 251, 251, 0.6)',
-            marginBottom: '0px!important',
-        },
-        '.address-box': {
-            marginLeft: '15px'
-        },
-        "@media (min-width: 426px) and (max-width:768px)": {
-            width: '500px'
-        },
-        "@media (min-width: 1px) and (max-width:400px)": {
-            width: '320px !important',
-        },
-        "@media (min-width: 400px) and (max-width:425px)": {
-            width: '400px !important',
-        },
-    };
-
     return (
         <React.Fragment>
             <BoxWrapper>
@@ -1119,103 +1682,8 @@ const CustomerDetails = () => {
                         </Box>
                     </Box>
                 </Box>
-                <Modal
-                    keepMounted
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="keep-mounted-modal-title"
-                    aria-describedby="keep-mounted-modal-description"
-                >
-                    <Box sx={style}>
-                        <Box className="modal-content">
-                            <Box className="modal-header">
-                                <Box sx={{display: 'flex', alignItems: 'center'}}>
-                                    <ArrowBackIcon className="arrow-left"/>
-                                    <Typography id="exampleModalLabel" className='modal-title'>Address</Typography>
-                                </Box>
-                                <Box>
-                                    <button type="button" data-bs-dismiss="modal" aria-label="Close"
-                                            className="btn-primary"
-                                            onClick={handleClose}>
-                                        <CloseIcon/>
-                                    </button>
-                                </Box>
-                            </Box>
-                            <Box className="modal-body">
-                                <Box className="container-fluid">
-                                    <form action className="needs-validation">
-                                        <Box className="row">
-                                            <Box className="col-lg-12">
-                                                <Box className="map-box">
-                                                    <GoogleMapReact
-                                                        bootstrapURLKeys={{key: ""}}
-                                                        defaultCenter={defaultProps.center}
-                                                        defaultZoom={defaultProps.zoom}
-                                                    >
-                                                        <AnyReactComponent
-                                                            lat={59.955413}
-                                                            lng={30.337844}
-                                                            text="My Marker"
-                                                        />
-                                                    </GoogleMapReact>
-                                                </Box>
-                                                <Typography className="label">Experience Location</Typography>
-                                                <TextField type="tel" name="address"
-                                                           className="form-control"
-                                                           id="validationCustom03"
-                                                           placeholder="Enter Location"
-                                                    // value={values.address}
-                                                    // onChange={handleChange}
-                                                           autoComplete="off"
-                                                           variant="standard"
-                                                           InputProps={{
-                                                               disableUnderline: true,
-                                                           }}
-                                                           sx={{
-                                                               '& .MuiInputBase-input': {
-                                                                   background: 'transparent',
-                                                                   height: '31px',
-                                                                   borderRadius: '0px',
-                                                                   fontFamily: 'Proxima Nova',
-                                                                   fontStyle: 'normal',
-                                                                   fontWeight: '400',
-                                                                   fontSize: '16px',
-                                                                   lineHeight: '19px',
-                                                                   color: '#FBFBFB',
-                                                                   padding: '0px'
-                                                               },
-
-                                                           }}
-                                                />
-                                            </Box>
-                                        </Box>
-                                    </form>
-                                    <Box className="location-add">
-                                        <Box className="loc-ad">
-                                            <img src={location} alt=""/>
-                                            <Box className="address-box">
-                                                <Typography className="address-title">Theobroma Food Pvt
-                                                    Ltd</Typography>
-                                                <Typography className="address-detail">Deonar Village Road, Deonar,
-                                                    Govandi East,
-                                                    Mumbai...</Typography>
-                                            </Box>
-                                        </Box>
-                                        <Box className="loc-ad">
-                                            <img src={location} alt=""/>
-                                            <Box className="address-box">
-                                                <Typography className="address-title">Theobroma Food Pvt
-                                                    Ltd</Typography>
-                                                <Typography className="address-detail">Deonar Village Road, Deonar,
-                                                    Govandi East,
-                                                    Mumbai...</Typography>
-                                            </Box>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                            </Box>
-                        </Box>
-                    </Box>
+                <Modal open={open} onClose={handleClose}>
+                    {modals[currentModal]}
                 </Modal>
             </BoxWrapper>
         </React.Fragment>
