@@ -372,13 +372,25 @@ const BecomePatronForm = () => {
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
+                                                            '.css-qiwgdb.MuiSelect-select': {
+                                                                padding: '0px'
+                                                            }
                                                         }}
                                                         MenuProps={{
                                                             PaperProps: {
                                                                 sx: {
                                                                     backgroundColor: '#DCD7CB !important',
                                                                     li: {
-                                                                        borderBottom: "1px solid black"
+                                                                        fontFamily: 'ProximaNovaA-Regular',
+                                                                        borderBottom: "1px solid black",
+                                                                        fontWeight: '100',
+                                                                        padding: '6px 0px',
+                                                                        justifyContent:'start'
+                                                                    },
+                                                                    ul: {
+                                                                        display: 'flex',
+                                                                        flexDirection: 'column',
+                                                                        padding: '16px',
                                                                     },
                                                                     'li:hover': {
                                                                         color: '#C6A87D!important',
@@ -389,7 +401,7 @@ const BecomePatronForm = () => {
                                                                     },
                                                                     "&& .Mui-selected": {
                                                                         backgroundColor: "unset !important"
-                                                                    }
+                                                                    },
                                                                 },
                                                             },
                                                         }}
@@ -450,13 +462,25 @@ const BecomePatronForm = () => {
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
+                                                            '.css-qiwgdb.MuiSelect-select': {
+                                                                padding: '0px'
+                                                            }
                                                         }}
                                                         MenuProps={{
                                                             PaperProps: {
                                                                 sx: {
                                                                     backgroundColor: '#DCD7CB !important',
                                                                     li: {
-                                                                        borderBottom: "1px solid black"
+                                                                        fontFamily: 'ProximaNovaA-Regular',
+                                                                        borderBottom: "1px solid black",
+                                                                        fontWeight: '100',
+                                                                        padding: '6px 0px',
+                                                                        justifyContent:'start'
+                                                                    },
+                                                                    ul: {
+                                                                        display: 'flex',
+                                                                        flexDirection: 'column',
+                                                                        padding: '16px',
                                                                     },
                                                                     'li:hover': {
                                                                         color: '#C6A87D!important',
@@ -467,7 +491,7 @@ const BecomePatronForm = () => {
                                                                     },
                                                                     "&& .Mui-selected": {
                                                                         backgroundColor: "unset !important"
-                                                                    }
+                                                                    },
                                                                 },
                                                             },
                                                         }}

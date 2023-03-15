@@ -400,8 +400,8 @@ const BecomePartner = () => {
                                                     <label htmlFor="validationCustom01">Partner with us as<span
                                                         className="red">*</span></label>
                                                     <Select
-                                                        labelId="demo-simple-select-label"
-                                                        id="demo-simple-select"
+                                                        labelId="demo-simple-select-standard-label"
+                                                        id="demo-simple-select-standard"
                                                         name="partner"
                                                         value={values.partner}
                                                         onChange={handleChange}
@@ -412,13 +412,25 @@ const BecomePartner = () => {
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
+                                                            '.css-qiwgdb.MuiSelect-select': {
+                                                                padding: '0px'
+                                                            }
                                                         }}
                                                         MenuProps={{
                                                             PaperProps: {
                                                                 sx: {
                                                                     backgroundColor: '#DCD7CB !important',
                                                                     li: {
-                                                                        borderBottom: "1px solid black"
+                                                                        fontFamily: 'ProximaNovaA-Regular',
+                                                                        borderBottom: "1px solid black",
+                                                                        fontWeight: '100',
+                                                                        padding: '6px 0px',
+                                                                        justifyContent:'start'
+                                                                    },
+                                                                    ul: {
+                                                                        display: 'flex',
+                                                                        flexDirection: 'column',
+                                                                        padding: '16px',
                                                                     },
                                                                     'li:hover': {
                                                                         color: '#C6A87D!important',
@@ -429,7 +441,7 @@ const BecomePartner = () => {
                                                                     },
                                                                     "&& .Mui-selected": {
                                                                         backgroundColor: "unset !important"
-                                                                    }
+                                                                    },
                                                                 },
                                                             },
                                                         }}
@@ -496,8 +508,8 @@ const BecomePartner = () => {
                                                     <label htmlFor="validationCustomcity">City<span
                                                         className="red">*</span></label>
                                                     <Select
-                                                        labelId="demo-simple-select-label"
-                                                        id="demo-simple-select"
+                                                        labelId="demo-simple-select-standard-label"
+                                                        id="demo-simple-select-standard"
                                                         name="city"
                                                         value={values.city}
                                                         defaultValue={values.city}
@@ -508,13 +520,25 @@ const BecomePartner = () => {
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
+                                                            '.css-qiwgdb.MuiSelect-select': {
+                                                                padding: '0px'
+                                                            }
                                                         }}
                                                         MenuProps={{
                                                             PaperProps: {
                                                                 sx: {
                                                                     backgroundColor: '#DCD7CB !important',
                                                                     li: {
+                                                                        fontFamily: 'ProximaNovaA-Regular',
                                                                         borderBottom: "1px solid black",
+                                                                        fontWeight: '100',
+                                                                        padding: '6px 0px',
+                                                                        justifyContent:'start'
+                                                                    },
+                                                                    ul: {
+                                                                        display: 'flex',
+                                                                        flexDirection: 'column',
+                                                                        padding: '16px',
                                                                     },
                                                                     'li:hover': {
                                                                         color: '#C6A87D!important',

@@ -613,9 +613,17 @@ const PriveePage = () => {
                                                             sx: {
                                                                 backgroundColor: '#DCD7CB !important',
                                                                 li: {
+                                                                    fontFamily: 'ProximaNovaA-Regular',
                                                                     borderBottom: "1px solid black",
                                                                     fontSize: '20px',
-                                                                    fontWeight: '100'
+                                                                    fontWeight: '100',
+                                                                    padding: '6px 0px',
+                                                                    justifyContent: 'start'
+                                                                },
+                                                                ul: {
+                                                                    display: 'flex',
+                                                                    flexDirection: 'column',
+                                                                    padding: '16px',
                                                                 },
                                                                 'li:hover': {
                                                                     color: '#C6A87D!important',
@@ -626,7 +634,11 @@ const PriveePage = () => {
                                                                 },
                                                                 "&& .Mui-selected": {
                                                                     backgroundColor: "unset !important"
-                                                                }
+                                                                },
+                                                                '.MuiSelect-select': {
+                                                                    padding: '5px !important',
+                                                                    fontSize: '17px',
+                                                                },
                                                             },
                                                         },
                                                     }}
@@ -673,9 +685,17 @@ const PriveePage = () => {
                                                             sx: {
                                                                 backgroundColor: '#DCD7CB !important',
                                                                 li: {
+                                                                    fontFamily: 'ProximaNovaA-Regular',
                                                                     borderBottom: "1px solid black",
                                                                     fontSize: '20px',
-                                                                    fontWeight: '100'
+                                                                    fontWeight: '100',
+                                                                    padding: '6px 0px',
+                                                                    justifyContent: 'start'
+                                                                },
+                                                                ul: {
+                                                                    display: 'flex',
+                                                                    flexDirection: 'column',
+                                                                    padding: '16px',
                                                                 },
                                                                 'li:hover': {
                                                                     color: '#C6A87D!important',

@@ -182,9 +182,9 @@ const BoxWrapper = styled(Box)({
         padding: '8px 0px',
         // top: '-5px'
     },
-    '.react-datepicker-component': {
-        top: '-5px'
-    },
+    // '.react-datepicker-component': {
+    //     top: '-5px'
+    // },
     '.react-datepicker-component .react-datepicker-input.is-open': {
         background: 'transparent',
         border: '0px',
@@ -1002,7 +1002,12 @@ const HomePage = () => {
                                                                     color: '#FBFBFB',
                                                                     li: {
                                                                         fontSize: '20px',
-                                                                        fontWeight: '100'
+                                                                        fontWeight: '100',
+                                                                        padding: '6px 16px'
+                                                                    },
+                                                                    ul: {
+                                                                        display: 'flex',
+                                                                        flexDirection: 'column'
                                                                     },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'
@@ -1070,7 +1075,12 @@ const HomePage = () => {
                                                                     color: '#FBFBFB',
                                                                     li: {
                                                                         fontSize: '20px',
-                                                                        fontWeight: '100'
+                                                                        fontWeight: '100',
+                                                                        padding: '6px 16px'
+                                                                    },
+                                                                    ul: {
+                                                                        display: 'flex',
+                                                                        flexDirection: 'column'
                                                                     },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'
@@ -1123,7 +1133,12 @@ const HomePage = () => {
                                                                     color: '#FBFBFB',
                                                                     li: {
                                                                         fontSize: '20px',
-                                                                        fontWeight: '100'
+                                                                        fontWeight: '100',
+                                                                        padding: '6px 16px'
+                                                                    },
+                                                                    ul: {
+                                                                        display: 'flex',
+                                                                        flexDirection: 'column'
                                                                     },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'

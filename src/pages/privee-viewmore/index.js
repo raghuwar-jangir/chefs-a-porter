@@ -34,7 +34,7 @@ const BoxWrapper = styled(Box)(() => ({
         justifyContent: 'center',
     },
     ".available-experiences": {
-        padding: "40px 120px",
+        padding: "80px 120px",
         background: "#080B0E"
     },
     '.chef-header': {
@@ -46,17 +46,18 @@ const BoxWrapper = styled(Box)(() => ({
         textAlign: 'left',
         letterSpacing: '0.06em',
         color: '#FBFBFB',
-        padding: '10px 12px',
-        marginBottom: '15px',
+        padding: '0px  12px',
+        marginBottom: '40px',
     },
     '.privee-container': {
         width: '1190px !important',
+        padding: '40px 40px 0px'
     },
     '.pe-fo-exp': {
         // position: 'relative',
         width: '100%',
         bottom: '0px',
-        padding: '40px 0px',
+
     },
     '.form-row': {
         display: 'flex',
@@ -182,7 +183,8 @@ const BoxWrapper = styled(Box)(() => ({
             height: '55px',
         },
         '.privee-container': {
-            width: '100% !important',
+            width: 'auto !important',
+            padding: '60px 10px 30px 10px'
         },
         '.label': {
             fontSize: '14px',
@@ -197,7 +199,6 @@ const BoxWrapper = styled(Box)(() => ({
         },
         '.pe-fo-exp': {
             width: 'auto',
-            padding: '60px 10px 30px 10px'
         },
         '.edit': {
             display: 'block'
@@ -495,7 +496,12 @@ const PriveeViewMore = () => {
                                                                     color: '#FBFBFB',
                                                                     li: {
                                                                         fontSize: '20px',
-                                                                        fontWeight: '100'
+                                                                        fontWeight: '100',
+                                                                        padding: '6px 16px'
+                                                                    },
+                                                                    ul: {
+                                                                        display: 'flex',
+                                                                        flexDirection: 'column'
                                                                     },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'
@@ -562,7 +568,12 @@ const PriveeViewMore = () => {
                                                                     color: '#FBFBFB',
                                                                     li: {
                                                                         fontSize: '20px',
-                                                                        fontWeight: '100'
+                                                                        fontWeight: '100',
+                                                                        padding: '6px 16px'
+                                                                    },
+                                                                    ul: {
+                                                                        display: 'flex',
+                                                                        flexDirection: 'column'
                                                                     },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'
@@ -615,7 +626,12 @@ const PriveeViewMore = () => {
                                                                     color: '#FBFBFB',
                                                                     li: {
                                                                         fontSize: '20px',
-                                                                        fontWeight: '100'
+                                                                        fontWeight: '100',
+                                                                        padding: '6px 16px'
+                                                                    },
+                                                                    ul: {
+                                                                        display: 'flex',
+                                                                        flexDirection: 'column'
                                                                     },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'
