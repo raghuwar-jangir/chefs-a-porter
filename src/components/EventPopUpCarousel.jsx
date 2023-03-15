@@ -48,8 +48,14 @@ const EventPopUpCarousel = () =>{
             img: sGallery,
         },
         {
+          img: sGallery,
+      },
+        {
             img: chef2,
         },
+        {
+          img: chef2,
+      },
     ];
     return(
       <React.Fragment>

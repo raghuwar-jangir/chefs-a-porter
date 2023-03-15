@@ -55,11 +55,12 @@ const EventCard = () => {
             fontSize: "16px",
             lineHeight: "19px",
             marginLeft:'10px',
-            color: '#FBFBFB'
+            color: '#FBFBFB',
+            whiteSpace:'nowrap'
         },
         ".field-name-2": {
             fontFamily:'Proxima Nova Alt',
-            fontWeight: '100',
+            fontWeight: 600,
             fontSize: "16px",
             lineHeight: "19px",
             marginLeft:'10px',
@@ -129,6 +130,17 @@ const EventCard = () => {
         },
         '.about-box':{
             backgroundColor:'#DCD7CB'
+        },
+        "@media (min-width: 1px) and (max-width:425px)": {
+            '.heading':{
+                fontSize:'20px',
+                lineHeight:'25px',
+                margin:'40px 16px 22.5px'
+            },
+            '.heading-2':{
+                fontSize:'20px',
+                lineHeight:'25px',
+            }
         }
     }))
     return(

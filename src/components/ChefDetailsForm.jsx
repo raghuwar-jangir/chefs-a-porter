@@ -12,6 +12,7 @@ import gInfo from '../assets/images/info.png';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Checkbox from '@mui/material/Checkbox';
+import '../assets/styles/fontStyle.css';
 
 const DisplayingErrorMessagesSchema = Yup.object().shape({
     yourName: Yup.string().required('Your Name Required'),
@@ -23,6 +24,7 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
 });
 
 const ChefDetailsForm = () => {
+    
     const [startDate, setStartDate] = useState(new Date());
     console.log("startDate=",moment(startDate).format("dddd, MMMM DD, YYYY"));
     const [numberOfDenner, setNumberOfDenner] = useState(2)
@@ -359,7 +361,7 @@ const ChefDetailsForm = () => {
     };
     return (
         <React.Fragment>
-            <BoxWrapper>
+            <BoxWrapper sx={{position:'sticky',top:'100px'}}>
             <Typography className="sub-text-price">
                                         ₹ 2,500 <sub className="sub-text">Per Diner</sub>
                                     </Typography>
@@ -428,8 +430,9 @@ const ChefDetailsForm = () => {
                                         }}>
                                             Start Time
                                             <Tooltip
-                                                title="Private Dining usually last upto 3 hrs but can extend upto 5 hrs based on number of courses  "
-                                                placement="right"
+                                                
+                                                title={<span style={{ fontSize: "14px", color: "#080B0E",opacity:'1',fontFamily:'ProximaNovaA-Regular',width:'200px' }}>Private Dining usually last upto 3 hrs but can extend upto 5 hrs based on number of courses</span>}
+                                                placement="top"
                                                 arrow
                                                 PopperProps={{
                                                     background: 'red',
@@ -510,7 +513,7 @@ const ChefDetailsForm = () => {
                                         <Typography className="email-confirm">An agnostic menu that explores a diverse culinary journey with chef mako at the helm.</Typography>
                                   </Box>
                                                 </Box>
-                            <Box sx={{ paddingBottom: '40px' }}>
+                            <Box>
                                 <Button
                                     className="experience-btn"
                                     type="submit"

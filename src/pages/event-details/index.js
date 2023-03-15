@@ -37,6 +37,11 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
 import "../../assets/styles/fontStyle.css";
 import EventPopUpCarousel from "../../components/EventPopUpCarousel";
+import TemptedYet from '../../components/TemptedYet';
+import NeedHelpSmallComponent from '../../components/NeedHelpSmallComponent';
+import NeedHelpEvent from "../../components/NeedHelpEvent";
+import ChefMakoCarousel from "../../components/ChefMakoCarousel";
+import EventChefCarousel from "../../components/EventChefCarousel";
 
 const EventDetails = () => {
   const [showCarousel, setShowCarousel] = useState(false);
@@ -84,9 +89,9 @@ const EventDetails = () => {
   ];
 
   const MainBox = styled(Box)(() => ({
-    background: "#080B0E",
     ".main-box": {
       padding: "80px 120px",
+      background: "#080B0E",
     },
     ".container": {
       position: "relative",
@@ -190,6 +195,9 @@ const EventDetails = () => {
       marginBottom: "8px",
     },
     ".chef-name-rate": {
+      display:'flex',
+      justifyContent:'center',
+      placeItems:'center',
       fontSize: "20px",
       lineHeight: "24px",
       fontWeight: 400,
@@ -240,7 +248,6 @@ const EventDetails = () => {
       textDecoration: "none",
       color: "#C6A87D",
       fontWeight: 600,
-      paddingLeft: "5px",
       position: "relative",
       fontFamily: "Proxima Nova Alt",
       fontStyle: "normal",
@@ -291,7 +298,7 @@ const EventDetails = () => {
       padding: "13.8894px",
       textTransform: "math-auto",
     },
-    ".last-cantain": {
+    ".last-contain": {
       display: "flex",
       justifyContent: "space-between",
       padding: "40px 20px",
@@ -345,6 +352,16 @@ const EventDetails = () => {
     '.container-parent':{
       paddingRight:'5px !important'
     },
+    '@media(min-width: 425px) and (max-width: 768px)': {
+      '.container-parent':{
+      flex:'0 0 auto',
+      maxWidth:'58.333333%'
+      },
+      '.next-grid':{
+        flex: '0 0 auto',
+    width: '41.66666667%'
+      }
+    },
     '@media(min-width: 1px) and (max-width: 768px)': {
       '.grid-box-2':{
         display:'flex',
@@ -356,6 +373,65 @@ const EventDetails = () => {
       },
       '.grid-child-box':{
         maxWidth:'100%'
+      },
+    },
+    "@media (min-width: 1px) and (max-width:425px)": {
+      '.main-grid':{
+        display:'none'
+      },
+      '.main-box':{
+        padding:'40px 0px 0px'
+      },
+      '.breadcrumbs-heading':{
+        display:'none'
+      },
+      '.star-box':{
+        padding:'0px 16px',
+        justifyContent:'space-between'
+      },
+      '.chef-name':{
+        fontSize:'20px',
+        lineHeight:'25px',
+      },
+      '.chef-name-rate':{
+        fontSize:'18px',
+        lineHeight:'22px'
+      },
+      '.chef-details':{
+        flexFlow:'wrap',
+        padding:'0px 16px',
+        marginBottom:'8px'
+      },
+      '.chef-details-by':{
+        fontSize:'14px',
+        lineHeight:'17px'
+      },
+      '.detail-1':{
+        fontSize:'14px',
+        lineHeight:'17px',
+        fontWeight:300,
+        textDecoration:'underline',
+        paddingLeft:'5px'
+      },
+      '.line':{
+        display:'none'
+      },
+      '.grid-child-box':{
+        display:'none'
+      },
+      '.invite-btn':{
+        width:'114px'
+      },
+      '.template':{
+        background:'#080B0E'
+      },
+      '.template-title':{
+        color:'#FBFBFB !important'
+      }
+    },
+    "@media (min-width: 1px) and (max-width:320px)": {
+      '.invite-btn':{
+        width:'80px'
       }
     }
   }));
@@ -527,13 +603,13 @@ const EventDetails = () => {
                 A Traditional Oma Kase
               </Typography>
             </Box>
-            <ImageCarousel />
+            <ImageCarousel/>
             <Box className="mobileView-chef">
               <Typography className="chef-details mbl-chef-name">
                 by Chef Mako Ravindran<b> Starting from ₹5000 per diner</b>
               </Typography>
             </Box>
-            <Grid container spacing={{ md: 2 }}>
+            <Grid className="main-grid" container spacing={{ md: 2 }}>
               <Grid className="container-parent" item xl={7} md={7} sm={6} xs={12}>
                 <Box className="container">
                   <img
@@ -605,39 +681,14 @@ const EventDetails = () => {
             <Grid className="grid-box-2" container spacing={{ md: 2 }}>
               <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
                 <EventCard />
-                <DiningPage
-                  carouselImg={{ height: "352px" }}
-                  header={{ padding: "0px 0px" }}
-                  title="Chef Mako's Creations"
-                  image={diningImg}
-                />
+                  <EventChefCarousel/>
                 <SupperClubDetailsCarousel
                   mainBox={{ padding: "40px 0px" }}
                   changeDetails={{ fontSize: "16px" }}
                   changeFont={{ fontSize: "20px" }}
                   backgroundColor="#DCD7CB"
                 />
-                {isMobile ? (
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      padding: "16px",
-                      background: "#DCD7CB",
-                    }}
-                  >
-                    <Box>
-                      <Typography className="mobile-view-price-text">
-                        ₹ 2,500
-                      </Typography>
-                      <Typography className="mobile-view-diner">
-                        Per diner
-                      </Typography>
-                    </Box>
-                    <Button className="invite-btn">Reserve a Seat</Button>
-                  </Box>
-                ) : (
-                  <Box className="last-cantain">
+                  <Box className="last-contain">
                     <Box>
                       <Typography className="invite-friends-text">
                         Invite friends & family
@@ -648,7 +699,6 @@ const EventDetails = () => {
                     </Box>
                     <Button className="invite-btn">Invite</Button>
                   </Box>
-                )}
               </Grid>
               <Grid
                 className="grid-child-box"
@@ -798,10 +848,9 @@ const EventDetails = () => {
             </Box>
           </Box>
         </Modal>
+        <NeedHelpEvent isColor={true}/>
+        <TemptedYet title='Book this Experience' isTempted={false}/>
         <NeedHelp />
-        <MobileView>
-          <FoodCard />
-        </MobileView>
         <Footer />
         <FooterEnd />
       </MainBox>
