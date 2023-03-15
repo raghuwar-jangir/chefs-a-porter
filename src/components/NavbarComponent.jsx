@@ -67,6 +67,9 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading}) => {
             height: '100%',
             backgroundColor: '#080B0E',
         },
+        '.MuiButtonBase-root-MuiListItem-root': {
+            padding: '8px 16px',
+        },
         '@media(min-width: 1px) and (max-width: 320px)': {
             list: {
                 width: "319px",
@@ -272,8 +275,8 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading}) => {
                 },
             },
             '@media(min-width: 1px) and (max-width: 768px)': {
+                height: '56px',
                 display: 'unset',
-                height: 'unset',
                 '.mobile-navbar': {
                     display: 'block'
                 },
@@ -306,6 +309,8 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading}) => {
             },
             '.css-1shabyr-MuiPaper-root-MuiAppBar-root': {
                 background: '#FBFBFB',
+                height: '56px !important',
+                minHeight: '56px !important'
             },
         },
     )
@@ -315,7 +320,13 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading}) => {
             {/* //! browser view for the navbar component */}
             <BoxWrapper>
                 <AppBar position="fixed" elevation={0}
-                        sx={{background: `${isColor ? '#101418' : '#FBFBFB'}`, height: '80px'}}
+                        sx={{
+                            background: `${isColor ? '#101418' : '#FBFBFB'}`,
+                            height: '80px',
+                            '@media(min-width: 1px) and (max-width: 768px)': {
+                                height: '56px',
+                            },
+                        }}
                 >
                     <Box className="main-container desktop-navbar">
                         <Box sx={{width: 'auto'}} onClick={handleOnClick}>
@@ -325,7 +336,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading}) => {
                         <Box className="grid-box">
                             <Grid container direction={'row'} xl={12}
                                   className=''>
-                                <Grid className='browser-menu' xl={8} md={8} sx={{marginRight:'9px'}}>
+                                <Grid className='browser-menu' xl={8} md={8} sx={{marginRight: '9px'}}>
                                     <Link
                                         className={`browser-hamburger-menu`}
                                         activeClassName={'browser-hamburger-menu active'}
@@ -427,7 +438,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading}) => {
                             >
                                 <List>
                                     <ListItem button sx={{display: 'flex', justifyContent: 'end'}}>
-                                        <CloseIcon sx={{color: '#c6a87d', display: 'flex', justifyContent: 'end'}}
+                                        <CloseIcon sx={{color: '#c6a87d'}}
                                                    onClick={toggleDrawer(false)}/>
                                     </ListItem>
                                     <ListItem button>
