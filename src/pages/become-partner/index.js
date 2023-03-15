@@ -77,16 +77,17 @@ const BecomePartner = () => {
             backgroundSize: 'cover',
             padding: '50px 120px',
             backgroundPosition: 'center',
-            height: '300px',
+            height: '250px',
             width: 'auto',
         },
         '.become-partner-header': {
             display: 'flex',
             placeContent: 'space-between',
+            padding: '0px 12px'
         },
         ".header-link": {
             display: 'flex',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '20px',
@@ -99,7 +100,7 @@ const BecomePartner = () => {
             color: '#C6A87D !important',
         },
         '.become-partner-heading': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '32px',
@@ -120,7 +121,8 @@ const BecomePartner = () => {
             marginBottom: '36px',
         },
         '.form-details': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
+            fontWeight: '300',
             fontStyle: 'normal',
             fontSize: '20px',
             lineHeight: '30px',
@@ -199,7 +201,7 @@ const BecomePartner = () => {
             width: '100%',
         },
         '.file-upload-label': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '16px',
@@ -212,7 +214,7 @@ const BecomePartner = () => {
             display: 'none',
         },
         'form label': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '16px',
@@ -296,7 +298,6 @@ const BecomePartner = () => {
                 display: 'none',
             },
             '.form-details': {
-                fontFamily: 'Proxima Nova',
                 fontStyle: 'normal',
                 fontSize: '16px',
                 lineHeight: '24px',
@@ -350,7 +351,7 @@ const BecomePartner = () => {
                     <Box className="banner">
                         <Box className="become-partner-header">
                             <Typography><a href="/" className="header-link"><ArrowBackIcon
-                                style={{marginRight: '15px'}}/>Back</a></Typography>
+                                style={{marginRight: '20px'}}/>Back</a></Typography>
                             <Typography className="become-partner-heading">Become a partner</Typography>
                         </Box>
                     </Box>
@@ -377,19 +378,23 @@ const BecomePartner = () => {
                             {({values, handleChange, handleSubmit}) => (
                                 <Form onSubmit={handleSubmit}>
                                     <Box className="row white-bg justify-content-center">
-                                        <Box className="become-partner-form">
-                                            <Typography className="form-details">We’re looking for talented people to
-                                                help our bring out our chefs vision to life. If you think you fit the
-                                                bill, apply below!</Typography>
-                                            <Typography className="form-details">If your service meets Chefs à
-                                                Porter prerequisite one of our representatives shall get in touch with
-                                                you via email
-                                                either approving/rejecting your request or asking you for a
-                                                clarification where
-                                                required. Request you to promptly respond to the clarification requested
-                                                for a
-                                                faster response and closure.</Typography>
-                                            <Grid className="row" xs={12}>
+                                        <Box className="">
+                                            <Grid className="row become-partner-form" xs={12}>
+                                                <Typography className="form-details">We’re looking for talented people
+                                                    to
+                                                    help our bring out our chefs vision to life. If you think you fit
+                                                    the
+                                                    bill, apply below!</Typography>
+                                                <Typography className="form-details">If your service meets Chefs à
+                                                    Porter prerequisite one of our representatives shall get in touch
+                                                    with
+                                                    you via email
+                                                    either approving/rejecting your request or asking you for a
+                                                    clarification where
+                                                    required. Request you to promptly respond to the clarification
+                                                    requested
+                                                    for a
+                                                    faster response and closure.</Typography>
                                                 <Grid xs={12} className="mb-3">
                                                     <label htmlFor="validationCustom01">Partner with us as<span
                                                         className="red">*</span></label>

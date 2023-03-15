@@ -43,16 +43,17 @@ const BecomePatronForm = () => {
             backgroundSize: 'cover',
             padding: '50px 120px',
             backgroundPosition: 'center',
-            height: '300px',
+            height: '250px',
             width: 'auto',
         },
         '.become-partner-header': {
             display: 'flex',
             placeContent: 'space-between',
+            padding: '0px 12px'
         },
         ".header-link": {
             display: 'flex',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '20px',
@@ -65,7 +66,7 @@ const BecomePatronForm = () => {
             color: '#C6A87D !important',
         },
         '.become-partner-heading': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '32px',
@@ -131,7 +132,7 @@ const BecomePatronForm = () => {
             borderBottom: 'unset !important',
         },
         'form label': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '16px',
@@ -193,7 +194,7 @@ const BecomePatronForm = () => {
             marginRight: '10px',
         },
         '.form-check-label': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '300',
             fontSize: '16px',
@@ -291,7 +292,7 @@ const BecomePatronForm = () => {
                     <Box className="banner">
                         <Box className="become-partner-header">
                             <Typography><a href="" className="header-link"><ArrowBackIcon
-                                style={{marginRight: '15px'}}/>Back</a></Typography>
+                                style={{marginRight: '20px'}}/>Back</a></Typography>
                             <Typography className="become-partner-heading">Become a Patron</Typography>
                         </Box>
                     </Box>
@@ -322,8 +323,8 @@ const BecomePatronForm = () => {
                             {({values, handleChange, handleSubmit, setFieldValue}) => (
                                 <Form onSubmit={handleSubmit}>
                                     <Box className="row white-bg justify-content-center">
-                                        <Box className="become-partner-form">
-                                            <Grid className="row" xs={12}>
+                                        <Box className="">
+                                            <Grid className="row become-partner-form" xs={12}>
                                                 <Grid xs={12} className="mb-3">
                                                     <label htmlFor="enroll">Enroll or renew?</label>
                                                     <Box className="form-check form-check-inline">
