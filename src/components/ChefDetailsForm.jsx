@@ -1,14 +1,17 @@
-import { Box, Button, styled, TextField, Tooltip, Typography } from "@mui/material";
-import { Field, Form, Formik } from "formik";
-import React, { useRef, useState } from "react";
+import {Box, Button, styled, TextField, Tooltip, Typography} from "@mui/material";
+import {Field, Form, Formik} from "formik";
+import React, {useRef, useState} from "react";
 // import styled from "styled-components";
 import * as Yup from 'yup';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import InfoIcon from '@mui/icons-material/Info';
-import {navigate} from "gatsby";
-
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import moment from "moment";
+import gCal from '../assets/images/date-gold.png';
+import gInfo from '../assets/images/info.png';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import Checkbox from '@mui/material/Checkbox';
 
 const DisplayingErrorMessagesSchema = Yup.object().shape({
     yourName: Yup.string().required('Your Name Required'),
@@ -20,12 +23,33 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
 });
 
 const ChefDetailsForm = () => {
-    const [numberOfDenner, setNumberOfDenner] = useState(0)
-    const [numberOfCourses, setNumberOfCourses] = useState(0)
+    const [startDate, setStartDate] = useState(new Date());
+    console.log("startDate=", moment(startDate).format("dddd, MMMM DD, YYYY"));
+    const [numberOfDenner, setNumberOfDenner] = useState(2)
+    const [numberOfCourses, setNumberOfCourses] = useState(3)
+
+    const handleDecrement = () => {
+        if (numberOfDenner > 2) {
+            setNumberOfDenner(numberOfDenner - 1);
+        }
+    }
+
+    const handleIncrement = () => {
+        setNumberOfDenner(numberOfDenner + 1);
+    }
+    const handleCoursesDecrement = () => {
+        if (numberOfCourses > 3) {
+            setNumberOfCourses(numberOfCourses - 1);
+        }
+    }
+
+    const handleCoursesIncrement = () => {
+        setNumberOfCourses(numberOfCourses + 1);
+    }
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
         color: '#FBFBFB',
-        padding: '16px',
+        padding: '40px 31px',
         ".heading": {
             fontWeight: 700,
             fontSize: "20px",
@@ -51,7 +75,46 @@ const ChefDetailsForm = () => {
 
         },
         ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
-            color: "#fff !important",
+            paddingLeft: "10px",
+            flex: "1",
+            outline: 'none',
+            backgroundColor: "transparent",
+            border: "0px",
+            borderBottom: "0.25px solid #FBFBFB",
+            borderRadius: "0px",
+            paddingLeft: "0px",
+            paddingRight: "0px",
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: "300",
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#FBFBFB",
+            display: "block",
+            width: "100%",
+            padding: "0.375rem 0.75rem 0.375rem 0px",
+            transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
+        },
+        '.form-control': {
+            paddingLeft: "10px",
+            flex: "1",
+            outline: 'none',
+            backgroundColor: "transparent",
+            border: "0px",
+            borderBottom: "0.25px solid #FBFBFB",
+            borderRadius: "0px",
+            paddingLeft: "0px",
+            paddingRight: "0px",
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: "300",
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#FBFBFB",
+            display: "block",
+            width: "95%",
+            padding: "0.375rem 0.75rem 0.375rem 0px",
+            transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
         },
         ".input-field": {
             borderBottom: '1px solid #FBFBFB',
@@ -67,17 +130,23 @@ const ChefDetailsForm = () => {
             fontWeight: 600,
             fontSize: "16px",
             lineHeight: "19px",
-            padding: '0px 0px 12px 0px',
+            padding: '0px 0px 10px 0px',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            color: '#FBFBFB',
         },
         ".experience-btn": {
+            fontFamily: 'ProximaNovaA-Regular',
             background: "#C6A87D",
-            fontSize: "16px",
+            fontSize: "20px",
+            lineHeight: '24px',
             width: '100%',
             fontWeight: 600,
             borderRadius: "0px",
             color: "#080B0E",
-            textTransform: "capitalize",
-            height: "48px",
+            textTransform: "math-auto",
+            padding: '18.5px 10px',
+            marginTop: '20px'
         },
 
         ".error-msg": {
@@ -104,9 +173,14 @@ const ChefDetailsForm = () => {
             marginRight: "6px"
         },
         ".last-text": {
-            fontWeight: 300,
-            fontSize: "12px",
-            lineHeight: "15px", paddingTop: '6px'
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '12px',
+            lineHeight: '15px',
+            color: 'rgba(251, 251, 251, 0.6)',
+            display: 'block',
+            marginTop: '4px',
         },
         ".sub-box-counter": {
             display: 'flex',
@@ -116,12 +190,20 @@ const ChefDetailsForm = () => {
             marginBottom: '16px'
         },
         ".left-btn": {
-            color: "#C6A87D",
-            background: "none"
+            width: '24px',
+            height: '24px',
+            borderRadius: '0px',
+            color: '#C6A87D',
+            border: '0.25px solid #C6A87D',
+            backgroundColor: 'black'
         },
         ".right-btn": {
-            border: "0px solid",
-            background: "#C6A87D"
+            width: '24px',
+            height: '24px',
+            borderRadius: '0px',
+            color: 'black',
+            border: '0.25px solid #C6A87D',
+            backgroundColor: '#C6A87D'
         },
         ".details-box": {
             display: 'flex',
@@ -141,9 +223,123 @@ const ChefDetailsForm = () => {
             padding: '16px',
             background: '#080B0E',
             marginBottom: '16px'
-        }
-
+        },
+        ".sub-text-price": {
+            fontWeight: 600,
+            fontSize: "36px",
+            lineHeight: "44px",
+            color: "#FBFBFB",
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+        },
+        ".sub-text": {
+            fontWeight: 300,
+            fontSize: "20px",
+            lineHeight: "24px",
+            color: "#FBFBFB",
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+        },
+        '.min-2-3': {
+            flex: '1',
+            marginBottom: '0px',
+            fontFamily: 'Proxima Nova Alt',
+            fontWeight: '300',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#FBFBFB',
+        },
+        '.gold-cal': {
+            height: '22.8px',
+            objectFit: 'contain',
+            position: 'absolute',
+            right: '15px',
+            bottom: '25px',
+            zIndex: ' 0'
+        },
+        '.input-group-btn button': {
+            width: '24px',
+            height: '24px',
+            borderRadius: '0px',
+            color: '#c6a87d',
+            background: 'transparent',
+            border: '0.25px solid #c6a87d',
+        },
+        '.input-group-btn button:disabled': {
+            opacity: '0.65',
+        },
+        '.number-ans': {
+            width: '24px',
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '16px',
+            marginLeft: '5px',
+            marginRight: '5px',
+            color: 'rgba(251, 251, 251, 1)',
+            background: 'transparent',
+            textAlign: 'center'
+        },
+        '.surprise-box': {
+            background: '#080B0E',
+            padding: '16px',
+            position: 'relative',
+            marginBottom: '16px'
+        },
+        '.form-check': {
+            display: 'block',
+            minHeight: '1.5rem',
+            marginBottom: '0.125rem',
+        },
+        '.form-check-input': {
+            backgroundColor: '#C6A87D',
+            borderColor: '#C6A87D',
+            borderRadius: '0px',
+        },
+        ".form-check-label": {
+            fontFamily: 'Bon Vivant',
+            fontStyle: 'normal',
+            fontWeight: '700',
+            fontSize: '16px',
+            lineHeight: '20px',
+            color: '#FBFBFB',
+        },
+        '.email-confirm': {
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '12px',
+            lineHeight: '15px',
+            color: 'rgba(251, 251, 251, 0.6)',
+            display: 'block',
+            marginTop: '4px',
+            marginLeft: '1.5rem'
+        },
+        '.surprise-check-box': {
+            display: 'flex',
+            placeItems: 'center'
+        },
+        '.input-check': {
+            paddingRight: '5px !important',
+            padding: '0px',
+            marginBottom: '0.125rem',
+            color: '#C6A87D !important'
+        },
+        '.date-box': {
+            position: 'relative'
+        },
+        '.gcal': {
+            height: '22.8px',
+        },
+        '.gcal-icon': {
+            position: 'absolute',
+            right: '18px',
+            bottom: '19px'
+        },
     }))
+    const disabledStyle = {
+        opacity: 0.5,
+    }
 
 
     // for tooltip
@@ -155,49 +351,49 @@ const ChefDetailsForm = () => {
     const areaRef = useRef(null);
 
     const handleMouseMove = (event) => {
-        positionRef.current = { x: event.clientX, y: event.clientY };
+        positionRef.current = {x: event.clientX, y: event.clientY};
 
         if (popperRef.current != null) {
             popperRef.current.update();
         }
     };
-
-    const handleClick = () => {
-        navigate('/customer-details');
-    }
-
     return (
         <React.Fragment>
             <BoxWrapper>
+                <Typography className="sub-text-price">
+                    ₹ 2,500 <sub className="sub-text">Per Diner</sub>
+                </Typography>
                 <Formik
                     initialValues={{
                         yourName: "",
                         email: "",
                         experienceDate: "",
                         startTime: "",
+                        time: new Date().getHours() + ":" + new Date().getMinutes(),
                     }}
                     validationSchema={DisplayingErrorMessagesSchema}
                     onSubmit={values => {
                         console.log("values===>", values);
                     }}
                 >
-                    {({ errors, touched, values, handleChange, handleSubmit }) => (
+                    {({errors, touched, values, handleChange, handleSubmit}) => (
                         <Form onSubmit={handleSubmit}>
                             {console.log("errors", errors)}
                             <Box sx={{}}>
-                                <Box className="comman-field-box" >
-                                    <Typography className='field-title'>Enter your full name</Typography>
+                                <Box className="comman-field-box">
+                                    <Typography className='field-title'>Your Name</Typography>
                                     <TextField
                                         className='input-field'
                                         name="yourName"
                                         value={values.yourName}
                                         id="standard-size-normal"
-                                        placeholder='Enter Specify Occassion'
+                                        placeholder='Enter your full name'
                                         onChange={handleChange}
                                         variant="standard"
                                         fullWidth
                                     />
-                                    {touched.yourName && errors.yourName && <Typography className='error-msg'>{errors.yourName}</Typography>}
+                                    {touched.yourName && errors.yourName &&
+                                        <Typography className='error-msg'>{errors.yourName}</Typography>}
                                 </Box>
 
                                 <Box className="comman-field-box">
@@ -212,33 +408,29 @@ const ChefDetailsForm = () => {
                                         variant="standard"
                                         fullWidth
                                     />
-                                    <Typography className='last-text'>A Email Confirmation will be sent to this ID after booking</Typography>
-                                    {touched.email && errors.email && <Typography className='error-msg'>{errors.email}</Typography>}
+                                    <Typography className='last-text'>A Email Confirmation will be sent to this ID after
+                                        booking</Typography>
+                                    {touched.email && errors.email &&
+                                        <Typography className='error-msg'>{errors.email}</Typography>}
                                 </Box>
-                                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <Box className="comman-field-box" sx={{ width: "49%" }}>
+                                <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+                                    <Box className="comman-field-box date-box" sx={{width: "49%"}}>
                                         <Typography className='field-title'>Experience Date</Typography>
-                                        <TextField
-                                            className='input-field'
-                                            value={values.experienceDate}
-                                            onChange={handleChange}
-                                            name="experienceDate"
-                                            type="date"
-                                            id="standard-size-normal"
-                                            variant="standard"
-                                            fullWidth
-                                        />
-                                        {touched.experienceDate && errors.experienceDate && <Typography className='error-msg'>{errors.experienceDate}</Typography>}
+                                        <DatePicker selected={startDate} className='form-control'
+                                                    onChange={(date) => setStartDate(date)}
+                                                    value={moment(startDate).format("ddd,DD MMM YYYY")}/>
+                                        {touched.experienceDate && errors.experienceDate &&
+                                            <Typography className='error-msg'>{errors.experienceDate}</Typography>}
+                                        <Box className="gcal-icon">
+                                            <img className="gcal" src={gCal}/>
+                                        </Box>
                                     </Box>
-
-
-
-
-                                    <Box className="comman-field-box" sx={{ width: "48.5%" }}>
+                                    <Box className="comman-field-box" sx={{width: "48.5%"}}>
                                         <Typography className='field-title' sx={{
                                             display: "flex",
                                             alignItems: "center",
-                                            paddingRight: '10px'
+                                            paddingRight: '10px',
+                                            paddingBottom: '6px !important'
                                         }}>
                                             Start Time
                                             <Tooltip
@@ -261,67 +453,76 @@ const ChefDetailsForm = () => {
                                                 }}
                                             >
                                                 <InfoIcon
+                                                    sx={{color: "#C6A87D", fontSize: '17px', marginLeft: '8px'}}
                                                     ref={areaRef}
                                                     onMouseMove={handleMouseMove}
                                                 />
                                             </Tooltip>
                                         </Typography>
                                         <TextField
-                                            className='input-field'
-                                            value={values.experienceDate}
+                                            type="time"
+                                            name="time"
+                                            value={values.time}
                                             onChange={handleChange}
-                                            name="startTime"
-                                            type="Time"
-                                            id="standard-size-normal"
+                                            defaultValue={values.time}
+                                            style={{width: '100%'}}
+                                            //  className="form-control"
+                                            autoComplete="off"
                                             variant="standard"
-                                            fullWidth
+                                            InputProps={{
+                                                disableUnderline: true,
+                                                autoCapitalize: true,
+                                            }}
                                         />
-                                        {touched.startTime && errors.startTime && <Typography className='error-msg'>{errors.startTime}</Typography>}
+                                        {touched.startTime && errors.startTime &&
+                                            <Typography className='error-msg'>{errors.startTime}</Typography>}
                                     </Box>
                                 </Box>
                                 <Box className="sub-box-counter">
-                                    <Typography>Number of Diners <span>(min 2)</span></Typography>
-                                    <Box sx={{ display: 'flex' }}>
-                                        <button
+                                    <Typography className="min-2-3">Number of Diners <span>(min 2)</span></Typography>
+                                    <Box sx={{display: 'flex'}}>
+                                        <RemoveIcon
+                                            style={numberOfDenner === 2 ? disabledStyle : {}}
                                             className="left-btn"
-                                            onClick={() => { setNumberOfDenner((numberOfDenner - 1 > 0)) }}
-                                        >
-                                            -
-                                        </button>
-                                        <Typography sx={{ width: '20px', textAlign: 'center' }}>{numberOfDenner}</Typography>
-                                        <button
+                                            onClick={handleDecrement} disabled={numberOfDenner === 2}
+                                        />
+                                        <Typography className="number-ans">{numberOfDenner}</Typography>
+                                        <AddIcon
                                             className="right-btn"
-                                            onClick={() => { setNumberOfDenner(numberOfDenner + 1) }}
-                                        >
-                                            +
-                                        </button>
+                                            onClick={handleIncrement}
+                                        />
                                     </Box>
                                 </Box>
                                 <Box className="sub-box-counter">
-                                    <Typography>Number of Courses<span>(min 3)</span></Typography>
-                                    <Box sx={{ display: 'flex' }}>
-                                        <button
+                                    <Typography className="min-2-3">Number of Diners <span>(min 3)</span></Typography>
+                                    <Box sx={{display: 'flex'}}>
+                                        <RemoveIcon
+                                            style={numberOfCourses === 3 ? disabledStyle : {}}
                                             className="left-btn"
-                                            onClick={() => { setNumberOfCourses(numberOfCourses - 1 > 0) }}
-                                        >
-                                            -
-                                        </button>
-                                        <Typography sx={{ width: '20px', textAlign: 'center' }}>{numberOfCourses}</Typography>
-                                        <button
+                                            onClick={handleCoursesDecrement} disabled={numberOfCourses === 3}
+                                        />
+                                        <Typography className="number-ans">{numberOfCourses}</Typography>
+                                        <AddIcon
                                             className="right-btn"
-                                            onClick={() => { setNumberOfCourses(numberOfCourses + 1) }}
-                                        >
-                                            +
-                                        </button>
+                                            onClick={handleCoursesIncrement}
+                                        />
                                     </Box>
                                 </Box>
                             </Box>
-
-                            <Box sx={{ paddingBottom: '40px' }}>
+                            <Box className='surprise-box'>
+                                <Box className="form-check">
+                                    <Box className='surprise-check-box'>
+                                        <Checkbox className="input-check" defaultChecked/>
+                                        <Typography className="form-check-label" for="flexCheckChecked">Surprise
+                                            me</Typography></Box>
+                                    <Typography className="email-confirm">An agnostic menu that explores a diverse
+                                        culinary journey with chef mako at the helm.</Typography>
+                                </Box>
+                            </Box>
+                            <Box sx={{paddingBottom: '40px'}}>
                                 <Button
                                     className="experience-btn"
                                     type="submit"
-                                    onClick={handleClick}
                                 >
                                     Book this Experience
                                 </Button>
@@ -330,8 +531,8 @@ const ChefDetailsForm = () => {
                     )}
                 </Formik>
 
-            </BoxWrapper >
-        </React.Fragment >
+            </BoxWrapper>
+        </React.Fragment>
     )
 
 }

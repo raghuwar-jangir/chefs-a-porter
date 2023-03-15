@@ -21,6 +21,7 @@ import {isMobile} from "react-device-detect";
 import moment from "moment";
 import * as _ from 'lodash';
 import '../../assets/styles/searchBar.css'
+import "../../assets/styles/fontStyle.css"
 
 const BecomePatronForm = () => {
 

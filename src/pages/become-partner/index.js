@@ -18,6 +18,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import InputAdornment from '@mui/material/InputAdornment';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import {Formik, Form, ErrorMessage} from "formik";
+import "../../assets/styles/fontStyle.css"
 import * as Yup from 'yup';
 import {isMobile} from "react-device-detect";
 

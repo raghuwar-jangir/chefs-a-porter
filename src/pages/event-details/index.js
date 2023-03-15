@@ -6,7 +6,15 @@ import {
     styled,
     Typography,
     Link,
+    Modal,
+    TextField,
+    TextareaAutosize,
 } from "@mui/material";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import {Formik, Form} from "formik";
+import {DatePickerInput} from "rc-datepicker";
+import InputAdornment from "@mui/material/InputAdornment";
+import CloseIcon from "@mui/icons-material/Close";
 import Navbar from "../../components/NavbarComponent";
 import Footer from "../../components/Footer";
 import FooterEnd from "../../components/FooterEndSection";
@@ -22,50 +30,37 @@ import star from "../../assets/images/star.png";
 import "../../assets/styles/fontStyle.css";
 import EventCard from "../../components/EventCard";
 import DiningPage from "../../components/DiningPage";
-import diningImg from '../../assets/images/cook1.png';
+import diningImg from "../../assets/images/cook1.png";
 import RatingCarousel from "../../components/RatingCarousel";
 import ChefDetailsForm from "../../components/ChefDetailsForm";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
+import "../../assets/styles/fontStyle.css";
+import EventPopUpCarousel from "../../components/EventPopUpCarosuel";
 
 const EventDetails = () => {
-
     const [showCarousel, setShowCarousel] = useState(false);
     const handleImageClick = () => {
         setShowCarousel(true);
     };
-
-    const handleClose = () => {
+    const handleCloseCarousel = () => {
         setShowCarousel(false);
     };
-    // const breadcrumbsStyle ={
-    //     '.privee-title':{
-    //         fontFamily: 'Proxima Nova Alt',
-    // fontStyle: 'normal',
-    // fontWeight: '300',
-    // fontSize: '16px',
-    // lineHeight: '19px',
-    // color: '#FFFFFF',
-    //     },
-    //     '.privee-event':{
-    //         fontFamily: 'ProximaNovaA-Regular',
-    //         fontStyle: 'normal',
-    //         fontWeight: '300',
-    //         fontSize: '16px',
-    //         lineHeight: '19px',
-    //         color: '#C6A87D',
-    //     }
-    // }
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const bread = {
+        fontFamily: "Proxima Nova Alt",
+        fontStyle: "normal",
+        fontWeight: 300,
+        fontSize: "16px",
+        lineHeight: "19px",
+    };
     const breadcrumbs = [
-        <Typography className="privee-title" key="1" color="#FBFBFB">
+        <Typography sx={bread} key="1" color="#FBFBFB">
             Privée
         </Typography>,
-        <Link
-            underline="none"
-            className="privee-event"
-            key="2"
-            color="#C6A87D"
-            href=""
-        >
+        <Link underline="none" key="2" color="#C6A87D" href="">
             Event
         </Link>,
     ];
@@ -106,13 +101,13 @@ const EventDetails = () => {
         },
         ".main-img-1": {
             width: "100%",
-            height: "165px",
+            height: "180px",
             boxShadow: "0px 8px 16px rgb(0 0 0 / 16%)",
             objectFit: "cover",
         },
         ".main-img-2": {
             width: "100%",
-            height: "205px",
+            height: "190px",
             boxShadow: "0px 8px 16px rgb(0 0 0 / 16%)",
             objectFit: "cover",
         },
@@ -126,35 +121,35 @@ const EventDetails = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            zIndex: "5",
+            zIndex: "1200",
         },
         ".close-button": {
             position: "absolute",
-            top: "10px",
-            right: "10px",
+            top: "20px",
+            right: "0px",
             fontSize: "24px",
             backgroundColor: "transparent",
             border: "none",
             color: "white",
             cursor: "pointer",
-            zIndex: "10",
+            zIndex: "1200",
         },
         ".next-grid": {
             display: "inline",
-            paddingLeft: '0px'
+            paddingLeft: "0px !important",
         },
         ".child-container": {
             position: "relative",
             marginLeft: "2px",
-            paddingLeft: '0px'
+            paddingLeft: "0px",
         },
         ".show-btn": {
             position: "absolute",
-            bottom: "16px",
-            right: "19px",
+            bottom: "20px",
+            right: "27px",
             fontFamily: "ProximaNovaA-Regular",
             fontStyle: "normal",
-            fontWeight: "100",
+            fontWeight: 400,
             fontSize: "16px",
             lineHeight: "19px",
             color: "#080B0E",
@@ -163,6 +158,14 @@ const EventDetails = () => {
             boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
             borderRadius: "1px",
             padding: "8px 12px",
+        },
+        ".show-btn:hover": {
+            color: "#C6A87D",
+            backgroundColor: "#FBFBFB",
+        },
+        ".show-btn:focus": {
+            backgroundColor: "#FBFBFB",
+            color: "#C6A87D",
         },
         ".container-fluid": {
             marginTop: "40px",
@@ -176,26 +179,48 @@ const EventDetails = () => {
             color: "#FBFBFB",
         },
         ".chef-name": {
-            fontSize: "23px",
+            fontSize: "24px",
             lineHeight: "30px",
             color: "#FBFBFB",
+            fontWeight: 700,
             marginTop: "8px",
             fontFamily: "Bon Vivant",
             fontStyle: "normal",
             letterSpacing: "0.06em",
             marginBottom: "8px",
         },
-        ".chef-details": {
-            fontFamily: "Proxima Nova",
+        ".chef-name-rate": {
+            fontSize: "20px",
+            lineHeight: "24px",
+            fontWeight: 400,
+            color: "#FBFBFB",
+            marginTop: "8px",
+            fontFamily: "ProximaNovaA-Regular",
             fontStyle: "normal",
-            fontWeight: "300",
+            marginBottom: "8px",
+        },
+        ".chef-details": {
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: 300,
             color: "#FBFBFB",
             marginBottom: "20px",
-            display: 'flex',
-            fontSize: '20px',
-            lineHeight: '24px',
-            letterSpacing: '0.06em',
-            placeItems: 'center',
+            display: "flex",
+            fontSize: "20px",
+            lineHeight: "24px",
+            letterSpacing: "0.06em",
+            placeItems: "center",
+        },
+        ".chef-details-by": {
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: 300,
+            color: "#FBFBFB",
+            display: "flex",
+            fontSize: "20px",
+            lineHeight: "24px",
+            letterSpacing: "0.06em",
+            placeItems: "center",
         },
         ".mobileView-chef": {
             display: "none",
@@ -206,86 +231,252 @@ const EventDetails = () => {
             width: "18px",
             objectFit: "contain",
             marginRight: "8px",
+            marginLeft: "20px",
         },
         ".star-box": {
             display: "flex",
         },
-        '.detail-1': {
-            textDecoration: 'none',
-            color: '#C6A87D',
-            fontWeight: '600',
-            paddingLeft: '5px',
-            position: 'relative',
+        ".detail-1": {
+            textDecoration: "none",
+            color: "#C6A87D",
+            fontWeight: 600,
+            paddingLeft: "5px",
+            position: "relative",
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: 300,
+            fontSize: "20px",
+            lineHeight: "24px",
+            letterSpacing: "0.06em",
+            marginLeft: "5px",
         },
-        '.line': {
-            display: 'inline-block',
-            color: '#FBFBFB',
-            margin: '0 16px',
-            fontWeight: '300',
+        ".line": {
+            display: "inline-block",
+            color: "#FBFBFB",
+            margin: "0 16px",
+            fontWeight: "300",
         },
-        '.detail-2': {
-            fontFamily: 'Proxima Nova Alt',
-            fontStyle: 'normal',
-            fontWeight: '300',
-            fontSize: '16px',
-            lineHeight: '19px',
-            color: '#FBFBFB',
+        ".detail-2": {
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: "300",
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#FBFBFB",
+            letterSpacing: "0.06em",
         },
-        '.grid-item': {
-            paddingRight: '5px'
+        ".grid-item": {
+            paddingRight: "5px",
         },
         ".mobile-view-price-text": {
             fontWeight: 600,
             fontSize: "20px",
-            lineHeight: "24px"
+            lineHeight: "24px",
         },
         ".mobile-view-diner": {
             fontWeight: 300,
             fontSize: "16px",
-            lineHeight: "19px"
+            lineHeight: "19px",
         },
         ".invite-btn": {
-            border: '1px solid #C6A87D',
-            background: '#000',
+            border: "1px solid #C6A87D",
+            background: "#000",
             borderRadius: "0px",
-            color: '#FBFBFB',
-            width: '210px',
+            color: "#FBFBFB",
+            width: "210px",
             fontSize: "16px",
             lineHeight: "19px",
             fontWeight: 600,
-            fontFamily: 'Proxima Nova Alt',
-            padding: '13.8894px',
-            textTransform: 'math-auto'
+            fontFamily: "Proxima Nova Alt",
+            padding: "13.8894px",
+            textTransform: "math-auto",
         },
         ".last-cantain": {
-            display: 'flex',
-            justifyContent: 'space-between',
-            padding: '40px 20px',
-            backgroundColor: '#101418'
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "40px 20px",
+            backgroundColor: "#101418",
         },
         ".invite-friends-text": {
-            fontFamily: 'Bon Vivant',
-            fontStyle: 'normal',
+            fontFamily: "Bon Vivant",
+            fontStyle: "normal",
             fontWeight: 700,
             fontSize: "20px",
             lineHeight: "25px",
-            color: '#FBFBFB',
-            marginBottom: '0px'
+            color: "#FBFBFB",
+            marginBottom: "0px",
         },
         ".experience-text": {
-            fontFamily: 'Proxima Nova Alt',
-            fontStyle: 'normal',
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
             fontWeight: 400,
             fontSize: "16px",
             lineHeight: "24px",
-            color: '#FBFBFB',
-            marginBottom: '0px'
+            color: "#FBFBFB",
+            marginBottom: "0px",
         },
-        '.img': {
-            height: '352px'
+        ".img": {
+            height: "352px",
+        },
+        ".breadcrumbs-heading": {
+            fontFamily: "ProximaNovaA-Regular",
+            fontStyle: "normal",
+            fontWeight: 600,
+            fontSize: "16px",
+            lineHeight: "19px",
+        },
+        ".pop-close-icon": {
+            width: "100px",
+            height: "40px",
+            color: "rgb(160, 160, 160)",
+        },
+        ".MuiBreadcrumbs-separator": {
+            marginLeft: "0.5rem",
+            marginRight: "0.5rem",
+        },
+        '.item-img-1': {
+            paddingLeft: '10px !important',
+            paddingRight: '10px !important'
+        },
+        '.item-img-2': {
+            paddingLeft: '10px !important',
+            paddingRight: '10px !important'
+        },
+        '.container-parent': {
+            paddingRight: '5px !important'
+        },
+        '@media(min-width: 1px) and (max-width: 768px)': {
+            '.grid-box-2': {
+                display: 'flex',
+                flexDirection: 'column'
+            },
+            '.grid-item': {
+                maxWidth: '100%',
+                paddingRight: '0px'
+            },
+            '.grid-child-box': {
+                maxWidth: '100%'
+            }
         }
-
     }));
+    const style = {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 398,
+        boxShadow: 24,
+        ".modal-content": {
+            backgroundColor: "#DCD7CB !important",
+            boxShadow: "0px 8px 12px rgb(0 0 0 / 16%)",
+            padding: "40px 30px 20px",
+            // position: 'relative',
+            display: "flex",
+            flexDirection: "column",
+            // width: '100%',
+            pointerEvents: "auto",
+            backgroundClip: "paddingBox",
+            outline: "0",
+        },
+        ".form-control": {
+            backgroundColor: "transparent",
+            border: "0px",
+            borderBottom: "0.25px solid #080B0E",
+            borderRadius: "0px",
+            paddingLeft: "0px",
+            paddingRight: "0px",
+            fontFamily: "Proxima Nova",
+            fontStyle: "normal",
+            fontWeight: "300",
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#222222",
+            width: "100%",
+        },
+        ".form-control:focus-visible": {
+            outline: "0px",
+        },
+        ".modal-header": {
+            padding: "0px",
+            marginBottom: "30px",
+            borderBottom: "none",
+            position: "relative",
+            justifyContent: "flex-start",
+        },
+        ".modal-header button": {
+            padding: "0px",
+            border: "0px",
+            position: "absolute",
+            right: "0px",
+            bottom: "8px",
+            background: "transparent",
+            cursor: "pointer",
+        },
+        ".schedule-label": {
+            fontFamily: "Proxima Nova",
+            fontStyle: "normal",
+            fontWeight: "600",
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#080B0E",
+            marginBottom: "8px",
+            display: "block",
+        },
+        ".schedule-heading": {
+            fontFamily: "Proxima Nova",
+            fontStyle: "normal",
+            fontWeight: "600",
+            fontSize: "24px",
+            lineHeight: "30px",
+            color: "#080B0E",
+            marginBottom: "8px",
+            marginTop: "0px",
+            display: "block",
+            textAlign: "center",
+        },
+        ".mb-3": {
+            marginBottom: "1rem",
+        },
+        ".btn-primary": {
+            border: "none !important",
+            background: "#080B0E",
+            width: "100% !important",
+            fontSize: "16px",
+            fontWeight: 600,
+            lineHeight: "19px",
+            borderRadius: "0px",
+            color: "#FBFBFB",
+            textTransform: "capitalize",
+            fontFamily: "Proxima Nova",
+            height: "40px !important",
+            marginTop: "0px",
+        },
+        ".react-datepicker-component .react-datepicker-input input": {
+            paddingLeft: "5px",
+            color: "#080B0E",
+        },
+        ".icon-rc-datepicker": {
+            color: "#080B0E !important",
+        },
+        ".react-datepicker-component .react-datepicker-input.is-open": {
+            background: "transparent",
+            border: "0px",
+            borderRadius: "0px",
+        },
+        ".react-datepicker-component .react-datepicker-input": {
+            background: "transparent",
+            border: "0px",
+            borderRadius: "0px",
+        },
+        ".react-datepicker-component .react-datepicker-input:hover": {
+            background: "transparent",
+            border: "0px",
+            borderRadius: "0px",
+        },
+        ".react-datepicker-component .react-datepicker-input.has-value input": {
+            color: "#080B0E !important",
+        },
+    };
     return (
         <React.Fragment>
             <MainBox>
@@ -303,9 +494,10 @@ const EventDetails = () => {
                         <Box className="row supper-chef-details">
                             <Box className="details">
                                 <Breadcrumbs
-                                    separator="›"
+                                    separator={<ChevronRightIcon className="chevron-right"/>}
                                     aria-label="breadcrumb"
                                     color="white"
+                                    className="breadcrumbs-heading"
                                 >
                                     {breadcrumbs}
                                 </Breadcrumbs>
@@ -313,15 +505,20 @@ const EventDetails = () => {
                                     <Typography className="chef-name">
                                         A Traditional Oma Kase
                                     </Typography>
-                                    <Typography className="chef-name">
+                                    <Typography className="chef-name-rate">
                                         <img className="star-logo" src={star}/>
                                         4.7
                                     </Typography>
                                 </Box>
                                 <Box className="chef-details">
-                                    <Typography>by</Typography><Typography className="detail-1">Chef Mako
-                                    Ravindran</Typography><span className="line">|</span><Typography
-                                    className="detail-2">Starting from ₹5000 per diner</Typography>
+                                    <Typography className="chef-details-by">by</Typography>
+                                    <Link href="/chef-details" className="detail-1">
+                                        Chef Mako Ravindran
+                                    </Link>
+                                    <span className="line">|</span>
+                                    <Typography className="detail-2">
+                                        Starting from ₹5000 per diner
+                                    </Typography>
                                 </Box>
                             </Box>
                         </Box>
@@ -337,7 +534,7 @@ const EventDetails = () => {
                             </Typography>
                         </Box>
                         <Grid container spacing={{md: 2}}>
-                            <Grid item xl={7} md={7} sm={6} xs={12}>
+                            <Grid className="container-parent" item xl={7} md={7} sm={6} xs={12}>
                                 <Box className="container">
                                     <img
                                         src={chef1}
@@ -347,11 +544,14 @@ const EventDetails = () => {
                                     />
                                     {showCarousel && (
                                         <Box className="carousel-popup">
-                                            <button className="close-button" onClick={handleClose}>
-                                                <CloseIcon/>
+                                            <button
+                                                className="close-button"
+                                                onClick={handleCloseCarousel}
+                                            >
+                                                <CloseIcon className="pop-close-icon"/>
                                             </button>
                                             <Box className="carousel">
-                                                {/* <SuperClubPopUpCarousel/> */}
+                                                <EventPopUpCarousel/>
                                             </Box>
                                         </Box>
                                     )}
@@ -359,7 +559,7 @@ const EventDetails = () => {
                             </Grid>
                             <Grid item md={5} sm={6} xs={12} xl={5} className="next-grid">
                                 <Grid className="child-container" container spacing={2}>
-                                    <Grid item md={6} sm={6} xs={6} xl={6}>
+                                    <Grid className="item-img-1" item md={6} sm={6} xs={6} xl={6}>
                                         <img
                                             src={sGallery}
                                             alt="RestorentImg"
@@ -367,7 +567,7 @@ const EventDetails = () => {
                                             onClick={handleImageClick}
                                         />
                                     </Grid>
-                                    <Grid item md={6} sm={6} xs={6} xl={6}>
+                                    <Grid className="item-img-1" item md={6} sm={6} xs={6} xl={6}>
                                         <img
                                             src={sGallery}
                                             alt="RestorentImg"
@@ -375,7 +575,7 @@ const EventDetails = () => {
                                             onClick={handleImageClick}
                                         />
                                     </Grid>
-                                    <Grid item md={6} sm={6} xs={6} xl={6}>
+                                    <Grid className="item-img-2" item md={6} sm={6} xs={6} xl={6}>
                                         <img
                                             src={chef2}
                                             alt="RestorentImg"
@@ -383,14 +583,21 @@ const EventDetails = () => {
                                             onClick={handleImageClick}
                                         />
                                     </Grid>
-                                    <Grid item md={6} sm={6} xs={6} xl={6}>
+                                    <Grid className="item-img-2" item md={6} sm={6} xs={6} xl={6}>
                                         <img
                                             src={chef2}
                                             alt="RestorentImg"
                                             className="main-img-2"
                                             onClick={handleImageClick}
                                         />
-                                        <Button className="show-btn">Show All Photos</Button>
+                                        <Button
+                                            className="show-btn"
+                                            onClick={handleOpen}
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal"
+                                        >
+                                            Show All Photos
+                                        </Button>
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -398,37 +605,199 @@ const EventDetails = () => {
                         <Grid className="grid-box-2" container spacing={{md: 2}}>
                             <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
                                 <EventCard/>
-                                <DiningPage title="Chef Mako's Creations" image={diningImg}/>
-                                <RatingCarousel backgroundColor={"#DCD7CB"}/>
-                                {isMobile ? (<Box sx={{
-                                    display: "flex",
-                                    justifyContent: 'space-between',
-                                    padding: "16px",
-                                    background: '#DCD7CB'
-                                }}>
-                                    <Box>
-                                        <Typography className="mobile-view-price-text">₹ 2,500</Typography>
-                                        <Typography className="mobile-view-diner">Per diner</Typography>
+                                <DiningPage
+                                    carouselImg={{height: "352px"}}
+                                    header={{padding: "0px 0px"}}
+                                    title="Chef Mako's Creations"
+                                    image={diningImg}
+                                />
+                                <SupperClubDetailsCarousel
+                                    mainBox={{padding: "40px 0px"}}
+                                    changeDetails={{fontSize: "16px"}}
+                                    changeFont={{fontSize: "20px"}}
+                                    backgroundColor="#DCD7CB"
+                                />
+                                {isMobile ? (
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            justifyContent: "space-between",
+                                            padding: "16px",
+                                            background: "#DCD7CB",
+                                        }}
+                                    >
+                                        <Box>
+                                            <Typography className="mobile-view-price-text">
+                                                ₹ 2,500
+                                            </Typography>
+                                            <Typography className="mobile-view-diner">
+                                                Per diner
+                                            </Typography>
+                                        </Box>
+                                        <Button className="invite-btn">Reserve a Seat</Button>
                                     </Box>
-                                    <Button className="invite-btn">
-                                        Reserve a Seat
-                                    </Button>
-                                </Box>) : (<Box className="last-cantain">
-                                    <Box>
-                                        <Typography className="invite-friends-text">Invite friends & family</Typography>
-                                        <Typography className="experience-text">enjoy a shared experience</Typography>
+                                ) : (
+                                    <Box className="last-cantain">
+                                        <Box>
+                                            <Typography className="invite-friends-text">
+                                                Invite friends & family
+                                            </Typography>
+                                            <Typography className="experience-text">
+                                                enjoy a shared experience
+                                            </Typography>
+                                        </Box>
+                                        <Button className="invite-btn">Invite</Button>
                                     </Box>
-                                    <Button className="invite-btn">
-                                        Invite
-                                    </Button>
-                                </Box>)}
+                                )}
                             </Grid>
-                            <Grid className="grid-child-box" item md={5} sm={6} xs={12} xl={5}>
+                            <Grid
+                                className="grid-child-box"
+                                item
+                                md={5}
+                                sm={6}
+                                xs={12}
+                                xl={5}
+                            >
                                 <ChefDetailsForm/>
                             </Grid>
                         </Grid>
                     </Box>
                 </Box>
+                <Modal
+                    keepMounted
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="keep-mounted-modal-title"
+                    aria-describedby="keep-mounted-modal-description"
+                >
+                    <Box sx={style}>
+                        <Box className="modal-content">
+                            <Box className="modal-header">
+                                <Typography
+                                    id="exampleModalLabel"
+                                    className="schedule-heading modal-title"
+                                >
+                                    Schedule a call
+                                </Typography>
+                                <button
+                                    type="button"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                    className="close"
+                                    onClick={handleClose}
+                                >
+                                    <CloseIcon/>
+                                </button>
+                            </Box>
+                            <Box className="container-fluid">
+                                <Formik
+                                    initialValues={{
+                                        day: new Date(),
+                                        time: new Date().getHours() + ":" + new Date().getMinutes(),
+                                        contactNumber: "",
+                                        queryMessage: "",
+                                    }}
+                                    onSubmit={(values) => {
+                                        const experienceData = {
+                                            ...values,
+                                            day: moment(_.get(values, "day")).format("ddd,DD MMM "),
+                                        };
+                                        console.log("value===>", values);
+                                        console.log("experienceData===>", experienceData);
+                                    }}
+                                >
+                                    {({values, handleChange, handleSubmit, setFieldValue}) => (
+                                        <Form onSubmit={handleSubmit}>
+                                            <Box className="row">
+                                                <Box className="mb-3">
+                                                    <label className="schedule-label">Day</label>
+                                                    <DatePickerInput
+                                                        name="day"
+                                                        value={values.day}
+                                                        displayFormat="ddd,DD MMM"
+                                                        returnFormat="ddd,DD MMM"
+                                                        className="form-control"
+                                                        onChange={(dateString) =>
+                                                            setFieldValue("day", dateString)
+                                                        }
+                                                        defaultValue={values.day}
+                                                    />
+                                                </Box>
+                                                <Box className="mb-3  ">
+                                                    <label className="schedule-label">Time</label>
+                                                    <Box className="input-group">
+                                                        <TextField
+                                                            type="time"
+                                                            name="time"
+                                                            value={values.time}
+                                                            onChange={handleChange}
+                                                            defaultValue={values.time}
+                                                            className="form-control"
+                                                            autoComplete="off"
+                                                            variant="standard"
+                                                            InputProps={{
+                                                                disableUnderline: true,
+                                                                autoCapitalize: true,
+                                                            }}
+                                                        />
+                                                    </Box>
+                                                </Box>
+                                                <Box className="mb-3">
+                                                    <label className="schedule-label">
+                                                        Contact Number
+                                                    </label>
+                                                    <Box className="form-group">
+                                                        <TextField
+                                                            type="tel"
+                                                            name="contactNumber"
+                                                            className="form-control"
+                                                            placeholder="10 digit number"
+                                                            value={values.contactNumber}
+                                                            onChange={handleChange}
+                                                            autoComplete="off"
+                                                            variant="standard"
+                                                            InputProps={{
+                                                                disableUnderline: true,
+                                                                startAdornment: (
+                                                                    <InputAdornment position="start">
+                                                                        91+
+                                                                    </InputAdornment>
+                                                                ),
+                                                            }}
+                                                        />
+                                                    </Box>
+                                                </Box>
+                                                <Box className="mb-3">
+                                                    <label className="schedule-label">
+                                                        Write your query below
+                                                    </label>
+                                                    <TextareaAutosize
+                                                        name="queryMessage"
+                                                        value={values.queryMessage}
+                                                        onChange={handleChange}
+                                                        className="form-control"
+                                                        maxRows={2}
+                                                        maxLength={500}
+                                                        placeholder="Eg. Menu, Decor, Cancellation  "
+                                                    />
+                                                </Box>
+                                            </Box>
+                                            <Box>
+                                                <button
+                                                    className="btn btn-primary"
+                                                    type="submit"
+                                                    style={{width: "100% !important"}}
+                                                >
+                                                    Apply
+                                                </button>
+                                            </Box>
+                                        </Form>
+                                    )}
+                                </Formik>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Modal>
                 <NeedHelp/>
                 <MobileView>
                     <FoodCard/>

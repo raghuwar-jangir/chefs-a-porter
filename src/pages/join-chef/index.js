@@ -16,6 +16,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import InputAdornment from '@mui/material/InputAdornment';
 import {Formik, Form, ErrorMessage} from "formik";
 import * as Yup from 'yup';
+import "../../assets/styles/fontStyle.css"
 import {isMobile} from "react-device-detect";
 
 const ContactUs = () => {
