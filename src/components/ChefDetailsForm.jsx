@@ -1,6 +1,12 @@
-import { Box, Button, styled, TextField, Tooltip, Typography } from "@mui/material";
-import { Field, Form, Formik } from "formik";
+import { Box, Button, styled, TextField, Typography } from "@mui/material";
+import { Form, Formik } from "formik";
 import React, { useRef, useState } from "react";
+import {
+    createMuiTheme,
+    MuiThemeProvider,
+    withStyles
+  } from "@material-ui/core/styles";
+  import Tooltip from "@material-ui/core/Tooltip";
 // import styled from "styled-components";
 import * as Yup from 'yup';
 import InfoIcon from '@mui/icons-material/Info';
@@ -13,6 +19,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Checkbox from '@mui/material/Checkbox';
 import '../assets/styles/fontStyle.css';
+import ExpandMoreSharpIcon from '@mui/icons-material/ExpandMoreSharp';
 
 const DisplayingErrorMessagesSchema = Yup.object().shape({
     yourName: Yup.string().required('Your Name Required'),
@@ -22,9 +29,31 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
 
 
 });
-
-const ChefDetailsForm = () => {
-    
+const defaultTheme = createMuiTheme();
+const theme = createMuiTheme({
+  overrides: {
+    MuiTooltip: {
+      tooltip: {
+        fontSize: "8px",
+        color: "#080B0E",
+        backgroundColor: "#DCD7CB",
+        boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.4)',
+	padding: '16px 32px',
+	textAlign: 'center', 
+	fontFamily: 'Proxima Nova Alt',
+	fontStyle:' normal',
+	fontWeight: 300,
+	fontSize: '14px',
+	lineHeight: '17px',
+	opacity: '1',
+    width:'160px',
+    borderRadius:'1px'
+      }
+    }
+  }
+});
+const ChefDetailsForm = (props) => {
+   const tipTitle ="Private Dining usually last upto 3 hrs but can extend upto 5 hrs based on number of courses"
     const [startDate, setStartDate] = useState(new Date());
     console.log("startDate=",moment(startDate).format("dddd, MMMM DD, YYYY"));
     const [numberOfDenner, setNumberOfDenner] = useState(2)
@@ -96,6 +125,7 @@ const ChefDetailsForm = () => {
             width: "100%",
             padding: "0.375rem 0.75rem 0.375rem 0px",
             transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
+            zIndex:'1'
         },
         '.form-control':{
             paddingLeft: "10px",
@@ -338,6 +368,20 @@ const ChefDetailsForm = () => {
     right:'18px',
     bottom:'19px'
 }, 
+'.time-picker':{
+    position:'relative'
+},
+'.timer-drop-down':{
+    position:'absolute',
+    right: '1px',
+    fontSize: '38px',
+    bottom: '-4px'
+},
+'.gInfo-logo':{
+    height:'16px',
+    width:'16px',
+    marginLeft:'8px'
+}
     }))
     const disabledStyle = {
         opacity: 0.5,
@@ -429,33 +473,22 @@ const ChefDetailsForm = () => {
                                             paddingBottom:'6px !important'
                                         }}>
                                             Start Time
-                                            <Tooltip
-                                                
-                                                title={<span style={{ fontSize: "14px", color: "#080B0E",opacity:'1',fontFamily:'ProximaNovaA-Regular',width:'200px' }}>Private Dining usually last upto 3 hrs but can extend upto 5 hrs based on number of courses</span>}
-                                                placement="top"
-                                                arrow
-                                                PopperProps={{
-                                                    background: 'red',
-                                                    popperRef,
-                                                    anchorEl: {
-                                                        getBoundingClientRect: () => {
-                                                            return new DOMRect(
-                                                                positionRef.current.x,
-                                                                areaRef.current.getBoundingClientRect().y,
-                                                                0,
-                                                                0,
-                                                            );
-                                                        },
-                                                    },
-                                                }}
-                                            >
-                                                <InfoIcon
-                                                    sx={{color:"#C6A87D",fontSize:'17px',marginLeft:'8px'}}
-                                                    ref={areaRef}
-                                                    onMouseMove={handleMouseMove}
-                                                />
-                                            </Tooltip>
+                                             <MuiThemeProvider theme={defaultTheme}>
+      <Box className="App">
+        <MuiThemeProvider theme={theme}>
+          <Tooltip title={tipTitle}
+          arrow
+          placement="top"
+          onClick>
+            <Box>
+              <img className="gInfo-logo" src={gInfo}/>
+            </Box>
+          </Tooltip>
+        </MuiThemeProvider>
+        </Box>
+        </MuiThemeProvider>
                                         </Typography>
+                                        <Box className='time-picker'>
                                         <TextField
                                              type="time"
                                              name="time"
@@ -472,6 +505,8 @@ const ChefDetailsForm = () => {
                                              }}
                                         />
                                         {touched.startTime && errors.startTime && <Typography className='error-msg'>{errors.startTime}</Typography>}
+                                        <ExpandMoreSharpIcon className="timer-drop-down"/>
+                                        </Box>
                                     </Box>
                                 </Box>
                                 <Box className="sub-box-counter">

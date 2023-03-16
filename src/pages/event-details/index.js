@@ -18,7 +18,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import Navbar from "../../components/NavbarComponent";
 import Footer from "../../components/Footer";
 import FooterEnd from "../../components/FooterEndSection";
-import FoodCard from "../../components/FoodCard";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NeedHelp from "../../components/NeedHelp";
 import { isMobile, MobileView } from "react-device-detect";
@@ -29,18 +28,13 @@ import sGallery from "../../assets/images/sc-gallery.png";
 import star from "../../assets/images/star.png";
 import "../../assets/styles/fontStyle.css";
 import EventCard from "../../components/EventCard";
-import DiningPage from "../../components/DiningPage";
-import diningImg from "../../assets/images/cook1.png";
-import RatingCarousel from "../../components/RatingCarousel";
 import ChefDetailsForm from "../../components/ChefDetailsForm";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
 import "../../assets/styles/fontStyle.css";
 import EventPopUpCarousel from "../../components/EventPopUpCarousel";
 import TemptedYet from '../../components/TemptedYet';
-import NeedHelpSmallComponent from '../../components/NeedHelpSmallComponent';
 import NeedHelpEvent from "../../components/NeedHelpEvent";
-import ChefMakoCarousel from "../../components/ChefMakoCarousel";
 import EventChefCarousel from "../../components/EventChefCarousel";
 
 const EventDetails = () => {
