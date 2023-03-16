@@ -128,6 +128,8 @@ const ChefDetailsForm = (props) => {
             zIndex:'1'
         },
         '.form-control':{
+            position:'relative',
+            zIndex:'1',
             paddingLeft: "10px",
             flex: "1",
             outline:'none',
@@ -144,7 +146,7 @@ const ChefDetailsForm = (props) => {
             lineHeight: "19px",
             color: "#FBFBFB",
             display: "block",
-            width: "95%",
+            width: "100%",
             padding: "0.375rem 0.75rem 0.375rem 0px",
             transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
         },
@@ -365,7 +367,7 @@ const ChefDetailsForm = (props) => {
 },
 '.gcal-icon':{
     position:'absolute',
-    right:'18px',
+    right:'6px',
     bottom:'19px'
 }, 
 '.time-picker':{
@@ -373,7 +375,7 @@ const ChefDetailsForm = (props) => {
 },
 '.timer-drop-down':{
     position:'absolute',
-    right: '1px',
+    right: '-11px',
     fontSize: '38px',
     bottom: '-4px'
 },
@@ -428,8 +430,8 @@ const ChefDetailsForm = (props) => {
                             <Box sx={{}}>
                                 <Box className="comman-field-box" >
                                     <Typography className='field-title'>Your Name</Typography>
-                                    <TextField
-                                        className='input-field'
+                                    <input
+                                        className='form-control'
                                         name="yourName"
                                         value={values.yourName}
                                         id="standard-size-normal"
@@ -443,8 +445,8 @@ const ChefDetailsForm = (props) => {
 
                                 <Box className="comman-field-box">
                                     <Typography className='field-title'>Email Address</Typography>
-                                    <TextField
-                                        className='input-field'
+                                    <input
+                                        className='form-control'
                                         name="email"
                                         value={values.email}
                                         id="standard-size-normal"
@@ -488,14 +490,14 @@ const ChefDetailsForm = (props) => {
         </MuiThemeProvider>
                                         </Typography>
                                         <Box className='time-picker'>
-                                        <TextField
+                                        <input
                                              type="time"
                                              name="time"
                                              value={values.time}
                                              onChange={handleChange}
                                              defaultValue={values.time}
                                              style={{width:'100%'}}
-                                            //  className="form-control"
+                                             className="form-control"
                                              autoComplete="off"
                                              variant="standard"
                                              InputProps={{
