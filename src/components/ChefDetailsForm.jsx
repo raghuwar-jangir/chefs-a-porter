@@ -478,8 +478,7 @@ const ChefDetailsForm = (props) => {
         <MuiThemeProvider theme={theme}>
           <Tooltip title={tipTitle}
           arrow
-          placement="top"
-          onClick>
+          placement="top">
             <Box>
               <img className="gInfo-logo" src={gInfo}/>
             </Box>

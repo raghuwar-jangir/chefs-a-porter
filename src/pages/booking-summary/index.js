@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import * as Yup from 'yup';
 import {Form, Formik,Field,ErrorMessage } from "formik";
-import { Box, Grid, Modal, styled, Typography,TextField,TextareaAutosize } from "@mui/material";
+import { Box, Grid, Modal, styled, Typography,TextField,TextareaAutosize,Checkbox } from "@mui/material";
 import Navbar from "../../components/NavbarComponent";
 import add1 from "../../assets/images/add1.png";
 import add2 from "../../assets/images/add2.png";
@@ -10,7 +10,6 @@ import add4 from "../../assets/images/add4.png";
 import add5 from "../../assets/images/add5.png";
 import add6 from "../../assets/images/add6.png";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import AddonsCard from "../../components/AddonsCard";
 import sGallery from "../../assets/images/sc-gallery.png";
 import StarIcon from "@mui/icons-material/Star";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -26,7 +25,7 @@ import done from "../../assets/images/done.png";
 import support from "../../assets/images/support.png";
 import "../../assets/styles/fontStyle.css";
 import CloseIcon from '@mui/icons-material/Close';
-import { Button } from "react-bootstrap";
+import '../../assets/styles/fontStyle.css';
 
 const BookingSummary = () => {
   const validationSchema = Yup.object().shape({
@@ -84,7 +83,7 @@ const BookingSummary = () => {
   ];
 
   const BoxWrapper = styled(Box)(() => ({
-    background: "#101418",
+    background: "#080B0E",
     '.popup-form' :{
         top: '50%',
         left: '50%',
@@ -115,7 +114,7 @@ const BookingSummary = () => {
     ".addons-title": {
       fontFamily: "ProximaNovaA-Regular",
       fontStyle: "normal",
-      // fontWeight: '600',
+      fontWeight: 600,
       fontSize: "32px",
       lineHeight: "39px",
       color: "#FBFBFB",
@@ -139,12 +138,15 @@ const BookingSummary = () => {
       marginBottom: "16px",
     },
     ".dinner-box": {
-      padding: "0px 15px",
+      padding: "0px 10px 0px 20px",
+      position:'relative'
     },
     ".per-dinner": {
       background: "#101418",
       padding: "40px 20px",
       boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
+      position:'sticky',
+      top:'50px'
     },
     ".event-div": {
       display: "flex",
@@ -155,7 +157,7 @@ const BookingSummary = () => {
       objectFit: "cover",
     },
     ".rating-star": {
-      fontStyle: "Proxima Nova",
+      fontFamily: "Proxima Nova Alt !important",
       display: "flex",
       alignItems: "center",
       fontSize: "20px",
@@ -212,10 +214,9 @@ const BookingSummary = () => {
     ".ex-detail": {
       fontFamily: "Proxima Nova Alt",
       fontStyle: "normal",
-      // fontWeight: '400',
+      fontWeight: 300,
       fontSize: "14px",
       lineHeight: "17px",
-      letterSpacing: "0.06em",
       color: "#FBFBFB",
       marginBottom: "0px",
     },
@@ -223,8 +224,7 @@ const BookingSummary = () => {
       position: "absolute",
       right: "0px",
       top: "0px",
-      height: "24px",
-      width: "24px",
+      fontSize:'30px',
       color: "#FBFBFB",
       " -webkit-text-stroke": "1px",
     },
@@ -234,6 +234,7 @@ const BookingSummary = () => {
       fontFamily: "ProximaNovaA-Regular",
       fontSize: "20px",
       lineHeight: "24px",
+      fontWeight:600,
       border: "0px",
       marginBottom: "30px",
       marginTop: "30px",
@@ -249,6 +250,7 @@ const BookingSummary = () => {
       lineHeight: "17px",
       textAlign: "center",
       color: "rgba(251, 251, 251, 0.6)",
+      marginTop:'20px'
     },
     ".table": {
       marginTop: "20px",
@@ -269,7 +271,7 @@ const BookingSummary = () => {
       padding: "0px 0px 16px",
     },
     ".grand-total": {
-      fontFamily: "Proxima Nova",
+      fontFamily: 'ProximaNovaA-Regular',
       fontStyle: "normal",
       fontWeight: "400",
       fontSize: "20px",
@@ -288,9 +290,6 @@ const BookingSummary = () => {
       display: "none",
       padding: "15px",
       backgroundColor: "#080B0E",
-    },
-    ".addons-div": {
-      padding: "0px 12px",
     },
     ".booking-box": {
       marginBottom: "20px",
@@ -326,13 +325,14 @@ const BookingSummary = () => {
       borderRadius: "43px",
     },
     ".chef-edit-title": {
-      fontFamily: "Proxima Nova Alt",
+      fontFamily: 'ProximaNovaA-Regular',
       fontStyle: "normal",
       fontWeight: "600",
       fontSize: "20px",
       lineHeight: "24px",
       color: "#FBFBFB",
       marginLeft: "10px",
+      marginBottom:'0.5rem'
     },
     ".pencil-icon": {
       marginLeft: "2.5px",
@@ -345,6 +345,7 @@ const BookingSummary = () => {
       top: "auto",
       bottom: "auto",
       lineHeight: "1",
+      height:'20px'
     },
     ".chef-profile-detail": {
       marginBottom: "16px",
@@ -373,13 +374,13 @@ const BookingSummary = () => {
       fontWeight: "700",
       fontSize: "20px",
       lineHeight: "25px",
-      color: "#FBFBFB",
-      marginBottom: "20px",
+      color: "#FBFBFB"
     },
     ".drop-down": {
       position: "absolute",
       right: "0px",
       top: "0px",
+      fontSize:'30px',
       color: "#FBFBFB",
       webkitTextStroke: "1px",
     },
@@ -401,8 +402,9 @@ const BookingSummary = () => {
       marginBottom: "20px",
     },
     ".form-check": {
-      marginBottom: "20px",
+      marginBottom: "30px",
       minHeight: "1.5rem",
+      paddingTop:'20px'
     },
     ".form-check-input": {
       accentColor: "#C6A87D",
@@ -424,11 +426,13 @@ const BookingSummary = () => {
     },
     ".forward-arrow": {
       position: "absolute",
-      right: "10px",
+      right: "0px",
+      fontSize:'30px',
       bottom: "30px",
       color: "#fbfbfb",
       webkitTextStroke: "1px",
       top: "0px",
+      paddingTop:'20px'
     },
     ".email-text": {
       fontFamily: "Proxima Nova Alt",
@@ -438,6 +442,7 @@ const BookingSummary = () => {
       lineHeight: "19px",
       color: "#FBFBFB",
       marginBottom: "0px",
+      paddingTop:'20px'
     },
     ".contact": {
       position: "relative",
@@ -454,21 +459,28 @@ const BookingSummary = () => {
     ".form-group": {
       display: "flex",
       flexWrap: "wrap",
+      paddingTop:'16px'
     },
     ".country-code": {
       borderBottom: "0.25px solid #FBFBFB",
       display: "inline-flex",
       placeItems: "center",
-      paddingBottom: "0.375rem",
       color: "#FBFBFB",
+      fontFamily: "ProximaNovaA-Regular",
+      fontStyle: "normal",
+      fontWeight: 300,
+      fontSize: "18px",
+      lineHeight: "19px",
     },
     ".drop-down-2": {
-      fontSize: "12px",
-      marginLeft: "2.5px",
+      fontSize: "19px",
+      marginLeft: "0.5px",
       marginRight: "2.5px",
+      paddingBottom:'7px'
     },
     ".chef-profile": {
       marginTop: "5px",
+      marginBottom:'32px'
     },
     ".chef-profile-box": {
       marginBottom: "16px",
@@ -547,6 +559,12 @@ const BookingSummary = () => {
     color: 'rgba(255, 255, 255, 0.6)',
     opacity: '1',
     },
+    '.input-check':{
+      paddingRight:'5px !important',
+      padding:'0px',
+      marginBottom:'0.125rem',
+      color:'#C6A87D !important'
+  },
 
     "@media (min-width: 1px) and (max-width:425px)": {
       ".supper-gallery .container-fluid": {
@@ -591,6 +609,8 @@ const BookingSummary = () => {
       ".event-link": {
         fontSize: "14px",
         lineHeight: "18px",
+        fontWeight:700,
+        fontFamily:'ProximaNovaA-Regular'
       },
       ".rating-star": {
         fontSize: "14px",
@@ -852,13 +872,7 @@ const BookingSummary = () => {
                                         </Box>
                                         <Box className="contact">
                                             <Box className="form-check">
-                                                <input
-                                                    className="form-check-input"
-                                                    type="checkbox"
-                                                    value=""
-                                                    id="flexCheckDefault"
-                                                    checked
-                                                />
+                                            <Checkbox className="input-check" defaultChecked/>
                                                 <label
                                                     className="form-check-label"
                                                     for="flexCheckDefault"
@@ -887,12 +901,11 @@ const BookingSummary = () => {
                             <KeyboardArrowDownIcon className="drop-down-2" />
                           </span>
                           <input
-                            type="tel"
-                            className="form-control"
-                            id="contact-number"
                             placeholder="10 digit number"
-                            value=""
-                            required=""
+                            className="form-control"
+                           type="text" 
+                           id="number"
+                            name="number"
                           />
                         </Box>
                         {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
@@ -942,13 +955,7 @@ const BookingSummary = () => {
                         <KeyboardArrowDownIcon className="drop-down" />
                         <Box className="contact">
                           <Box className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                              checked
-                            />
+                          <Checkbox className="input-check" defaultChecked/>
                             <label
                               className="form-check-label"
                               for="flexCheckDefault"
@@ -989,11 +996,11 @@ const BookingSummary = () => {
                             <StarIcon
                               sx={{
                                 color: "#C6A87D",
-                                height: "20px",
-                                width: "20px",
+                                height: "24px",
+                                width: "24px",
                               }}
                             />{" "}
-                            4.7
+                            <Typography className="rating-star">4.7</Typography>
                           </Typography>
                         </Box>
                       </Box>
