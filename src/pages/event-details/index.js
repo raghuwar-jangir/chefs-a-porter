@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
     Box,
     Button,
@@ -11,17 +11,16 @@ import {
     TextareaAutosize,
 } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import {Formik, Form} from "formik";
-import {DatePickerInput} from "rc-datepicker";
+import { Formik, Form } from "formik";
+import { DatePickerInput } from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
 import CloseIcon from "@mui/icons-material/Close";
 import Navbar from "../../components/NavbarComponent";
 import Footer from "../../components/Footer";
 import FooterEnd from "../../components/FooterEndSection";
-import FoodCard from "../../components/FoodCard";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NeedHelp from "../../components/NeedHelp";
-import {isMobile, MobileView} from "react-device-detect";
+import { isMobile, MobileView } from "react-device-detect";
 import ImageCarousel from "../../components/ImageCarousel";
 import chef1 from "../../assets/images/chef5.png";
 import chef2 from "../../assets/images/chef6.png";
@@ -29,14 +28,14 @@ import sGallery from "../../assets/images/sc-gallery.png";
 import star from "../../assets/images/star.png";
 import "../../assets/styles/fontStyle.css";
 import EventCard from "../../components/EventCard";
-import DiningPage from "../../components/DiningPage";
-import diningImg from "../../assets/images/cook1.png";
-import RatingCarousel from "../../components/RatingCarousel";
 import ChefDetailsForm from "../../components/ChefDetailsForm";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
 import "../../assets/styles/fontStyle.css";
-import EventPopUpCarousel from "../../components/EventPopUpCarosuel";
+import EventPopUpCarosuel from "../../components/EventPopUpCarosuel"
+import TemptedYet from '../../components/TemptedYet';
+import NeedHelpEvent from "../../components/NeedHelpEvent";
+import EventChefCarousel from "../../components/EventChefCarousel";
 
 const EventDetails = () => {
     const [showCarousel, setShowCarousel] = useState(false);
@@ -84,9 +83,9 @@ const EventDetails = () => {
     ];
 
     const MainBox = styled(Box)(() => ({
-        background: "#080B0E",
         ".main-box": {
             padding: "80px 120px",
+            background: "#080B0E",
         },
         ".container": {
             position: "relative",
@@ -190,6 +189,9 @@ const EventDetails = () => {
             marginBottom: "8px",
         },
         ".chef-name-rate": {
+            display:'flex',
+            justifyContent:'center',
+            placeItems:'center',
             fontSize: "20px",
             lineHeight: "24px",
             fontWeight: 400,
@@ -240,7 +242,6 @@ const EventDetails = () => {
             textDecoration: "none",
             color: "#C6A87D",
             fontWeight: 600,
-            paddingLeft: "5px",
             position: "relative",
             fontFamily: "Proxima Nova Alt",
             fontStyle: "normal",
@@ -291,7 +292,7 @@ const EventDetails = () => {
             padding: "13.8894px",
             textTransform: "math-auto",
         },
-        ".last-cantain": {
+        ".last-contain": {
             display: "flex",
             justifyContent: "space-between",
             padding: "40px 20px",
@@ -334,28 +335,97 @@ const EventDetails = () => {
             marginLeft: "0.5rem",
             marginRight: "0.5rem",
         },
-        '.item-img-1': {
-            paddingLeft: '10px !important',
-            paddingRight: '10px !important'
+        '.item-img-1':{
+            paddingLeft:'10px !important',
+            paddingRight:'10px !important'
         },
-        '.item-img-2': {
-            paddingLeft: '10px !important',
-            paddingRight: '10px !important'
+        '.item-img-2':{
+            paddingLeft:'10px !important',
+            paddingRight:'10px !important'
         },
-        '.container-parent': {
-            paddingRight: '5px !important'
+        '.container-parent':{
+            paddingRight:'5px !important'
+        },
+        '@media(min-width: 425px) and (max-width: 768px)': {
+            '.container-parent':{
+                flex:'0 0 auto',
+                maxWidth:'58.333333%'
+            },
+            '.next-grid':{
+                flex: '0 0 auto',
+                width: '41.66666667%'
+            }
         },
         '@media(min-width: 1px) and (max-width: 768px)': {
-            '.grid-box-2': {
-                display: 'flex',
-                flexDirection: 'column'
+            '.grid-box-2':{
+                display:'flex',
+                flexDirection:'column'
             },
-            '.grid-item': {
-                maxWidth: '100%',
-                paddingRight: '0px'
+            '.grid-item':{
+                maxWidth:'100%',
+                paddingRight:'0px'
             },
-            '.grid-child-box': {
-                maxWidth: '100%'
+            '.grid-child-box':{
+                maxWidth:'100%'
+            },
+        },
+        "@media (min-width: 1px) and (max-width:425px)": {
+            '.main-grid':{
+                display:'none'
+            },
+            '.main-box':{
+                padding:'40px 0px 0px'
+            },
+            '.breadcrumbs-heading':{
+                display:'none'
+            },
+            '.star-box':{
+                padding:'0px 16px',
+                justifyContent:'space-between'
+            },
+            '.chef-name':{
+                fontSize:'20px',
+                lineHeight:'25px',
+            },
+            '.chef-name-rate':{
+                fontSize:'18px',
+                lineHeight:'22px'
+            },
+            '.chef-details':{
+                flexFlow:'wrap',
+                padding:'0px 16px',
+                marginBottom:'8px'
+            },
+            '.chef-details-by':{
+                fontSize:'14px',
+                lineHeight:'17px'
+            },
+            '.detail-1':{
+                fontSize:'14px',
+                lineHeight:'17px',
+                fontWeight:300,
+                textDecoration:'underline',
+                paddingLeft:'5px'
+            },
+            '.line':{
+                display:'none'
+            },
+            '.grid-child-box':{
+                display:'none'
+            },
+            '.invite-btn':{
+                width:'114px'
+            },
+            '.template':{
+                background:'#080B0E'
+            },
+            '.template-title':{
+                color:'#FBFBFB !important'
+            }
+        },
+        "@media (min-width: 1px) and (max-width:320px)": {
+            '.invite-btn':{
+                width:'80px'
             }
         }
     }));
@@ -480,21 +550,21 @@ const EventDetails = () => {
     return (
         <React.Fragment>
             <MainBox>
-                <Navbar isColor={true} isIcon={true} heading="Privee"/>
+                <Navbar isColor={true} />
                 <Box className="main-box">
-                    {/*{isMobile ? (*/}
-                    {/*    <Box className="header-club">*/}
-                    {/*        <ArrowBackIcon className="header-icon"/>*/}
-                    {/*        <Typography className="chef-mobile-heading">Privée</Typography>*/}
-                    {/*    </Box>*/}
-                    {/*) : (*/}
-                    {/*    ""*/}
-                    {/*)}*/}
+                    {isMobile ? (
+                        <Box className="header-club">
+                            <ArrowBackIcon className="header-icon" />
+                            <Typography className="chef-mobile-heading">Privée</Typography>
+                        </Box>
+                    ) : (
+                        ""
+                    )}
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">
                             <Box className="details">
                                 <Breadcrumbs
-                                    separator={<ChevronRightIcon className="chevron-right"/>}
+                                    separator={<ChevronRightIcon className="chevron-right" />}
                                     aria-label="breadcrumb"
                                     color="white"
                                     className="breadcrumbs-heading"
@@ -506,7 +576,7 @@ const EventDetails = () => {
                                         A Traditional Oma Kase
                                     </Typography>
                                     <Typography className="chef-name-rate">
-                                        <img className="star-logo" src={star}/>
+                                        <img className="star-logo" src={star} />
                                         4.7
                                     </Typography>
                                 </Box>
@@ -533,7 +603,7 @@ const EventDetails = () => {
                                 by Chef Mako Ravindran<b> Starting from ₹5000 per diner</b>
                             </Typography>
                         </Box>
-                        <Grid container spacing={{md: 2}}>
+                        <Grid className="main-grid" container spacing={{ md: 2 }}>
                             <Grid className="container-parent" item xl={7} md={7} sm={6} xs={12}>
                                 <Box className="container">
                                     <img
@@ -548,10 +618,10 @@ const EventDetails = () => {
                                                 className="close-button"
                                                 onClick={handleCloseCarousel}
                                             >
-                                                <CloseIcon className="pop-close-icon"/>
+                                                <CloseIcon className="pop-close-icon" />
                                             </button>
                                             <Box className="carousel">
-                                                <EventPopUpCarousel/>
+                                                <EventPopUpCarosuel/>
                                             </Box>
                                         </Box>
                                     )}
@@ -602,53 +672,27 @@ const EventDetails = () => {
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid className="grid-box-2" container spacing={{md: 2}}>
+                        <Grid className="grid-box-2" container spacing={{ md: 2 }}>
                             <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
-                                <EventCard/>
-                                <DiningPage
-                                    carouselImg={{height: "352px"}}
-                                    header={{padding: "0px 0px"}}
-                                    title="Chef Mako's Creations"
-                                    image={diningImg}
-                                />
+                                <EventCard />
+                                <EventChefCarousel/>
                                 <SupperClubDetailsCarousel
-                                    mainBox={{padding: "40px 0px"}}
-                                    changeDetails={{fontSize: "16px"}}
-                                    changeFont={{fontSize: "20px"}}
+                                    mainBox={{ padding: "40px 0px" }}
+                                    changeDetails={{ fontSize: "16px" }}
+                                    changeFont={{ fontSize: "20px" }}
                                     backgroundColor="#DCD7CB"
                                 />
-                                {isMobile ? (
-                                    <Box
-                                        sx={{
-                                            display: "flex",
-                                            justifyContent: "space-between",
-                                            padding: "16px",
-                                            background: "#DCD7CB",
-                                        }}
-                                    >
-                                        <Box>
-                                            <Typography className="mobile-view-price-text">
-                                                ₹ 2,500
-                                            </Typography>
-                                            <Typography className="mobile-view-diner">
-                                                Per diner
-                                            </Typography>
-                                        </Box>
-                                        <Button className="invite-btn">Reserve a Seat</Button>
+                                <Box className="last-contain">
+                                    <Box>
+                                        <Typography className="invite-friends-text">
+                                            Invite friends & family
+                                        </Typography>
+                                        <Typography className="experience-text">
+                                            enjoy a shared experience
+                                        </Typography>
                                     </Box>
-                                ) : (
-                                    <Box className="last-cantain">
-                                        <Box>
-                                            <Typography className="invite-friends-text">
-                                                Invite friends & family
-                                            </Typography>
-                                            <Typography className="experience-text">
-                                                enjoy a shared experience
-                                            </Typography>
-                                        </Box>
-                                        <Button className="invite-btn">Invite</Button>
-                                    </Box>
-                                )}
+                                    <Button className="invite-btn">Invite</Button>
+                                </Box>
                             </Grid>
                             <Grid
                                 className="grid-child-box"
@@ -658,7 +702,7 @@ const EventDetails = () => {
                                 xs={12}
                                 xl={5}
                             >
-                                <ChefDetailsForm/>
+                                <ChefDetailsForm />
                             </Grid>
                         </Grid>
                     </Box>
@@ -686,7 +730,7 @@ const EventDetails = () => {
                                     className="close"
                                     onClick={handleClose}
                                 >
-                                    <CloseIcon/>
+                                    <CloseIcon />
                                 </button>
                             </Box>
                             <Box className="container-fluid">
@@ -706,7 +750,7 @@ const EventDetails = () => {
                                         console.log("experienceData===>", experienceData);
                                     }}
                                 >
-                                    {({values, handleChange, handleSubmit, setFieldValue}) => (
+                                    {({ values, handleChange, handleSubmit, setFieldValue }) => (
                                         <Form onSubmit={handleSubmit}>
                                             <Box className="row">
                                                 <Box className="mb-3">
@@ -786,7 +830,7 @@ const EventDetails = () => {
                                                 <button
                                                     className="btn btn-primary"
                                                     type="submit"
-                                                    style={{width: "100% !important"}}
+                                                    style={{ width: "100% !important" }}
                                                 >
                                                     Apply
                                                 </button>
@@ -798,12 +842,11 @@ const EventDetails = () => {
                         </Box>
                     </Box>
                 </Modal>
-                <NeedHelp/>
-                <MobileView>
-                    <FoodCard/>
-                </MobileView>
-                <Footer/>
-                <FooterEnd/>
+                <NeedHelpEvent isColor={true}/>
+                <TemptedYet title='Book this Experience' isTempted={false}/>
+                <NeedHelp />
+                <Footer />
+                <FooterEnd />
             </MainBox>
         </React.Fragment>
     );

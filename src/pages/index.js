@@ -59,6 +59,7 @@ import PriveeImg from "../assets/images/priveeImg.png";
 import SupperClubImg from "../assets/images/SupperClubImg.png";
 import ClubSection from "../components/ClubSection";
 import DiningExperienceCarousel from "../components/DiningExperienceCarousel";
+import axios from "axios";
 
 
 const MainBoxContent = styled(Box)({
@@ -929,6 +930,16 @@ const HomePage = () => {
     const handleClick = () => {
         navigate('/privee-viewmore', {state: true});
     }
+
+    React.useEffect(() => {
+        axios.get("https://chefv2.hypervergedemo.site/v1/cms/home")
+            .then(response => {
+                console.log("response======>", response);
+            })
+            .catch(err => {
+                console.log("Error")
+            })
+    }, [])
 
     return (
         <React.Fragment>

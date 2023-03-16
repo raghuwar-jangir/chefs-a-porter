@@ -2,14 +2,15 @@ import {styled, Typography} from "@mui/material";
 import {Box} from "@mui/system";
 import React from "react";
 
-const TemptedYet = (props, {isTempted}) => {
+const TemptedYet = (props) => {
+    const {background,color,title,isTempted} = props
     const BoxWrapper = styled(Box)(() => ({
-        '.template': {
+        '.template': [{
             display: 'none',
             padding: '0px 10px 24px',
             backgroundColor: `${isTempted ? '#080B0E' : ''}`,
-        },
-        '.template-title': {
+        },background],
+        '.template-title': [{
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
             fontWeight: '700',
@@ -21,7 +22,7 @@ const TemptedYet = (props, {isTempted}) => {
             marginBottom: '0px',
             paddingBottom: '34px',
             paddingTop: '20px',
-        },
+        },color],
         '.view-all': {
             marginTop: '40px',
             display: 'block',
@@ -61,7 +62,7 @@ const TemptedYet = (props, {isTempted}) => {
             <BoxWrapper>
                 <Box className="template show">
                     <Typography className="template-title">Tempted yet?</Typography>
-                    <a href="" className="view-all">{props.title}</a>
+                    <a href="" className="view-all">{title}</a>
                 </Box>
             </BoxWrapper>
         </React.Fragment>

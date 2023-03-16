@@ -20,7 +20,7 @@ const EventCard = () => {
     const longText2 = 'Host connections at your place and leave the dinner table to us. Select your chef and let them curate an experience worth enjoying...';
     const MainBox = styled(Box)(() => ({
         ".heading": {
-            fontFamily: 'Bon Vivant',
+            fontFamily:'Bon Vivant',
             fontWeight: '300',
             fontSize: "24px",
             lineHeight: "30px",
@@ -29,7 +29,7 @@ const EventCard = () => {
             color: '#FBFBFB'
         },
         ".heading-2": {
-            fontFamily: 'Bon Vivant',
+            fontFamily:'Bon Vivant',
             fontWeight: '300',
             fontSize: "24px",
             lineHeight: "30px",
@@ -42,27 +42,28 @@ const EventCard = () => {
             display: 'flex',
             alignItems: "center",
             paddingBottom: "8px",
-            marginLeft: '16px'
+            marginLeft:'16px'
         },
-        '.logo': {
+        '.logo':{
             width: '24px',
             height: '24px',
             objectFit: 'contain',
         },
         ".field-name": {
-            fontFamily: 'Proxima Nova Alt',
+            fontFamily:'Proxima Nova Alt',
             fontWeight: '100',
             fontSize: "16px",
             lineHeight: "19px",
-            marginLeft: '10px',
-            color: '#FBFBFB'
+            marginLeft:'10px',
+            color: '#FBFBFB',
+            whiteSpace:'nowrap'
         },
         ".field-name-2": {
-            fontFamily: 'Proxima Nova Alt',
-            fontWeight: '100',
+            fontFamily:'Proxima Nova Alt',
+            fontWeight: 600,
             fontSize: "16px",
             lineHeight: "19px",
-            marginLeft: '10px',
+            marginLeft:'10px',
             color: '#080B0E'
         },
         ".field-ans": {
@@ -70,68 +71,79 @@ const EventCard = () => {
             fontSize: "16px",
             lineHeight: "19px",
             color: "#FBFBFB",
-            fontFamily: 'ProximaNovaA-Regular',
-            marginLeft: '10px'
+            fontFamily:'ProximaNovaA-Regular',
+            marginLeft:'10px'
         },
         ".field-ans-2": {
             fontWeight: '600',
             fontSize: "16px",
             lineHeight: "19px",
             color: "#080B0E",
-            fontFamily: 'ProximaNovaA-Regular',
-            marginLeft: '10px'
+            fontFamily:'ProximaNovaA-Regular',
+            marginLeft:'10px'
         },
-        '.details': {
+        '.details':{
             color: "#FBFBFB",
             fontSize: "16px",
             lineHeight: "19px",
-            fontWeight: '300',
+            fontWeight:'300',
             margin: '0 16px',
-            display: ' block',
-            fontFamily: 'Proxima Nova Alt'
+            display:' block',
+            fontFamily:'Proxima Nova Alt'
         },
-        '.details-2': {
+        '.details-2':{
             color: "#080B0E",
             fontSize: "16px",
             lineHeight: "19px",
-            fontWeight: '300',
+            fontWeight:'300',
             margin: '0 16px',
-            display: ' block',
-            fontFamily: 'Proxima Nova Alt',
-            paddingBottom: '40px'
+            display:' block',
+            fontFamily:'Proxima Nova Alt',
+            paddingBottom:'40px'
         },
-        '.read-more-less--more': {
-            display: 'block',
+        '.read-more-less--more':{
+            display:'block',
             color: "#C6A87D",
-            fontWeight: '700 !important',
-            fontFamily: 'ProximaNovaA-Regular',
+            fontWeight:'700 !important',
+            fontFamily:'ProximaNovaA-Regular',
         },
-        '.read-more-less--less': {
-            display: 'block',
+        '.read-more-less--less':{
+            display:'block',
             color: "#C6A87D",
-            fontWeight: '700 !important',
-            fontFamily: 'ProximaNovaA-Regular',
+            fontWeight:'700 !important',
+            fontFamily:'ProximaNovaA-Regular',
         },
-        '.read-more-less--more-2': {
-            display: 'block',
+        '.read-more-less--more-2':{
+            display:'block',
             color: "#080B0E",
-            fontWeight: '700 !important',
-            fontFamily: 'ProximaNovaA-Regular',
+            fontWeight:'700 !important',
+            fontFamily:'ProximaNovaA-Regular',
         },
-        '.read-more-less--less-2': {
-            display: 'block',
+        '.read-more-less--less-2':{
+            display:'block',
             color: "#080B0E",
-            fontWeight: '700 !important',
-            fontFamily: 'ProximaNovaA-Regular',
+            fontWeight:'700 !important',
+            fontFamily:'ProximaNovaA-Regular',
         },
-        '.what-details': {
-            paddingBottom: '20px'
+        '.what-details':{
+            paddingBottom:'20px'
         },
-        '.about-box': {
-            backgroundColor: '#DCD7CB'
+        '.about-box':{
+            backgroundColor:'#DCD7CB'
+        },
+        "@media (min-width: 1px) and (max-width:425px)": {
+            '.heading':{
+                fontSize:'20px',
+                lineHeight:'25px',
+                margin:'40px 16px 22.5px'
+            },
+            '.heading-2':{
+                fontSize:'20px',
+                lineHeight:'25px',
+            }
         }
     }))
-    return (
+    return(
         <React.Fragment>
             <MainBox>
                 <Typography className="heading">What to expect</Typography>
@@ -177,12 +189,12 @@ const EventCard = () => {
                             <Typography className="field-ans-2">Taj</Typography>
                         </Box>
                         <Box className="sub-box-card">
-                            <img className="logo" src={culinary}/>
+                            <img className="logo" src={culinary} />
                             <Typography className="field-name-2">Culinary School:</Typography>
                             <Typography className="field-ans-2">Le Cordon Blue</Typography>
                         </Box>
                         <Box className="sub-box-card">
-                            <img className="logo" src={chef}/>
+                            <img className="logo" src={chef} />
                             <Typography className="field-name-2">Trained under:</Typography>
                             <Typography className="field-ans-2">Gordan Ramsay</Typography>
                         </Box>
