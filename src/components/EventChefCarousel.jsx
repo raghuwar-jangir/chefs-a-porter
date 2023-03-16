@@ -187,14 +187,14 @@ const EventChefCarousel = (props) => {
                 Chef Mako's Creations
                 </Typography>
                 <Swiper
-       slidesPerView={1}
-       spaceBetween={30}
-       loop={true}
-       pagination={{
-         clickable: true,
-         renderBullet: function (index, className) {
-            return '<div class="' + className + '">' + (labels[index]) +
-           '</div>';
+                    slidesPerView={1}
+                    spaceBetween={30}
+                    loop={true}
+                    pagination={{
+                        clickable: true,
+                        renderBullet: function (index, className) {
+                            return '<div class="' + className + '">' + (labels[index]) +
+                                '</div>';
 
                         },
        }}

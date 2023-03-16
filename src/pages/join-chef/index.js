@@ -16,6 +16,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import InputAdornment from '@mui/material/InputAdornment';
 import {Formik, Form, ErrorMessage} from "formik";
 import * as Yup from 'yup';
+import "../../assets/styles/fontStyle.css"
 import {isMobile} from "react-device-detect";
 
 const ContactUs = () => {
@@ -40,16 +41,17 @@ const ContactUs = () => {
             backgroundSize: 'cover',
             padding: '50px 120px',
             backgroundPosition: 'center',
-            height: '300px',
+            height: '250px',
             width: 'auto',
         },
         '.become-partner-header': {
             display: 'flex',
             placeContent: 'space-between',
+            padding: '0px 12px'
         },
         ".header-link": {
             display: 'flex',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '20px',
@@ -62,7 +64,7 @@ const ContactUs = () => {
             color: '#C6A87D !important',
         },
         '.become-partner-heading': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '32px',
@@ -84,8 +86,9 @@ const ContactUs = () => {
 
         },
         '.form-details': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
+            fontWeight: '300',
             fontSize: '20px',
             lineHeight: '30px',
             color: '#080B0E',
@@ -125,7 +128,7 @@ const ContactUs = () => {
             borderBottom: 'unset !important',
         },
         'form label': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '16px',
@@ -270,7 +273,7 @@ const ContactUs = () => {
                     <Box className="banner">
                         <Box className="become-partner-header">
                             <Typography><a href="/" className="header-link"><ArrowBackIcon
-                                style={{marginRight: '15px'}}/>Back</a></Typography>
+                                style={{marginRight: '20px'}}/>Back</a></Typography>
                             <Typography className="become-partner-heading">Join as Chef</Typography>
                         </Box>
                     </Box>
@@ -290,13 +293,16 @@ const ContactUs = () => {
                             {({values, handleChange, handleSubmit}) => (
                                 <Form onSubmit={handleSubmit}>
                                     <Box className="row white-bg justify-content-center">
-                                        <Box className="become-partner-form">
-                                            <Typography className="form-details">We’re always on the look out for top
-                                                chefs to join us.
-                                                Complete the form below or
-                                                email <strong>joinus@chefsaporter.com</strong> with your resume to be
-                                                considered.</Typography>
-                                            <Grid className="row" xs={12}>
+                                        <Box className="">
+                                            <Grid className="row become-partner-form" xs={12}>
+                                                <Typography className="form-details">We’re always on the look out for
+                                                    top
+                                                    chefs to join us.
+                                                    Complete the form below or
+                                                    email <strong>joinus@chefsaporter.com</strong> with your resume to
+                                                    be
+                                                    considered.</Typography>
+
                                                 <Grid xs={12} className="mb-3">
                                                     <label htmlFor="validationCustomname">Your Name<span
                                                         className="red">*</span></label>

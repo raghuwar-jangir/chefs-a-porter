@@ -14,9 +14,15 @@ import StarIcon from "@mui/icons-material/Star";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {isMobile} from "react-device-detect";
 import "../../assets/styles/fontStyle.css"
+import {navigate} from "gatsby";
 
 
 const Addons = () => {
+
+    const handleClick = () => {
+        navigate('/booking-summary');
+    }
+
     const addonsCardDetail = [
         {
             image: add1,
@@ -330,6 +336,9 @@ const Addons = () => {
             '.bm-burger-bars': {
                 background: '#080B0E !important',
             },
+            '.makeStyles-title-7': {
+                textAlign: 'center !important'
+            }
         },
         ".addones-mobile-heading": {
             fontSize: "24px",
@@ -343,7 +352,7 @@ const Addons = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isColor={true} heading="Privee"/>
+                <Navbar isColor={true} isIcon={true} heading="Privee"/>
                 {/*{isMobile ? (*/}
                 {/*    <Box className='header-club'>*/}
                 {/*        <Typography className="addones-mobile-heading">Privee</Typography>*/}
@@ -441,7 +450,9 @@ const Addons = () => {
                                             </Box>
                                             <Box className="row viewbreak">
                                                 <Box className="col-lg-12">
-                                                    <button type="submit" className="submit-req">Next</button>
+                                                    <button type="submit" className="submit-req"
+                                                            onClick={handleClick}>Next
+                                                    </button>
                                                 </Box>
                                                 <Typography className="contact-text">Our team will contact you regarding
                                                     your protein and allergeen

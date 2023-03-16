@@ -168,7 +168,7 @@ const CorporateBooking = () => {
             fontStyle: 'normal',
             fontSize: '18px',
             lineHeight: '24px',
-            fontWeight:300,
+            fontWeight: 300,
             letterSpacing: '-0.01em',
             color: '#FBFBFB',
             marginBottom: '0px',
@@ -194,7 +194,7 @@ const CorporateBooking = () => {
         },
         '.corporate-booking-heading': {
             fontFamily: 'Bon Vivant',
-            fontWeight:700,
+            fontWeight: 700,
             fontStyle: 'normal',
             fontSize: '24px',
             lineHeight: '30px',
@@ -244,7 +244,8 @@ const CorporateBooking = () => {
                 display: 'none'
             },
             '.gallery-carousel': {
-                display: 'block'
+                display: 'block',
+                paddingTop: '48px'
             },
             '.booked_us': {
                 padding: '40px 15px',
@@ -379,7 +380,8 @@ const CorporateBooking = () => {
                                 <Typography className="become-detail">Join as a member and get exclusive member
                                     priviliges</Typography>
                             </Box>
-                            <Box><Typography style={{width: '100%'}}><Link href="/become-partner" className="apply">Apply</Link></Typography></Box>
+                            <Box><Typography style={{width: '100%'}}><Link href="/become-partner"
+                                                                           className="apply">Apply</Link></Typography></Box>
                         </Box>
                     </Box>
                 </Box>

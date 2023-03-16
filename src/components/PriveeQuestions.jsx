@@ -76,7 +76,7 @@ const PriveeQuestions = ({isLightTheme = false}) => {
         '.accordionSummary':{
             display:'flex !important'
         },
-        // !media query for accodion component(mobileView) 
+        // !media query for accodion component(mobileView)
 
         '@media(min-width: 1px) and (max-width: 425px)': {
             '.title-question': {
@@ -104,8 +104,6 @@ const PriveeQuestions = ({isLightTheme = false}) => {
         }
 
     })
-
-
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
@@ -123,11 +121,11 @@ const PriveeQuestions = ({isLightTheme = false}) => {
                                    className='accordion'>
                             <AccordionSummary className='accordionSummary'
                                 // expandIcon={<AddIcon sx={{ color: '#fff' }} />}
-                                expandIcon={expanded === 'panel1' ? <RemoveIcon sx={{
-                                    color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
-                                }}/> : <AddIcon sx={{fontSize:'19px', color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria- controls="panel1a-content"
-                                id="panel1a-header"
+                                              expandIcon={expanded === 'panel1' ? <RemoveIcon sx={{
+                                                  color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
+                                              }}/> : <AddIcon sx={{fontSize:'19px', color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
+                                              aria- controls="panel1a-content"
+                                              id="panel1a-header"
                             >
                                 <Typography className='frequently-questions'>Would there be any pure vegetarian options?</Typography>
                             </AccordionSummary>

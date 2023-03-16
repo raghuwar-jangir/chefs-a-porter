@@ -19,9 +19,14 @@ import {makeStyles} from '@material-ui/core/styles';
 import {Drawer, IconButton, Toolbar} from "@material-ui/core";
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ShareIcon from '@mui/icons-material/Share';
 
 
-const Navbar = (props, {isColor}) => {
+const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading}) => {
+
+    const props = {
+        heading
+    }
 
     const [isOpen, setOpen] = useState(false);
     const [search, setSearch] = useState(false);
@@ -54,12 +59,16 @@ const Navbar = (props, {isColor}) => {
         title: {
             flexGrow: 1,
             textAlign: "center",
-            color: '#000000 !important'
+            // color: '#000000 !important',
+            color: `${isColor ? '#FBFBFB' : '#000000'}`,
         },
         list: {
             width: "310px",
             height: '100%',
             backgroundColor: '#080B0E',
+        },
+        '.MuiButtonBase-root-MuiListItem-root': {
+            padding: '8px 16px',
         },
         '@media(min-width: 1px) and (max-width: 320px)': {
             list: {
@@ -101,14 +110,13 @@ const Navbar = (props, {isColor}) => {
             // flexGrow: 1,
             position: 'fixed',
             width: '100%',
-            maxWidth: '100%',
             height: '80px',
             top: '0px',
             left: '0px',
             right: '0px',
             zIndex: '999',
             display: 'block',
-            background: `${isColor ? '#101418' : '#FBFBFB'}`,
+            // background: `${isColor ? '#101418' : '#FBFBFB'}`,
             '.main-container': {
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -152,6 +160,7 @@ const Navbar = (props, {isColor}) => {
                 display: 'flex',
                 justifyContent: 'space-evenly',
                 alignItems: 'center',
+                height: '20px'
             },
             '.browser-search': {
                 display: 'flex',
@@ -173,13 +182,15 @@ const Navbar = (props, {isColor}) => {
                 height: '64px',
                 width: '226.29px',
                 objectFit: 'contain',
-                filter: `${isColor ? 'invert(1)' : ''}`
+                filter: `${isColor ? 'invert(1)' : ''}`,
+                paddingLeft: '10px'
             },
             '.dark-theme-logo': {
                 height: '64px',
                 width: '226.29px',
                 cursor: 'pointer',
                 objectFit: 'contain',
+                paddingLeft: '12px'
             },
             '.mobile-navbar-img': {
                 display: 'flex',
@@ -222,6 +233,10 @@ const Navbar = (props, {isColor}) => {
             '.mobile-navbar': {
                 display: 'none'
             },
+            '.MuiPaper-root .MuiAppBar-root': {
+                background: `${isColor ? '#101418' : '#FBFBFB'}`,
+                height: '80px'
+            },
             '@media(min-width: 320px) and (max-width: 1024px)': {
                 '.header-search-box': {
                     display: 'none',
@@ -256,12 +271,12 @@ const Navbar = (props, {isColor}) => {
             },
             '@media(min-width: 1100px) and (max-width: 1450px)': {
                 '.grid-box': {
-                    width: '68%'
+                    width: '74%'
                 },
             },
             '@media(min-width: 1px) and (max-width: 768px)': {
+                height: '56px',
                 display: 'unset',
-                height: 'unset',
                 '.mobile-navbar': {
                     display: 'block'
                 },
@@ -291,7 +306,12 @@ const Navbar = (props, {isColor}) => {
             },
             '.appbar': {
                 backgroundColor: `${isColor ? '#080B0E' : '#dcd7cb'}`
-            }
+            },
+            '.css-1shabyr-MuiPaper-root-MuiAppBar-root': {
+                background: '#FBFBFB',
+                height: '56px !important',
+                minHeight: '56px !important'
+            },
         },
     )
     return (
@@ -300,7 +320,13 @@ const Navbar = (props, {isColor}) => {
             {/* //! browser view for the navbar component */}
             <BoxWrapper>
                 <AppBar position="fixed" elevation={0}
-                        sx={{background: `${isColor ? '#101418' : '#FBFBFB'}`}}
+                        sx={{
+                            background: `${isColor ? '#101418' : '#FBFBFB'}`,
+                            height: '80px',
+                            '@media(min-width: 1px) and (max-width: 768px)': {
+                                height: '56px',
+                            },
+                        }}
                 >
                     <Box className="main-container desktop-navbar">
                         <Box sx={{width: 'auto'}} onClick={handleOnClick}>
@@ -308,12 +334,13 @@ const Navbar = (props, {isColor}) => {
                                  className=' header light-theme-logo dark-theme-logo'/>
                         </Box>
                         <Box className="grid-box">
-                            <Grid container direction={'row'}
+                            <Grid container direction={'row'} xl={12}
                                   className=''>
-                                <Grid className='browser-menu' xl={8} md={8}>
+                                <Grid className='browser-menu' xl={8} md={8} sx={{marginRight: '9px'}}>
                                     <Link
                                         className={`browser-hamburger-menu`}
                                         activeClassName={'browser-hamburger-menu active'}
+                                        activeStyle={{color: '#C6A87D'}}
                                         to='/privee'>
                                         Privee
                                     </Link>
@@ -342,7 +369,7 @@ const Navbar = (props, {isColor}) => {
                                         About Us
                                     </Link>
                                 </Grid>
-                                <Grid className='header-search-box browser-search' item xl={3.5} md={3.5}
+                                <Grid className='header-search-box browser-search' item xl={3.7} md={3.7}
                                       sx={{flex: 'none'}}>
                                     {!search &&
                                         <img src={searchIcon} className='telePhoneLogo' onClick={handleOpen}/>
@@ -374,12 +401,21 @@ const Navbar = (props, {isColor}) => {
                 </AppBar>
                 <Box className="mobile-navbar">
                     <Box className={classes.root}>
-                        <AppBar position="static" className="appbar">
+                        <AppBar position="fixed" className="appbar">
                             <Toolbar>
-                                {props.isIcon && <ArrowBackIcon sx={{color: '#000000 !important'}}/>}
-                                {props.isImage &&
+                                {isShareIcon && <ShareIcon sx={{color: `${isColor ? '#FBFBFB' : '#000000'}`}}/>}
+                                {isIcon && <ArrowBackIcon sx={{color: `${isColor ? '#FBFBFB' : '#000000'}`}}/>}
+                                {isImage &&
                                     <img src={LightThemeIcon} className='mobile-navbar-img'/>}
-                                <Typography variant="h6" className={classes.title}>
+                                <Typography variant="h6" className={classes.title}
+                                            sx={{
+                                                color: `${isColor ? '#FBFBFB' : '#000000'}`,
+                                                fontFamily: 'ProximaNovaA-Regular',
+                                                fontStyle: 'normal',
+                                                fontWeight: '400',
+                                                fontSize: '24px',
+                                                lineHeight: '30px',
+                                            }}>
                                     {props.heading}
                                 </Typography>
                                 <IconButton
@@ -389,7 +425,7 @@ const Navbar = (props, {isColor}) => {
                                     aria-label="menu"
                                     onClick={toggleDrawer(true)}
                                 >
-                                    <MenuIcon sx={{color: '#000000 !important', fontSize: '40px'}}/>
+                                    <MenuIcon sx={{color: `${isColor ? '#FBFBFB' : '#000000'}`, fontSize: '40px'}}/>
                                 </IconButton>
                             </Toolbar>
                         </AppBar>
@@ -402,7 +438,7 @@ const Navbar = (props, {isColor}) => {
                             >
                                 <List>
                                     <ListItem button sx={{display: 'flex', justifyContent: 'end'}}>
-                                        <CloseIcon sx={{color: '#c6a87d', display: 'flex', justifyContent: 'end'}}
+                                        <CloseIcon sx={{color: '#c6a87d'}}
                                                    onClick={toggleDrawer(false)}/>
                                     </ListItem>
                                     <ListItem button>

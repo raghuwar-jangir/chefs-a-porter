@@ -24,6 +24,7 @@ import avlExp2 from "../../assets/images/avl-exp2.jpg";
 import '../../assets/styles/fontStyle.css';
 import PriveeRatingComponent from "../../components/PriveeRatingComponent";
 import PriveeQuestions from "../../components/PriveeQuestions";
+import {navigate} from "gatsby";
 
 const MainBoxContent = styled(Box)({
     position: 'relative',
@@ -75,7 +76,7 @@ const BoxWrapper = styled(Box)(() => ({
         paddingBottom: '40px'
     },
     '.home-banner': {
-        marginTop: '80px'
+        marginTop: '25px'
     },
     '.container-fluid': {
         padding: '0px',
@@ -178,7 +179,7 @@ const BoxWrapper = styled(Box)(() => ({
         zIndex: 0,
     },
     '.step-1-detail': {
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'ProximaNovaA-Regular',
         fontStyle: 'normal',
         fontWeight: '300',
         fontSize: '20.8833px',
@@ -195,10 +196,10 @@ const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
     },
     '.step-1-sub-detail': {
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'Proxima Nova Alt',
         fontStyle: 'normal',
         fontWeight: '250',
-        fontSize: '16px',
+        fontSize: '18px',
         lineHeight: '19px',
         textAlign: 'center',
         color: '#FBFBFB',
@@ -485,6 +486,10 @@ const PriveePage = () => {
         }
     }
 
+    const handleClick = () => {
+        navigate('/privee-viewmore', {state: true});
+    }
+
     // const styles = theme => ({
     //     input: {
     //         width: 40
@@ -608,9 +613,17 @@ const PriveePage = () => {
                                                             sx: {
                                                                 backgroundColor: '#DCD7CB !important',
                                                                 li: {
+                                                                    fontFamily: 'ProximaNovaA-Regular',
                                                                     borderBottom: "1px solid black",
                                                                     fontSize: '20px',
-                                                                    fontWeight: '100'
+                                                                    fontWeight: '100',
+                                                                    padding: '6px 0px',
+                                                                    justifyContent: 'start'
+                                                                },
+                                                                ul: {
+                                                                    display: 'flex',
+                                                                    flexDirection: 'column',
+                                                                    padding: '16px',
                                                                 },
                                                                 'li:hover': {
                                                                     color: '#C6A87D!important',
@@ -621,7 +634,11 @@ const PriveePage = () => {
                                                                 },
                                                                 "&& .Mui-selected": {
                                                                     backgroundColor: "unset !important"
-                                                                }
+                                                                },
+                                                                '.MuiSelect-select': {
+                                                                    padding: '5px !important',
+                                                                    fontSize: '17px',
+                                                                },
                                                             },
                                                         },
                                                     }}
@@ -668,9 +685,17 @@ const PriveePage = () => {
                                                             sx: {
                                                                 backgroundColor: '#DCD7CB !important',
                                                                 li: {
+                                                                    fontFamily: 'ProximaNovaA-Regular',
                                                                     borderBottom: "1px solid black",
                                                                     fontSize: '20px',
-                                                                    fontWeight: '100'
+                                                                    fontWeight: '100',
+                                                                    padding: '6px 0px',
+                                                                    justifyContent: 'start'
+                                                                },
+                                                                ul: {
+                                                                    display: 'flex',
+                                                                    flexDirection: 'column',
+                                                                    padding: '16px',
                                                                 },
                                                                 'li:hover': {
                                                                     color: '#C6A87D!important',
@@ -764,7 +789,8 @@ const PriveePage = () => {
                                                 </Box>
                                             </Box>
                                             <Box className="form-group">
-                                                <button type="submit" className="btn btn-primary">View Experiences
+                                                <button type="submit" className="btn btn-primary"
+                                                        onClick={handleClick}>View Experiences
                                                 </button>
                                             </Box>
                                         </Form>

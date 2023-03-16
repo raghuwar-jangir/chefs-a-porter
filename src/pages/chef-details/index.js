@@ -41,6 +41,10 @@ import ImagePopCarousel from "../../components/ImagePopCarousel";
 import GalleryCarousel from "../../components/GalleryCarousel";
 import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import {navigate} from "gatsby";
+import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
+import GalleryCarousel from "../../components/GalleryCarousel"
+
 
 const ChefDetails = (props) => {
 
@@ -59,11 +63,10 @@ const ChefDetails = (props) => {
     };
 
     const breadcrumbs = [
-        <Typography key="1" color="#FBFBFB" fontFamily="Proxima Nova Alt" fontWeight="600" fontSize="16px">
+        <Typography key="1" color="#FBFBFB">
             Privee
         </Typography>,
-        <Link underline="none" key="2" color="#C6A87D" fontFamily="Proxima Nova Alt" fontWeight="600" fontSize="16px"
-              href="">
+        <Link underline="none" key="2" color="#C6A87D" href="">
             Chef
         </Link>,
     ];
@@ -75,16 +78,17 @@ const ChefDetails = (props) => {
             img: chef1,
             title: 'chef1',
             rows: 2,
+            cols: 3,
         },
         {
             img: sGallery,
             title: 'sGallery',
-            // cols: 4,
+            cols: 4,
         },
         {
             img: chef2,
             title: 'chef2',
-            // cols: 4,
+            cols: 4,
         },
     ];
 
@@ -98,9 +102,8 @@ const ChefDetails = (props) => {
                 padding: '80px 235px'
             },
             '.chef-name': {
-                fontSize: '24px',
+                fontSize: '23px',
                 lineHeight: '30px',
-                fontWeight: '700',
                 color: '#FBFBFB',
                 marginTop: '8px',
                 fontFamily: 'Bon Vivant',
@@ -109,18 +112,14 @@ const ChefDetails = (props) => {
                 marginBottom: '8px',
             },
             '.chef-details': {
-                fontFamily: 'Proxima Nova Alt',
+                fontFamily: 'Proxima Nova',
                 fontStyle: 'normal',
-                fontSize: '16px',
-                lineHeight: '19px',
                 fontWeight: '300',
                 color: '#FBFBFB',
-                letterSpacing: '0.06em',
                 marginBottom: '20px',
             },
             '#pills-home': {
-                background: '#DCD7CB',
-                padding: '20px 20px 40px 20px'
+                background: '#DCD7CB'
             },
             '.about-chef-heading': {
                 fontFamily: 'Bon Vivant',
@@ -131,10 +130,10 @@ const ChefDetails = (props) => {
                 letterSpacing: '0.06em',
                 color: '#080B0E',
                 margin: '0px 16px 20px',
-                paddingTop:'20px'
+                paddingTop: '20px'
             },
             '.about-chef-details': {
-                fontFamily: 'ProximaNovaA-Regular',
+                fontfamily: 'Proxima Nova',
                 fontStyle: 'normal',
                 fontWeight: '300',
                 color: '#080B0E',
@@ -154,14 +153,14 @@ const ChefDetails = (props) => {
                 alignItems: 'center'
             },
             '.read-more': {
-                fontFamily: 'Proxima Nova Alt',
+                fontFamily: 'Proxima Nova',
                 fontStyle: 'normal',
                 fontWeight: 300,
                 fontSize: '16px',
                 lineHeight: '19px !important',
                 color: '#080B0E',
-                margin:'0px 16px',
-                paddingBottom:'40px'
+                margin: '0px 16px',
+                paddingBottom: '40px'
             },
             '.all-photos': {
                 fontFamily: 'ProximaNovaA-Regular',
@@ -177,8 +176,23 @@ const ChefDetails = (props) => {
                 position: 'absolute',
                 bottom: '22px',
                 right: '18px',
-                borderRadius:'1px',
-                textTransform:'math-auto'
+                borderRadius: '1px',
+            },
+            '.all-photos:hover': {
+                fontFamily: 'ProximaNovaA-Regular',
+                fontStyle: 'normal',
+                fontWeight: '400',
+                fontSize: '16px',
+                lineHeight: '19px',
+                color: '#080B0E',
+                textDecoration: 'none',
+                background: '#FBFBFB',
+                boxShadow: '0px 20px 24px rgb(0 0 0 / 6%)',
+                padding: '8px 12px',
+                position: 'absolute',
+                bottom: '22px',
+                right: '18px',
+                borderRadius: '1px',
             },
             '.read-more-less--more, .read-more-less--less': {
                 all: 'unset',
@@ -187,7 +201,7 @@ const ChefDetails = (props) => {
                 textUnderlineOffset: '3px',
                 cursor: 'pointer',
                 fontWeight: '700',
-                fontFamily: 'Proxima Nova Alt',
+                fontFamily: 'Proxima Nova',
             },
             '.treat': {
                 padding: '40px 20px',
@@ -214,18 +228,17 @@ const ChefDetails = (props) => {
                 marginBottom: '8px',
             },
             '.surpirse-details': {
-                fontSize: '16px',
+                fontSize: '15px',
                 lineHeight: '24px',
                 color: '#FBFBFB',
-                fontWeight: '400',
-                fontFamily: 'Proxima Nova Alt',
+                fontFamily: 'Proxima Nova',
                 fontStyle: 'normal',
             },
             '.surprise-Box': {
                 padding: '0px 12px',
                 width: '75%'
             },
-            '.view-all-gallery':{
+            '.view-all-gallery': {
                 fontSize: '16px',
                 lineHeight: '19px',
                 color: '#FBFBFB',
@@ -243,7 +256,7 @@ const ChefDetails = (props) => {
                 fontSize: '16px',
                 lineHeight: '19px',
                 color: '#FBFBFB',
-                fontFamily: 'Proxima nova Alt',
+                fontFamily: 'Proxima nova',
                 fontStyle: 'normal',
                 letterSpacing: '0.06em',
                 marginBottom: '40px',
@@ -271,14 +284,13 @@ const ChefDetails = (props) => {
                 fontFamily: 'Bon Vivant',
                 fontStyle: 'normal',
                 fontWeight: '700',
-                fontSize: '24px',
-                lineHeight: '30px',
+                fontSize: '30px',
+                lineHeight: '37px',
                 textAlign: 'left',
                 letterSpacing: '0.06em',
                 color: '#FBFBFB',
-                paddingTop: '80px',
-                paddingBottom: '40px',
-                marginBottom: '8px',
+                padding: '20px 0px',
+                marginBottom: '10px',
             },
             ".available-experiences": {
                 padding: "5px",
@@ -385,8 +397,8 @@ const ChefDetails = (props) => {
                 '.container-fluid': {
                     padding: '0px 0px 0px'
                 },
-                '.view-all-gallery':{
-                    marginBottom:'40px'
+                '.view-all-gallery': {
+                    marginBottom: '40px'
                 }
             },
             '@media(min-width: 700px) and (max-width: 768px)': {
@@ -423,7 +435,8 @@ const ChefDetails = (props) => {
                     display: 'none'
                 },
                 '.mobileView-chef': {
-                    display: 'block'
+                    display: 'block',
+                    paddingTop: '15px'
                 },
                 '.mbl-chef-name': {
                     textAlign: 'center',
@@ -608,7 +621,7 @@ const ChefDetails = (props) => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar heading="Privee" isColor={true}/>
+                <Navbar heading="Privee" isColor={true} isIcon={true}/>
                 {/*{isMobile ? (*/}
                 {/*    <Box className='header-club'>*/}
                 {/*        <ArrowBackIcon className="header-icon"/>*/}
@@ -762,7 +775,7 @@ const ChefDetails = (props) => {
                                             Boxerse culinary<br/>journey with chef mako at the helm</Typography>
                                     </Box>
                                     <Box className="book-now">
-                                        <a href="javascript:void(0);" className="view-all">Book Now</a>
+                                        <a href="/event-details" className="view-all">Book Now</a>
                                     </Box>
                                 </Box>
                             </Box>

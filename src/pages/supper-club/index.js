@@ -819,7 +819,7 @@ const SupperClubChaefPage = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar/>
+                <Navbar isImage={true}/>
                 <Box className="main-box">
                     <Grid container spacing={{md: 2}}>
                         <Grid className="parent-container" item xl={7} md={7} sm={6} xs={12}>
@@ -938,7 +938,7 @@ const SupperClubChaefPage = () => {
                                     <TabPanel value={0} sx={{p: 0}}>
                                         <CardChefComponent bgColor="#FBFBFB"/>
                                         <Box className="chef-carousel">
-                                            <ChefMakoCarousel/>
+                                            <ChefMakoCarousel title='An agnostic menu that explores a diverse culinary journey with chef mako at the helm'/>
                                             <ChefCarousel/>
                                             <SupperClubDetailsCarousel/>
                                             <SupperClubTreatyComponent/>

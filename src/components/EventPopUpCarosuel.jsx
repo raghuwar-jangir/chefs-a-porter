@@ -1,5 +1,7 @@
-import React , { useRef, useState } from "react";
-import RestorentImg from "../assets/images/sc-gallery.png";
+import React from "react";
+import chef1 from "./../assets/images/chef5.png";
+import chef2 from "./../assets/images/chef6.png";
+import sGallery from "./../assets/images/sc-gallery.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -27,7 +29,7 @@ const MainBox = styled(Box)({
         // boxShadow: '0 0 8px rgb(0 0 0 / 60%)'
     },
     '.swiper': {
-        width:'75%',
+        width:'70%',
         height:'100%',
     },
     "@media (min-width: 1px) and (max-width:768px)": {
@@ -37,20 +39,35 @@ const MainBox = styled(Box)({
     }
 });
 
-const SuperClubPopCarousel = () =>{
+const EventPopUpCarousel = () =>{
+    const itemData = [
+        {
+            img: chef1,
+        },
+        {
+            img: sGallery,
+        },
+        {
+            img: sGallery,
+        },
+        {
+            img: chef2,
+        },
+        {
+            img: chef2,
+        },
+    ];
     return(
         <React.Fragment>
             <MainBox>
                 <Box>
                     <Swiper navigation={true} modules={[Navigation]}  grabCursor={true} className="mySwiper">
-                        <SwiperSlide><img  src={RestorentImg}/></SwiperSlide>
-                        <SwiperSlide><img src={RestorentImg}/></SwiperSlide>
-                        <SwiperSlide><img src={RestorentImg}/></SwiperSlide>
-                        <SwiperSlide><img src={RestorentImg}/></SwiperSlide>
-                        <SwiperSlide><img src={RestorentImg}/></SwiperSlide>
+                        {itemData.map((item) => (
+                            <SwiperSlide><img src={item.img}/></SwiperSlide>
+                        ))}
                     </Swiper>
                 </Box>
             </MainBox>
         </React.Fragment>
     )}
-export default SuperClubPopCarousel;
+export default EventPopUpCarousel;

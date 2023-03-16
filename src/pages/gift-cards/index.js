@@ -1041,7 +1041,7 @@ const GiftCards = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar heading="Gift Cards"/>
+                <Navbar isShareIcon={true} heading="Gift Cards"/>
                 {/*{isMobile ? (*/}
                 {/*    <Box className='header-club'>*/}
                 {/*        <ShareIcon className="header-icon"/>*/}

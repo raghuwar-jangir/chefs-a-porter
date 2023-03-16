@@ -3,13 +3,14 @@ import * as Yup from 'yup';
 import {Form, Formik,Field,ErrorMessage } from "formik";
 import { Box, Grid, Modal, styled, Typography,TextField,TextareaAutosize,Checkbox } from "@mui/material";
 import Navbar from "../../components/NavbarComponent";
-import add1 from "../../assets/images/add1.png";
-import add2 from "../../assets/images/add2.png";
-import add3 from "../../assets/images/add3.png";
-import add4 from "../../assets/images/add4.png";
-import add5 from "../../assets/images/add5.png";
-import add6 from "../../assets/images/add6.png";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Footer from "../../components/Footer";
+import FooterEnd from "../../components/FooterEndSection";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import NeedHelp from "../../components/NeedHelp";
+import { isMobile, MobileView } from "react-device-detect";
+import ImageCarousel from "../../components/ImageCarousel";
+import chef1 from "../../assets/images/chef5.png";
+import chef2 from "../../assets/images/chef6.png";
 import sGallery from "../../assets/images/sc-gallery.png";
 import StarIcon from "@mui/icons-material/Star";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -786,70 +787,79 @@ const BookingSummary = () => {
 
     return (
         <React.Fragment>
-            <BoxWrapper>
-                <Navbar isColor={true} heading="Privee"/>
-                {/*{isMobile ? (*/}
-                {/*    <Box className="header-club">*/}
-                {/*        <Typography className="addones-mobile-heading">Privee</Typography>*/}
-                {/*    </Box>*/}
-                {/*) : (*/}
-                {/*    ""*/}
-                {/*)}*/}
-                <Box className="supper-gallery cust-details">
+            <MainBox>
+                <Navbar isColor={true} isIcon={true} heading="Privee"/>
+                <Box className="main-box">
+                    {/*{isMobile ? (*/}
+                    {/*    <Box className="header-club">*/}
+                    {/*        <ArrowBackIcon className="header-icon" />*/}
+                    {/*        <Typography className="chef-mobile-heading">Privée</Typography>*/}
+                    {/*    </Box>*/}
+                    {/*) : (*/}
+                    {/*    ""*/}
+                    {/*)}*/}
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">
-                            <Box className="book-trad">
-                                <ArrowBackIcon className="arrow-left"/>
-                                <Typography className="addons-title">
-                                    Booking Summary
-                                </Typography>
+                            <Box className="details">
+                                <Breadcrumbs
+                                    separator={<ChevronRightIcon className="chevron-right" />}
+                                    aria-label="breadcrumb"
+                                    color="white"
+                                    className="breadcrumbs-heading"
+                                >
+                                    {breadcrumbs}
+                                </Breadcrumbs>
+                                <Box className="star-box">
+                                    <Typography className="chef-name">
+                                        A Traditional Oma Kase
+                                    </Typography>
+                                    <Typography className="chef-name-rate">
+                                        <img className="star-logo" src={star} />
+                                        4.7
+                                    </Typography>
+                                </Box>
+                                <Box className="chef-details">
+                                    <Typography className="chef-details-by">by</Typography>
+                                    <Link href="/chef-details" className="detail-1">
+                                        Chef Mako Ravindran
+                                    </Link>
+                                    <span className="line">|</span>
+                                    <Typography className="detail-2">
+                                        Starting from ₹5000 per diner
+                                    </Typography>
+                                </Box>
                             </Box>
-                            <Box className="row customer-details addons-div">
-                                <Grid container>
-                                    <Grid
-                                        xl={7}
-                                        lg={7}
-                                        xs={7}
-                                        md={7}
-                                        sm={12}
-                                        xs={12}
-                                        className="partner"
-                                    >
-                                        <Box className="booking-box">
-                                            <Typography className="booking-summary-title">
-                                                Booking Summary
-                                            </Typography>
-                                            <Typography className="booking-summary-sub-title">
-                                                Confirm Details before proceeding to pay
-                                            </Typography>
-                                        </Box>
-                                        <Box className="booking-box">
-                                            <Box class="chef-edit">
-                                                <img className="chef-edit-img" src={chefImg}/>
-                                                <Typography className="chef-edit-title">
-                                                    Chef Mako Ravindran
-                                                </Typography>
-                                                <CreateIcon className="pencil-icon"/>
-                                            </Box>
-                                            <Box class="chef-profile">
-                                                <Box className="chef-profile-detail">
-                                                    <img className="chef-profile-icon" src={dateGold}/>
-                                                    <Typography className="chef-profile-date">
-                                                        April 9 | 7:30 PM - 10 PM
-                                                    </Typography>
-                                                </Box>
-                                                <Box className="chef-profile-detail">
-                                                    <img className="chef-profile-icon" src={location}/>
-                                                    <Typography className="chef-profile-date">
-                                                        Silver bar, Downtown
-                                                    </Typography>
-                                                </Box>
-                                                <Box className="chef-profile-detail">
-                                                    <img className="chef-profile-icon" src={people}/>
-                                                    <Typography className="chef-profile-date">
-                                                        6 Diners
-                                                    </Typography>
-                                                </Box>
+                        </Box>
+                        <Box className="mobileView-chef">
+                            <Typography className="chef-name mbl-chef-name">
+                                A Traditional Oma Kase
+                            </Typography>
+                        </Box>
+                        <ImageCarousel/>
+                        <Box className="mobileView-chef">
+                            <Typography className="chef-details mbl-chef-name">
+                                by Chef Mako Ravindran<b> Starting from ₹5000 per diner</b>
+                            </Typography>
+                        </Box>
+                        <Grid className="main-grid" container spacing={{ md: 2 }}>
+                            <Grid className="container-parent" item xl={7} md={7} sm={6} xs={12}>
+                                <Box className="container">
+                                    <img
+                                        src={chef1}
+                                        alt="RestorentImg"
+                                        className="main-img"
+                                        onClick={handleImageClick}
+                                    />
+                                    {showCarousel && (
+                                        <Box className="carousel-popup">
+                                            <button
+                                                className="close-button"
+                                                onClick={handleCloseCarousel}
+                                            >
+                                                <CloseIcon className="pop-close-icon" />
+                                            </button>
+                                            <Box className="carousel">
+                                                <EventPopUpCarosuel/>
                                             </Box>
                                         </Box>
                                         <Box className="booking-box">
@@ -903,7 +913,7 @@ const BookingSummary = () => {
                           <input
                             placeholder="10 digit number"
                             className="form-control"
-                           type="text" 
+                           type="text"
                            id="number"
                             name="number"
                           />

@@ -22,7 +22,7 @@ const Questions = ({isLightTheme = false}) => {
             fontSize: '24px',
             fontFamily: 'Bon Vivant',
             lineHeight: '30px',
-            fontWeight:'700 !important',
+            fontWeight: '700 !important',
             letterSpacing: '0.06em',
             color: `${isLightTheme ? '#080B0E' : "#FBFBFB"}`
         },
@@ -78,7 +78,7 @@ const Questions = ({isLightTheme = false}) => {
         '.css-67l5gl:before':{
            opacity:'0'
         },
-        // !media query for accodion component(mobileView) 
+        // !media query for accodion component(mobileView)
 
         '@media(min-width: 1px) and (max-width: 425px)': {
             '.title-question': {
@@ -126,11 +126,11 @@ const Questions = ({isLightTheme = false}) => {
                                    className='accordion'>
                             <AccordionSummary className='accordionSummary'
                                 // expandIcon={<AddIcon sx={{ color: '#fff' }} />}
-                                expandIcon={expanded === 'panel1' ? <RemoveIcon sx={{
-                                    color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
-                                }}/> : <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria- controls="panel1a-content"
-                                id="panel1a-header"
+                                              expandIcon={expanded === 'panel1' ? <RemoveIcon sx={{
+                                                  color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
+                                              }}/> : <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
+                                              aria- controls="panel1a-content"
+                                              id="panel1a-header"
                             >
                                 <Typography className='frequently-questions'>Would there be any pure vegetarian options?</Typography>
                             </AccordionSummary>

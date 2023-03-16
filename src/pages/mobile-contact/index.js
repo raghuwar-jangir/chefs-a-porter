@@ -159,7 +159,7 @@ const MobileContact = () => {
                 {/*        <Typography><a className="mobile-heading" style={{textAlign: 'center !important'}}>Contacts</a></Typography>*/}
                 {/*    </Box>*/}
                 {/*) : <Navbar/>}*/}
-                <Navbar heading="Contacts"/>
+                <Navbar heading="Contacts" isIcon={true}/>
                 <Box className="joinaschef">
                     <form className="form-inline">
                         <Box className="form-group">

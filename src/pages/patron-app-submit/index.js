@@ -21,6 +21,7 @@ import {isMobile} from "react-device-detect";
 import moment from "moment";
 import * as _ from 'lodash';
 import '../../assets/styles/searchBar.css'
+import "../../assets/styles/fontStyle.css"
 
 const BecomePatronForm = () => {
 
@@ -43,16 +44,17 @@ const BecomePatronForm = () => {
             backgroundSize: 'cover',
             padding: '50px 120px',
             backgroundPosition: 'center',
-            height: '300px',
+            height: '250px',
             width: 'auto',
         },
         '.become-partner-header': {
             display: 'flex',
             placeContent: 'space-between',
+            padding: '0px 12px'
         },
         ".header-link": {
             display: 'flex',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '20px',
@@ -65,7 +67,7 @@ const BecomePatronForm = () => {
             color: '#C6A87D !important',
         },
         '.become-partner-heading': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '32px',
@@ -131,7 +133,7 @@ const BecomePatronForm = () => {
             borderBottom: 'unset !important',
         },
         'form label': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '16px',
@@ -193,14 +195,14 @@ const BecomePatronForm = () => {
             marginRight: '10px',
         },
         '.form-check-label': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '300',
             fontSize: '16px',
             lineheight: '22px',
             color: '#222222',
             marginBottom: '0px',
-            backgroundColor:'white',
+            backgroundColor: 'white',
         },
         '.agree-link': {
             fontWeight: '700',
@@ -227,10 +229,13 @@ const BecomePatronForm = () => {
                 paddingTop: '80px',
                 backgroundColor: '#FBFBFB'
             },
+            '.become-partner-form':{
+              marginTop:'55px'
+            },
         },
         '@media(min-width: 615px) and (max-width: 768px)': {
             '.banner': {
-                marginTop: '10px'
+                marginTop: '40px'
             }
         },
         '@media(min-width: 1px) and (max-width: 768px)': {
@@ -283,18 +288,12 @@ const BecomePatronForm = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                {isMobile ? (
-                    <Box className="mobile-header">
-                        <ArrowBackIcon/>
-                        <Typography><a href="/" className="mobile-heading" style={{textAlign: 'center !important'}}>Become
-                            a Patron</a></Typography>
-                    </Box>
-                ) : (<Navbar/>)}
+                <Navbar isIcon={true}/>
                 <Box className="joinaschef">
                     <Box className="banner">
                         <Box className="become-partner-header">
                             <Typography><a href="" className="header-link"><ArrowBackIcon
-                                style={{marginRight: '15px'}}/>Back</a></Typography>
+                                style={{marginRight: '20px'}}/>Back</a></Typography>
                             <Typography className="become-partner-heading">Become a Patron</Typography>
                         </Box>
                     </Box>
@@ -325,8 +324,8 @@ const BecomePatronForm = () => {
                             {({values, handleChange, handleSubmit, setFieldValue}) => (
                                 <Form onSubmit={handleSubmit}>
                                     <Box className="row white-bg justify-content-center">
-                                        <Box className="become-partner-form">
-                                            <Grid className="row" xs={12}>
+                                        <Box className="">
+                                            <Grid className="row become-partner-form" xs={12}>
                                                 <Grid xs={12} className="mb-3">
                                                     <label htmlFor="enroll">Enroll or renew?</label>
                                                     <Box className="form-check form-check-inline">
@@ -366,13 +365,25 @@ const BecomePatronForm = () => {
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
+                                                            '.css-qiwgdb.MuiSelect-select': {
+                                                                padding: '0px'
+                                                            }
                                                         }}
                                                         MenuProps={{
                                                             PaperProps: {
                                                                 sx: {
                                                                     backgroundColor: '#DCD7CB !important',
                                                                     li: {
-                                                                        borderBottom: "1px solid black"
+                                                                        fontFamily: 'ProximaNovaA-Regular',
+                                                                        borderBottom: "1px solid black",
+                                                                        fontWeight: '100',
+                                                                        padding: '6px 0px',
+                                                                        justifyContent:'start'
+                                                                    },
+                                                                    ul: {
+                                                                        display: 'flex',
+                                                                        flexDirection: 'column',
+                                                                        padding: '16px',
                                                                     },
                                                                     'li:hover': {
                                                                         color: '#C6A87D!important',
@@ -383,7 +394,7 @@ const BecomePatronForm = () => {
                                                                     },
                                                                     "&& .Mui-selected": {
                                                                         backgroundColor: "unset !important"
-                                                                    }
+                                                                    },
                                                                 },
                                                             },
                                                         }}
@@ -444,13 +455,25 @@ const BecomePatronForm = () => {
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
+                                                            '.css-qiwgdb.MuiSelect-select': {
+                                                                padding: '0px'
+                                                            }
                                                         }}
                                                         MenuProps={{
                                                             PaperProps: {
                                                                 sx: {
                                                                     backgroundColor: '#DCD7CB !important',
                                                                     li: {
-                                                                        borderBottom: "1px solid black"
+                                                                        fontFamily: 'ProximaNovaA-Regular',
+                                                                        borderBottom: "1px solid black",
+                                                                        fontWeight: '100',
+                                                                        padding: '6px 0px',
+                                                                        justifyContent:'start'
+                                                                    },
+                                                                    ul: {
+                                                                        display: 'flex',
+                                                                        flexDirection: 'column',
+                                                                        padding: '16px',
                                                                     },
                                                                     'li:hover': {
                                                                         color: '#C6A87D!important',
@@ -461,7 +484,7 @@ const BecomePatronForm = () => {
                                                                     },
                                                                     "&& .Mui-selected": {
                                                                         backgroundColor: "unset !important"
-                                                                    }
+                                                                    },
                                                                 },
                                                             },
                                                         }}

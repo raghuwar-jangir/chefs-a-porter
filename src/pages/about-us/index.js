@@ -26,6 +26,7 @@ import FooterEnd from "../../components/FooterEndSection";
 import OpenPosition from "../../components/OpenPositionComponent";
 import '../../assets/styles/fontStyle.css'
 import teamImage from '../../assets/images/team.png'
+import Navbar from "../../components/NavbarComponent";
 import TeamCarousel from "../../components/TeamCarousel.jsx";
 
 const ClientSideOnlyLazy = React.lazy(() =>
@@ -305,7 +306,6 @@ const AboutCardComponent = (props) => {
         <React.Fragment>
             <BoxWrapper>
                 <Navbar heading="About Us"/>
-                <Box>
                     <Box className="main-box">
                         <Box>
                             <Typography className="about-heading">About Us</Typography>

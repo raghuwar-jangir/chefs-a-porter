@@ -18,6 +18,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import InputAdornment from '@mui/material/InputAdornment';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import {Formik, Form, ErrorMessage} from "formik";
+import "../../assets/styles/fontStyle.css"
 import * as Yup from 'yup';
 import {isMobile} from "react-device-detect";
 
@@ -77,16 +78,17 @@ const BecomePartner = () => {
             backgroundSize: 'cover',
             padding: '50px 120px',
             backgroundPosition: 'center',
-            height: '300px',
+            height: '250px',
             width: 'auto',
         },
         '.become-partner-header': {
             display: 'flex',
             placeContent: 'space-between',
+            padding: '0px 12px'
         },
         ".header-link": {
             display: 'flex',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '20px',
@@ -99,7 +101,7 @@ const BecomePartner = () => {
             color: '#C6A87D !important',
         },
         '.become-partner-heading': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '32px',
@@ -118,10 +120,10 @@ const BecomePartner = () => {
             padding: '30px',
             width: '596px',
             marginBottom: '36px',
-
         },
         '.form-details': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
+            fontWeight: '300',
             fontStyle: 'normal',
             fontSize: '20px',
             lineHeight: '30px',
@@ -200,7 +202,7 @@ const BecomePartner = () => {
             width: '100%',
         },
         '.file-upload-label': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '16px',
@@ -213,7 +215,7 @@ const BecomePartner = () => {
             display: 'none',
         },
         'form label': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '16px',
@@ -297,7 +299,6 @@ const BecomePartner = () => {
                 display: 'none',
             },
             '.form-details': {
-                fontFamily: 'Proxima Nova',
                 fontStyle: 'normal',
                 fontSize: '16px',
                 lineHeight: '24px',
@@ -307,10 +308,13 @@ const BecomePartner = () => {
             '.joinaschef': {
                 paddingTop: '80px'
             },
+            '.become-partner-form': {
+                marginTop: '55px'
+            },
         },
         '@media(min-width: 615px) and (max-width: 768px)': {
             '.banner': {
-                marginTop: '10px'
+                marginTop: '40px'
             }
         },
         '@media(min-width: 1px) and (max-width: 768px)': {
@@ -336,7 +340,7 @@ const BecomePartner = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar heading="Become a partner"/>
+                <Navbar heading="Become a partner" isIcon={true}/>
                 {/*{isMobile ? (*/}
                 {/*    <Box className="mobile-header">*/}
                 {/*        <ArrowBackIcon/>*/}
@@ -348,7 +352,7 @@ const BecomePartner = () => {
                     <Box className="banner">
                         <Box className="become-partner-header">
                             <Typography><a href="/" className="header-link"><ArrowBackIcon
-                                style={{marginRight: '15px'}}/>Back</a></Typography>
+                                style={{marginRight: '20px'}}/>Back</a></Typography>
                             <Typography className="become-partner-heading">Become a partner</Typography>
                         </Box>
                     </Box>
@@ -375,25 +379,29 @@ const BecomePartner = () => {
                             {({values, handleChange, handleSubmit}) => (
                                 <Form onSubmit={handleSubmit}>
                                     <Box className="row white-bg justify-content-center">
-                                        <Box className="become-partner-form">
-                                            <Typography className="form-details">We’re looking for talented people to
-                                                help our bring out our chefs vision to life. If you think you fit the
-                                                bill, apply below!</Typography>
-                                            <Typography className="form-details">If your service meets Chefs à
-                                                Porter prerequisite one of our representatives shall get in touch with
-                                                you via email
-                                                either approving/rejecting your request or asking you for a
-                                                clarification where
-                                                required. Request you to promptly respond to the clarification requested
-                                                for a
-                                                faster response and closure.</Typography>
-                                            <Grid className="row" xs={12}>
+                                        <Box className="">
+                                            <Grid className="row become-partner-form" xs={12}>
+                                                <Typography className="form-details">We’re looking for talented people
+                                                    to
+                                                    help our bring out our chefs vision to life. If you think you fit
+                                                    the
+                                                    bill, apply below!</Typography>
+                                                <Typography className="form-details">If your service meets Chefs à
+                                                    Porter prerequisite one of our representatives shall get in touch
+                                                    with
+                                                    you via email
+                                                    either approving/rejecting your request or asking you for a
+                                                    clarification where
+                                                    required. Request you to promptly respond to the clarification
+                                                    requested
+                                                    for a
+                                                    faster response and closure.</Typography>
                                                 <Grid xs={12} className="mb-3">
                                                     <label htmlFor="validationCustom01">Partner with us as<span
                                                         className="red">*</span></label>
                                                     <Select
-                                                        labelId="demo-simple-select-label"
-                                                        id="demo-simple-select"
+                                                        labelId="demo-simple-select-standard-label"
+                                                        id="demo-simple-select-standard"
                                                         name="partner"
                                                         value={values.partner}
                                                         onChange={handleChange}
@@ -404,24 +412,36 @@ const BecomePartner = () => {
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
+                                                            '.css-qiwgdb.MuiSelect-select': {
+                                                                padding: '0px'
+                                                            }
                                                         }}
                                                         MenuProps={{
                                                             PaperProps: {
                                                                 sx: {
                                                                     backgroundColor: '#DCD7CB !important',
                                                                     li: {
-                                                                        borderBottom: "1px solid black"
+                                                                        fontFamily: 'ProximaNovaA-Regular',
+                                                                        borderBottom: "1px solid black",
+                                                                        fontWeight: '100',
+                                                                        padding: '6px 0px',
+                                                                        justifyContent:'start'
+                                                                    },
+                                                                    ul: {
+                                                                        display: 'flex',
+                                                                        flexDirection: 'column',
+                                                                        padding: '16px',
                                                                     },
                                                                     'li:hover': {
                                                                         color: '#C6A87D!important',
-                                                                        backgroundColor:'unset !important'
+                                                                        backgroundColor: 'unset !important'
                                                                     },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'
                                                                     },
                                                                     "&& .Mui-selected": {
                                                                         backgroundColor: "unset !important"
-                                                                    }
+                                                                    },
                                                                 },
                                                             },
                                                         }}
@@ -488,8 +508,8 @@ const BecomePartner = () => {
                                                     <label htmlFor="validationCustomcity">City<span
                                                         className="red">*</span></label>
                                                     <Select
-                                                        labelId="demo-simple-select-label"
-                                                        id="demo-simple-select"
+                                                        labelId="demo-simple-select-standard-label"
+                                                        id="demo-simple-select-standard"
                                                         name="city"
                                                         value={values.city}
                                                         defaultValue={values.city}
@@ -500,17 +520,29 @@ const BecomePartner = () => {
                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                 border: 'none',
                                                             },
+                                                            '.css-qiwgdb.MuiSelect-select': {
+                                                                padding: '0px'
+                                                            }
                                                         }}
                                                         MenuProps={{
                                                             PaperProps: {
                                                                 sx: {
                                                                     backgroundColor: '#DCD7CB !important',
                                                                     li: {
+                                                                        fontFamily: 'ProximaNovaA-Regular',
                                                                         borderBottom: "1px solid black",
+                                                                        fontWeight: '100',
+                                                                        padding: '6px 0px',
+                                                                        justifyContent:'start'
+                                                                    },
+                                                                    ul: {
+                                                                        display: 'flex',
+                                                                        flexDirection: 'column',
+                                                                        padding: '16px',
                                                                     },
                                                                     'li:hover': {
                                                                         color: '#C6A87D!important',
-                                                                        backgroundColor:'unset !important'
+                                                                        backgroundColor: 'unset !important'
                                                                     },
                                                                     'li:last-child': {
                                                                         borderBottom: 'none'
