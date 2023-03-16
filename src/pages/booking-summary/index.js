@@ -37,7 +37,7 @@ import TemptedYet from '../../components/TemptedYet';
 import NeedHelpEvent from "../../components/NeedHelpEvent";
 import EventChefCarousel from "../../components/EventChefCarousel";
 
-const EventDetails = () => {
+const BookingSummary = () => {
     const [showCarousel, setShowCarousel] = useState(false);
     const handleImageClick = () => {
         setShowCarousel(true);
@@ -851,4 +851,4 @@ const EventDetails = () => {
         </React.Fragment>
     );
 };
-export default EventDetails;
+export default BookingSummary;

@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { useState } from 'react';
+import {useContext, useState} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { Swiper, SwiperSlide } from "swiper/react";
+import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import {  Autoplay,Pagination } from "swiper";
+import {Autoplay, Pagination} from "swiper";
 import {styled} from '@mui/system';
 import {Rating} from '@mui/material';
+import CmsContext from "../context/CmsContext";
 
 const images = [
     {
@@ -39,7 +40,11 @@ const images = [
 
 
 const RatingCarousel = ({backgroundColor}) => {
-    const [value, setValue] = useState(4);
+
+    const {data} = useContext(CmsContext);
+    console.log('ratingData===', data)
+
+    const [value, setValue] = useState();
 
     const StyledRating = styled(Rating)({
         '& .MuiRating-icon': {
@@ -91,24 +96,24 @@ const RatingCarousel = ({backgroundColor}) => {
         '.css-dqr9h-MuiRating-label': {
             fontSize: '40px'
         },
-        '.swiper-pagination-bullet':{
-            width:'8px',
-            height:'8px',
-            background:'transparent',
-            opacity:1,
-            border:'0.672852px solid rgba(34, 34, 34, 0.5)',
-            borderRadius:'100px',
-            margin:'0px 10px !important'
+        '.swiper-pagination-bullet': {
+            width: '8px',
+            height: '8px',
+            background: 'transparent',
+            opacity: 1,
+            border: '0.672852px solid rgba(34, 34, 34, 0.5)',
+            borderRadius: '100px',
+            margin: '0px 10px !important'
         },
-        '.swiper-pagination-bullet-active':{
-            width:'12px',
-            height:'12px',
-            background:'#222222',
+        '.swiper-pagination-bullet-active': {
+            width: '12px',
+            height: '12px',
+            background: '#222222',
         },
-        '.swiper-pagination':{
-            display:'flex',
-            placeItems:'center',
-            justifyContent:'center'
+        '.swiper-pagination': {
+            display: 'flex',
+            placeItems: 'center',
+            justifyContent: 'center'
         },
         "@media (min-width: 700px) and (max-width:768px)": {
             ".mainTitle": {
@@ -191,21 +196,21 @@ const RatingCarousel = ({backgroundColor}) => {
                 padding: '30px 0px 24px 0px ',
                 textTransform: 'uppercase'
             },
-            '.swiper-pagination-bullet-active':{
-                width:'7px !important',
-                height:'7px !important'
+            '.swiper-pagination-bullet-active': {
+                width: '7px !important',
+                height: '7px !important'
             },
-            '.swiper-pagination-bullet':{
-                width:'4px',
-                height:'4px',
-                margin:'0px 5px !important'
+            '.swiper-pagination-bullet': {
+                width: '4px',
+                height: '4px',
+                margin: '0px 5px !important'
             }
         },
         "@media (min-width: 430px) and (max-width:768px)": {
-            '.swiper-pagination-bullet':{
-                width:'4px',
-                height:'4px',
-                margin:'0px 5px !important'
+            '.swiper-pagination-bullet': {
+                width: '4px',
+                height: '4px',
+                margin: '0px 5px !important'
             }
         }
     }))
@@ -220,32 +225,61 @@ const RatingCarousel = ({backgroundColor}) => {
                 }}
                         pagination={{
                             clickable: true,
-                        }} modules={[Autoplay,Pagination]} className="mySwiper">
-                    {images.map((step, index) => (
+                        }} modules={[Autoplay, Pagination]} className="mySwiper">
+                    {/*{images.map((step, index) => (*/}
+                    {/*    <div key={index}>*/}
+                    {/*        <SwiperSlide className='main-div'>*/}
+                    {/*            <Typography className='mainTitle'>*/}
+                    {/*                {step.mainTitle}*/}
+                    {/*            </Typography>*/}
+                    {/*            <Typography*/}
+                    {/*                className='star'*/}
+                    {/*            >*/}
+                    {/*                <StyledRating className='rating-star'*/}
+                    {/*                              name="simple-controlled"*/}
+                    {/*                              value={value}*/}
+                    {/*                              onChange={(event, newValue) => {*/}
+                    {/*                                  setValue(newValue);*/}
+                    {/*                              }}*/}
+                    {/*                />*/}
+                    {/*            </Typography>*/}
+                    {/*            <Typography className='details'>*/}
+                    {/*                {step.details}*/}
+                    {/*            </Typography>*/}
+                    {/*            <Typography>*/}
+                    {/*                {step.name}*/}
+                    {/*            </Typography>*/}
+                    {/*            <Typography className='ceoName'>*/}
+                    {/*                {step.ceoName}*/}
+                    {/*            </Typography>*/}
+                    {/*        </SwiperSlide>*/}
+                    {/*    </div>*/}
+                    {/*))}*/}
+                    {data.reviews.reviews.map((step, index) => (
                         <div key={index}>
                             <SwiperSlide className='main-div'>
                                 <Typography className='mainTitle'>
-                                    {step.mainTitle}
+                                    {step.title}
                                 </Typography>
                                 <Typography
                                     className='star'
                                 >
                                     <StyledRating className='rating-star'
                                                   name="simple-controlled"
-                                                  value={value}
-                                                  onChange={(event, newValue) => {
-                                                      setValue(newValue);
-                                                  }}
+                                                  value={step.rating}
+                                                  // onChange={(event, newValue) => {
+                                                  //     setValue(newValue);
+                                                  // }}
                                     />
                                 </Typography>
                                 <Typography className='details'>
-                                    {step.details}
+                                    {step.description}
                                 </Typography>
                                 <Typography>
                                     {step.name}
                                 </Typography>
                                 <Typography className='ceoName'>
-                                    {step.ceoName}
+                                    {step.reviewer}
                                 </Typography>
                             </SwiperSlide>
                         </div>

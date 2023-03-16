@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import {  Autoplay,Pagination } from "swiper";
+import CmsContext from "../context/CmsContext";
 
 
 const images = [
@@ -35,6 +36,9 @@ const images = [
 
 const TestimonialCarousel = () => {
     const [value, setValue] = useState(4);
+
+    const {data} = useContext(CmsContext);
+
 
     const BoxWrapper = styled(Box)(() => ({
         padding: '40px 0px',
@@ -148,18 +152,33 @@ const TestimonialCarousel = () => {
                     pagination={{
                         clickable: true,
                     }} modules={[Autoplay,Pagination]} className="mySwiper">
-                {images.map((step, index) => (
+                {/*{images.map((step, index) => (*/}
+                {/*    <div key={index}>*/}
+                {/*        <SwiperSlide className='main-div'>*/}
+                {/*            <Typography className='mainTitle'>*/}
+                {/*                {step.mainTitle}*/}
+                {/*            </Typography>*/}
+                {/*            <Typography className='details'>*/}
+                {/*                {step.details}*/}
+                {/*            </Typography>*/}
+                {/*            <Typography>*/}
+                {/*                {step.name}*/}
+                {/*            </Typography>*/}
+                {/*        </SwiperSlide>*/}
+                {/*    </div>*/}
+                {/*))}*/}
+                {data.news_reviews.content.map((step, index) => (
                     <div key={index}>
                         <SwiperSlide className='main-div'>
                             <Typography className='mainTitle'>
-                                {step.mainTitle}
+                                {step.title}
                             </Typography>
                             <Typography className='details'>
-                                {step.details}
+                                {step.description}
                             </Typography>
-                            <Typography>
-                                {step.name}
-                            </Typography>
+                            {/*<Typography>*/}
+                            {/*    {step.name}*/}
+                            {/*</Typography>*/}
                         </SwiperSlide>
                     </div>
                 ))}

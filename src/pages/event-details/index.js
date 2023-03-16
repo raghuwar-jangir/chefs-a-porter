@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
     Box,
     Button,
@@ -11,8 +11,8 @@ import {
     TextareaAutosize,
 } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Formik, Form } from "formik";
-import { DatePickerInput } from "rc-datepicker";
+import {Formik, Form} from "formik";
+import {DatePickerInput} from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
 import CloseIcon from "@mui/icons-material/Close";
 import Navbar from "../../components/NavbarComponent";
@@ -20,7 +20,7 @@ import Footer from "../../components/Footer";
 import FooterEnd from "../../components/FooterEndSection";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NeedHelp from "../../components/NeedHelp";
-import { isMobile, MobileView } from "react-device-detect";
+import {isMobile, MobileView} from "react-device-detect";
 import ImageCarousel from "../../components/ImageCarousel";
 import chef1 from "../../assets/images/chef5.png";
 import chef2 from "../../assets/images/chef6.png";
@@ -189,9 +189,9 @@ const EventDetails = () => {
             marginBottom: "8px",
         },
         ".chef-name-rate": {
-            display:'flex',
-            justifyContent:'center',
-            placeItems:'center',
+            display: 'flex',
+            justifyContent: 'center',
+            placeItems: 'center',
             fontSize: "20px",
             lineHeight: "24px",
             fontWeight: 400,
@@ -335,97 +335,97 @@ const EventDetails = () => {
             marginLeft: "0.5rem",
             marginRight: "0.5rem",
         },
-        '.item-img-1':{
-            paddingLeft:'10px !important',
-            paddingRight:'10px !important'
+        '.item-img-1': {
+            paddingLeft: '10px !important',
+            paddingRight: '10px !important'
         },
-        '.item-img-2':{
-            paddingLeft:'10px !important',
-            paddingRight:'10px !important'
+        '.item-img-2': {
+            paddingLeft: '10px !important',
+            paddingRight: '10px !important'
         },
-        '.container-parent':{
-            paddingRight:'5px !important'
+        '.container-parent': {
+            paddingRight: '5px !important'
         },
         '@media(min-width: 425px) and (max-width: 768px)': {
-            '.container-parent':{
-                flex:'0 0 auto',
-                maxWidth:'58.333333%'
+            '.container-parent': {
+                flex: '0 0 auto',
+                maxWidth: '58.333333%'
             },
-            '.next-grid':{
+            '.next-grid': {
                 flex: '0 0 auto',
                 width: '41.66666667%'
             }
         },
         '@media(min-width: 1px) and (max-width: 768px)': {
-            '.grid-box-2':{
-                display:'flex',
-                flexDirection:'column'
+            '.grid-box-2': {
+                display: 'flex',
+                flexDirection: 'column'
             },
-            '.grid-item':{
-                maxWidth:'100%',
-                paddingRight:'0px'
+            '.grid-item': {
+                maxWidth: '100%',
+                paddingRight: '0px'
             },
-            '.grid-child-box':{
-                maxWidth:'100%'
+            '.grid-child-box': {
+                maxWidth: '100%'
             },
         },
         "@media (min-width: 1px) and (max-width:425px)": {
-            '.main-grid':{
-                display:'none'
+            '.main-grid': {
+                display: 'none'
             },
-            '.main-box':{
-                padding:'40px 0px 0px'
+            '.main-box': {
+                padding: '40px 0px 0px'
             },
-            '.breadcrumbs-heading':{
-                display:'none'
+            '.breadcrumbs-heading': {
+                display: 'none'
             },
-            '.star-box':{
-                padding:'0px 16px',
-                justifyContent:'space-between'
+            '.star-box': {
+                padding: '0px 16px',
+                justifyContent: 'space-between'
             },
-            '.chef-name':{
-                fontSize:'20px',
-                lineHeight:'25px',
+            '.chef-name': {
+                fontSize: '20px',
+                lineHeight: '25px',
             },
-            '.chef-name-rate':{
-                fontSize:'18px',
-                lineHeight:'22px'
+            '.chef-name-rate': {
+                fontSize: '18px',
+                lineHeight: '22px'
             },
-            '.chef-details':{
-                flexFlow:'wrap',
-                padding:'0px 16px',
-                marginBottom:'8px'
+            '.chef-details': {
+                flexFlow: 'wrap',
+                padding: '0px 16px',
+                marginBottom: '8px'
             },
-            '.chef-details-by':{
-                fontSize:'14px',
-                lineHeight:'17px'
+            '.chef-details-by': {
+                fontSize: '14px',
+                lineHeight: '17px'
             },
-            '.detail-1':{
-                fontSize:'14px',
-                lineHeight:'17px',
-                fontWeight:300,
-                textDecoration:'underline',
-                paddingLeft:'5px'
+            '.detail-1': {
+                fontSize: '14px',
+                lineHeight: '17px',
+                fontWeight: 300,
+                textDecoration: 'underline',
+                paddingLeft: '5px'
             },
-            '.line':{
-                display:'none'
+            '.line': {
+                display: 'none'
             },
-            '.grid-child-box':{
-                display:'none'
+            '.grid-child-box': {
+                display: 'none'
             },
-            '.invite-btn':{
-                width:'114px'
+            '.invite-btn': {
+                width: '114px'
             },
-            '.template':{
-                background:'#080B0E'
+            '.template': {
+                background: '#080B0E'
             },
-            '.template-title':{
-                color:'#FBFBFB !important'
+            '.template-title': {
+                color: '#FBFBFB !important'
             }
         },
         "@media (min-width: 1px) and (max-width:320px)": {
-            '.invite-btn':{
-                width:'80px'
+            '.invite-btn': {
+                width: '80px'
             }
         }
     }));
@@ -550,11 +550,11 @@ const EventDetails = () => {
     return (
         <React.Fragment>
             <MainBox>
-                <Navbar isColor={true} />
+                <Navbar isColor={true}/>
                 <Box className="main-box">
                     {isMobile ? (
                         <Box className="header-club">
-                            <ArrowBackIcon className="header-icon" />
+                            <ArrowBackIcon className="header-icon"/>
                             <Typography className="chef-mobile-heading">Privée</Typography>
                         </Box>
                     ) : (
@@ -564,7 +564,7 @@ const EventDetails = () => {
                         <Box className="row supper-chef-details">
                             <Box className="details">
                                 <Breadcrumbs
-                                    separator={<ChevronRightIcon className="chevron-right" />}
+                                    separator={<ChevronRightIcon className="chevron-right"/>}
                                     aria-label="breadcrumb"
                                     color="white"
                                     className="breadcrumbs-heading"
@@ -576,7 +576,7 @@ const EventDetails = () => {
                                         A Traditional Oma Kase
                                     </Typography>
                                     <Typography className="chef-name-rate">
-                                        <img className="star-logo" src={star} />
+                                        <img className="star-logo" src={star}/>
                                         4.7
                                     </Typography>
                                 </Box>
@@ -603,7 +603,7 @@ const EventDetails = () => {
                                 by Chef Mako Ravindran<b> Starting from ₹5000 per diner</b>
                             </Typography>
                         </Box>
-                        <Grid className="main-grid" container spacing={{ md: 2 }}>
+                        <Grid className="main-grid" container spacing={{md: 2}}>
                             <Grid className="container-parent" item xl={7} md={7} sm={6} xs={12}>
                                 <Box className="container">
                                     <img
@@ -618,7 +618,7 @@ const EventDetails = () => {
                                                 className="close-button"
                                                 onClick={handleCloseCarousel}
                                             >
-                                                <CloseIcon className="pop-close-icon" />
+                                                <CloseIcon className="pop-close-icon"/>
                                             </button>
                                             <Box className="carousel">
                                                 <EventPopUpCarosuel/>
@@ -672,14 +672,14 @@ const EventDetails = () => {
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid className="grid-box-2" container spacing={{ md: 2 }}>
+                        <Grid className="grid-box-2" container spacing={{md: 2}}>
                             <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
-                                <EventCard />
+                                <EventCard/>
                                 <EventChefCarousel/>
                                 <SupperClubDetailsCarousel
-                                    mainBox={{ padding: "40px 0px" }}
-                                    changeDetails={{ fontSize: "16px" }}
-                                    changeFont={{ fontSize: "20px" }}
+                                    mainBox={{padding: "40px 0px"}}
+                                    changeDetails={{fontSize: "16px"}}
+                                    changeFont={{fontSize: "20px"}}
                                     backgroundColor="#DCD7CB"
                                 />
                                 <Box className="last-contain">
@@ -702,7 +702,7 @@ const EventDetails = () => {
                                 xs={12}
                                 xl={5}
                             >
-                                <ChefDetailsForm />
+                                <ChefDetailsForm/>
                             </Grid>
                         </Grid>
                     </Box>
@@ -730,7 +730,7 @@ const EventDetails = () => {
                                     className="close"
                                     onClick={handleClose}
                                 >
-                                    <CloseIcon />
+                                    <CloseIcon/>
                                 </button>
                             </Box>
                             <Box className="container-fluid">
@@ -750,7 +750,7 @@ const EventDetails = () => {
                                         console.log("experienceData===>", experienceData);
                                     }}
                                 >
-                                    {({ values, handleChange, handleSubmit, setFieldValue }) => (
+                                    {({values, handleChange, handleSubmit, setFieldValue}) => (
                                         <Form onSubmit={handleSubmit}>
                                             <Box className="row">
                                                 <Box className="mb-3">
@@ -830,7 +830,7 @@ const EventDetails = () => {
                                                 <button
                                                     className="btn btn-primary"
                                                     type="submit"
-                                                    style={{ width: "100% !important" }}
+                                                    style={{width: "100% !important"}}
                                                 >
                                                     Apply
                                                 </button>
@@ -844,9 +844,9 @@ const EventDetails = () => {
                 </Modal>
                 <NeedHelpEvent isColor={true}/>
                 <TemptedYet title='Book this Experience' isTempted={false}/>
-                <NeedHelp />
-                <Footer />
-                <FooterEnd />
+                <NeedHelp/>
+                <Footer/>
+                <FooterEnd/>
             </MainBox>
         </React.Fragment>
     );
