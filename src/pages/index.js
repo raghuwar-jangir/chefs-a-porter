@@ -936,6 +936,9 @@ const HomePage = () => {
         <React.Fragment>
             <Navbar isIcon={false} isImage={true}/>
             <BoxWrapper>
+            {
+    !_.isEmpty(data) &&
+    <React.Fragment>
                 <Box className="home-banner" sx={{backgroundImage: `url(${homeBanner})`,}}>
                     <Box className="row justify-content-center">
                         <Box className="chef-container">
@@ -1327,6 +1330,8 @@ const HomePage = () => {
                 <NeedHelp/>
                 <Footer/>
                 <FooterEnd/>
+                </React.Fragment>
+}
             </BoxWrapper>
         </React.Fragment>
     )
