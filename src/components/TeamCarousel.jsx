@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
     Avatar,
     Box,
@@ -20,8 +20,12 @@ import {Navigation, Pagination} from "swiper";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import '../assets/styles/fontStyle.css';
+import AboutUsContext from "../context/AboutUsContext";
+import * as _ from "lodash";
 
 const TeamCarousel = (props) => {
+    const {aboutUsData} = useContext(AboutUsContext);
+
     const BoxWrapper = styled(Box)(() => ({
         ".title": {
             fontFamily: "Bon Vivant",
@@ -179,161 +183,74 @@ const TeamCarousel = (props) => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Box sx={{background: "#080B0E", padding: "40px 16px"}}>
-                    <Swiper
-                        style={{
-                            "--swiper-navigation-color": "white",
-                            "--swiper-navigation-size": "30px",
-                        }}
-                        rewind={true}
-                        spaceBetween={20}
-                        slidesPerView={3}
-                        navigation={true}
-                        pagination={{
-                            clickable: true,
-                        }}
-                        modules={[Navigation, Pagination]}
-                        breakpoints={{
-                            320: {
-                                slidesPerView: 1,
-                                navigation: "false",
-                                pagination: "false",
-                            },
-                            375: {
-                                slidesPerView: 1,
-                                navigation: "false",
-                                pagination: "false",
-                            },
-                            425: {
-                                slidesPerView: 1,
-                                navigation: "false",
-                                pagination: "false",
-                            },
-                            725: {
-                                slidesPerView: 3,
-                            },
-                        }}
-                    >
-                        <SwiperSlide className="slider-background">
-                            <Box className="slider-box">
-                                <img className="slider-img" alt="" src={IntroChefImg2}/>
-                                <Typography className="title">Chef Mako Ravindran</Typography>
-                                <Typography className="position-title">
-                                    Chief Chef Curating Officer
-                                </Typography>
-                                <Typography className="position-details">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras
-                                    a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere
-                                    consectetur tortor ultrices feugiat.
-                                </Typography>
-                                <Box className="social-icon">
-                                    <InstagramIcon className="icon"/>
-                                    <LinkedInIcon className="icon"/>
-                                </Box>
-                            </Box>
-                        </SwiperSlide>
-                        <SwiperSlide className="slider-background">
-                            <Box className="slider-box">
-                                <img className="slider-img" alt="" src={IntroChefImg1}/>
-                                <Typography className="title">Chef Anou Boccasam</Typography>
-                                <Typography className="position-title">Founder</Typography>
-                                <Typography className="position-details">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras
-                                    a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere
-                                    consectetur tortor ultrices feugiat.
-                                </Typography>
-                                <Box className="social-icon">
-                                    <InstagramIcon className="icon"/>
-                                    <LinkedInIcon className="icon"/>
-                                </Box>
-                            </Box>
-                        </SwiperSlide>
-                        <SwiperSlide className="slider-background">
-                            <Box className="slider-box">
-                                <img className="slider-img" alt="" src={IntroChefImg2}/>
-                                <Typography className="title">Chef Mako Ravindran</Typography>
-                                <Typography className="position-title">
-                                    Chief Chef Curating Officer
-                                </Typography>
-                                <Typography className="position-details">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras
-                                    a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere
-                                    consectetur tortor ultrices feugiat.
-                                </Typography>
-                                <Box className="social-icon">
-                                    <InstagramIcon className="icon"/>
-                                    <LinkedInIcon className="icon"/>
-                                </Box>
-                            </Box>
-                        </SwiperSlide>
-                        <SwiperSlide className="slider-background">
-                            <Box className="slider-box">
-                                <img className="slider-img" alt="" src={IntroChefImg1}/>
-                                <Typography className="title">Chef Anou Boccasam</Typography>
-                                <Typography className="position-title">Founder</Typography>
-                                <Typography className="position-details">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras
-                                    a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere
-                                    consectetur tortor ultrices feugiat.
-                                </Typography>
-                                <Box className="social-icon">
-                                    <InstagramIcon className="icon"/>
-                                    <LinkedInIcon className="icon"/>
-                                </Box>
-                            </Box>
-                        </SwiperSlide>
-                        <SwiperSlide className="slider-background">
-                            <Box className="slider-box">
-                                <img className="slider-img" alt="" src={IntroChefImg2}/>
-                                <Typography className="title">Chef Mako Ravindran</Typography>
-                                <Typography className="position-title">
-                                    Chief Chef Curating Officer
-                                </Typography>
-                                <Typography className="position-details">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras
-                                    a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere
-                                    consectetur tortor ultrices feugiat.
-                                </Typography>
-                                <Box className="social-icon">
-                                    <InstagramIcon className="icon"/>
-                                    <LinkedInIcon className="icon"/>
-                                </Box>
-                            </Box>
-                        </SwiperSlide>
-                        <SwiperSlide className="slider-background">
-                            <Box className="slider-box">
-                                <img className="slider-img" alt="" src={IntroChefImg1}/>
-                                <Typography className="title">Chef Anou Boccasam</Typography>
-                                <Typography className="position-title">Founder</Typography>
-                                <Typography className="position-details">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Phasellus a mauris lacinia, blandit quam nec, iaculis mi. Cras
-                                    a est cursus, hendrerit ipsum a, sodales urna. Etiam posuere
-                                    consectetur tortor ultrices feugiat.
-                                </Typography>
-                                <Box className="social-icon">
-                                    <InstagramIcon className="icon"/>
-                                    <LinkedInIcon className="icon"/>
-                                </Box>
-                            </Box>
-                        </SwiperSlide>
-                    </Swiper>
-                    <Box
-                        sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                        }}
-                    >
-                        <Button type="submit" className="btn">
-                            View All Members
-                        </Button>
+                {
+                    !_.isEmpty(aboutUsData) &&
+                    <Box sx={{background: "#080B0E", padding: "40px 16px"}}>
+                        <Swiper
+                            style={{
+                                "--swiper-navigation-color": "white",
+                                "--swiper-navigation-size": "30px",
+                            }}
+                            rewind={true}
+                            spaceBetween={20}
+                            slidesPerView={3}
+                            navigation={true}
+                            pagination={{
+                                clickable: true,
+                            }}
+                            modules={[Navigation, Pagination]}
+                            breakpoints={{
+                                320: {
+                                    slidesPerView: 1,
+                                    navigation: "false",
+                                    pagination: "false",
+                                },
+                                375: {
+                                    slidesPerView: 1,
+                                    navigation: "false",
+                                    pagination: "false",
+                                },
+                                425: {
+                                    slidesPerView: 1,
+                                    navigation: "false",
+                                    pagination: "false",
+                                },
+                                725: {
+                                    slidesPerView: 3,
+                                },
+                            }}
+                        >
+                            {
+                                aboutUsData.our_team.content.map((item) => {
+                                    return (
+                                        <SwiperSlide className="slider-background">
+                                            <Box className="slider-box">
+                                                <img className="slider-img" alt="" src={item.image}/>
+                                                <Typography className="title">{item.name}</Typography>
+                                                <Typography className="position-title">{item.position}</Typography>
+                                                <Typography className="position-details">{item.description}</Typography>
+                                                <Box className="social-icon">
+                                                    <a href={item.instagram}><InstagramIcon className="icon"/></a>
+                                                    <a href={item.facebook}><LinkedInIcon className="icon"/></a>
+                                                </Box>
+                                            </Box>
+                                        </SwiperSlide>
+                                    )
+                                })
+                            }
+                        </Swiper>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                justifyContent: "center",
+                            }}
+                        >
+                            <Button type="submit" className="btn">
+                                View All Members
+                            </Button>
+                        </Box>
                     </Box>
-                </Box>
+                }
             </BoxWrapper>
         </React.Fragment>
     );

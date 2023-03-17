@@ -5,8 +5,9 @@ import 'swiper/css';
 import {Autoplay, Pagination} from "swiper";
 import "swiper/css/pagination";
 import '../assets/styles/fontStyle.css';
-import CmsContext from "../context/CmsContext";
+import CmsContext from "../context/HomeContext";
 import * as _ from "lodash";
+import HomeContext from "../context/HomeContext";
 
 
 const DiningPage = (props) => {
@@ -207,7 +208,7 @@ const DiningPage = (props) => {
         }
     })
 
-    const {data} = useContext(CmsContext);
+    const {data} = useContext(HomeContext);
 
     const labels = data.what_we_cook.content.map((item) => {
         return item.text

@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import {Pagination} from "swiper";
 import '../assets/styles/fontStyle.css';
-import CmsContext from "../context/CmsContext";
+import HomeContext from "../context/HomeContext";
 import * as _ from "lodash";
 
 
@@ -285,7 +285,7 @@ const CorporateBooking = () => {
         },
     });
 
-    const {data} = useContext(CmsContext);
+    const {data} = useContext(HomeContext);
 
     return (
         <React.Fragment>

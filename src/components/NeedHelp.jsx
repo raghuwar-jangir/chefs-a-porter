@@ -9,7 +9,8 @@ import moment from "moment";
 import * as _ from "lodash";
 import {Formik, Form} from "formik";
 import '../assets/styles/fontStyle.css'
-import CmsContext from "../context/CmsContext";
+import CmsContext from "../context/HomeContext";
+import HomeContext from "../context/HomeContext";
 
 const NeedHelp = ({isColor}) => {
 
@@ -240,7 +241,7 @@ const NeedHelp = ({isColor}) => {
         },
     }
 
-    const {data} = useContext(CmsContext);
+    const {data} = useContext(HomeContext);
 
     return (
 

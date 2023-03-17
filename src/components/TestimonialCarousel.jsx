@@ -7,7 +7,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import {Autoplay, Pagination} from "swiper";
-import CmsContext from "../context/CmsContext";
+import HomeContext from "../context/HomeContext";
 import * as _ from "lodash";
 
 
@@ -38,7 +38,7 @@ const images = [
 const TestimonialCarousel = () => {
     const [value, setValue] = useState(4);
 
-    const {data} = useContext(CmsContext);
+    const {data} = useContext(HomeContext);
 
 
     const BoxWrapper = styled(Box)(() => ({

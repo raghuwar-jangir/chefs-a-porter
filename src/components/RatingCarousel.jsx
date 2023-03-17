@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import {Autoplay, Pagination} from "swiper";
 import {styled} from '@mui/system';
 import {Rating} from '@mui/material';
-import CmsContext from "../context/CmsContext";
+import HomeContext from "../context/HomeContext";
 import * as _ from "lodash";
 
 const images = [
@@ -42,7 +42,7 @@ const images = [
 
 const RatingCarousel = ({backgroundColor}) => {
 
-    const {data} = useContext(CmsContext);
+    const {data} = useContext(HomeContext);
     const [value, setValue] = useState();
 
     const StyledRating = styled(Rating)({

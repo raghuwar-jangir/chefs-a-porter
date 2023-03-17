@@ -58,7 +58,7 @@ import SupperClubImg from "../assets/images/SupperClubImg.png";
 import ClubSection from "../components/ClubSection";
 import DiningExperienceCarousel from "../components/DiningExperienceCarousel";
 import axios from "axios";
-import CmsContext from "../context/CmsContext";
+import HomeContext from "../context/HomeContext";
 
 
 const MainBoxContent = styled(Box)({
@@ -876,41 +876,56 @@ const BoxWrapper = styled(Box)({
 })
 
 const HomePage = () => {
+    const {data} = useContext(HomeContext);
+
+    {
+        !_.isEmpty(data) &&
+        console.log("Images=====>", data.food_drools.content.map((item) => {
+            return item
+        }));
+    }
+
+
     const itemData = [
         {
-            img: gallery2,
+            image: gallery2,
             title: 'gallery2',
             rows: 0.9,
+            index: 0,
         },
         {
-            img: gallery1,
+            image: gallery1,
             title: ' gallery1',
             rows: 1.1,
+            index: 2,
+
         },
         {
-            img: gallery3,
+            image: gallery3,
             title: 'gallery3',
             rows: 2,
             cols: 2,
+            index: 1
         },
         {
-            img: gallery4,
+            image: gallery4,
             title: 'gallery4',
             rows: 1.3,
+            index: 3
         },
         {
-            img: gallery5,
+            image: gallery5,
             title: 'gallery5',
             rows: 0.7,
+            index: 4
         },
     ];
 
-    const {data} = useContext(CmsContext);
-    console.log()
 
     const handleClick = () => {
         navigate('/privee-viewmore', {state: true});
     }
+
 
     return (
         <React.Fragment>
@@ -1141,7 +1156,8 @@ const HomePage = () => {
                                                         </Box>
                                                         <Box className="form-group">
                                                             <Typography>
-                                                                <button type="submit" className="hot-chef-search-btn"
+                                                                <button type="submit"
+                                                                        className="hot-chef-search-btn"
                                                                         onClick={handleClick}>Search
                                                                 </button>
                                                             </Typography>
@@ -1185,7 +1201,8 @@ const HomePage = () => {
                                 </Box>
                             </Box>
                         </Box>
-                        <PriveeMain title={data.continue_browsing.title} subTitle={data.continue_browsing.description}/>
+                        <PriveeMain title={data.continue_browsing.title}
+                                    subTitle={data.continue_browsing.description}/>
                         <MainFoodDetailng title={data.upcoming_supper_clubs.title}
                                           description={data.upcoming_supper_clubs.description}/>
                         <PriveeCarousel title={data.chefs_private_dining.title}/>
@@ -1272,7 +1289,8 @@ const HomePage = () => {
                                                     <Box style={{width: '100%', display: 'flex'}}>
                                                         <TextField className='input-field' id='email-address'
                                                                    size='small'
-                                                                   placeholder='Your email address' variant='outlined'
+                                                                   placeholder='Your email address'
+                                                                   variant='outlined'
                                                                    InputProps={{
                                                                        disableUnderline: true
                                                                    }}
@@ -1298,7 +1316,8 @@ const HomePage = () => {
                                                 </Box>
                                             </Box>
                                         </form>
-                                        <Typography className="join-table-details">By signing up, I agree to Chef’s a
+                                        <Typography className="join-table-details">By signing up, I agree to Chef’s
+                                            a
                                             porter’s <a
                                                 href="" className='sign-in'>T&C’s</a> and <a href=""
                                                                                              className='sign-in'>Privacy

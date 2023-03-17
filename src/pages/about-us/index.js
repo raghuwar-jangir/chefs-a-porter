@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Avatar, Box, Button, Grid, ImageList, ImageListItem, Stack, styled, Typography} from "@mui/material";
 import HotelImg1 from "../../assets/images/HotelImg1.png";
 import HotelImg2 from "../../assets/images/HotelImg3.png";
@@ -26,6 +26,8 @@ import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
 import OpenPosition from "../../components/OpenPositionComponent";
 import '../../assets/styles/fontStyle.css'
+import AboutUsContext from "../../context/AboutUsContext";
+import * as _ from "lodash";
 
 const ClientSideOnlyLazy = React.lazy(() =>
     import("../../components/TeamCarousel")
@@ -76,34 +78,9 @@ const logoImg = [
     logo1,
     logo2,
 ]
-const IntroCardDetails = [
-    {
-        title: "Chef Anou Boccasam",
-        position: "Founder",
-        details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus a mauris lacinia, blandit quam nec, iaculis mi.Cras a est cursus, hendrerit ipsum a, sodales urna.Etiam posuere consectetur tortor ultrices feugiat.Suspendisse vel dui eget turpis rhoncus aliquet. Proin tempor tortor quis pellentesque finibus.Quisque felis urna, pulvinar ut.",
-        img: IntroChefImg1
-    },
-    {
-        title: "Chef Mako Ravindran",
-        position: "Chief Chef Curating Officer",
-        details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus a mauris lacinia, blandit quam nec, iaculis mi.Cras a est cursus, hendrerit ipsum a, sodales urna.Etiam posuere consectetur tortor ultrices feugiat.Suspendisse vel dui eget turpis rhoncus aliquet. Proin tempor tortor quis pellentesque finibus.Quisque felis urna, pulvinar ut.",
-        img: HotelImg1
-    },
-    {
-        title: "Chef Anou Boccasam",
-        position: "Founder",
-        details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus a mauris lacinia, blandit quam nec, iaculis mi.Cras a est cursus, hendrerit ipsum a, sodales urna.Etiam posuere consectetur tortor ultrices feugiat.Suspendisse vel dui eget turpis rhoncus aliquet. Proin tempor tortor quis pellentesque finibus.Quisque felis urna, pulvinar ut.",
-        img: IntroChefImg1
-    },
-    {
-        title: "Chef Mako Ravindran",
-        position: "Chief Chef Curating Officer",
-        details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus a mauris lacinia, blandit quam nec, iaculis mi.Cras a est cursus, hendrerit ipsum a, sodales urna.Etiam posuere consectetur tortor ultrices feugiat.Suspendisse vel dui eget turpis rhoncus aliquet. Proin tempor tortor quis pellentesque finibus.Quisque felis urna, pulvinar ut.",
-        img: HotelImg1
-    },
-
-]
 const AboutCardComponent = (props) => {
+
+    const {aboutUsData} = useContext(AboutUsContext);
 
     const isSSR = typeof window === "undefined"
 
@@ -329,154 +306,135 @@ const AboutCardComponent = (props) => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar heading="About Us"/>
-                <Box>
-                    <Box className="main-box">
+                {
+                    !_.isEmpty(aboutUsData) &&
+                    <React.Fragment>
+                        <Navbar heading="About Us"/>
                         <Box>
-                            <Typography className="about-heading">About Us</Typography>
-                            <Box className="sub-box">
+                            <Box className="main-box">
+                                <Box>
+                                    <Typography className="about-heading">{aboutUsData.header.title}</Typography>
+                                    <Box className="sub-box">
+                                        <CommanTextCard
+                                            mainTitle={aboutUsData.who_we_are.title}
+                                            details={aboutUsData.who_we_are.description}
+                                            colors='#080B0E'
+                                            fontSize='20px'
+                                        />
+                                    </Box>
+                                    <ImageList variant="masonry" cols={3} rows={3} gap={10}
+                                               rowHeight={isMobile ? '150' : '300'}>
+                                        {itemData.map((item, index) => (
+                                            <ImageListItem key={item} cols={item.cols || 1} rows={item.rows || 1}>
+                                                <img
+                                                    src={item.img}
+                                                    alt="img"
+                                                    loading="lazy"
+                                                />
+                                            </ImageListItem>
+                                        ))}
+                                    </ImageList>
+                                </Box>
+                                <Box className="sub-box">
+                                    <CommanTextCard
+                                        mainTitle={aboutUsData.dining.title}
+                                        colors='#080B0E'
+                                        details={aboutUsData.dining.description}
+                                        fontSize="20px"
+                                    />
+                                </Box>
+                                <Box className="parent-stack">
+                                    <Stack
+                                        className="conscious-stack"
+                                        direction={{xs: 'row'}}
+                                        spacing={{xs: 2, md: 25}}
+                                    >
+
+                                        {
+                                            aboutUsData.dining.content.map((item) => {
+                                                return (
+                                                    <Box className="parent-options">
+                                                        <Box className="conscious-option">
+                                                            <Avatar
+                                                                className="options-icon"
+                                                                variant="rounded"
+                                                                alt="sustainable"
+                                                                src={item.icon}
+                                                            />
+                                                        </Box>
+                                                        <Typography className="sub-title">{item.text}</Typography>
+                                                    </Box>
+                                                )
+                                            })
+                                        }
+                                    </Stack>
+                                </Box>
+                            </Box>
+
+                            <Box>
+                                <Box className="sub-box-2">
+                                    <img
+                                        src={aboutUsData.mission.image}
+                                        alt="view"
+                                        className="hotelview-img"
+                                        className="team-img"
+                                    />
+                                    <CommanTextCard
+                                        mainTitle={aboutUsData.mission.title}
+                                        colors='#FBFBFB'
+                                        details={aboutUsData.mission.description}
+                                        fontSize='16px'
+                                    />
+                                </Box>
+                            </Box>
+                            <Box className="sub-box-3">
+                                <img
+                                    src={aboutUsData.values.image}
+                                    alt="view"
+                                    className="team-img"
+                                />
                                 <CommanTextCard
-                                    mainTitle="Who are we"
-                                    details="We are home to the hottest food tribe in the world! We offer our diners a unique chance to experience curated, conscious-dining in different formats.."
-                                    colors='#080B0E'
-                                    fontSize='20px'
+                                    mainTitle={aboutUsData.values.title}
+                                    details={aboutUsData.values.description}
+                                    fontSize='16px'
                                 />
                             </Box>
-                            <ImageList variant="masonry" cols={3} rows={3} gap={10}
-                                       rowHeight={isMobile ? '150' : '300'}>
-                                {itemData.map((item, index) => (
-                                    <ImageListItem key={item} cols={item.cols || 1} rows={item.rows || 1}>
-                                        <img
-                                            src={item.img}
-                                            alt="img"
-                                            loading="lazy"
-                                        />
-                                    </ImageListItem>
-                                ))}
-                            </ImageList>
-                        </Box>
-                        <Box className="sub-box">
-                            <CommanTextCard
-                                mainTitle="Conscious Dining"
-                                colors='#080B0E'
-                                details="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Donec efficitur justo eget mollis tincidunt. Maecenas ullamcorper"
-                                fontSize="20px"
-                            />
-                        </Box>
-                        <Box className="parent-stack">
-                            <Stack
-                                className="conscious-stack"
-                                direction={{xs: 'row'}}
-                                spacing={{xs: 2, md: 25}}
-                            >
-                                <Box className="parent-options">
-                                    <Box className="conscious-option">
-                                        <Avatar
-                                            className="options-icon"
-                                            variant="rounded"
-                                            alt="sustainable"
-                                            src={sustainable}
-                                        />
-                                    </Box>
-                                    <Typography className="sub-title">Sustainable</Typography>
-                                </Box>
-                                <Box className="parent-options">
-                                    <Box className="conscious-option">
-                                        <Avatar
-                                            className="options-icon"
-                                            variant="rounded"
-                                            alt="sustainable"
-                                            src={weather}
-                                            sx={{margin: '0px', height: '35px', width: '35px'}}
-                                        />
-                                    </Box>
-                                    <Typography className="sub-title">Seasonal & Local</Typography>
-                                </Box>
-                                <Box className="parent-options">
-                                    <Box className="conscious-option">
-                                        <Avatar
-                                            className="options-icon"
-                                            variant="rounded"
-                                            alt="sustainable"
-                                            src={recycling}
-                                            sx={{height: '35px', width: '35px'}}
-                                        />
-                                    </Box>
-                                    <Typography className="sub-title">Zero Waste</Typography>
-                                </Box>
+                            <Box className='sub-box-4'>
+                                <CommanTextCard
+                                    mainTitle={aboutUsData.meet_team.title}
+                                    colors='#FBFBFB'
+                                    details={aboutUsData.meet_team.description}
+                                    fontSize='16px'
+                                />
+                                <img
+                                    src={aboutUsData.meet_team.image}
+                                    alt="view"
+                                    className="team-img"
+                                    style={{marginTop: '40px'}}
+                                />
+                            </Box>
+                            {
+                                !isSSR && (
+                                    <React.Suspense fallback={<div/>}>
+                                        <ClientSideOnlyLazy/>
+                                    </React.Suspense>
+                                )
+                            }
 
-                            </Stack>
                         </Box>
-                    </Box>
-
-                    <Box>
-                        <Box className="sub-box-2">
-                            <img
-                                src={hotelImgView}
-                                alt="view"
-                                className="hotelview-img"
-                                className="team-img"
-                            />
-                            <CommanTextCard
-                                mainTitle="Our Mission"
-                                colors='#FBFBFB'
-                                details="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia,
-                         blandit quam nec, iaculis mi. Cras a est cursus."
-                                fontSize='16px'
-                            />
+                        <NeedHelp/>
+                        <OpenPosition/>
+                        <Box className="lastBox">
+                            <Box>
+                                <Typography className="some-text">{aboutUsData.about_footer.title}</Typography>
+                                <Typography className="some-details">{aboutUsData.about_footer.description}</Typography>
+                            </Box>
+                            <Button className="btn-get-in-touch">{aboutUsData.about_footer.button_text}</Button>
                         </Box>
-                    </Box>
-                    <Box className="sub-box-3">
-                        <img
-                            src={hotelImgView2}
-                            alt="view"
-                            className="team-img"
-                        />
-                        <CommanTextCard
-                            mainTitle="Our Values"
-                            details="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia,
-                         blandit quam nec, iaculis mi. Cras a est cursus."
-                            fontSize='16px'
-                        />
-                    </Box>
-
-                    <Box className='sub-box-4'>
-                        <CommanTextCard
-                            mainTitle="Meet Our Team"
-                            colors='#FBFBFB'
-                            details="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a mauris lacinia, blandit
-                         quam nec, iaculis mi. Cras a est cursus."
-                            fontSize='16px'
-                        />
-                        <img
-                            src={teamImage}
-                            alt="view"
-                            className="team-img"
-                            style={{marginTop: '40px'}}
-                        />
-                    </Box>
-                    {!isSSR && (
-                        <React.Suspense fallback={<div/>}>
-                            <ClientSideOnlyLazy/>
-                        </React.Suspense>
-                    )}
-
-                </Box>
-                <NeedHelp/>
-                <OpenPosition/>
-                <Box className="lastBox">
-                    <Box>
-                        <Typography className="some-text">Don’t see an open role for you</Typography>
-                        <Typography className="some-details">We’re always on the look out for top talent to join
-                            us.</Typography>
-                    </Box>
-                    <Button className="btn-get-in-touch">
-                        Get in touch
-                    </Button>
-                </Box>
-                <Footer/>
-                <FooterEnd/>
+                        <Footer/>
+                        <FooterEnd/>
+                    </React.Fragment>
+                }
             </BoxWrapper>
 
         </React.Fragment>
