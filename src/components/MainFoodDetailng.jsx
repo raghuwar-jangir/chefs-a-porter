@@ -124,18 +124,18 @@ const MainParent = styled(Box)({
 })
 
 
-const MainFoodDetailng = () => {
+const MainFoodDetailng = (props) => {
     return (
         <React.Fragment>
             <MainParent>
                 <Box>
                     <Box className='parent-body'>
                         <Typography className="food-header">
-                            Upcoming Supper Clubs
+                            {props.title}
                         </Typography>
                         <Box className='btn-container'>
                             <Typography className="sub-description">
-                                Step out & enjoy a curated meal prepared by top chefs
+                                {props.description}
                             </Typography>
                             <Box className='button-component'>
                                 <Button

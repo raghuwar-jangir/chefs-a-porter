@@ -9,6 +9,7 @@ import {Autoplay, Pagination} from "swiper";
 import {styled} from '@mui/system';
 import {Rating} from '@mui/material';
 import CmsContext from "../context/CmsContext";
+import * as _ from "lodash";
 
 const images = [
     {
@@ -42,8 +43,6 @@ const images = [
 const RatingCarousel = ({backgroundColor}) => {
 
     const {data} = useContext(CmsContext);
-    console.log('ratingData===', data)
-
     const [value, setValue] = useState();
 
     const StyledRating = styled(Rating)({
@@ -218,74 +217,51 @@ const RatingCarousel = ({backgroundColor}) => {
         <BoxWrapper
             // sx={{ maxWidth: 400, flexGrow: 1 }}
         >
-            <Box>
-                <Swiper autoplay={{
-                    delay: 5000,
-                    disableOnInteraction: false,
-                }}
-                        pagination={{
-                            clickable: true,
-                        }} modules={[Autoplay, Pagination]} className="mySwiper">
-                    {/*{images.map((step, index) => (*/}
-                    {/*    <div key={index}>*/}
-                    {/*        <SwiperSlide className='main-div'>*/}
-                    {/*            <Typography className='mainTitle'>*/}
-                    {/*                {step.mainTitle}*/}
-                    {/*            </Typography>*/}
-                    {/*            <Typography*/}
-                    {/*                className='star'*/}
-                    {/*            >*/}
-                    {/*                <StyledRating className='rating-star'*/}
-                    {/*                              name="simple-controlled"*/}
-                    {/*                              value={value}*/}
-                    {/*                              onChange={(event, newValue) => {*/}
-                    {/*                                  setValue(newValue);*/}
-                    {/*                              }}*/}
-                    {/*                />*/}
-                    {/*            </Typography>*/}
-                    {/*            <Typography className='details'>*/}
-                    {/*                {step.details}*/}
-                    {/*            </Typography>*/}
-                    {/*            <Typography>*/}
-                    {/*                {step.name}*/}
-                    {/*            </Typography>*/}
-                    {/*            <Typography className='ceoName'>*/}
-                    {/*                {step.ceoName}*/}
-                    {/*            </Typography>*/}
-                    {/*        </SwiperSlide>*/}
-                    {/*    </div>*/}
-                    {/*))}*/}
-                    {data.reviews.reviews.map((step, index) => (
-                        <div key={index}>
-                            <SwiperSlide className='main-div'>
-                                <Typography className='mainTitle'>
-                                    {step.title}
-                                </Typography>
-                                <Typography
-                                    className='star'
-                                >
-                                    <StyledRating className='rating-star'
-                                                  name="simple-controlled"
-                                                  value={step.rating}
-                                                  // onChange={(event, newValue) => {
-                                                  //     setValue(newValue);
-                                                  // }}
-                                    />
-                                </Typography>
-                                <Typography className='details'>
-                                    {step.description}
-                                </Typography>
-                                <Typography>
-                                    {step.name}
-                                </Typography>
-                                <Typography className='ceoName'>
-                                    {step.reviewer}
-                                </Typography>
-                            </SwiperSlide>
-                        </div>
-                    ))}
-                </Swiper>
-            </Box>
+            {
+                !_.isEmpty(data) &&
+                <React.Fragment>
+                    <Box>
+                        <Swiper autoplay={{
+                            delay: 5000,
+                            disableOnInteraction: false,
+                        }}
+                                pagination={{
+                                    clickable: true,
+                                }} modules={[Autoplay, Pagination]} className="mySwiper">
+
+                            {data.reviews.reviews.map((step, index) => (
+                                <div key={index}>
+                                    <SwiperSlide className='main-div'>
+                                        <Typography className='mainTitle'>
+                                            {step.title}
+                                        </Typography>
+                                        <Typography
+                                            className='star'
+                                        >
+                                            <StyledRating className='rating-star'
+                                                          name="simple-controlled"
+                                                          value={step.rating}
+                                                // onChange={(event, newValue) => {
+                                                //     setValue(newValue);
+                                                // }}
+                                            />
+                                        </Typography>
+                                        <Typography className='details'>
+                                            {step.description}
+                                        </Typography>
+                                        <Typography>
+                                            {step.name}
+                                        </Typography>
+                                        <Typography className='ceoName'>
+                                            {step.reviewer}
+                                        </Typography>
+                                    </SwiperSlide>
+                                </div>
+                            ))}
+                        </Swiper>
+                    </Box>
+                </React.Fragment>
+            }
         </BoxWrapper>
     );
 }

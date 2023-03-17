@@ -2,6 +2,7 @@ import {Button, styled, Typography} from "@mui/material";
 import {Box} from "@mui/system";
 import React from "react";
 import {Link} from "gatsby";
+import * as _ from "lodash";
 
 const Treaty = (props) => {
     const BoxWrapper = styled(Box)(() => ({
@@ -120,12 +121,11 @@ const Treaty = (props) => {
                     </Typography>
                     <Box className='btn-box'>
                         <Link href={props.link} className="btn">
-                            Learn More
+                            {props.button_text ? props.button_text : 'Learn More'}
                         </Link>
                     </Box>
                 </Box>
             </BoxWrapper>
-
         </React.Fragment>
     )
 }
