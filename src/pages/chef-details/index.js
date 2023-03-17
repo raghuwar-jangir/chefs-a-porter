@@ -38,11 +38,9 @@ import {isMobile} from "react-device-detect";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import DiningPage from "../../components/DiningPage";
 import ImagePopCarousel from "../../components/ImagePopCarousel";
-import GalleryCarousel from "../../components/GalleryCarousel";
 import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import {navigate} from "gatsby";
-import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
 import GalleryCarousel from "../../components/GalleryCarousel"
 
 
