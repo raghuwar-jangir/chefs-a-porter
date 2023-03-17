@@ -1,96 +1,133 @@
 import React from 'react'
-import { Box, Divider, Stack, styled, Typography } from '@mui/material';
+import { Box,styled, Typography } from '@mui/material';
 import Rebook from './../assets/images/rebook.png'
 import { navigate } from "gatsby";
+import chef from '../assets/images/chef1.png'
+import chef2 from '../assets/images/chef2.png'
 
 const Privee = (props) => {
     const MainContentBox = styled(Box)({
-        position: 'relative',
-        '.saff-title': {
-            fontSize: '24px',
-            // fontWeight: '700',
-            lineHeight: '30px',
-            textAlign: 'center',
-            color: '#FBFBFB',
-            fontFamily: 'Bon Vivant',
-            letterSpacing: '0.06em',
-            fontStyle:'normal'
-        },
-        '.saff-parent': {
-            padding: '16px',
-            width:'488px',
-            height:'88px',
-            backgroundColor: '#101418',
-        },
-        '.sub-description': {
-            color: '#C6A87D',
-            fontSize: '16px',
-            lineHeight: '24px',
-            fontWeight: '250',
-            padding:'0px 5px'
-        },
-        '.sub-stack': {
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '12px 0px 0px 0px',
-        },
-        '.main-chaf-image': {
-            height: '426px',
+        '.grid': {
+            display: 'grid',
+            gridTemplate:'repeat(1, 1fr) / repeat(3, 3fr)',
+            gap: '40px',
+            height:'1200px',
+            overflow:'hidden',
+            paddingLeft:'0.5rem',
+            paddingRight:'0.5rem'
+          },
+          '.privee-img':{
+            width:'100%',
             objectPosition:'top',
-            objectFit: 'cover',
-            width:'520px'
+            objectFit:'cover',
+            height:'426px'
+          },
+          ".name-box":{
+            padding: '16px 20px',
+            background: '#101418',
+            position: 'relative',
+            bottom: '5px'
         },
-        '.sub-box': {
+        '.chef-title':{
+            display: 'flex',
+            placeContent: 'center',
+            color: '#FBFBFB',
+            fontSize: '20px',
+        lineHeight: '25px',
+        marginBottom: '6px',
+        fontFamily:'Bon Vivant ',
+        fontWeight:700,
+        letterSpacing:'0.06em'
+    
+        },
+        '.chef-details':{
+            textAlign: 'center',
+        fontSize: '16px',
+        lineHeight: '19px',
+        fontFamily:'Proxima Nova Alt',
+        fontStyle: 'normal',
+        fontWeight: '250',
+        letterSpacing: '0.02em',
+        color: 'rgba(198, 168, 125, 0.8)',
+        position: 'relative',
+        paddingTop: '6px',
+        },
+        '.line':{
+        position: 'relative',
+        width: '1px',
+        height: '100%',
+        margin: '0 5px'
+        },
+        '.rebook-title':{
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+    fontWeight: 300,
+    fontSize: '16px',
+    lineHeight: '19px',
+    textAlign: 'right',
+    letterSpacing: '0.02em',
+    color: '#C6A87D',
+    padding:'5px 20px 5px 0px'
+        },
+        '.rebook-img':{
+            objectFit: 'contain',
+            marginRight: '4px',
+            width:'12px',
+            height:'16px',
+            paddingTop:'5px'
+        },
+        '.rebook':{
             position: 'absolute',
-            backgroundColor: '#101418',
-            width:'520px',
-            top: '0px', left: '0px'
+            background: '#101418',
+            display: 'flex',
+            placeContent: 'flex-end',
+            top: '0px',
+            width:'100%',
         },
-        '.top-box': {
-            fontWeight: 300,
-            fontSize: '16px',
-            padding: '5px 20px',
-            textAlign: 'right',
-            letterSpacing: '0.02em',
-            color: '#C6A87D',
-        },
-
-        "@media (min-width: 1px) and (max-width:1024px)": {
-            '.saff-title': {
-                fontSize: '14px',
+          '.cell': {
+            position:'relative'
+          },
+          "@media (min-width: 768px) and (max-width:990px)": {
+            '.grid':{
+                height:'100%'
             },
-            '.sub-description': {
-                fontSize: '12px',
-            },
-            '.saff-parent': {
-                padding: '14px 8px'
-            },
-        },
-        "@media (min-width: 320px) and (max-width:1024px)": {
-            '.main-chaf-image': {
-                height: '220px',
-                objectPosition:'top',
-                objectFit: 'cover',
-                width:'100%'
-            },
-            '.saff-parent': {
-                padding: '16px',
-                width:'auto',
-                height:'88px',
-                backgroundColor: '#101418',
-            },
-            '.sub-box':{
-                width:'100%',
-            },
-            '.top-box':{
-                fontWeight: 300,
-                fontSize: '12px',
-                padding: '1px 12px',
-                textAlign: 'right',
-                letterSpacing: '0.02em',
-                color: '#C6A87D',
+            '.privee-img':{
+                height:'553px'
             }
-        }
+          },
+          "@media (min-width: 1px) and (max-width:767px)": {
+            '.grid':{
+                gridTemplate:'repeat(1, 1fr) / repeat(2, 2fr)',
+                gap:'15px',
+                marginTop:'40px',
+                paddingTop:'40px',
+                height:'100%'
+            },
+            '.privee-img':{
+                height:'220.24px',
+                objectPosition:'center'
+            },
+            '.chef-title':{
+                fontSize:'14px',
+                marginBottom:'6px'
+            },
+            '.chef-details':{
+                fontSize:'12px',
+                lineHeight:'15px',
+                paddingTop:'0px'
+            },
+            '.name-box':{
+                padding:'8px'
+            },
+            '.rebook-title':{
+                fontSize:'12px',
+                lineHeight:'15px'
+            },
+            '.rebook-img':{
+                width:'11px',
+                height:'13px'
+            }
+          }
     })
 
     const handleClick = () =>{
@@ -99,31 +136,82 @@ const Privee = (props) => {
 
     return (
         <React.Fragment>
-            {/* <div style={{ border: '2px solid green' }}> */}
             <MainContentBox onClick={handleClick}>
-                <img src={props.image} alt="saffImage" style={{ verticalAlign: 'top' }} width={'100%'} className='main-chaf-image' />
-                <Box className='saff-parent'>
-                    <Typography className='saff-title'>
-                        Madhav Dayal
-                    </Typography>
-                    <Stack className='sub-stack' direction="row"
-                        divider={<Divider orientation="vertical" flexItem color="#C6A87D" />}
-                        spacing={0}>
-                        <Typography className="sub-description"> Thai </Typography>
-                        <Typography className='sub-description'> Japanese </Typography>
-                        <Typography className='sub-description'> Parsi </Typography>
-                    </Stack>
-                    {
-                        props.isLabelShow &&
-                        <Box className='sub-box'>
-                            <Box className='top-box'>
-                                <img src={Rebook} alt='RebookImg' width={"12px"} height={"16px"} /> Rebook
-                            </Box>
-                        </Box>
-                    }
-                </Box>
+                 <div className="grid">
+      <div className="cell"><img className='privee-img' src={chef}/>
+      <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
+                                <Box className="chef-details">
+                                    <span>Thai <span className='line'>|</span></span>
+                                    <span>Japanese <span className='line'>|</span></span>
+                                    <span>Parsi</span>
+                                </Box>
+                            </Box></div>
+      <div className="cell"><img className='privee-img' src={chef2}/><Box  className='rebook'><img className='rebook-img' src={Rebook}/><Typography className='rebook-title'>Rebook</Typography></Box>
+      <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
+                                <Box className="chef-details">
+                                    <span>Thai <span className='line'>|</span></span>
+                                    <span>Japanese <span className='line'>|</span></span>
+                                    <span>Parsi</span>
+                                </Box>
+                            </Box></div>
+      <div className="cell"><img className='privee-img' src={chef}/>
+      <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
+                                <Box className="chef-details">
+                                    <span>Thai <span className='line'>|</span></span>
+                                    <span>Japanese <span className='line'>|</span></span>
+                                    <span>Parsi</span>
+                                </Box>
+                            </Box></div>
+      <div className="cell"><img className='privee-img' src={chef2}/><Box  className='rebook'><img className='rebook-img' src={Rebook}/><Typography className='rebook-title'>Rebook</Typography></Box>
+      <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
+                                <Box className="chef-details">
+                                    <span>Thai <span className='line'>|</span></span>
+                                    <span>Japanese <span className='line'>|</span></span>
+                                    <span>Parsi</span>
+                                </Box>
+                            </Box></div>
+      <div className="cell"><img className='privee-img' src={chef}/>
+      <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
+                                <Box className="chef-details">
+                                    <span>Thai <span className='line'>|</span></span>
+                                    <span>Japanese <span className='line'>|</span></span>
+                                    <span>Parsi</span>
+                                </Box>
+                            </Box></div>
+      <div className="cell"><img className='privee-img' src={chef2}/><Box  className='rebook'><img className='rebook-img' src={Rebook}/><Typography className='rebook-title'>Rebook</Typography></Box>
+      <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
+                                <Box className="chef-details">
+                                    <span>Thai <span className='line'>|</span></span>
+                                    <span>Japanese <span className='line'>|</span></span>
+                                    <span>Parsi</span>
+                                </Box>
+                            </Box></div>
+      <div className="cell"><img className='privee-img' src={chef}/>
+      <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
+                                <Box className="chef-details">
+                                    <span>Thai <span className='line'>|</span></span>
+                                    <span>Japanese <span className='line'>|</span></span>
+                                    <span>Parsi</span>
+                                </Box>
+                            </Box></div>
+      <div className="cell"><img className='privee-img' src={chef2}/><Box  className='rebook'><img className='rebook-img' src={Rebook}/><Typography className='rebook-title'>Rebook</Typography></Box>
+      <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
+                                <Box className="chef-details">
+                                    <span>Thai <span className='line'>|</span></span>
+                                    <span>Japanese <span className='line'>|</span></span>
+                                    <span>Parsi</span>
+                                </Box>
+                            </Box></div>
+      <div className="cell"><img className='privee-img' src={chef}/>
+      <Box className="name-box" ><Typography className='chef-title'>Madhav Dayal</Typography>
+                                <Box className="chef-details">
+                                    <span>Thai <span className='line'>|</span></span>
+                                    <span>Japanese <span className='line'>|</span></span>
+                                    <span>Parsi</span>
+                                </Box>
+                            </Box></div>
+    </div>
             </MainContentBox>
-            {/* </div> */}
         </React.Fragment >
     )
 }
