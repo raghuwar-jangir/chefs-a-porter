@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import {
     Box,
     Button,
@@ -61,6 +61,7 @@ import SupperClubImg from "../assets/images/SupperClubImg.png";
 import ClubSection from "../components/ClubSection";
 import DiningExperienceCarousel from "../components/DiningExperienceCarousel";
 import axios from "axios";
+import CmsContext from "../context/CmsContext";
 
 
 const MainBoxContent = styled(Box)({
@@ -72,7 +73,7 @@ const MainBoxContent = styled(Box)({
 const BoxWrapper = styled(Box)({
     '.home-banner': {
         marginTop: '80px',
-        backgroundImage: `url(${homeBanner})`,
+        // backgroundImage: `url(${homeBanner})`,
         backgroundSize: 'cover',
         // padding: '50px 120px',
         backgroundPosition: 'center',
@@ -877,10 +878,6 @@ const BoxWrapper = styled(Box)({
 
 })
 
-function FooterMobile() {
-    return null;
-}
-
 const HomePage = () => {
     const itemData = [
         {
@@ -928,38 +925,23 @@ const HomePage = () => {
         }
     ];
 
+    const {data} = useContext(CmsContext);
+    console.log('==========data', data)
+
     const handleClick = () => {
         navigate('/privee-viewmore', {state: true});
     }
-
-    React.useEffect(() => {
-        axios.get("https://chefv2.hypervergedemo.site/v1/cms/home")
-            .then(response => {
-                console.log("response======>", response);
-            })
-            .catch(err => {
-                console.log("Error")
-            })
-    }, [])
 
     return (
         <React.Fragment>
             <Navbar isIcon={false} isImage={true}/>
             <BoxWrapper>
-                {/* //! Header for home Screen with title (Mobile-screen)  */}
-
-                {/*<MobileView>*/}
-                {/*    <MainBoxContent>*/}
-                {/*        <img src={LightThemeIcon} alt="title-text" className='MobileLightThemeIcon'/>*/}
-                {/*    </MainBoxContent>*/}
-                {/*</MobileView>*/}
-                {/* //! Browser view for main-home screen */}
-
-                <Box className="home-banner">
+                <Box className="home-banner" sx={{backgroundImage: `url(${homeBanner})`,}}>
                     <Box className="row justify-content-center">
                         <Box className="chef-container">
                             <Box className="pe-fo-exp">
-                                <Typography className="hotchef-title">The Hottest Chef’s Tables in Town.</Typography>
+                                {/*<Typography className="hotchef-title">The Hottest Chef’s Tables in Town.</Typography>*/}
+                                <Typography className="hotchef-title">{data.header.title}</Typography>
                                 <Formik
                                     initialValues={{
                                         city: 'Mumbai',
@@ -1197,7 +1179,8 @@ const HomePage = () => {
                         </Box>
                         <Box className="privee-details">
                             <Typography className="privee-card-title">Privee</Typography>
-                            <Typography className='privee-card-details'>Dine in the comfort of your home with friends
+                            <Typography className='privee-card-details'>Dine in the comfort of your home with
+                                friends
                                 and family</Typography>
                             <Typography><Link href="/privee" className="privee-card-link">View
                                 Experiences</Link></Typography>
@@ -1228,18 +1211,19 @@ const HomePage = () => {
                 <TestimonialCarousel/>
                 <Box className="gallery">
                     <Box>
-                        <Typography className='gallery-heading'>Food that makes you drool!</Typography>
+                        {/*<Typography className='gallery-heading'>Food that makes you drool!</Typography>*/}
+                        <Typography className='gallery-heading'>{data.food_drools.title}</Typography>
                     </Box>
                     <ImageList variant="masonry"
                                sx={{width: '100%', height: '100%'}}
                                cols={3}
                                gap={20}
                                rowHeight={300}>
-                        {itemData.map((item) => (
-                            <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
+                        {data.food_drools.content.map((item) => (
+                            <ImageListItem key={item} cols={item.cols || 1} rows={item.rows || 1}>
                                 <img
-                                    src={item.img}
-                                    alt={item.title}
+                                    src={item}
+                                    // alt={item.title}
                                     loading="lazy"
                                 />
                             </ImageListItem>
@@ -1267,13 +1251,15 @@ const HomePage = () => {
                 </Box>
                 <Box className="treat">
                     <Grid className="treaty-card">
-                        <Grid className="treat-card1" xs={6} md={4} sm={4}><Treaty treatTitle="#Treat your loved ones"
-                                                                                   mainTitle="Give the gift of an unforgettable food experience"
-                                                                                   detail="send a gift card to your friends and family"
-                                                                                   link={'/gift-cards'}/></Grid>
-                        <Grid className="treat-card2" xs={6} md={4} sm={4}><Treaty treatTitle="#Patron Privilage"
-                                                                                   mainTitle="Become a patron and get exclusive access to our top experiences"
-                                                                                   link={'/become-a-patron'}/></Grid>
+                        <Grid className="treat-card1" xs={6} md={4} sm={4}><Treaty
+                            treatTitle="#Treat your loved ones"
+                            mainTitle="Give the gift of an unforgettable food experience"
+                            detail="send a gift card to your friends and family"
+                            link={'/gift-cards'}/></Grid>
+                        <Grid className="treat-card2" xs={6} md={4} sm={4}><Treaty
+                            treatTitle="#Patron Privilage"
+                            mainTitle="Become a patron and get exclusive access to our top experiences"
+                            link={'/become-a-patron'}/></Grid>
                     </Grid>
                 </Box>
                 <Box className="join-table join-table1">
@@ -1284,14 +1270,16 @@ const HomePage = () => {
                             </Grid>
                             <Grid xl={6} lg={6} xs={6} md={6} sm={12} xs={12} className="join-table-title">
                                 <Typography className='join-table-heading'>Join our table</Typography>
-                                <Typography className='join-table-details'>Receive recipes , tips and tricks from top
+                                <Typography className='join-table-details'>Receive recipes , tips and tricks
+                                    from top
                                     chefs from around the globe, and exclusive
                                     offers right to your inbox.</Typography>
                                 <form action="" accept-charset="UTF-8" method="get">
                                     <Box className="input-group">
                                         <Box className='input-group'>
                                             <Box style={{width: '100%', display: 'flex'}}>
-                                                <TextField className='input-field' id='email-address' size='small'
+                                                <TextField className='input-field' id='email-address'
+                                                           size='small'
                                                            placeholder='Your email address' variant='outlined'
                                                            InputProps={{
                                                                disableUnderline: true
@@ -1303,7 +1291,8 @@ const HomePage = () => {
                                 </form>
                                 <Typography className="join-table-details">By signing up, I agree to Chef’s a
                                     porter’s <a
-                                        href="" className='sign-in'>T&C’s</a> and <a href="" className='sign-in'>Privacy
+                                        href="" className='sign-in'>T&C’s</a> and <a href=""
+                                                                                     className='sign-in'>Privacy
                                         Policy</a></Typography>
                                 <Box className="find-us">
                                     <Typography className="find-us-title">Find us on:</Typography>
@@ -1318,14 +1307,15 @@ const HomePage = () => {
                 </Box>
                 <CorporateBooking/>
                 <Box className="fresh-blog">
-                    <Typography className='fresh-food-heading'>Fresh from the blog</Typography>
-                    {freshFoodItems.map((item, index) => (
+                    <Typography className='fresh-food-heading'>{data.blog.title}</Typography>
+                    {data.blog.content.map((item, index) => (
                         <Box className='fresh-food-detail'>
                             <Box key={index} className="food-box">
-                                <img src={item.img} className="fresh-food-img"/>
+                                <img src={item.image} className="fresh-food-img"/>
                                 <Box style={{marginLeft: '20px'}}>
                                     <Typography className='fresh-food-title'>{item.title}</Typography>
-                                    <Typography className='fresh-food-sub-details'>{item.subTitle}</Typography>
+                                    <Typography
+                                        className='fresh-food-sub-details'>{item.description}</Typography>
                                 </Box>
                             </Box>
                             <Box><KeyboardArrowRightIcon className="fresh-food-arrow"/></Box>

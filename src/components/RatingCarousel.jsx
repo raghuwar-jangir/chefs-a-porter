@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { useState } from 'react';
+import {useContext, useState} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { Swiper, SwiperSlide } from "swiper/react";
+import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import {  Autoplay,Pagination } from "swiper";
+import {Autoplay, Pagination} from "swiper";
 import {styled} from '@mui/system';
 import {Rating} from '@mui/material';
+import CmsContext from "../context/CmsContext";
 
 const images = [
     {
@@ -39,7 +40,11 @@ const images = [
 
 
 const RatingCarousel = ({backgroundColor}) => {
-    const [value, setValue] = useState(4);
+
+    const {data} = useContext(CmsContext);
+    console.log('ratingData===', data)
+
+    const [value, setValue] = useState();
 
     const StyledRating = styled(Rating)({
         '& .MuiRating-icon': {
@@ -197,15 +202,15 @@ const RatingCarousel = ({backgroundColor}) => {
             },
             '.swiper-pagination-bullet':{
                 width:'4px',
-            height:'4px',
-            margin:'0px 5px !important'
+                height:'4px',
+                margin:'0px 5px !important'
             }
         },
         "@media (min-width: 430px) and (max-width:768px)": {
             '.swiper-pagination-bullet':{
                 width:'4px',
-            height:'4px',
-            margin:'0px 5px !important'
+                height:'4px',
+                margin:'0px 5px !important'
             }
         }
     }))
@@ -214,38 +219,67 @@ const RatingCarousel = ({backgroundColor}) => {
             // sx={{ maxWidth: 400, flexGrow: 1 }}
         >
             <Box>
-            <Swiper autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-            pagination={{
-          clickable: true,
-        }} modules={[Autoplay,Pagination]} className="mySwiper">
-                    {images.map((step, index) => (
+                <Swiper autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: false,
+                }}
+                        pagination={{
+                            clickable: true,
+                        }} modules={[Autoplay, Pagination]} className="mySwiper">
+                    {/*{images.map((step, index) => (*/}
+                    {/*    <div key={index}>*/}
+                    {/*        <SwiperSlide className='main-div'>*/}
+                    {/*            <Typography className='mainTitle'>*/}
+                    {/*                {step.mainTitle}*/}
+                    {/*            </Typography>*/}
+                    {/*            <Typography*/}
+                    {/*                className='star'*/}
+                    {/*            >*/}
+                    {/*                <StyledRating className='rating-star'*/}
+                    {/*                              name="simple-controlled"*/}
+                    {/*                              value={value}*/}
+                    {/*                              onChange={(event, newValue) => {*/}
+                    {/*                                  setValue(newValue);*/}
+                    {/*                              }}*/}
+                    {/*                />*/}
+                    {/*            </Typography>*/}
+                    {/*            <Typography className='details'>*/}
+                    {/*                {step.details}*/}
+                    {/*            </Typography>*/}
+                    {/*            <Typography>*/}
+                    {/*                {step.name}*/}
+                    {/*            </Typography>*/}
+                    {/*            <Typography className='ceoName'>*/}
+                    {/*                {step.ceoName}*/}
+                    {/*            </Typography>*/}
+                    {/*        </SwiperSlide>*/}
+                    {/*    </div>*/}
+                    {/*))}*/}
+                    {data.reviews.reviews.map((step, index) => (
                         <div key={index}>
                             <SwiperSlide className='main-div'>
                                 <Typography className='mainTitle'>
-                                    {step.mainTitle}
+                                    {step.title}
                                 </Typography>
                                 <Typography
                                     className='star'
                                 >
                                     <StyledRating className='rating-star'
                                                   name="simple-controlled"
-                                                  value={value}
-                                                  onChange={(event, newValue) => {
-                                                      setValue(newValue);
-                                                  }}
+                                                  value={step.rating}
+                                                  // onChange={(event, newValue) => {
+                                                  //     setValue(newValue);
+                                                  // }}
                                     />
                                 </Typography>
                                 <Typography className='details'>
-                                    {step.details}
+                                    {step.description}
                                 </Typography>
                                 <Typography>
                                     {step.name}
                                 </Typography>
                                 <Typography className='ceoName'>
-                                    {step.ceoName}
+                                    {step.reviewer}
                                 </Typography>
                             </SwiperSlide>
                         </div>
