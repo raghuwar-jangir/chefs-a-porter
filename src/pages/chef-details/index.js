@@ -427,9 +427,9 @@ const ChefDetails = (props) => {
                 }
             },
             "@media (min-width: 1px) and (max-width:425px)": {
-                '.supper-chef-details': {
-                    display: 'none'
-                },
+                // '.supper-chef-details': {
+                //     display: 'none'
+                // },
                 '.tz-gallery': {
                     display: 'none'
                 },
@@ -444,6 +444,7 @@ const ChefDetails = (props) => {
                 '.chef-header': {
                     fontSize: '24px',
                     lineHeight: '30px',
+                    textAlign:'center'
                 },
                 '.mobile-show': {
                     display: 'block'
@@ -621,14 +622,6 @@ const ChefDetails = (props) => {
         <React.Fragment>
             <BoxWrapper>
                 <Navbar heading="Privee" isColor={true} isIcon={true}/>
-                {/*{isMobile ? (*/}
-                {/*    <Box className='header-club'>*/}
-                {/*        <ArrowBackIcon className="header-icon"/>*/}
-                {/*        <Typography className="chef-mobile-heading">Privee</Typography>*/}
-                {/*    </Box>*/}
-                {/*) : (*/}
-                {/*    ''*/}
-                {/*)}*/}
                 <Box className="supper-gallery chef-ind">
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">
