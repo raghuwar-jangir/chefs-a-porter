@@ -25,8 +25,6 @@ import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import {Link, navigate} from "gatsby";
 import LightThemeIcon from "../assets/images/lightThemeIcon.png";
 import JoinTableImg from "../assets/images/jointhetable.png";
-import priveeVideo from "../assets/video/privee.mp4";
-import supperVideo from "../assets/video/supper.mp4";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import footerArrow from "../assets/images/footer-arrow.png";
@@ -908,6 +906,7 @@ const HomePage = () => {
     ];
 
     const {data} = useContext(CmsContext);
+    console.log()
 
     const handleClick = () => {
         navigate('/privee-viewmore', {state: true});

@@ -165,9 +165,9 @@ const TestimonialCarousel = () => {
                                     <Typography className='details'>
                                         {step.description}
                                     </Typography>
-                                    {/*<Typography>*/}
-                                    {/*    {step.name}*/}
-                                    {/*</Typography>*/}
+                                    <Typography>
+                                        {step.name}
+                                    </Typography>
                                 </SwiperSlide>
                             </div>
                         ))}
