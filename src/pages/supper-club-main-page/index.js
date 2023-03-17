@@ -1,9 +1,17 @@
 import React from "react";
-import { Box,Typography,styled } from "@mui/system";
+import { Box, styled} from "@mui/system";
+import { Typography } from "@mui/material";
 import supperVideo from '../../assets/video/supper.mp4';
 import NavbarComponent from '../../components/NavbarComponent';
 import DownArrow from '../../assets/images/down-arrow.png';
+import Tabs from "@mui/joy/Tabs";
+import TabList from "@mui/joy/TabList";
+import Tab from "@mui/joy/Tab";
+import TabPanel from "@mui/joy/TabPanel";
 import '../../assets/styles/fontStyle.css';
+import UpcomingSupperClubCard from "../../components/UpcomingSupperClubCard";
+import exImg from  '../../assets/images/supper-ex.png';
+import PriveeRatingComponent from '../../components/PriveeRatingComponent'
 
 const SupperClubMainComponent = () => {
 const MainBox = styled(Box)(()=>({
@@ -63,6 +71,124 @@ const MainBox = styled(Box)(()=>({
     '.down-arrow-op': {
         opacity: '0.38',
     },
+    '.upcoming':{
+        background:'#FBFBFB'
+    },
+    '.upcoming-container':{
+        padding:'60px 120px'
+    },
+    '.child-upcoming':{
+        display:'flex',
+        flexWrap:'wrap',
+        justifyContent:'center'
+        // marginLeft:'1.5rem',
+        // marginRight:'1.5rem'
+    },
+    '.supper-box':{
+        flex:'0 0 auto',
+    width: '100%',
+    maxWidth: '100%',
+    paddingLeft:'1.5rem',
+    paddingRight:'1.5rem'
+    },
+    '.upcoming-supper-header':{
+        fontFamily: 'Bon Vivant',
+        fontStyle: 'normal',
+        fontWeight: 700,
+        fontSize: '24px',
+        lineHeight: '24px',
+        letterSpacing: '0.06em',
+        color: '#050405',
+        textAlign: 'center',
+        marginBottom: '30px'
+    },
+    '.Joy-selected': {
+        fontFamily: 'ProximaNovaA-Regular',
+        fontStyle: 'normal',
+        fontWeight: 400,
+        fontSize: '20px',
+        lineHeight: '24px',
+        color: '#FBFBFB !important',
+        borderRadius: '0px',
+        margin:'8px 0px',
+        backgroundColor:'#080B0E'
+    },
+    '.MuiTab-variantPlain': {
+        fontFamily: 'ProximaNovaA-Regular',
+        fontStyle: 'normal',
+        fontWeight: 400,
+        fontSize: '20px',
+        lineHeight: '24px',
+        color: '#080B0E',
+        borderRadius: '0px',
+        margin:'8px 0px',
+        border:'0.5px solid #080B0E',
+        flexDirection:'column'
+    },
+    '.css-1lhe3ax-JoyTabPanel-root': {
+        padding: '0px'
+    },
+    // ".MuiTabList-root": {
+    //     width: "96% !important",
+    //     left: "2% !important",
+    // },
+    '.what-we-cooking':{
+        background:'#C2BAA6'
+    },
+    '.cooking-box':{
+        padding:'60px 120px'
+    },
+    '.join-table':{
+        background:'rgba(220, 215, 203, 1) !important'
+    },
+    '.table-box':{
+        display:'flex',
+        flexWrap:'wrap'
+    },
+    '.table-child':{
+        flex: '0 0 auto',
+    width:' 50%',
+    maxWidth:'100%'
+    },
+    '.table-img':{
+        width: '100%',
+    height: '491px',
+    objectFit: 'cover',
+    },
+    '.table-child-2':{
+        padding: '40px 120px 40px 40px!important',
+    placeSelf:' center',
+    },
+    '.join-table-title':{
+        fontFamily: 'Bon Vivant',
+    fontStyle: 'normal', 
+    fontWeight: 700, 
+    fontSize: '24px', 
+    lineHeight: '30px', 
+    letterSpacing: '0.06em', 
+    color: '#080B0E', 
+    marginBottom: '40px', 
+    },
+    '.table-li':{
+        color: '#C6A87D',
+    fontSize: '30px',
+    },
+    '.li-point':{
+        fontFamily: 'ProximaNovaA-Regular',
+    fontStyle: 'normal',
+    fontSize: '20px',
+    lineHeight: '30px',
+    color: '#222222',
+    },
+    '.li-details':{
+        fontFamily: 'ProximaNovaA-Regular',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: '20px',
+    lineHeight: '30px',
+    color: '#222222',
+    marginBottom: '16px',
+    }
 }))
     return(
         <React.Fragment>
@@ -77,13 +203,116 @@ const MainBox = styled(Box)(()=>({
                                 </video>
                             </Box>
                             <Box className="arrows">
-                                {/* <Typography className="home-text">We believe in good food for all!</Typography> */}
+                                <Typography className="home-text">We believe in good food for all!</Typography>
                                 <img src={DownArrow} alt="down" className="down-arrow-op"/>
                                 <img src={DownArrow} alt="down" className="down-arrow"/>
                             </Box>
                         </Box>
                     </Box>
-                </Box>
+                    </Box>
+                    <Box className='upcoming'>
+                        <Box className='upcoming-container'>
+                            <Box className='child-upcoming'>
+                            <Typography className="upcoming-supper-header">Upcoming Supper Clubs</Typography>
+                            </Box>
+                            <Box className='tab-box'> 
+                            <Tabs
+                                    defaultValue={0}
+                                    sx={{"--Tabs-gap": "0px", backgroundColor: "#FBFBFB"}}
+                                >
+                                    <TabList>
+                                        <Tab className="tab-box" value={0}>
+                                        Mumbai
+                                        </Tab>
+                                        <Tab className="tab-box" value={1}>
+                                            Delhi
+                                        </Tab>
+                                        <Tab className="tab-box" value={2}>
+                                            Goa
+                                        </Tab>
+                                        <Tab className="tab-box" value={3}>
+                                            Banglore
+                                        </Tab>
+                                        <Tab className="tab-box" value={4}>
+                                            Hydrabad
+                                        </Tab>
+                                    </TabList>
+                                    <TabPanel value={0} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    <TabPanel value={1} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    <TabPanel value={2} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    <TabPanel value={3} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    <TabPanel value={4} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    </Tabs>
+                            </Box>
+                        </Box>
+                    </Box>
+                    <Box className="what-we-cooking">
+                    <Box className='cooking-box'>
+                    <Box className='child-upcoming'>
+                            <Typography className="upcoming-supper-header">What's cooking this Month?</Typography>
+                            </Box>
+                            <Box className='tab-box'> 
+                            <Tabs
+                                    defaultValue={0}
+                                    sx={{"--Tabs-gap": "0px", backgroundColor: "transparent"}}
+                                >
+                                    <TabList>
+                                        <Tab value={0}>
+                                        This Week
+                                        <Typography>2-5 nov</Typography>
+                                        </Tab>
+                                        <Tab value={1}>
+                                            Next Week
+                                            <Typography>7-6 nov</Typography>
+                                        </Tab>
+                                        <Tab value={2}>
+                                        Next Month
+                                        <Typography>December</Typography>
+                                        </Tab>
+                                    </TabList>
+                                    <TabPanel value={0} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    <TabPanel value={1} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    <TabPanel value={2} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    <TabPanel value={3} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    </Tabs>
+                                    </Box>
+                    </Box>
+                    </Box>
+                    <Box className="join-table">
+         <Box className="table-box">
+               <Box className="table-child">
+                  <img src={exImg} className="table-img"/>
+               </Box>
+               <Box className="table-child-2">
+                  <Typography className="join-table-title">What to expect at a Supper Club?</Typography>
+                  <ul>
+                     <li  className="table-li"><Typography className="li-details"><b className="li-point">EAT</b> - Highly curated food from the hottest chefs around the world</Typography></li>
+                     <li  className="table-li"><Typography className="li-details"><b className="li-point">MEET</b> - A community of food enthusiasts in your city.</Typography></li>
+                     <li  className="table-li"><Typography className="li-details"><b className="li-point">EXPERIENCE</b> - Food like never before made for you by Chefs you've only heard of!</Typography></li>
+                     <li  className="table-li"><Typography className="li-details"><b className="li-point">EXPERIENCE</b> - Food like never before made for you by Chefs you've only heard of!</Typography></li>
+                  </ul>
+               </Box>
+         </Box>
+      </Box>
+      <PriveeRatingComponent/>
             </MainBox>
         </React.Fragment>
     )
