@@ -8,7 +8,7 @@ const TemptedYet = (props) => {
         '.template': [{
             display: 'none',
             padding: '0px 10px 24px',
-            backgroundColor: `${isTempted ? '#080B0E' : ''}`,
+            backgroundColor: `${isTempted ? '#080B0E' : '#FBFBFB'}`,
         },background],
         '.template-title': [{
             fontFamily: 'Bon Vivant',
@@ -26,6 +26,7 @@ const TemptedYet = (props) => {
         '.view-all': {
             marginTop: '40px',
             display: 'block',
+            marginBottom:'0px',
             width: 'auto',
             padding: '10px',
             textAlign: 'center',
@@ -52,6 +53,7 @@ const TemptedYet = (props) => {
                 marginTop: '5px',
                 color: '#080B0E',
                 background: '#C6A87D',
+                marginBottom:'0px'
             },
         },
 

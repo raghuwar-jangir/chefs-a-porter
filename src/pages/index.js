@@ -878,12 +878,12 @@ const BoxWrapper = styled(Box)({
 const HomePage = () => {
     const {data} = useContext(HomeContext);
 
-    {
-        !_.isEmpty(data) &&
-        console.log("Images=====>", data.food_drools.content.map((item) => {
-            return item
-        }));
-    }
+    // {
+    //     !_.isEmpty(data) &&
+    //     console.log("Images=====>", data.food_drools.content.map((item) => {
+    //         return item
+    //     }));
+    // }
 
 
     const itemData = [

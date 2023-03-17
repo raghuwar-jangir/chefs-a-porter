@@ -461,6 +461,14 @@ const BoxWrapper = styled(Box)(() => ({
             width: 'auto',
         },
     },
+    '@media(min-width:600px) and (max-width: 768px)': {
+        '.template':{
+            backgroundColor:'#FBFBFB !important'
+        },
+        '.template-title':{
+            color:'#080B0E !important'
+        }
+    }
 }))
 const PriveePage = () => {
     const [search, setSearch] = useState(false);

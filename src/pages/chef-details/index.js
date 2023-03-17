@@ -475,6 +475,12 @@ const ChefDetails = (props) => {
                     color: "#080B0E",
                     fontFamily: 'Bon Vivant'
                 },
+                '.template':{
+                    backgroundColor:'#FBFBFB !important'
+                },
+                '.template-title':{
+                    color:'#080B0E !important'
+                }
             },
             "@media (min-width: 320px) and (max-width:767px)": {
                 ".chef-mobile-heading": {
@@ -893,7 +899,7 @@ const ChefDetails = (props) => {
                 </Modal>
                 <NeedHelp/>
                 <Footer/>
-                <TemptedYet title={'Book an Experience'}/>
+                <TemptedYet isTempted={true} title={'Book an Experience'}/>
                 <FooterEnd/>
             </BoxWrapper>
         </React.Fragment>

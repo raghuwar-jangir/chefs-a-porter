@@ -427,6 +427,14 @@ const EventDetails = () => {
             '.invite-btn': {
                 width: '80px'
             }
+        },
+        '@media(min-width:600px) and (max-width: 768px)': {
+            '.template':{
+                backgroundColor:'#FBFBFB !important'
+            },
+            '.template-title':{
+                color:'#080B0E !important'
+            }
         }
     }));
     const style = {

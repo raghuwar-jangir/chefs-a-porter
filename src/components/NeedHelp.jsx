@@ -104,7 +104,7 @@ const NeedHelp = ({isColor}) => {
         },
         "@media (min-width: 768px) and (max-width:1024px)": {
             '.btn-2': {
-                marginLeft: '-1px !important',
+                marginLeft: '5px !important',
                 marginRight: '0px !important',
             }
         },

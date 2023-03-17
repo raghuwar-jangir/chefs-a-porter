@@ -1,12 +1,7 @@
-import { Box, Button, Grid, Stack, styled, Typography } from "@mui/material";
+import { Box, Button,styled, Typography } from "@mui/material";
 import React from "react";
 import Privee from "../../components/Privee";
-import chef from '../../assets/images/chef1.png'
-import chef2 from '../../assets/images/chef2.png'
 import Footer from "../../components/Footer";
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import { Link } from "gatsby";
-import { isMobile, MobileView } from "react-device-detect";
 import FoodCard from "../../components/FoodCard";
 import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
@@ -19,23 +14,14 @@ const OurChefsPage = () => {
         '.main-parent-box': {
             position: 'relative',
         },
-        ".header-club": {
-            padding: '15px',
-            backgroundColor: '#DCD7CB',
-        },
         ".main-heading": {
             fontWeight: 400,
-            fontSize: "26px",
+            fontSize: "24px",
             lineHeight: "24px",
             letterSpacing:'0.06em',
             textAlign: 'center', color: '#FBFBFB',
-            padding: '110px 0px 16px 0px',
+            padding: '120px 0px 0px 0px',
             fontFamily: 'Bon Vivant'
-        },
-        '.chef-title': {
-            color: '#FBFBFB',
-            fontSize: '32px', padding: '32px',
-            lineHeight: '40px', textAlign: 'center'
         },
         '.chef-content': {
             padding: '40px 120px'
@@ -45,75 +31,51 @@ const OurChefsPage = () => {
             display: 'block',
             width: '100%',
             bottom: 0,
-            /* left: 48%; */
             padding: '120px 0px',
             textAlign: 'center',
             background: 'linear-gradient(180deg,rgba(8, 11, 14, 0)-97.92%,rgba(8,11,14,0.6)45.9%)'
         },
-        '.btn': {
-            width: '420px',
-            fontSize: '24px',
-            lineHeight: '29px',
-            padding: '16px 10px',
-            fontWeight: 400,
-            border: '0.5px solid #C6A87D',
+        '.parent-view-button': {
+            textAlign: 'center',
+            padding:'0px 16px 0px 16px',
+            marginTop: '40px'
+        },
+        '.view-more': {
+            fontFamily:'Proxima Nova Alt',
+            fontSize: '16px',
+            fontWeight: 600,
+            lineHeight: '19px',
+            width: '100%',
             color: '#FBFBFB',
-            textTransform: 'capitalize',
-            borderRadius: '0px'
+            background: 'transparent',
+            border: '0.5px solid #C6A87D',
+            padding: '10px',
+            borderRadius:'1px',
+            textTransform:'math-auto'
         },
-        '.btn:hover': {
-            color: '#C6A87D',
+        "@media (min-width: 767px) and (max-width:2560px)": {
+            '.parent-view-button': {
+                display:'none'
+            }
         },
-        "@media (min-width: 1px) and (max-width:425px)": {
-            '.main-parent-box': {
-                position: 'static',
+        "@media (min-width: 768px) and (max-width:990px)": {
+            '.chef-content':{
+                padding:'40px 0px'
             },
-            '.chef-content': {
-                padding: '16px 16px'
-            }, '.footer-shadow': {
-                position: 'static',
-                padding: '20px 0px',
+            '.main-heading':{
+                padding:'82px 0px 0px 0px'
+            }
+        },
+        "@media (min-width: 1px) and (max-width:767px)": {
+            '.chef-content':{
+                padding:'40px 0px'
             },
-            '.btn': {
-                width: '420px',
-                fontSize: '16px',
-                lineHeight: '29px',
-                padding: '10px',
+            '.main-heading':{
+                display:'none'
             },
-            ".header-club": {
-                padding: '0px',
-            },
-            '.footer-text': {
-                width: '100%'
-            },
-            '.btn:hover': {
-                color: '#C6A87D',
-            }, ".main-heading": {
-                fontSize: "24px",
-                textAlign: 'center', color: '#000',
-                // padding: '16px',
-                fontFamily: 'Bon Vivant'
-            },
-            "@media (min-width: 1px) and (max-width:1024px)": {
-                '.btn':{
-                    width:'auto'
-            },
-            },
-            "@media (min-width: 320px) and (max-width:768px)": {
-                ".main-heading": {
-                    padding: '15px 0px 15px 0px !important',
-                    fontSize: "24px",
-                    textAlign: 'center', color: '#000',
-                    fontFamily: 'Bon Vivant'
-                },
-                ".chef-mobile-heading": {
-                    padding: '8px 0px !important',
-                    fontSize: "24px",
-                    textAlign: 'center',
-                    color: '#000',
-                    fontFamily: 'Bon Vivant'
-                },
-            },
+            '.footer-shadow':{
+                display:'none'
+            }
         }
     }))
 
@@ -122,53 +84,23 @@ const OurChefsPage = () => {
             <BoxWrapper>
                 <Navbar heading="Our Chefs"/>
                 <Box className="main-parent-box">
-                    {/*{isMobile ? (*/}
-                    {/*    <Box className='header-club'>*/}
-                    {/*        <Typography className="chef-mobile-heading">Our Chefs</Typography>*/}
-                    {/*    </Box>*/}
-                    {/*) : (*/}
-
-                    {/*)}*/}
                     <Typography className="main-heading">Our Chefs</Typography>
                     <Box className="chef-content">
-                        <Grid container spacing={{ xs: 2, md: 2 }}>
-                            <Grid item xl={4} sm={4} xs={6}>
-                                <Privee image={chef} />
-                            </Grid>
-                            <Grid item xl={4} sm={4} xs={6}>
-                                <Privee image={chef2} isLabelShow={true} />
-                            </Grid>
-                            <Grid item xl={4} sm={4} xs={6}>
-                                <Privee image={chef} />
-                            </Grid>
-                            <Grid item xl={4} sm={4} xs={6}>
-                                <Privee image={chef2} isLabelShow={true} />
-                            </Grid>
-                            <Grid item xl={4} sm={4} xs={6}>
-                                <Privee image={chef} />
-                            </Grid>
-                            <Grid item xl={4} sm={4} xs={6}>
-                                <Privee image={chef2} isLabelShow={true} />
-                            </Grid>
-                            <Grid item xl={4} sm={4} xs={6}>
-                                <Privee image={chef} />
-                            </Grid>
-                            <Grid item xl={4} sm={4} xs={6}>
-                                <Privee image={chef2} isLabelShow={true} />
-                            </Grid>
-                            <Grid item xl={4} sm={4} xs={6}>
-                                <Privee image={chef} />
-                            </Grid>
-                        </Grid>
+                        <Privee/>
+                        <Box className='parent-view-button'>
+                            <Button
+                                fullWidth
+                                className='view-more'
+                                variant="contained">
+                                View All Chefs
+                            </Button>
+                        </Box>
                     </Box>
                     <Box className="footer-shadow">
-                        <Button className="btn">View More Chefs</Button>
                     </Box>
                 </Box>
                 <NeedHelp/>
-                <MobileView>
-                    <FoodCard />
-                </MobileView>
+                <FoodCard />
                 <Footer />
                 <FooterEnd/>
             </BoxWrapper >
