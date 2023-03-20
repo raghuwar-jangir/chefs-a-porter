@@ -8,6 +8,7 @@ import tag from '../assets/images/tag-chef.png';
 import trending from '../assets/images/trending.png'
 import { Box } from "@mui/system";
 import '../assets/styles/fontStyle.css';
+import { Link } from "gatsby";
 
 const UpcomingSupperClubCard = () => {
     const cardDetails = [
@@ -140,6 +141,9 @@ const UpcomingSupperClubCard = () => {
             lineHeight: '19px',
             letterSpacing: '0.00938em',
         },
+        '.link':{
+            textDecoration:'none'
+        }
     })
     return(
         <React.Fragment>
@@ -147,8 +151,9 @@ const UpcomingSupperClubCard = () => {
             {cardDetails.map((item,index)=>(
                 <Box key={index}>
                     <Box sx={{position:'relative'}}>
+                    <Link className="link" href='/supper-club'>
             <img className='test-img' src={item.potImg}/>
-                        <Box  className='trending'><img className='trending-img' src={item.tend}/><Typography className='trending-title'>{item.trendDetails}</Typography></Box>
+                        {/* <Box  className='trending'><img className='trending-img' src={item.tend}/><Typography className='trending-title'>{item.trendDetails}</Typography></Box> */}
                         <Box className='supper-info' >
                             <Typography className='super-title'>{item.title}</Typography>
                             <Box className='super-chef-details'>
@@ -160,6 +165,7 @@ const UpcomingSupperClubCard = () => {
                                     className='tag-detail'>{item.priceDetails}</Typography></span>
                             </Box>
                             </Box>
+                            </Link>
                         </Box>
                         </Box>
                         ))}

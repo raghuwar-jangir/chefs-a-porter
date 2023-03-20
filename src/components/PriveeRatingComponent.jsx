@@ -39,7 +39,8 @@ const images = [
 ];
 
 
-const PriveeRatingComponent = ({backgroundColor}) => {
+const PriveeRatingComponent = (props) => {
+    const {background,padding,details} = props
     const [value, setValue] = useState(4);
 
     const StyledRating = styled(Rating)({
@@ -54,8 +55,8 @@ const PriveeRatingComponent = ({backgroundColor}) => {
     });
 
     const BoxWrapper = styled(Box)(() => ({
-        padding: '40px 150px',
-        background: '#DCD7CB',
+        padding: `${padding ? '80px 206px' : '40px 150px' }` ,
+        background: `${background ? '#FBFBFB' : '#DCD7CB' }`,
         color: '#222222',
         ".mainTitle": {
             fontSize: '24px ',
@@ -65,13 +66,13 @@ const PriveeRatingComponent = ({backgroundColor}) => {
             fontStyle: 'normal',
             fontWeight:700
         },
-        ".details": {
+        ".details": [{
             textAlign: 'center',
             fontSize: '24px',
             lineHeight: '29px',
             fontFamily: 'ProximaNovaA-Regular !important',
             padding: '0px 200px',
-        },
+        },details],
         ".star": {
             height: '40px',
             textAlign: "center",

@@ -8,16 +8,16 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import {Box, styled} from '@mui/material';
 import '../assets/styles/fontStyle.css';
 
-const Questions = ({isLightTheme = false}) => {
-
+const Questions = (props) => {
+    const {isLightTheme = false,wrapPadding} = props
     const [expanded, setExpanded] = React.useState(false)
 
     const WrapperBox = styled(Box)({
         background: `${isLightTheme ? '#FBFBFB' : "#080B0E"}`,
         textAlign: 'center',
-        '.WrapperBox': {
+        '.WrapperBox': [{
             padding: '80px 120px'
-        },
+        },wrapPadding],
         '.title-question': {
             fontSize: '24px',
             fontFamily: 'Bon Vivant',

@@ -12,6 +12,15 @@ import '../../assets/styles/fontStyle.css';
 import UpcomingSupperClubCard from "../../components/UpcomingSupperClubCard";
 import exImg from  '../../assets/images/supper-ex.png';
 import PriveeRatingComponent from '../../components/PriveeRatingComponent'
+import LookLikeCarousel from "../../components/LookLikeCarousel";
+import ChefCarousel from  '../../components/ChefCarousel';
+import DiningExperienceCarousel from '../../components/DiningExperienceCarousel.jsx';
+import Questions from "../../components/Questions";
+import NeedHelp from "../../components/NeedHelp";
+import Footer from "../../components/Footer";
+import FooterEnd from "../../components/FooterEndSection";
+import RatingCarousel from "../../components/RatingCarousel";
+import BehindScenesCarousel from "../../components/BehindScenesCarousel";
 
 const SupperClubMainComponent = () => {
 const MainBox = styled(Box)(()=>({
@@ -123,11 +132,29 @@ const MainBox = styled(Box)(()=>({
         borderRadius: '0px',
         margin:'8px 0px',
         border:'0.5px solid #080B0E',
-        flexDirection:'column'
+        flexDirection:'column',
+    },
+    '.css-qi8np3-JoyTabPanel-root':{
+            animationName: 'fadeIn',			
+            animationDuration: '1s',      		
+            animationIterationCount:'1'
+    },
+    '@keyframes fadeIn': { 
+        '0%' :{opacity: '0'} ,
+       '100%' :{opacity: '1'} 
+        }   ,
+    '.tab-box':{
+        height:'48px'
+    },
+    '.css-130r91k-JoyTabList-root':{
+        gridGap:'20px !important',
     },
     '.css-1lhe3ax-JoyTabPanel-root': {
-        padding: '0px'
+        padding: '0px',
     },
+    '.cooking-tab':{
+        height:'67.8px'
+    },  
     // ".MuiTabList-root": {
     //     width: "96% !important",
     //     left: "2% !important",
@@ -142,8 +169,9 @@ const MainBox = styled(Box)(()=>({
         background:'rgba(220, 215, 203, 1) !important'
     },
     '.table-box':{
-        display:'flex',
-        flexWrap:'wrap'
+        display:'inline-flex',
+        width:'100%'
+        // flexWrap:'wrap'
     },
     '.table-child':{
         flex: '0 0 auto',
@@ -188,8 +216,50 @@ const MainBox = styled(Box)(()=>({
     lineHeight: '30px',
     color: '#222222',
     marginBottom: '16px',
+    },
+    '.supper-heading':{
+        textAlign:'center',
+        paddingTop:'80px !important',
+        margin:'0px 16px 36px !important'
+    },
+    '.chef-name':{
+        padding:'12px 12px 0px !important',
+        fontFamily: 'ProximaNovaA-Regular !important',
+    fontSize: '20px !important',
+    lineHeight: '24px !important',
+    },
+    '.chef-details':{
+        padding: '0 12px 12px !important',
+    fontSize: '14px !important',
+    lineHeight: '15px !important',
+    },
+    '.supper-img':{
+        height:'455px !important'
+    },
+    '.title-box':{
+        display:'inline-flex !important'
+    },
+    '.peek-name':{
+        fontFamily: 'ProximaNovaA-Regular',
+        fontStyle: 'normal',
+        fontWeight: 600,
+        fontSize: '24px',
+        lineHeight: '29px',
+        textAlign: 'center',
+        color: '#C6A87D',
+        marginBottom: '0.5rem',
+        marginLeft:'5px'
+    },
+    '.WrapperBox':{
+        padding:'50px 120px !important'
+    },
+    '.details':{
+        fontSize: '20px !important',
+        lineHeight:'24px !important',
+        padding:'0px !important'
     }
 }))
+
     return(
         <React.Fragment>
             <MainBox>
@@ -215,7 +285,7 @@ const MainBox = styled(Box)(()=>({
                             <Box className='child-upcoming'>
                             <Typography className="upcoming-supper-header">Upcoming Supper Clubs</Typography>
                             </Box>
-                            <Box className='tab-box'> 
+                            <Box> 
                             <Tabs
                                     defaultValue={0}
                                     sx={{"--Tabs-gap": "0px", backgroundColor: "#FBFBFB"}}
@@ -261,21 +331,21 @@ const MainBox = styled(Box)(()=>({
                     <Box className='child-upcoming'>
                             <Typography className="upcoming-supper-header">What's cooking this Month?</Typography>
                             </Box>
-                            <Box className='tab-box'> 
+                            <Box> 
                             <Tabs
                                     defaultValue={0}
                                     sx={{"--Tabs-gap": "0px", backgroundColor: "transparent"}}
                                 >
                                     <TabList>
-                                        <Tab value={0}>
+                                        <Tab className='cooking-tab' value={0}>
                                         This Week
                                         <Typography>2-5 nov</Typography>
                                         </Tab>
-                                        <Tab value={1}>
+                                        <Tab className='cooking-tab' value={1}>
                                             Next Week
                                             <Typography>7-6 nov</Typography>
                                         </Tab>
-                                        <Tab value={2}>
+                                        <Tab className='cooking-tab' value={2}>
                                         Next Month
                                         <Typography>December</Typography>
                                         </Tab>
@@ -312,7 +382,14 @@ const MainBox = styled(Box)(()=>({
                </Box>
          </Box>
       </Box>
-      <PriveeRatingComponent/>
+      <RatingCarousel isFontSize={true} padding={true}/>
+      <LookLikeCarousel/>
+      <BehindScenesCarousel chefHeading='Behind the Scenes' detailsBox={true} isPadding={true} slidesPerView={true} isBackground={true}/>
+      <DiningExperienceCarousel title='Stay in the know' subTitle='@Chefsaporter' />
+      <Questions isLightTheme={true}/> 
+      <NeedHelp/>
+      <Footer/>
+      <FooterEnd/>
             </MainBox>
         </React.Fragment>
     )

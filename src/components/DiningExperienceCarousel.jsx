@@ -10,7 +10,8 @@ import image5 from '../assets/images/ig5.png';
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 
-const DiningExperienceCarousel = () => {
+const DiningExperienceCarousel = (props) => {
+    const {title,subTitle,titleBox,linkTitle} = props
     const WrapBox = styled(Box)({
         '.main-box': {
             background: '#101418',
@@ -27,7 +28,7 @@ const DiningExperienceCarousel = () => {
             color: '#FBFBFB',
             marginBottom: '0.5rem'
         },
-        '.peek-name': {
+        '.peek-name': [{
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '200',
@@ -36,7 +37,7 @@ const DiningExperienceCarousel = () => {
             textAlign: 'center',
             color: '#C6A87D',
             marginBottom: '0.5rem'
-        },
+        },linkTitle],
         '.slider-box': {
             marginTop: '30px'
         },
@@ -45,6 +46,9 @@ const DiningExperienceCarousel = () => {
             height: '230.54px',
             objectFit: 'cover'
         },
+        '.title-box':[{
+            display:'content'
+        },titleBox],
         "@media (min-width: 1px) and (max-width:768px)": {
             '.main-box': {
                 display: 'none'
@@ -54,9 +58,9 @@ const DiningExperienceCarousel = () => {
     return (
         <WrapBox>
             <Box className='main-box'>
-                <Box>
-                    <Typography className="peek-heading">Peek into our Private Dining Experiences</Typography>
-                    <Typography className="peek-name">@Privée</Typography>
+                <Box className='title-box'>
+                    <Typography className="peek-heading">{title}</Typography>
+                    <Typography className="peek-name">{subTitle}</Typography>
                 </Box>
                 <Box className='slider-box'>
                     <Swiper
