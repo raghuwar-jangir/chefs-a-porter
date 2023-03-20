@@ -126,7 +126,8 @@ const PriveeQuestions = ({isLightTheme = false}) => {
                         {
                             priveeData.faq.contents.map((item, index) => {
                                 return (
-                                    <Box className='parent-accordion'>
+                                    // <Box className='parent-accordion'>
+                                    <Box className=''>
                                         <Accordion expanded={expanded === `panel${index}`}
                                                    onChange={handleChange(`panel${index}`)}
                                                    className='accordion'>
