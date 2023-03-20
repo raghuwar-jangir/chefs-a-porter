@@ -10,6 +10,7 @@ import {ContactUsProvider} from "./src/context/ContactUsContext";
 import {JoinChefProvider} from "./src/context/JoinChefContext";
 import {BecomePatronProvider} from "./src/context/BecomePatronContext";
 import {CorporateBookingProvider} from "./src/context/CorporateBookingContext";
+import {GiftCardProvider} from "./src/context/GiftCardContext";
 
 export const onClientEntry = () => {
     config({ssrFadeout: true})
@@ -19,6 +20,6 @@ export const onClientEntry = () => {
 // highlight-start
 // eslint-disable-next-line react/prop-types
 export const wrapRootElement = ({element}) =>
-    <HomeProvider><AboutUsProvider><PriveeProvider><ContactUsProvider><JoinChefProvider><BecomePatronProvider><CorporateBookingProvider>{element}</CorporateBookingProvider>
+    <HomeProvider><AboutUsProvider><PriveeProvider><ContactUsProvider><JoinChefProvider><BecomePatronProvider><CorporateBookingProvider><GiftCardProvider>{element}</GiftCardProvider></CorporateBookingProvider>
     </BecomePatronProvider></JoinChefProvider></ContactUsProvider></PriveeProvider></AboutUsProvider></HomeProvider>
 // highlight-end

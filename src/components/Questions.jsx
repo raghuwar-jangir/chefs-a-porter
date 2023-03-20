@@ -12,7 +12,8 @@ import {useContext} from "react";
 import BecomePatronContext from "../context/BecomePatronContext";
 import CorporateBookingContext from "../context/CorporateBookingContext";
 
-const Questions = ({isLightTheme = false, isCorporateBooking}) => {
+const Questions = (props) => {
+    const {isLightTheme = false, wrapPadding, isCorporateBooking} = props
 
     const {becomePatronData} = useContext(BecomePatronContext);
     const {corporateBookingData} = useContext(CorporateBookingContext);
@@ -22,9 +23,9 @@ const Questions = ({isLightTheme = false, isCorporateBooking}) => {
     const WrapperBox = styled(Box)({
         background: `${isLightTheme ? '#FBFBFB' : "#080B0E"}`,
         textAlign: 'center',
-        '.WrapperBox': {
+        '.WrapperBox': [{
             padding: '80px 120px'
-        },
+        }, wrapPadding],
         '.title-question': {
             fontSize: '24px',
             fontFamily: 'Bon Vivant',
@@ -121,86 +122,88 @@ const Questions = ({isLightTheme = false, isCorporateBooking}) => {
 
     return (
         <React.Fragment>
-            <WrapperBox>
-                {
-                    !_.isEmpty(becomePatronData) || !_.isEmpty(corporateBookingData) &&
-                    isCorporateBooking ? (
-                        <Box className='WrapperBox'>
-                            <Typography className='title-question'>
-                                {corporateBookingData.faq.title}
-                            </Typography>
-                            {
-                                corporateBookingData.faq.contents.map((item, index) => {
-                                    return (
-                                        // <Box className='parent-accordion'>
-                                        <Box className=''>
-                                            <Accordion expanded={expanded === `panel${index}`}
-                                                       onChange={handleChange(`panel${index}`)}
-                                                       className='accordion'>
-                                                <AccordionSummary className='accordionSummary'
-                                                                  expandIcon={expanded === `panel${index}` ?
-                                                                      <RemoveIcon sx={{
-                                                                          color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
-                                                                      }}/> : <AddIcon sx={{
-                                                                          fontSize: '19px',
-                                                                          color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
-                                                                      }}/>}
-                                                                  aria- controls="panel1a-content"
-                                                                  id="panel1a-header"
-                                                >
-                                                    <Typography
-                                                        className='frequently-questions'>{item.title}</Typography>
-                                                </AccordionSummary>
-                                                <AccordionDetails>
-                                                    <Typography
-                                                        className='frequently-ans'>{item.description}</Typography>
-                                                </AccordionDetails>
-                                            </Accordion>
-                                        </Box>
-                                    )
-                                })
-                            }
-                        </Box>
-                    ) : (
-                        <Box className='WrapperBox'>
-                            <Typography className='title-question'>
-                                {becomePatronData.faq.title}
-                            </Typography>
-                            {
-                                becomePatronData.faq.contents.map((item, index) => {
-                                    return (
-                                        <Box className='parent-accordion'>
-                                            <Accordion expanded={expanded === `panel${index}`}
-                                                       onChange={handleChange(`panel${index}`)}
-                                                       className='accordion'>
-                                                <AccordionSummary className='accordionSummary'
-                                                                  expandIcon={expanded === `panel${index}` ?
-                                                                      <RemoveIcon sx={{
-                                                                          color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
-                                                                      }}/> : <AddIcon sx={{
-                                                                          fontSize: '19px',
-                                                                          color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
-                                                                      }}/>}
-                                                                  aria- controls="panel1a-content"
-                                                                  id="panel1a-header"
-                                                >
-                                                    <Typography
-                                                        className='frequently-questions'>{item.title}</Typography>
-                                                </AccordionSummary>
-                                                <AccordionDetails>
-                                                    <Typography
-                                                        className='frequently-ans'>{item.description}</Typography>
-                                                </AccordionDetails>
-                                            </Accordion>
-                                        </Box>
-                                    )
-                                })
-                            }
-                        </Box>
-                    )
+                <WrapperBox>
+                  <div>
+                      {
+                          !_.isEmpty(becomePatronData) || !_.isEmpty(corporateBookingData) &&
+                      isCorporateBooking ? (
+                      <Box className='WrapperBox'>
+                          <Typography className='title-question'>
+                              {corporateBookingData.faq.title}
+                          </Typography>
+                          {
+                              corporateBookingData.faq.contents.map((item, index) => {
+                                  return (
+                                      // <Box className='parent-accordion'>
+                                      <Box className=''>
+                                          <Accordion expanded={expanded === `panel${index}`}
+                                                     onChange={handleChange(`panel${index}`)}
+                                                     className='accordion'>
+                                              <AccordionSummary className='accordionSummary'
+                                                                expandIcon={expanded === `panel${index}` ?
+                                                                    <RemoveIcon sx={{
+                                                                        color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
+                                                                    }}/> : <AddIcon sx={{
+                                                                        fontSize: '19px',
+                                                                        color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
+                                                                    }}/>}
+                                                                aria- controls="panel1a-content"
+                                                                id="panel1a-header"
+                                              >
+                                                  <Typography
+                                                      className='frequently-questions'>{item.title}</Typography>
+                                              </AccordionSummary>
+                                              <AccordionDetails>
+                                                  <Typography
+                                                      className='frequently-ans'>{item.description}</Typography>
+                                              </AccordionDetails>
+                                          </Accordion>
+                                      </Box>
+                                  )
+                              })
+                          }
+                      </Box>
+                      ) : (
+                      <Box className='WrapperBox'>
+                          <Typography className='title-question'>
+                              {becomePatronData.faq.title}
+                          </Typography>
+                          {
+                              becomePatronData.faq.contents.map((item, index) => {
+                                  return (
+                                      <Box className='parent-accordion'>
+                                          <Accordion expanded={expanded === `panel${index}`}
+                                                     onChange={handleChange(`panel${index}`)}
+                                                     className='accordion'>
+                                              <AccordionSummary className='accordionSummary'
+                                                                expandIcon={expanded === `panel${index}` ?
+                                                                    <RemoveIcon sx={{
+                                                                        color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
+                                                                    }}/> : <AddIcon sx={{
+                                                                        fontSize: '19px',
+                                                                        color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
+                                                                    }}/>}
+                                                                aria- controls="panel1a-content"
+                                                                id="panel1a-header"
+                                              >
+                                                  <Typography
+                                                      className='frequently-questions'>{item.title}</Typography>
+                                              </AccordionSummary>
+                                              <AccordionDetails>
+                                                  <Typography
+                                                      className='frequently-ans'>{item.description}</Typography>
+                                              </AccordionDetails>
+                                          </Accordion>
+                                      </Box>
+                                  )
+                              })
+                          }
+                      </Box>
+                      )
+                      }
+                  </div>
 
-                }
-            </WrapperBox>
+                </WrapperBox>
         </React.Fragment>
     );
 }

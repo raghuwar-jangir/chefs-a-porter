@@ -40,8 +40,8 @@ const images = [
 ];
 
 
-const RatingCarousel = ({backgroundColor, isFontSize}) => {
-
+const RatingCarousel = (props) => {
+    const {backgroundColor, isFontSize,details,padding} = props
     const {data} = useContext(HomeContext);
     const [value, setValue] = useState();
 
@@ -57,23 +57,24 @@ const RatingCarousel = ({backgroundColor, isFontSize}) => {
     });
 
     const BoxWrapper = styled(Box)(() => ({
-        padding: '40px 150px',
+        padding: `${padding ? '80px 206px' : '40px 150px' }`,
         background: `${backgroundColor}`,
         color: '#222222',
         ".mainTitle": {
             fontSize: `${isFontSize ? '24px' : '40px'}`,
             lineHeight: '60px',
+            fontWeight:700,
             textAlign: 'center',
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
         },
-        ".details": {
+        ".details": [{
             textAlign: 'center',
             fontSize: '24px',
             lineHeight: '29px',
             fontFamily: 'ProximaNovaA-Regular',
             padding: '0px 200px',
-        },
+        },details],
         ".star": {
             height: '40px',
             textAlign: "center",
@@ -86,7 +87,8 @@ const RatingCarousel = ({backgroundColor, isFontSize}) => {
             fontWeight: 600,
             padding: '30px 0px 24px 0px ',
             fontFamily: 'ProximaNovaA-Regular',
-            textTransform: 'uppercase'
+            textTransform: 'uppercase',
+            marginBottom:'15px',
         },
         '.rating-star': {
             color: '#222222 !important ',

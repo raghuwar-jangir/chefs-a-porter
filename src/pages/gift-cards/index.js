@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {
     Box,
     Grid,
@@ -38,8 +38,14 @@ import contacts2 from "../../assets/images/contacts2.png";
 import contacts3 from "../../assets/images/contacts3.png";
 import contacts4 from "../../assets/images/contacts4.png";
 import contacts5 from "../../assets/images/contacts5.png";
+import GiftCardContext from "../../context/GiftCardContext";
+import * as _ from "lodash";
 
 const GiftCards = () => {
+
+    const {giftCardData} = useContext(GiftCardContext);
+
+    console.log("giftCardData=====", giftCardData)
 
     //validations
     const validationSchema = Yup.object({
@@ -228,7 +234,7 @@ const GiftCards = () => {
         //main-header
         '.corporate-b': {
             marginTop: '80px',
-            backgroundImage: `linear-gradient(180.32deg, rgba(0, 0, 0, 0) 21.51%, rgba(0, 0, 0, 0.4) 81.02%),url(${gallery})`,
+            // backgroundImage: `linear-gradient(180.32deg, rgba(0, 0, 0, 0) 21.51%, rgba(0, 0, 0, 0.4) 81.02%),url(${gallery})`,
             height: '500px',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -1041,147 +1047,148 @@ const GiftCards = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isShareIcon={true} heading="Gift Cards"/>
-                {/*{isMobile ? (*/}
-                {/*    <Box className='header-club'>*/}
-                {/*        <ShareIcon className="header-icon"/>*/}
-                {/*        <Typography className="chef-mobile-heading"> Gift Cards</Typography>*/}
-                {/*    </Box>*/}
-                {/*) : (*/}
-                {/*    ''*/}
-                {/*)}*/}
-                <Box className="gallery-carousel"><ImageCarousel/></Box>
-                <Box className="joinaschef">
-                    <Box className="corporate-b">
-                        <Box className="container">
-                            <Box className="top-10 position-absolute">
-                                <Typography><a href='/' className="header-link"><ArrowBackIcon
-                                    style={{marginRight: '15px'}}/>Back</a></Typography>
-                            </Box>
-                            <Box className="position-absolute patron-flex">
-                                <Box>
-                                    <Typography className="become-heading">Gift Card</Typography>
-                                    <Typography className="become-detail">Join as a member and get exclusive member
-                                        priviliges</Typography>
+                {
+                    !_.isEmpty(giftCardData) &&
+                    <>
+                        <Navbar isShareIcon={true} heading="Gift Cards"/>
+                        <Box className="gallery-carousel"><ImageCarousel/></Box>
+                        <Box className="joinaschef">
+                            <Box className="corporate-b"
+                                 sx={{backgroundImage: `linear-gradient(180.32deg, rgba(0, 0, 0, 0) 21.51%, rgba(0, 0, 0, 0.4) 81.02%),url(${giftCardData.header.image})`,}}>
+                                <Box className="container">
+                                    <Box className="top-10 position-absolute">
+                                        <Typography><a href='/' className="header-link"><ArrowBackIcon
+                                            style={{marginRight: '15px'}}/>Back</a></Typography>
+                                    </Box>
+                                    <Box className="position-absolute patron-flex">
+                                        <Box>
+                                            <Typography
+                                                className="become-heading">{giftCardData.header.title}</Typography>
+                                            <Typography
+                                                className="become-detail">{giftCardData.header.description}</Typography>
+                                        </Box>
+                                        <Box><Typography style={{width: '100%'}}><a href="#recipientDetails"
+                                                                                    className="apply">{giftCardData.header.button_text}</a></Typography></Box>
+                                    </Box>
                                 </Box>
-                                <Box><Typography style={{width: '100%'}}><a href="#recipientDetails"
-                                                                            className="apply">Apply</a></Typography></Box>
                             </Box>
-                        </Box>
-                    </Box>
-                    <Box className="container-fluid">
-                        <Formik
-                            initialValues={{
-                                name: 'sana',
-                                email: 'kachwallasana@gmail.com',
-                                contactNumber: '8794561230',
-                                giftCardAmount: '',
-                                receiverMessage: '',
-                                occassionMessage1: '',
-                                occassionMessage2: '',
-                                occassionMessage3: '',
-                                occassionMessage4: '',
-                                occassionMessage5: '',
-                            }}
-                            validationSchema={validationSchema}
-                            onSubmit={(values) => {
-                                console.log("value===>", values)
-                            }}
-                        >
-                            {({values, handleChange, handleSubmit}) => (
-                                <Form onSubmit={handleSubmit}>
-                                    <Box className="row white-bg justify-content-center">
-                                        <Box className="gift-work">
-                                            <Typography className="gift-work-heading">How gift card work</Typography>
-                                            <Box className="gift-steps">
-                                                <Box className="step-1">
-                                                    <Typography className="step-1-heading">1</Typography>
-                                                    <span className="step-1-detail">Customise</span>
-                                                </Box>
-                                                <Box className="step-1">
-                                                    <Typography className="step-1-heading">2</Typography>
-                                                    <span className="step-1-detail">Gift</span>
-                                                </Box>
-                                                <Box className="step-1">
-                                                    <Typography className="step-1-heading">3</Typography>
-                                                    <span className="step-1-detail">Redeem</span>
-                                                </Box>
-                                            </Box>
-                                            <Box className="things-to-do">
-                                                <Typography className="things-to-do-details">Things to
-                                                    note:</Typography>
-                                                <ul className="things-to-do-details things-to-do-ul">
-                                                    <li>Valid for 12 months</li>
-                                                    <li>Redeemable online only</li>
-                                                    <li>Valid on all experiences</li>
-                                                    <li>No minimum booking amount</li>
-                                                    <li>Multiple gift cards cannot be utilized for one booking</li>
-                                                    <li>Not valid on XXX</li>
-                                                </ul>
-                                            </Box>
-                                            <Box className="enter-amount">
-                                                <Box className="justify-content-between">
-                                                    <Box className="amount-box">
-                                                        <label className="sr-only" className="enter-amount-label"
-                                                               htmlFor="gift-amount">Enter Gift Card
-                                                            Amount</label>
-                                                        <TextField type="text" name="giftCardAmount"
-                                                            // className="form-control"
-                                                                   value={values.giftCardAmount}
-                                                                   onChange={handleChange}
-                                                                   autoComplete="off"
-                                                                   variant="outlined"
-                                                                   id="gift-amount"
-                                                                   sx={{
-                                                                       '& .MuiInputBase-formControl ': {
-                                                                           paddingLeft: '0px',
-                                                                           paddingTop: '14px'
-                                                                       },
-                                                                       '& .MuiOutlinedInput-notchedOutline': {
-                                                                           border: 'none',
-                                                                           outline: 'none',
-                                                                       },
-                                                                       '& .MuiInputBase-input': {
-                                                                           background: '#FBFBFB',
-                                                                           height: '31px',
-                                                                           borderRadius: '0px',
-                                                                           fontFamily: 'Proxima Nova',
-                                                                           fontStyle: 'normal',
-                                                                           fontWeight: '400',
-                                                                           fontSize: '16px',
-                                                                           lineHeight: '19px',
-                                                                           color: '#080B0E',
-                                                                           padding: '0px'
-                                                                       },
-
-                                                                   }}
-                                                                   InputProps={{
-                                                                       disableUnderline: true,
-                                                                       startAdornment: <InputAdornment
-                                                                           position="start"
-                                                                           sx={{
-                                                                               background: '#FBFBFB',
-                                                                               height: '31px',
-                                                                               border: '0px',
-                                                                               borderRadius: '0px',
-                                                                               fontFamily: 'Proxima Nova',
-                                                                               fontStyle: 'normal',
-                                                                               fontWeight: '400',
-                                                                               lineHeight: '19px',
-                                                                               color: '#080B0E',
-                                                                               fontSize: '18px',
-                                                                               margin: '0px',
-                                                                           }}><CurrencyRupeeIcon sx={{
-                                                                           background: '#FBFBFB',
-                                                                           height: '20px',
-                                                                           color: '#080B0E',
-                                                                           borderRight: '1px solid black'
-                                                                       }}/></InputAdornment>,
-                                                                   }}/>
+                            <Box className="container-fluid">
+                                <Formik
+                                    initialValues={{
+                                        name: 'sana',
+                                        email: 'kachwallasana@gmail.com',
+                                        contactNumber: '8794561230',
+                                        giftCardAmount: '',
+                                        receiverMessage: '',
+                                        occassionMessage1: '',
+                                        occassionMessage2: '',
+                                        occassionMessage3: '',
+                                        occassionMessage4: '',
+                                        occassionMessage5: '',
+                                    }}
+                                    validationSchema={validationSchema}
+                                    onSubmit={(values) => {
+                                        console.log("value===>", values)
+                                    }}
+                                >
+                                    {({values, handleChange, handleSubmit}) => (
+                                        <Form onSubmit={handleSubmit}>
+                                            <Box className="row white-bg justify-content-center">
+                                                <Box className="gift-work">
+                                                    <Typography
+                                                        className="gift-work-heading">{giftCardData.working.title}</Typography>
+                                                    <Box className="gift-steps">
+                                                        {
+                                                            giftCardData.working.content.map((item) => {
+                                                                return (
+                                                                    <Box className="step-1">
+                                                                        <Typography
+                                                                            className="step-1-heading">{item.title}</Typography>
+                                                                        <span
+                                                                            className="step-1-detail">{item.subtitle}</span>
+                                                                    </Box>
+                                                                )
+                                                            })
+                                                        }
                                                     </Box>
-                                                    <Box className="qty-box">
-                                                        <label className="sr-only enter-amount-label">Qty</label>
-                                                        <div className="input-group qty">
+                                                    <Box className="things-to-do">
+                                                        <Typography
+                                                            className="things-to-do-details">{giftCardData.things_to_note.title}</Typography>
+                                                        <ul className="things-to-do-details things-to-do-ul">
+                                                            {
+                                                                giftCardData.things_to_note.content.map((item) => {
+                                                                    return (
+                                                                        <li>{item}</li>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </ul>
+                                                    </Box>
+                                                    <Box className="enter-amount">
+                                                        <Box className="justify-content-between">
+                                                            <Box className="amount-box">
+                                                                <label className="sr-only"
+                                                                       className="enter-amount-label"
+                                                                       htmlFor="gift-amount">Enter Gift Card
+                                                                    Amount</label>
+                                                                <TextField type="text" name="giftCardAmount"
+                                                                    // className="form-control"
+                                                                           value={values.giftCardAmount}
+                                                                           onChange={handleChange}
+                                                                           autoComplete="off"
+                                                                           variant="outlined"
+                                                                           id="gift-amount"
+                                                                           sx={{
+                                                                               '& .MuiInputBase-formControl ': {
+                                                                                   paddingLeft: '0px',
+                                                                                   paddingTop: '14px'
+                                                                               },
+                                                                               '& .MuiOutlinedInput-notchedOutline': {
+                                                                                   border: 'none',
+                                                                                   outline: 'none',
+                                                                               },
+                                                                               '& .MuiInputBase-input': {
+                                                                                   background: '#FBFBFB',
+                                                                                   height: '31px',
+                                                                                   borderRadius: '0px',
+                                                                                   fontFamily: 'Proxima Nova',
+                                                                                   fontStyle: 'normal',
+                                                                                   fontWeight: '400',
+                                                                                   fontSize: '16px',
+                                                                                   lineHeight: '19px',
+                                                                                   color: '#080B0E',
+                                                                                   padding: '0px'
+                                                                               },
+
+                                                                           }}
+                                                                           InputProps={{
+                                                                               disableUnderline: true,
+                                                                               startAdornment: <InputAdornment
+                                                                                   position="start"
+                                                                                   sx={{
+                                                                                       background: '#FBFBFB',
+                                                                                       height: '31px',
+                                                                                       border: '0px',
+                                                                                       borderRadius: '0px',
+                                                                                       fontFamily: 'Proxima Nova',
+                                                                                       fontStyle: 'normal',
+                                                                                       fontWeight: '400',
+                                                                                       lineHeight: '19px',
+                                                                                       color: '#080B0E',
+                                                                                       fontSize: '18px',
+                                                                                       margin: '0px',
+                                                                                   }}><CurrencyRupeeIcon sx={{
+                                                                                   background: '#FBFBFB',
+                                                                                   height: '20px',
+                                                                                   color: '#080B0E',
+                                                                                   borderRight: '1px solid black'
+                                                                               }}/></InputAdornment>,
+                                                                           }}/>
+                                                            </Box>
+                                                            <Box className="qty-box">
+                                                                <label
+                                                                    className="sr-only enter-amount-label">Qty</label>
+                                                                <div className="input-group qty">
                                                             <span className="input-group-btn">
                                                               <button type="button"
                                                                       className="btn btn-default btn-number"
@@ -1190,32 +1197,33 @@ const GiftCards = () => {
                                                                       onClick={decrementCount}>-
                                                               </button>
                                                             </span>
-                                                            <TextField type="text" name="quant[1]" id="Qty"
-                                                                       className="input-number"
-                                                                       value={count}
-                                                                       autoComplete={"off"}
-                                                                       sx={{
-                                                                           '.MuiOutlinedInput-notchedOutline': {
-                                                                               border: 'none',
-                                                                               outline: 'none'
-                                                                           },
-                                                                           '& .MuiInputBase-input': {
-                                                                               width: "25px", background: 'transparent',
-                                                                               border: '0px',
-                                                                               fontFamily: 'Proxima Nova',
-                                                                               fontStyle: 'normal',
-                                                                               fontWeight: '400',
-                                                                               fontSize: '14px',
-                                                                               color: '#FBFBFB',
-                                                                               lineHeight: '17px',
-                                                                               paddingLeft: '0px',
-                                                                               paddingRight: '0px',
-                                                                               flex: 'none',
-                                                                               textAlign: 'center'
-                                                                           },
-                                                                       }}
-                                                            />
-                                                            <span className="input-group-btn plus">
+                                                                    <TextField type="text" name="quant[1]" id="Qty"
+                                                                               className="input-number"
+                                                                               value={count}
+                                                                               autoComplete={"off"}
+                                                                               sx={{
+                                                                                   '.MuiOutlinedInput-notchedOutline': {
+                                                                                       border: 'none',
+                                                                                       outline: 'none'
+                                                                                   },
+                                                                                   '& .MuiInputBase-input': {
+                                                                                       width: "25px",
+                                                                                       background: 'transparent',
+                                                                                       border: '0px',
+                                                                                       fontFamily: 'Proxima Nova',
+                                                                                       fontStyle: 'normal',
+                                                                                       fontWeight: '400',
+                                                                                       fontSize: '14px',
+                                                                                       color: '#FBFBFB',
+                                                                                       lineHeight: '17px',
+                                                                                       paddingLeft: '0px',
+                                                                                       paddingRight: '0px',
+                                                                                       flex: 'none',
+                                                                                       textAlign: 'center'
+                                                                                   },
+                                                                               }}
+                                                                    />
+                                                                    <span className="input-group-btn plus">
                                                               <button type="button"
                                                                       className="btn btn-default btn-number"
                                                                       disabled={count == 10 ? true : false}
@@ -1223,749 +1231,394 @@ const GiftCards = () => {
                                                                       onClick={incrementCount}>+
                                                               </button>
                                                             </span>
+                                                                </div>
+                                                            </Box>
+                                                        </Box>
+                                                        <div className="row r-btn">
+                                                            <ul className="donate-now">
+                                                                <li>
+                                                                    <input type="radio" id="amt1" name="amount"
+                                                                           value="₹1000"
+                                                                           defaultChecked="checked"/>
+                                                                    <label htmlFor="amt1">₹1000</label>
+                                                                </li>
+                                                                <li>
+                                                                    <input type="radio" id="amt2" name="amount"
+                                                                           value="₹2000"/>
+                                                                    <label htmlFor="amt2">₹2000</label>
+                                                                </li>
+                                                                <li>
+                                                                    <input type="radio" id="amt3" name="amount"
+                                                                           value="₹3000"/>
+                                                                    <label htmlFor="amt3">₹3000</label>
+                                                                </li>
+                                                                <li>
+                                                                    <input type="radio" id="amt4" name="amount"
+                                                                           value="₹4000"/>
+                                                                    <label htmlFor="amt4">₹4000</label>
+                                                                </li>
+                                                            </ul>
                                                         </div>
                                                     </Box>
                                                 </Box>
-                                                <div className="row r-btn">
-                                                    <ul className="donate-now">
-                                                        <li>
-                                                            <input type="radio" id="amt1" name="amount" value="₹1000"
-                                                                   defaultChecked="checked"/>
-                                                            <label htmlFor="amt1">₹1000</label>
-                                                        </li>
-                                                        <li>
-                                                            <input type="radio" id="amt2" name="amount" value="₹2000"/>
-                                                            <label htmlFor="amt2">₹2000</label>
-                                                        </li>
-                                                        <li>
-                                                            <input type="radio" id="amt3" name="amount" value="₹3000"/>
-                                                            <label htmlFor="amt3">₹3000</label>
-                                                        </li>
-                                                        <li>
-                                                            <input type="radio" id="amt4" name="amount" value="₹4000"/>
-                                                            <label htmlFor="amt4">₹4000</label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </Box>
-                                        </Box>
-                                        <Box className="occasion">
-                                            <Box className="occasion-container">
-                                                <h4 className="occasion-title">Choose Occassion</h4>
-                                                <Tabs aria-label="Basic tabs" defaultValue={0}>
-                                                    <TabList>
-                                                        <Tab>Wedding</Tab>
-                                                        <Tab>Festive</Tab>
-                                                        <Tab>Birthday</Tab>
-                                                        <Tab>Congratulation</Tab>
-                                                        <Tab>Congratulation</Tab>
-                                                    </TabList>
-                                                    <TabPanel value={0} sx={{p: 2}}>
-                                                        <div className="tab-content" id="pills-tabContent">
-                                                            <div className="tab-pane fade show" id="wedding"
-                                                                 role="tabpanel"
-                                                                 aria-labelledby="wedding-tab">
-                                                                <div className="occasion-cards">
-                                                                    <div className="row align-items-center personalize">
-                                                                        <div className="col-lg-7">
-                                                                            <img src={goldLogo} alt="Logo"
-                                                                                 className="logo footer-logo"/>
-                                                                        </div>
-                                                                        <div className="col-lg-5">
-                                                                            <u>Personalize</u>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="row occasion-title">
-                                                                        <div className="col-lg-12">
-                                                                            <Box style={{
-                                                                                display: 'flex',
-                                                                                justifyContent: 'space-between',
-                                                                                alignItems: 'center'
-                                                                            }}>
-                                                                                <Box> <Typography
-                                                                                    className="occasion-subtitle">Happy
-                                                                                    Wedding</Typography></Box>
-                                                                                <Box>
-                                                                                    <button id="clean" type="reset"
-                                                                                            className="clean"
-                                                                                            onClick={() => setOccassionMessage('')}>Clear
-                                                                                    </button>
-                                                                                </Box>
-                                                                            </Box>
-                                                                            <TextField
-                                                                                inputProps={{
-                                                                                    maxlength: CHAR_LIMIT,
-                                                                                }}
-                                                                                sx={{
-                                                                                    disableUnderline: true,
-                                                                                    '.MuiInputBase-root ': {
-                                                                                        padding: '0px'
-                                                                                    },
-                                                                                    '.MuiOutlinedInput-notchedOutline': {
-                                                                                        border: 'none',
-                                                                                        outline: 'none',
-                                                                                    },
-                                                                                    '& .MuiInputBase-input': {
-                                                                                        width: '100%',
-                                                                                        background: 'transparent',
-                                                                                        border: '0px',
-                                                                                        borderBottom: '0.377697px solid #FBFBFB',
-                                                                                        fontFamily: 'Proxima Nova',
-                                                                                        fontStyle: 'normal',
-                                                                                        fontSize: '20px',
-                                                                                        lineHeight: '24px',
-                                                                                        color: '#FBFBFB !important',
-                                                                                        paddingBottom: '12px',
-                                                                                        outline: 'none',
-                                                                                        borderRadius: '0px',
-                                                                                        paddingLeft: '0px',
-                                                                                        opacity: '1'
-                                                                                    },
-                                                                                    '.MuiFormHelperText-root': {
-                                                                                        fontFamily: 'Proxima Nova',
-                                                                                        fontStyle: 'normal',
-                                                                                        fontWeight: '250',
-                                                                                        fontSize: '16px',
-                                                                                        lineHeight: '19px',
-                                                                                        textAlign: 'right',
-                                                                                        color: '#FBFBFB',
-                                                                                        marginBottom: '0px',
-                                                                                        opacity: '1',
-                                                                                    },
-                                                                                    '@media(min-width: 1px) and (max-width: 425px)': {
-                                                                                        '& .MuiInputBase-input': {
-                                                                                            fontSize: '12px',
-                                                                                            lineHeight: '15px',
-                                                                                        },
-                                                                                    }
-                                                                                }}
-                                                                                name="occassionMessage1"
-                                                                                autoComplete="off"
-                                                                                className="form-control remove-bottom-border occassion-box"
-                                                                                value={values.occassionMessage1}
-                                                                                placeholder="Wishing you the best of a lifetime of memories|"
-                                                                                helperText={`${values.occassionMessage1.length}/${CHAR_LIMIT} Characters`}
-                                                                                onChange={handleChange("occassionMessage1")}
-                                                                                margin="normal"
-                                                                                variant="outlined"
-                                                                                fullWidth
-                                                                                multiline
-                                                                                autoComplete="off"
-                                                                            />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </TabPanel>
-                                                    <TabPanel value={1} sx={{p: 2}}>
-                                                        <div className="tab-content" id="pills-tabContent">
-                                                            <div className="tab-pane fade show " id="wedding"
-                                                                 role="tabpanel"
-                                                                 aria-labelledby="wedding-tab">
-                                                                <div className="occasion-cards">
-                                                                    <div className="row align-items-center personalize">
-                                                                        <div className="col-lg-7">
-                                                                            <img src={goldLogo} alt="Logo"
-                                                                                 className="logo footer-logo"/>
-                                                                        </div>
-                                                                        <div className="col-lg-5">
-                                                                            <u>Personalize</u>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="row occasion-title">
-                                                                        <div className="col-lg-12">
-                                                                            <Box style={{
-                                                                                display: 'flex',
-                                                                                justifyContent: 'space-between',
-                                                                                alignItems: 'center'
-                                                                            }}>
-                                                                                <Box> <Typography
-                                                                                    className="occasion-subtitle">Happy
-                                                                                    Festive</Typography></Box>
-                                                                                <Box>
-                                                                                    <button id="clean" type="reset"
-                                                                                            className="clean"
-                                                                                            onClick={() => setOccassionMessage('')}>Clear
-                                                                                    </button>
-                                                                                </Box>
-                                                                            </Box>
-                                                                            <TextField
-                                                                                inputProps={{
-                                                                                    maxlength: CHAR_LIMIT,
-                                                                                }}
-                                                                                sx={{
-                                                                                    disableUnderline: true,
-                                                                                    '.MuiInputBase-root ': {
-                                                                                        padding: '0px'
-                                                                                    },
-                                                                                    '.MuiOutlinedInput-notchedOutline': {
-                                                                                        border: 'none',
-                                                                                        outline: 'none'
-                                                                                    },
-                                                                                    '& .MuiInputBase-input': {
-                                                                                        width: '100%',
-                                                                                        background: 'transparent',
-                                                                                        border: '0px',
-                                                                                        borderBottom: '0.377697px solid #FBFBFB',
-                                                                                        fontFamily: 'Proxima Nova',
-                                                                                        fontStyle: 'normal',
-                                                                                        fontSize: '20px',
-                                                                                        lineHeight: '24px',
-                                                                                        color: '#FBFBFB !important',
-                                                                                        paddingBottom: '12px',
-                                                                                        outline: 'none',
-                                                                                        borderRadius: '0px',
-                                                                                        paddingLeft: '0px',
-                                                                                        opacity: '1'
-                                                                                    },
-                                                                                    '.MuiFormHelperText-root': {
-                                                                                        fontFamily: 'Proxima Nova',
-                                                                                        fontStyle: 'normal',
-                                                                                        fontWeight: '250',
-                                                                                        fontSize: '16px',
-                                                                                        lineHeight: '19px',
-                                                                                        textAlign: 'right',
-                                                                                        color: '#FBFBFB',
-                                                                                        marginBottom: '0px',
-                                                                                        opacity: '1',
-                                                                                    },
-                                                                                    '@media(min-width: 1px) and (max-width: 425px)': {
-                                                                                        '& .MuiInputBase-input': {
-                                                                                            fontSize: '12px',
-                                                                                            lineHeight: '15px',
-                                                                                        },
-                                                                                    }
-                                                                                }}
-                                                                                name="occassionMessage2"
-                                                                                autoComplete="off"
-                                                                                className="form-control remove-bottom-border occassion-box"
-                                                                                value={values.occassionMessage2}
-                                                                                placeholder="Wishing you the best of a lifetime of memories|"
-                                                                                helperText={`${values.occassionMessage2.length}/${CHAR_LIMIT} Characters`}
-                                                                                onChange={handleChange("occassionMessage2")}
-                                                                                margin="normal"
-                                                                                variant="outlined"
-                                                                                fullWidth
-                                                                                multiline
-                                                                                autoComplete="off"
-                                                                            />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </TabPanel>
-                                                    <TabPanel value={2} sx={{p: 2}}>
-                                                        <div className="tab-content" id="pills-tabContent">
-                                                            <div className="tab-pane fade show " id="wedding"
-                                                                 role="tabpanel"
-                                                                 aria-labelledby="wedding-tab">
-                                                                <div className="occasion-cards">
-                                                                    <div className="row align-items-center personalize">
-                                                                        <div className="col-lg-7">
-                                                                            <img src={goldLogo} alt="Logo"
-                                                                                 className="logo footer-logo"/>
-                                                                        </div>
-                                                                        <div className="col-lg-5">
-                                                                            <u>Personalize</u>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="row occasion-title">
-                                                                        <div className="col-lg-12">
-                                                                            <Box style={{
-                                                                                display: 'flex',
-                                                                                justifyContent: 'space-between',
-                                                                                alignItems: 'center'
-                                                                            }}>
-                                                                                <Box> <Typography
-                                                                                    className="occasion-subtitle">Happy
-                                                                                    Birthday</Typography></Box>
-                                                                                <Box>
-                                                                                    <button id="clean" type="reset"
-                                                                                            className="clean"
-                                                                                            onClick={() => setOccassionMessage('')}>Clear
-                                                                                    </button>
-                                                                                </Box>
-                                                                            </Box>
-                                                                            <TextField
-                                                                                inputProps={{
-                                                                                    maxlength: CHAR_LIMIT,
-                                                                                }}
-                                                                                sx={{
-                                                                                    '.MuiInputBase-root ': {
-                                                                                        padding: '0px'
-                                                                                    },
-                                                                                    disableUnderline: true,
-                                                                                    '.MuiOutlinedInput-notchedOutline': {
-                                                                                        border: 'none',
-                                                                                        outline: 'none'
-                                                                                    },
-                                                                                    '& .MuiInputBase-input': {
-                                                                                        width: '100%',
-                                                                                        background: 'transparent',
-                                                                                        border: '0px',
-                                                                                        borderBottom: '0.377697px solid #FBFBFB',
-                                                                                        fontFamily: 'Proxima Nova',
-                                                                                        fontStyle: 'normal',
-                                                                                        fontSize: '20px',
-                                                                                        lineHeight: '24px',
-                                                                                        color: '#FBFBFB !important',
-                                                                                        paddingBottom: '12px',
-                                                                                        outline: 'none',
-                                                                                        borderRadius: '0px',
-                                                                                        paddingLeft: '0px',
-                                                                                        opacity: '1'
-                                                                                    },
-                                                                                    '.MuiFormHelperText-root': {
-                                                                                        fontFamily: 'Proxima Nova',
-                                                                                        fontStyle: 'normal',
-                                                                                        fontWeight: '250',
-                                                                                        fontSize: '16px',
-                                                                                        lineHeight: '19px',
-                                                                                        textAlign: 'right',
-                                                                                        color: '#FBFBFB',
-                                                                                        marginBottom: '0px',
-                                                                                        opacity: '1',
-                                                                                    },
-                                                                                    '@media(min-width: 1px) and (max-width: 425px)': {
-                                                                                        '& .MuiInputBase-input': {
-                                                                                            fontSize: '12px',
-                                                                                            lineHeight: '15px',
-                                                                                        },
-                                                                                    }
-                                                                                }}
-                                                                                name="occassionMessage3"
-                                                                                autoComplete="off"
-                                                                                className="form-control remove-bottom-border occassion-box"
-                                                                                value={values.occassionMessage3}
-                                                                                placeholder="Wishing you the best of a lifetime of memories|"
-                                                                                helperText={`${values.occassionMessage3.length}/${CHAR_LIMIT} Characters`}
-                                                                                onChange={handleChange("occassionMessage3")}
-                                                                                margin="normal"
-                                                                                variant="outlined"
-                                                                                fullWidth
-                                                                                multiline
-                                                                                autoComplete="off"
-                                                                            />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </TabPanel>
-                                                    <TabPanel value={3} sx={{p: 2}}>
-                                                        <div className="tab-content" id="pills-tabContent">
-                                                            <div className="tab-pane fade show " id="wedding"
-                                                                 role="tabpanel"
-                                                                 aria-labelledby="wedding-tab">
-                                                                <div className="occasion-cards">
-                                                                    <div className="row align-items-center personalize">
-                                                                        <div className="col-lg-7">
-                                                                            <img src={goldLogo} alt="Logo"
-                                                                                 className="logo footer-logo"/>
-                                                                        </div>
-                                                                        <div className="col-lg-5">
-                                                                            <u>Personalize</u>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="row occasion-title">
-                                                                        <div className="col-lg-12">
-                                                                            <Box style={{
-                                                                                display: 'flex',
-                                                                                justifyContent: 'space-between',
-                                                                                alignItems: 'center'
-                                                                            }}>
-                                                                                <Box> <Typography
-                                                                                    className="occasion-subtitle">Congratulations!!</Typography></Box>
-                                                                                <Box>
-                                                                                    <button id="clean" type="reset"
-                                                                                            className="clean"
-                                                                                            onClick={() => setOccassionMessage('')}>Clear
-                                                                                    </button>
-                                                                                </Box>
-                                                                            </Box>
-                                                                            <TextField
-                                                                                inputProps={{
-                                                                                    maxlength: CHAR_LIMIT,
-                                                                                }}
-                                                                                sx={{
-                                                                                    disableUnderline: true,
-                                                                                    '.MuiInputBase-root ': {
-                                                                                        padding: '0px'
-                                                                                    },
-                                                                                    '.MuiOutlinedInput-notchedOutline': {
-                                                                                        border: 'none',
-                                                                                        outline: 'none'
-                                                                                    },
-                                                                                    '& .MuiInputBase-input': {
-                                                                                        width: '100%',
-                                                                                        background: 'transparent',
-                                                                                        border: '0px',
-                                                                                        borderBottom: '0.377697px solid #FBFBFB',
-                                                                                        fontFamily: 'Proxima Nova',
-                                                                                        fontStyle: 'normal',
-                                                                                        fontSize: '20px',
-                                                                                        lineHeight: '24px',
-                                                                                        color: '#FBFBFB !important',
-                                                                                        paddingBottom: '12px',
-                                                                                        outline: 'none',
-                                                                                        borderRadius: '0px',
-                                                                                        paddingLeft: '0px',
-                                                                                        opacity: '1'
-                                                                                    },
-                                                                                    '.MuiFormHelperText-root': {
-                                                                                        fontFamily: 'Proxima Nova',
-                                                                                        fontStyle: 'normal',
-                                                                                        fontWeight: '250',
-                                                                                        fontSize: '16px',
-                                                                                        lineHeight: '19px',
-                                                                                        textAlign: 'right',
-                                                                                        color: '#FBFBFB',
-                                                                                        marginBottom: '0px',
-                                                                                        opacity: '1',
-                                                                                    },
-                                                                                    '@media(min-width: 1px) and (max-width: 425px)': {
-                                                                                        '& .MuiInputBase-input': {
-                                                                                            fontSize: '12px',
-                                                                                            lineHeight: '15px',
-                                                                                        },
-                                                                                    }
-
-                                                                                }}
-                                                                                name="occassionMessage4"
-                                                                                autoComplete="off"
-                                                                                className="form-control remove-bottom-border occassion-box"
-                                                                                value={values.occassionMessage4}
-                                                                                placeholder="Wishing you the best of a lifetime of memories|"
-                                                                                helperText={`${values.occassionMessage4.length}/${CHAR_LIMIT} Characters`}
-                                                                                onChange={handleChange("occassionMessage4")}
-                                                                                margin="normal"
-                                                                                variant="outlined"
-                                                                                fullWidth
-                                                                                multiline
-                                                                                autoComplete="off"
-                                                                            />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </TabPanel>
-                                                    <TabPanel value={4} sx={{p: 2}}>
-                                                        <div className="tab-content" id="pills-tabContent">
-                                                            <div className="tab-pane fade show " id="wedding"
-                                                                 role="tabpanel"
-                                                                 aria-labelledby="wedding-tab">
-                                                                <div className="occasion-cards">
-                                                                    <div className="row align-items-center personalize">
-                                                                        <div className="col-lg-7">
-                                                                            <img src={goldLogo} alt="Logo"
-                                                                                 className="logo footer-logo"/>
-                                                                        </div>
-                                                                        <div className="col-lg-5">
-                                                                            <u>Personalize</u>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="row occasion-title">
-                                                                        <div className="col-lg-12">
-                                                                            <Box style={{
-                                                                                display: 'flex',
-                                                                                justifyContent: 'space-between',
-                                                                                alignItems: 'center'
-                                                                            }}>
-                                                                                <Box> <Typography
-                                                                                    className="occasion-subtitle">Congratulations!!</Typography></Box>
-                                                                                <Box>
-                                                                                    <button id="clean" type="reset"
-                                                                                            className="clean"
-                                                                                            onClick={() => setOccassionMessage('')}>Clear
-                                                                                    </button>
-                                                                                </Box>
-                                                                            </Box>
-                                                                            <TextField
-                                                                                inputProps={{
-                                                                                    maxlength: CHAR_LIMIT,
-                                                                                }}
-                                                                                sx={{
-                                                                                    disableUnderline: true,
-                                                                                    '.MuiInputBase-root ': {
-                                                                                        padding: '0px'
-                                                                                    },
-                                                                                    '.MuiOutlinedInput-notchedOutline': {
-                                                                                        border: 'none',
-                                                                                        outline: 'none'
-                                                                                    },
-                                                                                    '& .MuiInputBase-input': {
-                                                                                        width: '100%',
-                                                                                        background: 'transparent',
-                                                                                        border: '0px',
-                                                                                        borderBottom: '0.377697px solid #FBFBFB',
-                                                                                        fontFamily: 'Proxima Nova',
-                                                                                        fontStyle: 'normal',
-                                                                                        fontSize: '20px',
-                                                                                        lineHeight: '24px',
-                                                                                        color: '#FBFBFB !important',
-                                                                                        paddingBottom: '12px',
-                                                                                        outline: 'none',
-                                                                                        borderRadius: '0px',
-                                                                                        paddingLeft: '0px',
-                                                                                        opacity: '1'
-                                                                                    },
-                                                                                    '.MuiFormHelperText-root': {
-                                                                                        fontFamily: 'Proxima Nova',
-                                                                                        fontStyle: 'normal',
-                                                                                        fontWeight: '250',
-                                                                                        fontSize: '16px',
-                                                                                        lineHeight: '19px',
-                                                                                        textAlign: 'right',
-                                                                                        color: '#FBFBFB',
-                                                                                        marginBottom: '0px',
-                                                                                        opacity: '1',
-                                                                                    },
-                                                                                    '@media(min-width: 1px) and (max-width: 425px)': {
-                                                                                        '& .MuiInputBase-input': {
-                                                                                            fontSize: '12px',
-                                                                                            lineHeight: '15px',
-                                                                                        },
-                                                                                    }
-                                                                                }}
-                                                                                name="occassionMessage5"
-                                                                                autoComplete="off"
-                                                                                className="form-control remove-bottom-border occassion-box"
-                                                                                value={values.occassionMessage5}
-                                                                                placeholder="Wishing you the best of a lifetime of memories|"
-                                                                                helperText={`${values.occassionMessage5.length}/${CHAR_LIMIT} Characters`}
-                                                                                onChange={handleChange("occassionMessage5")}
-                                                                                margin="normal"
-                                                                                variant="outlined"
-                                                                                fullWidth
-                                                                                multiline
-                                                                                autoComplete="off"
-                                                                            />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </TabPanel>
-                                                </Tabs>
-                                            </Box>
-                                        </Box>
-                                        <Box className="recipient" id="recipientDetails">
-                                            <Typography className="recipient-title">Recipient details</Typography>
-                                            <Typography className="recipient-details">Gift card will be sent by email or
-                                                SMS</Typography>
-                                            <Grid className="row" xs={12}>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="validationCustomname">Receiver’s Name</label>
-                                                    <TextField type="text" className="form-control" name="name"
-                                                               value={values.name}
-                                                               onChange={handleChange} id="validationCustomname"
-                                                               placeholder="Enter name"
-                                                               variant="standard"
-                                                               autoComplete="off"
-                                                               InputProps={{
-                                                                   disableUnderline: true,
-                                                               }}
-                                                    />
-                                                    <ErrorMessage name='name' component="div" className="error"/>
-                                                </Grid>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="validationCustom02">Receiver’s Email ID</label>
-                                                    <TextField type="email" name="email" className="form-control"
-                                                               id="validationCustom02"
-                                                               value={values.email}
-                                                               onChange={handleChange}
-                                                               placeholder="Enter your email address"
-                                                               variant="standard"
-                                                               autoComplete="off"
-                                                               InputProps={{
-                                                                   disableUnderline: true,
-                                                               }}/>
-                                                    <ErrorMessage name='email' component="div" className="error"/>
-                                                </Grid>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="validationCustom03">Receiver’s Phone Number</label>
-                                                    <Box className="form-group country">
-                                                        <TextField type="tel" name="contactNumber"
-                                                                   className="form-control" id="validationCustom03"
-                                                                   placeholder="10 digit number"
-                                                                   value={values.contactNumber}
-                                                                   onChange={handleChange}
-                                                                   autoComplete="off"
-                                                                   variant="standard"
-                                                                   InputProps={{
-                                                                       disableUnderline: true,
-                                                                       startAdornment: <InputAdornment
-                                                                           position="start">91+</InputAdornment>,
-                                                                       endAdornment: <InputAdornment
-                                                                           position="end"
-                                                                           onClick={ContactOpen}><ContactsIcon
-                                                                           sx={{
-                                                                               color: 'black',
-                                                                               cursor: 'pointer'
-                                                                           }}/></InputAdornment>
-                                                                   }}/>
-                                                        <ErrorMessage name='contactNumber' component="div"
-                                                                      className="error"/>
-                                                    </Box>
-                                                </Grid>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="">Message for Receiver ( Optional)</label>
-                                                    <TextField
-                                                        inputProps={{
-                                                            maxlength: CHARACTER_LIMIT,
-                                                        }}
-                                                        sx={{
-                                                            '.MuiOutlinedInput-notchedOutline': {
-                                                                border: 'none',
-                                                                outline: 'none'
-                                                            },
-                                                            '& .MuiInputBase-input': {
-                                                                height: '149px',
-                                                                background: 'rgba(189, 189, 189, 0.2)',
-                                                                border: '0px',
-                                                                minHeight: '149px',
-                                                                resize: 'none',
-                                                                fontFamily: 'Inter, sans-serif',
-                                                                fontSize: '14px',
-                                                                lineHeight: '17px',
-                                                                fontWeight: '400',
-                                                                color: ' #7D7D7D',
-                                                                padding: '16px 15px',
-                                                            },
-                                                            '& .css-15kq27i': {
-                                                                padding: '0px'
+                                                <Box className="occasion">
+                                                    <Box className="occasion-container">
+                                                        <h4 className="occasion-title">{giftCardData.occasion.title}</h4>
+                                                        <Tabs aria-label="Basic tabs" defaultValue={0}>
+                                                            <TabList>
+                                                                {
+                                                                    giftCardData.occasion.content.map((item) => {
+                                                                        return (
+                                                                            <Tab>{item.name}</Tab>
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </TabList>
+                                                            {
+                                                                giftCardData.occasion.content.map((item, index) => {
+                                                                    return (
+                                                                        <TabPanel value={index} sx={{p: 2}}>
+                                                                            <div className="tab-content"
+                                                                                 id="pills-tabContent">
+                                                                                <div className="tab-pane fade show"
+                                                                                     id="wedding"
+                                                                                     role="tabpanel"
+                                                                                     aria-labelledby="wedding-tab">
+                                                                                    <div className="occasion-cards">
+                                                                                        <div
+                                                                                            className="row align-items-center personalize">
+                                                                                            <div className="col-lg-7">
+                                                                                                <img src={goldLogo}
+                                                                                                     alt="Logo"
+                                                                                                     className="logo footer-logo"/>
+                                                                                            </div>
+                                                                                            <div className="col-lg-5">
+                                                                                                <u>Personalize</u>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div
+                                                                                            className="row occasion-title">
+                                                                                            <div className="col-lg-12">
+                                                                                                <Box style={{
+                                                                                                    display: 'flex',
+                                                                                                    justifyContent: 'space-between',
+                                                                                                    alignItems: 'center'
+                                                                                                }}>
+                                                                                                    <Box> <Typography
+                                                                                                        className="occasion-subtitle">{item.title}</Typography></Box>
+                                                                                                    <Box>
+                                                                                                        <button
+                                                                                                            id="clean"
+                                                                                                            type="reset"
+                                                                                                            className="clean"
+                                                                                                            onClick={() => setOccassionMessage('')}>Clear
+                                                                                                        </button>
+                                                                                                    </Box>
+                                                                                                </Box>
+                                                                                                <TextField
+                                                                                                    inputProps={{
+                                                                                                        maxlength: CHAR_LIMIT,
+                                                                                                    }}
+                                                                                                    sx={{
+                                                                                                        disableUnderline: true,
+                                                                                                        '.MuiInputBase-root ': {
+                                                                                                            padding: '0px'
+                                                                                                        },
+                                                                                                        '.MuiOutlinedInput-notchedOutline': {
+                                                                                                            border: 'none',
+                                                                                                            outline: 'none',
+                                                                                                        },
+                                                                                                        '& .MuiInputBase-input': {
+                                                                                                            width: '100%',
+                                                                                                            background: 'transparent',
+                                                                                                            border: '0px',
+                                                                                                            borderBottom: '0.377697px solid #FBFBFB',
+                                                                                                            fontFamily: 'Proxima Nova',
+                                                                                                            fontStyle: 'normal',
+                                                                                                            fontSize: '20px',
+                                                                                                            lineHeight: '24px',
+                                                                                                            color: '#FBFBFB !important',
+                                                                                                            paddingBottom: '12px',
+                                                                                                            outline: 'none',
+                                                                                                            borderRadius: '0px',
+                                                                                                            paddingLeft: '0px',
+                                                                                                            opacity: '1'
+                                                                                                        },
+                                                                                                        '.MuiFormHelperText-root': {
+                                                                                                            fontFamily: 'Proxima Nova',
+                                                                                                            fontStyle: 'normal',
+                                                                                                            fontWeight: '250',
+                                                                                                            fontSize: '16px',
+                                                                                                            lineHeight: '19px',
+                                                                                                            textAlign: 'right',
+                                                                                                            color: '#FBFBFB',
+                                                                                                            marginBottom: '0px',
+                                                                                                            opacity: '1',
+                                                                                                        },
+                                                                                                        '@media(min-width: 1px) and (max-width: 425px)': {
+                                                                                                            '& .MuiInputBase-input': {
+                                                                                                                fontSize: '12px',
+                                                                                                                lineHeight: '15px',
+                                                                                                            },
+                                                                                                        }
+                                                                                                    }}
+                                                                                                    name="occassionMessage1"
+                                                                                                    autoComplete="off"
+                                                                                                    className="form-control remove-bottom-border occassion-box"
+                                                                                                    value={values.occassionMessage1}
+                                                                                                    placeholder={item.description}
+                                                                                                    helperText={`${values.occassionMessage1.length}/${CHAR_LIMIT} Characters`}
+                                                                                                    onChange={handleChange(`occassionMessage${index+1}`)}
+                                                                                                    margin="normal"
+                                                                                                    variant="outlined"
+                                                                                                    fullWidth
+                                                                                                    multiline
+                                                                                                    autoComplete="off"
+                                                                                                />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </TabPanel>
+                                                                    )
+                                                                })
                                                             }
-                                                        }}
-                                                        id="validationCustom04"
-                                                        name="receiverMessage"
-                                                        autoComplete="off"
-                                                        className="form-control remove-bottom-border"
-                                                        value={values.receiverMessage}
-                                                        placeholder="Do you have any special requests or concerns ?"
-                                                        helperText={`${values.receiverMessage.length}/${CHARACTER_LIMIT} Characters`}
-                                                        onChange={handleChange("receiverMessage")}
-                                                        margin="normal"
-                                                        variant="outlined"
-                                                        fullWidth
-                                                        multiline
-                                                        rows={1}
-                                                        autoComplete="off"
-                                                    />
-                                                    <ErrorMessage name='receiverMessage' component="div"
-                                                                  className="error"/>
-                                                </Grid>
-                                                <Grid xs={12} className="col-lg-12">
-                                                    <button className="btn btn-primary" type="submit"
-                                                            onClick={handleOpenPopUp}>Submit
-                                                    </button>
-                                                </Grid>
-                                            </Grid>
+
+                                                        </Tabs>
+                                                    </Box>
+                                                </Box>
+                                                <Box className="recipient" id="recipientDetails">
+                                                    <Typography
+                                                        className="recipient-title">{giftCardData.recipient.title}</Typography>
+                                                    <Typography
+                                                        className="recipient-details">{giftCardData.recipient.description}</Typography>
+                                                    <Grid className="row" xs={12}>
+                                                        <Grid xs={12} className="mb-3">
+                                                            <label htmlFor="validationCustomname">Receiver’s
+                                                                Name</label>
+                                                            <TextField type="text" className="form-control" name="name"
+                                                                       value={values.name}
+                                                                       onChange={handleChange} id="validationCustomname"
+                                                                       placeholder="Enter name"
+                                                                       variant="standard"
+                                                                       autoComplete="off"
+                                                                       InputProps={{
+                                                                           disableUnderline: true,
+                                                                       }}
+                                                            />
+                                                            <ErrorMessage name='name' component="div"
+                                                                          className="error"/>
+                                                        </Grid>
+                                                        <Grid xs={12} className="mb-3">
+                                                            <label htmlFor="validationCustom02">Receiver’s Email
+                                                                ID</label>
+                                                            <TextField type="email" name="email"
+                                                                       className="form-control"
+                                                                       id="validationCustom02"
+                                                                       value={values.email}
+                                                                       onChange={handleChange}
+                                                                       placeholder="Enter your email address"
+                                                                       variant="standard"
+                                                                       autoComplete="off"
+                                                                       InputProps={{
+                                                                           disableUnderline: true,
+                                                                       }}/>
+                                                            <ErrorMessage name='email' component="div"
+                                                                          className="error"/>
+                                                        </Grid>
+                                                        <Grid xs={12} className="mb-3">
+                                                            <label htmlFor="validationCustom03">Receiver’s Phone
+                                                                Number</label>
+                                                            <Box className="form-group country">
+                                                                <TextField type="tel" name="contactNumber"
+                                                                           className="form-control"
+                                                                           id="validationCustom03"
+                                                                           placeholder="10 digit number"
+                                                                           value={values.contactNumber}
+                                                                           onChange={handleChange}
+                                                                           autoComplete="off"
+                                                                           variant="standard"
+                                                                           InputProps={{
+                                                                               disableUnderline: true,
+                                                                               startAdornment: <InputAdornment
+                                                                                   position="start">91+</InputAdornment>,
+                                                                               endAdornment: <InputAdornment
+                                                                                   position="end"
+                                                                                   onClick={ContactOpen}><ContactsIcon
+                                                                                   sx={{
+                                                                                       color: 'black',
+                                                                                       cursor: 'pointer'
+                                                                                   }}/></InputAdornment>
+                                                                           }}/>
+                                                                <ErrorMessage name='contactNumber' component="div"
+                                                                              className="error"/>
+                                                            </Box>
+                                                        </Grid>
+                                                        <Grid xs={12} className="mb-3">
+                                                            <label htmlFor="">Message for Receiver ( Optional)</label>
+                                                            <TextField
+                                                                inputProps={{
+                                                                    maxlength: CHARACTER_LIMIT,
+                                                                }}
+                                                                sx={{
+                                                                    '.MuiOutlinedInput-notchedOutline': {
+                                                                        border: 'none',
+                                                                        outline: 'none'
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        height: '149px',
+                                                                        background: 'rgba(189, 189, 189, 0.2)',
+                                                                        border: '0px',
+                                                                        minHeight: '149px',
+                                                                        resize: 'none',
+                                                                        fontFamily: 'Inter, sans-serif',
+                                                                        fontSize: '14px',
+                                                                        lineHeight: '17px',
+                                                                        fontWeight: '400',
+                                                                        color: ' #7D7D7D',
+                                                                        padding: '16px 15px',
+                                                                    },
+                                                                    '& .css-15kq27i': {
+                                                                        padding: '0px'
+                                                                    }
+                                                                }}
+                                                                id="validationCustom04"
+                                                                name="receiverMessage"
+                                                                autoComplete="off"
+                                                                className="form-control remove-bottom-border"
+                                                                value={values.receiverMessage}
+                                                                placeholder="Do you have any special requests or concerns ?"
+                                                                helperText={`${values.receiverMessage.length}/${CHARACTER_LIMIT} Characters`}
+                                                                onChange={handleChange("receiverMessage")}
+                                                                margin="normal"
+                                                                variant="outlined"
+                                                                fullWidth
+                                                                multiline
+                                                                rows={1}
+                                                                autoComplete="off"
+                                                            />
+                                                            <ErrorMessage name='receiverMessage' component="div"
+                                                                          className="error"/>
+                                                        </Grid>
+                                                        <Grid xs={12} className="col-lg-12">
+                                                            <button className="btn btn-primary" type="submit"
+                                                                // onClick={handleOpenPopUp}
+                                                            >Submit
+                                                            </button>
+                                                        </Grid>
+                                                    </Grid>
+                                                </Box>
+                                            </Box>
+                                        </Form>
+                                    )}
+                                </Formik>
+                            </Box>
+                        </Box>
+                        <Box className="save-booking-container">
+                            <Box className="save_booking">
+                                <Box className="container">
+                                    <Box className="row">
+                                        <Box className="save-booking-details">
+                                            <img src={trendingUp} className="save-booking-img"
+                                                 alt=""/>{giftCardData.gift_footer.text}
                                         </Box>
                                     </Box>
-                                </Form>
-                            )}
-                        </Formik>
-                    </Box>
-                </Box>
-                <Box className="save-booking-container">
-                    <Box className="save_booking">
-                        <Box className="container">
-                            <Box className="row">
-                                <Box className="save-booking-details">
-                                    <img src={trendingUp} className="save-booking-img" alt=""/><b>₹</b> 7k + saved in
-                                    annual
-                                    bookings by corporates
                                 </Box>
                             </Box>
                         </Box>
-                    </Box>
-                </Box>
-                <NeedHelp/>
-                <Footer/>
-                <FooterEnd/>
-                <Modal
-                    keepMounted
-                    open={open}
-                    onClose={handleClosePopUp}
-                    aria-labelledby="keep-mounted-modal-title"
-                    aria-describedby="keep-mounted-modal-description"
-                >
-                    <Box sx={style}>
-                        <Box className="modal-content">
-                            <Box className="patron-submitted">
-                                <Box className="modal-header">
-                                    <button type="button" data-bs-dismiss="modal" aria-label="Close" className="close"
-                                            onClick={handleClosePopUp}>
-                                        <CloseIcon/>
-                                    </button>
-                                </Box>
-                                <Grid container>
-                                    <Grid item xs={12} md={12} className="occasion-cards">
-                                        <Box className="personalize">
-                                            <img src={ChefsLogo} alt="Logo" className="logo footer-logo"/>
+                        <NeedHelp/>
+                        <Footer/>
+                        <FooterEnd/>
+                        <Modal
+                            keepMounted
+                            open={open}
+                            onClose={handleClosePopUp}
+                            aria-labelledby="keep-mounted-modal-title"
+                            aria-describedby="keep-mounted-modal-description"
+                        >
+                            <Box sx={style}>
+                                <Box className="modal-content">
+                                    <Box className="patron-submitted">
+                                        <Box className="modal-header">
+                                            <button type="button" data-bs-dismiss="modal" aria-label="Close"
+                                                    className="close"
+                                                    onClick={handleClosePopUp}>
+                                                <CloseIcon/>
+                                            </button>
                                         </Box>
-                                        <Box className="row occasion-title">
-                                            <Box className="col-lg-12">
-                                                <Typography className="occasion-heading">Happy Wedding</Typography>
-                                                <Typography className="occasion-title-message">Wishing you the best of a
-                                                    lifetime of
-                                                    memories|</Typography>
-                                                <p className="char-count"><span id="rchars1">₹</span>2,500</p>
-                                            </Box>
+                                        <Grid container>
+                                            <Grid item xs={12} md={12} className="occasion-cards">
+                                                <Box className="personalize">
+                                                    <img src={ChefsLogo} alt="Logo" className="logo footer-logo"/>
+                                                </Box>
+                                                <Box className="row occasion-title">
+                                                    <Box className="col-lg-12">
+                                                        <Typography className="occasion-heading">Happy
+                                                            Wedding</Typography>
+                                                        <Typography className="occasion-title-message">Wishing you the
+                                                            best of a
+                                                            lifetime of
+                                                            memories|</Typography>
+                                                        <p className="char-count"><span id="rchars1">₹</span>2,500</p>
+                                                    </Box>
+                                                </Box>
+                                            </Grid>
+                                            <Grid item xs={12} md={12} className="receiver-details">
+                                                <Typography className="receiver-title">Gift card sent
+                                                    successfully<br/> to <span
+                                                        className="rec_name">Sana</span></Typography>
+                                                <Typography className="r-details">We’ll let them know you sent
+                                                    it</Typography>
+                                                <Box className="down-invoice">
+                                                    <a href="">Download Invoice</a>
+                                                    <a href="" style={{padding: '10px'}}><ShareIcon
+                                                        className="shareIcon"/></a>
+                                                </Box>
+                                                <a href="" className="tell-us">Tell us how this transaction went</a>
+                                            </Grid>
+                                        </Grid>
+                                        <Box className="apply_div">
+                                            <a href="" className="apply_btn">Browse upcoming experiences</a>
+                                            <Typography className="need-help">Need Help? <Link href="/contact-us"
+                                                                                               className="need-help-link">Contact
+                                                Us</Link></Typography>
                                         </Box>
-                                    </Grid>
-                                    <Grid item xs={12} md={12} className="receiver-details">
-                                        <Typography className="receiver-title">Gift card sent successfully<br/> to <span
-                                            className="rec_name">Sana</span></Typography>
-                                        <Typography className="r-details">We’ll let them know you sent it</Typography>
-                                        <Box className="down-invoice">
-                                            <a href="">Download Invoice</a>
-                                            <a href="" style={{padding: '10px'}}><ShareIcon className="shareIcon"/></a>
-                                        </Box>
-                                        <a href="" className="tell-us">Tell us how this transaction went</a>
-                                    </Grid>
-                                </Grid>
-                                <Box className="apply_div">
-                                    <a href="" className="apply_btn">Browse upcoming experiences</a>
-                                    <Typography className="need-help">Need Help? <Link href="/contact-us"
-                                                                                       className="need-help-link">Contact
-                                        Us</Link></Typography>
-                                </Box>
-                            </Box>
-                        </Box>
-                    </Box>
-                </Modal>
-                <Modal
-                    keepMounted
-                    open={contactPopUp}
-                    onClose={ContactClose}
-                    aria-labelledby="keep-mounted-modal-title"
-                    aria-describedby="keep-mounted-modal-description"
-                >
-                    <Box sx={style}>
-                        <Box className="allow-access">
-                            <Box className="modal-header">
-                                <button type="button" data-bs-dismiss="modal" aria-label="Close" className="close"
-                                        onClick={ContactClose}>
-                                    <CloseIcon/>
-                                </button>
-                            </Box>
-                            <Box className="access-box">
-                                <Typography className="allow-details">Allow <strong>Chefs-à-Porter</strong> to
-                                    access your contacts?</Typography>
-                                <Box className="access-btn">
-                                    <Link href="/gift-cards"
-                                          className="deny-permission-button">Deny</Link>
-                                    <Link href="/mobile-contact"
-                                          className="allow-permission-button">Allow</Link>
+                                    </Box>
                                 </Box>
                             </Box>
-                        </Box>
-                    </Box>
-                </Modal>
+                        </Modal>
+                        <Modal
+                            keepMounted
+                            open={contactPopUp}
+                            onClose={ContactClose}
+                            aria-labelledby="keep-mounted-modal-title"
+                            aria-describedby="keep-mounted-modal-description"
+                        >
+                            <Box sx={style}>
+                                <Box className="allow-access">
+                                    <Box className="modal-header">
+                                        <button type="button" data-bs-dismiss="modal" aria-label="Close"
+                                                className="close"
+                                                onClick={ContactClose}>
+                                            <CloseIcon/>
+                                        </button>
+                                    </Box>
+                                    <Box className="access-box">
+                                        <Typography className="allow-details">Allow <strong>Chefs-à-Porter</strong> to
+                                            access your contacts?</Typography>
+                                        <Box className="access-btn">
+                                            <Link href="/gift-cards"
+                                                  className="deny-permission-button">Deny</Link>
+                                            <Link href="/mobile-contact"
+                                                  className="allow-permission-button">Allow</Link>
+                                        </Box>
+                                    </Box>
+                                </Box>
+                            </Box>
+                        </Modal>
+                    </>
+                }
             </BoxWrapper>
         </React.Fragment>
     )
