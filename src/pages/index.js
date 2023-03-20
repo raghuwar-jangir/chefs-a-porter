@@ -891,13 +891,11 @@ const HomePage = () => {
             image: gallery2,
             title: 'gallery2',
             rows: 0.9,
-            index: 0,
         },
         {
             image: gallery1,
             title: ' gallery1',
             rows: 1.1,
-            index: 2,
 
         },
         {
@@ -905,19 +903,16 @@ const HomePage = () => {
             title: 'gallery3',
             rows: 2,
             cols: 2,
-            index: 1
         },
         {
             image: gallery4,
             title: 'gallery4',
             rows: 1.3,
-            index: 3
         },
         {
             image: gallery5,
             title: 'gallery5',
             rows: 0.7,
-            index: 4
         },
     ];
 
@@ -1351,7 +1346,7 @@ const HomePage = () => {
                             ))}
                         </Box>
                         <DiningExperienceCarousel/>
-                        <TemptedYet title={'View our offerings'}/>
+                        <TemptedYet title={data.home_footer.moblie_title} buttonText={data.home_footer.mobile_button}/>
                         <NeedHelp/>
                         <Footer/>
                         <FooterEnd/>

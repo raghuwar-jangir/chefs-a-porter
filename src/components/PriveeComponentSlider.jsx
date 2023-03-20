@@ -9,7 +9,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import '../assets/styles/fontStyle.css'
 
-const  PriveeComponentSlider = () => {
+const  PriveeComponentSlider = (props) => {
     const WrapBox = styled(Box) ({
         '.main-box':{
             background: '#101418',
@@ -92,7 +92,7 @@ const  PriveeComponentSlider = () => {
         <WrapBox>
             <Box className='main-box'>
                 <Box>
-                    <Typography className="peek-heading">Peek into our Private Dining Experiences</Typography>
+                    <Typography className="peek-heading">{props.title}</Typography>
                     <Typography className="peek-name">@Privée</Typography>
                 </Box>
                 <Box className='slider-box'>

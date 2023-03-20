@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
     Box,
     styled,
@@ -17,8 +17,13 @@ import gallery from "../../assets/images/sc-gallery.png";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ImageCarousel from "../../components/ImageCarousel";
 import {Link} from "gatsby";
+import BecomePatronContext from "../../context/BecomePatronContext";
+import * as _ from "lodash";
+
 
 const BecomePartner = () => {
+
+    const {becomePatronData} = useContext(BecomePatronContext);
 
     const BoxWrapper = styled(Box)(() => ({
         background: '#FBFBFB',
@@ -29,7 +34,7 @@ const BecomePartner = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             filter: 'drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.16))',
-            padding:'30px 300px'
+            padding: '30px 300px'
         },
         '.container': {
             position: 'relative',
@@ -56,7 +61,7 @@ const BecomePartner = () => {
         '.position-absolute': {
             width: '100%',
             bottom: '40px',
-            position:'absolute'
+            position: 'absolute'
         },
         '.become-heading': {
             fontStyle: 'normal',
@@ -93,9 +98,9 @@ const BecomePartner = () => {
         '.apply:hover': {
             color: '#C6A87D',
         },
-        '.patron-flex':{
-            display:"flex",
-            justifyContent:'space-between'
+        '.patron-flex': {
+            display: "flex",
+            justifyContent: 'space-between'
         },
         '.save_booking': {
             background: '#101418',
@@ -322,8 +327,8 @@ const BecomePartner = () => {
                 padding: '30px 10px',
                 background: '#101418',
             },
-            '.corporate-b':{
-                display:'none'
+            '.corporate-b': {
+                display: 'none'
             },
         },
         '@media(min-width: 320px) and (max-width: 768px)': {
@@ -353,14 +358,14 @@ const BecomePartner = () => {
             ".patron-mobile-heading": {
                 textAlign: 'left',
             },
-            '.patron-flex':{
-                display:"block",
+            '.patron-flex': {
+                display: "block",
             },
-            '.apply':{
-                width:"100%"
+            '.apply': {
+                width: "100%"
             },
-            '.corporate-b':{
-                marginTop:'0px',
+            '.corporate-b': {
+                marginTop: '0px',
             }
         },
 
@@ -374,7 +379,7 @@ const BecomePartner = () => {
                 background: '#101418',
             },
             '.corporate-b': {
-                padding:'30px 50px'
+                padding: '30px 50px'
             },
         },
     }))
@@ -382,96 +387,102 @@ const BecomePartner = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar heading="Become a Patron"/>
-                {/*{isMobile ? (*/}
-                {/*    <Box className='header-club'>*/}
-                {/*        <Typography className="patron-mobile-heading">Become a Patron</Typography>*/}
-                {/*    </Box>*/}
-                {/*) : ('')}*/}
-                <Box className="corporate-b">
-                    <Box className="container">
-                        <Box className="top-10 position-absolute">
-                            <Typography><a href="/" className="header-link"><ArrowBackIcon
-                                style={{marginRight: '15px'}}/>Back</a></Typography>
-                        </Box>
-                        <Box className="position-absolute patron-flex">
-                            <Box>
-                                <Typography className="become-heading">Become a Patron</Typography>
-                                <Typography className="become-detail">Check out the benifits our patron
-                                    recieve </Typography>
-                            </Box>
-                            <Box><Typography style={{width:'100%'}}><Link href="/become-patron" className="apply">Apply</Link></Typography></Box>
-                        </Box>
-                    </Box>
-                </Box>
-               <ImageCarousel/>
-                <Box className="big_dis">
-                    <Box> <Typography className="booking-heading">Check out the benifits our patron recieve</Typography></Box>
-                    <Grid container>
-                        <Grid item xl={4} md={4} xs={12}>
-                            <Typography className="book-title">Book an entire supper club</Typography>
-                            <Typography className="book-detail">Host a supper club privately</Typography>
-                        </Grid>
-                        <Grid item xl={4} md={4} xs={12} sx={{paddingRight: '5px'}} className="booking-border">
-                            <Typography className="book-title">First Pick on private dining chefs</Typography>
-                            <Typography className="book-detail">Get first dibs on top chefs from around the
-                                world</Typography>
-                        </Grid>
-                        <Grid item xl={4} md={4} xs={12} sx={{paddingRight: '5px'}} className="booking-border">
-                            <Typography className="book-title">Exclusive behind the scene content</Typography>
-                            <Typography className="book-detail">Get backstage access to everything that happens behind
-                                the scene</Typography>
-                        </Grid>
-                    </Grid>
-                </Box>
-                <Box className="membership-type">
-                    <Box><Typography className="membership-heading">Become a Patron</Typography></Box>
-                    <Grid container spacing={4}>
-                        <Grid item xl={6} md={6} xs={12}>
-                            <Box className="gold-memberships">
-                                <Box className="gold-membership">
-                                    <Box>
-                                        <b className="gold-membership-heading">Chef à Porter <span className="gold">Gold membership</span></b>
-                                        <span className="gold-months">for 12 months</span>
-                                    </Box>
-                                    <ArrowRightAltIcon className="gold-bi-arrow-right"/>
+                {
+                    !_.isEmpty(becomePatronData) &&
+                    <>
+                        <Navbar heading="Become a Patron"/>
+                        <Box className="corporate-b">
+                            <Box className="container">
+                                <Box className="top-10 position-absolute">
+                                    <Typography><a href="/" className="header-link"><ArrowBackIcon
+                                        style={{marginRight: '15px'}}/>Back</a></Typography>
                                 </Box>
-                                <Typography className="gold-membership-details">Enjoy exclusive benefits through the
-                                    year, including priority bookings, privileged seating and more</Typography>
-                                <span className="gold-amount"><b>₹</b><s>2,000</s> 1,800/month</span>
-                                <Box className="most-popular">Most Popular</Box>
-                            </Box>
-                        </Grid>
-                        <Grid item xl={6} md={6} xs={12}>
-                            <Box className="silver-memberships">
-                                <Box className="gold-membership">
+                                <Box className="position-absolute patron-flex">
                                     <Box>
-                                        <b className="silver-membership-heading">Chef à Porter Silver membership</b>
-                                        <span className="silver-months">for 1 months</span>
+                                        <Typography
+                                            className="become-heading">{becomePatronData.become_patron.title}</Typography>
+                                        <Typography className="become-detail">Check out the benifits our patron
+                                            recieve </Typography>
                                     </Box>
-                                    <ArrowRightAltIcon className="silver-bi-arrow-right"/>
+                                    <Box><Typography style={{width: '100%'}}><Link href="/become-patron"
+                                                                                   className="apply">Apply</Link></Typography></Box>
                                 </Box>
-                                <Typography className="silver-membership-details">Enjoy exclusive benefits through the
-                                    year, including priority bookings, privileged seating and more</Typography>
-                                <span className="silver-amount">₹2,000/month</span>
-                            </Box>
-                        </Grid>
-                    </Grid>
-                </Box>
-                <Questions isLightTheme={true}/>
-                <Box className="save_booking">
-                    <Box className="container">
-                        <Box className="row">
-                            <Box className="save-booking-details">
-                                <img src={trendingUp} className="save-booking-img" alt=""/><b>₹</b> 7k + saved in annual
-                                bookings by corporates
                             </Box>
                         </Box>
-                    </Box>
-                </Box>
-                <NeedHelp/>
-                <Footer/>
-                <FooterEnd/>
+                        <ImageCarousel/>
+                        <Box className="big_dis">
+                            <Box> <Typography
+                                className="booking-heading">{becomePatronData.benifits.description}</Typography></Box>
+                            <Grid container>
+                                {
+                                    becomePatronData.benifits.content.map((item) => {
+                                        return (
+                                            <Grid item xl={4} md={4} xs={12} sx={{paddingRight: '5px'}}
+                                                  className="booking-border">
+                                                <Typography className="book-title">{item.title}</Typography>
+                                                <Typography className="book-detail">{item.description}</Typography>
+                                            </Grid>
+                                        )
+                                    })
+                                }
+                            </Grid>
+                        </Box>
+                        <Box className="membership-type">
+                            <Box><Typography
+                                className="membership-heading">{becomePatronData.become_patron.title}</Typography></Box>
+                            <Grid container spacing={4}>
+                                <Grid item xl={6} md={6} xs={12}>
+                                    <Box className="gold-memberships">
+                                        <Box className="gold-membership">
+                                            <Box>
+                                                <b className="gold-membership-heading">Chef à Porter <span
+                                                    className="gold">Gold membership</span></b>
+                                                <span className="gold-months">for 12 months</span>
+                                            </Box>
+                                            <ArrowRightAltIcon className="gold-bi-arrow-right"/>
+                                        </Box>
+                                        <Typography className="gold-membership-details">Enjoy exclusive benefits through
+                                            the
+                                            year, including priority bookings, privileged seating and more</Typography>
+                                        <span className="gold-amount"><b>₹</b><s>2,000</s> 1,800/month</span>
+                                        <Box className="most-popular">Most Popular</Box>
+                                    </Box>
+                                </Grid>
+                                <Grid item xl={6} md={6} xs={12}>
+                                    <Box className="silver-memberships">
+                                        <Box className="gold-membership">
+                                            <Box>
+                                                <b className="silver-membership-heading">Chef à Porter Silver
+                                                    membership</b>
+                                                <span className="silver-months">for 1 months</span>
+                                            </Box>
+                                            <ArrowRightAltIcon className="silver-bi-arrow-right"/>
+                                        </Box>
+                                        <Typography className="silver-membership-details">Enjoy exclusive benefits
+                                            through the
+                                            year, including priority bookings, privileged seating and more</Typography>
+                                        <span className="silver-amount">₹2,000/month</span>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                        </Box>
+                        <Questions isLightTheme={true}/>
+                        <Box className="save_booking">
+                            <Box className="container">
+                                <Box className="row">
+                                    <Box className="save-booking-details">
+                                        <img src={trendingUp} className="save-booking-img" alt=""/><b>₹</b> 7k + saved
+                                        in annual
+                                        bookings by corporates
+                                    </Box>
+                                </Box>
+                            </Box>
+                        </Box>
+                        <NeedHelp/>
+                        <Footer/>
+                        <FooterEnd/>
+                    </>
+                }
             </BoxWrapper>
         </React.Fragment>
     )

@@ -429,11 +429,11 @@ const EventDetails = () => {
             }
         },
         '@media(min-width:600px) and (max-width: 768px)': {
-            '.template':{
-                backgroundColor:'#FBFBFB !important'
+            '.template': {
+                backgroundColor: '#FBFBFB !important'
             },
-            '.template-title':{
-                color:'#080B0E !important'
+            '.template-title': {
+                color: '#080B0E !important'
             }
         }
     }));
@@ -851,7 +851,7 @@ const EventDetails = () => {
                     </Box>
                 </Modal>
                 <NeedHelpEvent isColor={true}/>
-                <TemptedYet title='Book this Experience' isTempted={false}/>
+                <TemptedYet title={'Tempted yet?'} buttonText='Book this Experience' isTempted={false}/>
                 <NeedHelp/>
                 <Footer/>
                 <FooterEnd/>

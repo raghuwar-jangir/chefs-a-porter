@@ -444,7 +444,7 @@ const ChefDetails = (props) => {
                 '.chef-header': {
                     fontSize: '24px',
                     lineHeight: '30px',
-                    textAlign:'center'
+                    textAlign: 'center'
                 },
                 '.mobile-show': {
                     display: 'block'
@@ -475,11 +475,11 @@ const ChefDetails = (props) => {
                     color: "#080B0E",
                     fontFamily: 'Bon Vivant'
                 },
-                '.template':{
-                    backgroundColor:'#FBFBFB !important'
+                '.template': {
+                    backgroundColor: '#FBFBFB !important'
                 },
-                '.template-title':{
-                    color:'#080B0E !important'
+                '.template-title': {
+                    color: '#080B0E !important'
                 }
             },
             "@media (min-width: 320px) and (max-width:767px)": {
@@ -899,7 +899,7 @@ const ChefDetails = (props) => {
                 </Modal>
                 <NeedHelp/>
                 <Footer/>
-                <TemptedYet isTempted={true} title={'Book an Experience'}/>
+                <TemptedYet isTempted={true} title={'Tempted yet?'} buttonRText={'Book an Experience'}/>
                 <FooterEnd/>
             </BoxWrapper>
         </React.Fragment>

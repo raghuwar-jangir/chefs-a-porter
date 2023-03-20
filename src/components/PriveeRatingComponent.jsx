@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { useState } from 'react';
+import {useState} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { Swiper, SwiperSlide } from "swiper/react";
+import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import {  Autoplay,Pagination } from "swiper";
+import {Autoplay, Pagination} from "swiper";
 import {styled} from '@mui/system';
 import {Rating} from '@mui/material';
 import '../assets/styles/fontStyle.css';
@@ -63,7 +63,7 @@ const PriveeRatingComponent = ({backgroundColor}) => {
             textAlign: 'center',
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
-            fontWeight:700
+            fontWeight: 700
         },
         ".details": {
             textAlign: 'center',
@@ -85,7 +85,7 @@ const PriveeRatingComponent = ({backgroundColor}) => {
             padding: '30px 0px 24px 0px ',
             fontFamily: 'ProximaNovaA-Regular',
             textTransform: 'uppercase',
-            marginBottom:'20px'
+            marginBottom: '20px'
         },
         '.rating-star': {
             color: '#222222 !important ',
@@ -94,24 +94,24 @@ const PriveeRatingComponent = ({backgroundColor}) => {
         '.css-dqr9h-MuiRating-label': {
             fontSize: '40px'
         },
-        '.swiper-pagination-bullet':{
-            width:'8px',
-            height:'8px',
-            background:'transparent',
-            opacity:1,
-            border:'0.672852px solid rgba(34, 34, 34, 0.5)',
-            borderRadius:'100px',
-            margin:'0px 10px !important'
+        '.swiper-pagination-bullet': {
+            width: '8px',
+            height: '8px',
+            background: 'transparent',
+            opacity: 1,
+            border: '0.672852px solid rgba(34, 34, 34, 0.5)',
+            borderRadius: '100px',
+            margin: '0px 10px !important'
         },
-        '.swiper-pagination-bullet-active':{
-            width:'12px',
-            height:'12px',
-            background:'#222222',
+        '.swiper-pagination-bullet-active': {
+            width: '12px',
+            height: '12px',
+            background: '#222222',
         },
-        '.swiper-pagination':{
-            display:'flex',
-            placeItems:'center',
-            justifyContent:'center'
+        '.swiper-pagination': {
+            display: 'flex',
+            placeItems: 'center',
+            justifyContent: 'center'
         },
         "@media (min-width: 700px) and (max-width:768px)": {
             ".mainTitle": {
@@ -207,21 +207,21 @@ const PriveeRatingComponent = ({backgroundColor}) => {
                 fontFamily: 'Proxima Nova',
                 textTransform: 'uppercase'
             },
-            '.swiper-pagination-bullet-active':{
-                width:'7px !important',
-                height:'7px !important'
+            '.swiper-pagination-bullet-active': {
+                width: '7px !important',
+                height: '7px !important'
             },
-            '.swiper-pagination-bullet':{
-                width:'4px',
-                height:'4px',
-                margin:'0px 5px !important'
+            '.swiper-pagination-bullet': {
+                width: '4px',
+                height: '4px',
+                margin: '0px 5px !important'
             }
         },
         "@media (min-width: 430px) and (max-width:768px)": {
-            '.swiper-pagination-bullet':{
-                width:'4px',
-                height:'4px',
-                margin:'0px 5px !important'
+            '.swiper-pagination-bullet': {
+                width: '4px',
+                height: '4px',
+                margin: '0px 5px !important'
             }
         }
     }))
@@ -236,7 +236,7 @@ const PriveeRatingComponent = ({backgroundColor}) => {
                 }}
                         pagination={{
                             clickable: true,
-                        }} modules={[Autoplay,Pagination]} className="mySwiper">
+                        }} modules={[Autoplay, Pagination]} className="mySwiper">
                     {images.map((step, index) => (
                         <div key={index}>
                             <SwiperSlide className='main-div'>

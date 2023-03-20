@@ -40,7 +40,7 @@ const images = [
 ];
 
 
-const RatingCarousel = ({backgroundColor}) => {
+const RatingCarousel = ({backgroundColor, isFontSize}) => {
 
     const {data} = useContext(HomeContext);
     const [value, setValue] = useState();
@@ -61,7 +61,7 @@ const RatingCarousel = ({backgroundColor}) => {
         background: `${backgroundColor}`,
         color: '#222222',
         ".mainTitle": {
-            fontSize: '40px ',
+            fontSize: `${isFontSize ? '24px' : '40px'}`,
             lineHeight: '60px',
             textAlign: 'center',
             fontFamily: 'Bon Vivant',

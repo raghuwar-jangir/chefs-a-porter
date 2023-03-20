@@ -309,7 +309,8 @@ const BecomePartner = () => {
                 paddingTop: '80px'
             },
             '.become-partner-form': {
-                marginTop: '55px'
+                marginTop: '55px',
+                width: 'auto',
             },
         },
         '@media(min-width: 615px) and (max-width: 768px)': {

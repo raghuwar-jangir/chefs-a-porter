@@ -5,6 +5,10 @@ import smoothscroll from 'smoothscroll-polyfill'
 import "normalize.css"
 import {HomeProvider} from "./src/context/HomeContext";
 import {AboutUsProvider} from "./src/context/AboutUsContext";
+import {PriveeProvider} from "./src/context/PriveeContext";
+import {ContactUsProvider} from "./src/context/ContactUsContext";
+import {JoinChefProvider} from "./src/context/JoinChefContext";
+import {BecomePatronProvider} from "./src/context/BecomePatronContext";
 
 export const onClientEntry = () => {
     config({ssrFadeout: true})
@@ -13,5 +17,6 @@ export const onClientEntry = () => {
 
 // highlight-start
 // eslint-disable-next-line react/prop-types
-export const wrapRootElement = ({element}) => <HomeProvider><AboutUsProvider>{element}</AboutUsProvider></HomeProvider>
+export const wrapRootElement = ({element}) =>
+    <HomeProvider><AboutUsProvider><PriveeProvider><ContactUsProvider><JoinChefProvider><BecomePatronProvider>{element}</BecomePatronProvider></JoinChefProvider></ContactUsProvider></PriveeProvider></AboutUsProvider></HomeProvider>
 // highlight-end

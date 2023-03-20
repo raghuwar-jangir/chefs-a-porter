@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {Box, MenuItem, Select, styled, Grid, TextField, Typography} from "@mui/material";
 import {MobileView} from "react-device-detect";
 import PriveeDining from "../../components/PriveeDining";
@@ -22,9 +22,10 @@ import AvlExperienceCarousel from "../../components/AvlExperienceCarousel";
 import avlExp1 from "../../assets/images/avl-exp1.jpg";
 import avlExp2 from "../../assets/images/avl-exp2.jpg";
 import '../../assets/styles/fontStyle.css';
-import PriveeRatingComponent from "../../components/PriveeRatingComponent";
 import PriveeQuestions from "../../components/PriveeQuestions";
 import {navigate} from "gatsby";
+import PriveeContext from "../../context/PriveeContext";
+import RatingCarousel from "../../components/RatingCarousel";
 
 const MainBoxContent = styled(Box)({
     position: 'relative',
@@ -462,15 +463,18 @@ const BoxWrapper = styled(Box)(() => ({
         },
     },
     '@media(min-width:600px) and (max-width: 768px)': {
-        '.template':{
-            backgroundColor:'#FBFBFB !important'
+        '.template': {
+            backgroundColor: '#FBFBFB !important'
         },
-        '.template-title':{
-            color:'#080B0E !important'
+        '.template-title': {
+            color: '#080B0E !important'
         }
     }
 }))
 const PriveePage = () => {
+
+    const {priveeData} = useContext(PriveeContext);
+
     const [search, setSearch] = useState(false);
 
     const handleChange = () => {
@@ -516,224 +520,227 @@ const PriveePage = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isColor={true} heading="Privee"/>
-                <MainBoxContent>
-                    {/* //! privee header section for title */}
-                    <MobileView>
-                        <Box className='header-club'>
-                            <img src={PriveeLogo} alt="privee-logo" className='privee-image'/>
-                        </Box>
-                    </MobileView>
-                    {search &&
-                        <Box className='search-box'>
-                            <input type='search' placeholder='Search supper club, city...' className='supper-search'/>
-                        </Box>
-                    }
+                {
+                    !_.isEmpty(priveeData) &&
+                    <>
+                        <Navbar isColor={true} heading="Privee"/>
+                        <MainBoxContent>
+                            {/* //! privee header section for title */}
+                            <MobileView>
+                                <Box className='header-club'>
+                                    <img src={PriveeLogo} alt="privee-logo" className='privee-image'/>
+                                </Box>
+                            </MobileView>
+                            {search &&
+                                <Box className='search-box'>
+                                    <input type='search' placeholder='Search supper club, city...'
+                                           className='supper-search'/>
+                                </Box>
+                            }
 
-                </MainBoxContent>
-                <Box className="home-banner">
-                    <Box className="container-fluid">
-                        <Box className="justify-content-center">
-                            <Box id="video_overlays">
-                                <video autoPlay muted loop className='video' className="home-banner-video">
-                                    <source src={priveeVideo} type="video/mp4"/>
-                                </video>
+                        </MainBoxContent>
+                        <Box className="home-banner">
+                            <Box className="container-fluid">
+                                <Box className="justify-content-center">
+                                    <Box id="video_overlays">
+                                        {/*<video autoPlay muted loop className='video' className="home-banner-video">*/}
+                                        {/*    <source src={priveeVideo} type="video/mp4"/>*/}
+                                        {/*</video>*/}
+                                        <img src={priveeData.header.image} className="video home-banner-video"/>
+                                    </Box>
+                                    <Box className="arrows">
+                                        <Typography className="home-text">{priveeData.header.title}</Typography>
+                                        <img src={DownArrow} alt="down" className="down-arrow-op"/>
+                                        <img src={DownArrow} alt="down" className="down-arrow"/>
+                                    </Box>
+                                </Box>
                             </Box>
-                            <Box className="arrows">
-                                <Typography className="home-text">Let’s Elevate Your Dining.</Typography>
-                                <img src={DownArrow} alt="down" className="down-arrow-op"/>
-                                <img src={DownArrow} alt="down" className="down-arrow"/>
+                        </Box>
+                        <Box className="how-work">
+                            <Typography className="how-work-heading">{priveeData.work.title}</Typography>
+                            <Box className="how-steps">
+                                {
+                                    priveeData.work.contents.map((item) => {
+                                        return (
+                                            <Box className="step-1">
+                                                <Typography className="step-1-heading">{item.text}</Typography>
+                                                <span className="step-1-detail">{item.title}</span>
+                                                <span className="step-1-sub-detail">{item.description}</span>
+                                            </Box>
+                                        )
+                                    })
+                                }
                             </Box>
                         </Box>
-                    </Box>
-                </Box>
-                <Box className="how-work">
-                    <Typography className="how-work-heading">How it works</Typography>
-                    <Box className="how-steps">
-                        <Box className="step-1">
-                            <Typography className="step-1-heading">1</Typography>
-                            <span className="step-1-detail">CHOOSE</span>
-                            <span className="step-1-sub-detail">The perfect fit</span>
-                        </Box>
-                        <Box className="step-1">
-                            <Typography className="step-1-heading">2</Typography>
-                            <span className="step-1-detail">CUSTOMIZE</span>
-                            <span className="step-1-sub-detail">Make it unique</span>
-                        </Box>
-                        <Box className="step-1">
-                            <Typography className="step-1-heading">3</Typography>
-                            <span className="step-1-detail">CLOSE</span>
-                            <span className="step-1-sub-detail">Let's shake on it</span>
-                        </Box>
-                    </Box>
-                </Box>
-                <Box className="privee-exp">
-                    <Box className="container-fluid px-0">
-                        <Box className="privee-container m-0">
-                            <Box className="px-0">
-                                <img src={priveeEx} alt="" className="privee-ex-img"/>
-                            </Box>
-                            <Box className="px-last">
-                                <Typography className="exp-heading">Book an Experience</Typography>
-                                <Formik
-                                    initialValues={{
-                                        city: 'Mumbai',
-                                        date: new Date(),
-                                        experience: 'Experiences',
-                                        numberOfDiner: ''
-                                    }}
-                                    onSubmit={(values) => {
-                                        console.log(values.date)
-                                        const experienceData = {
-                                            ...values,
-                                            date: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
-                                            numberOfDiner: count,
-                                        }
-                                        console.log("value===>", values)
-                                        console.log("experienceData===>", experienceData)
-                                    }}
-                                >
-                                    {({values, handleChange, handleSubmit, setFieldValue}) => (
-                                        <Form onSubmit={handleSubmit}>
-                                            <Box className="form-group">
-                                                <Select
-                                                    labelId="demo-simple-select-label"
-                                                    id="demo-simple-select"
-                                                    name="city"
-                                                    value={values.city}
-                                                    onChange={handleChange}
-                                                    defaultValue={values.city}
-                                                    className="selectpicker my-select dropdown-toggle form-control"
-                                                    sx={{
-                                                        fontSize: '20px',
-                                                        '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                            border: 'none',
-                                                        },
-                                                        '.MuiSelect-select': {
-                                                            padding: '0px 5px',
-                                                            fontSize: '20px',
-                                                            fontWeight: '100'
-                                                        }
-                                                    }}
-                                                    MenuProps={{
-                                                        PaperProps: {
-                                                            sx: {
-                                                                backgroundColor: '#DCD7CB !important',
-                                                                li: {
-                                                                    fontFamily: 'ProximaNovaA-Regular',
-                                                                    borderBottom: "1px solid black",
-                                                                    fontSize: '20px',
-                                                                    fontWeight: '100',
-                                                                    padding: '6px 0px',
-                                                                    justifyContent: 'start'
-                                                                },
-                                                                ul: {
-                                                                    display: 'flex',
-                                                                    flexDirection: 'column',
-                                                                    padding: '16px',
-                                                                },
-                                                                'li:hover': {
-                                                                    color: '#C6A87D!important',
-                                                                    backgroundColor: 'unset !important'
-                                                                },
-                                                                'li:last-child': {
-                                                                    borderBottom: 'none'
-                                                                },
-                                                                "&& .Mui-selected": {
-                                                                    backgroundColor: "unset !important"
+                        <Box className="privee-exp">
+                            <Box className="container-fluid px-0">
+                                <Box className="privee-container m-0">
+                                    <Box className="px-0">
+                                        <img src={priveeData.book_an_experience.image} alt=""
+                                             className="privee-ex-img"/>
+                                    </Box>
+                                    <Box className="px-last">
+                                        <Typography
+                                            className="exp-heading">{priveeData.experiences.title}</Typography>
+                                        <Formik
+                                            initialValues={{
+                                                city: 'Mumbai',
+                                                date: new Date(),
+                                                experience: 'Experiences',
+                                                numberOfDiner: ''
+                                            }}
+                                            onSubmit={(values) => {
+                                                console.log(values.date)
+                                                const experienceData = {
+                                                    ...values,
+                                                    date: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
+                                                    numberOfDiner: count,
+                                                }
+                                                console.log("value===>", values)
+                                                console.log("experienceData===>", experienceData)
+                                            }}
+                                        >
+                                            {({values, handleChange, handleSubmit, setFieldValue}) => (
+                                                <Form onSubmit={handleSubmit}>
+                                                    <Box className="form-group">
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="city"
+                                                            value={values.city}
+                                                            onChange={handleChange}
+                                                            defaultValue={values.city}
+                                                            className="selectpicker my-select dropdown-toggle form-control"
+                                                            sx={{
+                                                                fontSize: '20px',
+                                                                '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                    border: 'none',
                                                                 },
                                                                 '.MuiSelect-select': {
-                                                                    padding: '5px !important',
-                                                                    fontSize: '17px',
-                                                                },
-                                                            },
-                                                        },
-                                                    }}
-                                                >
-                                                    <MenuItem value="Mumbai">Mumbai</MenuItem>
-                                                    <MenuItem value="Delhi">Delhi</MenuItem>
-                                                    <MenuItem value="Goa">Goa</MenuItem>
-                                                    <MenuItem value="Banglore">Banglore</MenuItem>
-                                                    <MenuItem value="Hydrabad">Hydrabad</MenuItem>
-                                                </Select>
-                                            </Box>
-                                            <Box className="form-group">
-                                                <DatePickerInput
-                                                    name="date"
-                                                    value={values.date}
-                                                    displayFormat="DD/MM/YYYY"
-                                                    returnFormat="DD/MM/YYYY"
-                                                    className="form-control"
-                                                    onChange={(dateString) => setFieldValue('date', dateString)}
-                                                    defaultValue={values.date}/>
-
-                                            </Box>
-                                            <Box className="form-group">
-                                                <Select
-                                                    labelId="demo-simple-select-label"
-                                                    id="demo-simple-select"
-                                                    name="experience"
-                                                    value={values.experience}
-                                                    onChange={handleChange}
-                                                    defaultValue={values.experience}
-                                                    className="selectpicker my-select dropdown-toggle form-control"
-                                                    sx={{
-                                                        '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                            border: 'none',
-                                                        },
-                                                        '.MuiSelect-select': {
-                                                            padding: '0px 5px',
-                                                            fontSize: '20px'
-                                                        }
-                                                    }}
-                                                    MenuProps={{
-                                                        PaperProps: {
-                                                            sx: {
-                                                                backgroundColor: '#DCD7CB !important',
-                                                                li: {
-                                                                    fontFamily: 'ProximaNovaA-Regular',
-                                                                    borderBottom: "1px solid black",
+                                                                    padding: '0px 5px',
                                                                     fontSize: '20px',
-                                                                    fontWeight: '100',
-                                                                    padding: '6px 0px',
-                                                                    justifyContent: 'start'
+                                                                    fontWeight: '100'
+                                                                }
+                                                            }}
+                                                            MenuProps={{
+                                                                PaperProps: {
+                                                                    sx: {
+                                                                        backgroundColor: '#DCD7CB !important',
+                                                                        li: {
+                                                                            fontFamily: 'ProximaNovaA-Regular',
+                                                                            borderBottom: "1px solid black",
+                                                                            fontSize: '20px',
+                                                                            fontWeight: '100',
+                                                                            padding: '6px 0px',
+                                                                            justifyContent: 'start'
+                                                                        },
+                                                                        ul: {
+                                                                            display: 'flex',
+                                                                            flexDirection: 'column',
+                                                                            padding: '16px',
+                                                                        },
+                                                                        'li:hover': {
+                                                                            color: '#C6A87D!important',
+                                                                            backgroundColor: 'unset !important'
+                                                                        },
+                                                                        'li:last-child': {
+                                                                            borderBottom: 'none'
+                                                                        },
+                                                                        "&& .Mui-selected": {
+                                                                            backgroundColor: "unset !important"
+                                                                        },
+                                                                        '.MuiSelect-select': {
+                                                                            padding: '5px !important',
+                                                                            fontSize: '17px',
+                                                                        },
+                                                                    },
                                                                 },
-                                                                ul: {
-                                                                    display: 'flex',
-                                                                    flexDirection: 'column',
-                                                                    padding: '16px',
-                                                                },
-                                                                'li:hover': {
-                                                                    color: '#C6A87D!important',
-                                                                    backgroundColor: 'unset !important'
-                                                                },
-                                                                'li:last-child': {
-                                                                    borderBottom: 'none'
-                                                                },
-                                                                "&& .Mui-selected": {
-                                                                    backgroundColor: "unset !important"
+                                                            }}
+                                                        >
+                                                            <MenuItem value="Mumbai">Mumbai</MenuItem>
+                                                            <MenuItem value="Delhi">Delhi</MenuItem>
+                                                            <MenuItem value="Goa">Goa</MenuItem>
+                                                            <MenuItem value="Banglore">Banglore</MenuItem>
+                                                            <MenuItem value="Hydrabad">Hydrabad</MenuItem>
+                                                        </Select>
+                                                    </Box>
+                                                    <Box className="form-group">
+                                                        <DatePickerInput
+                                                            name="date"
+                                                            value={values.date}
+                                                            displayFormat="DD/MM/YYYY"
+                                                            returnFormat="DD/MM/YYYY"
+                                                            className="form-control"
+                                                            onChange={(dateString) => setFieldValue('date', dateString)}
+                                                            defaultValue={values.date}/>
+
+                                                    </Box>
+                                                    <Box className="form-group">
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="experience"
+                                                            value={values.experience}
+                                                            onChange={handleChange}
+                                                            defaultValue={values.experience}
+                                                            className="selectpicker my-select dropdown-toggle form-control"
+                                                            sx={{
+                                                                '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                    border: 'none',
                                                                 },
                                                                 '.MuiSelect-select': {
-                                                                    padding: '5px !important',
-                                                                    fontSize: '17px',
+                                                                    padding: '0px 5px',
+                                                                    fontSize: '20px'
+                                                                }
+                                                            }}
+                                                            MenuProps={{
+                                                                PaperProps: {
+                                                                    sx: {
+                                                                        backgroundColor: '#DCD7CB !important',
+                                                                        li: {
+                                                                            fontFamily: 'ProximaNovaA-Regular',
+                                                                            borderBottom: "1px solid black",
+                                                                            fontSize: '20px',
+                                                                            fontWeight: '100',
+                                                                            padding: '6px 0px',
+                                                                            justifyContent: 'start'
+                                                                        },
+                                                                        ul: {
+                                                                            display: 'flex',
+                                                                            flexDirection: 'column',
+                                                                            padding: '16px',
+                                                                        },
+                                                                        'li:hover': {
+                                                                            color: '#C6A87D!important',
+                                                                            backgroundColor: 'unset !important'
+                                                                        },
+                                                                        'li:last-child': {
+                                                                            borderBottom: 'none'
+                                                                        },
+                                                                        "&& .Mui-selected": {
+                                                                            backgroundColor: "unset !important"
+                                                                        },
+                                                                        '.MuiSelect-select': {
+                                                                            padding: '5px !important',
+                                                                            fontSize: '17px',
+                                                                        },
+                                                                    },
                                                                 },
-                                                            },
-                                                        },
-                                                    }}
-                                                >
-                                                    <MenuItem value="Experiences">Experiences</MenuItem>
-                                                    <MenuItem value="Cocktail">Cocktail</MenuItem>
-                                                    <MenuItem value="Brunch">Brunch</MenuItem>
-                                                    <MenuItem value="High Tea">High Tea</MenuItem>
-                                                    <MenuItem value="Lunch">Lunch</MenuItem>
-                                                    <MenuItem value="Dinner">Dinner</MenuItem>
-                                                </Select>
-                                            </Box>
-                                            <Box className="form-group d-flex">
-                                                <Box><label className="diners">Number of diners</label></Box>
-                                                <Box className="input-group qty">
+                                                            }}
+                                                        >
+                                                            <MenuItem value="Experiences">Experiences</MenuItem>
+                                                            <MenuItem value="Cocktail">Cocktail</MenuItem>
+                                                            <MenuItem value="Brunch">Brunch</MenuItem>
+                                                            <MenuItem value="High Tea">High Tea</MenuItem>
+                                                            <MenuItem value="Lunch">Lunch</MenuItem>
+                                                            <MenuItem value="Dinner">Dinner</MenuItem>
+                                                        </Select>
+                                                    </Box>
+                                                    <Box className="form-group d-flex">
+                                                        <Box><label className="diners">Number of diners</label></Box>
+                                                        <Box className="input-group qty">
                                                 <span className="input-group-btn">
                                                      <button type="button"
                                                              className="btn btn-default btn-number"
@@ -742,51 +749,51 @@ const PriveePage = () => {
                                                              onClick={decrementCount}>-
                                                      </button>
                                                 </span>
-                                                    <TextField type="text" name="numberOfDiner" id="Qty"
-                                                               name="numberOfDiner"
-                                                               onChange={handleChange}
-                                                               value={values.numberOfDiner}
-                                                               value={count}
-                                                               className="input-number"
-                                                        // value={count}
-                                                               InputProps={{
-                                                                   sx: {
-                                                                       width: "25px", background: 'transparent',
-                                                                       border: '0px',
-                                                                       fontFamily: 'Proxima Nova',
-                                                                       fontStyle: 'normal',
-                                                                       fontWeight: '400',
-                                                                       fontSize: '14px',
-                                                                       color: '#080B0E',
-                                                                       lineHeight: '17px',
-                                                                       paddingLeft: '0px',
-                                                                       paddingRight: '0px',
-                                                                       flex: 'none',
-                                                                       textAlign: 'center',
-                                                                   },
-                                                               }}
-                                                               autoComplete={"off"} sx={{
-                                                        '.MuiOutlinedInput-notchedOutline': {
-                                                            border: 'none',
-                                                            outline: 'none',
-                                                        },
-                                                        '& .MuiInputBase-input': {
-                                                            width: "25px", background: 'transparent',
-                                                            border: '0px',
-                                                            fontFamily: 'Proxima Nova',
-                                                            fontStyle: 'normal',
-                                                            fontWeight: '400',
-                                                            fontSize: '14px',
-                                                            color: '#080B0E',
-                                                            lineHeight: '17px',
-                                                            paddingLeft: '0px',
-                                                            paddingRight: '0px',
-                                                            flex: 'none',
-                                                            textAlign: 'center'
-                                                        },
-                                                    }}
-                                                    />
-                                                    <span className="input-group-btn plus">
+                                                            <TextField type="text" name="numberOfDiner" id="Qty"
+                                                                       name="numberOfDiner"
+                                                                       onChange={handleChange}
+                                                                       value={values.numberOfDiner}
+                                                                       value={count}
+                                                                       className="input-number"
+                                                                // value={count}
+                                                                       InputProps={{
+                                                                           sx: {
+                                                                               width: "25px", background: 'transparent',
+                                                                               border: '0px',
+                                                                               fontFamily: 'Proxima Nova',
+                                                                               fontStyle: 'normal',
+                                                                               fontWeight: '400',
+                                                                               fontSize: '14px',
+                                                                               color: '#080B0E',
+                                                                               lineHeight: '17px',
+                                                                               paddingLeft: '0px',
+                                                                               paddingRight: '0px',
+                                                                               flex: 'none',
+                                                                               textAlign: 'center',
+                                                                           },
+                                                                       }}
+                                                                       autoComplete={"off"} sx={{
+                                                                '.MuiOutlinedInput-notchedOutline': {
+                                                                    border: 'none',
+                                                                    outline: 'none',
+                                                                },
+                                                                '& .MuiInputBase-input': {
+                                                                    width: "25px", background: 'transparent',
+                                                                    border: '0px',
+                                                                    fontFamily: 'Proxima Nova',
+                                                                    fontStyle: 'normal',
+                                                                    fontWeight: '400',
+                                                                    fontSize: '14px',
+                                                                    color: '#080B0E',
+                                                                    lineHeight: '17px',
+                                                                    paddingLeft: '0px',
+                                                                    paddingRight: '0px',
+                                                                    flex: 'none',
+                                                                    textAlign: 'center'
+                                                                },
+                                                            }}
+                                                            />
+                                                            <span className="input-group-btn plus">
                                                 <button type="button"
                                                         className="btn btn-default btn-number"
                                                         disabled={count == 10 ? true : false}
@@ -794,44 +801,48 @@ const PriveePage = () => {
                                                         onClick={incrementCount}>+
                                                 </button>
                                                 </span>
-                                                </Box>
-                                            </Box>
-                                            <Box className="form-group">
-                                                <button type="submit" className="btn btn-primary"
-                                                        onClick={handleClick}>View Experiences
-                                                </button>
-                                            </Box>
-                                        </Form>
-                                    )}
-                                </Formik>
+                                                        </Box>
+                                                    </Box>
+                                                    <Box className="form-group">
+                                                        <button type="submit" className="btn btn-primary"
+                                                                onClick={handleClick}>View Experiences
+                                                        </button>
+                                                    </Box>
+                                                </Form>
+                                            )}
+                                        </Formik>
+                                    </Box>
+                                </Box>
                             </Box>
                         </Box>
-                    </Box>
-                </Box>
-                <ExperienceCarousel/>
-                <Box className="available-experiences mobile-view">
-                    <Typography className="chef-header">Available Experiences</Typography>
-                    <Grid container spacing={2}>
-                        <Grid item xl={4} md={4} sm={6} xs={12}>
-                            <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'}
-                                                   subDescription={'Starting from ₹5000 per diner'}/>
-                        </Grid>
-                        <Grid item xl={4} md={4} sm={6} xs={12}>
-                            <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'}
-                                                   subDescription={'Starting from ₹5000 per diner'} isLabelShow={true}/>
-                        </Grid>
-                    </Grid>
-                    <button type="submit" className="exp-btn">View More</button>
-                </Box>
-                <PriveeRatingComponent/>
-                <PriveeComponentSlider/>
-                <Box className="frequently-questions-box">
-                    <PriveeQuestions/>
-                </Box>
-                <TemptedYet title={'Book an Experience'} isTempted={true}/>
-                <NeedHelp/>
-                <Footer/>
-                <FooterEnd/>
+                        <ExperienceCarousel title={priveeData.experiences.title}/>
+                        <Box className="available-experiences mobile-view">
+                            <Typography className="chef-header">{priveeData.experiences.title}</Typography>
+                            <Grid container spacing={2}>
+                                <Grid item xl={4} md={4} sm={6} xs={12}>
+                                    <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'}
+                                                           subDescription={'Starting from ₹5000 per diner'}/>
+                                </Grid>
+                                <Grid item xl={4} md={4} sm={6} xs={12}>
+                                    <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'}
+                                                           subDescription={'Starting from ₹5000 per diner'}
+                                                           isLabelShow={true}/>
+                                </Grid>
+                            </Grid>
+                            <button type="submit" className="exp-btn">View More</button>
+                        </Box>
+                        <RatingCarousel backgroundColor={'#DCD7CB'} isFontSize={true}/>
+                        <PriveeComponentSlider title={priveeData.private_dining.title}/>
+                        <Box className="frequently-questions-box">
+                            <PriveeQuestions/>
+                        </Box>
+                        <TemptedYet title={priveeData.privee_footer.title}
+                                    buttonText={priveeData.privee_footer.button_text} isTempted={true}/>
+                        <NeedHelp/>
+                        <Footer/>
+                        <FooterEnd/>
+                    </>
+                }
             </BoxWrapper>
         </React.Fragment>
     )
