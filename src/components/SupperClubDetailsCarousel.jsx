@@ -87,17 +87,17 @@ const SupperClubDetailsCarousel = ({backgroundColor,changeFont,changeDetails,mai
             fontWeight:600
         },
         '.swiper-pagination-bullet':{
-            width:'8px',
-            height:'8px',
+            width:'8px !important',
+            height:'8px !important',
             background:'transparent',
             opacity:1,
             border:'0.672852px solid rgba(34, 34, 34, 0.5)',
             borderRadius:'100px',
-            margin:'0px 5px !important'
+            margin:'0px 5px !important',
         },
         '.swiper-pagination-bullet-active':{
-            width:'12px',
-            height:'12px',
+            width:'12px !important',
+            height:'12px !important',
             background:'#222222',
         },
         '.swiper-pagination':{

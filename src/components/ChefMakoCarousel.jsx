@@ -52,8 +52,8 @@ const MainContentBox = styled(Box)({
     },
     '.swiper-pagination-bullet':{
         borderRadius:'0px',
-        width:'290px',
-        height:'5px',
+        width:'300px',
+        height:'2px',
         background:'#FBFBFB',
         opacity:'1',
     },
@@ -76,10 +76,17 @@ positionX:'end'
         }
     },
     '.swiper-pagination':{
-        bottom:'-5px !important',
+        bottom:'-22px !important',
+        fontFamily: 'ProximaNovaA-Regular',
+        fontStyle:'normal',
+        fontWeight: '300',
+        fontSize: '20px',
+        lineHeight: '35px',
+        color: '#FBFBFB !important',
+        position:'relative',
     },
     '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
-        margin:'0 var(--swiper-pagination-bullet-horizontal-gap,10px) !important'
+        margin:'0 var(--swiper-pagination-bullet-horizontal-gap,5px) !important'
     },
     '.mako-details':{
         fontFamily: 'ProximaNovaA-Regular',
@@ -109,7 +116,7 @@ positionX:'end'
 '@media(min-width: 2000px) and (max-width: 2560px)': {
     '.swiper-pagination-bullet':{
         width: '403px',
-    height: '4px',
+    height: '2px',
     },
     '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
         margin:'0 var(--swiper-pagination-bullet-horizontal-gap,18px) !important'
@@ -121,7 +128,7 @@ fontSize:'20px'
 '@media(min-width: 1024px) and (max-width: 1440px)': {
     '.swiper-pagination-bullet':{
         width: '187px',
-    height: '4px',
+    height: '2px',
     },
     '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
         margin:'0 var(--swiper-pagination-bullet-horizontal-gap,15px) !important'
@@ -160,20 +167,27 @@ fontSize:'20px'
 }
 })
 
-const ChefMakoCarousel = () => {
+const ChefMakoCarousel = (props) => {
+    let labels = ['Conscious Dining', 'Championing Chefs', 'Community'];
+    const {title} = props
     return (
         <React.Fragment>
             <MainContentBox>
                 <Typography className="dining-title">
-                Chef Mako's Creations
+                {title}
                 </Typography>
                 <Swiper
        slidesPerView={1}
        spaceBetween={30}
        loop={true}
        pagination={{
-         clickable: true,
-       }}
+        clickable: true,
+        renderBullet: function (index, className) {
+            return '<div class="' + className + '">' + (labels[index]) +
+                '</div>';
+
+        },
+}}
        autoplay={{
         delay: 3800,
         disableOnInteraction: false,
@@ -183,9 +197,9 @@ const ChefMakoCarousel = () => {
        modules={[Pagination,Autoplay]}
        className="mySwiper"
     >
-      <SwiperSlide><img className='img' src={diningPicture}></img> <Typography className='mako-details'>An agnostic menu that explores a diverse culinary journey with chef mako at the helm</Typography></SwiperSlide>
-      <SwiperSlide><img className='img'  src={diningPicture}></img><Typography className='mako-details'>An agnostic menu that explores a diverse culinary journey with chef mako at the helm</Typography></SwiperSlide>
-      <SwiperSlide><img className='img' src={diningPicture}></img><Typography className='mako-details'>An agnostic menu that explores a diverse culinary journey with chef mako at the helm</Typography></SwiperSlide>
+      <SwiperSlide><img className='img' src={diningPicture}></img></SwiperSlide>
+      <SwiperSlide><img className='img'  src={diningPicture}></img></SwiperSlide>
+      <SwiperSlide><img className='img' src={diningPicture}></img></SwiperSlide>
       ...
     </Swiper>
             </MainContentBox>

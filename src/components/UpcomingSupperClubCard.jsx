@@ -151,7 +151,7 @@ const UpcomingSupperClubCard = () => {
             {cardDetails.map((item,index)=>(
                 <Box key={index}>
                     <Box sx={{position:'relative'}}>
-                    <Link className="link" href='/supper-club'>
+                    <Link className="link" href='/supper-club-main-page'>
             <img className='test-img' src={item.potImg}/>
             {index === 0 &&  (
         <div>

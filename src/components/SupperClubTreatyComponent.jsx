@@ -15,11 +15,10 @@ const SupperClubTreatyComponent = () => {
             lineHeight: "24px",
             fontStyle:'normal',
             fontFamily: 'Proxima Nova Alt',
-            // marginBottom: '13px',
+            marginBottom: '8px',
         },
         ".main-title": {
             fontSize: "20px",
-            // width:'80%',
             lineHeight: "25px",
             letterSpacing: "0.06em",
             fontFamily: 'Bon Vivant',
@@ -45,7 +44,7 @@ const SupperClubTreatyComponent = () => {
             lineHeight: '19px',
             marginRight: '0px',
             border: '1px solid #222222',
-            width: '280px !important',
+            width: '188px !important',
             fontFamily: 'Proxima Nova Alt',
             fontSize: "16px !important",
             fontWeight: 600,
@@ -63,17 +62,20 @@ const SupperClubTreatyComponent = () => {
         ".btn:hover": {color: "#C6A87D!important;"},
         ".sub-div": {
             background: '#FBFBFB',
-            padding: '30px 20px 30px 30px',
+            padding: '20px 19px',
             boxShadow:' 0px 20px 24px rgb(0 0 0 / 6%)',
+            border:'0.5px solid #080B0E'
         },
         '.btn-box':{
             display:'flex',
             justifyContent:'end',
+            placeSelf:'center'
         },
         '.treaty-box':{
             display:'flex',
             justifyContent:'space-between',
-            placeItems:'center'
+            placeItems:'flex-start',
+            flexDirection:'column'
         },
         "@media (min-width: 768px) and (max-width:1024px)": {
         '.btn':{
