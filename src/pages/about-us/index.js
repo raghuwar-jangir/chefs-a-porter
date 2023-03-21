@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Avatar, Box, Button, Grid, ImageList, ImageListItem, Stack, styled, Typography} from "@mui/material";
 import HotelImg1 from "../../assets/images/HotelImg1.png";
 import HotelImg2 from "../../assets/images/HotelImg3.png";
@@ -33,43 +33,6 @@ const ClientSideOnlyLazy = React.lazy(() =>
     import("../../components/TeamCarousel")
 )
 
-const itemData = [
-    {
-        img: HotelImg1,
-        title: 'HotelImg1',
-        rows: 1.3,
-    },
-    {
-        img: HotelImg2,
-        title: 'HotelImg2',
-        rows: 0.7,
-    },
-    {
-        img: HotelImg3,
-        title: 'HotelImg3',
-        rows: 1,
-    },
-    {
-        img: HotelImg5,
-        title: 'HotelImg5',
-        rows: 1,
-    },
-    {
-        img: HotelImg6,
-        title: 'HotelImg6',
-        rows: 0.7,
-    },
-    {
-        img: HotelImg7,
-        title: 'HotelImg7',
-        rows: 0.6,
-    },
-    {
-        img: HotelImg8,
-        title: 'HotelImg8',
-        rows: 0.7,
-    },
-]
 const logoImg = [
     logo1,
     logo2,
@@ -83,6 +46,26 @@ const AboutCardComponent = (props) => {
     const {aboutUsData} = useContext(AboutUsContext);
 
     const isSSR = typeof window === "undefined"
+
+    const [imageData, setImageData] = useState([]);
+
+    useEffect(() => {
+        {
+            !_.isEmpty(aboutUsData) &&
+            setImageData(aboutUsData.who_we_are.gallery)
+        }
+    }, [])
+
+    const imgData = imageData.map(item => {
+        return {image: item};
+    });
+    const rows = [1.3, 0.7, 1, 1, 0.7, 0.6, 0.7];
+    const rowOfObjects = rows.map(item => {
+        return {rows: item};
+    });
+
+    const finalImageData = imgData.map((item, i) => Object.assign({}, item, rowOfObjects[i]));
+
 
     const BoxWrapper = styled(Box)(() => ({
         ".main-box": {
@@ -324,10 +307,10 @@ const AboutCardComponent = (props) => {
                                     </Box>
                                     <ImageList variant="masonry" cols={3} rows={3} gap={10}
                                                rowHeight={isMobile ? '150' : '300'}>
-                                        {itemData.map((item, index) => (
-                                            <ImageListItem key={item} cols={item.cols || 1} rows={item.rows || 1}>
+                                        {finalImageData.map((item, index) => (
+                                            <ImageListItem key={index} cols={item.cols || 1} rows={item.rows || 1}>
                                                 <img
-                                                    src={item.img}
+                                                    src={item.image}
                                                     alt="img"
                                                     loading="lazy"
                                                 />

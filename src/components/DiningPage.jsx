@@ -11,7 +11,7 @@ import HomeContext from "../context/HomeContext";
 
 
 const DiningPage = (props) => {
-    const {header, carouselImg} = props
+    const {header, carouselImg,title} = props
     const MainContentBox = styled(Box)({
         backgroundColor: '#101418',
         padding: '32px 0px',
@@ -225,7 +225,7 @@ const DiningPage = (props) => {
                     !_.isEmpty(data) &&
                     <React.Fragment>
                         <Typography className="dining-title">
-                            {data.what_we_cook.title}
+                            {title}
                         </Typography>
                         <Swiper
                             slidesPerView={1}

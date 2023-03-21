@@ -206,9 +206,7 @@ const RatingCarousel = (props) => {
                                         <Typography className='mainTitle'>
                                             {step.title}
                                         </Typography>
-                                        <Typography
-                                            className='star'
-                                        >
+                                        <Typography className='star'>
                                             <StyledRating className='rating-star'
                                                           name="simple-controlled"
                                                           value={step.rating}
