@@ -683,7 +683,7 @@ const EventDetails = () => {
                         <Grid className="grid-box-2" container spacing={{ md: 2 }}>
                             <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
                                 <EventCard />
-                                <EventChefCarousel/>
+                                <EventChefCarousel title="Chef Mako's Creations"/>
                                 <SupperClubDetailsCarousel
                                     mainBox={{ padding: "40px 0px" }}
                                     changeDetails={{ fontSize: "16px" }}
