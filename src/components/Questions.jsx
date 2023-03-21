@@ -7,9 +7,17 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import {Box, styled} from '@mui/material';
 import '../assets/styles/fontStyle.css';
+import * as _ from "lodash";
+import {useContext} from "react";
+import BecomePatronContext from "../context/BecomePatronContext";
+import CorporateBookingContext from "../context/CorporateBookingContext";
 
 const Questions = (props) => {
-    const {isLightTheme = false,wrapPadding} = props
+    const {isLightTheme = false, wrapPadding, isCorporateBooking} = props
+
+    const {becomePatronData} = useContext(BecomePatronContext);
+    const {corporateBookingData} = useContext(CorporateBookingContext);
+
     const [expanded, setExpanded] = React.useState(false)
 
     const WrapperBox = styled(Box)({
@@ -17,7 +25,7 @@ const Questions = (props) => {
         textAlign: 'center',
         '.WrapperBox': [{
             padding: '80px 120px'
-        },wrapPadding],
+        }, wrapPadding],
         '.title-question': {
             fontSize: '24px',
             fontFamily: 'Bon Vivant',
@@ -56,27 +64,27 @@ const Questions = (props) => {
         '.css-ahj2mt-MuiTypography-root': {
             fontWeight: '200'
         },
-        '.frequently-questions':{
+        '.frequently-questions': {
             fontFamily: 'ProximaNovaA-Regular',
-    fontStyle: 'normal',
-    fontWeight: '400',
-    fontSize: '16px',
-    lineHeight: '19px',
-    color: '#080B0E',
-        },
-        '.frequently-ans':{
             fontStyle: 'normal',
-		fontWeight: '400 !important',
-		fontVariant:'normal',
-		lineHeight: '1.5',
-		fontSize:'1rem'
+            fontWeight: '400',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#080B0E',
         },
-        '.accordionSummary':{
-            display:'flex !important',
-            padding:'6px 10px !important'
+        '.frequently-ans': {
+            fontStyle: 'normal',
+            fontWeight: '400 !important',
+            fontVariant: 'normal',
+            lineHeight: '1.5',
+            fontSize: '1rem'
         },
-        '.css-67l5gl:before':{
-           opacity:'0'
+        '.accordionSummary': {
+            display: 'flex !important',
+            padding: '6px 10px !important'
+        },
+        '.css-67l5gl:before': {
+            opacity: '0'
         },
         // !media query for accodion component(mobileView)
 
@@ -89,20 +97,20 @@ const Questions = (props) => {
             '.WrapperBox': {
                 padding: '20px 16px'
             },
-            '.frequently-questions':{
+            '.frequently-questions': {
                 fontFamily: 'Proxima Nova Alt',
                 fontStyle: 'normal',
                 fontWeight: 400,
                 fontSize: '14px',
                 lineHeight: '17px',
-                        },
-                        '.frequently-ans':{
-                            fontStyle: 'normal',
-                        fontWeight: '400 !important',
-                        lineHeight: '17px',
-                        fontSize:'14px',
-                        fontFamily:'Proxima Nova Alt'
-                        },
+            },
+            '.frequently-ans': {
+                fontStyle: 'normal',
+                fontWeight: '400 !important',
+                lineHeight: '17px',
+                fontSize: '14px',
+                fontFamily: 'Proxima Nova Alt'
+            },
         }
 
     })
@@ -112,130 +120,90 @@ const Questions = (props) => {
         setExpanded(isExpanded ? panel : false);
     };
 
-
     return (
         <React.Fragment>
-            <WrapperBox>
-                <Box className='WrapperBox'>
-                    <Typography className='title-question'>
-                        Frequently Asked Questions
-                    </Typography>
-                    <Box className='parent-accordion'>
+                <WrapperBox>
+                  <div>
+                      {
+                          !_.isEmpty(becomePatronData) || !_.isEmpty(corporateBookingData) &&
+                      isCorporateBooking ? (
+                      <Box className='WrapperBox'>
+                          <Typography className='title-question'>
+                              {corporateBookingData.faq.title}
+                          </Typography>
+                          {
+                              corporateBookingData.faq.contents.map((item, index) => {
+                                  return (
+                                      // <Box className='parent-accordion'>
+                                      <Box className=''>
+                                          <Accordion expanded={expanded === `panel${index}`}
+                                                     onChange={handleChange(`panel${index}`)}
+                                                     className='accordion'>
+                                              <AccordionSummary className='accordionSummary'
+                                                                expandIcon={expanded === `panel${index}` ?
+                                                                    <RemoveIcon sx={{
+                                                                        color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
+                                                                    }}/> : <AddIcon sx={{
+                                                                        fontSize: '19px',
+                                                                        color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
+                                                                    }}/>}
+                                                                aria- controls="panel1a-content"
+                                                                id="panel1a-header"
+                                              >
+                                                  <Typography
+                                                      className='frequently-questions'>{item.title}</Typography>
+                                              </AccordionSummary>
+                                              <AccordionDetails>
+                                                  <Typography
+                                                      className='frequently-ans'>{item.description}</Typography>
+                                              </AccordionDetails>
+                                          </Accordion>
+                                      </Box>
+                                  )
+                              })
+                          }
+                      </Box>
+                      ) : (
+                      <Box className='WrapperBox'>
+                          <Typography className='title-question'>
+                              {becomePatronData.faq.title}
+                          </Typography>
+                          {
+                              becomePatronData.faq.contents.map((item, index) => {
+                                  return (
+                                      <Box className='parent-accordion'>
+                                          <Accordion expanded={expanded === `panel${index}`}
+                                                     onChange={handleChange(`panel${index}`)}
+                                                     className='accordion'>
+                                              <AccordionSummary className='accordionSummary'
+                                                                expandIcon={expanded === `panel${index}` ?
+                                                                    <RemoveIcon sx={{
+                                                                        color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
+                                                                    }}/> : <AddIcon sx={{
+                                                                        fontSize: '19px',
+                                                                        color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
+                                                                    }}/>}
+                                                                aria- controls="panel1a-content"
+                                                                id="panel1a-header"
+                                              >
+                                                  <Typography
+                                                      className='frequently-questions'>{item.title}</Typography>
+                                              </AccordionSummary>
+                                              <AccordionDetails>
+                                                  <Typography
+                                                      className='frequently-ans'>{item.description}</Typography>
+                                              </AccordionDetails>
+                                          </Accordion>
+                                      </Box>
+                                  )
+                              })
+                          }
+                      </Box>
+                      )
+                      }
+                  </div>
 
-                        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}
-                                   className='accordion'>
-                            <AccordionSummary className='accordionSummary'
-                                // expandIcon={<AddIcon sx={{ color: '#fff' }} />}
-                                              expandIcon={expanded === 'panel1' ? <RemoveIcon sx={{
-                                                  color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
-                                              }}/> : <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                              aria- controls="panel1a-content"
-                                              id="panel1a-header"
-                            >
-                                <Typography className='frequently-questions'>Would there be any pure vegetarian options?</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography className='frequently-ans'>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut imperdiet ultrices urna
-                                    vitae laoreet. Fusce posuere nec dui sed euismod. Vestibulum ante ipsum primis in
-                                    faucibus orci luctus et ultrices posuere cubilia curae; Sed eu faucibus elit, eget
-                                    venenatis nulla. Vivamus vel blandit ipsum, eget fringilla neque. Sed sed dui eu
-                                    erat tincidunt placerat. Nulla vitae aliquet urna.
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}
-                                   className='accordion'>
-                            <AccordionSummary className='accordionSummary'
-                                expandIcon={expanded === 'panel2' ?
-                                    <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
-                                    <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
-                            >
-                                <Typography className='frequently-questions'>How long does the meal last for ?</Typography>
-
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography className='frequently-ans'>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut imperdiet ultrices urna
-                                    vitae laoreet. Fusce posuere nec dui sed euismod. Vestibulum ante ipsum primis in
-                                    faucibus orci luctus et ultrices posuere cubilia curae; Sed eu faucibus elit, eget
-                                    venenatis nulla. Vivamus vel blandit ipsum, eget fringilla neque. Sed sed dui eu
-                                    erat tincidunt placerat. Nulla vitae aliquet urna.
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}
-                                   className='accordion'>
-                            <AccordionSummary className='accordionSummary'
-                                expandIcon={expanded === 'panel3' ?
-                                    <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
-                                    <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
-                            >
-                                <Typography className='frequently-questions'>Whats the cancellation policy?</Typography>
-
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography className='frequently-ans'>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut imperdiet ultrices urna
-                                    vitae laoreet. Fusce posuere nec dui sed euismod. Vestibulum ante ipsum primis in
-                                    faucibus orci luctus et ultrices posuere cubilia curae; Sed eu faucibus elit, eget
-                                    venenatis nulla. Vivamus vel blandit ipsum, eget fringilla neque. Sed sed dui eu
-                                    erat tincidunt placerat. Nulla vitae aliquet urna.
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}
-                                   className='accordion'>
-                            <AccordionSummary className='accordionSummary'
-                                expandIcon={expanded === 'panel4' ?
-                                    <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
-                                    <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
-                            >
-                                <Typography className='frequently-questions'>Will the cutlery be provided?</Typography>
-
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography className='frequently-ans'>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut imperdiet ultrices urna
-                                    vitae laoreet. Fusce posuere nec dui sed euismod. Vestibulum ante ipsum primis in
-                                    faucibus orci luctus et ultrices posuere cubilia curae; Sed eu faucibus elit, eget
-                                    venenatis nulla. Vivamus vel blandit ipsum, eget fringilla neque. Sed sed dui eu
-                                    erat tincidunt placerat. Nulla vitae aliquet urna.
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}
-                                   className='accordion'>
-                            <AccordionSummary className='accordionSummary'
-                                expandIcon={expanded === 'panel5' ?
-                                    <RemoveIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
-                                    <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
-                            >
-                                <Typography className='frequently-questions'>Is it possible to pay the entiresum in EMIs</Typography>
-
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography className='frequently-ans'>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut imperdiet ultrices urna
-                                    vitae laoreet. Fusce posuere nec dui sed euismod. Vestibulum ante ipsum primis in
-                                    faucibus orci luctus et ultrices posuere cubilia curae; Sed eu faucibus elit, eget
-                                    venenatis nulla. Vivamus vel blandit ipsum, eget fringilla neque. Sed sed dui eu
-                                    erat tincidunt placerat. Nulla vitae aliquet urna.
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                    </Box>
-                </Box>
-
-            </WrapperBox>
+                </WrapperBox>
         </React.Fragment>
     );
 }

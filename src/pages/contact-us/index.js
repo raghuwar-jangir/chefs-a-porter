@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
     Box,
     Grid,
@@ -18,8 +18,11 @@ import {Formik, Form, ErrorMessage} from "formik";
 import * as Yup from 'yup';
 import "../../assets/styles/fontStyle.css"
 import {isMobile} from "react-device-detect";
+import ContactUsContext from "../../context/ContactUsContext";
+import * as _ from "lodash";
 
 const ContactUs = () => {
+    const {contactUsData} = useContext(ContactUsContext);
 
     //validations
     const validationSchema = Yup.object({
@@ -37,7 +40,7 @@ const ContactUs = () => {
         PaddingRight: '0px',
         '.banner': {
             marginTop: '60px',
-            backgroundImage: `url(${joinChef})`,
+            // backgroundImage: `url(${joinChef})`,
             backgroundSize: 'cover',
             padding: '50px 120px',
             backgroundPosition: 'center',
@@ -83,13 +86,12 @@ const ContactUs = () => {
             padding: '30px',
             width: '596px',
             marginBottom: '36px',
-
         },
         '.form-details': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontSize: '20px',
-            fontWeight:'300',
+            fontWeight: '300',
             lineHeight: '30px',
             color: '#080B0E',
             marginBottom: '40px',
@@ -190,6 +192,13 @@ const ContactUs = () => {
             '.joinaschef': {
                 paddingTop: '80px'
             },
+            '.become-partner-form': {
+                background: '#FBFBFB',
+                padding: '30px',
+                width: 'auto',
+                marginTop: '50px',
+                marginBottom: '36px',
+            }
         },
         '@media(min-width: 615px) and (max-width: 768px)': {
             '.banner': {
@@ -234,156 +243,156 @@ const ContactUs = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isIcon={true} heading="Get In Touch"/>
-                {/*{isMobile ? (*/}
-                {/*    <Box className="mobile-header">*/}
-                {/*        <ArrowBackIcon/>*/}
-                {/*        <Typography><a href="/" className="mobile-heading" style={{textAlign: 'center !important'}}>Get*/}
-                {/*            In Touch</a></Typography>*/}
-                {/*    </Box>*/}
-                {/*) : ''}*/}
-                <Box className="joinaschef">
-                    <Box className="banner">
-                        <Box className="become-partner-header">
-                            <Typography><a href="/" className="header-link"><ArrowBackIcon
-                                style={{marginRight: '20px'}}/>Back</a></Typography>
-                            <Typography className="become-partner-heading">Get In Touch</Typography>
-                        </Box>
-                    </Box>
-                    <Box className="container-fluid">
-                        <Formik
-                            initialValues={{
-                                name: '',
-                                email: '',
-                                contactNumber: '',
-                                coverLetterMessage: ''
-                            }}
-                            validationSchema={validationSchema}
-                            onSubmit={(values) => {
-                                console.log("value===>", values)
-                            }}
-                        >
-                            {({values, handleChange, handleSubmit}) => (
-                                <Form onSubmit={handleSubmit}>
-                                    <Box className="row white-bg justify-content-center">
-                                        <Box className="">
-                                            <Grid className="row become-partner-form" xs={12}>
-                                                <Typography className="form-details">Questions, ideas, feedback — we
-                                                    want to
-                                                    hear it all. Drop us a line at <strong>hi@chefsaporter</strong> or
-                                                    complete the form below.
-                                                    For questions regarding an upcoming reservation, shoot us a note
-                                                    at <strong>reservations@chefsaporter.com</strong></Typography>
+                {
+                    !_.isEmpty(contactUsData) &&
+                    <>
+                        <Navbar isIcon={true} heading="Get In Touch"/>
+                        <Box className="joinaschef">
+                            <Box className="banner" sx={{backgroundImage: `url(${contactUsData.contact_us.image})`,}}>
+                                <Box className="become-partner-header">
+                                    <Typography><a href="/" className="header-link"><ArrowBackIcon
+                                        style={{marginRight: '20px'}}/>Back</a></Typography>
+                                    <Typography
+                                        className="become-partner-heading">{contactUsData.contact_us.title}</Typography>
+                                </Box>
+                            </Box>
+                            <Box className="container-fluid">
+                                <Formik
+                                    initialValues={{
+                                        name: '',
+                                        email: '',
+                                        contactNumber: '',
+                                        coverLetterMessage: ''
+                                    }}
+                                    validationSchema={validationSchema}
+                                    onSubmit={(values) => {
+                                        console.log("value===>", values)
+                                    }}
+                                >
+                                    {({values, handleChange, handleSubmit}) => (
+                                        <Form onSubmit={handleSubmit}>
+                                            <Box className="row white-bg justify-content-center">
+                                                <Box className="">
+                                                    <Grid className="row become-partner-form" xs={12}>
+                                                        <Typography
+                                                            className="form-details">{contactUsData.contact_us.description}</Typography>
 
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="validationCustomname">Your Name<span
-                                                        className="red">*</span></label>
-                                                    <TextField type="text" className="form-control" name="name"
-                                                               value={values.name}
-                                                               onChange={handleChange} id="validationCustomname"
-                                                               placeholder="Enter your full name"
-                                                               variant="standard"
-                                                               autoComplete="off"
-                                                               InputProps={{
-                                                                   disableUnderline: true,
-                                                               }}
-                                                    />
-                                                    <ErrorMessage name='name' component="div" className="error"/>
-                                                </Grid>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="validationCustom02">Email Address<span
-                                                        className="red">*</span></label>
-                                                    <TextField type="email" name="email" className="form-control"
-                                                               id="validationCustom02"
-                                                               value={values.email}
-                                                               onChange={handleChange}
-                                                               placeholder="Enter your email address"
-                                                               variant="standard"
-                                                               autoComplete="off"
-                                                               InputProps={{
-                                                                   disableUnderline: true,
-                                                               }}/>
-                                                    <ErrorMessage name='email' component="div" className="error"/>
-                                                </Grid>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="validationCustom03">Contact Number</label>
-                                                    <Box className="form-group country">
-                                                        <TextField type="tel" name="contactNumber"
-                                                                   className="form-control" id="validationCustom03"
-                                                                   placeholder="10 digit number"
-                                                                   value={values.contactNumber}
-                                                                   onChange={handleChange}
-                                                                   autoComplete="off"
-                                                                   variant="standard"
-                                                                   InputProps={{
-                                                                       disableUnderline: true,
-                                                                       startAdornment: <InputAdornment
-                                                                           position="start">91+</InputAdornment>
-                                                                   }}/>
-                                                        <ErrorMessage name='contactNumber' component="div"
-                                                                      className="error"/>
-                                                    </Box>
-                                                </Grid>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="">Cover Letter</label>
-                                                    <TextField
-                                                        inputProps={{
-                                                            maxlength: CHARACTER_LIMIT,
-                                                        }}
-                                                        sx={{
-                                                            '.MuiOutlinedInput-notchedOutline': {
-                                                                border: 'none',
-                                                                outline: 'none'
-                                                            },
-                                                            '& .MuiInputBase-input': {
-                                                                height: '149px',
-                                                                background: 'rgba(189, 189, 189, 0.2)',
-                                                                border: '0px',
-                                                                minHeight: '149px',
-                                                                resize: 'none',
-                                                                fontFamily: 'Inter, sans-serif',
-                                                                fontSize: '14px',
-                                                                lineHeight: '17px',
-                                                                fontWeight: '400',
-                                                                color: ' #7D7D7D',
-                                                                padding: '16px 15px',
-                                                            },
-                                                            '& .css-15kq27i': {
-                                                                padding: '0px'
-                                                            }
-                                                        }}
-                                                        id="validationCustom04"
-                                                        name="coverLetterMessage"
-                                                        autoComplete="off"
-                                                        className="form-control remove-bottom-border"
-                                                        value={values.coverLetterMessage}
-                                                        placeholder="Do you have any special requests or concerns ?"
-                                                        helperText={`${values.coverLetterMessage.length}/${CHARACTER_LIMIT} Characters`}
-                                                        onChange={handleChange("coverLetterMessage")}
-                                                        margin="normal"
-                                                        variant="outlined"
-                                                        fullWidth
-                                                        multiline
-                                                        rows={1}
-                                                        autoComplete="off"
-                                                    />
-                                                    <ErrorMessage name='coverLetterMessage' component="div"
-                                                                  className="error"/>
-                                                </Grid>
-                                                <Grid xs={12} className="col-lg-12">
-                                                    <button className="btn btn-primary" type="submit">Apply</button>
-                                                </Grid>
-                                            </Grid>
-                                        </Box>
-                                    </Box>
-                                </Form>
-                            )}
-                        </Formik>
-                    </Box>
-                </Box>
-                <NeedHelp/>
-                <Footer/>
-                <FooterEnd/>
+                                                        <Grid xs={12} className="mb-3">
+                                                            <label htmlFor="validationCustomname">Your Name<span
+                                                                className="red">*</span></label>
+                                                            <TextField type="text" className="form-control" name="name"
+                                                                       value={values.name}
+                                                                       onChange={handleChange} id="validationCustomname"
+                                                                       placeholder="Enter your full name"
+                                                                       variant="standard"
+                                                                       autoComplete="off"
+                                                                       InputProps={{
+                                                                           disableUnderline: true,
+                                                                       }}
+                                                            />
+                                                            <ErrorMessage name='name' component="div"
+                                                                          className="error"/>
+                                                        </Grid>
+                                                        <Grid xs={12} className="mb-3">
+                                                            <label htmlFor="validationCustom02">Email Address<span
+                                                                className="red">*</span></label>
+                                                            <TextField type="email" name="email"
+                                                                       className="form-control"
+                                                                       id="validationCustom02"
+                                                                       value={values.email}
+                                                                       onChange={handleChange}
+                                                                       placeholder="Enter your email address"
+                                                                       variant="standard"
+                                                                       autoComplete="off"
+                                                                       InputProps={{
+                                                                           disableUnderline: true,
+                                                                       }}/>
+                                                            <ErrorMessage name='email' component="div"
+                                                                          className="error"/>
+                                                        </Grid>
+                                                        <Grid xs={12} className="mb-3">
+                                                            <label htmlFor="validationCustom03">Contact Number</label>
+                                                            <Box className="form-group country">
+                                                                <TextField type="tel" name="contactNumber"
+                                                                           className="form-control"
+                                                                           id="validationCustom03"
+                                                                           placeholder="10 digit number"
+                                                                           value={values.contactNumber}
+                                                                           onChange={handleChange}
+                                                                           autoComplete="off"
+                                                                           variant="standard"
+                                                                           InputProps={{
+                                                                               disableUnderline: true,
+                                                                               startAdornment: <InputAdornment
+                                                                                   position="start">91+</InputAdornment>
+                                                                           }}/>
+                                                                <ErrorMessage name='contactNumber' component="div"
+                                                                              className="error"/>
+                                                            </Box>
+                                                        </Grid>
+                                                        <Grid xs={12} className="mb-3">
+                                                            <label htmlFor="">Cover Letter</label>
+                                                            <TextField
+                                                                inputProps={{
+                                                                    maxlength: CHARACTER_LIMIT,
+                                                                }}
+                                                                sx={{
+                                                                    '.MuiOutlinedInput-notchedOutline': {
+                                                                        border: 'none',
+                                                                        outline: 'none'
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        height: '149px',
+                                                                        background: 'rgba(189, 189, 189, 0.2)',
+                                                                        border: '0px',
+                                                                        minHeight: '149px',
+                                                                        resize: 'none',
+                                                                        fontFamily: 'Inter, sans-serif',
+                                                                        fontSize: '14px',
+                                                                        lineHeight: '17px',
+                                                                        fontWeight: '400',
+                                                                        color: ' #7D7D7D',
+                                                                        padding: '16px 15px',
+                                                                    },
+                                                                    '& .css-15kq27i': {
+                                                                        padding: '0px'
+                                                                    }
+                                                                }}
+                                                                id="validationCustom04"
+                                                                name="coverLetterMessage"
+                                                                autoComplete="off"
+                                                                className="form-control remove-bottom-border"
+                                                                value={values.coverLetterMessage}
+                                                                placeholder="Do you have any special requests or concerns ?"
+                                                                helperText={`${values.coverLetterMessage.length}/${CHARACTER_LIMIT} Characters`}
+                                                                onChange={handleChange("coverLetterMessage")}
+                                                                margin="normal"
+                                                                variant="outlined"
+                                                                fullWidth
+                                                                multiline
+                                                                rows={1}
+                                                                autoComplete="off"
+                                                            />
+                                                            <ErrorMessage name='coverLetterMessage' component="div"
+                                                                          className="error"/>
+                                                        </Grid>
+                                                        <Grid xs={12} className="col-lg-12">
+                                                            <button className="btn btn-primary" type="submit">Apply
+                                                            </button>
+                                                        </Grid>
+                                                    </Grid>
+                                                </Box>
+                                            </Box>
+                                        </Form>
+                                    )}
+                                </Formik>
+                            </Box>
+                        </Box>
+                        <NeedHelp/>
+                        <Footer/>
+                        <FooterEnd/>
+                    </>
+                }
             </BoxWrapper>
         </React.Fragment>
     )

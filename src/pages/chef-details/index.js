@@ -443,7 +443,7 @@ const ChefDetails = (props) => {
                 '.chef-header': {
                     fontSize: '24px',
                     lineHeight: '30px',
-                    textAlign:'center'
+                    textAlign: 'center'
                 },
                 '.mobile-show': {
                     display: 'block'
@@ -475,7 +475,7 @@ const ChefDetails = (props) => {
                     fontFamily: 'Bon Vivant'
                 },
                 '.template':{
-                    backgroundColor:'#FBFBFB !important' 
+                    backgroundColor:'#FBFBFB !important'
                 },
                 '.template-title':{
                     color:'#080B0E !important'

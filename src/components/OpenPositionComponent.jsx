@@ -1,10 +1,13 @@
 import {Box, styled, Typography} from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import React from "react";
+import React, {useContext} from "react";
 import {Link} from "gatsby";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import * as _ from "lodash";
+import AboutUsContext from "../context/AboutUsContext";
 
 const OpenPosition = () => {
+    const {aboutUsData} = useContext(AboutUsContext);
     const BoxWrapper = styled(Box)(() => ({
         display: 'none',
         ".main-heading": {
@@ -40,7 +43,8 @@ const OpenPosition = () => {
             // fontWeight: 600,
             fontSize: "20px",
             lineHeight: "24px",
-            paddingBottom: '16px'
+            paddingBottom: '16px',
+            paddingTop: '5px'
         },
         ".main-heading-open-positions": {
             // fontWeight: 700,
@@ -78,36 +82,42 @@ const OpenPosition = () => {
             },
         }
     }))
+
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Box className="open-positions-div">
-                    <Typography className="main-div-open-positions">Open Positions</Typography>
-                    <Typography className="positions">Engineers</Typography>
-                    <Box className="sub-div-open-positions">
-                        <Box>
-                            <Typography className="main-heading-open-positions">Software Engineers (Back
-                                End)</Typography>
-                            <Typography className="details-open-positions">Mumbai, IN</Typography>
-                        </Box>
-                        <ChevronRightIcon/>
+                {
+                    !_.isEmpty(aboutUsData) &&
+                    <Box className="open-positions-div">
+                        <Typography className="main-div-open-positions">{aboutUsData.positions.title}</Typography>
+                        {
+                            aboutUsData.positions.content.map((item) => {
+                                return (
+                                    <>
+                                        <Typography className="positions">{item.name}</Typography>
+                                        {
+                                            item.positions.map(data => {
+                                                return (
+                                                    <>
+                                                        <Box className="sub-div-open-positions">
+                                                            <Box>
+                                                                <Typography
+                                                                    className="main-heading-open-positions">{data.title}</Typography>
+                                                                <Typography
+                                                                    className="details-open-positions">{data.location}</Typography>
+                                                            </Box>
+                                                            <ChevronRightIcon/>
+                                                        </Box>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </>
+                                )
+                            })
+                        }
                     </Box>
-                    <Box className="sub-div-open-positions">
-                        <Box>
-                            <Typography className="main-heading-open-positions">QA Engineer</Typography>
-                            <Typography className="details-open-positions">Mumbai, IN</Typography>
-                        </Box>
-                        <ChevronRightIcon/>
-                    </Box>
-                    <Typography className="sub-heading-open-positions">Developers</Typography>
-                    <Box className="sub-div-open-positions">
-                        <Box>
-                            <Typography className="main-heading-open-positions">Full Stack Developer</Typography>
-                            <Typography className="details-open-positions">Mumbai, IN</Typography>
-                        </Box>
-                        <ChevronRightIcon/>
-                    </Box>
-                </Box>
+                }
             </BoxWrapper>
         </React.Fragment>
     )

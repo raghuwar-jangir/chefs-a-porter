@@ -11,9 +11,11 @@ import supperChef1 from '../assets/images/su-club1.png';
 import supperChef2 from '../assets/images/su-club2.mp4';
 import supperChef3 from '../assets/images/su-club3.png';
 
-const ChefCarousel = () => {
+const ChefCarousel = (props) => {
+    const {slidesPerView,isBackground,chefHeading,supperHeadingMain,isPadding,detailsBox,header,details,swiperImg} = props
     const BoxWrapper = styled(Box)(() => ({
-        backgroundColor: '#DCD7CB',
+        backgroundColor: `${isBackground ? '#FBFBFB' : '#DCD7CB' }`,
+        padding:`${isPadding ? '0px 120px 80px' : '0px 0 40px 0px'}`,
         ".carousel .thumb": {
             border: '0px',
         },
@@ -33,7 +35,7 @@ const ChefCarousel = () => {
             width: "250px",
             paddingRight: '8px',
         },
-        ".chef-name": {
+        ".chef-name": [{
             padding: '8px 8px 0px',
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
@@ -42,8 +44,8 @@ const ChefCarousel = () => {
             lineHeight: '19px',
             color: '#101418',
             marginBottom: '0px',
-        },
-        ".chef-details": {
+        },header],
+        ".chef-details": [{
             padding: '0 8px 8px',
     fontFamily: 'Proxima Nova Alt',
     fontStyle: 'normal',
@@ -51,13 +53,13 @@ const ChefCarousel = () => {
     fontSize: '12px',
     lineHeight: '15px',
     color: '#101418',
-        },
-        '.swiper': {
+        },details],
+        '.chef-swiper': {
             height: '428px',
             width:'100%',
             paddingBottom:'40px'
           },
-          '.supper-heading':{
+          '.supper-heading':[{
             fontFamily: 'Bon Vivant',
     fontStyle: 'normal',
     fontSize: '24px',
@@ -67,71 +69,77 @@ const ChefCarousel = () => {
     color: '#080B0E',
     margin: '0px 16px 20px',
     paddingTop:'40px'
-          },
+          },supperHeadingMain],
           '.swiper-slide':{
             boxShadow: '0px 8px 10px rgb(0 0 0 / 6%)',
             background: 'rgb(251 251 251 / 80%)',
             height:'fit-content',
           },
-          '.supper-img':{
+          '.supper-img':[{
             objectFit:'cover',
             height:'370px',
             width:'100%'
+          },swiperImg],
+          '.supper-swiper':{
+            width:'100%'
           },
+          '.supper-details-box':{
+            backgroundColor:`${detailsBox ? '#DCD7CB' : ''}`,
+          }
     }))
     return (
         <BoxWrapper>
-            <Typography className="supper-heading">Past Supper Clubs</Typography>
+            <Typography className="supper-heading">{chefHeading}</Typography>
                         <Swiper
-        slidesPerView={3}
+        slidesPerView={`${slidesPerView ? 4 : 3}`}
         slidesPerGroupSkip={1}
         spaceBetween={4}
         loop={true}
         pagination={{
           clickable: true,
         }}
-        className="mySwiper"
+        className="supper-swiper"
       >
-        <Box class="swiper">
-        <SwiperSlide class="swiper-slide"><img className='supper-img' src={supperChef1} />
+        <Box className="chef-swiper">
+        <SwiperSlide className="swiper-slide supper-details-box"><img className='supper-img' src={supperChef1} />
         <Box>
             <Typography className="chef-name">Chef Karan Thakker</Typography>
             <Typography className="chef-details">Surburbia, Banglore East</Typography>
             </Box>
         </SwiperSlide>
-        <SwiperSlide class="swiper-slide"><video  autoPlay muted loop controls={false}  className="supper-img" src={supperChef2}
+        <SwiperSlide className="swiper-slide supper-details-box"><video  autoPlay muted loop controls={false}  className="supper-img" src={supperChef2}
           />
         <Box>
             <Typography className="chef-name">Chef Karan Thakker</Typography>
             <Typography className="chef-details">Surburbia, Banglore East</Typography>
             </Box>
         </SwiperSlide>
-        <SwiperSlide class="swiper-slide"><img className="supper-img" src={supperChef3} />
+        <SwiperSlide className="swiper-slide supper-details-box"><img className="supper-img" src={supperChef3} />
         <Box>
             <Typography className="chef-name">Chef Mako</Typography>
             <Typography className="chef-details">Surburbia, Banglore East</Typography>
             </Box>
             </SwiperSlide>
-        <SwiperSlide class="swiper-slide"><img className="supper-img" src={supperChef1} />
+        <SwiperSlide className="swiper-slide supper-details-box"><img className="supper-img" src={supperChef1} />
         <Box>
             <Typography className="chef-name">Chef Karan Thakker</Typography>
             <Typography className="chef-details">Surburbia, Banglore East</Typography>
             </Box>
             </SwiperSlide>
-            <SwiperSlide class="swiper-slide"><video  autoPlay muted loop controls={false}  className="supper-img" src={supperChef2}
+            <SwiperSlide className="swiper-slide supper-details-box"><video  autoPlay muted loop controls={false}  className="supper-img" src={supperChef2}
           />
         <Box>
             <Typography className="chef-name">Chef Karan Thakker</Typography>
             <Typography className="chef-details">Surburbia, Banglore East</Typography>
             </Box>
             </SwiperSlide>
-        <SwiperSlide class="swiper-slide"><img className="supper-img" src={supperChef3} />
+        <SwiperSlide className="swiper-slide supper-details-box"><img className="supper-img" src={supperChef3} />
         <Box>
             <Typography className="chef-name">Chef Mako</Typography>
             <Typography className="chef-details">Surburbia, Banglore East</Typography>
             </Box>
             </SwiperSlide>
-        </Box>
+            </Box>
       </Swiper>
         </BoxWrapper>
     );

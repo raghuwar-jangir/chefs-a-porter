@@ -3,13 +3,13 @@ import {Box} from "@mui/system";
 import React from "react";
 
 const TemptedYet = (props) => {
-    const {background,color,title,isTempted} = props
+    const {background, color, title, buttonText, isTempted} = props;
     const BoxWrapper = styled(Box)(() => ({
         '.template': [{
             display: 'none',
             padding: '0px 10px 24px',
             backgroundColor: `${isTempted ? '#080B0E' : '#FBFBFB'}`,
-        },background],
+        }, background],
         '.template-title': [{
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
@@ -22,11 +22,11 @@ const TemptedYet = (props) => {
             marginBottom: '0px',
             paddingBottom: '34px',
             paddingTop: '20px',
-        },color],
+        }, color],
         '.view-all': {
             marginTop: '40px',
             display: 'block',
-            marginBottom:'0px',
+            marginBottom: '0px',
             width: 'auto',
             padding: '10px',
             textAlign: 'center',
@@ -53,7 +53,7 @@ const TemptedYet = (props) => {
                 marginTop: '5px',
                 color: '#080B0E',
                 background: '#C6A87D',
-                marginBottom:'0px'
+                marginBottom: '0px'
             },
         },
 
@@ -63,8 +63,8 @@ const TemptedYet = (props) => {
         <React.Fragment>
             <BoxWrapper>
                 <Box className="template show">
-                    <Typography className="template-title">Tempted yet?</Typography>
-                    <a href="" className="view-all">{title}</a>
+                    <Typography className="template-title">{title}</Typography>
+                    <a href="" className="view-all">{buttonText}</a>
                 </Box>
             </BoxWrapper>
         </React.Fragment>

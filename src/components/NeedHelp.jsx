@@ -1,6 +1,6 @@
 import {Box, Button, TextareaAutosize, styled, TextField, Typography} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-import React from "react";
+import React, {useContext} from "react";
 import InputAdornment from "@mui/material/InputAdornment";
 import {DatePickerInput} from "rc-datepicker";
 import 'rc-datepicker/lib/style.css';
@@ -9,6 +9,7 @@ import moment from "moment";
 import * as _ from "lodash";
 import {Formik, Form} from "formik";
 import '../assets/styles/fontStyle.css'
+import HomeContext from "../context/HomeContext";
 
 const NeedHelp = ({isColor}) => {
 
@@ -238,133 +239,144 @@ const NeedHelp = ({isColor}) => {
             color: '#080B0E !important',
         },
     }
+
+    const {data} = useContext(HomeContext);
+
     return (
+
         <React.Fragment>
             <BoxWarraper>
-                <Box md={6} sm={6} xs={12} xl={7}>
-                    <Typography className="main-heading">Need Help?</Typography>
-                    <Typography className="details">We respond within 24 business hours.</Typography>
-                </Box>
-                <Box md={6} sm={6} xs={12} xl={7}>
-                    <Button
-                        type="submit"
-                        className="btn" onClick={handleOpen}>Schedule a Call</Button>
-                    <Button
-                        type="submit"
-                        className="btn-2">Email us</Button>
-                </Box>
-                <Modal
-                    keepMounted
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="keep-mounted-modal-title"
-                    aria-describedby="keep-mounted-modal-description"
-                >
-                    <Box sx={style}>
-                        <Box className="modal-content">
-                            <Box className="modal-header">
-                                <Typography id="exampleModalLabel" className='schedule-heading modal-title'>Schedule a
-                                    call</Typography>
-                                <button type="button" data-bs-dismiss="modal" aria-label="Close" className="close"
-                                        onClick={handleClose}>
-                                    <CloseIcon/>
-                                </button>
-                            </Box>
-                            <Box className="container-fluid">
-                                <Formik
-                                    initialValues={{
-                                        day: new Date(),
-                                        time: new Date().getHours() + ':' + new Date().getMinutes(),
-                                        contactNumber: '',
-                                        queryMessage: '',
-                                    }}
-                                    onSubmit={(values) => {
-                                        console.log(values.date)
-                                        const experienceData = {
-                                            ...values,
-                                            day: moment(_.get(values, 'day')).format("ddd,DD MMM "),
-                                        }
-                                        console.log("value===>", values)
-                                        console.log("experienceData===>", experienceData)
-                                    }}
-                                >
-                                    {({values, handleChange, handleSubmit, setFieldValue}) => (
-                                        <Form onSubmit={handleSubmit}>
-                                            <Box className="row">
-                                                <Box className="mb-3">
-                                                    <label className="schedule-label">Day</label>
-                                                    <DatePickerInput
-                                                        name="day"
-                                                        value={values.day}
-                                                        displayFormat="ddd,DD MMM"
-                                                        returnFormat="ddd,DD MMM"
-                                                        className="form-control"
-                                                        onChange={(dateString) => setFieldValue('day', dateString)}
-                                                        defaultValue={values.day}
-                                                    />
-                                                </Box>
-                                                <Box className="mb-3  ">
-                                                    <label className="schedule-label">Time</label>
-                                                    <Box
-                                                        className="input-group">
-                                                        <TextField type="time" name="time"
-                                                                   value={values.time}
-                                                                   onChange={handleChange}
-                                                                   defaultValue={values.time}
-                                                                   className="form-control"
-                                                                   autoComplete="off"
-                                                                   variant="standard"
-                                                                   InputProps={{
-                                                                       disableUnderline: true,
-                                                                       autoCapitalize: true,
-                                                                   }}/>
-                                                    </Box>
-
-                                                </Box>
-                                                <Box className="mb-3">
-                                                    <label className="schedule-label">Contact
-                                                        Number</label>
-                                                    <Box className="form-group">
-                                                        <TextField type="tel" name="contactNumber"
-                                                                   className="form-control"
-                                                                   placeholder="10 digit number"
-                                                                   value={values.contactNumber}
-                                                                   onChange={handleChange}
-                                                                   autoComplete="off"
-                                                                   variant="standard"
-                                                                   InputProps={{
-                                                                       disableUnderline: true,
-                                                                       startAdornment: <InputAdornment
-                                                                           position="start">91+</InputAdornment>
-                                                                   }}/>
-                                                    </Box>
-                                                </Box>
-                                                <Box className="mb-3">
-                                                    <label className="schedule-label">Write your query below</label>
-                                                    <TextareaAutosize
-                                                        name="queryMessage"
-                                                        value={values.queryMessage}
-                                                        onChange={handleChange}
-                                                        className="form-control"
-                                                        maxRows={2}
-                                                        maxLength={500}
-                                                        placeholder="Eg. Menu, Decor, Cancellation  "
-                                                    />
-                                                </Box>
-                                            </Box>
-                                            <Box>
-                                                <button className="btn btn-primary" type="submit"
-                                                        style={{width: '100% !important'}}>Apply
-                                                </button>
-                                            </Box>
-                                        </Form>
-                                    )}
-                                </Formik>
-                            </Box>
+                {
+                    !_.isEmpty(data) &&
+                    <React.Fragment>
+                        <Box md={6} sm={6} xs={12} xl={7}>
+                            <Typography className="main-heading">{data.home_footer.desktop_title}</Typography>
+                            <Typography className="details">{data.home_footer.desktop_description}</Typography>
                         </Box>
-                    </Box>
-                </Modal>
+                        <Box md={6} sm={6} xs={12} xl={7}>
+                            <Button
+                                type="submit"
+                                className="btn" onClick={handleOpen}>{data.home_footer.desktop_button_call}</Button>
+                            <Button
+                                type="submit"
+                                className="btn-2">{data.home_footer.desktop_button_email}</Button>
+                        </Box>
+                        <Modal
+                            keepMounted
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="keep-mounted-modal-title"
+                            aria-describedby="keep-mounted-modal-description"
+                        >
+                            <Box sx={style}>
+                                <Box className="modal-content">
+                                    <Box className="modal-header">
+                                        <Typography id="exampleModalLabel" className='schedule-heading modal-title'>Schedule
+                                            a
+                                            call</Typography>
+                                        <button type="button" data-bs-dismiss="modal" aria-label="Close"
+                                                className="close"
+                                                onClick={handleClose}>
+                                            <CloseIcon/>
+                                        </button>
+                                    </Box>
+                                    <Box className="container-fluid">
+                                        <Formik
+                                            initialValues={{
+                                                day: new Date(),
+                                                time: new Date().getHours() + ':' + new Date().getMinutes(),
+                                                contactNumber: '',
+                                                queryMessage: '',
+                                            }}
+                                            onSubmit={(values) => {
+                                                console.log(values.date)
+                                                const experienceData = {
+                                                    ...values,
+                                                    day: moment(_.get(values, 'day')).format("ddd,DD MMM "),
+                                                }
+                                                console.log("value===>", values)
+                                                console.log("experienceData===>", experienceData)
+                                            }}
+                                        >
+                                            {({values, handleChange, handleSubmit, setFieldValue}) => (
+                                                <Form onSubmit={handleSubmit}>
+                                                    <Box className="row">
+                                                        <Box className="mb-3">
+                                                            <label className="schedule-label">Day</label>
+                                                            <DatePickerInput
+                                                                name="day"
+                                                                value={values.day}
+                                                                displayFormat="ddd,DD MMM"
+                                                                returnFormat="ddd,DD MMM"
+                                                                className="form-control"
+                                                                onChange={(dateString) => setFieldValue('day', dateString)}
+                                                                defaultValue={values.day}
+                                                            />
+                                                        </Box>
+                                                        <Box className="mb-3  ">
+                                                            <label className="schedule-label">Time</label>
+                                                            <Box
+                                                                className="input-group">
+                                                                <TextField type="time" name="time"
+                                                                           value={values.time}
+                                                                           onChange={handleChange}
+                                                                           defaultValue={values.time}
+                                                                           className="form-control"
+                                                                           autoComplete="off"
+                                                                           variant="standard"
+                                                                           InputProps={{
+                                                                               disableUnderline: true,
+                                                                               autoCapitalize: true,
+                                                                           }}/>
+                                                            </Box>
 
+                                                        </Box>
+                                                        <Box className="mb-3">
+                                                            <label className="schedule-label">Contact
+                                                                Number</label>
+                                                            <Box className="form-group">
+                                                                <TextField type="tel" name="contactNumber"
+                                                                           className="form-control"
+                                                                           placeholder="10 digit number"
+                                                                           value={values.contactNumber}
+                                                                           onChange={handleChange}
+                                                                           autoComplete="off"
+                                                                           variant="standard"
+                                                                           InputProps={{
+                                                                               disableUnderline: true,
+                                                                               startAdornment: <InputAdornment
+                                                                                   position="start">91+</InputAdornment>
+                                                                           }}/>
+                                                            </Box>
+                                                        </Box>
+                                                        <Box className="mb-3">
+                                                            <label className="schedule-label">Write your query
+                                                                below</label>
+                                                            <TextareaAutosize
+                                                                name="queryMessage"
+                                                                value={values.queryMessage}
+                                                                onChange={handleChange}
+                                                                className="form-control"
+                                                                maxRows={2}
+                                                                maxLength={500}
+                                                                placeholder="Eg. Menu, Decor, Cancellation  "
+                                                            />
+                                                        </Box>
+                                                    </Box>
+                                                    <Box>
+                                                        <button className="btn btn-primary" type="submit"
+                                                                style={{width: '100% !important'}}>Apply
+                                                        </button>
+                                                    </Box>
+                                                </Form>
+                                            )}
+                                        </Formik>
+                                    </Box>
+                                </Box>
+                            </Box>
+                        </Modal>
+                    </React.Fragment>
+                }
             </BoxWarraper>
 
         </React.Fragment>

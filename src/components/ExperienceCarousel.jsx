@@ -7,7 +7,7 @@ import avlExp1 from "../assets/images/avl-exp1.jpg";
 import avlExp2 from "../assets/images/avl-exp2.jpg";
 import '../assets/styles/fontStyle.css'
 
-const ExperienceCarousel = () => {
+const ExperienceCarousel = (props) => {
     const WrapBox = styled(Box)({
         '.main-box': {
             background: '#101418 !important',
@@ -50,7 +50,7 @@ const ExperienceCarousel = () => {
         <WrapBox>
             <Box className='main-box'>
                 <Box>
-                    <Typography className="peek-heading">Available Experiences</Typography>
+                    <Typography className="peek-heading">{props.title}</Typography>
                 </Box>
                 <Box className='slider-box'>
                     {/*<Swiper*/}

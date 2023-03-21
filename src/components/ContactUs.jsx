@@ -1,13 +1,15 @@
 import {Box, Button, Grid, styled, Typography} from "@mui/material";
 import React from "react";
-const ContactUsBox = ({ isColor }) => {
+
+const ContactUsBox = (props) => {
+    const {isColor, title, description} = props;
     const BoxWarraper = styled(Box)(() => ({
         background: '#FBFBFB',
         margin: '20px',
         display: 'none',
-        '.contact-us-main-box':{
+        '.contact-us-main-box': {
             padding: '20px 16px',
-            border:'0.5px solid #080B0E',
+            border: '0.5px solid #080B0E',
         },
         ".btn": {
             // border: '0.25px solid #fff',
@@ -57,8 +59,8 @@ const ContactUsBox = ({ isColor }) => {
             color: '#080B0E',
             // color: `${ isColor? '#FBFBFB' : '#080B0E' }`,
             paddingBottom: "8px",
-            paddingTop:'0px!important',
-            textAlign:'left'
+            paddingTop: '0px!important',
+            textAlign: 'left'
         },
         ".details": {
             fontWeight: 300,
@@ -67,15 +69,15 @@ const ContactUsBox = ({ isColor }) => {
             fontSize: "16px !important",
             lineHeight: "24px",
             color: '#080B0E',
-            textAlign:'left',
-            marginBottom:'10px'
+            textAlign: 'left',
+            marginBottom: '10px'
             // color: `${ isColor? '#FBFBFB' : '#080B0E' }`,
             // paddingBottom: "20px"
         },
         "@media (min-width: 1px) and (max-width:425px)": {
             display: 'flex',
             flexDirection: 'column',
-            '.contact-us-main-box':{
+            '.contact-us-main-box': {
                 padding: '20px 5px',
             },
             ".btn": {
@@ -92,11 +94,11 @@ const ContactUsBox = ({ isColor }) => {
     }))
     return (
         <React.Fragment>
-                <BoxWarraper>
-                    <Box className="contact-us-main-box">
+            <BoxWarraper>
+                <Box className="contact-us-main-box">
                     <Box md={6} sm={6} xs={12} xl={7}>
-                        <Typography className="main-heading">Contact Us</Typography>
-                        <Typography className="details">We respond within 24 business hours.</Typography>
+                        <Typography className="main-heading">{title}</Typography>
+                        <Typography className="details">{description}</Typography>
                     </Box>
                     <Box md={6} sm={6} xs={12} xl={7}>
                         <Button
@@ -106,8 +108,8 @@ const ContactUsBox = ({ isColor }) => {
                             type="submit"
                             className="btn-2">Email us</Button>
                     </Box>
-                    </Box>
-                </BoxWarraper>
+                </Box>
+            </BoxWarraper>
 
         </React.Fragment>
     )

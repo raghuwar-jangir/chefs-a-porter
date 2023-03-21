@@ -3,14 +3,13 @@ import config from 'react-reveal/globals'
 import smoothscroll from 'smoothscroll-polyfill'
 
 import "normalize.css"
-import {CmsProvider} from "./src/context/CmsContext";
+import {HomeProvider} from "./src/context/HomeContext";
+
 
 export const onClientEntry = () => {
-    config({ ssrFadeout: true })
+    config({ssrFadeout: true})
     smoothscroll.polyfill()
 }
 
-// highlight-start
-// eslint-disable-next-line react/prop-types
-export const wrapRootElement = ({element}) => <CmsProvider>{element}</CmsProvider>
-// highlight-end
+export const wrapRootElement = ({element}) =>
+    <HomeProvider>{element}</HomeProvider>

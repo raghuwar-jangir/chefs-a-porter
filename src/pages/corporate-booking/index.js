@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
     Box,
     styled,
@@ -24,22 +24,18 @@ import ContactUsBox from "../../components/ContactUs";
 import ImageCarousel from "../../components/ImageCarousel";
 import {Link} from "gatsby";
 import '../../assets/styles/fontStyle.css';
+import CorporateBookingContext from "../../context/CorporateBookingContext";
+import * as _ from "lodash";
 
 const CorporateBooking = () => {
 
-    const bookingImg = [
-        bookingImg1,
-        bookingImg2,
-        bookingImg3,
-        bookingImg4,
-        bookingImg5,
-        bookingImg6,
-    ];
+    const {corporateBookingData} = useContext(CorporateBookingContext);
+
     const BoxWrapper = styled(Box)(() => ({
         background: '#FBFBFB',
         '.corporate-b': {
             marginTop: '80px',
-            backgroundImage: `linear-gradient(180.32deg, rgba(0, 0, 0, 0) 21.51%, rgba(0, 0, 0, 0.4) 81.02%),url(${gallery})`,
+            // backgroundImage: `linear-gradient(180.32deg, rgba(0, 0, 0, 0) 21.51%, rgba(0, 0, 0, 0.4) 81.02%),url(${gallery})`,
             height: '500px',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -245,7 +241,7 @@ const CorporateBooking = () => {
             },
             '.gallery-carousel': {
                 display: 'block',
-                paddingTop: '48px'
+                // paddingTop: '48px'
             },
             '.booked_us': {
                 padding: '40px 15px',
@@ -362,84 +358,84 @@ const CorporateBooking = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar heading="Corporate Booking"/>
-                {/*{isMobile ? (*/}
-                {/*    <Box className='header-club'>*/}
-                {/*        <Typography className="patron-mobile-heading">Corporate Booking</Typography>*/}
-                {/*    </Box>*/}
-                {/*) : ('')}*/}
-                <Box className="corporate-b">
-                    <Box className="container">
-                        <Box className="top-10 position-absolute">
-                            <Typography><a href="" className="header-link"><ArrowBackIcon
-                                style={{marginRight: '4px'}}/>Back</a></Typography>
-                        </Box>
-                        <Box className="position-absolute patron-flex">
-                            <Box>
-                                <Typography className="become-heading">Corporate Booking</Typography>
-                                <Typography className="become-detail">Join as a member and get exclusive member
-                                    priviliges</Typography>
+                {
+                    !_.isEmpty(corporateBookingData) &&
+                    <>
+                        <Navbar heading="Corporate Booking"/>
+                        <Box className="corporate-b"
+                             sx={{backgroundImage: `linear-gradient(180.32deg, rgba(0, 0, 0, 0) 21.51%, rgba(0, 0, 0, 0.4) 81.02%),url(${corporateBookingData.header.image})`,}}>
+                            <Box className="container">
+                                <Box className="top-10 position-absolute">
+                                    <Typography><a href="" className="header-link"><ArrowBackIcon
+                                        style={{marginRight: '4px'}}/>Back</a></Typography>
+                                </Box>
+                                <Box className="position-absolute patron-flex">
+                                    <Box>
+                                        <Typography
+                                            className="become-heading">{corporateBookingData.header.title}</Typography>
+                                        <Typography
+                                            className="become-detail">{corporateBookingData.header.description}</Typography>
+                                    </Box>
+                                    <Box><Typography style={{width: '100%'}}><Link href="/become-partner"
+                                                                                   className="apply">Apply</Link></Typography></Box>
+                                </Box>
                             </Box>
-                            <Box><Typography style={{width: '100%'}}><Link href="/become-partner"
-                                                                           className="apply">Apply</Link></Typography></Box>
                         </Box>
-                    </Box>
-                </Box>
-                <Box className="gallery-carousel"><ImageCarousel/></Box>
-                <Box className="big_dis">
-                    <Grid container>
-                        <Box><Typography className="book-detail mbl-view-big-dis">Join as a member and get exclusive
-                            member priviliges</Typography></Box>
-                        <Grid item xl={4} md={4} xs={12}>
-                            <Typography className="book-title">Big discount</Typography>
-                            <Typography className="book-detail">Divide your purchase into easy EMIs of 3,6,9,12,18 or 24
-                                months, according to your ease.</Typography>
-                        </Grid>
-                        <Grid item xl={4} md={4} xs={12} sx={{paddingRight: '5px'}} className="booking-border">
-                            <Typography className="book-title">Exclusive Access to Top Chefs</Typography>
-                            <Typography className="book-detail">Forget heaps of paper work and never ending forms. All
-                                you need are KYC documents.</Typography>
-                        </Grid>
-                        <Grid item xl={4} md={4} xs={12} sx={{paddingRight: '5px'}} className="booking-border">
-                            <Typography className="book-title">Early access to Supper clubs</Typography>
-                            <Typography className="book-detail">Products bought from EMI network have minimal or zero
-                                down payment, convert your purchases into EMIs.</Typography>
-                        </Grid>
-                    </Grid>
-                </Box>
-                <Box className="booked_us">
-                    <Box className="container">
-                        <Box className="col-lg-12">
-                            <Typography className="corporate-booking-heading">Corporate that have booked with
-                                us</Typography>
+                        <Box className="gallery-carousel"><ImageCarousel/></Box>
+                        <Box className="big_dis">
+                            <Grid container>
+                                <Box><Typography className="book-detail mbl-view-big-dis">Join as a member and get
+                                    exclusive
+                                    member priviliges</Typography></Box>
+                                {
+                                    corporateBookingData.header.content.map((item) => {
+                                        return (
+                                            <Grid item xl={4} md={4} xs={12} sx={{paddingRight: '5px'}}
+                                                  className="booking-border">
+                                                <Typography className="book-title">{item.title}</Typography>
+                                                <Typography className="book-detail">{item.description}</Typography>
+                                            </Grid>
+                                        )
+                                    })
+                                }
+                            </Grid>
                         </Box>
-                        <Grid container spacing={1} gridTemplateColumns="repeat(12, 1fr)">
-                            {bookingImg.map((item, index) => (
-                                <Grid key={index} item xl={2} md={2} xs={6} className="img-grid">
-                                    <img src={item} className="booked-us-img"/>
+                        <Box className="booked_us">
+                            <Box className="container">
+                                <Box className="col-lg-12">
+                                    <Typography
+                                        className="corporate-booking-heading">{corporateBookingData.booked_us.title}</Typography>
+                                </Box>
+                                <Grid container spacing={1} gridTemplateColumns="repeat(12, 1fr)">
+                                    {corporateBookingData.booked_us.content.map((item, index) => (
+                                        <Grid key={index} item xl={2} md={2} xs={6} className="img-grid">
+                                            <img src={item} className="booked-us-img"/>
+                                        </Grid>
+                                    ))}
                                 </Grid>
-                            ))}
-                        </Grid>
-                    </Box>
-                </Box>
-                <Questions isLightTheme={true}/>
-                <ContactUsBox/>
-                <Box className="save_booking">
-                    <Box className="container">
-                        <Box className="row">
-                            <Box className="save-booking-details">
-                                <img src={trendingUp} className="save-booking-img" alt=""/><b>₹</b> 7k + saved in annual
-                                bookings by corporates
                             </Box>
                         </Box>
-                    </Box>
-                </Box>
-                <Box className="apply_div">
-                    <a href="" className="apply_btn">Apply</a>
-                </Box>
-                <NeedHelp/>
-                <Footer/>
-                <FooterEnd/>
+                        <Questions isLightTheme={true} isCorporateBooking={true}/>
+                        <ContactUsBox title={corporateBookingData.contact_us.title}
+                                      description={corporateBookingData.contact_us.description}/>
+                        <Box className="save_booking">
+                            <Box className="container">
+                                <Box className="row">
+                                    <Box className="save-booking-details">
+                                        <img src={trendingUp} className="save-booking-img"
+                                             alt=""/>{corporateBookingData.corporate_bookings_footer.title}
+                                    </Box>
+                                </Box>
+                            </Box>
+                        </Box>
+                        <Box className="apply_div">
+                            <a href="" className="apply_btn">Apply</a>
+                        </Box>
+                        <NeedHelp/>
+                        <Footer/>
+                        <FooterEnd/>
+                    </>
+                }
             </BoxWrapper>
         </React.Fragment>
     )

@@ -182,6 +182,7 @@ const MainBox = styled(Box)(()=>({
         width: '100%',
     height: '491px',
     objectFit: 'cover',
+    marginBottom:'-3px'
     },
     '.table-child-2':{
         padding: '40px 120px 40px 40px!important',

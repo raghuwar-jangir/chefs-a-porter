@@ -939,7 +939,7 @@ const SupperClubChaefPage = () => {
                                         <CardChefComponent bgColor="#FBFBFB"/>
                                         <Box className="chef-carousel">
                                             <ChefMakoCarousel title='An agnostic menu that explores a diverse culinary journey with chef mako at the helm'/>
-                                            <ChefCarousel/>
+                                            <ChefCarousel chefHeading='Past Supper Clubs'/>
                                             <SupperClubDetailsCarousel/>
                                             <SupperClubTreatyComponent/>
                                         </Box>

@@ -444,9 +444,9 @@ const BookingSummary = () => {
       marginBottom: "0px",
       paddingTop:'20px'
     },
-    ".contact": {
-      position: "relative",
-    },
+    // ".contact": {
+    //   position: "relative",
+    // },
     ".contact-number": {
       fontFamily: "ProximaNovaA-Regular",
       fontStyle: "normal",
@@ -536,7 +536,7 @@ const BookingSummary = () => {
       border: "0px",
       borderBottom: "0.25px solid #FBFBFB",
       borderRadius: "0px",
-      paddingLeft: "0px",
+      // paddingLeft: "0px",
       paddingRight: "0px",
       fontFamily: "Proxima Nova Alt",
       fontStyle: "normal",
@@ -755,7 +755,7 @@ const BookingSummary = () => {
   border: "0px",
   borderBottom: "0.25px solid #FBFBFB",
   borderRadius: "0px",
-  paddingLeft: "0px",
+  // paddingLeft: "0px",
   paddingRight: "0px",
   fontFamily: "Proxima Nova Alt",
   fontStyle: "normal",
@@ -903,7 +903,7 @@ const BookingSummary = () => {
                           <input
                             placeholder="10 digit number"
                             className="form-control"
-                           type="text" 
+                           type="text"
                            id="number"
                             name="number"
                           />

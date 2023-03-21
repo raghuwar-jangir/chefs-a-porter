@@ -7,9 +7,9 @@ const defaultState = {
     },
 }
 
-const CmsContext = React.createContext(defaultState)
+const HomeContext = React.createContext(defaultState)
 
-const CmsProvider = (props) => {
+const HomeProvider = (props) => {
 
     const [data, setData] = useState(undefined)
     useEffect(() => {
@@ -20,16 +20,16 @@ const CmsProvider = (props) => {
 
     const {children} = props
     return (
-        <CmsContext.Provider
+        <HomeContext.Provider
             value={{
                 data,
             }}
         >
             {children}
-        </CmsContext.Provider>
+        </HomeContext.Provider>
     )
 }
 
-export default CmsContext
+export default HomeContext
 
-export {CmsProvider}
+export {HomeProvider}

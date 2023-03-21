@@ -89,13 +89,13 @@ const UpcomingSupperClubCard = () => {
         '.trending-title':{
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
-    fontWeight: 300,
-    fontSize: '16px',
-    lineHeight: '19px',
-    textAlign: 'right',
-    letterSpacing: '0.02em',
-    color: '#C6A87D',
-    padding:'5px 20px 5px 0px'
+            fontWeight: 300,
+            fontSize: '16px',
+            lineHeight: '19px',
+            textAlign: 'right',
+            letterSpacing: '0.02em',
+            color: '#C6A87D',
+            padding:'5px 20px 5px 0px'
         },
         '.supper-info':{
             padding: '20px 16px 10px 16px',
@@ -153,25 +153,35 @@ const UpcomingSupperClubCard = () => {
                     <Box sx={{position:'relative'}}>
                     <Link className="link" href='/supper-club'>
             <img className='test-img' src={item.potImg}/>
-                        {/* <Box  className='trending'><img className='trending-img' src={item.tend}/><Typography className='trending-title'>{item.trendDetails}</Typography></Box> */}
+            {index === 0 &&  (
+        <div>
+          <Box  className='trending'><img className='trending-img' src={item.tend}/><Typography className='trending-title'>{item.trendDetails}</Typography></Box>
+        </div>
+      )}
+      {index === cardDetails.length - 1 && (
+        <div>
+          <Box  className='trending'><img className='trending-img' src={item.tend}/><Typography className='trending-title'>{item.trendDetails}</Typography></Box>
+        </div>
+      )}
                         <Box className='supper-info' >
                             <Typography className='super-title'>{item.title}</Typography>
                             <Box className='super-chef-details'>
                                 <span className='chef-tag'><img className='img-tag' src={item.chef}
                                                                 alt="chef cap"/><Typography className='tag-detail'>{item.chefDetails}</Typography></span>
-                                <span className='chef-tag'><img className='img-tag' src={item.cal} alt="date"/><Typography
-                                    className='tag-detail'>{item.calDetails}</Typography></span>
-                                <span className='chef-tag'><img className='img-tag' src={item.price} alt="Rates"/><Typography
-                                    className='tag-detail'>{item.priceDetails}</Typography></span>
-                            </Box>
-                            </Box>
+                                        <span className='chef-tag'><img className='img-tag' src={item.cal} alt="date"/><Typography
+                                            className='tag-detail'>{item.calDetails}</Typography></span>
+                                        <span className='chef-tag'><img className='img-tag' src={item.price} alt="Rates"/><Typography
+                                            className='tag-detail'>{item.priceDetails}</Typography></span>
+                                    </Box>
+                                </Box>
                             </Link>
                         </Box>
-                        </Box>
-                        ))}
-                        </MainBox>
+                    </Box>
+                ))}
+            </MainBox>
         </React.Fragment>
     )
 }
 
 export default UpcomingSupperClubCard;
+

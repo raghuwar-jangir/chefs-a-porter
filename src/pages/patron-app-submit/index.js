@@ -23,7 +23,7 @@ import * as _ from 'lodash';
 import '../../assets/styles/searchBar.css'
 import "../../assets/styles/fontStyle.css"
 
-const BecomePatronForm = () => {
+const PatronAppSubmit = () => {
 
     //validations
     const validationSchema = Yup.object({
@@ -230,7 +230,8 @@ const BecomePatronForm = () => {
                 backgroundColor: '#FBFBFB'
             },
             '.become-partner-form':{
-              marginTop:'55px'
+              marginTop:'55px',
+                width:'auto'
             },
         },
         '@media(min-width: 615px) and (max-width: 768px)': {
@@ -583,4 +584,4 @@ const BecomePatronForm = () => {
         </React.Fragment>
     )
 }
-export default BecomePatronForm
+export default PatronAppSubmit
