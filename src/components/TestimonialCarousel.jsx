@@ -10,31 +10,6 @@ import {Autoplay, Pagination} from "swiper";
 import HomeContext from "../context/HomeContext";
 import * as _ from "lodash";
 
-
-const images = [
-    {
-        mainTitle: 'Times Of India',
-        details: '“A unique way of dining that is truly magical and extraordinary”',
-    },
-    {
-        mainTitle: 'Times Of India',
-        details: '“A unique way of dining that is truly magical and extraordinary”',
-    },
-    {
-        mainTitle: 'Times Of India',
-        details: '“A unique way of dining that is truly magical and extraordinary”',
-    },
-    {
-        mainTitle: 'Times Of India',
-        details: '“A unique way of dining that is truly magical and extraordinary”',
-    },
-    {
-        mainTitle: 'Times Of India',
-        details: '“A unique way of dining that is truly magical and extraordinary”',
-    },
-];
-
-
 const TestimonialCarousel = () => {
     const [value, setValue] = useState(4);
 

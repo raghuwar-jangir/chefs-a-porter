@@ -29,7 +29,6 @@ import moment from "moment/moment";
 import * as _ from "lodash";
 import {DatePickerInput} from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
-import RatingCarousel from "../../components/RatingCarousel";
 import TemptedYet from "../../components/TemptedYet";
 import ImageCarousel from "../../components/ImageCarousel";
 import AvlExperienceCarousel from "../../components/AvlExperienceCarousel";

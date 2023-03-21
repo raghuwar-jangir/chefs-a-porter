@@ -9,11 +9,14 @@ import {Autoplay, Pagination} from "swiper";
 import {styled} from '@mui/system';
 import * as _ from "lodash";
 import {Rating} from '@mui/material';
-import HomeContext from "../context/HomeContext";
+import PriveeContext from "../context/PriveeContext";
 
-const RatingCarousel = (props) => {
-    const {backgroundColor, isFontSize, details, padding} = props
-    const {data} = useContext(HomeContext);
+const PriveeRatingCarousel = (props) => {
+
+    const {backgroundColor, title, rating, description, reviewer} = props;
+
+    const {priveeData} = useContext(PriveeContext);
+
     const [value, setValue] = useState();
 
     const StyledRating = styled(Rating)({
@@ -189,7 +192,7 @@ const RatingCarousel = (props) => {
             // sx={{ maxWidth: 400, flexGrow: 1 }}
         >
             {
-                !_.isEmpty(data) &&
+                !_.isEmpty(priveeData) &&
                 <React.Fragment>
                     <Box>
                         <Swiper autoplay={{
@@ -199,8 +202,7 @@ const RatingCarousel = (props) => {
                                 pagination={{
                                     clickable: true,
                                 }} modules={[Autoplay, Pagination]} className="mySwiper">
-
-                            {data.reviews.reviews.map((step, index) => (
+                            {priveeData.reviews.reviews.map((step, index) => (
                                 <div key={index}>
                                     <SwiperSlide className='main-div'>
                                         <Typography className='mainTitle'>
@@ -237,4 +239,4 @@ const RatingCarousel = (props) => {
     );
 }
 
-export default RatingCarousel;
+export default PriveeRatingCarousel;

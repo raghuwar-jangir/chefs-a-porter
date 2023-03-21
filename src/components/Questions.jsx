@@ -7,25 +7,17 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import {Box, styled} from '@mui/material';
 import '../assets/styles/fontStyle.css';
-import * as _ from "lodash";
-import {useContext} from "react";
-import BecomePatronContext from "../context/BecomePatronContext";
-import CorporateBookingContext from "../context/CorporateBookingContext";
 
-const Questions = (props) => {
-    const {isLightTheme = false, wrapPadding, isCorporateBooking} = props
-
-    const {becomePatronData} = useContext(BecomePatronContext);
-    const {corporateBookingData} = useContext(CorporateBookingContext);
+const Questions = ({isLightTheme = false}) => {
 
     const [expanded, setExpanded] = React.useState(false)
 
     const WrapperBox = styled(Box)({
         background: `${isLightTheme ? '#FBFBFB' : "#080B0E"}`,
         textAlign: 'center',
-        '.WrapperBox': [{
+        '.WrapperBox': {
             padding: '80px 120px'
-        }, wrapPadding],
+        },
         '.title-question': {
             fontSize: '24px',
             fontFamily: 'Bon Vivant',
@@ -120,90 +112,67 @@ const Questions = (props) => {
         setExpanded(isExpanded ? panel : false);
     };
 
+
     return (
         <React.Fragment>
-                <WrapperBox>
-                  <div>
-                      {
-                          !_.isEmpty(becomePatronData) || !_.isEmpty(corporateBookingData) &&
-                      isCorporateBooking ? (
-                      <Box className='WrapperBox'>
-                          <Typography className='title-question'>
-                              {corporateBookingData.faq.title}
-                          </Typography>
-                          {
-                              corporateBookingData.faq.contents.map((item, index) => {
-                                  return (
-                                      // <Box className='parent-accordion'>
-                                      <Box className=''>
-                                          <Accordion expanded={expanded === `panel${index}`}
-                                                     onChange={handleChange(`panel${index}`)}
-                                                     className='accordion'>
-                                              <AccordionSummary className='accordionSummary'
-                                                                expandIcon={expanded === `panel${index}` ?
-                                                                    <RemoveIcon sx={{
-                                                                        color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
-                                                                    }}/> : <AddIcon sx={{
-                                                                        fontSize: '19px',
-                                                                        color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
-                                                                    }}/>}
-                                                                aria- controls="panel1a-content"
-                                                                id="panel1a-header"
-                                              >
-                                                  <Typography
-                                                      className='frequently-questions'>{item.title}</Typography>
-                                              </AccordionSummary>
-                                              <AccordionDetails>
-                                                  <Typography
-                                                      className='frequently-ans'>{item.description}</Typography>
-                                              </AccordionDetails>
-                                          </Accordion>
-                                      </Box>
-                                  )
-                              })
-                          }
-                      </Box>
-                      ) : (
-                      <Box className='WrapperBox'>
-                          <Typography className='title-question'>
-                              {becomePatronData.faq.title}
-                          </Typography>
-                          {
-                              becomePatronData.faq.contents.map((item, index) => {
-                                  return (
-                                      <Box className='parent-accordion'>
-                                          <Accordion expanded={expanded === `panel${index}`}
-                                                     onChange={handleChange(`panel${index}`)}
-                                                     className='accordion'>
-                                              <AccordionSummary className='accordionSummary'
-                                                                expandIcon={expanded === `panel${index}` ?
-                                                                    <RemoveIcon sx={{
-                                                                        color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
-                                                                    }}/> : <AddIcon sx={{
-                                                                        fontSize: '19px',
-                                                                        color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
-                                                                    }}/>}
-                                                                aria- controls="panel1a-content"
-                                                                id="panel1a-header"
-                                              >
-                                                  <Typography
-                                                      className='frequently-questions'>{item.title}</Typography>
-                                              </AccordionSummary>
-                                              <AccordionDetails>
-                                                  <Typography
-                                                      className='frequently-ans'>{item.description}</Typography>
-                                              </AccordionDetails>
-                                          </Accordion>
-                                      </Box>
-                                  )
-                              })
-                          }
-                      </Box>
-                      )
-                      }
-                  </div>
+            <WrapperBox>
+                <Box className='WrapperBox'>
+                    <Typography className='title-question'>
+                        Frequently Asked Questions
+                    </Typography>
+                    <Box className='parent-accordion'>
 
-                </WrapperBox>
+                        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}
+                                   className='accordion'>
+                            <AccordionSummary className='accordionSummary'
+                                // expandIcon={<AddIcon sx={{ color: '#fff' }} />}
+                                              expandIcon={expanded === 'panel1' ? <RemoveIcon sx={{
+                                                  color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
+                                              }}/> : <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
+                                              aria- controls="panel1a-content"
+                                              id="panel1a-header"
+                            >
+                                <Typography className='frequently-questions'>Would there be any pure vegetarian
+                                    options?</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography className='frequently-ans'>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut imperdiet ultrices urna
+                                    vitae laoreet. Fusce posuere nec dui sed euismod. Vestibulum ante ipsum primis in
+                                    faucibus orci luctus et ultrices posuere cubilia curae; Sed eu faucibus elit, eget
+                                    venenatis nulla. Vivamus vel blandit ipsum, eget fringilla neque. Sed sed dui eu
+                                    erat tincidunt placerat. Nulla vitae aliquet urna.
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+                        <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}
+                                   className='accordion'>
+                            <AccordionSummary className='accordionSummary'
+                                              expandIcon={expanded === 'panel2' ?
+                                                  <RemoveIcon
+                                                      sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/> :
+                                                  <AddIcon sx={{color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`}}/>}
+                                              aria-controls="panel2a-content"
+                                              id="panel2a-header"
+                            >
+                                <Typography className='frequently-questions'>How long does the meal last for
+                                    ?</Typography>
+
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography className='frequently-ans'>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut imperdiet ultrices urna
+                                    vitae laoreet. Fusce posuere nec dui sed euismod. Vestibulum ante ipsum primis in
+                                    faucibus orci luctus et ultrices posuere cubilia curae; Sed eu faucibus elit, eget
+                                    venenatis nulla. Vivamus vel blandit ipsum, eget fringilla neque. Sed sed dui eu
+                                    erat tincidunt placerat. Nulla vitae aliquet urna.
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+                    </Box>
+                </Box>
+
+            </WrapperBox>
         </React.Fragment>
     );
 }

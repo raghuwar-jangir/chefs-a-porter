@@ -10,7 +10,6 @@ import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
 import trendingUp from "../../assets/images/trending-up.png";
-import Questions from "../../components/Questions";
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import {isMobile} from "react-device-detect";
 import gallery from "../../assets/images/sc-gallery.png";
@@ -19,6 +18,7 @@ import ImageCarousel from "../../components/ImageCarousel";
 import {Link} from "gatsby";
 import BecomePatronContext from "../../context/BecomePatronContext";
 import * as _ from "lodash";
+import BecomeAPatronQuestion from "../../components/BecomeAPatronQuestions";
 
 
 const BecomePartner = () => {
@@ -466,7 +466,7 @@ const BecomePartner = () => {
                                 </Grid>
                             </Grid>
                         </Box>
-                        <Questions isLightTheme={true}/>
+                        <BecomeAPatronQuestion isLightTheme={true}/>
                         <Box className="save_booking">
                             <Box className="container">
                                 <Box className="row">

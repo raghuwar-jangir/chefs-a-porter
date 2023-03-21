@@ -153,7 +153,16 @@ const UpcomingSupperClubCard = () => {
                         <Box sx={{position:'relative'}}>
                             <Link className="link" href='/supper-club'>
                                 <img className='test-img' src={item.potImg}/>
-                                {/* <Box  className='trending'><img className='trending-img' src={item.tend}/><Typography className='trending-title'>{item.trendDetails}</Typography></Box> */}
+                                {index === 0 &&  (
+                                    <div>
+                                        <Box  className='trending'><img className='trending-img' src={item.tend}/><Typography className='trending-title'>{item.trendDetails}</Typography></Box>
+                                    </div>
+                                )}
+                                {index === cardDetails.length - 1 && (
+                                    <div>
+                                        <Box  className='trending'><img className='trending-img' src={item.tend}/><Typography className='trending-title'>{item.trendDetails}</Typography></Box>
+                                    </div>
+                                )}
                                 <Box className='supper-info' >
                                     <Typography className='super-title'>{item.title}</Typography>
                                     <Box className='super-chef-details'>

@@ -10,7 +10,6 @@ import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
 import trendingUp from "../../assets/images/trending-up.png";
-import Questions from "../../components/Questions";
 import {isMobile} from "react-device-detect";
 import gallery from "../../assets/images/sc-gallery.png";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -26,6 +25,7 @@ import {Link} from "gatsby";
 import '../../assets/styles/fontStyle.css';
 import CorporateBookingContext from "../../context/CorporateBookingContext";
 import * as _ from "lodash";
+import CorporateBookingQuestion from "../../components/CorporateBookingQuestions";
 
 const CorporateBooking = () => {
 
@@ -415,7 +415,7 @@ const CorporateBooking = () => {
                                 </Grid>
                             </Box>
                         </Box>
-                        <Questions isLightTheme={true} isCorporateBooking={true}/>
+                        <CorporateBookingQuestion isLightTheme={true}/>
                         <ContactUsBox title={corporateBookingData.contact_us.title}
                                       description={corporateBookingData.contact_us.description}/>
                         <Box className="save_booking">

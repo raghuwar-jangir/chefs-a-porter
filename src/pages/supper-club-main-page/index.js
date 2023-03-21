@@ -1,6 +1,6 @@
-import React from "react";
-import { Box, styled} from "@mui/system";
-import { Typography } from "@mui/material";
+import React, {useContext} from "react";
+import {Box, styled} from "@mui/system";
+import {Typography} from "@mui/material";
 import supperVideo from '../../assets/video/supper.mp4';
 import NavbarComponent from '../../components/NavbarComponent';
 import DownArrow from '../../assets/images/down-arrow.png';
@@ -10,20 +10,23 @@ import Tab from "@mui/joy/Tab";
 import TabPanel from "@mui/joy/TabPanel";
 import '../../assets/styles/fontStyle.css';
 import UpcomingSupperClubCard from "../../components/UpcomingSupperClubCard";
-import exImg from  '../../assets/images/supper-ex.png';
-import PriveeRatingComponent from '../../components/PriveeRatingComponent'
+import exImg from '../../assets/images/supper-ex.png';
 import LookLikeCarousel from "../../components/LookLikeCarousel";
-import ChefCarousel from  '../../components/ChefCarousel';
+import ChefCarousel from '../../components/ChefCarousel';
 import DiningExperienceCarousel from '../../components/DiningExperienceCarousel.jsx';
-import Questions from "../../components/Questions";
 import NeedHelp from "../../components/NeedHelp";
 import Footer from "../../components/Footer";
 import FooterEnd from "../../components/FooterEndSection";
-import RatingCarousel from "../../components/RatingCarousel";
 import BehindScenesCarousel from "../../components/BehindScenesCarousel";
+import SupperClubContext from "../../context/SupperClubContext";
+import * as _ from "lodash";
+import SupperClubQuestion from "../../components/SupperClubQuestions";
+import SupperClubRatingCarousel from "../../components/SupperClubRatingCarousel";
 
 const SupperClubMainComponent = () => {
-    const MainBox = styled(Box)(()=>({
+    const {supperClubData} = useContext(SupperClubContext);
+
+    const MainBox = styled(Box)(() => ({
         '.home-banner': {
             marginTop: '25px'
         },
@@ -80,27 +83,27 @@ const SupperClubMainComponent = () => {
         '.down-arrow-op': {
             opacity: '0.38',
         },
-        '.upcoming':{
-            background:'#FBFBFB'
+        '.upcoming': {
+            background: '#FBFBFB'
         },
-        '.upcoming-container':{
-            padding:'60px 120px'
+        '.upcoming-container': {
+            padding: '60px 120px'
         },
-        '.child-upcoming':{
-            display:'flex',
-            flexWrap:'wrap',
-            justifyContent:'center'
+        '.child-upcoming': {
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
             // marginLeft:'1.5rem',
             // marginRight:'1.5rem'
         },
-        '.supper-box':{
-            flex:'0 0 auto',
+        '.supper-box': {
+            flex: '0 0 auto',
             width: '100%',
             maxWidth: '100%',
-            paddingLeft:'1.5rem',
-            paddingRight:'1.5rem'
+            paddingLeft: '1.5rem',
+            paddingRight: '1.5rem'
         },
-        '.upcoming-supper-header':{
+        '.upcoming-supper-header': {
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
             fontWeight: 700,
@@ -119,8 +122,8 @@ const SupperClubMainComponent = () => {
             lineHeight: '24px',
             color: '#FBFBFB !important',
             borderRadius: '0px',
-            margin:'8px 0px',
-            backgroundColor:'#080B0E'
+            margin: '8px 0px',
+            backgroundColor: '#080B0E'
         },
         '.MuiTab-variantPlain': {
             fontFamily: 'ProximaNovaA-Regular',
@@ -130,64 +133,64 @@ const SupperClubMainComponent = () => {
             lineHeight: '24px',
             color: '#080B0E',
             borderRadius: '0px',
-            margin:'8px 0px',
-            border:'0.5px solid #080B0E',
-            flexDirection:'column',
+            margin: '8px 0px',
+            border: '0.5px solid #080B0E',
+            flexDirection: 'column',
         },
-        '.css-qi8np3-JoyTabPanel-root':{
+        '.css-qi8np3-JoyTabPanel-root': {
             animationName: 'fadeIn',
             animationDuration: '1s',
-            animationIterationCount:'1'
+            animationIterationCount: '1'
         },
         '@keyframes fadeIn': {
-            '0%' :{opacity: '0'} ,
-            '100%' :{opacity: '1'}
-        }   ,
-        '.tab-box':{
-            height:'48px'
+            '0%': {opacity: '0'},
+            '100%': {opacity: '1'}
         },
-        '.css-130r91k-JoyTabList-root':{
-            gridGap:'20px !important',
+        '.tab-box': {
+            height: '48px'
+        },
+        '.css-130r91k-JoyTabList-root': {
+            gridGap: '20px !important',
         },
         '.css-1lhe3ax-JoyTabPanel-root': {
             padding: '0px',
         },
-        '.cooking-tab':{
-            height:'67.8px'
+        '.cooking-tab': {
+            height: '67.8px'
         },
         // ".MuiTabList-root": {
         //     width: "96% !important",
         //     left: "2% !important",
         // },
-        '.what-we-cooking':{
-            background:'#C2BAA6'
+        '.what-we-cooking': {
+            background: '#C2BAA6'
         },
-        '.cooking-box':{
-            padding:'60px 120px'
+        '.cooking-box': {
+            padding: '60px 120px'
         },
-        '.join-table':{
-            background:'rgba(220, 215, 203, 1) !important'
+        '.join-table': {
+            background: 'rgba(220, 215, 203, 1) !important'
         },
-        '.table-box':{
-            display:'inline-flex',
-            width:'100%'
+        '.table-box': {
+            display: 'inline-flex',
+            width: '100%'
             // flexWrap:'wrap'
         },
-        '.table-child':{
+        '.table-child': {
             flex: '0 0 auto',
-            width:' 50%',
-            maxWidth:'100%'
+            width: ' 50%',
+            maxWidth: '100%'
         },
-        '.table-img':{
+        '.table-img': {
             width: '100%',
             height: '491px',
             objectFit: 'cover',
         },
-        '.table-child-2':{
+        '.table-child-2': {
             padding: '40px 120px 40px 40px!important',
-            placeSelf:' center',
+            placeSelf: ' center',
         },
-        '.join-table-title':{
+        '.join-table-title': {
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
             fontWeight: 700,
@@ -197,18 +200,18 @@ const SupperClubMainComponent = () => {
             color: '#080B0E',
             marginBottom: '40px',
         },
-        '.table-li':{
+        '.table-li': {
             color: '#C6A87D',
             fontSize: '30px',
         },
-        '.li-point':{
+        '.li-point': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontSize: '20px',
             lineHeight: '30px',
             color: '#222222',
         },
-        '.li-details':{
+        '.li-details': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: 400,
@@ -217,29 +220,29 @@ const SupperClubMainComponent = () => {
             color: '#222222',
             marginBottom: '16px',
         },
-        '.supper-heading':{
-            textAlign:'center',
-            paddingTop:'80px !important',
-            margin:'0px 16px 36px !important'
+        '.supper-heading': {
+            textAlign: 'center',
+            paddingTop: '80px !important',
+            margin: '0px 16px 36px !important'
         },
-        '.chef-name':{
-            padding:'12px 12px 0px !important',
+        '.chef-name': {
+            padding: '12px 12px 0px !important',
             fontFamily: 'ProximaNovaA-Regular !important',
             fontSize: '20px !important',
             lineHeight: '24px !important',
         },
-        '.chef-details':{
+        '.chef-details': {
             padding: '0 12px 12px !important',
             fontSize: '14px !important',
             lineHeight: '15px !important',
         },
-        '.supper-img':{
-            height:'455px !important'
+        '.supper-img': {
+            height: '455px !important'
         },
-        '.title-box':{
-            display:'inline-flex !important'
+        '.title-box': {
+            display: 'inline-flex !important'
         },
-        '.peek-name':{
+        '.peek-name': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: 600,
@@ -248,149 +251,158 @@ const SupperClubMainComponent = () => {
             textAlign: 'center',
             color: '#C6A87D',
             marginBottom: '0.5rem',
-            marginLeft:'5px'
+            marginLeft: '5px'
         },
-        '.WrapperBox':{
-            padding:'50px 120px !important'
+        '.WrapperBox': {
+            padding: '50px 120px !important'
         },
-        '.details':{
+        '.details': {
             fontSize: '20px !important',
-            lineHeight:'24px !important',
-            padding:'0px !important'
+            lineHeight: '24px !important',
+            padding: '0px !important'
         }
     }))
 
-    return(
+    return (
         <React.Fragment>
-            <MainBox>
-                <NavbarComponent/>
-                <Box className="home-banner">
-                    <Box className="container-fluid">
-                        <Box className="justify-content-center">
-                            <Box id="video_overlays">
-                                <video autoPlay muted loop className="video home-banner-video">
-                                    <source src={supperVideo} type="video/mp4"/>
-                                </video>
+            {
+                !_.isEmpty(supperClubData) &&
+                <MainBox>
+                    <NavbarComponent/>
+                    <Box className="home-banner">
+                        <Box className="container-fluid">
+                            <Box className="justify-content-center">
+                                <Box id="video_overlays">
+                                    <img src={supperClubData.header.image} className="video home-banner-video"/>
+                                </Box>
+                                <Box className="arrows">
+                                    <Typography className="home-text">{supperClubData.header.title}</Typography>
+                                    <img src={DownArrow} alt="down" className="down-arrow-op"/>
+                                    <img src={DownArrow} alt="down" className="down-arrow"/>
+                                </Box>
                             </Box>
-                            <Box className="arrows">
-                                <Typography className="home-text">We believe in good food for all!</Typography>
-                                <img src={DownArrow} alt="down" className="down-arrow-op"/>
-                                <img src={DownArrow} alt="down" className="down-arrow"/>
+                        </Box>
+                    </Box>
+                    <Box className='upcoming'>
+                        <Box className='upcoming-container'>
+                            <Box className='child-upcoming'>
+                                <Typography
+                                    className="upcoming-supper-header">{supperClubData.upcoming_supper_club.title}</Typography>
+                            </Box>
+                            <Box>
+                                <Tabs
+                                    defaultValue={0}
+                                    sx={{"--Tabs-gap": "0px", backgroundColor: "#FBFBFB"}}
+                                >
+                                    <TabList>
+                                        <Tab className="tab-box" value={0}>
+                                            Mumbai
+                                        </Tab>
+                                        <Tab className="tab-box" value={1}>
+                                            Delhi
+                                        </Tab>
+                                        <Tab className="tab-box" value={2}>
+                                            Goa
+                                        </Tab>
+                                        <Tab className="tab-box" value={3}>
+                                            Banglore
+                                        </Tab>
+                                        <Tab className="tab-box" value={4}>
+                                            Hydrabad
+                                        </Tab>
+                                    </TabList>
+                                    <TabPanel value={0} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    <TabPanel value={1} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    <TabPanel value={2} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    <TabPanel value={3} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    <TabPanel value={4} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                </Tabs>
                             </Box>
                         </Box>
                     </Box>
-                </Box>
-                <Box className='upcoming'>
-                    <Box className='upcoming-container'>
-                        <Box className='child-upcoming'>
-                            <Typography className="upcoming-supper-header">Upcoming Supper Clubs</Typography>
-                        </Box>
-                        <Box>
-                            <Tabs
-                                defaultValue={0}
-                                sx={{"--Tabs-gap": "0px", backgroundColor: "#FBFBFB"}}
-                            >
-                                <TabList>
-                                    <Tab className="tab-box" value={0}>
-                                        Mumbai
-                                    </Tab>
-                                    <Tab className="tab-box" value={1}>
-                                        Delhi
-                                    </Tab>
-                                    <Tab className="tab-box" value={2}>
-                                        Goa
-                                    </Tab>
-                                    <Tab className="tab-box" value={3}>
-                                        Banglore
-                                    </Tab>
-                                    <Tab className="tab-box" value={4}>
-                                        Hydrabad
-                                    </Tab>
-                                </TabList>
-                                <TabPanel value={0} sx={{p: 0}}>
-                                    <UpcomingSupperClubCard/>
-                                </TabPanel>
-                                <TabPanel value={1} sx={{p: 0}}>
-                                    <UpcomingSupperClubCard/>
-                                </TabPanel>
-                                <TabPanel value={2} sx={{p: 0}}>
-                                    <UpcomingSupperClubCard/>
-                                </TabPanel>
-                                <TabPanel value={3} sx={{p: 0}}>
-                                    <UpcomingSupperClubCard/>
-                                </TabPanel>
-                                <TabPanel value={4} sx={{p: 0}}>
-                                    <UpcomingSupperClubCard/>
-                                </TabPanel>
-                            </Tabs>
+                    <Box className="what-we-cooking">
+                        <Box className='cooking-box'>
+                            <Box className='child-upcoming'>
+                                <Typography
+                                    className="upcoming-supper-header">{supperClubData.cooking.title}</Typography>
+                            </Box>
+                            <Box>
+                                <Tabs
+                                    defaultValue={0}
+                                    sx={{"--Tabs-gap": "0px", backgroundColor: "transparent"}}
+                                >
+                                    <TabList>
+                                        <Tab className='cooking-tab' value={0}>
+                                            This Week
+                                            <Typography>2-5 nov</Typography>
+                                        </Tab>
+                                        <Tab className='cooking-tab' value={1}>
+                                            Next Week
+                                            <Typography>7-6 nov</Typography>
+                                        </Tab>
+                                        <Tab className='cooking-tab' value={2}>
+                                            Next Month
+                                            <Typography>December</Typography>
+                                        </Tab>
+                                    </TabList>
+                                    <TabPanel value={0} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    <TabPanel value={1} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    <TabPanel value={2} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                    <TabPanel value={3} sx={{p: 0}}>
+                                        <UpcomingSupperClubCard/>
+                                    </TabPanel>
+                                </Tabs>
+                            </Box>
                         </Box>
                     </Box>
-                </Box>
-                <Box className="what-we-cooking">
-                    <Box className='cooking-box'>
-                        <Box className='child-upcoming'>
-                            <Typography className="upcoming-supper-header">What's cooking this Month?</Typography>
-                        </Box>
-                        <Box>
-                            <Tabs
-                                defaultValue={0}
-                                sx={{"--Tabs-gap": "0px", backgroundColor: "transparent"}}
-                            >
-                                <TabList>
-                                    <Tab className='cooking-tab' value={0}>
-                                        This Week
-                                        <Typography>2-5 nov</Typography>
-                                    </Tab>
-                                    <Tab className='cooking-tab' value={1}>
-                                        Next Week
-                                        <Typography>7-6 nov</Typography>
-                                    </Tab>
-                                    <Tab className='cooking-tab' value={2}>
-                                        Next Month
-                                        <Typography>December</Typography>
-                                    </Tab>
-                                </TabList>
-                                <TabPanel value={0} sx={{p: 0}}>
-                                    <UpcomingSupperClubCard/>
-                                </TabPanel>
-                                <TabPanel value={1} sx={{p: 0}}>
-                                    <UpcomingSupperClubCard/>
-                                </TabPanel>
-                                <TabPanel value={2} sx={{p: 0}}>
-                                    <UpcomingSupperClubCard/>
-                                </TabPanel>
-                                <TabPanel value={3} sx={{p: 0}}>
-                                    <UpcomingSupperClubCard/>
-                                </TabPanel>
-                            </Tabs>
+                    <Box className="join-table">
+                        <Box className="table-box">
+                            <Box className="table-child">
+                                <img src={supperClubData.expect.image} className="table-img"/>
+                            </Box>
+                            <Box className="table-child-2">
+                                <Typography className="join-table-title">{supperClubData.expect.title}</Typography>
+                                <ul>
+                                    {
+                                        supperClubData.expect.content.map((item) => {
+                                            return (
+                                                <li className="table-li"><Typography className="li-details"><b
+                                                    className="li-point">{item.title}</b> - {item.description}
+                                                </Typography></li>
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            </Box>
                         </Box>
                     </Box>
-                </Box>
-                <Box className="join-table">
-                    <Box className="table-box">
-                        <Box className="table-child">
-                            <img src={exImg} className="table-img"/>
-                        </Box>
-                        <Box className="table-child-2">
-                            <Typography className="join-table-title">What to expect at a Supper Club?</Typography>
-                            <ul>
-                                <li  className="table-li"><Typography className="li-details"><b className="li-point">EAT</b> - Highly curated food from the hottest chefs around the world</Typography></li>
-                                <li  className="table-li"><Typography className="li-details"><b className="li-point">MEET</b> - A community of food enthusiasts in your city.</Typography></li>
-                                <li  className="table-li"><Typography className="li-details"><b className="li-point">EXPERIENCE</b> - Food like never before made for you by Chefs you've only heard of!</Typography></li>
-                                <li  className="table-li"><Typography className="li-details"><b className="li-point">EXPERIENCE</b> - Food like never before made for you by Chefs you've only heard of!</Typography></li>
-                            </ul>
-                        </Box>
-                    </Box>
-                </Box>
-                <RatingCarousel isFontSize={true} padding={true}/>
-                <LookLikeCarousel/>
-                <BehindScenesCarousel chefHeading='Behind the Scenes' detailsBox={true} isPadding={true} slidesPerView={true} isBackground={true}/>
-                <DiningExperienceCarousel title='Stay in the know' subTitle='@Chefsaporter' />
-                <Questions isLightTheme={true}/>
-                <NeedHelp/>
-                <Footer/>
-                <FooterEnd/>
-            </MainBox>
+                    <SupperClubRatingCarousel isFontSize={true} padding={true}/>
+                    <LookLikeCarousel/>
+                    <BehindScenesCarousel chefHeading='Behind the Scenes' detailsBox={true} isPadding={true}
+                                          slidesPerView={true} isBackground={true}/>
+                    <DiningExperienceCarousel title='Stay in the know' subTitle='@Chefsaporter'/>
+                    <SupperClubQuestion isLightTheme={true}/>
+                    <NeedHelp/>
+                    <Footer/>
+                    <FooterEnd/>
+                </MainBox>
+            }
         </React.Fragment>
     )
 }

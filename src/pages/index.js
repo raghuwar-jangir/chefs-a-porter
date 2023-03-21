@@ -16,7 +16,6 @@ import {MobileView} from 'react-device-detect';
 import FrontFood from '../components/FrontFood';
 import PriveeMain from '../components/PriveeMain';
 import RatingCarousel from '../components/RatingCarousel';
-import Questions from '../components/Questions';
 import Footer from '../components/Footer';
 import MainFoodDetailng from '../components/MainFoodDetailng';
 import NeedHelp from "../components/NeedHelp";
@@ -878,14 +877,6 @@ const BoxWrapper = styled(Box)({
 const HomePage = () => {
     const {data} = useContext(HomeContext);
 
-    // {
-    //     !_.isEmpty(data) &&
-    //     console.log("Images=====>", data.food_drools.content.map((item) => {
-    //         return item
-    //     }));
-    // }
-
-
     const itemData = [
         {
             image: gallery2,
@@ -915,7 +906,18 @@ const HomePage = () => {
             rows: 0.7,
         },
     ];
-
+    const items = [
+        {
+            title: '"Mako and his eccentric Personality, lit up the room and our taste buds!"',
+            description: "I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!",
+            reviewer: "Arvind Mohan, CEO of Alpha",
+        },
+        {
+            title: '"Mako and his eccentric Personality, lit up the room and our taste buds!"',
+            description: "I had chef Mako over to host a few business partners. The dinner experience was absolutely amazing and he makes amazing Sushi!",
+            reviewer: "Arvind Mohan, CEO of Alpha",
+        },
+    ];
 
     const handleClick = () => {
         navigate('/privee-viewmore', {state: true});
