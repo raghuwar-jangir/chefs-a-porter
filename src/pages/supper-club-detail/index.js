@@ -42,6 +42,7 @@ import EventChefCarousel from "../../components/EventChefCarousel";
 import ChefMakoCarousel from '../../components/ChefMakoCarousel';
 import MenuCarousel from "../../components/MenuCarousel";
 import DiningPage from "../../components/DiningPage";
+import {navigate} from "gatsby";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -53,6 +54,9 @@ const images = [
     RestorentImgMobile,
 ];
 const SupperClubDetail = () => {
+    const handleClick = () => {
+        navigate('/personal-details');
+    }
     const [showCarousel, setShowCarousel] = useState(false);
     const handleImageClick = () => {
         setShowCarousel(true);
@@ -1122,12 +1126,12 @@ const SupperClubDetail = () => {
                                         </Box>
                                     </Box>
                                 </Box>
-                                <Button type="submit" className="submit-request">
+                                <Button type="submit" className="submit-request" onClick={handleClick}>
                                     Reserve a seat
                                 </Button>
                                 <Box></Box>
                             </Box>
-                            <SupperClubTreatyComponent/>
+                            <SupperClubTreatyComponent subTitle='Give the gift of an unforgettable food experience'/>
                         </Grid>
                     </Grid>
                 </Box>
