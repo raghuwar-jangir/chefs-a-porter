@@ -17,7 +17,7 @@ const MenuCarousel = () => {
         //   ".detail-box-margin": {
         //     marginBottom: "40px",
         //   },
-          ".menu-title": {
+        ".menu-title": {
             margin: "0px",
             fontFamily: "Bon Vivant",
             fontStyle: "normal",
@@ -27,29 +27,29 @@ const MenuCarousel = () => {
             letterSpacing: "0.06em",
             color: "#080B0E",
             marginBottom: "8px",
-          },
-          ".menu-sub": {
+        },
+        ".menu-sub": {
             fontFamily: 'ProximaNovaA-Regular',
             margin: "0px",
             fontWeight: "400",
             fontSize: "14px",
             lineHeight: "20px",
             letterSpacing: "0.00938em",
-          },
-          ".box-contain": {
+        },
+        ".box-contain": {
             display: "grid",
             gridTemplate: "repeat(1, 1fr) / repeat(2, 1fr)",
             background: "#DCD7CB",
             gap: "16px",
             marginTop: "20px",
             width:'100%'
-          },
-          ".box2": {
-            
+        },
+        ".box2": {
+
             marginBottom:'36px'
-           
-          },
-          '.background-logo':{
+
+        },
+        '.background-logo':{
             padding:'40px',
             position: "relative",
             backgroundImage: `url(${backgroungLogo})`,
@@ -57,8 +57,8 @@ const MenuCarousel = () => {
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             marginBottom:'30px'
-          },
-          '.swiper-pagination': {
+        },
+        '.swiper-pagination': {
             paddingTop: '20px',
             bottom: '0px',
             background: '#DCD7CB',
@@ -147,79 +147,79 @@ const MenuCarousel = () => {
     return(
         <React.Fragment>
             <MainBox>
-<Swiper
-        slidesPerView={1}
-        spaceBetween={30}
-        loop={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
-        <Box className="box-contain">
-        {data.map((item,index) => (
-            <Box key={index}>
-                 <SwiperSlide>
-                    <Box className="background-logo">
-                                            <Box className="box2">
-                                                <Box className="detail-box">
-                                                    <Typography className="menu-title">
-                                                        {item.title1}
-                                                    </Typography>
-                                                    <Typography className="menu-sub">
-                                                        {item.details1}
-                                                    </Typography>
-                                                </Box>
-                                                </Box>
-                                                <Box className="box2">
-                                                <Box className="detail-box">
-                                                    <Typography className="menu-title">
-                                                        {item.title2}
-                                                    </Typography>
-                                                    <Typography className="menu-sub">
-                                                        {item.details2}
-                                                    </Typography>
-                                                </Box>
-                                                </Box>
-                                                <Box className="box2">
-                                                <Box className="detail-box">
-                                                    <Typography className="menu-title">
-                                                        {item.title3}
-                                                    </Typography>
-                                                    <Typography className="menu-sub">
-                                                        {item.details3}
-                                                    </Typography>
-                                                </Box>
-                                                </Box>
-                                                <Box className="box2">
-                                                <Box className="detail-box">
-                                                    <Typography className="menu-title">
-                                                        {item.title4}
-                                                    </Typography>
-                                                    <Typography className="menu-sub">
-                                                        {item.details4}
-                                                    </Typography>
-                                                </Box>
-                                                </Box>
-                                                <Box className="box2">
-                                                <Box className="detail-box">
-                                                    <Typography className="menu-title">
-                                                        {item.title5}
-                                                    </Typography>
-                                                    <Typography className="menu-sub">
-                                                        {item.details5}
-                                                    </Typography>
-                                                </Box>
-                                                </Box>
-                                                </Box>
-                                                </SwiperSlide>
-            </Box>
-            
-        ))}
-        </Box>
-      </Swiper>
-      </MainBox>
+                <Swiper
+                    slidesPerView={1}
+                    spaceBetween={30}
+                    loop={true}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    modules={[Pagination]}
+                    className="mySwiper"
+                >
+                    <Box className="box-contain">
+                        {data.map((item,index) => (
+                            <Box key={index}>
+                                <SwiperSlide>
+                                    <Box className="background-logo">
+                                        <Box className="box2">
+                                            <Box className="detail-box">
+                                                <Typography className="menu-title">
+                                                    {item.title1}
+                                                </Typography>
+                                                <Typography className="menu-sub">
+                                                    {item.details1}
+                                                </Typography>
+                                            </Box>
+                                        </Box>
+                                        <Box className="box2">
+                                            <Box className="detail-box">
+                                                <Typography className="menu-title">
+                                                    {item.title2}
+                                                </Typography>
+                                                <Typography className="menu-sub">
+                                                    {item.details2}
+                                                </Typography>
+                                            </Box>
+                                        </Box>
+                                        <Box className="box2">
+                                            <Box className="detail-box">
+                                                <Typography className="menu-title">
+                                                    {item.title3}
+                                                </Typography>
+                                                <Typography className="menu-sub">
+                                                    {item.details3}
+                                                </Typography>
+                                            </Box>
+                                        </Box>
+                                        <Box className="box2">
+                                            <Box className="detail-box">
+                                                <Typography className="menu-title">
+                                                    {item.title4}
+                                                </Typography>
+                                                <Typography className="menu-sub">
+                                                    {item.details4}
+                                                </Typography>
+                                            </Box>
+                                        </Box>
+                                        <Box className="box2">
+                                            <Box className="detail-box">
+                                                <Typography className="menu-title">
+                                                    {item.title5}
+                                                </Typography>
+                                                <Typography className="menu-sub">
+                                                    {item.details5}
+                                                </Typography>
+                                            </Box>
+                                        </Box>
+                                    </Box>
+                                </SwiperSlide>
+                            </Box>
+
+                        ))}
+                    </Box>
+                </Swiper>
+            </MainBox>
         </React.Fragment>
     )
 }

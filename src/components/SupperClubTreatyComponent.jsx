@@ -127,22 +127,22 @@ const SupperClubTreatyComponent = () => {
                 <Box className="sub-div">
                     <Box className='treaty-box'>
                         <Box>
-                    <Typography className="heading">
-                    #Patron Privilage
-                    </Typography>
-                    <Typography className="main-title">
-                        Give the gift of an unforgettable food experience
-                    </Typography>
-                    <Typography className="details">
-                        send a gift card to your friends and family
-                    </Typography>
+                            <Typography className="heading">
+                                #Patron Privilage
+                            </Typography>
+                            <Typography className="main-title">
+                                Give the gift of an unforgettable food experience
+                            </Typography>
+                            <Typography className="details">
+                                send a gift card to your friends and family
+                            </Typography>
+                        </Box>
+                        <Box className='btn-box'>
+                            <Link href="/gift-cards" className="btn">
+                                Learn More
+                            </Link>
+                        </Box>
                     </Box>
-                   <Box className='btn-box'>
-                       <Link href="/gift-cards" className="btn">
-                           Learn More
-                       </Link>
-                   </Box>
-                   </Box>
                 </Box>
             </BoxWrapper>
 

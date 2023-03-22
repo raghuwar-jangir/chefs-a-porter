@@ -9,7 +9,7 @@ import {
     ListItemIcon, MenuItem, Select,
     Stack,
     TextField,
-    Typography
+    Typography,
 } from '@mui/material';
 import {styled} from '@mui/system';
 import {MobileView} from 'react-device-detect';
@@ -58,6 +58,7 @@ import ClubSection from "../components/ClubSection";
 import DiningExperienceCarousel from "../components/DiningExperienceCarousel";
 import axios from "axios";
 import HomeContext from "../context/HomeContext";
+import "../assets/styles/searchBar.css"
 
 
 const MainBoxContent = styled(Box)({
@@ -877,41 +878,40 @@ const BoxWrapper = styled(Box)({
 const HomePage = () => {
     const {data} = useContext(HomeContext);
 
-    const itemData = [
-        {
-            image: gallery2,
-            title: 'gallery2',
-            rows: 0.9,
-        },
-        {
-            image: gallery1,
-            title: ' gallery1',
-            rows: 1.1,
+    //FoodDrool
+    const [imageData, setImageData] = useState([]);
 
-        },
+    useEffect(() => {
         {
-            image: gallery3,
-            title: 'gallery3',
-            rows: 2,
-            cols: 2,
-        },
-        {
-            image: gallery4,
-            title: 'gallery4',
-            rows: 1.3,
-        },
-        {
-            image: gallery5,
-            title: 'gallery5',
-            rows: 0.7,
-        },
-    ];
+            !_.isEmpty(data) &&
+            setImageData(data.food_drools.content)
+        }
+    }, [])
+
+    const valueAtIndex2 = imageData[1];
+    imageData.splice(1, 1);
+    imageData.splice(2, 0, valueAtIndex2);
+    const imgData = imageData.map(item => {
+        return {image: item};
+    });
+    const rows = [0.9, 1.1, 2, 1.3, 0.7];
+    const rowOfObjects = rows.map(item => {
+        return {rows: item};
+    });
+    const cols = [, , 2, ,];
+
+    const ColsOfObjects = cols.map(item => {
+        return {cols: item};
+    });
+
+    const finalImgData = imgData.map((item, i) => Object.assign({}, item, rowOfObjects[i]));
+
+    const finalImageData = finalImgData.map((item, i) => Object.assign({}, item, ColsOfObjects[i]));
 
 
     const handleClick = () => {
         navigate('/privee-viewmore', {state: true});
     }
-
 
     return (
         <React.Fragment>
@@ -1193,7 +1193,7 @@ const HomePage = () => {
                                           description={data.upcoming_supper_clubs.description}/>
                         <PriveeCarousel title={data.chefs_private_dining.title}/>
                         <RatingCarousel/>
-                        <DiningPage/>
+                        <DiningPage title={data.what_we_cook.title}/>
                         <TestimonialCarousel/>
                         <Box className="gallery">
                             <Box>
@@ -1204,10 +1204,10 @@ const HomePage = () => {
                                        cols={3}
                                        gap={20}
                                        rowHeight={300}>
-                                {data.food_drools.content.map((item) => (
-                                    <ImageListItem key={item} cols={item.cols || 1} rows={item.rows || 1}>
+                                {finalImageData.map((item, index) => (
+                                    <ImageListItem key={index} cols={item.cols || 1} rows={item.rows || 1}>
                                         <img
-                                            src={item}
+                                            src={item.image}
                                             // alt={item.title}
                                             loading="lazy"
                                         />

@@ -42,9 +42,9 @@ import {
   import ChefMakoCarousel from '../../components/ChefMakoCarousel';
   import MenuCarousel from "../../components/MenuCarousel";
   import DiningPage from "../../components/DiningPage";
-  
+
   const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-  
+
   const images = [
       RestorentImgMobile,
       RestorentImgMobile,
@@ -498,7 +498,7 @@ import {
         border: '0',
         overflow: 'hidden',
       },
-  
+
       '.switch-field label': {
         flex: '1',
           margin: '0 4px',
@@ -529,13 +529,13 @@ import {
       '.switch-field label:hover': {
         cursor: 'pointer',
       },
-  
+
       '.switch-field input:checked + label': {
         background: '#FFFFFF',
         boxShadow: 'none',
           border: '0.5px solid #F8A039',
       },
-  
+
       '.switch-field input:checked:disabled + label,.switch-field input:disabled + label':
       {
           background: '#BDBDBD',
@@ -622,7 +622,7 @@ import {
         marginBottom: "0px",
     },
       "@media (min-width: 768px) and (max-width:1024px)": {
-       
+
         ".box1": {
           width: "87%",
         },
@@ -695,7 +695,7 @@ import {
   '.MuiTab-variantPlain': {
       width: '80px',
   },
-  
+
       },
       "@media (min-width: 1px) and (max-width:425px)": {
         ".main-box": {
@@ -704,7 +704,7 @@ import {
         ".next-grid": {
           display: "none",
         },
-  
+
         ".footer-box": {
           display: "none",
         },
@@ -1122,7 +1122,7 @@ import {
                                           </Box>
                                       </Box>
                                   </Box>
-                                  <Button type="submit" className="submit-request">
+                                  <Button type="submit" className="submit-request" href="/personal-details">
                                       Reserve a seat
                                   </Button>
                                   <Box></Box>
@@ -1196,7 +1196,7 @@ import {
                                                                          autoCapitalize: true,
                                                                      }}/>
                                                       </Box>
-  
+
                                                   </Box>
                                                   <Box className="mb-3">
                                                       <label className="schedule-label">Contact
@@ -1250,5 +1250,4 @@ import {
       );
   };
   export default SupperClubChaefPage;
-  
-  
+

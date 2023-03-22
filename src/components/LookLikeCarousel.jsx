@@ -140,14 +140,14 @@ const LookLikeCarousel = () => {
                         >
                             {supperClubData.looks.content.map((item,index)=>(
                                 <Box key={index}>
-                                <SwiperSlide className="swiper1-slide" >
-                                    <img className="swiper-img" src={item}/>
-                                    {index === supperClubData.looks.content.length - 1 && (
-        <Box>
-          <Typography className="view-gallery">View <br/> Gallery</Typography>
-        </Box>
-      )}
-                                </SwiperSlide>
+                                    <SwiperSlide className="swiper1-slide" >
+                                        <img className="swiper-img" src={item}/>
+                                        {index === supperClubData.looks.content.length - 1 && (
+                                            <Box>
+                                                <Typography className="view-gallery">View <br/> Gallery</Typography>
+                                            </Box>
+                                        )}
+                                    </SwiperSlide>
                                 </Box>
                             ))}
                         </Swiper>

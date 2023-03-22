@@ -25,7 +25,7 @@ import '../../assets/styles/fontStyle.css';
 import PriveeQuestions from "../../components/PriveeQuestions";
 import {navigate} from "gatsby";
 import PriveeContext from "../../context/PriveeContext";
-import RatingCarousel from "../../components/RatingCarousel";
+import PriveeRatingCarousel from "../../components/PriveeRatingCarousel";
 
 const MainBoxContent = styled(Box)({
     position: 'relative',
@@ -831,7 +831,7 @@ const PriveePage = () => {
                             </Grid>
                             <button type="submit" className="exp-btn">View More</button>
                         </Box>
-                        <RatingCarousel backgroundColor={'#DCD7CB'} isFontSize={true}/>
+                        <PriveeRatingCarousel backgroundColor={'#DCD7CB'} isFontSize={true}/>
                         <PriveeComponentSlider title={priveeData.private_dining.title}/>
                         <Box className="frequently-questions-box">
                             <PriveeQuestions/>

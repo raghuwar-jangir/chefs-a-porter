@@ -1,14 +1,19 @@
-import { Box, Button,styled, Typography } from "@mui/material";
-import React from "react";
+import {Box, Button, styled, Typography} from "@mui/material";
+import React, {useContext} from "react";
 import Privee from "../../components/Privee";
 import Footer from "../../components/Footer";
 import FoodCard from "../../components/FoodCard";
 import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
-
+import OurChefContext from "../../context/OurChefContext";
 
 const OurChefsPage = () => {
+
+    const {ourChefData} = useContext(OurChefContext)
+
+    console.log("ourChefData====", ourChefData)
+
     const BoxWrapper = styled(Box)(() => ({
         background: '#080B0E',
         '.main-parent-box': {
@@ -18,7 +23,7 @@ const OurChefsPage = () => {
             fontWeight: 400,
             fontSize: "24px",
             lineHeight: "24px",
-            letterSpacing:'0.06em',
+            letterSpacing: '0.06em',
             textAlign: 'center', color: '#FBFBFB',
             padding: '120px 0px 0px 0px',
             fontFamily: 'Bon Vivant'
@@ -37,11 +42,11 @@ const OurChefsPage = () => {
         },
         '.parent-view-button': {
             textAlign: 'center',
-            padding:'0px 16px 0px 16px',
+            padding: '0px 16px 0px 16px',
             marginTop: '40px'
         },
         '.view-more': {
-            fontFamily:'Proxima Nova Alt',
+            fontFamily: 'Proxima Nova Alt',
             fontSize: '16px',
             fontWeight: 600,
             lineHeight: '19px',
@@ -50,31 +55,31 @@ const OurChefsPage = () => {
             background: 'transparent',
             border: '0.5px solid #C6A87D',
             padding: '10px',
-            borderRadius:'1px',
-            textTransform:'math-auto'
+            borderRadius: '1px',
+            textTransform: 'math-auto'
         },
         "@media (min-width: 767px) and (max-width:2560px)": {
             '.parent-view-button': {
-                display:'none'
+                display: 'none'
             }
         },
         "@media (min-width: 768px) and (max-width:990px)": {
-            '.chef-content':{
-                padding:'40px 0px'
+            '.chef-content': {
+                padding: '40px 0px'
             },
-            '.main-heading':{
-                padding:'82px 0px 0px 0px'
+            '.main-heading': {
+                padding: '82px 0px 0px 0px'
             }
-          },
-          "@media (min-width: 1px) and (max-width:767px)": {
-            '.chef-content':{
-                padding:'40px 0px'
+        },
+        "@media (min-width: 1px) and (max-width:767px)": {
+            '.chef-content': {
+                padding: '40px 0px'
             },
-            '.main-heading':{
-                display:'none'
+            '.main-heading': {
+                display: 'none'
             },
-            '.footer-shadow':{
-                display:'none'
+            '.footer-shadow': {
+                display: 'none'
             }
           }
     }))
@@ -100,11 +105,11 @@ const OurChefsPage = () => {
                     </Box>
                 </Box>
                 <NeedHelp/>
-                <FoodCard />
-                <Footer />
+                <FoodCard/>
+                <Footer/>
                 <FooterEnd/>
-            </BoxWrapper >
-        </React.Fragment >
+            </BoxWrapper>
+        </React.Fragment>
     )
 }
 export default OurChefsPage;
