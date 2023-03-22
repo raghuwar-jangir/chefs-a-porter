@@ -9,8 +9,13 @@ import trending from '../assets/images/trending.png'
 import {Box} from "@mui/system";
 import '../assets/styles/fontStyle.css';
 import {Link} from "gatsby";
+import {navigate} from "gatsby";
 
 const UpcomingSupperClubCard = () => {
+
+    const handleClick = () => {
+        navigate('/supper-club-detail');
+    }
     const cardDetails = [
         {
             potImg: img1,
@@ -149,39 +154,37 @@ const UpcomingSupperClubCard = () => {
         <React.Fragment>
             <MainBox>
                 {cardDetails.map((item, index) => (
-                    <Box key={index}>
+                    <Box key={index} onClick={handleClick}>
                         <Box sx={{position: 'relative'}}>
-                            <Link className="link" to='/supper-club-detail'>
-                                <img className='test-img' src={item.potImg}/>
-                                {index === 0 && (
-                                    <div>
-                                        <Box className='trending'><img className='trending-img'
-                                                                       src={item.tend}/><Typography
-                                            className='trending-title'>{item.trendDetails}</Typography></Box>
-                                    </div>
-                                )}
-                                {index === cardDetails.length - 1 && (
-                                    <div>
-                                        <Box className='trending'><img className='trending-img'
-                                                                       src={item.tend}/><Typography
-                                            className='trending-title'>{item.trendDetails}</Typography></Box>
-                                    </div>
-                                )}
-                                <Box className='supper-info'>
-                                    <Typography className='super-title'>{item.title}</Typography>
-                                    <Box className='super-chef-details'>
+                            <img className='test-img' src={item.potImg}/>
+                            {index === 0 && (
+                                <div>
+                                    <Box className='trending'><img className='trending-img'
+                                                                   src={item.tend}/><Typography
+                                        className='trending-title'>{item.trendDetails}</Typography></Box>
+                                </div>
+                            )}
+                            {index === cardDetails.length - 1 && (
+                                <div>
+                                    <Box className='trending'><img className='trending-img'
+                                                                   src={item.tend}/><Typography
+                                        className='trending-title'>{item.trendDetails}</Typography></Box>
+                                </div>
+                            )}
+                            <Box className='supper-info'>
+                                <Typography className='super-title'>{item.title}</Typography>
+                                <Box className='super-chef-details'>
                                 <span className='chef-tag'><img className='img-tag' src={item.chef}
                                                                 alt="chef cap"/><Typography
                                     className='tag-detail'>{item.chefDetails}</Typography></span>
-                                        <span className='chef-tag'><img className='img-tag' src={item.cal}
-                                                                        alt="date"/><Typography
-                                            className='tag-detail'>{item.calDetails}</Typography></span>
-                                        <span className='chef-tag'><img className='img-tag' src={item.price}
-                                                                        alt="Rates"/><Typography
-                                            className='tag-detail'>{item.priceDetails}</Typography></span>
-                                    </Box>
+                                    <span className='chef-tag'><img className='img-tag' src={item.cal}
+                                                                    alt="date"/><Typography
+                                        className='tag-detail'>{item.calDetails}</Typography></span>
+                                    <span className='chef-tag'><img className='img-tag' src={item.price}
+                                                                    alt="Rates"/><Typography
+                                        className='tag-detail'>{item.priceDetails}</Typography></span>
                                 </Box>
-                            </Link>
+                            </Box>
                         </Box>
                     </Box>
                 ))}
