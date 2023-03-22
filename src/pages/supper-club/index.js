@@ -944,7 +944,7 @@ import {
                                       <TabPanel value={0} sx={{p: 0}}>
                                           <CardChefComponent bgColor="#FBFBFB"/>
                                           <Box className="chef-carousel">
-                                             <ChefMakoCarousel/>
+                                             <ChefMakoCarousel title="What's Cooking?"/>
                                               <ChefCarousel chefHeading='Past Supper Clubs'/>
                                               <SupperClubDetailsCarousel/>
                                           </Box>

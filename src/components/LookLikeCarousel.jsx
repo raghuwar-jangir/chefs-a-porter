@@ -66,7 +66,8 @@ const LookLikeCarousel = () => {
             width: '100%'
         },
         '.mySwiper': {
-            padding: '30px 100px 0px'
+            padding: '30px 0px 0px',
+            width:'90%'
         },
         '.swiper-img': {
             objectFit: 'cover',
@@ -82,9 +83,6 @@ const LookLikeCarousel = () => {
         '.swiper1-slide': {
             height: '90px'
         },
-        '.last-pagination': {
-            position: 'relative',
-        },
         '.view-gallery': {
             position: 'absolute',
             whiteSpace: 'pre',
@@ -93,16 +91,17 @@ const LookLikeCarousel = () => {
             fontWeight: 300,
             fontSize: '14px',
             lineHeight: '17px',
-            textSlign: 'center',
             color: '#FBFBFB',
-            top: '30px',
+            top: '0px',
+            height:'100%',
+            display:'flex',
             left: '0px',
             right: '0px',
-            textAlign: 'center'
+            textAlign: 'center',
+            background:'linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))',
+            justifyContent:'center',
+            placeItems:'center'
         },
-        '.last-img': {
-            opacity: '0.2'
-        }
     }
     return (
         <React.Fragment>
@@ -122,13 +121,6 @@ const LookLikeCarousel = () => {
                             modules={[FreeMode, Thumbs]}
                             className="mySwiper2"
                         >
-                            {/*{ImageData.map((item,index)=>(*/}
-                            {/*    <Box key={index}>*/}
-                            {/*        <SwiperSlide className="swiper2-slide">*/}
-                            {/*            <img className="swiper2-img" src={item.img}/>*/}
-                            {/*        </SwiperSlide>*/}
-                            {/*    </Box>*/}
-                            {/*))}*/}
                             {supperClubData.looks.content.map((item, index) => (
                                 <Box key={index}>
                                     <SwiperSlide className="swiper2-slide">
@@ -139,38 +131,25 @@ const LookLikeCarousel = () => {
                         </Swiper>
                         <Swiper
                             onSwiper={setThumbsSwiper}
-                            loop={true}
+                            loop={false}
                             spaceBetween={16}
                             slidesPerView={6}
-                            freeMode={true}
-                            watchSlidesProgress={true}
-                            modules={[FreeMode, Navigation, Thumbs]}
+                            watchSlidesProgress={false}
+                            modules={[ Navigation, Thumbs]}
                             className="mySwiper"
                         >
                             {supperClubData.looks.content.map((item,index)=>(
-                                <SwiperSlide className="swiper1-slide last-pagination" key={index}>
-                                    <img className="swiper-img last-img" src={item} key={index}/>
+                                <Box key={index}>
+                                <SwiperSlide className="swiper1-slide" >
+                                    <img className="swiper-img" src={item}/>
+                                    {index === supperClubData.looks.content.length - 1 && (
+        <Box>
+          <Typography className="view-gallery">View <br/> Gallery</Typography>
+        </Box>
+      )}
                                 </SwiperSlide>
+                                </Box>
                             ))}
-                            {/*<SwiperSlide className="swiper1-slide">*/}
-                            {/*    <img className="swiper-img" src={teamImg}/>*/}
-                            {/*</SwiperSlide>*/}
-                            {/*<SwiperSlide className="swiper1-slide">*/}
-                            {/*    <img className="swiper-img" src={teamImg}/>*/}
-                            {/*</SwiperSlide>*/}
-                            {/*<SwiperSlide className="swiper1-slide">*/}
-                            {/*    <img className="swiper-img" src={teamImg}/>*/}
-                            {/*</SwiperSlide>*/}
-                            {/*<SwiperSlide className="swiper1-slide">*/}
-                            {/*    <img className="swiper-img" src={teamImg}/>*/}
-                            {/*</SwiperSlide>*/}
-                            {/*<SwiperSlide className="swiper1-slide">*/}
-                            {/*    <img className="swiper-img" src={teamImg}/>*/}
-                            {/*</SwiperSlide>*/}
-                            {/*<SwiperSlide className="swiper1-slide last-pagination">*/}
-                            {/*    <img className="swiper-img last-img" src={teamImg}/>*/}
-                            {/*    <Typography className="view-gallery">View <br/> Gallery</Typography>*/}
-                            {/*</SwiperSlide>*/}
                         </Swiper>
                     </Box>
                 </Box>

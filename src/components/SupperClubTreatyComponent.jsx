@@ -138,7 +138,7 @@ const SupperClubTreatyComponent = () => {
                     </Typography>
                     </Box>
                    <Box className='btn-box'>
-                       <Link href="/become-patron" className="btn">
+                       <Link href="/gift-cards" className="btn">
                            Learn More
                        </Link>
                    </Box>

@@ -52,10 +52,11 @@ const MainContentBox = styled(Box)({
     },
     '.swiper-pagination-bullet':{
         borderRadius:'0px',
-        width:'300px',
+        width:'100%',
         height:'2px',
         background:'#FBFBFB',
         opacity:'1',
+        margin:'0px 5px !important'
     },
     '.swiper-pagination-bullet-active':{
     animationDuration: '5s',
@@ -84,9 +85,8 @@ positionX:'end'
         lineHeight: '35px',
         color: '#FBFBFB !important',
         position:'relative',
-    },
-    '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
-        margin:'0 var(--swiper-pagination-bullet-horizontal-gap,5px) !important'
+        display:'inline-flex',
+        justifyContent:'center'
     },
     '.mako-details':{
         fontFamily: 'ProximaNovaA-Regular',
@@ -97,74 +97,18 @@ positionX:'end'
         color: '#FBFBFB',
         margin: '24px 16px 10px',
     },
-    '@media(min-width: 1px) and (max-width: 768px)': {
-        '.img':{
-            height:'250%',
-            width:'50%',
-            // padding:'0px 26%'
-        },
-
-    '.dining-content': {
-        width:'10px',
-        font:'12px',
-        padding: '4px 46px'
+    '.swiper':{
+        paddingBottom:'18px'
     },
-    '.content-box':{
-        marginRight:'65px'
+
+'@media(min-width: 768px) and (max-width: 1024px)': {
+    '.swiper-pagination':{
+        lineHeight:'27px'
+    },
+    '.swiper':{
+        paddingBottom:'35px'
     }
 },
-'@media(min-width: 2000px) and (max-width: 2560px)': {
-    '.swiper-pagination-bullet':{
-        width: '403px',
-    height: '2px',
-    },
-    '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
-        margin:'0 var(--swiper-pagination-bullet-horizontal-gap,18px) !important'
-},
-'.mako-details':{
-fontSize:'20px'
-}
-},
-'@media(min-width: 1024px) and (max-width: 1440px)': {
-    '.swiper-pagination-bullet':{
-        width: '187px',
-    height: '2px',
-    },
-    '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
-        margin:'0 var(--swiper-pagination-bullet-horizontal-gap,15px) !important'
-},
-'@media(min-width: 768px) and (max-width: 1024px)': {
-    '.swiper-pagination-bullet':{
-        width: '117px',
-    },
-    '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
-        margin:'0 var(--swiper-pagination-bullet-horizontal-gap,14px) !important'
-},
-},
-},
-'@media(min-width: 320px) and (max-width: 768px)': {
-    '.img':{
-        width:'100%',
-    },
-    '.dining-title':{
-        padding:'0px 16px',
-        font:'20px'
-    },
-    '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
-        margin:'0 var(--swiper-pagination-bullet-horizontal-gap,6px) !important'
-},
-'.swiper-pagination-bullet':{
-    width:'148px'
-},
-},
-'@media(min-width: 320px) and (max-width: 425px)': {
-    '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet':{
-        margin:'0 var(--swiper-pagination-bullet-horizontal-gap,3px) !important'
-},
-'.swiper-pagination-bullet':{
-    width:'100px'
-},
-}
 })
 
 const ChefMakoCarousel = (props) => {
