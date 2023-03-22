@@ -926,7 +926,7 @@ const HomePage = () => {
                             <Box className="row justify-content-center">
                                 <Box className="chef-container">
                                     <Box className="pe-fo-exp">
-                                        {/*<Typography className="hotchef-title">The Hottest Chef's Tables in Town.</Typography>*/}
+                                        {/*<Typography className="hotchef-title">The Hottest Chef’s Tables in Town.</Typography>*/}
                                         <Typography className="hotchef-title">{data.header.title}</Typography>
                                         <Formik
                                             initialValues={{
@@ -1193,7 +1193,7 @@ const HomePage = () => {
                                           description={data.upcoming_supper_clubs.description}/>
                         <PriveeCarousel title={data.chefs_private_dining.title}/>
                         <RatingCarousel/>
-                        <DiningPage title={data.what_we_cook.title}/>
+                        <DiningPage/>
                         <TestimonialCarousel/>
                         <Box className="gallery">
                             <Box>
@@ -1204,10 +1204,10 @@ const HomePage = () => {
                                        cols={3}
                                        gap={20}
                                        rowHeight={300}>
-                                {finalImageData.map((item, index) => (
-                                    <ImageListItem key={index} cols={item.cols || 1} rows={item.rows || 1}>
+                                {data.food_drools.content.map((item) => (
+                                    <ImageListItem key={item} cols={item.cols || 1} rows={item.rows || 1}>
                                         <img
-                                            src={item.image}
+                                            src={item}
                                             // alt={item.title}
                                             loading="lazy"
                                         />
@@ -1302,10 +1302,10 @@ const HomePage = () => {
                                                 </Box>
                                             </Box>
                                         </form>
-                                        <Typography className="join-table-details">By signing up, I agree to Chef's
+                                        <Typography className="join-table-details">By signing up, I agree to Chef’s
                                             a
-                                            porter's <a
-                                                href="" className='sign-in'>T&C's</a> and <a href=""
+                                            porter’s <a
+                                                href="" className='sign-in'>T&C’s</a> and <a href=""
                                                                                              className='sign-in'>Privacy
                                                 Policy</a></Typography>
                                         <Box className="find-us">
