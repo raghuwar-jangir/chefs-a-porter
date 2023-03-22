@@ -20,6 +20,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import Checkbox from '@mui/material/Checkbox';
 import '../assets/styles/fontStyle.css';
 import ExpandMoreSharpIcon from '@mui/icons-material/ExpandMoreSharp';
+import {navigate} from "gatsby";
 
 const DisplayingErrorMessagesSchema = Yup.object().shape({
     yourName: Yup.string().required('Your Name Required'),
@@ -77,6 +78,9 @@ const ChefDetailsForm = (props) => {
     const handleCoursesIncrement = () => {
         setNumberOfCourses(numberOfCourses + 1);
     }
+        const handleClick = () => {
+            navigate('/customer-details');
+        }
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
         color: '#FBFBFB',
@@ -553,6 +557,7 @@ const ChefDetailsForm = (props) => {
                                 <Button
                                     className="experience-btn"
                                     type="submit"
+                                    onClick={handleClick}
                                 >
                                     Book this Experience
                                 </Button>

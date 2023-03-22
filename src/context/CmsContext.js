@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {Router, Link, Location} from "@reach/router"
 
 const defaultState = {
     data: {},
@@ -28,7 +29,7 @@ const CmsProvider = (props) => {
     useEffect(() => {
         // axios.get(`https://chefv2.hypervergedemo.site/v1/cms/${}/`).then(result => {
         axios.get("https://chefv2.hypervergedemo.site/v1/cms/home/").then(result => {
-            setData(result.data.home)
+            setData(result.data)
         })
     }, [])
 
