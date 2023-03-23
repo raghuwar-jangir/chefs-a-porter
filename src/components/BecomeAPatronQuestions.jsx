@@ -9,12 +9,12 @@ import {Box, styled} from '@mui/material';
 import '../assets/styles/fontStyle.css';
 import * as _ from "lodash";
 import {useContext} from "react";
-import BecomePatronContext from "../context/BecomePatronContext";
+import CmsContext from "../context/CmsContext";
 const BecomeAPatronQuestion = (props) => {
 
     const {isLightTheme = false, wrapPadding} = props
 
-    const {becomePatronData} = useContext(BecomePatronContext)
+    const {data} = useContext(CmsContext)
 
     const [expanded, setExpanded] = React.useState(false)
 
@@ -122,13 +122,13 @@ const BecomeAPatronQuestion = (props) => {
         <React.Fragment>
             <WrapperBox>
                 {
-                    !_.isEmpty(becomePatronData) &&
+                    !_.isEmpty(data) &&
                     <Box className='WrapperBox'>
                         <Typography className='title-question'>
-                            {becomePatronData.faq.title}
+                            {data.become_patron.faq.title}
                         </Typography>
                         {
-                            becomePatronData.faq.contents.map((item, index) => {
+                            data.become_patron.faq.contents.map((item, index) => {
                                 return (
                                     <Box className='parent-accordion'>
                                         <Accordion expanded={expanded === `panel${index}`}

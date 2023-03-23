@@ -20,6 +20,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import Checkbox from '@mui/material/Checkbox';
 import '../assets/styles/fontStyle.css';
 import ExpandMoreSharpIcon from '@mui/icons-material/ExpandMoreSharp';
+import {navigate} from "gatsby";
 
 const DisplayingErrorMessagesSchema = Yup.object().shape({
     yourName: Yup.string().required('Your Name Required'),
@@ -39,11 +40,11 @@ const theme = createMuiTheme({
         backgroundColor: "#DCD7CB",
         boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.4)',
 	padding: '16px 32px',
-	textAlign: 'center', 
+	textAlign: 'center',
 	fontFamily: 'Proxima Nova Alt',
 	fontStyle:' normal',
 	fontWeight: 300,
-	fontSize: '14px',
+	// fontSize: '14px',
 	lineHeight: '17px',
 	opacity: '1',
     width:'160px',
@@ -64,7 +65,7 @@ const ChefDetailsForm = (props) => {
           setNumberOfDenner(numberOfDenner - 1);
         }
       }
-    
+
       const handleIncrement = () => {
         setNumberOfDenner(numberOfDenner + 1);
       }
@@ -73,10 +74,13 @@ const ChefDetailsForm = (props) => {
           setNumberOfCourses(numberOfCourses - 1);
         }
       }
-    
+
       const handleCoursesIncrement = () => {
         setNumberOfCourses(numberOfCourses + 1);
-      }
+    }
+        const handleClick = () => {
+            navigate('/customer-details');
+        }
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
         color: '#FBFBFB',
@@ -113,7 +117,7 @@ const ChefDetailsForm = (props) => {
             border: "0px",
             borderBottom: "0.25px solid #FBFBFB",
             borderRadius: "0px",
-            paddingLeft: "0px",
+            // paddingLeft: "0px",
             paddingRight: "0px",
             fontFamily: "Proxima Nova Alt",
             fontStyle: "normal",
@@ -137,7 +141,7 @@ const ChefDetailsForm = (props) => {
             border: "0px",
             borderBottom: "0.25px solid #FBFBFB",
             borderRadius: "0px",
-            paddingLeft: "0px",
+            // paddingLeft: "0px",
             paddingRight: "0px",
             fontFamily: "Proxima Nova Alt",
             fontStyle: "normal",
@@ -369,7 +373,7 @@ const ChefDetailsForm = (props) => {
     position:'absolute',
     right:'6px',
     bottom:'19px'
-}, 
+},
 '.time-picker':{
     position:'relative'
 },
@@ -513,7 +517,7 @@ const ChefDetailsForm = (props) => {
                                 <Box className="sub-box-counter">
                                     <Typography className="min-2-3">Number of Diners <span>(min 2)</span></Typography>
                                     <Box sx={{ display: 'flex' }}>
-                                        <RemoveIcon 
+                                        <RemoveIcon
                                             style={numberOfDenner === 2 ? disabledStyle : {}}
                                            className="left-btn"
                                            onClick={handleDecrement}  disabled={numberOfDenner === 2}
@@ -528,7 +532,7 @@ const ChefDetailsForm = (props) => {
                                 <Box className="sub-box-counter">
                                     <Typography className="min-2-3">Number of Diners <span>(min 3)</span></Typography>
                                     <Box sx={{ display: 'flex' }}>
-                                    <RemoveIcon 
+                                    <RemoveIcon
                                     style={numberOfCourses === 3 ? disabledStyle : {}}
                                            className="left-btn"
                                            onClick={handleCoursesDecrement} disabled={numberOfCourses === 3}
@@ -553,6 +557,7 @@ const ChefDetailsForm = (props) => {
                                 <Button
                                     className="experience-btn"
                                     type="submit"
+                                    onClick={handleClick}
                                 >
                                     Book this Experience
                                 </Button>

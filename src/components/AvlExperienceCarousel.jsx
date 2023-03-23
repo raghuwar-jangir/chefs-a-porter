@@ -123,7 +123,8 @@ const AvlExperienceCarousel = (props) => {
                 <Box className='saff-parent'>
                     <Box className='dining-privee'>
                         <Typography className='title'>
-                            A Traditional Oma Kase
+                            {props.title}
+                            {/*A Traditional Oma Kase*/}
                         </Typography>
                         <Typography className='rating-star'>
                             <StarIcon sx={{color: '#C6A87D',}}/> 4.7

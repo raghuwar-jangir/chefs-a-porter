@@ -57,7 +57,7 @@ import SupperClubImg from "../assets/images/SupperClubImg.png";
 import ClubSection from "../components/ClubSection";
 import DiningExperienceCarousel from "../components/DiningExperienceCarousel";
 import axios from "axios";
-import HomeContext from "../context/HomeContext";
+import CmsContext from "../context/CmsContext";
 import "../assets/styles/searchBar.css"
 
 
@@ -876,7 +876,7 @@ const BoxWrapper = styled(Box)({
 })
 
 const HomePage = () => {
-    const {data} = useContext(HomeContext);
+    const {data} = useContext(CmsContext);
 
     //FoodDrool
     const [imageData, setImageData] = useState([]);
@@ -884,9 +884,9 @@ const HomePage = () => {
     useEffect(() => {
         {
             !_.isEmpty(data) &&
-            setImageData(data.food_drools.content)
+            setImageData(data.home.food_drools.content)
         }
-    }, [])
+    }, [data])
 
     const valueAtIndex2 = imageData[1];
     imageData.splice(1, 1);
@@ -917,432 +917,431 @@ const HomePage = () => {
         <React.Fragment>
             <Navbar isIcon={false} isImage={true}/>
             <BoxWrapper>
-                {
-                    !_.isEmpty(data) &&
-                    <React.Fragment>
-                        <Box className="home-banner"
-                             sx={{backgroundImage: `url(${data.header.image})`}}
-                        >
-                            <Box className="row justify-content-center">
-                                <Box className="chef-container">
-                                    <Box className="pe-fo-exp">
-                                        {/*<Typography className="hotchef-title">The Hottest Chef’s Tables in Town.</Typography>*/}
-                                        <Typography className="hotchef-title">{data.header.title}</Typography>
-                                        <Formik
-                                            initialValues={{
-                                                city: 'Mumbai',
-                                                on: new Date(),
-                                                time: 'Lunch',
-                                                diners: '1'
-                                            }}
-                                            onSubmit={(values) => {
-                                                console.log(values.date)
-                                                const experienceData = {
-                                                    ...values,
-                                                    on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
-                                                }
-                                                console.log("value===>", values)
-                                                console.log("experienceData===>", experienceData)
-                                            }}
-                                        >
-                                            {({values, handleChange, handleSubmit, setFieldValue}) => (
-                                                <Form onSubmit={handleSubmit}>
-                                                    <Box className="form-row">
-                                                        <Box className="form-group">
-                                                            <label className="label">Where</label>
-                                                            <Select
-                                                                labelId="demo-simple-select-label"
-                                                                id="demo-simple-select"
-                                                                name="city"
-                                                                value={values.city}
-                                                                onChange={handleChange}
-                                                                defaultValue={values.city}
-                                                                className="selectpicker my-select dropdown-toggle form-control"
-                                                                sx={{
-                                                                    fontSize: '20px',
-                                                                    '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                        border: 'none',
-                                                                    },
-                                                                    '.MuiSelect-icon': {
-                                                                        color: '#FBFBFB'
-                                                                    },
-                                                                    '.MuiSelect-select': {
-                                                                        padding: '0px 5px',
+                <React.Fragment>
+                    {
+                        !_.isEmpty(data) &&
+                        <>
+                            <Box className="home-banner" sx={{backgroundImage: `url(${data.home.header.image})`}}>
+                                <Box className="row justify-content-center">
+                                    <Box className="chef-container">
+                                        <Box className="pe-fo-exp">
+                                            <Typography className="hotchef-title">{data.home.header.title}</Typography>
+                                            <Formik
+                                                initialValues={{
+                                                    city: 'Mumbai',
+                                                    on: new Date(),
+                                                    time: 'Lunch',
+                                                    diners: '1'
+                                                }}
+                                                onSubmit={(values) => {
+                                                    console.log(values.date)
+                                                    const experienceData = {
+                                                        ...values,
+                                                        on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
+                                                    }
+                                                    console.log("value===>", values)
+                                                    console.log("experienceData===>", experienceData)
+                                                }}
+                                            >
+                                                {({values, handleChange, handleSubmit, setFieldValue}) => (
+                                                    <Form onSubmit={handleSubmit}>
+                                                        <Box className="form-row">
+                                                            <Box className="form-group">
+                                                                <label className="label">Where</label>
+                                                                <Select
+                                                                    labelId="demo-simple-select-label"
+                                                                    id="demo-simple-select"
+                                                                    name="city"
+                                                                    value={values.city}
+                                                                    onChange={handleChange}
+                                                                    defaultValue={values.city}
+                                                                    className="selectpicker my-select dropdown-toggle form-control"
+                                                                    sx={{
                                                                         fontSize: '20px',
-                                                                        fontWeight: '100',
-                                                                        display: 'flex',
-                                                                        flexDirection: 'column'
-                                                                    }
-                                                                }}
-                                                                MenuProps={{
-                                                                    PaperProps: {
-                                                                        sx: {
-                                                                            background: "#080B0E",
-                                                                            color: '#FBFBFB',
-                                                                            li: {
-                                                                                fontSize: '20px',
-                                                                                fontWeight: '100',
-                                                                                padding: '6px 16px'
-                                                                            },
-                                                                            ul: {
-                                                                                display: 'flex',
-                                                                                flexDirection: 'column'
-                                                                            },
-                                                                            'li:last-child': {
-                                                                                borderBottom: 'none'
-                                                                            },
-                                                                            'li:hover': {
-                                                                                color: '#C6A87D!important',
-                                                                                backgroundColor: '#DCD7CB !important'
-                                                                            },
-                                                                            "&& .Mui-selected": {
-                                                                                backgroundColor: "#0000FF !important"
-                                                                            }
+                                                                        '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                            border: 'none',
                                                                         },
-                                                                    },
-                                                                }}
-                                                            >
-                                                                <MenuItem value="Mumbai">Mumbai</MenuItem>
-                                                                <MenuItem value="Delhi">Delhi</MenuItem>
-                                                                <MenuItem value="Goa">Goa</MenuItem>
-                                                                <MenuItem value="Banglore">Banglore</MenuItem>
-                                                                <MenuItem value="Hydrabad">Hydrabad</MenuItem>
-                                                            </Select>
-                                                        </Box>
-                                                        <Box className="form-group">
-                                                            <label className="label"
-                                                                   style={{marginBottom: '1px !important'}}>On</label>
-                                                            <DatePickerInput
-                                                                name="on"
-                                                                value={values.on}
-                                                                displayFormat="ddd,DD MMM"
-                                                                returnFormat="ddd,DD MMM"
-                                                                className="form-control"
-                                                                onChange={(dateString) => setFieldValue('on', dateString)}
-                                                                defaultValue={values.on}
-                                                            />
-                                                        </Box>
-                                                        <Box className="form-group">
-                                                            <label className="label">Time</label>
-                                                            <Select
-                                                                labelId="demo-simple-select-label"
-                                                                id="demo-simple-select"
-                                                                name="time"
-                                                                value={values.time}
-                                                                onChange={handleChange}
-                                                                defaultValue={values.time}
-                                                                className="selectpicker my-select dropdown-toggle form-control"
-                                                                sx={{
-                                                                    fontSize: '20px',
-                                                                    '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                        border: 'none',
-                                                                    },
-                                                                    '.MuiSelect-icon': {
-                                                                        color: '#FBFBFB'
-                                                                    },
-                                                                    '.MuiSelect-select': {
-                                                                        padding: '0px 5px',
+                                                                        '.MuiSelect-icon': {
+                                                                            color: '#FBFBFB'
+                                                                        },
+                                                                        '.MuiSelect-select': {
+                                                                            padding: '0px 5px',
+                                                                            fontSize: '20px',
+                                                                            fontWeight: '100',
+                                                                            display: 'flex',
+                                                                            flexDirection: 'column'
+                                                                        }
+                                                                    }}
+                                                                    MenuProps={{
+                                                                        PaperProps: {
+                                                                            sx: {
+                                                                                background: "#080B0E",
+                                                                                color: '#FBFBFB',
+                                                                                li: {
+                                                                                    fontSize: '20px',
+                                                                                    fontWeight: '100',
+                                                                                    padding: '6px 16px'
+                                                                                },
+                                                                                ul: {
+                                                                                    display: 'flex',
+                                                                                    flexDirection: 'column'
+                                                                                },
+                                                                                'li:last-child': {
+                                                                                    borderBottom: 'none'
+                                                                                },
+                                                                                'li:hover': {
+                                                                                    color: '#C6A87D!important',
+                                                                                    backgroundColor: '#DCD7CB !important'
+                                                                                },
+                                                                                "&& .Mui-selected": {
+                                                                                    backgroundColor: "#0000FF !important"
+                                                                                }
+                                                                            },
+                                                                        },
+                                                                    }}
+                                                                >
+                                                                    <MenuItem value="Mumbai">Mumbai</MenuItem>
+                                                                    <MenuItem value="Delhi">Delhi</MenuItem>
+                                                                    <MenuItem value="Goa">Goa</MenuItem>
+                                                                    <MenuItem value="Banglore">Banglore</MenuItem>
+                                                                    <MenuItem value="Hydrabad">Hydrabad</MenuItem>
+                                                                </Select>
+                                                            </Box>
+                                                            <Box className="form-group">
+                                                                <label className="label"
+                                                                       style={{marginBottom: '1px !important'}}>On</label>
+                                                                <DatePickerInput
+                                                                    name="on"
+                                                                    value={values.on}
+                                                                    displayFormat="ddd,DD MMM"
+                                                                    returnFormat="ddd,DD MMM"
+                                                                    className="form-control"
+                                                                    onChange={(dateString) => setFieldValue('on', dateString)}
+                                                                    defaultValue={values.on}
+                                                                />
+                                                            </Box>
+                                                            <Box className="form-group">
+                                                                <label className="label">Time</label>
+                                                                <Select
+                                                                    labelId="demo-simple-select-label"
+                                                                    id="demo-simple-select"
+                                                                    name="time"
+                                                                    value={values.time}
+                                                                    onChange={handleChange}
+                                                                    defaultValue={values.time}
+                                                                    className="selectpicker my-select dropdown-toggle form-control"
+                                                                    sx={{
                                                                         fontSize: '20px',
-                                                                        fontWeight: '100'
-                                                                    }
-                                                                }}
-                                                                MenuProps={{
-                                                                    PaperProps: {
-                                                                        sx: {
-                                                                            background: "#080B0E",
-                                                                            color: '#FBFBFB',
-                                                                            li: {
-                                                                                fontSize: '20px',
-                                                                                fontWeight: '100',
-                                                                                padding: '6px 16px'
-                                                                            },
-                                                                            ul: {
-                                                                                display: 'flex',
-                                                                                flexDirection: 'column'
-                                                                            },
-                                                                            'li:last-child': {
-                                                                                borderBottom: 'none'
-                                                                            },
-                                                                            'li:hover': {
-                                                                                color: '#C6A87D!important',
-                                                                                backgroundColor: '#DCD7CB !important'
-                                                                            },
-                                                                            "&& .Mui-selected": {
-                                                                                backgroundColor: "#0000FF !important"
-                                                                            }
+                                                                        '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                            border: 'none',
                                                                         },
-                                                                    },
-                                                                }}
-                                                            >
-                                                                <MenuItem value="Lunch">Lunch</MenuItem>
-                                                                <MenuItem value="Dinner">Dinner</MenuItem>
-                                                                <MenuItem value="BreakFast">BreakFast</MenuItem>
-                                                            </Select>
-                                                        </Box>
-                                                        <Box className="form-group">
-                                                            <label className="label">Diners</label>
-                                                            <Select
-                                                                labelId="demo-simple-select-label"
-                                                                id="demo-simple-select"
-                                                                name="diners"
-                                                                value={values.diners}
-                                                                onChange={handleChange}
-                                                                defaultValue={values.diners}
-                                                                className="selectpicker my-select dropdown-toggle form-control"
-                                                                sx={{
-                                                                    fontSize: '20px',
-                                                                    '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                        border: 'none',
-                                                                    },
-                                                                    '.MuiSelect-icon': {
-                                                                        color: '#FBFBFB'
-                                                                    },
-                                                                    '.MuiSelect-select': {
-                                                                        padding: '0px 5px',
+                                                                        '.MuiSelect-icon': {
+                                                                            color: '#FBFBFB'
+                                                                        },
+                                                                        '.MuiSelect-select': {
+                                                                            padding: '0px 5px',
+                                                                            fontSize: '20px',
+                                                                            fontWeight: '100'
+                                                                        }
+                                                                    }}
+                                                                    MenuProps={{
+                                                                        PaperProps: {
+                                                                            sx: {
+                                                                                background: "#080B0E",
+                                                                                color: '#FBFBFB',
+                                                                                li: {
+                                                                                    fontSize: '20px',
+                                                                                    fontWeight: '100',
+                                                                                    padding: '6px 16px'
+                                                                                },
+                                                                                ul: {
+                                                                                    display: 'flex',
+                                                                                    flexDirection: 'column'
+                                                                                },
+                                                                                'li:last-child': {
+                                                                                    borderBottom: 'none'
+                                                                                },
+                                                                                'li:hover': {
+                                                                                    color: '#C6A87D!important',
+                                                                                    backgroundColor: '#DCD7CB !important'
+                                                                                },
+                                                                                "&& .Mui-selected": {
+                                                                                    backgroundColor: "#0000FF !important"
+                                                                                }
+                                                                            },
+                                                                        },
+                                                                    }}
+                                                                >
+                                                                    <MenuItem value="Lunch">Lunch</MenuItem>
+                                                                    <MenuItem value="Dinner">Dinner</MenuItem>
+                                                                    <MenuItem value="BreakFast">BreakFast</MenuItem>
+                                                                </Select>
+                                                            </Box>
+                                                            <Box className="form-group">
+                                                                <label className="label">Diners</label>
+                                                                <Select
+                                                                    labelId="demo-simple-select-label"
+                                                                    id="demo-simple-select"
+                                                                    name="diners"
+                                                                    value={values.diners}
+                                                                    onChange={handleChange}
+                                                                    defaultValue={values.diners}
+                                                                    className="selectpicker my-select dropdown-toggle form-control"
+                                                                    sx={{
                                                                         fontSize: '20px',
-                                                                        fontWeight: '100'
-                                                                    }
-                                                                }}
-                                                                MenuProps={{
-                                                                    PaperProps: {
-                                                                        sx: {
-                                                                            background: "#080B0E",
-                                                                            color: '#FBFBFB',
-                                                                            li: {
-                                                                                fontSize: '20px',
-                                                                                fontWeight: '100',
-                                                                                padding: '6px 16px'
-                                                                            },
-                                                                            ul: {
-                                                                                display: 'flex',
-                                                                                flexDirection: 'column'
-                                                                            },
-                                                                            'li:last-child': {
-                                                                                borderBottom: 'none'
-                                                                            },
-                                                                            'li:hover': {
-                                                                                color: '#C6A87D!important',
-                                                                                backgroundColor: '#DCD7CB !important'
-                                                                            },
-                                                                            "&& .Mui-selected": {
-                                                                                backgroundColor: "#0000FF !important"
-                                                                            }
+                                                                        '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                            border: 'none',
                                                                         },
-                                                                    },
-                                                                }}
-                                                            >
-                                                                <MenuItem value="1">1</MenuItem>
-                                                                <MenuItem value="2">2</MenuItem>
-                                                                <MenuItem value="3">3</MenuItem>
+                                                                        '.MuiSelect-icon': {
+                                                                            color: '#FBFBFB'
+                                                                        },
+                                                                        '.MuiSelect-select': {
+                                                                            padding: '0px 5px',
+                                                                            fontSize: '20px',
+                                                                            fontWeight: '100'
+                                                                        }
+                                                                    }}
+                                                                    MenuProps={{
+                                                                        PaperProps: {
+                                                                            sx: {
+                                                                                background: "#080B0E",
+                                                                                color: '#FBFBFB',
+                                                                                li: {
+                                                                                    fontSize: '20px',
+                                                                                    fontWeight: '100',
+                                                                                    padding: '6px 16px'
+                                                                                },
+                                                                                ul: {
+                                                                                    display: 'flex',
+                                                                                    flexDirection: 'column'
+                                                                                },
+                                                                                'li:last-child': {
+                                                                                    borderBottom: 'none'
+                                                                                },
+                                                                                'li:hover': {
+                                                                                    color: '#C6A87D!important',
+                                                                                    backgroundColor: '#DCD7CB !important'
+                                                                                },
+                                                                                "&& .Mui-selected": {
+                                                                                    backgroundColor: "#0000FF !important"
+                                                                                }
+                                                                            },
+                                                                        },
+                                                                    }}
+                                                                >
+                                                                    <MenuItem value="1">1</MenuItem>
+                                                                    <MenuItem value="2">2</MenuItem>
+                                                                    <MenuItem value="3">3</MenuItem>
 
-                                                            </Select>
+                                                                </Select>
+                                                            </Box>
+                                                            <Box className="form-group">
+                                                                <Typography>
+                                                                    <button type="submit"
+                                                                            className="hot-chef-search-btn"
+                                                                            onClick={handleClick}>Search
+                                                                    </button>
+                                                                </Typography>
+                                                            </Box>
                                                         </Box>
-                                                        <Box className="form-group">
-                                                            <Typography>
-                                                                <button type="submit"
-                                                                        className="hot-chef-search-btn"
-                                                                        onClick={handleClick}>Search
-                                                                </button>
-                                                            </Typography>
-                                                        </Box>
-                                                    </Box>
-                                                </Form>
-                                            )}
-                                        </Formik>
+                                                    </Form>
+                                                )}
+                                            </Formik>
+                                        </Box>
                                     </Box>
                                 </Box>
                             </Box>
-                        </Box>
-                        <ClubSection/>
-                        <Box className="privee-desktop">
-                            <Box className="row">
-                                <Box className="privee-video">
-                                    <img src={data.booking_types.privee.image} className='video'/>
-                                </Box>
-                                <Box className="privee-details">
-                                    <Typography
-                                        className="privee-card-title">{data.booking_types.privee.title}</Typography>
-                                    <Typography
-                                        className='privee-card-details'>{data.booking_types.privee.description}</Typography>
-                                    <Typography><Link href="/privee"
-                                                      className="privee-card-link">{data.booking_types.privee.button_text}</Link></Typography>
-                                </Box>
-                            </Box>
-                        </Box>
-                        <Box className="supper-desktop">
-                            <Box className="row">
-                                <Box className="supper-details">
-                                    <Typography
-                                        className="supper-card-title">{data.booking_types.supper_club.title}</Typography>
-                                    <Typography
-                                        className='supper-card-details'>{data.booking_types.supper_club.description}</Typography>
-                                    <Typography><Link href="/supper-club"
-                                                      className="supper-card-link">{data.booking_types.supper_club.button_text}</Link></Typography>
-                                </Box>
-                                <Box className="privee-video">
-                                    <img src={data.booking_types.supper_club.image} className='video'/>
+                            <ClubSection/>
+                            <Box className="privee-desktop">
+                                <Box className="row">
+                                    <Box className="privee-video">
+                                        <img src={data.home.booking_types.privee.image} className='video'/>
+                                    </Box>
+                                    <Box className="privee-details">
+                                        <Typography
+                                            className="privee-card-title">{data.home.booking_types.privee.title}</Typography>
+                                        <Typography
+                                            className='privee-card-details'>{data.home.booking_types.privee.description}</Typography>
+                                        <Typography><Link href="/privee"
+                                                          className="privee-card-link">{data.home.booking_types.privee.button_text}</Link></Typography>
+                                    </Box>
                                 </Box>
                             </Box>
-                        </Box>
-                        <PriveeMain title={data.continue_browsing.title}
-                                    subTitle={data.continue_browsing.description}/>
-                        <MainFoodDetailng title={data.upcoming_supper_clubs.title}
-                                          description={data.upcoming_supper_clubs.description}/>
-                        <PriveeCarousel title={data.chefs_private_dining.title}/>
-                        <RatingCarousel/>
-                        <DiningPage/>
-                        <TestimonialCarousel/>
-                        <Box className="gallery">
-                            <Box>
-                                <Typography className='gallery-heading'>{data.food_drools.title}</Typography>
+                            <Box className="supper-desktop">
+                                <Box className="row">
+                                    <Box className="supper-details">
+                                        <Typography
+                                            className="supper-card-title">{data.home.booking_types.supper_club.title}</Typography>
+                                        <Typography
+                                            className='supper-card-details'>{data.home.booking_types.supper_club.description}</Typography>
+                                        <Typography><Link href="/supper-club"
+                                                          className="supper-card-link">{data.home.booking_types.supper_club.button_text}</Link></Typography>
+                                    </Box>
+                                    <Box className="privee-video">
+                                        <img src={data.home.booking_types.supper_club.image} className='video'/>
+                                    </Box>
+                                </Box>
                             </Box>
-                            <ImageList variant="masonry"
-                                       sx={{width: '100%', height: '100%'}}
-                                       cols={3}
-                                       gap={20}
-                                       rowHeight={300}>
-                                {data.food_drools.content.map((item) => (
-                                    <ImageListItem key={item} cols={item.cols || 1} rows={item.rows || 1}>
-                                        <img
-                                            src={item}
-                                            // alt={item.title}
-                                            loading="lazy"
-                                        />
-                                    </ImageListItem>
-                                ))}
-                            </ImageList>
-                        </Box>
-                        <Box className="mobileView-gallery">
-                            <Box>
-                                <Typography className='gallery-heading'>Food that makes you drool!</Typography>
+                            <PriveeMain/>
+                            <MainFoodDetailng title={data.home.upcoming_supper_clubs.title}
+                                              description={data.home.upcoming_supper_clubs.description}/>
+                            <PriveeCarousel/>
+                            <RatingCarousel/>
+                            <DiningPage title={data.home.what_we_cook.title}/>
+                            <TestimonialCarousel/>
+                            <Box className="gallery">
+                                <Box>
+                                    <Typography className='gallery-heading'>{data.home.food_drools.title}</Typography>
+                                </Box>
+                                <ImageList variant="masonry"
+                                           sx={{width: '100%', height: '100%'}}
+                                           cols={3}
+                                           gap={20}
+                                           rowHeight={300}>
+                                    {finalImageData.map((item, index) => (
+                                        <ImageListItem key={index} cols={item.cols || 1} rows={item.rows || 1}>
+                                            <img
+                                                src={item.image}
+                                                // alt={item.title}
+                                                loading="lazy"
+                                            />
+                                        </ImageListItem>
+                                    ))}
+                                </ImageList>
                             </Box>
-                            <Grid container spacing={1} sx={{padding: '10px 12px'}}>
-                                <Grid item xs={12}>
-                                    <img src={gallery1} style={{width: '100%', height: '200px'}}/>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <img src={gallery2} style={{width: '48%', height: '200', paddingRight: "5px"}}/>
-                                    <img src={gallery3} style={{width: '48%', height: '200', paddingLeft: "5px"}}/>
-                                </Grid>
-                                <Grid item xs={12} spacing={2}>
-                                    <Button className="gallery-btn">
-                                        View Gallery
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </Box>
-                        <Box className="treat">
-                            <Grid className="treaty-card">
-                                <Grid className="treat-card1" xs={6} md={4} sm={4}>
-                                    <Treaty
-                                        treatTitle={`#${data.gift.gift.hashtag}`}
-                                        mainTitle={data.gift.gift.title}
-                                        detail={data.gift.gift.description}
-                                        link={'/gift-cards'}
-                                        button_text={data.gift.gift.button_text}
-                                    />
-
-                                </Grid>
-                                <Grid className="treat-card2" xs={6} md={4} sm={4}>
-                                    <Treaty
-                                        treatTitle={`#${data.gift.patron.hashtag}`}
-                                        mainTitle={data.gift.patron.title}
-                                        detail={data.gift.patron.description}
-                                        link={'/become-a-patron'}
-                                        button_text={data.gift.patron.button_text}
-                                    />
-                                </Grid>
-                            </Grid>
-                        </Box>
-                        <Box className="join-table join-table1">
-                            <Box className="container-fluid">
-                                <Grid container className="row">
-                                    <Grid xl={6} lg={6} xs={6} md={6} sm={12} xs={12} className="join-table-image">
-                                        <img src={JoinTableImg} alt="Join The Table" className="jtable-img"/>
+                            <Box className="mobileView-gallery">
+                                <Box>
+                                    <Typography className='gallery-heading'>Food that makes you drool!</Typography>
+                                </Box>
+                                <Grid container spacing={1} sx={{padding: '10px 12px'}}>
+                                    <Grid item xs={12}>
+                                        <img src={gallery1} style={{width: '100%', height: '200px'}}/>
                                     </Grid>
-                                    <Grid xl={6} lg={6} xs={6} md={6} sm={12} xs={12} className="join-table-title">
-                                        <Typography className='join-table-heading'>Join our table</Typography>
-                                        <Typography className='join-table-details'>Receive recipes , tips and tricks
-                                            from top
-                                            chefs from around the globe, and exclusive
-                                            offers right to your inbox.</Typography>
-                                        <form action="" accept-charset="UTF-8" method="get">
-                                            <Box className="input-group">
-                                                <Box className='input-group'>
-                                                    <Box style={{width: '100%', display: 'flex'}}>
-                                                        <TextField className='input-field' id='email-address'
-                                                                   size='small'
-                                                                   placeholder='Your email address'
-                                                                   variant='outlined'
-                                                                   InputProps={{
-                                                                       disableUnderline: true
-                                                                   }}
-                                                                   sx={{
-                                                                       '.MuiOutlinedInput-notchedOutline': {
-                                                                           border: 'none',
-                                                                           outline: 'none'
-                                                                       },
-                                                                       '.MuiInputBase-input': {
-                                                                           borderRadius: '0px',
-                                                                           background: '#FBFBFB',
-                                                                           fontFamily: 'Proxima Nova Alt',
-                                                                           fontStyle: 'normal',
-                                                                           fontWeight: '300',
-                                                                           fontSize: '14px',
-                                                                           lineHeight: '25px',
-                                                                           color: '#BDBDBD',
-                                                                           padding: '8px 14px'
-                                                                       }
-                                                                   }}/>
-                                                        <Button className='btn'>Submit</Button>
+                                    <Grid item xs={12}>
+                                        <img src={gallery2} style={{width: '48%', height: '200', paddingRight: "5px"}}/>
+                                        <img src={gallery3} style={{width: '48%', height: '200', paddingLeft: "5px"}}/>
+                                    </Grid>
+                                    <Grid item xs={12} spacing={2}>
+                                        <Button className="gallery-btn">
+                                            View Gallery
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                            </Box>
+                            <Box className="treat">
+                                <Grid className="treaty-card">
+                                    <Grid className="treat-card1" xs={6} md={4} sm={4}>
+                                        <Treaty
+                                            treatTitle={`#${data.home.gift.gift.hashtag}`}
+                                            mainTitle={data.home.gift.gift.title}
+                                            detail={data.home.gift.gift.description}
+                                            link={'/gift-cards'}
+                                            button_text={data.home.gift.gift.button_text}
+                                        />
+
+                                    </Grid>
+                                    <Grid className="treat-card2" xs={6} md={4} sm={4}>
+                                        <Treaty
+                                            treatTitle={`#${data.home.gift.patron.hashtag}`}
+                                            mainTitle={data.home.gift.patron.title}
+                                            detail={data.home.gift.patron.description}
+                                            link={'/become-a-patron'}
+                                            button_text={data.home.gift.patron.button_text}
+                                        />
+                                    </Grid>
+                                </Grid>
+                            </Box>
+                            <Box className="join-table join-table1">
+                                <Box className="container-fluid">
+                                    <Grid container className="row">
+                                        <Grid xl={6} lg={6} xs={6} md={6} sm={12} xs={12} className="join-table-image">
+                                            <img src={JoinTableImg} alt="Join The Table" className="jtable-img"/>
+                                        </Grid>
+                                        <Grid xl={6} lg={6} xs={6} md={6} sm={12} xs={12} className="join-table-title">
+                                            <Typography className='join-table-heading'>Join our table</Typography>
+                                            <Typography className='join-table-details'>Receive recipes , tips and tricks
+                                                from top
+                                                chefs from around the globe, and exclusive
+                                                offers right to your inbox.</Typography>
+                                            <form action="" accept-charset="UTF-8" method="get">
+                                                <Box className="input-group">
+                                                    <Box className='input-group'>
+                                                        <Box style={{width: '100%', display: 'flex'}}>
+                                                            <TextField className='input-field' id='email-address'
+                                                                       size='small'
+                                                                       placeholder='Your email address'
+                                                                       variant='outlined'
+                                                                       InputProps={{
+                                                                           disableUnderline: true
+                                                                       }}
+                                                                       sx={{
+                                                                           '.MuiOutlinedInput-notchedOutline': {
+                                                                               border: 'none',
+                                                                               outline: 'none'
+                                                                           },
+                                                                           '.MuiInputBase-input': {
+                                                                               borderRadius: '0px',
+                                                                               background: '#FBFBFB',
+                                                                               fontFamily: 'Proxima Nova Alt',
+                                                                               fontStyle: 'normal',
+                                                                               fontWeight: '300',
+                                                                               fontSize: '14px',
+                                                                               lineHeight: '25px',
+                                                                               color: '#BDBDBD',
+                                                                               padding: '8px 14px'
+                                                                           }
+                                                                       }}/>
+                                                            <Button className='btn'>Submit</Button>
+                                                        </Box>
                                                     </Box>
                                                 </Box>
+                                            </form>
+                                            <Typography className="join-table-details">By signing up, I agree to Chef’s
+                                                a
+                                                porter’s <a
+                                                    href="" className='sign-in'>T&C’s</a> and <a href=""
+                                                                                                 className='sign-in'>Privacy
+                                                    Policy</a></Typography>
+                                            <Box className="find-us">
+                                                <Typography className="find-us-title">Find us on:</Typography>
+                                                <Box className="social-icon">
+                                                    <InstagramIcon className='icon'/>
+                                                    <LinkedInIcon className='icon'/>
+                                                </Box>
                                             </Box>
-                                        </form>
-                                        <Typography className="join-table-details">By signing up, I agree to Chef’s
-                                            a
-                                            porter’s <a
-                                                href="" className='sign-in'>T&C’s</a> and <a href=""
-                                                                                             className='sign-in'>Privacy
-                                                Policy</a></Typography>
-                                        <Box className="find-us">
-                                            <Typography className="find-us-title">Find us on:</Typography>
-                                            <Box className="social-icon">
-                                                <InstagramIcon className='icon'/>
-                                                <LinkedInIcon className='icon'/>
-                                            </Box>
-                                        </Box>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                            </Box>
-                        </Box>
-                        <CorporateBooking/>
-                        <Box className="fresh-blog">
-                            <Typography className='fresh-food-heading'>{data.blog.title}</Typography>
-                            {data.blog.content.map((item, index) => (
-                                <Box className='fresh-food-detail'>
-                                    <Box key={index} className="food-box">
-                                        <img src={item.image} className="fresh-food-img"/>
-                                        <Box style={{marginLeft: '20px'}}>
-                                            <Typography className='fresh-food-title'>{item.title}</Typography>
-                                            <Typography
-                                                className='fresh-food-sub-details'>{item.description}</Typography>
-                                        </Box>
-                                    </Box>
-                                    <Box><KeyboardArrowRightIcon className="fresh-food-arrow"/></Box>
                                 </Box>
-                            ))}
-                        </Box>
-                        <DiningExperienceCarousel/>
-                        <TemptedYet title={data.home_footer.moblie_title} buttonText={data.home_footer.mobile_button}/>
-                        <NeedHelp/>
-                        <Footer/>
-                        <FooterEnd/>
-                    </React.Fragment>
-                }
+                            </Box>
+                            <CorporateBooking/>
+                            <Box className="fresh-blog">
+                                <Typography className='fresh-food-heading'>{data.home.blog.title}</Typography>
+                                {data.home.blog.content.map((item, index) => (
+                                    <Box className='fresh-food-detail'>
+                                        <Box key={index} className="food-box">
+                                            <img src={item.image} className="fresh-food-img"/>
+                                            <Box style={{marginLeft: '20px'}}>
+                                                <Typography className='fresh-food-title'>{item.title}</Typography>
+                                                <Typography
+                                                    className='fresh-food-sub-details'>{item.description}</Typography>
+                                            </Box>
+                                        </Box>
+                                        <Box><KeyboardArrowRightIcon className="fresh-food-arrow"/></Box>
+                                    </Box>
+                                ))}
+                            </Box>
+                            <DiningExperienceCarousel/>
+                            <TemptedYet title={data.home.home_footer.moblie_title}
+                                        buttonText={data.home.home_footer.mobile_button}/>
+                            <NeedHelp/>
+                            <Footer/>
+                            <FooterEnd/>
+                        </>
+                    }
+                </React.Fragment>
             </BoxWrapper>
         </React.Fragment>
     )

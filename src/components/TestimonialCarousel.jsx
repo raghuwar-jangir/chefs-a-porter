@@ -7,13 +7,13 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import {Autoplay, Pagination} from "swiper";
-import HomeContext from "../context/HomeContext";
+import CmsContext from "../context/CmsContext";
 import * as _ from "lodash";
 
 const TestimonialCarousel = () => {
     const [value, setValue] = useState(4);
 
-    const {data} = useContext(HomeContext);
+    const {data} = useContext(CmsContext);
 
 
     const BoxWrapper = styled(Box)(() => ({
@@ -131,7 +131,7 @@ const TestimonialCarousel = () => {
                             pagination={{
                                 clickable: true,
                             }} modules={[Autoplay, Pagination]} className="mySwiper">
-                        {data.news_reviews.content.map((step, index) => (
+                        {data.home.news_reviews.content.map((step, index) => (
                             <div key={index}>
                                 <SwiperSlide className='main-div'>
                                     <Typography className='mainTitle'>

@@ -19,11 +19,11 @@ import * as Yup from 'yup';
 import "../../assets/styles/fontStyle.css"
 import {isMobile} from "react-device-detect";
 import * as _ from "lodash";
-import JoinChefContext from "../../context/JoinChefContext";
+import CmsContext from "../../context/CmsContext";
 
 const ContactUs = () => {
 
-    const {joinChefData} = useContext(JoinChefContext);
+    const {data} = useContext(CmsContext);
 
     //validations
     const validationSchema = Yup.object({
@@ -270,16 +270,16 @@ const ContactUs = () => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(joinChefData) &&
+                    !_.isEmpty(data) &&
                     <>
                         <Navbar heading="Join as Chef"/>
                         <Box className="joinaschef">
-                            <Box className="banner" sx={{backgroundImage: `url(${joinChefData.join_us.image})`,}}>
+                            <Box className="banner" sx={{backgroundImage: `url(${data.join_us.join_us.image})`,}}>
                                 <Box className="become-partner-header">
                                     <Typography><a href="/" className="header-link"><ArrowBackIcon
                                         style={{marginRight: '20px'}}/>Back</a></Typography>
                                     <Typography
-                                        className="become-partner-heading">{joinChefData.join_us.title}</Typography>
+                                        className="become-partner-heading">{data.join_us.join_us.title}</Typography>
                                 </Box>
                             </Box>
                             <Box className="container-fluid">
@@ -301,7 +301,7 @@ const ContactUs = () => {
                                                 <Box className="">
                                                     <Grid className="row become-partner-form" xs={12}>
                                                         <Typography
-                                                            className="form-details">{joinChefData.join_us.description}</Typography>
+                                                            className="form-details">{data.join_us.join_us.description}</Typography>
 
                                                         <Grid xs={12} className="mb-3">
                                                             <label htmlFor="validationCustomname">Your Name<span
@@ -424,7 +424,7 @@ const ContactUs = () => {
                                 </Formik>
                             </Box>
                         </Box>
-                        <NeedHelp/>
+                        {/*<NeedHelp/>*/}
                         <Footer/>
                         <FooterEnd/>
                     </>

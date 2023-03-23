@@ -25,7 +25,7 @@ import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
 import OpenPosition from "../../components/OpenPositionComponent";
 import '../../assets/styles/fontStyle.css'
-import AboutUsContext from "../../context/AboutUsContext";
+import CmsContext from "../../context/CmsContext";
 import * as _ from "lodash";
 import teamImage from '../../assets/images/team.png'
 import Navbar from "../../components/NavbarComponent";
@@ -45,7 +45,7 @@ const logoImg = [
 ]
 const AboutCardComponent = (props) => {
 
-    const {aboutUsData} = useContext(AboutUsContext);
+    const {data} = useContext(CmsContext);
 
     const isSSR = typeof window === "undefined"
 
@@ -53,10 +53,10 @@ const AboutCardComponent = (props) => {
 
     useEffect(() => {
         {
-            !_.isEmpty(aboutUsData) &&
-            setImageData(aboutUsData.who_we_are.gallery)
+            !_.isEmpty(data) &&
+            setImageData(data.about_us.who_we_are.gallery)
         }
-    }, [])
+    }, [data])
 
     const imgData = imageData.map(item => {
         return {image: item};
@@ -293,17 +293,17 @@ const AboutCardComponent = (props) => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(aboutUsData) &&
+                    !_.isEmpty(data) &&
                     <React.Fragment>
                         <Navbar heading="About Us"/>
                         <Box>
                             <Box className="main-box">
                                 <Box>
-                                    <Typography className="about-heading">{aboutUsData.header.title}</Typography>
+                                    <Typography className="about-heading">{data.about_us.header.title}</Typography>
                                     <Box className="sub-box">
                                         <CommanTextCard
-                                            mainTitle={aboutUsData.who_we_are.title}
-                                            details={aboutUsData.who_we_are.description}
+                                            mainTitle={data.about_us.who_we_are.title}
+                                            details={data.about_us.who_we_are.description}
                                             colors='#080B0E'
                                             fontSize='20px'
                                         />
@@ -323,9 +323,9 @@ const AboutCardComponent = (props) => {
                                 </Box>
                                 <Box className="sub-box">
                                     <CommanTextCard
-                                        mainTitle={aboutUsData.dining.title}
+                                        mainTitle={data.about_us.dining.title}
                                         colors='#080B0E'
-                                        details={aboutUsData.dining.description}
+                                        details={data.about_us.dining.description}
                                         fontSize="20px"
                                     />
                                 </Box>
@@ -337,7 +337,7 @@ const AboutCardComponent = (props) => {
                                     >
 
                                         {
-                                            aboutUsData.dining.content.map((item) => {
+                                            data.about_us.dining.content.map((item) => {
                                                 return (
                                                     <Box className="parent-options">
                                                         <Box className="conscious-option">
@@ -360,40 +360,40 @@ const AboutCardComponent = (props) => {
                             <Box>
                                 <Box className="sub-box-2">
                                     <img
-                                        src={aboutUsData.mission.image}
+                                        src={data.about_us.mission.image}
                                         alt="view"
                                         className="hotelview-img"
                                         className="team-img"
                                     />
                                     <CommanTextCard
-                                        mainTitle={aboutUsData.mission.title}
+                                        mainTitle={data.about_us.mission.title}
                                         colors='#FBFBFB'
-                                        details={aboutUsData.mission.description}
+                                        details={data.about_us.mission.description}
                                         fontSize='16px'
                                     />
                                 </Box>
                             </Box>
                             <Box className="sub-box-3">
                                 <img
-                                    src={aboutUsData.values.image}
+                                    src={data.about_us.values.image}
                                     alt="view"
                                     className="team-img"
                                 />
                                 <CommanTextCard
-                                    mainTitle={aboutUsData.values.title}
-                                    details={aboutUsData.values.description}
+                                    mainTitle={data.about_us.values.title}
+                                    details={data.about_us.values.description}
                                     fontSize='16px'
                                 />
                             </Box>
                             <Box className='sub-box-4'>
                                 <CommanTextCard
-                                    mainTitle={aboutUsData.meet_team.title}
+                                    mainTitle={data.about_us.meet_team.title}
                                     colors='#FBFBFB'
-                                    details={aboutUsData.meet_team.description}
+                                    details={data.about_us.meet_team.description}
                                     fontSize='16px'
                                 />
                                 <img
-                                    src={aboutUsData.meet_team.image}
+                                    src={data.about_us.meet_team.image}
                                     alt="view"
                                     className="team-img"
                                     style={{marginTop: '40px'}}
@@ -408,14 +408,15 @@ const AboutCardComponent = (props) => {
                             }
 
                         </Box>
-                        <NeedHelp/>
+                        {/*<NeedHelp/>*/}
                         <OpenPosition/>
                         <Box className="lastBox">
                             <Box>
-                                <Typography className="some-text">{aboutUsData.about_footer.title}</Typography>
-                                <Typography className="some-details">{aboutUsData.about_footer.description}</Typography>
+                                <Typography className="some-text">{data.about_us.about_footer.title}</Typography>
+                                <Typography
+                                    className="some-details">{data.about_us.about_footer.description}</Typography>
                             </Box>
-                            <Button className="btn-get-in-touch">{aboutUsData.about_footer.button_text}</Button>
+                            <Button className="btn-get-in-touch">{data.about_us.about_footer.button_text}</Button>
                         </Box>
                         <Footer/>
                         <FooterEnd/>

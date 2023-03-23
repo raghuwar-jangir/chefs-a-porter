@@ -20,11 +20,11 @@ import {Navigation, Pagination} from "swiper";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import '../assets/styles/fontStyle.css';
-import AboutUsContext from "../context/AboutUsContext";
+import CmsContext from "../context/CmsContext";
 import * as _ from "lodash";
 
 const TeamCarousel = (props) => {
-    const {aboutUsData} = useContext(AboutUsContext);
+    const {data} = useContext(CmsContext);
 
     const BoxWrapper = styled(Box)(() => ({
         ".title": {
@@ -184,7 +184,7 @@ const TeamCarousel = (props) => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(aboutUsData) &&
+                    !_.isEmpty(data) &&
                     <Box sx={{background: "#080B0E", padding: "40px 16px"}}>
                         <Swiper
                             style={{
@@ -221,7 +221,7 @@ const TeamCarousel = (props) => {
                             }}
                         >
                             {
-                                aboutUsData.our_team.content.map((item) => {
+                                data.about_us.our_team.content.map((item) => {
                                     return (
                                         <SwiperSlide className="slider-background">
                                             <Box className="slider-box">

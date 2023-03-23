@@ -9,12 +9,12 @@ import {Box, styled} from '@mui/material';
 import '../assets/styles/fontStyle.css';
 import * as _ from "lodash";
 import {useContext} from "react";
-import CorporateBookingContext from "../context/CorporateBookingContext";
+import CmsContext from "../context/CmsContext";
 
 const CorporateBookingQuestion = (props) => {
     const {isLightTheme = false, wrapPadding} = props
 
-    const {corporateBookingData} = useContext(CorporateBookingContext);
+    const {data} = useContext(CmsContext);
 
     const [expanded, setExpanded] = React.useState(false)
 
@@ -122,13 +122,13 @@ const CorporateBookingQuestion = (props) => {
         <React.Fragment>
             <WrapperBox>
                 {
-                    !_.isEmpty(corporateBookingData) &&
+                    !_.isEmpty(data) &&
                     <Box className='WrapperBox'>
                         <Typography className='title-question'>
-                            {corporateBookingData.faq.title}
+                            {data.corporate_booking.faq.title}
                         </Typography>
                         {
-                            corporateBookingData.faq.contents.map((item, index) => {
+                            data.corporate_booking.faq.contents.map((item, index) => {
                                 return (
                                     // <Box className='parent-accordion'>
                                     <Box className=''>

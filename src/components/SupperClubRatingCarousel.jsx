@@ -9,13 +9,13 @@ import {Autoplay, Pagination} from "swiper";
 import {styled} from '@mui/system';
 import * as _ from "lodash";
 import {Rating} from '@mui/material';
-import SupperClubContext from "../context/SupperClubContext";
+import CmsContext from "../context/CmsContext";
 
 const SupperClubRatingCarousel = (props) => {
 
     const {backgroundColor, isFontSize, details, padding} = props
 
-    const {supperClubData} = useContext(SupperClubContext);
+    const {data} = useContext(CmsContext);
 
     const [value, setValue] = useState();
 
@@ -192,7 +192,7 @@ const SupperClubRatingCarousel = (props) => {
             // sx={{ maxWidth: 400, flexGrow: 1 }}
         >
             {
-                !_.isEmpty(supperClubData) &&
+                !_.isEmpty(data) &&
                 <React.Fragment>
                     <Box>
                         <Swiper autoplay={{
@@ -202,7 +202,7 @@ const SupperClubRatingCarousel = (props) => {
                                 pagination={{
                                     clickable: true,
                                 }} modules={[Autoplay, Pagination]} className="mySwiper">
-                            {supperClubData.reviews.reviews.map((step, index) => (
+                            {data.supper_club.reviews.reviews.map((step, index) => (
                                 <div key={index}>
                                     <SwiperSlide className='main-div'>
                                         <Typography className='mainTitle'>

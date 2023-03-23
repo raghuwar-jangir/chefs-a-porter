@@ -24,8 +24,11 @@ import avlExp2 from "../../assets/images/avl-exp2.jpg";
 import '../../assets/styles/fontStyle.css';
 import PriveeQuestions from "../../components/PriveeQuestions";
 import {navigate} from "gatsby";
-import PriveeContext from "../../context/PriveeContext";
+import CmsContext from "../../context/CmsContext";
 import PriveeRatingCarousel from "../../components/PriveeRatingCarousel";
+import StarIcon from "@mui/icons-material/Star";
+import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
+import {SwiperSlide} from "swiper/react";
 
 const MainBoxContent = styled(Box)({
     position: 'relative',
@@ -471,9 +474,116 @@ const BoxWrapper = styled(Box)(() => ({
         }
     }
 }))
+const MainContentBox = styled(Box)({
+    position: 'relative',
+    '.dining-privee': {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    '.rating-star': {
+        display: 'flex',
+        alignItems: 'center',
+        fontSize: '14px !important',
+        lineHeight: '17px !important',
+        color: '#FBFBFB'
+
+    },
+    '.title': {
+        color: '#C6A87D',
+        fontWeight: '250',
+        fontSize: '16px',
+        lineHeight: '19px',
+        fontFamily: 'Proxima Nova Alt',
+    },
+    '.saff-parent': {
+        padding: '16px',
+        width: 'auto',
+        height: 'auto',
+        backgroundColor: '#101418',
+    },
+    '.main-chaf-image': {
+        height: '307px',
+        objectFit: 'cover',
+        width: '100%'
+    },
+    '.sub-box': {
+        position: 'absolute',
+        backgroundColor: '#101418',
+        width: '100%',
+        top: '0px', left: '0px'
+    },
+    '.top-box': {
+        fontFamily: 'Proxima Nova Alt',
+        fontWeight: '300',
+        fontSize: '12px',
+        lineHeight: '15px',
+        padding: '1px 12px',
+        textAlign: 'right',
+        letterSpacing: '0.02em',
+        color: '#C6A87D',
+        display: 'flex',
+        justifyContent: 'end',
+        alignItems: 'center'
+    },
+    '.description': {
+        fontSize: '20px',
+        fontWeight: '400',
+        lineHeight: '24px',
+        fontFamily: 'Bon Vivant',
+        color: '#FBFBFB'
+    },
+    '.sub-description': {
+        fontSize: '14px',
+        lignHeight: '17px',
+        fontWeight: '300',
+        color: '#FBFBFB'
+    },
+    '.trending-icon': {
+        width: '16px',
+        height: '16px',
+        paddingRight: '5px'
+    },
+
+    "@media (min-width: 1px) and (max-width:1024px)": {
+        '.sub-description': {
+            fontSize: '12px',
+        },
+        '.saff-parent': {
+            padding: '14px 8px'
+        },
+    },
+    "@media (min-width: 320px) and (max-width:1024px)": {
+        '.main-chaf-image': {
+            height: '220px',
+            objectFit: 'cover',
+            width: '100%'
+        },
+        '.saff-parent': {
+            padding: '16px',
+            width: 'auto',
+            height: 'auto',
+            backgroundColor: '#101418',
+        },
+        '.sub-box': {
+            width: '100%',
+        },
+        '.top-box': {
+            fontFamily: 'Proxima Nova',
+            fontWeight: '300',
+            fontSize: '12px',
+            lineHeight: '15px',
+            padding: '1px 12px',
+            textAlign: 'right',
+            letterSpacing: '0.02em',
+            color: '#C6A87D',
+        }
+    }
+
+})
 const PriveePage = () => {
 
-    const {priveeData} = useContext(PriveeContext);
+    const {data} = useContext(CmsContext);
 
     const [search, setSearch] = useState(false);
 
@@ -521,7 +631,7 @@ const PriveePage = () => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(priveeData) &&
+                    !_.isEmpty(data) &&
                     <>
                         <Navbar isColor={true} heading="Privee"/>
                         <MainBoxContent>
@@ -546,10 +656,10 @@ const PriveePage = () => {
                                         {/*<video autoPlay muted loop className='video' className="home-banner-video">*/}
                                         {/*    <source src={priveeVideo} type="video/mp4"/>*/}
                                         {/*</video>*/}
-                                        <img src={priveeData.header.image} className="video home-banner-video"/>
+                                        <img src={data.privee.header.image} className="video home-banner-video"/>
                                     </Box>
                                     <Box className="arrows">
-                                        <Typography className="home-text">{priveeData.header.title}</Typography>
+                                        <Typography className="home-text">{data.privee.header.title}</Typography>
                                         <img src={DownArrow} alt="down" className="down-arrow-op"/>
                                         <img src={DownArrow} alt="down" className="down-arrow"/>
                                     </Box>
@@ -557,10 +667,10 @@ const PriveePage = () => {
                             </Box>
                         </Box>
                         <Box className="how-work">
-                            <Typography className="how-work-heading">{priveeData.work.title}</Typography>
+                            <Typography className="how-work-heading">{data.privee.work.title}</Typography>
                             <Box className="how-steps">
                                 {
-                                    priveeData.work.contents.map((item) => {
+                                    data.privee.work.contents.map((item) => {
                                         return (
                                             <Box className="step-1">
                                                 <Typography className="step-1-heading">{item.text}</Typography>
@@ -576,12 +686,12 @@ const PriveePage = () => {
                             <Box className="container-fluid px-0">
                                 <Box className="privee-container m-0">
                                     <Box className="px-0">
-                                        <img src={priveeData.book_an_experience.image} alt=""
+                                        <img src={data.privee.book_an_experience.image} alt=""
                                              className="privee-ex-img"/>
                                     </Box>
                                     <Box className="px-last">
                                         <Typography
-                                            className="exp-heading">{priveeData.experiences.title}</Typography>
+                                            className="exp-heading">{data.privee.experiences.title}</Typography>
                                         <Formik
                                             initialValues={{
                                                 city: 'Mumbai',
@@ -815,30 +925,30 @@ const PriveePage = () => {
                                 </Box>
                             </Box>
                         </Box>
-                        <ExperienceCarousel title={priveeData.experiences.title}/>
+                        <ExperienceCarousel title={data.privee.experiences.title}/>
                         <Box className="available-experiences mobile-view">
-                            <Typography className="chef-header">{priveeData.experiences.title}</Typography>
+                            <Typography className="chef-header">{data.privee.experiences.title}</Typography>
                             <Grid container spacing={2}>
-                                <Grid item xl={4} md={4} sm={6} xs={12}>
-                                    <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'}
-                                                           subDescription={'Starting from ₹5000 per diner'}/>
-                                </Grid>
-                                <Grid item xl={4} md={4} sm={6} xs={12}>
-                                    <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'}
-                                                           subDescription={'Starting from ₹5000 per diner'}
-                                                           isLabelShow={true}/>
-                                </Grid>
+                                {data.privee.experiences.experiences.results.map((item) => {
+                                    return (
+                                        <Grid item xl={4} md={4} sm={6} xs={12}>
+                                            <AvlExperienceCarousel
+                                                image={item.user.picture}
+                                                title={item.title} description={`by ${item.user.name}`}/>
+                                        </Grid>
+                                    )
+                                })}
                             </Grid>
                             <button type="submit" className="exp-btn">View More</button>
                         </Box>
                         <PriveeRatingCarousel backgroundColor={'#DCD7CB'} isFontSize={true}/>
-                        <PriveeComponentSlider title={priveeData.private_dining.title}/>
+                        <PriveeComponentSlider title={data.privee.private_dining.title}/>
                         <Box className="frequently-questions-box">
                             <PriveeQuestions/>
                         </Box>
-                        <TemptedYet title={priveeData.privee_footer.title}
-                                    buttonText={priveeData.privee_footer.button_text} isTempted={true}/>
-                        <NeedHelp/>
+                        <TemptedYet title={data.privee.privee_footer.title}
+                                    buttonText={data.privee.privee_footer.button_text} isTempted={true}/>
+                        {/*<NeedHelp/>*/}
                         <Footer/>
                         <FooterEnd/>
                     </>

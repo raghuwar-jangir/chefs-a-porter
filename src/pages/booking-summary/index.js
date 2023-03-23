@@ -26,6 +26,8 @@ import support from "../../assets/images/support.png";
 import "../../assets/styles/fontStyle.css";
 import CloseIcon from '@mui/icons-material/Close';
 import '../../assets/styles/fontStyle.css';
+import output from "../../assets/images/output.png";
+import download from "../../assets/images/download.png";
 
 const BookingSummary = () => {
   const validationSchema = Yup.object().shape({
@@ -52,35 +54,40 @@ const BookingSummary = () => {
       console.log(values);
       setSubmitting(false);
     }
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const addonsCardDetail = [
-    {
-      image: add1,
-      title: "Table",
-    },
-    {
-      image: add2,
-      title: "Flowers",
-    },
-    {
-      image: add3,
-      title: "Cake",
-    },
-    {
-      image: add4,
-      title: "Artisanal Cheese",
-    },
-    {
-      image: add5,
-      title: "Gluten free bread",
-    },
-    {
-      image: add6,
-      title: "Sauces",
-    },
-  ];
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const [bookingSuccessOpen, setBookingSuccessOpen] = React.useState(false);
+    const handleBookingSuccessOpen = () => setBookingSuccessOpen(true);
+    const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
+
+    const addonsCardDetail = [
+        {
+            image: add1,
+            title: "Table",
+        },
+        {
+            image: add2,
+            title: "Flowers",
+        },
+        {
+            image: add3,
+            title: "Cake",
+        },
+        {
+            image: add4,
+            title: "Artisanal Cheese",
+        },
+        {
+            image: add5,
+            title: "Gluten free bread",
+        },
+        {
+            image: add6,
+            title: "Sauces",
+        },
+    ];
 
   const BoxWrapper = styled(Box)(() => ({
     background: "#080B0E",
@@ -566,223 +573,480 @@ const BookingSummary = () => {
       color:'#C6A87D !important'
   },
 
-    "@media (min-width: 1px) and (max-width:425px)": {
-      ".supper-gallery .container-fluid": {
-        padding: "20px 10px",
-      },
-      ".header-club": {
-        padding: "0px 110px",
-        display: "flex",
-      },
-      ".addones-mobile-heading": {
-        padding: "8px 0px !important",
-        fontSize: "24px",
-        textAlign: "center",
-        color: "#FBFBFB !important",
-        fontFamily: "Bon Vivant",
-      },
-      ".addons-title": {
-        fontSize: "28px",
-        lineHeight: "30px",
-      },
-      ".per-dinner": {
-        padding: "20px 0px",
-      },
-      ".table-details": {
-        fontSize: "12px",
-        lineHeight: "15px",
-      },
-      ".grand-total": {
-        fontSize: "16px",
-        lineHeight: "20px",
-      },
-      ".ex-heading": {
-        fontSize: "16px",
-        lineHeight: "20px",
-        letterSpacing: "0.04em",
-      },
-      ".event-title": {
-        fontSize: "14px",
-        lineHeight: "18px",
-        letterSpacing: "0.04em",
-      },
-      ".event-link": {
-        fontSize: "14px",
-        lineHeight: "18px",
-        fontWeight:700,
-        fontFamily:'ProximaNovaA-Regular'
-      },
-      ".rating-star": {
-        fontSize: "14px",
-        lineHeight: "18px",
-      },
-      ".submit-req": {
-        fontSize: "16px",
-        lineHeight: "18px",
-      },
-    },
-    "@media (min-width: 371px) and (max-width:400px)": {
-      ".header-club": {
-        padding: "0px 150px",
-      },
-    },
-    "@media (min-width: 425px) and (max-width:450px)": {
-      ".header-club": {
-        padding: "0px 170px",
-      },
-    },
-    "@media (min-width: 426px) and (max-width:768px)": {
-      ".supper-gallery .container-fluid": {
-        padding: "40px 80px",
-      },
-      ".header-club": {
-        display: "flex",
-      },
-    },
-    "@media (min-width: 320px) and (max-width:767px)": {
-      ".addones-mobile-heading": {
-        padding: "8px 0px !important",
-        fontSize: "24px",
-        textAlign: "center",
-        color: "#FBFBFB",
-        fontFamily: "Bon Vivant",
-      },
-    },
-    "@media(min-width:600px) and (max-width: 768px)": {
-      ".header-club": {
-        display: "flex",
-        background: "#DCD7CB",
-      },
-      ".bm-burger-bars": {
-        background: "#080B0E !important",
-      },
-    },
-    ".addones-mobile-heading": {
-      fontSize: "24px",
-      paddingLeft: "280px",
-      textAlign: "center",
-      color: "#080B0E",
-      fontFamily: "Bon Vivant",
-    },
-  }));
+        "@media (min-width: 1px) and (max-width:425px)": {
+            ".supper-gallery .container-fluid": {
+                padding: "20px 10px",
+            },
+            ".header-club": {
+                padding: "0px 110px",
+                display: "flex",
+            },
+            ".addones-mobile-heading": {
+                padding: "8px 0px !important",
+                fontSize: "24px",
+                textAlign: "center",
+                color: "#FBFBFB !important",
+                fontFamily: "Bon Vivant",
+            },
+            ".addons-title": {
+                fontSize: "28px",
+                lineHeight: "30px",
+            },
+            ".per-dinner": {
+                padding: "20px 0px",
+            },
+            ".table-details": {
+                fontSize: "12px",
+                lineHeight: "15px",
+            },
+            ".grand-total": {
+                fontSize: "16px",
+                lineHeight: "20px",
+            },
+            ".ex-heading": {
+                fontSize: "16px",
+                lineHeight: "20px",
+                letterSpacing: "0.04em",
+            },
+            ".event-title": {
+                fontSize: "14px",
+                lineHeight: "18px",
+                letterSpacing: "0.04em",
+            },
+            ".event-link": {
+                fontSize: "14px",
+                lineHeight: "18px",
+                fontWeight: 700,
+                fontFamily: 'ProximaNovaA-Regular'
+            },
+            ".rating-star": {
+                fontSize: "14px",
+                lineHeight: "18px",
+            },
+            ".submit-req": {
+                fontSize: "16px",
+                lineHeight: "18px",
+            },
+        },
+        "@media (min-width: 371px) and (max-width:400px)": {
+            ".header-club": {
+                padding: "0px 150px",
+            },
+        },
+        "@media (min-width: 425px) and (max-width:450px)": {
+            ".header-club": {
+                padding: "0px 170px",
+            },
+        },
+        "@media (min-width: 426px) and (max-width:768px)": {
+            ".supper-gallery .container-fluid": {
+                padding: "40px 80px",
+            },
+            ".header-club": {
+                display: "flex",
+            },
+        },
+        "@media (min-width: 320px) and (max-width:767px)": {
+            ".addones-mobile-heading": {
+                padding: "8px 0px !important",
+                fontSize: "24px",
+                textAlign: "center",
+                color: "#FBFBFB",
+                fontFamily: "Bon Vivant",
+            },
+        },
+        "@media(min-width:600px) and (max-width: 768px)": {
+            ".header-club": {
+                display: "flex",
+                background: "#DCD7CB",
+            },
+            ".bm-burger-bars": {
+                background: "#080B0E !important",
+            },
+        },
+        ".addones-mobile-heading": {
+            fontSize: "24px",
+            paddingLeft: "280px",
+            textAlign: "center",
+            color: "#080B0E",
+            fontFamily: "Bon Vivant",
+        },
+    }));
+    const style = {
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '100%',
+        zIndex: '12000',
+        height: '100%',
+        overflowX: 'hidden',
+        overflowY: 'auto',
+        outline: '0',
+        '.modal-content': {
+            padding: '40px 20px',
+            backgroundColor: '#101418!important',
+            position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+            width: '255px',
+            pointerEvents: 'auto',
+            top: '8%',
+            left: '42.5%',
+            backgroundClip: 'padding-box',
+            outline: '0',
+            boxShadow: '0px 8px 12px rgb(0 0 0 / 16%)'
+        },
+        '.modal-header': {
+            display: 'flex',
+            padding: '0px',
+            marginBottom: '30px',
+            borderBottom: 'none',
+            position: 'relative',
+            justifyContent: 'flex-start',
+            flexShrink: '0',
+            alignItems: 'center'
+        },
+        '.form-arrow': {
+            color: '#FBFBFB !important',
+            fontSize: '20px',
+            marginRight: '16px',
+        },
+        '.modal-title': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: "normal",
+            fontWeight: "600",
+            fontSize: "20px",
+            lineHeight: "24px",
+            color: "#FBFBFB",
+        },
+        '.close': {
+            position: 'absolute',
+            padding: ' 0px',
+            border: ' 0px',
+            background: 'transparent',
+            right: '0px'
+        },
+        '.close-icon': {
+            fontSize: '28px',
+            marginRight: '0px',
+            color: '#FBFBFB'
+        },
+        '.modal-body': {
+            padding: '0px',
+            position: 'relative',
+            flex: '1 1 auto'
+        },
+        '.container-fluid': {
+            width: '100%',
+            marginRight: 'auto',
+            marginLeft: 'auto'
+        },
+        '.form-field': {
+            padding: '0px 0px 56px'
+        },
+        '.form-label': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: "normal",
+            fontWeight: "600",
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#FBFBFB",
+            marginBottom: '8px'
+        },
+        ".form-control": {
+            outline: 'none',
+            paddingLeft: "10px",
+            flex: "1",
+            backgroundColor: "transparent",
+            border: "0px",
+            borderBottom: "0.25px solid #FBFBFB",
+            borderRadius: "0px",
+            // paddingLeft: "0px",
+            paddingRight: "0px",
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: "300",
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#FBFBFB",
+            display: "block",
+            width: "95%",
+            padding: "0.780rem 0.75rem 0.375rem 0px",
+            transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
+        },
+        ".btn-primary": {
+            border: 'none !important',
+            background: "#C6A87D",
+            width: '100% !important',
+            padding: "14.5px 10px",
+            fontSize: "20px",
+            fontWeight: 600,
+            lineHeight: "24px",
+            borderRadius: "0px",
+            color: "#080B0E",
+            textTransform: "capitalize",
+            fontFamily: 'ProximaNovaA-Regular',
+            marginTop: "0px",
+        },
+    }
+    const styleOtp = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 800,
+        height: 841,
+        boxShadow: 24,
+        '.modal-content': {
+            backgroundColor: '#101418!important',
+            boxShadow: '0px 8px 12px rgb(0 0 0 / 16%)',
+            padding: '40px 20px',
+            display: 'flex',
+            flexDirection: 'column',
+            pointerEvents: 'auto',
+            backgroundClip: 'paddingBox',
+            outline: '0'
+        },
+        ".close": {
+            border: 'none !important',
+            background: "transparent",
+            borderRadius: "0px",
+            color: "#FBFBFB",
+            cursor: 'pointer'
+        },
+        '.modal-header': {
+            padding: '0px',
+            // marginBottom: '30px',
+            borderBottom: 'none',
+            display: 'flex',
+            position: 'relative',
+            justifyContent: 'flex-end',
+        },
+        '.booking-details': {
+            textAlign: 'center'
+        },
+        '.hr': {
+            color: 'rgba(255, 255, 255, 0.6)',
+            opacity: '1',
+            borderTop: '1px solid'
+        },
+        '.booking-details h3': {
+            fontFamily: 'Bon Vivant',
+            fontStyle: 'normal',
+            fontWeight: '700',
+            fontSize: '20px',
+            lineHeight: '25px',
+            color: '#FBFBFB',
+            marginBottom: '16px',
+            marginTop: '0px',
+        },
+        '.booking-details span': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '20px',
+            lineHeight: '24px',
+            color: '#FBFBFB',
+            marginBottom: '16px',
+            display: 'block'
+        },
+        '.booking-details p': {
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '16px',
+            lineHeight: '20px',
+            color: '#FBFBFB',
+            textAlign: 'center',
+            marginBottom: '16px',
+            marginTop: '0px',
+        },
+        '.booking-details a': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#C6A87D',
+            textAlign: 'center',
+            display: 'block',
+            marginBottom: '16px',
+        },
+        '.booking-details a img': {
+            width: '18px',
+            height: '18px',
+            objectFit: 'contain',
+            marginRight: '8px',
+            verticalAlign: 'text-top',
+        },
+        '.booking-details button': {
+            border: '0.5px solid #C6A87D',
+            padding: '16px',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '14px',
+            lineHeight: '17px',
+            color: '#FBFBFB',
+            background: 'transparent',
+            cursor: 'pointer'
+        },
+        '.booking-details button img': {
+            width: '16px',
+            height: '16px',
+            marginRight: '8px',
+            filter: 'brightness(100)',
+            verticalAlign: 'text-top',
+        },
+        '.output': {
+            width: '56px',
+            height: '56px',
+            objectFit: 'contain',
+            marginBottom: '16px',
+        },
+        '.bookingBox': {
+            marginTop: '40px',
+        },
+        '.booking-summary': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '20px',
+            lineHeight: '24px',
+            color: '#FBFBFB',
+            marginBottom: '16px',
+            marginTop: '0px'
+        },
+        '.chef-edit': {
+            display: 'flex',
+            placeItems: 'center',
+            position: 'relative',
+            marginBottom: '20px',
+        },
+        '.chef-edit img': {
+            width: '48px',
+            height: '48px',
+            objectFit: 'cover',
+            borderRadius: '43px',
+        },
+        '.chef-edit h5': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '20px',
+            lineHeight: '24px',
+            color: '#FBFBFB',
+            marginLeft: '10px',
+        },
+        '.chef-profile div': {
+            marginBottom: '16px',
+            display: 'flex',
+        },
+        '.grid-box': {
+            borderLeft: '10px solid #101418',
+            background: '#080B0E',
+            padding: '16px',
+        },
+        '.chef-profile img': {
+            height: '16px',
+            width: '16px',
+            objectFit: 'contain',
+            marginRight: '10px',
+        },
+        '.chef-profile span': {
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#FBFBFB',
+        },
+        '.experience-breakup': {
+            border: '0.5px solid #DCD7CB',
+            padding: '16px 16px 0px',
+        },
+        '.experience-breakup:last-child': {
+            marginTop: '16px',
+        },
+        '.ex-details': {
+            position: 'relative'
+        },
+        '.ex-details h5': {
+            fontFamily: 'Bon Vivant',
+            fontStyle: 'normal',
+            fontWeight: '700',
+            fontSize: '20px',
+            lineHeight: '25px',
+            color: '#FBFBFB',
+            marginBottom: '10px',
+            marginTop: '0px'
+        },
+        '.i': {
+            position: 'absolute',
+            right: '0px',
+            top: '0px',
+            color: '#FBFBFB',
+            '-webkit-text-stroke': '1px',
+        },
+        '.table-box span': {
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#FBFBFB',
+            padding: '0px 0px 16px'
+        },
+        '.price': {
+            fontFamily: 'ProximaNovaA-Regular !important',
+            fontStyle: 'normal !important',
+            fontWeight: '600 !important',
+            fontSize: '14px !important',
+            lineHeight: '17px !important',
+            color: '#FBFBFB',
+            textAlign: 'right !important',
+            padding: '0px 0px 16px'
+        },
+        ".table": {
+            marginTop: "20px",
+            marginBottom: "0px",
+        },
+        ".table:last-child": {
+            marginTop: "0px",
+            marginBottom: "0px",
+        },
+        ".table-box": {
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+        },
+        ".border": {
+            borderTop: "1px solid rgba(255, 255, 255, 0.6)",
+        },
+        '.grand-total': {
+            padding: '16px 0px !important'
+        },
+        '.tax': {
+            textAlign: 'left !important',
+            fontFamily: 'Proxima Nova Alt !important',
+            fontStyle: 'normal !important ',
+            fontWeight: '300 !important',
+            fontSize: '14px !important',
+            lineHeight: '17px !important',
+            color: '#FBFBFB',
+        },
 
-  const style={
-    position: 'fixed',
-    top: '0',
-    left: '0',
-    width: '100%',
-    zIndex:'12000',
-    height: '100%',
-    overflowX: 'hidden',
-    overflowY: 'auto',
-    outline: '0',
-    '.modal-content':{
-      padding:'40px 20px',
-      backgroundColor:'#101418!important',
-      position: 'relative',
-  display: 'flex',
-  flexDirection: 'column',
-  width: '255px',
-  pointerEvents: 'auto',
-  top:'8%',
-  left:'42.5%',
-  backgroundClip: 'padding-box',
-  outline: '0',
-  boxShadow:'0px 8px 12px rgb(0 0 0 / 16%)'
-      },
-      '.modal-header':{
-        display:'flex',
-        padding: '0px',
-    marginBottom: '30px',
-    borderBottom: 'none',
-    position:'relative',
-    justifyContent: 'flex-start',
-    flexShrink:'0',
-    alignItems:'center'
-      },
-      '.form-arrow':{
-        color: '#FBFBFB !important',
-    fontSize: '20px',
-    marginRight: '16px',
-    },
-    '.modal-title':{
-      fontFamily: 'ProximaNovaA-Regular',
-      fontStyle: "normal",
-      fontWeight: "600",
-      fontSize: "20px",
-      lineHeight: "24px",
-      color: "#FBFBFB",
-    },
-    '.close':{
-      position:'absolute',
-      padding:' 0px',
-    border:' 0px',
-    background: 'transparent',
-      right:'0px'
-    },
-    '.close-icon':{
-      fontSize:'28px',
-      marginRight:'0px',
-      color:'#FBFBFB'
-    },
-    '.modal-body':{
-      padding:'0px',
-      position:'relative',
-      flex:'1 1 auto'
-    },
-    '.container-fluid':{
-      width:'100%',
-      marginRight:'auto',
-      marginLeft:'auto'
-    },
-    '.form-field':{
-      padding:'0px 0px 56px'
-   },
-   '.form-label':{
-    fontFamily: 'ProximaNovaA-Regular',
-  fontStyle: "normal",
-  fontWeight: "600",
-  fontSize: "16px",
-  lineHeight: "19px",
-  color: "#FBFBFB",
-  marginBottom:'8px'
-},
-".form-control": {
-  outline:'none',
-  paddingLeft: "10px",
-  flex: "1",
-  backgroundColor: "transparent",
-  border: "0px",
-  borderBottom: "0.25px solid #FBFBFB",
-  borderRadius: "0px",
-  // paddingLeft: "0px",
-  paddingRight: "0px",
-  fontFamily: "Proxima Nova Alt",
-  fontStyle: "normal",
-  fontWeight: "300",
-  fontSize: "16px",
-  lineHeight: "19px",
-  color: "#FBFBFB",
-  display: "block",
-  width: "95%",
-  padding: "0.780rem 0.75rem 0.375rem 0px",
-  transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
-  },
-  ".btn-primary": {
-    border: 'none !important',
-    background: "#C6A87D",
-    width: '100% !important',
-    padding:"14.5px 10px",
-    fontSize: "20px",
-    fontWeight: 600,
-    lineHeight: "24px",
-    borderRadius: "0px",
-    color: "#080B0E",
-    textTransform: "capitalize",
-    fontFamily: 'ProximaNovaA-Regular',
-    marginTop: "0px",
-},
-}
+
+        "@media (min-width: 426px) and (max-width:768px)": {
+            width: '500px'
+        },
+        "@media (min-width: 1px) and (max-width:400px)": {
+            width: '320px !important',
+        },
+        "@media (min-width: 400px) and (max-width:425px)": {
+            width: '400px !important',
+        },
+    };
 
     return (
         <React.Fragment>
@@ -900,198 +1164,198 @@ const BookingSummary = () => {
                             +91{" "}
                             <KeyboardArrowDownIcon className="drop-down-2" />
                           </span>
-                          <input
-                            placeholder="10 digit number"
-                            className="form-control"
-                           type="text"
-                           id="number"
-                            name="number"
-                          />
-                        </Box>
-                        {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
-                      </Box>
-                    </Box>
-                    <Box className="booking-box">
-                    <Box className="contact">
-                      <label className="contact-number" for="">
-                        Email{" "}
-                      </label>
-                      <Box className="form-group">
-                      <input
-                        type="email"
-                        name=""
-                        id=""
-                        placeholder="Kachwallasana@gmail.com"
-                        class="form-control"
-                      />
-                      </Box>
-                    </Box>
-                    </Box>
-                    <Box className="booking-box">
-                      <Box className="chef-profile">
-                        <Box className="chef-profile-box">
-                          <img className="chef-profile-logo" src={done} />
-                          <Typography className="chef-profile-dis">
-                            An email confirmation has been sent to
-                            kachwallsana@gmail.com <br />
-                            and SMS sent to 23456745
-                          </Typography>
-                        </Box>
-                        <Box className="chef-profile-box">
-                          <img className="chef-profile-logo" src={support} />
-                          <Typography className="chef-profile-dis">
-                            Our team and Chef will get in touch with you to
-                            discuss menu <br />
-                            (allergen+protein info), venue, set up and pricing
-                          </Typography>
-                        </Box>
-                      </Box>
-                    </Box>
-                    <Box className="booking-box">
-                      <Box className="exp-info-imp">
-                        <Typography className="exp-info-heading">
-                          Cancellation Policy
-                        </Typography>
-                        <KeyboardArrowDownIcon className="drop-down" />
-                        <Box className="contact">
-                          <Box className="form-check">
-                          <Checkbox className="input-check" defaultChecked/>
-                            <label
-                              className="form-check-label"
-                              for="flexCheckDefault"
-                            >
-                              I agree to cancellation and refund policy
-                            </label>
-                          </Box>
-                        </Box>
-                        <Typography className="policy-link">
-                          View Cancellation Policy
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </Grid>
-                  <Grid
-                    xl={5}
-                    lg={5}
-                    xs={5}
-                    md={5}
-                    sm={12}
-                    xs={12}
-                    className="cust-details dinner-box"
-                  >
-                    <Box className="per-dinner adsss">
-                      <Box className="event-div">
-                        <img src={sGallery} alt="" className="per-dinner-img" />
-                        <Box sx={{ marginLeft: "12px" }}>
-                          <Typography className="event-title">
-                            The Big Fat Parsi Blowout
-                          </Typography>
-                          <Typography className="event-subtitle">
-                            Curated by{" "}
-                            <a href="#" className="event-link">
-                              Chef Mako
-                            </a>
-                          </Typography>
-                          <Typography className="rating-star">
-                            <StarIcon
-                              sx={{
-                                color: "#C6A87D",
-                                height: "24px",
-                                width: "24px",
-                              }}
-                            />{" "}
-                            <Typography className="rating-star">4.7</Typography>
-                          </Typography>
-                        </Box>
-                      </Box>
-                      <Box className="experience-breakup">
-                        <Box className="ex-details">
-                          <Typography className="ex-heading">
-                            Experience Breakup
-                          </Typography>
-                          <Typography className="ex-detail">
-                            This is an estimate, final price will be <br />
-                            communicated on call
-                          </Typography>
-                          <ExpandMoreIcon className="ex-icon" />
-                        </Box>
-                        <Box className="table table-borderless">
-                          <Box className="table-box">
-                            <Typography className="table-details">
-                              Food
-                            </Typography>
-                            <Typography className="table-details">
-                              ₹ 2,500
-                            </Typography>
-                          </Box>
-                          <Box className="table-box">
-                            <Typography className="table-details">
-                              Service Charge
-                            </Typography>
-                            <Typography className="table-details">
-                              ₹ 2,500
-                            </Typography>
-                          </Box>
-                          <Box className="table-box">
-                            <Typography className="table-details">
-                              Tax
-                            </Typography>
-                            <Typography className="table-details">
-                              ₹ 2,500
-                            </Typography>
-                          </Box>
-                          <Box className="table-box">
-                            <Typography className="table-details">
-                              Venue
-                            </Typography>
-                            <Typography className="table-details">
-                              ₹ 2,500
-                            </Typography>
-                          </Box>
-                          <Box className="table-box">
-                            <Box className="table-details">
-                              Additional Courses +2
+                                                    <input
+                                                        placeholder="10 digit number"
+                                                        className="form-control"
+                                                        type="text"
+                                                        id="number"
+                                                        name="number"
+                                                    />
+                                                </Box>
+                                                {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
+                                            </Box>
+                                        </Box>
+                                        <Box className="booking-box">
+                                            <Box className="contact">
+                                                <label className="contact-number" for="">
+                                                    Email{" "}
+                                                </label>
+                                                <Box className="form-group">
+                                                    <input
+                                                        type="email"
+                                                        name=""
+                                                        id=""
+                                                        placeholder="Kachwallasana@gmail.com"
+                                                        class="form-control"
+                                                    />
+                                                </Box>
+                                            </Box>
+                                        </Box>
+                                        <Box className="booking-box">
+                                            <Box className="chef-profile">
+                                                <Box className="chef-profile-box">
+                                                    <img className="chef-profile-logo" src={done}/>
+                                                    <Typography className="chef-profile-dis">
+                                                        An email confirmation has been sent to
+                                                        kachwallsana@gmail.com <br/>
+                                                        and SMS sent to 23456745
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="chef-profile-box">
+                                                    <img className="chef-profile-logo" src={support}/>
+                                                    <Typography className="chef-profile-dis">
+                                                        Our team and Chef will get in touch with you to
+                                                        discuss menu <br/>
+                                                        (allergen+protein info), venue, set up and pricing
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                        </Box>
+                                        <Box className="booking-box">
+                                            <Box className="exp-info-imp">
+                                                <Typography className="exp-info-heading">
+                                                    Cancellation Policy
+                                                </Typography>
+                                                <KeyboardArrowDownIcon className="drop-down"/>
+                                                <Box className="contact">
+                                                    <Box className="form-check">
+                                                        <Checkbox className="input-check" defaultChecked/>
+                                                        <label
+                                                            className="form-check-label"
+                                                            for="flexCheckDefault"
+                                                        >
+                                                            I agree to cancellation and refund policy
+                                                        </label>
+                                                    </Box>
+                                                </Box>
+                                                <Typography className="policy-link">
+                                                    View Cancellation Policy
+                                                </Typography>
+                                            </Box>
+                                        </Box>
+                                    </Grid>
+                                    <Grid
+                                        xl={5}
+                                        lg={5}
+                                        xs={5}
+                                        md={5}
+                                        sm={12}
+                                        xs={12}
+                                        className="cust-details dinner-box"
+                                    >
+                                        <Box className="per-dinner adsss">
+                                            <Box className="event-div">
+                                                <img src={sGallery} alt="" className="per-dinner-img"/>
+                                                <Box sx={{marginLeft: "12px"}}>
+                                                    <Typography className="event-title">
+                                                        The Big Fat Parsi Blowout
+                                                    </Typography>
+                                                    <Typography className="event-subtitle">
+                                                        Curated by{" "}
+                                                        <a href="#" className="event-link">
+                                                            Chef Mako
+                                                        </a>
+                                                    </Typography>
+                                                    <Typography className="rating-star">
+                                                        <StarIcon
+                                                            sx={{
+                                                                color: "#C6A87D",
+                                                                height: "24px",
+                                                                width: "24px",
+                                                            }}
+                                                        />{" "}
+                                                        <Typography className="rating-star">4.7</Typography>
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                            <Box className="experience-breakup">
+                                                <Box className="ex-details">
+                                                    <Typography className="ex-heading">
+                                                        Experience Breakup
+                                                    </Typography>
+                                                    <Typography className="ex-detail">
+                                                        This is an estimate, final price will be <br/>
+                                                        communicated on call
+                                                    </Typography>
+                                                    <ExpandMoreIcon className="ex-icon"/>
+                                                </Box>
+                                                <Box className="table table-borderless">
+                                                    <Box className="table-box">
+                                                        <Typography className="table-details">
+                                                            Food
+                                                        </Typography>
+                                                        <Typography className="table-details">
+                                                            ₹ 2,500
+                                                        </Typography>
+                                                    </Box>
+                                                    <Box className="table-box">
+                                                        <Typography className="table-details">
+                                                            Service Charge
+                                                        </Typography>
+                                                        <Typography className="table-details">
+                                                            ₹ 2,500
+                                                        </Typography>
+                                                    </Box>
+                                                    <Box className="table-box">
+                                                        <Typography className="table-details">
+                                                            Tax
+                                                        </Typography>
+                                                        <Typography className="table-details">
+                                                            ₹ 2,500
+                                                        </Typography>
+                                                    </Box>
+                                                    <Box className="table-box">
+                                                        <Typography className="table-details">
+                                                            Venue
+                                                        </Typography>
+                                                        <Typography className="table-details">
+                                                            ₹ 2,500
+                                                        </Typography>
+                                                    </Box>
+                                                    <Box className="table-box">
+                                                        <Box className="table-details">
+                                                            Additional Courses +2
+                                                        </Box>
+                                                        <Box className="table-details">₹ 2,500</Box>
+                                                    </Box>
+                                                    <Box className="table-box border">
+                                                        <Typography className=" grand-total table-details">
+                                                            Grand Total
+                                                        </Typography>
+                                                        <Typography className="table-details grand-total">
+                                                            ₹ 2,5000
+                                                        </Typography>
+                                                    </Box>
+                                                    <Box className="tax tax1 table-box">
+                                                        <Typography className="table-details">
+                                                            +Incl Of GST
+                                                        </Typography>
+                                                    </Box>
+                                                    <Box className="tax">
+                                                        <Typography className="table-details">
+                                                            ++1.95% + GST
+                                                        </Typography>
+                                                    </Box>
+                                                </Box>
+                                            </Box>
+                                            <Box className="row viewbreak">
+                                                <Box className="col-lg-12">
+                                                    <button type="submit" className="submit-req" onClick={handleBookingSuccessOpen}>
+                                                        Proceed to pay ₹25,000
+                                                    </button>
+                                                </Box>
+                                                <Typography className="contact-text">
+                                                    Estimate figure, further changes may amend the total
+                                                </Typography>
+                                            </Box>
+                                        </Box>
+                                    </Grid>
+                                </Grid>
                             </Box>
-                            <Box className="table-details">₹ 2,500</Box>
-                          </Box>
-                          <Box className="table-box border">
-                            <Typography className=" grand-total table-details">
-                              Grand Total
-                            </Typography>
-                            <Typography className="table-details grand-total">
-                              ₹ 2,5000
-                            </Typography>
-                          </Box>
-                          <Box className="tax tax1 table-box">
-                            <Typography className="table-details">
-                              +Incl Of GST
-                            </Typography>
-                          </Box>
-                          <Box className="tax">
-                            <Typography className="table-details">
-                              ++1.95% + GST
-                            </Typography>
-                          </Box>
                         </Box>
-                      </Box>
-                      <Box className="row viewbreak">
-                        <Box className="col-lg-12">
-                          <button type="submit" className="submit-req">
-                          Proceed to pay ₹25,000
-                          </button>
-                        </Box>
-                        <Typography className="contact-text">
-                          Estimate figure, further changes may amend the total
-                        </Typography>
-                      </Box>
                     </Box>
-                  </Grid>
-                </Grid>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-        <Modal
+                </Box>
+                <Modal
                     keepMounted
                     open={open}
                     onClose={handleClose}
@@ -1148,20 +1412,163 @@ const BookingSummary = () => {
             {/* <ErrorMessage name="pincode" /> */}
           </Box>
 
-          <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-            Save
-          </button>
-          </Box>
-        </Form>
-      )}
-    </Formik>
-                 </Box>
-              </Box>
-              </Box>
-              </Box>
-              </Modal>
-      </BoxWrapper>
-    </React.Fragment>
-  );
+                                                    <button type="submit" className="btn btn-primary"
+                                                            disabled={isSubmitting}>
+                                                        Save
+                                                    </button>
+                                                </Box>
+                                            </Form>
+                                        )}
+                                    </Formik>
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Modal>
+                <Modal
+                    keepMounted
+                    open={bookingSuccessOpen}
+                    onClose={handleBookingSuccessClose}
+                    aria-labelledby="keep-mounted-modal-title"
+                    aria-describedby="keep-mounted-modal-description"
+                >
+                    <Box sx={styleOtp}>
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <button type="button" data-bs-dismiss="modal" aria-label="Close" className="close"
+                                        onClick={handleBookingSuccessClose}>
+                                    <CloseIcon sx={{fontSize: "25px"}}/></button>
+                            </div>
+                            <div className="modal-body">
+                                <div className="container-fluid">
+                                    <div className="booking-details">
+                                        <img src={output} alt="" className="output"/>
+                                        <h3>Booking Successful</h3>
+                                        <span>Booking ID - 123456</span>
+                                        <p>We look forward to serving you a conscious <br/>dining experience!</p>
+                                        <a href="javascript:void(0);"><img src={download} alt=""/>Download
+                                            Invoice</a>
+                                        <button className="add-cal"><img src={dateGold} alt=""/>Add to
+                                            calender
+                                        </button>
+                                    </div>
+                                    <div className="bookingBox">
+                                        <Grid container className="row booking-sum">
+                                            <Grid item xl={6} lg={6} xs={6} md={6} sm={12} xs={12} className="grid-box">
+                                                <div className="row">
+                                                    <div className="col-lg-12">
+                                                        <h4 className="booking-summary">Booking Summary</h4>
+                                                    </div>
+                                                    <div className="col-lg-12">
+                                                        <div className="chef-edit">
+                                                            <img src={chefImg} alt=""/>
+                                                            <h5>Chef Mako Ravindran</h5>
+                                                        </div>
+                                                        <div className="chef-profile">
+                                                            <div>
+                                                                <img src={dateGold} alt=""/>
+                                                                <span>April 9 | 7:30 PM - 10 PM</span>
+                                                            </div>
+                                                            <div>
+                                                                <img src={location} alt=""/>
+                                                                <span>Silver bar, Downtown</span>
+                                                            </div>
+                                                            <div>
+                                                                <img src={people} alt=""/>
+                                                                <span>6 Diners</span>
+                                                            </div>
+                                                        </div>
+                                                        <hr className="hr"/>
+                                                    </div>
+                                                    <div className="col-lg-12">
+                                                        <div className="chef-profile done-div">
+                                                            <div>
+                                                                <img src={done} alt=""/>
+                                                                <span>An email confirmation has been sent to kachwallsana@gmail.com <br/>and SMS sent to 23456745</span>
+                                                            </div>
+                                                            <div>
+                                                                <img src={support} alt=""/>
+                                                                <span>Our team and Chef will get in touch with you to discuss menu <br/>(allergen+protein info), venue, set up and pricing</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </Grid>
+                                            <Grid item xl={6} lg={6} xs={6} md={6} sm={12} xs={12} className="grid-box">
+                                                <div className="per-dinner">
+                                                    <div className="experience-breakup">
+                                                        <div className="ex-details">
+                                                            <h5>Payment Summary</h5>
+                                                            <KeyboardArrowDownIcon className="i"/>
+                                                        </div>
+                                                        <div className="table table-borderless">
+                                                            <div className="table-box">
+                                                                <span>
+                                                                    Food
+                                                                </span>
+                                                                <span className="price">
+                                                                    ₹ 2,500
+                                                                </span>
+                                                            </div>
+                                                            <div className="table-box">
+                                                                <span>
+                                                                    Service Charge
+                                                                </span>
+                                                                <span className="price">
+                                                                    ₹ 2,500
+                                                                </span>
+                                                            </div>
+                                                            <div className="table-box">
+                                                                <span>
+                                                                   Tax
+                                                                </span>
+                                                                <span className="price">
+                                                                    ₹ 2,500
+                                                                </span>
+                                                            </div>
+                                                            <div className="table-box border">
+                                                                <span className="grand-total">
+                                                                    Grand Total
+                                                                </span>
+                                                                <span className="grand-total">
+                                                                    ₹ 2,5000
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="experience-breakup">
+                                                        <div className="table table-borderless">
+                                                            <div className="table-box">
+                                                                <span>
+                                                                    State Bank of India
+                                                                </span>
+                                                                <span className="price">
+                                                                    ₹ 2,500
+                                                                </span>
+                                                            </div>
+                                                            <div className="table-box">
+                                                                <span className="tax">
+                                                                    04 Nov 11:14 AM
+                                                                </span>
+                                                            </div>
+                                                            <div className="table-box">
+                                                                <span className="tax">
+                                                                   Transaction ID 12434454689
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </Grid>
+                                        </Grid>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Box>
+                </Modal>
+            </BoxWrapper>
+        </React.Fragment>
+    );
 };
 export default BookingSummary;

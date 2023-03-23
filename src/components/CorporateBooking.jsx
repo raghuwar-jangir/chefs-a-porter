@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import {Pagination} from "swiper";
 import '../assets/styles/fontStyle.css';
-import HomeContext from "../context/HomeContext";
+import CmsContext from "../context/CmsContext";
 import * as _ from "lodash";
 
 
@@ -285,7 +285,7 @@ const CorporateBooking = () => {
         },
     });
 
-    const {data} = useContext(HomeContext);
+    const {data} = useContext(CmsContext);
 
     return (
         <React.Fragment>
@@ -295,12 +295,12 @@ const CorporateBooking = () => {
                         !_.isEmpty(data) &&
                         <React.Fragment>
                             <Box>
-                                <Typography className="title">{data.corporate.title}</Typography>
+                                <Typography className="title">{data.home.corporate.title}</Typography>
                             </Box>
                             <Swiper loop={true} modules={[Pagination]} className="mySwiper" grabCursor={true}
                                     pagination={{clickable: true}}>
                                 {
-                                    data.corporate.content.map((item) => {
+                                    data.home.corporate.content.map((item) => {
                                         return (
                                             <SwiperSlide className='carousel-box'>
                                                 <Box className='person-parts'>

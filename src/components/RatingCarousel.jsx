@@ -9,11 +9,11 @@ import {Autoplay, Pagination} from "swiper";
 import {styled} from '@mui/system';
 import * as _ from "lodash";
 import {Rating} from '@mui/material';
-import HomeContext from "../context/HomeContext";
+import CmsContext from "../context/CmsContext";
 
 const RatingCarousel = (props) => {
     const {backgroundColor, isFontSize, details, padding} = props
-    const {data} = useContext(HomeContext);
+    const {data} = useContext(CmsContext);
     const [value, setValue] = useState();
 
     const StyledRating = styled(Rating)({
@@ -200,7 +200,7 @@ const RatingCarousel = (props) => {
                                     clickable: true,
                                 }} modules={[Autoplay, Pagination]} className="mySwiper">
 
-                            {data.reviews.reviews.map((step, index) => (
+                            {data.home.reviews.reviews.map((step, index) => (
                                 <div key={index}>
                                     <SwiperSlide className='main-div'>
                                         <Typography className='mainTitle'>
