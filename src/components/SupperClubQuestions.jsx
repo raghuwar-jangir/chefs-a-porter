@@ -9,12 +9,12 @@ import {Box, styled} from '@mui/material';
 import '../assets/styles/fontStyle.css';
 import * as _ from "lodash";
 import {useContext} from "react";
-import SupperClubContext from "../context/SupperClubContext";
+import CmsContext from "../context/CmsContext";
 
 const SupperClubQuestion = (props) => {
     const {isLightTheme = false, wrapPadding} = props
 
-    const {supperClubData} = useContext(SupperClubContext);
+    const {data} = useContext(CmsContext);
 
     const [expanded, setExpanded] = React.useState(false)
 
@@ -122,13 +122,13 @@ const SupperClubQuestion = (props) => {
         <React.Fragment>
             <WrapperBox>
                 {
-                    !_.isEmpty(supperClubData) &&
+                    !_.isEmpty(data) &&
                     <Box className='WrapperBox'>
                         <Typography className='title-question'>
-                            {supperClubData.faq.title}
+                            {data.supper_club.faq.title}
                         </Typography>
                         {
-                            supperClubData.faq.contents.map((item, index) => {
+                            data.supper_club.faq.contents.map((item, index) => {
                                 return (
                                     // <Box className='parent-accordion'>
                                     <Box className=''>

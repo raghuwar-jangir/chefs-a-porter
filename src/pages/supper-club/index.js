@@ -18,13 +18,14 @@ import NeedHelp from "../../components/NeedHelp";
 import Footer from "../../components/Footer";
 import FooterEnd from "../../components/FooterEndSection";
 import BehindScenesCarousel from "../../components/BehindScenesCarousel";
-import SupperClubContext from "../../context/SupperClubContext";
+import CmsContext from "../../context/CmsContext";
 import * as _ from "lodash";
 import SupperClubQuestion from "../../components/SupperClubQuestions";
 import SupperClubRatingCarousel from "../../components/SupperClubRatingCarousel";
 
 const SupperClub = () => {
-    const {supperClubData} = useContext(SupperClubContext);
+
+    const {data} = useContext(CmsContext);
 
     const MainBox = styled(Box)(() => ({
         '.home-banner': {
@@ -266,17 +267,17 @@ const SupperClub = () => {
     return (
         <React.Fragment>
             {
-                !_.isEmpty(supperClubData) &&
+                !_.isEmpty(data) &&
                 <MainBox>
                     <NavbarComponent/>
                     <Box className="home-banner">
                         <Box className="container-fluid">
                             <Box className="justify-content-center">
                                 <Box id="video_overlays">
-                                    <img src={supperClubData.header.image} className="video home-banner-video"/>
+                                    <img src={data.supper_club.header.image} className="video home-banner-video"/>
                                 </Box>
                                 <Box className="arrows">
-                                    <Typography className="home-text">{supperClubData.header.title}</Typography>
+                                    <Typography className="home-text">{data.supper_club.header.title}</Typography>
                                     <img src={DownArrow} alt="down" className="down-arrow-op"/>
                                     <img src={DownArrow} alt="down" className="down-arrow"/>
                                 </Box>
@@ -287,7 +288,7 @@ const SupperClub = () => {
                         <Box className='upcoming-container'>
                             <Box className='child-upcoming'>
                                 <Typography
-                                    className="upcoming-supper-header">{supperClubData.upcoming_supper_club.title}</Typography>
+                                    className="upcoming-supper-header">{data.supper_club.upcoming_supper_club.title}</Typography>
                             </Box>
                             <Box>
                                 <Tabs
@@ -334,7 +335,7 @@ const SupperClub = () => {
                         <Box className='cooking-box'>
                             <Box className='child-upcoming'>
                                 <Typography
-                                    className="upcoming-supper-header">{supperClubData.cooking.title}</Typography>
+                                    className="upcoming-supper-header">{data.supper_club.cooking.title}</Typography>
                             </Box>
                             <Box>
                                 <Tabs
@@ -374,13 +375,13 @@ const SupperClub = () => {
                     <Box className="join-table">
                         <Box className="table-box">
                             <Box className="table-child">
-                                <img src={supperClubData.expect.image} className="table-img"/>
+                                <img src={data.supper_club.expect.image} className="table-img"/>
                             </Box>
                             <Box className="table-child-2">
-                                <Typography className="join-table-title">{supperClubData.expect.title}</Typography>
+                                <Typography className="join-table-title">{data.supper_club.expect.title}</Typography>
                                 <ul>
                                     {
-                                        supperClubData.expect.content.map((item) => {
+                                        data.supper_club.expect.content.map((item) => {
                                             return (
                                                 <li className="table-li"><Typography className="li-details"><b
                                                     className="li-point">{item.title}</b> - {item.description}
@@ -398,7 +399,7 @@ const SupperClub = () => {
                                           slidesPerView={true} isBackground={true}/>
                     <DiningExperienceCarousel title='Stay in the know' subTitle='@Chefsaporter'/>
                     <SupperClubQuestion isLightTheme={true}/>
-                    <NeedHelp/>
+                    {/*<NeedHelp/>*/}
                     <Footer/>
                     <FooterEnd/>
                 </MainBox>

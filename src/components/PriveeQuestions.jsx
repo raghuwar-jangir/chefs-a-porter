@@ -8,14 +8,14 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import {Box, styled} from '@mui/material';
 import '../assets/styles/fontStyle.css';
 import {useContext} from "react";
-import PriveeContext from "../context/PriveeContext";
+import CmsContext from "../context/CmsContext";
 import * as _ from "lodash";
 
 const PriveeQuestions = ({isLightTheme = false}) => {
 
     const [expanded, setExpanded] = React.useState(false)
 
-    const {priveeData} = useContext(PriveeContext);
+    const {data} = useContext(CmsContext);
 
     const WrapperBox = styled(Box)({
         background: `${isLightTheme ? '#FBFBFB' : "#080B0E"}`,
@@ -118,13 +118,13 @@ const PriveeQuestions = ({isLightTheme = false}) => {
         <React.Fragment>
             <WrapperBox>
                 {
-                    !_.isEmpty(priveeData) &&
+                    !_.isEmpty(data) &&
                     <Box className='WrapperBox'>
                         <Typography className='title-question'>
-                            {priveeData.faq.title}
+                            {data.privee.faq.title}
                         </Typography>
                         {
-                            priveeData.faq.contents.map((item, index) => {
+                            data.privee.faq.contents.map((item, index) => {
                                 return (
                                     // <Box className='parent-accordion'>
                                     <Box className=''>

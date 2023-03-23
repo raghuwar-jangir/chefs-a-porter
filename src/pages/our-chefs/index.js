@@ -6,13 +6,12 @@ import FoodCard from "../../components/FoodCard";
 import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
-import OurChefContext from "../../context/OurChefContext";
+import CmsContext from "../../context/CmsContext";
+import * as _ from "lodash";
 
 const OurChefsPage = () => {
 
-    const {ourChefData} = useContext(OurChefContext)
-
-    console.log("ourChefData====", ourChefData)
+    const {data} = useContext(CmsContext);
 
     const BoxWrapper = styled(Box)(() => ({
         background: '#080B0E',
@@ -87,27 +86,32 @@ const OurChefsPage = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar heading="Our Chefs"/>
-                <Box className="main-parent-box">
-                    <Typography className="main-heading">Our Chefs</Typography>
-                    <Box className="chef-content">
-                        <Privee/>
-                        <Box className='parent-view-button'>
-                            <Button
-                                fullWidth
-                                className='view-more'
-                                variant="contained">
-                                View All Chefs
-                            </Button>
+                {
+                    !_.isEmpty(data) &&
+                    <>
+                        <Navbar heading="Our Chefs"/>
+                        <Box className="main-parent-box">
+                            <Typography className="main-heading">{data.our_chefs.our_chefs.title}</Typography>
+                            <Box className="chef-content">
+                                <Privee/>
+                                <Box className='parent-view-button'>
+                                    <Button
+                                        fullWidth
+                                        className='view-more'
+                                        variant="contained">
+                                        View All Chefs
+                                    </Button>
+                                </Box>
+                            </Box>
+                            <Box className="footer-shadow">
+                            </Box>
                         </Box>
-                    </Box>
-                    <Box className="footer-shadow">
-                    </Box>
-                </Box>
-                <NeedHelp/>
-                <FoodCard/>
-                <Footer/>
-                <FooterEnd/>
+                        {/*<NeedHelp/>*/}
+                        <FoodCard/>
+                        <Footer/>
+                        <FooterEnd/>
+                    </>
+                }
             </BoxWrapper>
         </React.Fragment>
     )

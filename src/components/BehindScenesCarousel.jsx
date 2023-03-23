@@ -10,7 +10,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import supperChef1 from '../assets/images/su-club1.png';
 import supperChef2 from '../assets/images/su-club2.mp4';
 import supperChef3 from '../assets/images/su-club3.png';
-import SupperClubContext from "../context/SupperClubContext";
+import CmsContext from "../context/CmsContext";
 
 const BehindScenesCarousel = (props) => {
 
@@ -26,7 +26,7 @@ const BehindScenesCarousel = (props) => {
         swiperImg
     } = props
 
-    const {supperClubData} = useContext(SupperClubContext);
+    const {data} = useContext(CmsContext);
 
     const BoxWrapper = styled(Box)(() => ({
         backgroundColor: `${isBackground ? '#FBFBFB' : '#DCD7CB'}`,
@@ -117,7 +117,7 @@ const BehindScenesCarousel = (props) => {
             >
                 <Box className="chef-swiper">
                     {
-                        supperClubData.behind_scenes.content.map((item) => {
+                        data.supper_club.behind_scenes.content.map((item) => {
                             return (
                                 <SwiperSlide className="swiper-slide supper-details-box">
                                     <img className='supper-img' src={item.image}/>

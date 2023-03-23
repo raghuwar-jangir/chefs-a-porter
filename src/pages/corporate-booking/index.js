@@ -23,13 +23,13 @@ import ContactUsBox from "../../components/ContactUs";
 import ImageCarousel from "../../components/ImageCarousel";
 import {Link} from "gatsby";
 import '../../assets/styles/fontStyle.css';
-import CorporateBookingContext from "../../context/CorporateBookingContext";
 import * as _ from "lodash";
 import CorporateBookingQuestion from "../../components/CorporateBookingQuestions";
+import CmsContext from "../../context/CmsContext";
 
 const CorporateBooking = () => {
 
-    const {corporateBookingData} = useContext(CorporateBookingContext);
+    const {data} = useContext(CmsContext);
 
     const BoxWrapper = styled(Box)(() => ({
         background: '#FBFBFB',
@@ -359,11 +359,11 @@ const CorporateBooking = () => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(corporateBookingData) &&
+                    !_.isEmpty(data) &&
                     <>
                         <Navbar heading="Corporate Booking"/>
                         <Box className="corporate-b"
-                             sx={{backgroundImage: `linear-gradient(180.32deg, rgba(0, 0, 0, 0) 21.51%, rgba(0, 0, 0, 0.4) 81.02%),url(${corporateBookingData.header.image})`,}}>
+                             sx={{backgroundImage: `linear-gradient(180.32deg, rgba(0, 0, 0, 0) 21.51%, rgba(0, 0, 0, 0.4) 81.02%),url(${data.corporate_booking.header.image})`,}}>
                             <Box className="container">
                                 <Box className="top-10 position-absolute">
                                     <Typography><a href="" className="header-link"><ArrowBackIcon
@@ -372,9 +372,9 @@ const CorporateBooking = () => {
                                 <Box className="position-absolute patron-flex">
                                     <Box>
                                         <Typography
-                                            className="become-heading">{corporateBookingData.header.title}</Typography>
+                                            className="become-heading">{data.corporate_booking.header.title}</Typography>
                                         <Typography
-                                            className="become-detail">{corporateBookingData.header.description}</Typography>
+                                            className="become-detail">{data.corporate_booking.header.description}</Typography>
                                     </Box>
                                     <Box><Typography style={{width: '100%'}}><Link href="/become-partner"
                                                                                    className="apply">Apply</Link></Typography></Box>
@@ -388,7 +388,7 @@ const CorporateBooking = () => {
                                     exclusive
                                     member priviliges</Typography></Box>
                                 {
-                                    corporateBookingData.header.content.map((item) => {
+                                    data.corporate_booking.header.content.map((item) => {
                                         return (
                                             <Grid item xl={4} md={4} xs={12} sx={{paddingRight: '5px'}}
                                                   className="booking-border">
@@ -404,10 +404,10 @@ const CorporateBooking = () => {
                             <Box className="container">
                                 <Box className="col-lg-12">
                                     <Typography
-                                        className="corporate-booking-heading">{corporateBookingData.booked_us.title}</Typography>
+                                        className="corporate-booking-heading">{data.corporate_booking.booked_us.title}</Typography>
                                 </Box>
                                 <Grid container spacing={1} gridTemplateColumns="repeat(12, 1fr)">
-                                    {corporateBookingData.booked_us.content.map((item, index) => (
+                                    {data.corporate_booking.booked_us.content.map((item, index) => (
                                         <Grid key={index} item xl={2} md={2} xs={6} className="img-grid">
                                             <img src={item} className="booked-us-img"/>
                                         </Grid>
@@ -416,14 +416,14 @@ const CorporateBooking = () => {
                             </Box>
                         </Box>
                         <CorporateBookingQuestion isLightTheme={true}/>
-                        <ContactUsBox title={corporateBookingData.contact_us.title}
-                                      description={corporateBookingData.contact_us.description}/>
+                        <ContactUsBox title={data.corporate_booking.contact_us.title}
+                                      description={data.corporate_booking.contact_us.description}/>
                         <Box className="save_booking">
                             <Box className="container">
                                 <Box className="row">
                                     <Box className="save-booking-details">
                                         <img src={trendingUp} className="save-booking-img"
-                                             alt=""/>{corporateBookingData.corporate_bookings_footer.title}
+                                             alt=""/>{data.corporate_booking.corporate_bookings_footer.title}
                                     </Box>
                                 </Box>
                             </Box>

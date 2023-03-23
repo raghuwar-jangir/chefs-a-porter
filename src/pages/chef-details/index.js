@@ -896,7 +896,7 @@ const ChefDetails = (props) => {
                         </Box>
                     </Box>
                 </Modal>
-                <NeedHelp/>
+                {/*<NeedHelp/>*/}
                 <Footer/>
                 <TemptedYet isTempted={true} title={'Tempted yet?'} buttonRText={'Book an Experience'}/>
                 <FooterEnd/>

@@ -9,8 +9,7 @@ import moment from "moment";
 import * as _ from "lodash";
 import {Formik, Form} from "formik";
 import '../assets/styles/fontStyle.css'
-import CmsContext from "../context/HomeContext";
-import HomeContext from "../context/HomeContext";
+import CmsContext from "../context/CmsContext";
 
 const NeedHelp = ({isColor}) => {
 
@@ -74,7 +73,7 @@ const NeedHelp = ({isColor}) => {
             // color: `${ isColor? '#FBFBFB' : '#080B0E' }`,
             paddingBottom: "8px",
             paddingTop: '0px!important',
-            textAlign: 'left'
+            textAlign: 'left !important'
         },
         ".details": {
             fontWeight: '300',
@@ -241,7 +240,7 @@ const NeedHelp = ({isColor}) => {
         },
     }
 
-    const {data} = useContext(HomeContext);
+    const {data} = useContext(CmsContext);
 
     return (
 
@@ -251,16 +250,16 @@ const NeedHelp = ({isColor}) => {
                     !_.isEmpty(data) &&
                     <React.Fragment>
                         <Box md={6} sm={6} xs={12} xl={7}>
-                            <Typography className="main-heading">{data.home_footer.desktop_title}</Typography>
-                            <Typography className="details">{data.home_footer.desktop_description}</Typography>
+                            <Typography className="main-heading">{data.home.home_footer.desktop_title}</Typography>
+                            <Typography className="details">{data.home.home_footer.desktop_description}</Typography>
                         </Box>
                         <Box md={6} sm={6} xs={12} xl={7}>
                             <Button
                                 type="submit"
-                                className="btn" onClick={handleOpen}>{data.home_footer.desktop_button_call}</Button>
+                                className="btn" onClick={handleOpen}>{data.home.home_footer.desktop_button_call}</Button>
                             <Button
                                 type="submit"
-                                className="btn-2">{data.home_footer.desktop_button_email}</Button>
+                                className="btn-2">{data.home.home_footer.desktop_button_email}</Button>
                         </Box>
                         <Modal
                             keepMounted

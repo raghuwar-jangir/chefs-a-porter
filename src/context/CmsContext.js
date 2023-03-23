@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Router, Link, Location} from "@reach/router"
+import {useLocation} from "@reach/router"
+import * as _ from "lodash";
+
 
 const defaultState = {
     data: {},
@@ -12,26 +14,36 @@ const CmsContext = React.createContext(defaultState)
 
 const CmsProvider = (props) => {
 
+    const path = useLocation()
+
     const pathInfo = {
         'about-us': 'about_us',
         'become-a-patron': 'become_patron',
         'contact-us': 'contact_us',
+        'gift-cards':'gift_card',
         '/': 'home',
         'join-chef': 'join_us',
         'our-chefs': 'our_chefs',
         'privee': 'privee',
         'supper-club': 'supper_club',
+        'corporate-booking': 'corporate_booking'
     }
 
-    console.log("====>", location.pathname)
+    const currentPath = path.pathname.split("/")[1];
+    const baseUrl = `https://chefv2.hypervergedemo.site/v1/cms`;
 
-    const [data, setData] = useState(undefined)
+    const emptyUrl = currentPath.startsWith(null) ? currentPath : currentPath + "/"
+
+    const [data, setData] = useState()
+
+
     useEffect(() => {
-        // axios.get(`https://chefv2.hypervergedemo.site/v1/cms/${}/`).then(result => {
-        axios.get("https://chefv2.hypervergedemo.site/v1/cms/home/").then(result => {
+        axios.get(baseUrl + `/${pathInfo[!currentPath ? emptyUrl : currentPath]}/`).then(result => {
             setData(result.data)
         })
-    }, [])
+    }, [currentPath])
+
+    console.log("data====>", data)
 
     const {children} = props
     return (

@@ -16,14 +16,14 @@ import gallery from "../../assets/images/sc-gallery.png";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ImageCarousel from "../../components/ImageCarousel";
 import {Link} from "gatsby";
-import BecomePatronContext from "../../context/BecomePatronContext";
+import CmsContext from "../../context/CmsContext";
 import * as _ from "lodash";
 import BecomeAPatronQuestion from "../../components/BecomeAPatronQuestions";
 
 
 const BecomePartner = () => {
 
-    const {becomePatronData} = useContext(BecomePatronContext);
+    const {data} = useContext(CmsContext);
 
     const BoxWrapper = styled(Box)(() => ({
         background: '#FBFBFB',
@@ -388,7 +388,7 @@ const BecomePartner = () => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(becomePatronData) &&
+                    !_.isEmpty(data) &&
                     <>
                         <Navbar heading="Become a Patron"/>
                         <Box className="corporate-b">
@@ -400,7 +400,7 @@ const BecomePartner = () => {
                                 <Box className="position-absolute patron-flex">
                                     <Box>
                                         <Typography
-                                            className="become-heading">{becomePatronData.become_patron.title}</Typography>
+                                            className="become-heading">{data.become_patron.become_patron.title}</Typography>
                                         <Typography className="become-detail">Check out the benifits our patron
                                             recieve </Typography>
                                     </Box>
@@ -412,10 +412,10 @@ const BecomePartner = () => {
                         <ImageCarousel/>
                         <Box className="big_dis">
                             <Box> <Typography
-                                className="booking-heading">{becomePatronData.benifits.description}</Typography></Box>
+                                className="booking-heading">{data.become_patron.benifits.description}</Typography></Box>
                             <Grid container>
                                 {
-                                    becomePatronData.benifits.content.map((item) => {
+                                    data.become_patron.benifits.content.map((item) => {
                                         return (
                                             <Grid item xl={4} md={4} xs={12} sx={{paddingRight: '5px'}}
                                                   className="booking-border">
@@ -429,7 +429,7 @@ const BecomePartner = () => {
                         </Box>
                         <Box className="membership-type">
                             <Box><Typography
-                                className="membership-heading">{becomePatronData.become_patron.title}</Typography></Box>
+                                className="membership-heading">{data.become_patron.become_patron.title}</Typography></Box>
                             <Grid container spacing={4}>
                                 <Grid item xl={6} md={6} xs={12}>
                                     <Box className="gold-memberships">
@@ -478,7 +478,7 @@ const BecomePartner = () => {
                                 </Box>
                             </Box>
                         </Box>
-                        <NeedHelp/>
+                        {/*<NeedHelp/>*/}
                         <Footer/>
                         <FooterEnd/>
                     </>

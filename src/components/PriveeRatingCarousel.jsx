@@ -9,13 +9,13 @@ import {Autoplay, Pagination} from "swiper";
 import {styled} from '@mui/system';
 import * as _ from "lodash";
 import {Rating} from '@mui/material';
-import PriveeContext from "../context/PriveeContext";
+import CmsContext from "../context/CmsContext";
 
 const PriveeRatingCarousel = (props) => {
 
     const {backgroundColor, title, rating, description, reviewer} = props;
 
-    const {priveeData} = useContext(PriveeContext);
+    const {data} = useContext(CmsContext);
 
     const [value, setValue] = useState();
 
@@ -192,7 +192,7 @@ const PriveeRatingCarousel = (props) => {
             // sx={{ maxWidth: 400, flexGrow: 1 }}
         >
             {
-                !_.isEmpty(priveeData) &&
+                !_.isEmpty(data) &&
                 <React.Fragment>
                     <Box>
                         <Swiper autoplay={{
@@ -202,7 +202,7 @@ const PriveeRatingCarousel = (props) => {
                                 pagination={{
                                     clickable: true,
                                 }} modules={[Autoplay, Pagination]} className="mySwiper">
-                            {priveeData.reviews.reviews.map((step, index) => (
+                            {data.privee.reviews.reviews.map((step, index) => (
                                 <div key={index}>
                                     <SwiperSlide className='main-div'>
                                         <Typography className='mainTitle'>

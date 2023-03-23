@@ -7,13 +7,13 @@ import "swiper/css/thumbs";
 import teamImg from '../assets/images/team.png';
 import {FreeMode, Thumbs, Navigation} from "swiper";
 import '../assets/styles/fontStyle.css';
-import SupperClubContext from "../context/SupperClubContext";
+import CmsContext from "../context/CmsContext";
 import * as _ from "lodash";
 
 const LookLikeCarousel = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-    const {supperClubData} = useContext(SupperClubContext);
+    const {data} = useContext(CmsContext);
 
     // const ImageData = [
     //     {
@@ -106,7 +106,7 @@ const LookLikeCarousel = () => {
     return (
         <React.Fragment>
             {
-                !_.isEmpty(supperClubData) &&
+                !_.isEmpty(data) &&
                 <Box sx={style}>
                     <Box className='swiper-box'>
                         <Typography className="swiper-heading">See what our supper clubs look like</Typography>
@@ -121,7 +121,7 @@ const LookLikeCarousel = () => {
                             modules={[FreeMode, Thumbs]}
                             className="mySwiper2"
                         >
-                            {supperClubData.looks.content.map((item, index) => (
+                            {data.supper_club.looks.content.map((item, index) => (
                                 <Box key={index}>
                                     <SwiperSlide className="swiper2-slide">
                                         <img className="swiper2-img" src={item}/>
@@ -138,11 +138,11 @@ const LookLikeCarousel = () => {
                             modules={[ Navigation, Thumbs]}
                             className="mySwiper"
                         >
-                            {supperClubData.looks.content.map((item,index)=>(
+                            {data.supper_club.looks.content.map((item,index)=>(
                                 <Box key={index}>
                                     <SwiperSlide className="swiper1-slide" >
                                         <img className="swiper-img" src={item}/>
-                                        {index === supperClubData.looks.content.length - 1 && (
+                                        {index === data.supper_club.looks.content.length - 1 && (
                                             <Box>
                                                 <Typography className="view-gallery">View <br/> Gallery</Typography>
                                             </Box>

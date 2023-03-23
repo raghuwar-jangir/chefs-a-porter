@@ -4,10 +4,10 @@ import React, {useContext} from "react";
 import {Link} from "gatsby";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import * as _ from "lodash";
-import AboutUsContext from "../context/AboutUsContext";
+import CmsContext from "../context/CmsContext";
 
 const OpenPosition = () => {
-    const {aboutUsData} = useContext(AboutUsContext);
+    const {data} = useContext(CmsContext);
     const BoxWrapper = styled(Box)(() => ({
         display: 'none',
         ".main-heading": {
@@ -87,11 +87,11 @@ const OpenPosition = () => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(aboutUsData) &&
+                    !_.isEmpty(data) &&
                     <Box className="open-positions-div">
-                        <Typography className="main-div-open-positions">{aboutUsData.positions.title}</Typography>
+                        <Typography className="main-div-open-positions">{data.about_us.positions.title}</Typography>
                         {
-                            aboutUsData.positions.content.map((item) => {
+                            data.about_us.positions.content.map((item) => {
                                 return (
                                     <>
                                         <Typography className="positions">{item.name}</Typography>

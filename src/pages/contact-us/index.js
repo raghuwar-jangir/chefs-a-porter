@@ -18,11 +18,12 @@ import {Formik, Form, ErrorMessage} from "formik";
 import * as Yup from 'yup';
 import "../../assets/styles/fontStyle.css"
 import {isMobile} from "react-device-detect";
-import ContactUsContext from "../../context/ContactUsContext";
+import CmsContext from "../../context/CmsContext";
 import * as _ from "lodash";
 
 const ContactUs = () => {
-    const {contactUsData} = useContext(ContactUsContext);
+
+    const {data} = useContext(CmsContext);
 
     //validations
     const validationSchema = Yup.object({
@@ -244,16 +245,16 @@ const ContactUs = () => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(contactUsData) &&
+                    !_.isEmpty(data) &&
                     <>
                         <Navbar isIcon={true} heading="Get In Touch"/>
                         <Box className="joinaschef">
-                            <Box className="banner" sx={{backgroundImage: `url(${contactUsData.contact_us.image})`,}}>
+                            <Box className="banner" sx={{backgroundImage: `url(${data.contact_us.contact_us.image})`,}}>
                                 <Box className="become-partner-header">
                                     <Typography><a href="/" className="header-link"><ArrowBackIcon
                                         style={{marginRight: '20px'}}/>Back</a></Typography>
                                     <Typography
-                                        className="become-partner-heading">{contactUsData.contact_us.title}</Typography>
+                                        className="become-partner-heading">{data.contact_us.contact_us.title}</Typography>
                                 </Box>
                             </Box>
                             <Box className="container-fluid">
@@ -275,7 +276,7 @@ const ContactUs = () => {
                                                 <Box className="">
                                                     <Grid className="row become-partner-form" xs={12}>
                                                         <Typography
-                                                            className="form-details">{contactUsData.contact_us.description}</Typography>
+                                                            className="form-details">{data.contact_us.contact_us.description}</Typography>
 
                                                         <Grid xs={12} className="mb-3">
                                                             <label htmlFor="validationCustomname">Your Name<span
@@ -388,7 +389,7 @@ const ContactUs = () => {
                                 </Formik>
                             </Box>
                         </Box>
-                        <NeedHelp/>
+                        {/*<NeedHelp/>*/}
                         <Footer/>
                         <FooterEnd/>
                     </>

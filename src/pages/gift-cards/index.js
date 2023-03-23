@@ -38,14 +38,12 @@ import contacts2 from "../../assets/images/contacts2.png";
 import contacts3 from "../../assets/images/contacts3.png";
 import contacts4 from "../../assets/images/contacts4.png";
 import contacts5 from "../../assets/images/contacts5.png";
-import GiftCardContext from "../../context/GiftCardContext";
+import CmsContext from "../../context/CmsContext";
 import * as _ from "lodash";
 
 const GiftCards = () => {
 
-    const {giftCardData} = useContext(GiftCardContext);
-
-    console.log("giftCardData=====", giftCardData)
+    const {data} = useContext(CmsContext);
 
     //validations
     const validationSchema = Yup.object({
@@ -1048,13 +1046,13 @@ const GiftCards = () => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(giftCardData) &&
+                    !_.isEmpty(data) &&
                     <>
                         <Navbar isShareIcon={true} heading="Gift Cards"/>
                         <Box className="gallery-carousel"><ImageCarousel/></Box>
                         <Box className="joinaschef">
                             <Box className="corporate-b"
-                                 sx={{backgroundImage: `linear-gradient(180.32deg, rgba(0, 0, 0, 0) 21.51%, rgba(0, 0, 0, 0.4) 81.02%),url(${giftCardData.header.image})`,}}>
+                                 sx={{backgroundImage: `linear-gradient(180.32deg, rgba(0, 0, 0, 0) 21.51%, rgba(0, 0, 0, 0.4) 81.02%),url(${data.gift_card.header.image})`,}}>
                                 <Box className="container">
                                     <Box className="top-10 position-absolute">
                                         <Typography><a href='/' className="header-link"><ArrowBackIcon
@@ -1063,12 +1061,12 @@ const GiftCards = () => {
                                     <Box className="position-absolute patron-flex">
                                         <Box>
                                             <Typography
-                                                className="become-heading">{giftCardData.header.title}</Typography>
+                                                className="become-heading">{data.gift_card.header.title}</Typography>
                                             <Typography
-                                                className="become-detail">{giftCardData.header.description}</Typography>
+                                                className="become-detail">{data.gift_card.header.description}</Typography>
                                         </Box>
                                         <Box><Typography style={{width: '100%'}}><a href="#recipientDetails"
-                                                                                    className="apply">{giftCardData.header.button_text}</a></Typography></Box>
+                                                                                    className="apply">{data.gift_card.header.button_text}</a></Typography></Box>
                                     </Box>
                                 </Box>
                             </Box>
@@ -1096,10 +1094,10 @@ const GiftCards = () => {
                                             <Box className="row white-bg justify-content-center">
                                                 <Box className="gift-work">
                                                     <Typography
-                                                        className="gift-work-heading">{giftCardData.working.title}</Typography>
+                                                        className="gift-work-heading">{data.gift_card.working.title}</Typography>
                                                     <Box className="gift-steps">
                                                         {
-                                                            giftCardData.working.content.map((item) => {
+                                                            data.gift_card.working.content.map((item) => {
                                                                 return (
                                                                     <Box className="step-1">
                                                                         <Typography
@@ -1113,10 +1111,10 @@ const GiftCards = () => {
                                                     </Box>
                                                     <Box className="things-to-do">
                                                         <Typography
-                                                            className="things-to-do-details">{giftCardData.things_to_note.title}</Typography>
+                                                            className="things-to-do-details">{data.gift_card.things_to_note.title}</Typography>
                                                         <ul className="things-to-do-details things-to-do-ul">
                                                             {
-                                                                giftCardData.things_to_note.content.map((item) => {
+                                                                data.gift_card.things_to_note.content.map((item) => {
                                                                     return (
                                                                         <li>{item}</li>
                                                                     )
@@ -1263,11 +1261,11 @@ const GiftCards = () => {
                                                 </Box>
                                                 <Box className="occasion">
                                                     <Box className="occasion-container">
-                                                        <h4 className="occasion-title">{giftCardData.occasion.title}</h4>
+                                                        <h4 className="occasion-title">{data.gift_card.occasion.title}</h4>
                                                         <Tabs aria-label="Basic tabs" defaultValue={0}>
                                                             <TabList>
                                                                 {
-                                                                    giftCardData.occasion.content.map((item) => {
+                                                                    data.gift_card.occasion.content.map((item) => {
                                                                         return (
                                                                             <Tab>{item.name}</Tab>
                                                                         )
@@ -1275,7 +1273,7 @@ const GiftCards = () => {
                                                                 }
                                                             </TabList>
                                                             {
-                                                                giftCardData.occasion.content.map((item, index) => {
+                                                                data.gift_card.occasion.content.map((item, index) => {
                                                                     return (
                                                                         <TabPanel value={index} sx={{p: 2}}>
                                                                             <div className="tab-content"
@@ -1390,9 +1388,9 @@ const GiftCards = () => {
                                                 </Box>
                                                 <Box className="recipient" id="recipientDetails">
                                                     <Typography
-                                                        className="recipient-title">{giftCardData.recipient.title}</Typography>
+                                                        className="recipient-title">{data.gift_card.recipient.title}</Typography>
                                                     <Typography
-                                                        className="recipient-details">{giftCardData.recipient.description}</Typography>
+                                                        className="recipient-details">{data.gift_card.recipient.description}</Typography>
                                                     <Grid className="row" xs={12}>
                                                         <Grid xs={12} className="mb-3">
                                                             <label htmlFor="validationCustomname">Receiver’s
@@ -1521,13 +1519,13 @@ const GiftCards = () => {
                                     <Box className="row">
                                         <Box className="save-booking-details">
                                             <img src={trendingUp} className="save-booking-img"
-                                                 alt=""/>{giftCardData.gift_footer.text}
+                                                 alt=""/>{data.gift_card.gift_footer.text}
                                         </Box>
                                     </Box>
                                 </Box>
                             </Box>
                         </Box>
-                        <NeedHelp/>
+                        {/*<NeedHelp/>*/}
                         <Footer/>
                         <FooterEnd/>
                         <Modal
