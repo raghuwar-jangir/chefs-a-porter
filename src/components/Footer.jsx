@@ -28,6 +28,8 @@ const Footer = () => {
             color: '#FBFBFB',
             textAlign: 'left',
             marginBottom: '20px',
+            marginTop: '0px',
+            padding:'0px',
             fontFamily: 'ProximaNovaA-Regular',
         },
         '.footerLogo': {

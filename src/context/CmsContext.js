@@ -20,7 +20,7 @@ const CmsProvider = (props) => {
         'about-us': 'about_us',
         'become-a-patron': 'become_patron',
         'contact-us': 'contact_us',
-        'gift-cards':'gift_card',
+        'gift-cards': 'gift_card',
         '/': 'home',
         'join-chef': 'join_us',
         'our-chefs': 'our_chefs',

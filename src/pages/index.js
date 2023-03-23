@@ -925,7 +925,6 @@ const HomePage = () => {
                                 <Box className="row justify-content-center">
                                     <Box className="chef-container">
                                         <Box className="pe-fo-exp">
-                                            {/*<Typography className="hotchef-title">The Hottest Chef’s Tables in Town.</Typography>*/}
                                             <Typography className="hotchef-title">{data.home.header.title}</Typography>
                                             <Formik
                                                 initialValues={{
