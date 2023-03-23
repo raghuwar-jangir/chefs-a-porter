@@ -1,14 +1,18 @@
 import { Button, styled, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import {Link} from "gatsby";
-const SupperClubTreatyComponent = () => {
+import {navigate} from "gatsby";
+const SupperClubTreatyComponent = (props) => {
+    const {background,subTitle,main,treaty,padding,innerPadding} = props
+    const handleClick = () => {
+        navigate('/gift-cards');
+    }
     const BoxWrapper = styled(Box)(() => ({
-        padding: '40px 16px',
+        padding: `${padding}`,
         color: '#080B0E',
         width:'auto',
         textAlign:'left',
-        backgroundColor:'#DCD7CB',
+        backgroundColor: `${background ? '#FBFBFB':'#DCD7CB'}`,
         ".heading": {
             fontSize: "14px",
             fontWeight:400,
@@ -17,7 +21,7 @@ const SupperClubTreatyComponent = () => {
             fontFamily: 'Proxima Nova Alt',
             marginBottom: '8px',
         },
-        ".main-title": {
+        ".main-title":[ {
             fontSize: "20px",
             lineHeight: "25px",
             letterSpacing: "0.06em",
@@ -28,7 +32,7 @@ const SupperClubTreatyComponent = () => {
             padding:"0px",
             marginBottom: '8px',
 
-        },
+        },main],
         ".details": {
             fontSize: "14px",
             fontFamily: 'Proxima Nova Alt',
@@ -60,23 +64,23 @@ const SupperClubTreatyComponent = () => {
             alignItems:"center",
         },
         ".btn:hover": {color: "#C6A87D!important;"},
-        ".sub-div": {
+        ".sub-div": [{
             background: '#FBFBFB',
             padding: '20px 19px',
             boxShadow:' 0px 20px 24px rgb(0 0 0 / 6%)',
             border:'0.5px solid #080B0E'
-        },
+        },innerPadding],
         '.btn-box':{
             display:'flex',
             justifyContent:'end',
             placeSelf:'center'
         },
-        '.treaty-box':{
+        '.treaty-box':[{
             display:'flex',
             justifyContent:'space-between',
             placeItems:'flex-start',
             flexDirection:'column'
-        },
+        },treaty],
         "@media (min-width: 768px) and (max-width:1024px)": {
             '.btn':{
                 width:'100px !important'
@@ -131,16 +135,16 @@ const SupperClubTreatyComponent = () => {
                                 #Patron Privilage
                             </Typography>
                             <Typography className="main-title">
-                                Give the gift of an unforgettable food experience
+                                {subTitle}
                             </Typography>
                             <Typography className="details">
                                 send a gift card to your friends and family
                             </Typography>
                         </Box>
                         <Box className='btn-box'>
-                            <Link href="/gift-cards" className="btn">
+                            <Button to="/gift-cards" className="btn" onClick={handleClick}>
                                 Learn More
-                            </Link>
+                            </Button>
                         </Box>
                     </Box>
                 </Box>
