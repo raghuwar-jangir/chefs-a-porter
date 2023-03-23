@@ -1131,7 +1131,7 @@ const SupperClubDetail = () => {
                                 </Button>
                                 <Box></Box>
                             </Box>
-                            <SupperClubTreatyComponent subTitle='Give the gift of an unforgettable food experience'/>
+                            <SupperClubTreatyComponent padding={'40px 16px'} subTitle='Give the gift of an unforgettable food experience'/>
                         </Grid>
                     </Grid>
                 </Box>

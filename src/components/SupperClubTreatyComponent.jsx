@@ -3,12 +3,12 @@ import { Box } from "@mui/system";
 import React from "react";
 import {navigate} from "gatsby";
 const SupperClubTreatyComponent = (props) => {
-    const {background,subTitle,main,treaty} = props
+    const {background,subTitle,main,treaty,padding,innerPadding} = props
     const handleClick = () => {
         navigate('/gift-cards');
     }
     const BoxWrapper = styled(Box)(() => ({
-        padding: '40px 16px',
+        padding: `${padding}`,
         color: '#080B0E',
         width:'auto',
         textAlign:'left',
@@ -64,12 +64,12 @@ const SupperClubTreatyComponent = (props) => {
             alignItems:"center",
         },
         ".btn:hover": {color: "#C6A87D!important;"},
-        ".sub-div": {
+        ".sub-div": [{
             background: '#FBFBFB',
             padding: '20px 19px',
             boxShadow:' 0px 20px 24px rgb(0 0 0 / 6%)',
             border:'0.5px solid #080B0E'
-        },
+        },innerPadding],
         '.btn-box':{
             display:'flex',
             justifyContent:'end',
