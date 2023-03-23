@@ -691,7 +691,7 @@ const PriveePage = () => {
                                     </Box>
                                     <Box className="px-last">
                                         <Typography
-                                            className="exp-heading">{data.privee.experiences.title}</Typography>
+                                            className="exp-heading">Book an Experience</Typography>
                                         <Formik
                                             initialValues={{
                                                 city: 'Mumbai',

@@ -13,9 +13,6 @@ const defaultState = {
 const CmsContext = React.createContext(defaultState)
 
 const CmsProvider = (props) => {
-
-    const path = useLocation()
-
     const pathInfo = {
         'about-us': 'about_us',
         'become-a-patron': 'become_patron',
@@ -29,23 +26,25 @@ const CmsProvider = (props) => {
         'corporate-booking': 'corporate_booking'
     }
 
+    const path = useLocation()
+
     const currentPath = path.pathname.split("/")[1];
-    const baseUrl = `https://chefv2.hypervergedemo.site/v1/cms`;
+
+    const baseUrl = `https://chefv2.hypervergedemo.site/v1/cms/`;
 
     const emptyUrl = currentPath.startsWith(null) ? currentPath : currentPath + "/"
 
     const [data, setData] = useState()
 
-
     useEffect(() => {
+        console.log("========>UseEffect is called")
         axios.get(baseUrl + `/${pathInfo[!currentPath ? emptyUrl : currentPath]}/`).then(result => {
             setData(result.data)
         })
     }, [currentPath])
 
-    console.log("data====>", data)
-    console.log("currentPath====>", currentPath)
-
+    console.log("currentPath====>", currentPath);
+    console.log("data====>", data);
 
     const {children} = props
     return (
@@ -58,7 +57,6 @@ const CmsProvider = (props) => {
         </CmsContext.Provider>
     )
 }
-
 export default CmsContext
 
 export {CmsProvider}
