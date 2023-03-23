@@ -757,13 +757,15 @@ marginBottom: '16px',
   '.modal-child':{
     display:'flex',
     flexDirection:'column',
-    borderLeft:'0px'
   },
   '.modal-dialog':{
     width:'500px'
   },
   '.initial-box':{
     borderRight:'0px'
+  },
+  '.second-box':{
+    borderLeft:'0px'
   }
 }
   }
