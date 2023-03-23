@@ -9,27 +9,25 @@ import HotelImg7 from "../../assets/images/HotelImg7.png";
 import HotelImg8 from "../../assets/images/HotelImg8.png";
 import hotelImgView from "../../assets/images/hotelImgView.png"
 import hotelImgView2 from "../../assets/images/hotelImgView2.png"
+import teamImage from "../../assets/images/team.png"
 import logo1 from "../../assets/images/logo1.png"
 import logo2 from "../../assets/images/logo2.png"
 import logo3 from "../../assets/images/logo3.png"
 import logo4 from "../../assets/images/logo4.png"
+import IntroChefImg1 from "../../assets/images/IntroChefImg1.png"
 import CommanTextCard from "../../components/CommanTextCard";
-import CommanCarousel from "../../components/CommanCarousel"
 import sustainable from "../../assets/images/sustainable-energy.png"
 import weather from "../../assets/images/weather-app.png"
 import recycling from "../../assets/images/recycling-bin.png"
 import Footer from "../../components/Footer";
-import LogoSwiper from "../../components/LogoSwiper";
 import {isMobile} from "react-device-detect";
+import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
 import FooterEnd from "../../components/FooterEndSection";
 import OpenPosition from "../../components/OpenPositionComponent";
 import '../../assets/styles/fontStyle.css'
 import CmsContext from "../../context/CmsContext";
 import * as _ from "lodash";
-import teamImage from '../../assets/images/team.png'
-import Navbar from "../../components/NavbarComponent";
-import TeamCarousel from "../../components/TeamCarousel.jsx";
 
 const ClientSideOnlyLazy = React.lazy(() =>
     import("../../components/TeamCarousel")
@@ -71,19 +69,29 @@ const AboutCardComponent = (props) => {
 
     const BoxWrapper = styled(Box)(() => ({
         ".main-box": {
-            padding: "40px 120px",
+            padding: '120px 160px 40px'
         },
         ".header-club": {
             padding: '10px',
             backgroundColor: '#DCD7CB',
         },
         ".main-heading": {
-            fontWeight: 700,
-            fontSize: "30px",
-            lineHeight: "25px",
+            fontStyle: 'normal !important',
+            fontSize: "24px !important",
+            fontWeight: '700',
+            lineHeight: "30px",
+            textAlign: 'center', color: '#080B0E',
+            fontFamily: 'Bon Vivant !important',
+        },
+        ".about-heading": {
+            fontStyle: 'normal !important',
+            fontSize: "32px !important",
+            lineHeight: "30px",
+            fontWeight: '700',
             textAlign: 'center',
+            letterSpacing: '0.06em',
             color: '#080B0E',
-            fontFamily: 'Bon Vivant'
+            fontFamily: 'Bon Vivant !important',
         },
         // ".details": {
         //     fontWeight: '400',
@@ -97,19 +105,19 @@ const AboutCardComponent = (props) => {
             border: '1px solid'
         },
         ".sub-box": {
-            padding: "40px 16px 16px 16px"
+            padding: "40px 16px 16px 16px",
         },
         ".sub-box-2": {
-            padding: "20px 20px 40px",
+            padding: '40px 160px',
             background: '#101418'
         },
         ".sub-box-3": {
-            padding: "20px 20px 40px",
+            padding: '40px 160px',
             background: '#DCD7CB'
         },
         ".sub-box-4": {
-            padding: "40px 16px",
-            background: '#FBFBFB'
+            padding: '80px 160px 40px ',
+            background: '#101418'
         },
         ".custom-log": {
             height: "120px",
@@ -132,12 +140,14 @@ const AboutCardComponent = (props) => {
         }, ".btn:hover": {color: '#fff'},
 
         ".some-text": {
+            // fontWeight: 600,
             fontSize: "20px",
             lineHeight: "24px",
             paddingBottom: '8px',
             color: "#242F35"
         },
         ".some-details": {
+            // fontWeight: 300,
             fontSize: "16px",
             lineHeight: "19px",
             color: "#242F35"
@@ -148,12 +158,10 @@ const AboutCardComponent = (props) => {
             display: 'none',
             justifyContent: 'space-between'
         },
-        ".open-positions-div": {
-            padding: "0px"
-        },
         ".btn-get-in-touch": {
             background: "#080B0E", color: "#FBFBFB",
             fontSize: "16px", width: '25%',
+            // fontWeight: 600,
             borderRadius: "0px",
             textTransform: "capitalize",
             height: "57px",
@@ -162,7 +170,8 @@ const AboutCardComponent = (props) => {
             justifyContent: 'center', padding: '20px'
         },
         '.conscious-option': {
-            border: '1px solid #080B0E', padding: '37px', borderRadius: '50%'
+            border: '1px solid #080B0E', padding: '27px', borderRadius: '100%',
+            width:'fit-content'
         },
         // '.parent-stack': {
         //     padding: '40px 0px'
@@ -224,12 +233,6 @@ const AboutCardComponent = (props) => {
                 width: '50%',
                 alignItems: 'center'
             },
-            ".element.style":{
-                background: '#101418'
-            },
-            '.img-link':{
-                background:'color'
-            },
             ".sub-box-2": {
                 padding: '40px 30px',
                 background: '#101418'
@@ -282,11 +285,6 @@ const AboutCardComponent = (props) => {
                 padding: '80px 70px 40px ',
                 background: '#101418'
             },
-        },
-        "@media (min-width: 768px) and (max-width:2560px)": {
-            '.btn':{
-                display:'none'
-            }
         }
     }))
     return (
@@ -348,7 +346,9 @@ const AboutCardComponent = (props) => {
                                                                 src={item.icon}
                                                             />
                                                         </Box>
+                                                        <Box>
                                                         <Typography className="sub-title">{item.text}</Typography>
+                                                        </Box>
                                                     </Box>
                                                 )
                                             })
@@ -424,7 +424,7 @@ const AboutCardComponent = (props) => {
                 }
             </BoxWrapper>
 
-        </React.Fragment >
+        </React.Fragment>
     )
 }
 export default AboutCardComponent

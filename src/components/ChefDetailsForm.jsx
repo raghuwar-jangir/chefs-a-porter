@@ -444,7 +444,7 @@ const ChefDetailsForm = (props) => {
                                         variant="standard"
                                         fullWidth
                                     />
-                                    {touched.yourName && errors.yourName && <Typography className='error-msg'>{errors.yourName}</Typography>}
+                                    {/* {touched.yourName && errors.yourName && <Typography className='error-msg'>{errors.yourName}</Typography>} */}
                                 </Box>
 
                                 <Box className="comman-field-box">
@@ -460,13 +460,13 @@ const ChefDetailsForm = (props) => {
                                         fullWidth
                                     />
                                     <Typography className='last-text'>A Email Confirmation will be sent to this ID after booking</Typography>
-                                    {touched.email && errors.email && <Typography className='error-msg'>{errors.email}</Typography>}
+                                    {/* {touched.email && errors.email && <Typography className='error-msg'>{errors.email}</Typography>} */}
                                 </Box>
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <Box className="comman-field-box date-box" sx={{ width: "49%" }}>
                                         <Typography className='field-title'>Experience Date</Typography>
                                         <DatePicker selected={startDate}  className='form-control' onChange={(date) => setStartDate(date)} value={moment(startDate).format("ddd,DD MMM YYYY")}/>
-                                        {touched.experienceDate && errors.experienceDate && <Typography className='error-msg'>{errors.experienceDate}</Typography>}
+                                        {/* {touched.experienceDate && errors.experienceDate && <Typography className='error-msg'>{errors.experienceDate}</Typography>} */}
                                         <Box className="gcal-icon">
                                         <img className="gcal" src={gCal}/>
                                         </Box>
@@ -509,7 +509,7 @@ const ChefDetailsForm = (props) => {
                                                autoCapitalize: true,
                                              }}
                                         />
-                                        {touched.startTime && errors.startTime && <Typography className='error-msg'>{errors.startTime}</Typography>}
+                                        {/* {touched.startTime && errors.startTime && <Typography className='error-msg'>{errors.startTime}</Typography>} */}
                                         <ExpandMoreSharpIcon className="timer-drop-down"/>
                                         </Box>
                                     </Box>

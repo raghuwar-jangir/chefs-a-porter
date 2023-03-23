@@ -316,7 +316,7 @@ const PriveeCarousel = (props, {title, subTitle, isButtonShow = true}) => {
                                             <Box className="chef-details">
                                                 {item.details.tags.map((tagsItem,index) => {
                                                     return (
-                                                        <span>{tagsItem}<span className='line'>|</span></span>
+                                                        <span>{tagsItem}{index !== item.details.tags.length-1 && (<span className='line'>|</span>)}</span>
                                                     )
                                                 })}
                                             </Box>
