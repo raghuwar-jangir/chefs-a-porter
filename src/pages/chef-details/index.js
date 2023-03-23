@@ -751,13 +751,13 @@ const ChefDetails = (props) => {
                             <Typography className="chef-header">Available Experiences</Typography>
                             <Grid container spacing={2}>
                                 <Grid item xl={4} md={4} sm={6} xs={12}>
-                                    <AvlExperienceCarousel image={avlExp1}/>
+                                    <AvlExperienceCarousel title={"A Traditional Oma Kase"} image={avlExp1}/>
                                 </Grid>
                                 <Grid item xl={4} md={4} sm={6} xs={12}>
-                                    <AvlExperienceCarousel image={avlExp2} isLabelShow={true}/>
+                                    <AvlExperienceCarousel title={"A Traditional Oma Kase"} image={avlExp2} isLabelShow={true}/>
                                 </Grid>
                                 <Grid item xl={4} md={4} sm={6} xs={12}>
-                                    <AvlExperienceCarousel image={avlExp1} isLabelShow={true}/>
+                                    <AvlExperienceCarousel title={"A Traditional Oma Kase"} image={avlExp1} isLabelShow={true}/>
                                 </Grid>
                             </Grid>
                         </Box>

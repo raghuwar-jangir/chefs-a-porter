@@ -1185,11 +1185,10 @@ const HomePage = () => {
                                     </Box>
                                 </Box>
                             </Box>
-                            <PriveeMain title={data.home.continue_browsing.title}
-                                        subTitle={data.home.continue_browsing.description}/>
+                            <PriveeMain/>
                             <MainFoodDetailng title={data.home.upcoming_supper_clubs.title}
                                               description={data.home.upcoming_supper_clubs.description}/>
-                            <PriveeCarousel title={data.home.chefs_private_dining.title}/>
+                            <PriveeCarousel/>
                             <RatingCarousel/>
                             <DiningPage title={data.home.what_we_cook.title}/>
                             <TestimonialCarousel/>

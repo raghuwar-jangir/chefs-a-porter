@@ -1,17 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import {Navigation, Pagination} from "swiper";
 import {Box, Button, Grid, Hidden, styled, Typography} from "@mui/material";
-import chef from "../../src/assets/images/chef1.png";
-import chef2 from "../../src/assets/images/chef2.png";
-import chef3 from '../assets/images/chef3.png'
-import chef4 from "../../src/assets/images/chef4.png";
 import reebok from "../assets/images/rebook.png";
 import {isMobile} from "react-device-detect";
 import {Link} from "gatsby";
 import '../assets/styles/fontStyle.css'
+import CmsContext from "../context/CmsContext";
+import * as _ from "lodash";
 
 const MainParent = styled(Box)({
     ".continue-browsing-box": {
@@ -233,165 +231,103 @@ const MainParent = styled(Box)({
 });
 
 const PriveeCarousel = (props, {title, subTitle, isButtonShow = true}) => {
+    const {data} = useContext(CmsContext);
     return (
         <React.Fragment>
-            <MainParent>
-                <Box className="continue-browsing-box">
-                    <Box className="btn-view">
-                        <Box>
-                            <Typography className="main-heading">
-                                {props.title}
-                            </Typography>
+            {
+                !_.isEmpty(data) &&
+                <MainParent>
+                    <Box className="continue-browsing-box">
+                        <Box className="btn-view">
+                            <Box>
+                                <Typography className="main-heading">
+                                    {data.home.chefs_private_dining.title}
+                                </Typography>
+                            </Box>
+                            <Box>
+                                {isMobile ? (
+                                    <Box className="more-button">
+                                        <Button fullWidth className="view-more" variant="contained">
+                                            View More Chefs
+                                        </Button>
+                                    </Box>
+                                ) : (
+                                    <Box className="more-button">
+                                        <Button fullWidth className="view-more" variant="contained">
+                                            <Link className="link" to="/our-chefs">
+                                                View All
+                                            </Link>
+                                        </Button>
+                                    </Box>
+                                )}
+                            </Box>
                         </Box>
-                        <Box>
-                            {isMobile ? (
-                                <Box className="more-button">
-                                    <Button fullWidth className="view-more" variant="contained">
-                                        View More Chefs
-                                    </Button>
-                                </Box>
-                            ) : (
-                                <Box className="more-button">
-                                    <Button fullWidth className="view-more" variant="contained">
-                                        <Link className="link" to="/our-chefs">
-                                            View All
-                                        </Link>
-                                    </Button>
-                                </Box>
-                            )}
-                        </Box>
-                    </Box>
-                    <Swiper
-                        style={{
-                            "--swiper-navigation-color": "white",
-                            "--swiper-navigation-size": "17px",
-                        }}
-                        slidesPerView={4}
-                        spaceBetween={20}
-                        navigation={true}
-                        modules={[Navigation, Pagination]}
-                        breakpoints={{
-                            320: {
-                                slidesPerView: 2,
-                                spaceBetween: 8,
-                                direction: "vertical",
-                            },
-                            375: {
-                                slidesPerView: 2,
-                                spaceBetween: 8,
-                                direction: "vertical",
-                            },
-                            425: {
-                                slidesPerView: 2,
-                                spaceBetween: 8,
-                                direction: "vertical",
-                            },
-                            768: {
-                                slidesPerView: 3,
-                                spaceBetween: 8,
-                            },
-                            1024: {
-                                slidesPerView: 4,
-                                spaceBetween: 20,
-                            },
-                            1440: {
-                                slidesPerView: 4,
-                                spaceBetween: 20,
-                            },
-                            2560: {
-                                slidesPerView: 4,
-                                spaceBetween: 20,
-                            },
+                        <Swiper
+                            style={{
+                                "--swiper-navigation-color": "white",
+                                "--swiper-navigation-size": "17px",
+                            }}
+                            slidesPerView={4}
+                            spaceBetween={20}
+                            navigation={true}
+                            modules={[Navigation, Pagination]}
+                            breakpoints={{
+                                320: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 8,
+                                    direction: "vertical",
+                                },
+                                375: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 8,
+                                    direction: "vertical",
+                                },
+                                425: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 8,
+                                    direction: "vertical",
+                                },
+                                768: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 8,
+                                },
+                                1024: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 20,
+                                },
+                                1440: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 20,
+                                },
+                                2560: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 20,
+                                },
 
-                        }}
-                        className="mySwiper"
-                    >
-                        <SwiperSlide>
-                            <img className="img" src={chef} />
-                            <Box className="name-box">
-                                <Typography className="chef-title">Madhav Dayal</Typography>
-                                <Box className="chef-details">
-                  <span>
-                    Thai <span className="line">|</span>
-                  </span>
-                                    <span>
-                    Japanese <span className="line">|</span>
-                  </span>
-                                    <span>Parsi</span>
-                                </Box>
-                            </Box>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <img className="img" src={chef2} />
-                            <Box className="rebook">
-                                <img className="rebook-img" src={reebok} />
-                                <Typography className="rebook-title">Rebook</Typography>
-                            </Box>
-                            <Box className="name-box">
-                                <Typography className="chef-title">Anup Kakati</Typography>
-                                <Box className="chef-details">
-                                    {" "}
-                                    <span>
-                    Thai <span className="line">|</span>
-                  </span>
-                                    <span>
-                    Asian<span className="line">|</span>
-                  </span>
-                                    <span>Indain</span>
-                                </Box>
-                            </Box>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <img className="img" src={chef3} />
-                            <Box className="name-box">
-                                <Typography className="chef-title">Kyoumars Freeman</Typography>
-                                <Box className="chef-details">
-                                    <span>Parsian</span>{" "}
-                                </Box>
-                            </Box>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <img className="img" src={chef4} />
-                            <Box className="rebook">
-                                <img className="rebook-img" src={reebok} />
-                                <Typography className="rebook-title">Rebook</Typography>
-                            </Box>
-                            <Box className="name-box">
-                                <Typography className="chef-title">Mako Ravindran</Typography>
-                                <Box className="chef-details">
-                  <span>
-                    French <span className="line">|</span>
-                  </span>
-                                    <span>
-                    Italian <span className="line">|</span>
-                  </span>
-                                    <span>Indian </span>
-                                </Box>
-                            </Box>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <img className="img" src={chef2} />
-                            <Box className="rebook">
-                                <img className="rebook-img" src={reebok} />
-                                <Typography className="rebook-title">Rebook</Typography>
-                            </Box>
-                            <Box className="name-box">
-                                <Typography className="chef-title">Anup Kakati</Typography>
-                                <Box className="chef-details">
-                                    {" "}
-                                    <span>
-                    Thai <span className="line">|</span>
-                  </span>
-                                    <span>
-                    Japanese <span className="line">|</span>
-                  </span>
-                                    <span>Parsi</span>
-                                </Box>
-                            </Box>
-                        </SwiperSlide>
-                    </Swiper>
-                </Box>
-            </MainParent>
+                            }}
+                            className="mySwiper"
+                        >
+                            {data.home.chefs_private_dining.chefs.map((item) => {
+                                return (
+                                    <SwiperSlide>
+                                        <img className="img" src={item.picture}/>
+                                        <Box className="name-box">
+                                            <Typography className="chef-title">{item.name}</Typography>
+                                            <Box className="chef-details">
+                                                {item.details.tags.map((tagsItem,index) => {
+                                                    return (
+                                                        <span>{tagsItem}<span className='line'>|</span></span>
+                                                    )
+                                                })}
+                                            </Box>
+                                        </Box>
+                                    </SwiperSlide>
+                                )
+                            })}
+                        </Swiper>
+                    </Box>
+                </MainParent>
+            }
         </React.Fragment>
     );
 };

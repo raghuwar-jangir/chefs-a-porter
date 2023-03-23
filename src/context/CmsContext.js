@@ -44,6 +44,8 @@ const CmsProvider = (props) => {
     }, [currentPath])
 
     console.log("data====>", data)
+    console.log("currentPath====>", currentPath)
+
 
     const {children} = props
     return (

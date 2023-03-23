@@ -26,6 +26,9 @@ import PriveeQuestions from "../../components/PriveeQuestions";
 import {navigate} from "gatsby";
 import CmsContext from "../../context/CmsContext";
 import PriveeRatingCarousel from "../../components/PriveeRatingCarousel";
+import StarIcon from "@mui/icons-material/Star";
+import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
+import {SwiperSlide} from "swiper/react";
 
 const MainBoxContent = styled(Box)({
     position: 'relative',
@@ -471,6 +474,113 @@ const BoxWrapper = styled(Box)(() => ({
         }
     }
 }))
+const MainContentBox = styled(Box)({
+    position: 'relative',
+    '.dining-privee': {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    '.rating-star': {
+        display: 'flex',
+        alignItems: 'center',
+        fontSize: '14px !important',
+        lineHeight: '17px !important',
+        color: '#FBFBFB'
+
+    },
+    '.title': {
+        color: '#C6A87D',
+        fontWeight: '250',
+        fontSize: '16px',
+        lineHeight: '19px',
+        fontFamily: 'Proxima Nova Alt',
+    },
+    '.saff-parent': {
+        padding: '16px',
+        width: 'auto',
+        height: 'auto',
+        backgroundColor: '#101418',
+    },
+    '.main-chaf-image': {
+        height: '307px',
+        objectFit: 'cover',
+        width: '100%'
+    },
+    '.sub-box': {
+        position: 'absolute',
+        backgroundColor: '#101418',
+        width: '100%',
+        top: '0px', left: '0px'
+    },
+    '.top-box': {
+        fontFamily: 'Proxima Nova Alt',
+        fontWeight: '300',
+        fontSize: '12px',
+        lineHeight: '15px',
+        padding: '1px 12px',
+        textAlign: 'right',
+        letterSpacing: '0.02em',
+        color: '#C6A87D',
+        display: 'flex',
+        justifyContent: 'end',
+        alignItems: 'center'
+    },
+    '.description': {
+        fontSize: '20px',
+        fontWeight: '400',
+        lineHeight: '24px',
+        fontFamily: 'Bon Vivant',
+        color: '#FBFBFB'
+    },
+    '.sub-description': {
+        fontSize: '14px',
+        lignHeight: '17px',
+        fontWeight: '300',
+        color: '#FBFBFB'
+    },
+    '.trending-icon': {
+        width: '16px',
+        height: '16px',
+        paddingRight: '5px'
+    },
+
+    "@media (min-width: 1px) and (max-width:1024px)": {
+        '.sub-description': {
+            fontSize: '12px',
+        },
+        '.saff-parent': {
+            padding: '14px 8px'
+        },
+    },
+    "@media (min-width: 320px) and (max-width:1024px)": {
+        '.main-chaf-image': {
+            height: '220px',
+            objectFit: 'cover',
+            width: '100%'
+        },
+        '.saff-parent': {
+            padding: '16px',
+            width: 'auto',
+            height: 'auto',
+            backgroundColor: '#101418',
+        },
+        '.sub-box': {
+            width: '100%',
+        },
+        '.top-box': {
+            fontFamily: 'Proxima Nova',
+            fontWeight: '300',
+            fontSize: '12px',
+            lineHeight: '15px',
+            padding: '1px 12px',
+            textAlign: 'right',
+            letterSpacing: '0.02em',
+            color: '#C6A87D',
+        }
+    }
+
+})
 const PriveePage = () => {
 
     const {data} = useContext(CmsContext);
@@ -819,15 +929,15 @@ const PriveePage = () => {
                         <Box className="available-experiences mobile-view">
                             <Typography className="chef-header">{data.privee.experiences.title}</Typography>
                             <Grid container spacing={2}>
-                                <Grid item xl={4} md={4} sm={6} xs={12}>
-                                    <AvlExperienceCarousel image={avlExp1} description={'by Chef Mako Ravindran'}
-                                                           subDescription={'Starting from ₹5000 per diner'}/>
-                                </Grid>
-                                <Grid item xl={4} md={4} sm={6} xs={12}>
-                                    <AvlExperienceCarousel image={avlExp2} description={'by Chef Mako Ravindran'}
-                                                           subDescription={'Starting from ₹5000 per diner'}
-                                                           isLabelShow={true}/>
-                                </Grid>
+                                {data.privee.experiences.experiences.results.map((item) => {
+                                    return (
+                                        <Grid item xl={4} md={4} sm={6} xs={12}>
+                                            <AvlExperienceCarousel
+                                                image={item.user.picture}
+                                                title={item.title} description={`by ${item.user.name}`}/>
+                                        </Grid>
+                                    )
+                                })}
                             </Grid>
                             <button type="submit" className="exp-btn">View More</button>
                         </Box>
