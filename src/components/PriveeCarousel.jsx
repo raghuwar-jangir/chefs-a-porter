@@ -240,7 +240,7 @@ const PriveeCarousel = (props, {title, subTitle, isButtonShow = true}) => {
                     <Box className="continue-browsing-box">
                         <Box className="btn-view">
                             <Box>
-                                <Typography className="main-heading">
+                                <Typography className="main-heading mt-0">
                                     {data.home.chefs_private_dining.title}
                                 </Typography>
                             </Box>
@@ -316,7 +316,7 @@ const PriveeCarousel = (props, {title, subTitle, isButtonShow = true}) => {
                                             <Box className="chef-details">
                                                 {item.details.tags.map((tagsItem,index) => {
                                                     return (
-                                                        <span>{tagsItem}<span className='line'>|</span></span>
+                                                        <span>{tagsItem}{index !== item.details.tags.length-1 && (<span className='line'>|</span>)}</span>
                                                     )
                                                 })}
                                             </Box>
