@@ -1,4 +1,4 @@
-import { styled, Box, Grid, Typography, Select, MenuItem,Stack,Modal,TextField } from "@mui/material";
+import { styled, Box, Grid, Typography, Select, MenuItem,Stack,Modal,TextField,Link } from "@mui/material";
 import React from "react";
 import { Formik,Form,ErrorMessage,Field } from "formik";
 import * as Yup from 'yup';
@@ -21,9 +21,9 @@ import OtpComponent from "../../components/OtpComponent";
 
 
 const PersonalDetails1 = () => {
-    const handleClick = () => {
-        navigate('/contact-permission');
-    }
+    const [contactPopUp, setContactPopUp] = React.useState(false);
+    const ContactOpen = () => setContactPopUp(true);
+    const ContactClose = () => setContactPopUp(false);
     const afterClick = () => {
         const newParam = 'newParamValue'
         navigate(`/personal-details/?myParam=${newParam}`);
@@ -753,7 +753,8 @@ const PersonalDetails1 = () => {
         '.contact':{
             position:'absolute',
             bottom:'0px',
-            right:'0px'
+            right:'0px',
+            zIndex:1000
         },
         '.css-1x51dt5-MuiInputBase-input-MuiInput-input':{
             padding:'0px !important'
@@ -877,6 +878,84 @@ marginBottom: '20px',
     border:'0px',
     background: 'transparent'
         }
+    }
+    const style3={
+        '.allow-access': {
+            padding: '20px',
+            background: '#DCD7CB',
+        },
+        '.access-box': {
+            background: '#DCD7CB',
+            display: 'block',
+        },
+        '.allow-details': {
+            fontFamily: 'Barlow, sans-serif',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '18px',
+            lineHeight: '22px',
+            textAlign: 'center',
+            color: '#000000',
+        },
+        '.allow-permission-button': {
+            background: '#080B0E',
+            padding: '15px 10px',
+            fontSize: '16px',
+            lineHeight: '20px',
+            fontWeight: '600',
+            fontFamily: 'Proxima Nova',
+            textDecoration: 'none',
+            display: 'block',
+            color: ' #FBFBFB !important',
+            textAlign: 'center',
+            border: '0.5px solid #080B0E',
+            flex: '1'
+        },
+        '.deny-permission-button': {
+            padding: '15px 10px',
+            fontSize: '16px',
+            lineHeight: '20px',
+            fontWeight: '600',
+            fontFamily: 'Proxima Nova',
+            textDecoration: 'none',
+            display: 'block',
+            color: ' #080B0E!important',
+            textAlign: 'center',
+            border: '0.5px solid #080B0E',
+            flex: '1'
+        },
+        '.deny-permission-button:hover': {
+            color: '#C6A87D!important',
+        },
+        '.allow-permission-button:hover': {
+            color: '#C6A87D!important',
+        },
+        '.access-btn': {
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '8px',
+            marginTop: '16px',
+            justifyContent: 'center'
+        },
+        '.modal-header': {
+            display: 'flex',
+            justifyContent: 'end'
+        },
+        '.main-modal':{
+            position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 406,
+        boxShadow: 24,
+        background: '#FBFBFB',
+        },
+        '.close': {
+            padding: '0px',
+            border: '0px',
+            background: 'transparent',
+            cursor: 'pointer',
+        },
     }
     return (
         <React.Fragment>
@@ -1202,7 +1281,7 @@ marginBottom: '20px',
                                                                     </Box>
                                                                     <Box className='form-field'>
                                                                         <label className="form-label" htmlFor="flatNumber">Contact Number</label>
-                                                                        <img className="contact" onClick={handleClick} src={contact}/>
+                                                                        <img className="contact" onClick={ContactOpen} src={contact}/>
                                                                         <TextField variant="standard" className="form-control" type="text" id="flatNumber" name="flatNumber" placeholder='10 digit number' InputProps={{
                                                                             disableUnderline: true,
                                                                             padding:'0px',
@@ -1321,6 +1400,37 @@ marginBottom: '20px',
                          </div>
                          </div>
                          </Box>
+                        </Modal>
+                        <Modal
+                            keepMounted
+                            open={contactPopUp}
+                            onClose={ContactClose}
+                            aria-labelledby="keep-mounted-modal-title"
+                            aria-describedby="keep-mounted-modal-description"
+                        >
+                            <Box sx={style3}>
+                                <Box className='main-modal'>
+                                <Box className="allow-access">
+                                    <Box className="modal-header">
+                                        <button type="button" data-bs-dismiss="modal" aria-label="Close"
+                                                className="close"
+                                                onClick={ContactClose}>
+                                            <CloseIcon/>
+                                        </button>
+                                    </Box>
+                                    <Box className="access-box">
+                                        <Typography className="allow-details">Allow <strong>Chefs-à-Porter</strong> to
+                                            access your contacts?</Typography>
+                                        <Box className="access-btn">
+                                            <Link href="/gift-cards"
+                                                  className="deny-permission-button">Deny</Link>
+                                            <Link href="/mobile-contact"
+                                                  className="allow-permission-button">Allow</Link>
+                                        </Box>
+                                    </Box>
+                                </Box>
+                                </Box>
+                            </Box>
                         </Modal>
             </MainBox>
         </React.Fragment>
