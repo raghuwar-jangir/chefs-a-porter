@@ -17,19 +17,20 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import contact from '../../assets/images/contact-form.png';
 import {navigate} from "gatsby";
 import InputAdornment from "@mui/material/InputAdornment";
+import OtpComponent from "../../components/OtpComponent";
 
 
-const PersonalDetails = () => {
+const PersonalDetails1 = () => {
     const handleClick = () => {
         navigate('/contact-permission');
-    }
-    const newPage = () =>{
-        navigate('/personal-details1')
     }
     const afterClick = () => {
         const newParam = 'newParamValue'
         navigate(`/personal-details/?myParam=${newParam}`);
     }
+    const [openModal, setOpenModal] = React.useState(false);
+    const handleOpenModal = () => setOpenModal(true);
+    const handleCloseModal = () => setOpenModal(false);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -761,6 +762,59 @@ const PersonalDetails = () => {
             fontSize:'15px',
             paddingBottom:'9px'
         },
+        '.guest-required-details':{
+            display: 'flex',
+flexDirection: 'row',
+alignItems: 'center',
+padding: '8px',
+gap: '8px',
+background: 'rgba(220, 215, 203, 0.2)',
+position: 'relative',
+marginBottom: '20px',
+        },
+        '.guest-no':{
+            fontFamily: 'Proxima Nova Alt',
+    fontStyle: 'normal',
+    fontWeight: 300,
+    fontSize: '14px',
+    lineHeight: '17px',
+    textAlign: 'center',
+    color: '#080B0E',
+        },
+        '.guest-name':{
+            fontFamily: 'ProximaNovaA-Regular',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: '14px',
+    lineHeight: '17px',
+    color: '#080B0E',
+    marginBottom:'0px'
+        },
+        '.guest-gmail':{
+            fontFamily: 'Proxima Nova Alt',
+    fontStyle: 'normal',
+    fontWeight: 300,
+    fontSize: '14px',
+    lineHeight: '17px',
+    color: '#080B0E',
+    marginBottom:'0px',
+    position: 'relative'
+        },
+        '.divider':{
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: 300,
+            fontSize: '20px',
+            color: '#080B0E',
+            marginBottom:'0px',
+            position: 'relative'
+        },
+        '.guest-close':{
+            color:' #080B0E',
+    fontSize: '19px',
+    position: 'absolute',
+    right: '8px',
+        },
         "@media (min-width: 1px) and (max-width:768px)": {
             '.modal-child':{
                 display:'flex',
@@ -774,7 +828,54 @@ const PersonalDetails = () => {
             },
             '.second-box':{
                 borderLeft:'0px'
-            }
+            },
+        }
+    }
+    const style2={
+        '.otp-modal':{
+            display:'block',
+            zIndex:'1055',
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            overflowX: 'hidden',
+            overflowY: 'auto',
+            outline:' 0'
+        },
+        '.modal-dialog':{
+            width:'400px',
+            marginLeft:'auto',
+            marginRight:'auto',
+            display: 'flex',
+    alignItems: 'center',
+    position:'relative',
+    marginTop:'10.75em'
+        },
+        '.modal-content':{
+            position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    backgroundColor:'#DCD7CB',
+    boxShadow: '0px 8px 12px rgba(0, 0, 0, 0.16)',
+    padding: '40px 30px 20px',
+    borderRadius: '0px'
+        },
+        '.modal-header':{
+            padding: '0px',
+    marginBottom: '30px',
+    borderBottom: 'none',
+    position: 'relative',
+    justifyContent: 'flex-start'
+        },
+        '.close-icon':{
+            position: 'absolute',
+            right: '0px',
+            padding: '0px',
+    border:'0px',
+    background: 'transparent'
         }
     }
     return (
@@ -820,7 +921,8 @@ const PersonalDetails = () => {
                                             {/* <ErrorMessage name="name" /> */}
                                         </Box>
                                         <Box className='form-field'>
-                                            <label className="form-label" htmlFor="flatNumber">Contact Number</label>
+                                            <label className="form-label" htmlFor="flatNumber" onClick={handleOpenModal} data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal">Contact Number</label>
                                             <TextField variant="standard" className="form-control" type="text" id="flatNumber" name="flatNumber" placeholder='10 digit number'  InputProps={{
                                                 disableUnderline: true,
 
@@ -1019,7 +1121,7 @@ const PersonalDetails = () => {
                             </Box>
                             <Box className="row viewbreak">
                                 <Box>
-                                    <button onClick={newPage} type="submit" className="submit-req">
+                                    <button type="submit" className="submit-req">
                                         Next
                                     </button>
                                 </Box>
@@ -1067,12 +1169,26 @@ const PersonalDetails = () => {
                                                                 <div className="modal-people-details">
                                                                     Chefs à Porter will contact your guests to collect allergen details directly. <br/> This experience is not suitable for children
                                                                 </div>
-                                                                <button className="add-btn"><AddIcon className="add-icon"/>Add Guest</button>
+                                                                {/* <button className="add-btn"><AddIcon className="add-icon"/>Add Guest</button> */}
+                                                                <div className="guest-required-details">
+                                                                    <span className="guest-no"># 1</span>
+                                                                    <span className="guest-name">Mayank jain</span>
+                                                                    <span className="divider">|</span>
+                                                                        <div className="guest-gmail">mayankjain@gmail.com</div>
+                                                                        <CloseIcon className="guest-close"/>
+                                                                </div>
+                                                                <div className="guest-required-details">
+                                                                    <span className="guest-no"># 2</span>
+                                                                    <span className="guest-name">Wade Warren</span>
+                                                                    <span className="divider">|</span>
+                                                                        <div className="guest-gmail">mayankjain@gmail.com</div>
+                                                                        <CloseIcon className="guest-close"/>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div className="second-box">
                                                             <div className="recipient">
-                                                                <div className="guest-1">Guest #1</div>
+                                                                <div className="guest-1">Guest #2</div>
                                                                 <Box  className="row">
                                                                     <Box className='form-field'>
                                                                         <label className="form-label" htmlFor="number">Your Name</label>
@@ -1187,10 +1303,27 @@ const PersonalDetails = () => {
                             )}
                         </Formik>
                     </Box>
-
                 </Modal>
+                <Modal  keepMounted
+                        open={openModal}
+                        onClose={handleCloseModal}
+                        aria-labelledby="keep-mounted-modal-title"
+                        aria-describedby="keep-mounted-modal-description">
+                            <Box sx={style2}>
+                            <div className="otp-modal">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                        <div className="modal-header">
+                            <CloseIcon className="close-icon" onClick={handleCloseModal}/>
+                            </div>
+                         <OtpComponent/>
+                         </div>
+                         </div>
+                         </div>
+                         </Box>
+                        </Modal>
             </MainBox>
         </React.Fragment>
     );
 };
-export default PersonalDetails;
+export default PersonalDetails1;
