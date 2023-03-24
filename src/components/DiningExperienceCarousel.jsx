@@ -28,7 +28,7 @@ const DiningExperienceCarousel = (props) => {
             color: '#FBFBFB',
             marginBottom: '0.5rem'
         },
-        '.peek-name': [{
+        '.peek-name': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '200',
@@ -37,7 +37,7 @@ const DiningExperienceCarousel = (props) => {
             textAlign: 'center',
             color: '#C6A87D',
             marginBottom: '0.5rem'
-        },linkTitle],
+        },
         '.slider-box': {
             marginTop: '30px'
         },

@@ -432,7 +432,7 @@ const BoxWrapper = styled(Box)({
         fontFamily: 'Bon Vivant',
         fontStyle: 'normal',
         fontSize: '20px',
-        fontWeight:'400',
+        fontWeight: '400',
         lineHeight: '25px',
         color: '#FBFBFB',
         marginBottom: '8px',
@@ -518,7 +518,7 @@ const BoxWrapper = styled(Box)({
         borderColor: '#C6A87D',
         margin: '0px',
         textTransform: "capitalize !important",
-        fontStyle:'ProximaNovaA-Regular'
+        fontStyle: 'ProximaNovaA-Regular'
     },
     ".btn:hover": {color: "#080B0E", background: "#C6A87D",},
     '.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root': {
@@ -1333,7 +1333,7 @@ const HomePage = () => {
                                     </Box>
                                 ))}
                             </Box>
-                            <DiningExperienceCarousel title={'Peek into our Private Dining Experiences'} subTitle={'@Privée'}/>
+                            <DiningExperienceCarousel title='Peek into our Private Dining Experiences' subTitle='@Privée'/>
                             <TemptedYet title={data.home.home_footer.moblie_title}
                                         buttonText={data.home.home_footer.mobile_button}/>
                             <NeedHelp/>
