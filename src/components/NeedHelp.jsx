@@ -11,7 +11,9 @@ import {Formik, Form} from "formik";
 import '../assets/styles/fontStyle.css'
 import CmsContext from "../context/CmsContext";
 
-const NeedHelp = ({isColor}) => {
+const NeedHelp = (props) => {
+
+    const {isColor, title, description, button_email, button_call} = props;
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -250,16 +252,18 @@ const NeedHelp = ({isColor}) => {
                     !_.isEmpty(data) &&
                     <React.Fragment>
                         <Box md={6} sm={6} xs={12} xl={7}>
-                            <Typography className="main-heading">{data.home.home_footer.desktop_title}</Typography>
-                            <Typography className="details">{data.home.home_footer.desktop_description}</Typography>
+                            <Typography className="main-heading">{title ? title : 'Need Help?'}</Typography>
+                            <Typography
+                                className="details">{description ? description : 'We respond within 24 business hours.'}</Typography>
                         </Box>
                         <Box md={6} sm={6} xs={12} xl={7}>
                             <Button
                                 type="submit"
-                                className="btn-1" onClick={handleOpen}>{data.home.home_footer.desktop_button_call}</Button>
+                                className="btn-1"
+                                onClick={handleOpen}>{button_call ? button_call : 'Schedule a Call'}</Button>
                             <Button
                                 type="submit"
-                                className="btn-2">{data.home.home_footer.desktop_button_email}</Button>
+                                className="btn-2">{button_email ? button_email : 'Email us'}</Button>
                         </Box>
                         <Modal
                             keepMounted

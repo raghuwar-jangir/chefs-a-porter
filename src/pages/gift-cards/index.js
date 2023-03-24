@@ -40,6 +40,7 @@ import contacts4 from "../../assets/images/contacts4.png";
 import contacts5 from "../../assets/images/contacts5.png";
 import CmsContext from "../../context/CmsContext";
 import * as _ from "lodash";
+import "../../assets/styles/fontStyle.css"
 
 const GiftCards = () => {
 
@@ -102,16 +103,16 @@ const GiftCards = () => {
         '.recipient-title': {
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
-            // fontWeight: 700,
+            fontWeight: 700,
             fontSize: '20px',
             lineHeight: '25px',
             color: '#080B0E',
             marginBottom: '8px',
         },
         '.recipient-details': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
-            // fontWeight: '400',
+            fontWeight: '400',
             fontSize: '16px',
             lineHeight: '19px',
             color: '#080B0E',
@@ -123,7 +124,7 @@ const GiftCards = () => {
             border: '0px',
             borderRadius: '0px',
             padding: '19px 10px',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '16px',
@@ -138,7 +139,7 @@ const GiftCards = () => {
             borderRadius: '0px',
             paddingLeft: '0px',
             paddingRight: '0px',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '300',
             fontSize: '16px',
@@ -151,7 +152,7 @@ const GiftCards = () => {
             borderBottom: 'unset !important',
         },
         'form label': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '16px',
@@ -189,7 +190,7 @@ const GiftCards = () => {
         },
         '.MuiFormHelperText-root': {
             textAlign: 'right',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '400',
             fontSize: '14px',
@@ -209,7 +210,7 @@ const GiftCards = () => {
             justifyContent: 'center'
         },
         '.save-booking-details': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontweight: '400',
             fontSize: '14px',
@@ -249,9 +250,9 @@ const GiftCards = () => {
         },
         ".header-link": {
             display: 'flex',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
-            fontWeight: '700',
+            fontWeight: '600',
             fontSize: '20px',
             lineHeight: '24px',
             color: '#FBFBFB',
@@ -272,11 +273,11 @@ const GiftCards = () => {
             fontSize: '32px',
             lineHeight: '39px',
             color: '#FBFBFB',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             marginBottom: '8px',
         },
         '.become-detail': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
             fontSize: '18px',
@@ -285,7 +286,7 @@ const GiftCards = () => {
             marginBottom: '0px',
         },
         '.apply': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '20px',
@@ -319,7 +320,7 @@ const GiftCards = () => {
         '.gift-work-heading': {
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
-            // fontWeight: '700',
+            fontWeight: '700',
             fontSize: '29.8333px',
             lineHeight: '37px',
             textAlign: 'center',
@@ -359,7 +360,7 @@ const GiftCards = () => {
             zIndex: 0,
         },
         '.step-1-detail': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
             fontSize: '20.8833px',
@@ -381,9 +382,9 @@ const GiftCards = () => {
             marginBottom: '40px',
         },
         '.things-to-do-details': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
-            // fontWeight: '600',
+            fontWeight: '600',
             fontSize: '16px',
             lineHeight: '19px',
             color: '#FBFBFB',
@@ -398,7 +399,7 @@ const GiftCards = () => {
             color: '#C6A87D'
         },
         '.enter-amount-label': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '400',
             fontSize: '16px',
@@ -478,8 +479,8 @@ const GiftCards = () => {
             border: '0.25px solid #FBFBFB',
             cursor: 'pointer',
             zIndex: '90',
-            fontFamily: 'Proxima Nova',
-            fontstyle: 'normal',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
             fontWeight: '400',
             fontSize: '16px',
             lineHeight: '19px',
@@ -508,6 +509,7 @@ const GiftCards = () => {
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
             fontSize: '20px',
+            fontWeight: '700',
             lineHeight: '25px',
             color: '#080B0E',
             // marginBottom: '26px',
@@ -518,7 +520,7 @@ const GiftCards = () => {
         '.Joy-selected': {
             border: '0.5px solid #080B0E',
             borderRadius: '0px',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontHeight: '400',
             fontSize: '12px',
@@ -532,7 +534,7 @@ const GiftCards = () => {
         '.MuiTab-variantPlain': {
             border: '0.5px solid #080B0E',
             borderRadius: '0px',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontHeight: '400',
             fontSize: '12px',
@@ -556,9 +558,9 @@ const GiftCards = () => {
             backgroundRepeat: 'no-repeat',
         },
         '.occasion-cards u': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
-            // fontWeight: '300',
+            fontWeight: '300',
             fontSize: '20px',
             lineHeight: '24px',
             textAlign: 'right',
@@ -572,7 +574,7 @@ const GiftCards = () => {
         '.occasion-subtitle': {
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
-            // fontWeight: '700',
+            fontWeight: '700',
             fontSize: '32px',
             lineHeight: '40px',
             color: '#FBFBFB',
@@ -621,9 +623,9 @@ const GiftCards = () => {
             top: '24px',
             background: 'transparent',
             border: '0px',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
-            // fontWeight: '300',
+            fontWeight: '300',
             fontSize: '16px',
             lineHeight: '19px',
             textDecorationLine: 'underline',
@@ -1149,7 +1151,7 @@ const GiftCards = () => {
                                                                                    background: '#FBFBFB',
                                                                                    height: '31px',
                                                                                    borderRadius: '0px',
-                                                                                   fontFamily: 'Proxima Nova',
+                                                                                   fontFamily: 'Proxima Nova Alt',
                                                                                    fontStyle: 'normal',
                                                                                    fontWeight: '400',
                                                                                    fontSize: '16px',
@@ -1331,7 +1333,7 @@ const GiftCards = () => {
                                                                                                             background: 'transparent',
                                                                                                             border: '0px',
                                                                                                             borderBottom: '0.377697px solid #FBFBFB',
-                                                                                                            fontFamily: 'Proxima Nova',
+                                                                                                            fontFamily: 'Proxima Nova Alt',
                                                                                                             fontStyle: 'normal',
                                                                                                             fontSize: '20px',
                                                                                                             lineHeight: '24px',
@@ -1343,7 +1345,7 @@ const GiftCards = () => {
                                                                                                             opacity: '1'
                                                                                                         },
                                                                                                         '.MuiFormHelperText-root': {
-                                                                                                            fontFamily: 'Proxima Nova',
+                                                                                                            fontFamily: 'Proxima Nova Alt',
                                                                                                             fontStyle: 'normal',
                                                                                                             fontWeight: '250',
                                                                                                             fontSize: '16px',
@@ -1366,7 +1368,7 @@ const GiftCards = () => {
                                                                                                     value={values.occassionMessage1}
                                                                                                     placeholder={item.description}
                                                                                                     helperText={`${values.occassionMessage1.length}/${CHAR_LIMIT} Characters`}
-                                                                                                    onChange={handleChange(`occassionMessage${index+1}`)}
+                                                                                                    onChange={handleChange(`occassionMessage${index + 1}`)}
                                                                                                     margin="normal"
                                                                                                     variant="outlined"
                                                                                                     fullWidth
@@ -1525,7 +1527,11 @@ const GiftCards = () => {
                                 </Box>
                             </Box>
                         </Box>
-                        {/*<NeedHelp/>*/}
+                        <NeedHelp title={data.gift_card.home_footer.desktop_title}
+                                  description={data.gift_card.home_footer.desktop_description}
+                                  button_call={data.gift_card.home_footer.desktop_button_call}
+                                  button_email={data.gift_card.home_footer.desktop_button_email}
+                        />
                         <Footer/>
                         <FooterEnd/>
                         <Modal

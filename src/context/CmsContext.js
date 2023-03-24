@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,useLayoutEffect} from 'react';
 import axios from "axios";
 import {useLocation} from "@reach/router"
 import * as _ from "lodash";
@@ -30,11 +30,12 @@ const CmsProvider = (props) => {
 
     const currentPath = path.pathname.split("/")[1];
 
-    const baseUrl = `https://chefv2.hypervergedemo.site/v1/cms/`;
+    const baseUrl = `https://chefv2.hypervergedemo.site/v1/cms`;
 
     const emptyUrl = currentPath.startsWith(null) ? currentPath : currentPath + "/"
 
     const [data, setData] = useState()
+    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
         console.log("========>UseEffect is called")
@@ -42,6 +43,31 @@ const CmsProvider = (props) => {
             setData(result.data)
         })
     }, [currentPath])
+
+
+
+    // useEffect(() => {
+    //     setIsMounted(true);
+    // }, []);
+    //
+    // useLayoutEffect(() => {
+    //     if (isMounted) {
+    //         console.log("========>UseEffect is called")
+    //         axios.get(baseUrl + `/${pathInfo[!currentPath ? emptyUrl : currentPath]}/`).then(result => {
+    //             setData(result.data)
+    //         })
+    //     }
+    // }, [isMounted]);
+
+    // useEffect(() => {
+    //     console.log("========>UseEffect is called")
+    //     async function fetchData() {
+    //        await axios.get(baseUrl + `/${pathInfo[!currentPath ? emptyUrl : currentPath]}/`).then(result => {
+    //             setData(result.data)
+    //         })
+    //     }
+    //     fetchData();
+    // }, [currentPath]);
 
     console.log("currentPath====>", currentPath);
     console.log("data====>", data);

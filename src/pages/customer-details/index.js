@@ -188,7 +188,7 @@ const CustomerDetails = () => {
             fontWeight: '400',
             margin: '30px 0px',
             borderRadius: '0px',
-            cursor:'pointer',
+            cursor: 'pointer',
         },
         '.content': {
             fontFamily: 'Proxima Nova Alt',
@@ -1888,7 +1888,9 @@ const CustomerDetails = () => {
                                             </div>
                                             <div><span style={{paddingTop: '5px'}}>Resend OTP in 00:32 sec</span></div>
                                             <div className="btn-val">
-                                                <button className="btn validate" type="submit" onClick={handleClick}>Verfiy</button>
+                                                <button className="btn validate" type="submit"
+                                                        onClick={handleClick}>Verfiy
+                                                </button>
                                             </div>
                                         </div>
                                         <div className="card-2">

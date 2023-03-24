@@ -398,7 +398,11 @@ const SupperClub = () => {
                                           slidesPerView={true} isBackground={true}/>
                     <DiningExperienceCarousel title='Stay in the know' subTitle='@Chefsaporter'/>
                     <SupperClubQuestion isLightTheme={true}/>
-                    {/*<NeedHelp/>*/}
+                    <NeedHelp title={data.supper_club.home_footer.desktop_title}
+                              description={data.supper_club.home_footer.desktop_description}
+                              button_call={data.supper_club.home_footer.desktop_button_call}
+                              button_email={data.supper_club.home_footer.desktop_button_email}
+                    />
                     <Footer/>
                     <FooterEnd/>
                 </MainBox>

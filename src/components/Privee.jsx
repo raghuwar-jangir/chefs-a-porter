@@ -6,6 +6,7 @@ import chef from '../assets/images/chef1.png'
 import chef2 from '../assets/images/chef2.png'
 import CmsContext from "../context/CmsContext";
 import * as _ from "lodash";
+import reebok from "../assets/images/rebook.png";
 
 const Privee = (props) => {
 
@@ -149,6 +150,13 @@ const Privee = (props) => {
                                 return (
                                     <div className="cell">
                                         <img className='privee-img' src={item.picture}/>
+                                        {/*{*/}
+                                        {/*    item.details.is_featured &&*/}
+                                        {/*    <Box className="rebook">*/}
+                                        {/*        <img className="rebook-img" src={reebok}/>*/}
+                                        {/*        <Typography className="rebook-title">Rebook</Typography>*/}
+                                        {/*    </Box>*/}
+                                        {/*}*/}
                                         <Box className="name-box"><Typography
                                             className='chef-title'>{item.name}</Typography>
                                             <Box className="chef-details">

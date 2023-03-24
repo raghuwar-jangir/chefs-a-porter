@@ -99,6 +99,9 @@ const ChefDetails = (props) => {
             '.container-fluid': {
                 padding: '80px 235px'
             },
+            '.carousel-box': {
+                display: 'none'
+            },
             '.chef-name': {
                 fontSize: '23px',
                 lineHeight: '30px',
@@ -338,6 +341,9 @@ const ChefDetails = (props) => {
                 boxShadow: "0px 8px 16px rgb(0 0 0 / 16%)",
                 cursor: "pointer",
             },
+            '.gallery-carousel': {
+                display: 'none'
+            },
             ".main-img-1": {
                 width: "100%",
                 height: "180px",
@@ -429,6 +435,9 @@ const ChefDetails = (props) => {
                 // '.supper-chef-details': {
                 //     display: 'none'
                 // },
+                '.gallery-carousel': {
+                    display: 'block'
+                },
                 '.tz-gallery': {
                     display: 'none'
                 },
@@ -457,7 +466,7 @@ const ChefDetails = (props) => {
                 },
                 '.container-spacing': {
                     display: 'none'
-                }
+                },
             },
             '@media(min-width:600px) and (max-width: 768px)': {
                 '.header-club': {
@@ -643,7 +652,7 @@ const ChefDetails = (props) => {
                         <Box className="mobileView-chef">
                             <Typography className="chef-name mbl-chef-name">Chef Mako Ravindran</Typography>
                         </Box>
-                        <ImageCarousel/>
+                        <Box className="gallery-carousel"><ImageCarousel/></Box>
                         <Box className="mobileView-chef">
                             <Typography className="chef-details mbl-chef-name">Specialty:<b> Thai,
                                 Japanese</b></Typography>
@@ -693,7 +702,6 @@ const ChefDetails = (props) => {
                                 </Grid>
                             </Grid>
                         </Grid>
-
                         <Box className="row supper-chef-details">
                             <Box className="col-lg-12">
                                 <Box className="details">
@@ -754,10 +762,12 @@ const ChefDetails = (props) => {
                                     <AvlExperienceCarousel title={"A Traditional Oma Kase"} image={avlExp1}/>
                                 </Grid>
                                 <Grid item xl={4} md={4} sm={6} xs={12}>
-                                    <AvlExperienceCarousel title={"A Traditional Oma Kase"} image={avlExp2} isLabelShow={true}/>
+                                    <AvlExperienceCarousel title={"A Traditional Oma Kase"} image={avlExp2}
+                                                           isLabelShow={true}/>
                                 </Grid>
                                 <Grid item xl={4} md={4} sm={6} xs={12}>
-                                    <AvlExperienceCarousel title={"A Traditional Oma Kase"} image={avlExp1} isLabelShow={true}/>
+                                    <AvlExperienceCarousel title={"A Traditional Oma Kase"} image={avlExp1}
+                                                           isLabelShow={true}/>
                                 </Grid>
                             </Grid>
                         </Box>
@@ -896,7 +906,7 @@ const ChefDetails = (props) => {
                         </Box>
                     </Box>
                 </Modal>
-                {/*<NeedHelp/>*/}
+                <NeedHelp/>
                 <Footer/>
                 <TemptedYet isTempted={true} title={'Tempted yet?'} buttonRText={'Book an Experience'}/>
                 <FooterEnd/>

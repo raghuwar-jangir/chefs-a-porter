@@ -875,7 +875,7 @@ const HomePage = () => {
     useEffect(() => {
         {
             !_.isEmpty(data) &&
-            setImageData(data.home.food_drools.content)
+                setImageData(data.home.food_drools.content)
         }
     }, [data])
 
@@ -898,7 +898,6 @@ const HomePage = () => {
     const finalImgData = imgData.map((item, i) => Object.assign({}, item, rowOfObjects[i]));
 
     const finalImageData = finalImgData.map((item, i) => Object.assign({}, item, ColsOfObjects[i]));
-
 
     const handleClick = () => {
         navigate('/privee-viewmore', {state: true});
@@ -1214,7 +1213,7 @@ const HomePage = () => {
                             </Box>
                             <Box className="mobileView-gallery">
                                 <Box>
-                                    <Typography className='gallery-heading'>Food that makes you drool!</Typography>
+                                    <Typography className='gallery-heading'>{data.home.food_drools.title}</Typography>
                                 </Box>
                                 <Grid container spacing={1} sx={{padding: '10px 12px'}}>
                                     <Grid item xs={12}>
@@ -1333,10 +1332,14 @@ const HomePage = () => {
                                     </Box>
                                 ))}
                             </Box>
-                            <DiningExperienceCarousel title='Peek into our Private Dining Experiences' subTitle='@Privée'/>
+                            <DiningExperienceCarousel title='Peek into our Private Dining Experiences'
+                                                      subTitle='@Privée'/>
                             <TemptedYet title={data.home.home_footer.moblie_title}
                                         buttonText={data.home.home_footer.mobile_button}/>
-                            <NeedHelp/>
+                            <NeedHelp title={data.home.home_footer.desktop_title} description={data.home.home_footer.desktop_description}
+                                      button_call={data.home.home_footer.desktop_button_call}
+                                      button_email={data.home.home_footer.desktop_button_email}
+                            />
                             <Footer/>
                             <FooterEnd/>
                         </>

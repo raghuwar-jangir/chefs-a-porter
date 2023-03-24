@@ -1241,7 +1241,7 @@ const SupperClubDetail = () => {
                         </Box>
                     </Box>
                 </Modal>
-                {/*<NeedHelp/>*/}
+                <NeedHelp/>
                 <Box className="footer-box">
                     <Footer/>
                 </Box>

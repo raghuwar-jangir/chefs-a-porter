@@ -408,7 +408,10 @@ const AboutCardComponent = (props) => {
                             }
 
                         </Box>
-                        {/*<NeedHelp/>*/}
+                        <NeedHelp title={data.about_us.home_footer.desktop_title} description={data.about_us.home_footer.desktop_description}
+                                  button_call={data.about_us.home_footer.desktop_button_call}
+                                  button_email={data.about_us.home_footer.desktop_button_email}
+                        />
                         <OpenPosition/>
                         <Box className="lastBox">
                             <Box>

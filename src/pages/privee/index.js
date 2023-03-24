@@ -29,6 +29,7 @@ import PriveeRatingCarousel from "../../components/PriveeRatingCarousel";
 import StarIcon from "@mui/icons-material/Star";
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import {SwiperSlide} from "swiper/react";
+import "../../assets/styles/fontStyle.css"
 
 const MainBoxContent = styled(Box)({
     position: 'relative',
@@ -722,6 +723,7 @@ const PriveePage = () => {
                                                             defaultValue={values.city}
                                                             className="selectpicker my-select dropdown-toggle form-control"
                                                             sx={{
+                                                                fontFamily: 'Proxima Nova Alt',
                                                                 fontSize: '20px',
                                                                 '.MuiOutlinedInput-notchedOutline': {border: 0},
                                                                 '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
@@ -730,7 +732,8 @@ const PriveePage = () => {
                                                                 '.MuiSelect-select': {
                                                                     padding: '0px 5px',
                                                                     fontSize: '20px',
-                                                                    fontWeight: '100'
+                                                                    fontFamily: 'Proxima Nova Alt',
+                                                                    fontWeight:'400'
                                                                 }
                                                             }}
                                                             MenuProps={{
@@ -796,13 +799,17 @@ const PriveePage = () => {
                                                             defaultValue={values.experience}
                                                             className="selectpicker my-select dropdown-toggle form-control"
                                                             sx={{
+                                                                fontFamily: 'Proxima Nova Alt',
+                                                                fontSize: '20px',
                                                                 '.MuiOutlinedInput-notchedOutline': {border: 0},
                                                                 '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                     border: 'none',
                                                                 },
                                                                 '.MuiSelect-select': {
                                                                     padding: '0px 5px',
-                                                                    fontSize: '20px'
+                                                                    fontSize: '20px',
+                                                                    fontFamily: 'Proxima Nova Alt',
+                                                                    fontWeight:'400'
                                                                 }
                                                             }}
                                                             MenuProps={{
@@ -870,7 +877,7 @@ const PriveePage = () => {
                                                                            sx: {
                                                                                width: "25px", background: 'transparent',
                                                                                border: '0px',
-                                                                               fontFamily: 'Proxima Nova',
+                                                                               fontFamily: 'ProximaNovaA-Regular',
                                                                                fontStyle: 'normal',
                                                                                fontWeight: '400',
                                                                                fontSize: '14px',
@@ -890,7 +897,7 @@ const PriveePage = () => {
                                                                 '& .MuiInputBase-input': {
                                                                     width: "25px", background: 'transparent',
                                                                     border: '0px',
-                                                                    fontFamily: 'Proxima Nova',
+                                                                    fontFamily: 'ProximaNovaA-Regular',
                                                                     fontStyle: 'normal',
                                                                     fontWeight: '400',
                                                                     fontSize: '14px',
@@ -948,7 +955,11 @@ const PriveePage = () => {
                         </Box>
                         <TemptedYet title={data.privee.privee_footer.title}
                                     buttonText={data.privee.privee_footer.button_text} isTempted={true}/>
-                        {/*<NeedHelp/>*/}
+                        <NeedHelp title={data.privee.home_footer.desktop_title}
+                                  description={data.privee.home_footer.desktop_description}
+                                  button_call={data.privee.home_footer.desktop_button_call}
+                                  button_email={data.privee.home_footer.desktop_button_email}
+                        />
                         <Footer/>
                         <FooterEnd/>
                     </>
