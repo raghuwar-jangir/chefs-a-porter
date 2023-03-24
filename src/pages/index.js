@@ -1333,7 +1333,7 @@ const HomePage = () => {
                                     </Box>
                                 ))}
                             </Box>
-                            <DiningExperienceCarousel/>
+                            <DiningExperienceCarousel title='Peek into our Private Dining Experiences' subTitle='@Privée'/>
                             <TemptedYet title={data.home.home_footer.moblie_title}
                                         buttonText={data.home.home_footer.mobile_button}/>
                             <NeedHelp/>
