@@ -59,6 +59,7 @@ import DiningExperienceCarousel from "../components/DiningExperienceCarousel";
 import axios from "axios";
 import CmsContext from "../context/CmsContext";
 import "../assets/styles/searchBar.css"
+import "../assets/styles/fontStyle.css"
 
 
 const MainBoxContent = styled(Box)({
@@ -132,7 +133,7 @@ const BoxWrapper = styled(Box)({
         borderRadius: '0px',
         paddingLeft: '0px',
         paddingRight: '0px',
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'ProximaNovaA-Regular',
         fontStyle: 'normal',
         fontWeight: '300',
         fontSize: '16px',
@@ -141,7 +142,7 @@ const BoxWrapper = styled(Box)({
         width: '100%'
     },
     '.label': {
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'Proxima Nova Alt',
         fontStyle: 'normal',
         fontWeight: '600',
         fontSize: '16px',
@@ -161,7 +162,7 @@ const BoxWrapper = styled(Box)({
         paddingLeft: '5px',
         color: '#080B0E',
         fontSize: '20px',
-        fontWeight: '100',
+        fontWeight: '400',
         fontFamily: 'ProximaNovaA-Regular',
     },
     '.icon-rc-datepicker': {
@@ -182,25 +183,13 @@ const BoxWrapper = styled(Box)({
         padding: '8px 0px',
         // top: '-5px'
     },
-    // '.react-datepicker-component': {
-    //     top: '-5px'
-    // },
+    '.react-datepicker-component': {
+        top: '-5px'
+    },
     '.react-datepicker-component .react-datepicker-input.is-open': {
         background: 'transparent',
         border: '0px',
         borderRadius: '0px',
-    },
-    '.edit': {
-        display: 'none',
-        fontFamily: 'Proxima Nova',
-        fontStyle: 'normal',
-        fontWeight: '250',
-        fontSize: '16px',
-        lineHeight: '19px',
-        color: '#C6A87D',
-        textAlign: 'right',
-        marginBottom: '12px',
-        textDecoration: 'none',
     },
     '.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
         height: '10px',
@@ -217,7 +206,7 @@ const BoxWrapper = styled(Box)({
         border: '0px',
         borderRadius: '0px',
         height: '75px',
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'ProximaNovaA-Regular',
         fontStyle: 'normal',
         fontSize: '20px',
         lineHeight: '24px',
@@ -353,7 +342,7 @@ const BoxWrapper = styled(Box)({
         marginBottom: '8px'
     },
     '.privee-card-details': {
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'Proxima Nova Alt',
         fontStyle: 'normal',
         fontWeight: '300',
         fontSize: '16px',
@@ -367,7 +356,7 @@ const BoxWrapper = styled(Box)({
         fontSize: '16px',
         lineHeight: '20px',
         fontWeight: '600',
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'ProximaNovaA-Regular',
         textDecoration: 'none',
         display: 'block',
         width: '85%',
@@ -406,7 +395,7 @@ const BoxWrapper = styled(Box)({
         marginBottom: '8px'
     },
     '.supper-card-details': {
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'Proxima Nova Alt',
         fontStyle: 'normal',
         fontWeight: '300',
         fontSize: '16px',
@@ -421,7 +410,7 @@ const BoxWrapper = styled(Box)({
         lineHeight: '20px',
         fontWeight: '400',
         width: '70%',
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'ProximaNovaA-Regular',
         textDecoration: 'none',
         display: 'block',
         color: '#FBFBFB !important',
@@ -443,12 +432,13 @@ const BoxWrapper = styled(Box)({
         fontFamily: 'Bon Vivant',
         fontStyle: 'normal',
         fontSize: '20px',
+        fontWeight:'400',
         lineHeight: '25px',
         color: '#FBFBFB',
         marginBottom: '8px',
     },
     '.join-table-details': {
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'Proxima Nova Alt',
         fontStyle: 'normal',
         fontWeight: '300',
         fontSize: '16px',
@@ -468,11 +458,11 @@ const BoxWrapper = styled(Box)({
         display: 'flex'
     },
     '.find-us-title': {
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'Proxima Nova Alt',
         fontStyle: 'normal',
         fontWeight: '400',
-        fontSize: '18px',
-        lineHeight: '19px',
+        fontSize: '20px',
+        lineHeight: '28px',
         letterSpacing: '-0.01em',
         color: '#FBFBFB',
         marginRight: '10px',
@@ -527,7 +517,8 @@ const BoxWrapper = styled(Box)({
         width: '50px !important',
         borderColor: '#C6A87D',
         margin: '0px',
-        textTransform: "capitalize !important"
+        textTransform: "capitalize !important",
+        fontStyle:'ProximaNovaA-Regular'
     },
     ".btn:hover": {color: "#080B0E", background: "#C6A87D",},
     '.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root': {
@@ -611,9 +602,9 @@ const BoxWrapper = styled(Box)({
         objectFit: 'cover'
     },
     '.fresh-food-title': {
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'ProximaNovaA-Regular',
         fontStyle: 'normal',
-        fontWeight: '700',
+        fontWeight: '600',
         fontSize: '20px',
         lineHeight: '150%',
         color: '#222222',
@@ -622,7 +613,7 @@ const BoxWrapper = styled(Box)({
         width: '100%'
     },
     '.fresh-food-sub-details': {
-        fontFamily: 'Proxima Nova',
+        fontFamily: 'Proxima Nova Alt',
         fontStyle: 'normal',
         fontWeight: '400',
         fontSize: '16px',
@@ -957,6 +948,7 @@ const HomePage = () => {
                                                                     defaultValue={values.city}
                                                                     className="selectpicker my-select dropdown-toggle form-control"
                                                                     sx={{
+                                                                        fontFamily: 'ProximaNovaA-Regular',
                                                                         fontSize: '20px',
                                                                         '.MuiOutlinedInput-notchedOutline': {border: 0},
                                                                         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
@@ -968,8 +960,9 @@ const HomePage = () => {
                                                                         '.MuiSelect-select': {
                                                                             padding: '0px 5px',
                                                                             fontSize: '20px',
-                                                                            fontWeight: '100',
+                                                                            fontWeight: '400',
                                                                             display: 'flex',
+                                                                            fontFamily: 'ProximaNovaA-Regular',
                                                                             flexDirection: 'column'
                                                                         }
                                                                     }}
@@ -980,7 +973,8 @@ const HomePage = () => {
                                                                                 color: '#FBFBFB',
                                                                                 li: {
                                                                                     fontSize: '20px',
-                                                                                    fontWeight: '100',
+                                                                                    fontWeight: '400',
+                                                                                    fontFamily: 'ProximaNovaA-Regular',
                                                                                     padding: '6px 16px'
                                                                                 },
                                                                                 ul: {
@@ -1033,6 +1027,7 @@ const HomePage = () => {
                                                                     className="selectpicker my-select dropdown-toggle form-control"
                                                                     sx={{
                                                                         fontSize: '20px',
+                                                                        fontFamily: 'ProximaNovaA-Regular',
                                                                         '.MuiOutlinedInput-notchedOutline': {border: 0},
                                                                         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                             border: 'none',
@@ -1041,6 +1036,7 @@ const HomePage = () => {
                                                                             color: '#FBFBFB'
                                                                         },
                                                                         '.MuiSelect-select': {
+                                                                            fontFamily: 'ProximaNovaA-Regular',
                                                                             padding: '0px 5px',
                                                                             fontSize: '20px',
                                                                             fontWeight: '100'
@@ -1053,7 +1049,8 @@ const HomePage = () => {
                                                                                 color: '#FBFBFB',
                                                                                 li: {
                                                                                     fontSize: '20px',
-                                                                                    fontWeight: '100',
+                                                                                    fontFamily: 'ProximaNovaA-Regular',
+                                                                                    fontWeight: '400',
                                                                                     padding: '6px 16px'
                                                                                 },
                                                                                 ul: {
@@ -1091,6 +1088,7 @@ const HomePage = () => {
                                                                     className="selectpicker my-select dropdown-toggle form-control"
                                                                     sx={{
                                                                         fontSize: '20px',
+                                                                        fontFamily: 'ProximaNovaA-Regular',
                                                                         '.MuiOutlinedInput-notchedOutline': {border: 0},
                                                                         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                             border: 'none',
@@ -1099,6 +1097,7 @@ const HomePage = () => {
                                                                             color: '#FBFBFB'
                                                                         },
                                                                         '.MuiSelect-select': {
+                                                                            fontFamily: 'ProximaNovaA-Regular',
                                                                             padding: '0px 5px',
                                                                             fontSize: '20px',
                                                                             fontWeight: '100'
@@ -1111,7 +1110,8 @@ const HomePage = () => {
                                                                                 color: '#FBFBFB',
                                                                                 li: {
                                                                                     fontSize: '20px',
-                                                                                    fontWeight: '100',
+                                                                                    fontFamily: 'ProximaNovaA-Regular',
+                                                                                    fontWeight: '400',
                                                                                     padding: '6px 16px'
                                                                                 },
                                                                                 ul: {

@@ -287,8 +287,7 @@ const SupperClub = () => {
                     <Box className='upcoming'>
                         <Box className='upcoming-container'>
                             <Box className='child-upcoming'>
-                                <Typography
-                                    className="upcoming-supper-header">{data.supper_club.upcoming_supper_club.title}</Typography>
+                                <Typography className="upcoming-supper-header">{data.supper_club.upcoming_supper_club.title}</Typography>
                             </Box>
                             <Box>
                                 <Tabs

@@ -23,7 +23,7 @@ const NeedHelp = ({isColor}) => {
         justifyContent: 'space-between',
         background: `${isColor ? '#101418' : '#FBFBFB'}`,
         borderTop: '0.5px solid #080B0E',
-        ".btn": {
+        ".btn-1": {
             // border: '0.25px solid #fff',
             border: 'none !important',
             background: "#080B0E !important",
@@ -39,7 +39,7 @@ const NeedHelp = ({isColor}) => {
             height: "55px !important",
             marginTop: "0px !important",
         },
-        ".btn:hover": {
+        ".btn-1:hover": {
             color: "#C6A87D !important",
             background: "#080B0E !important",
         },
@@ -94,7 +94,7 @@ const NeedHelp = ({isColor}) => {
                 // color: "#FBFBFB",
                 paddingBottom: "20px"
             },
-            ".btn": {
+            ".btn-1": {
                 width: '50%',
             },
             ".btn-2": {
@@ -256,7 +256,7 @@ const NeedHelp = ({isColor}) => {
                         <Box md={6} sm={6} xs={12} xl={7}>
                             <Button
                                 type="submit"
-                                className="btn" onClick={handleOpen}>{data.home.home_footer.desktop_button_call}</Button>
+                                className="btn-1" onClick={handleOpen}>{data.home.home_footer.desktop_button_call}</Button>
                             <Button
                                 type="submit"
                                 className="btn-2">{data.home.home_footer.desktop_button_email}</Button>

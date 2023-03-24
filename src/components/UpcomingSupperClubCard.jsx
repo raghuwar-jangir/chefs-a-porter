@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Typography, styled} from "@mui/material";
 import img1 from '../assets/images/supper-1.png';
 import img2 from '../assets/images/testImage2.png';
@@ -10,8 +10,12 @@ import {Box} from "@mui/system";
 import '../assets/styles/fontStyle.css';
 import {Link} from "gatsby";
 import {navigate} from "gatsby";
+import CmsContext from "../context/CmsContext";
+import * as _ from "lodash";
 
 const UpcomingSupperClubCard = () => {
+
+    const {data} = useContext(CmsContext);
 
     const handleClick = () => {
         navigate('/supper-club-detail');
@@ -152,43 +156,51 @@ const UpcomingSupperClubCard = () => {
     })
     return (
         <React.Fragment>
-            <MainBox>
-                {cardDetails.map((item, index) => (
-                    <Box key={index} onClick={handleClick}>
-                        <Box sx={{position: 'relative'}}>
-                            <img className='test-img' src={item.potImg}/>
-                            {index === 0 && (
-                                <div>
-                                    <Box className='trending'><img className='trending-img'
-                                                                   src={item.tend}/><Typography
-                                        className='trending-title'>{item.trendDetails}</Typography></Box>
-                                </div>
-                            )}
-                            {index === cardDetails.length - 1 && (
-                                <div>
-                                    <Box className='trending'><img className='trending-img'
-                                                                   src={item.tend}/><Typography
-                                        className='trending-title'>{item.trendDetails}</Typography></Box>
-                                </div>
-                            )}
-                            <Box className='supper-info'>
-                                <Typography className='super-title'>{item.title}</Typography>
-                                <Box className='super-chef-details'>
-                                <span className='chef-tag'><img className='img-tag' src={item.chef}
-                                                                alt="chef cap"/><Typography
-                                    className='tag-detail'>{item.chefDetails}</Typography></span>
-                                    <span className='chef-tag'><img className='img-tag' src={item.cal}
-                                                                    alt="date"/><Typography
-                                        className='tag-detail'>{item.calDetails}</Typography></span>
-                                    <span className='chef-tag'><img className='img-tag' src={item.price}
-                                                                    alt="Rates"/><Typography
-                                        className='tag-detail'>{item.priceDetails}</Typography></span>
+            {
+                !_.isEmpty(data) &&
+                <MainBox>
+                    {data.supper_club.upcoming_supper_club.supper_clubs.map((item, index) => (
+                        <Box key={index} onClick={handleClick}>
+                            <Box sx={{position: 'relative'}}>
+                                <img className='test-img' src={item.pictures}/>
+                                {/*{index === 0 && (*/}
+                                {/*    <div>*/}
+                                {/*        <Box className='trending'><img className='trending-img'*/}
+                                {/*                                       src={item.tend}/><Typography*/}
+                                {/*            className='trending-title'>{item.trendDetails}</Typography></Box>*/}
+                                {/*    </div>*/}
+                                {/*)}*/}
+                                {/*{index === cardDetails.length - 1 && (*/}
+                                {/*    <div>*/}
+                                {/*        <Box className='trending'><img className='trending-img'*/}
+                                {/*                                       src={item.tend}/><Typography*/}
+                                {/*            className='trending-title'>{item.trendDetails}</Typography></Box>*/}
+                                {/*    </div>*/}
+                                {/*)}*/}
+                                <Box className='supper-info'>
+                                    <Typography className='super-title'>{item.title}</Typography>
+                                    <Box className='super-chef-details'>
+                                    <span className='chef-tag'>
+                                        <img className='img-tag' src={cap} alt="chef cap"/>
+                                        <Typography className='tag-detail'>{`Chef ${item.chef.name}`}</Typography>
+                                    </span>
+                                        <span className='chef-tag'>
+                                        <img className='img-tag' src={date} alt="date"/>
+                                            {/*<Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography>*/}
+                                            <Typography
+                                                className='tag-detail'>{item.what_to_expect.Time}</Typography>
+                                    </span>
+                                        <span className='chef-tag'>
+                                        <img className='img-tag' src={tag} alt="Rates"/>
+                                        <Typography className='tag-detail'><b>{`₹${item.price}`}</b>/per diner</Typography>
+                                    </span>
+                                    </Box>
                                 </Box>
                             </Box>
                         </Box>
-                    </Box>
-                ))}
-            </MainBox>
+                    ))}
+                </MainBox>
+            }
         </React.Fragment>
     )
 }

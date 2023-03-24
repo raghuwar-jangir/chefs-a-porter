@@ -247,7 +247,7 @@ const FoodCarousel = (isButtonShow) => {
                                         <Box className='super-chef-details'>
                                     <span className='chef-tag'>
                                         <img className='img-tag' src={cap} alt="chef cap"/>
-                                        <Typography className='tag-detail'>{item.chef.name}</Typography>
+                                        <Typography className='tag-detail'>{`Chef ${item.chef.name}`}</Typography>
                                     </span>
                                             <span className='chef-tag'>
                                         <img className='img-tag' src={date} alt="date"/>
@@ -257,7 +257,7 @@ const FoodCarousel = (isButtonShow) => {
                                     </span>
                                             <span className='chef-tag'>
                                         <img className='img-tag' src={tag} alt="Rates"/>
-                                        <Typography className='tag-detail'>{item.price}/per diner</Typography>
+                                        <Typography className='tag-detail'><b>{`₹${item.price}`}</b>/per diner</Typography>
                                     </span>
                                         </Box>
                                     </Box>

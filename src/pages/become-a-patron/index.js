@@ -19,6 +19,7 @@ import {Link} from "gatsby";
 import CmsContext from "../../context/CmsContext";
 import * as _ from "lodash";
 import BecomeAPatronQuestion from "../../components/BecomeAPatronQuestions";
+import "../../assets/styles/fontStyle.css"
 
 
 const BecomePartner = () => {
@@ -46,9 +47,9 @@ const BecomePartner = () => {
         },
         ".header-link": {
             display: 'flex',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
-            fontWeight: '700',
+            fontWeight: '600',
             fontSize: '20px',
             lineHeight: '24px',
             color: '#FBFBFB',
@@ -69,11 +70,11 @@ const BecomePartner = () => {
             fontSize: '32px',
             lineHeight: '39px',
             color: '#FBFBFB',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             marginBottom: '8px',
         },
         '.become-detail': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
             fontSize: '18px',
@@ -82,7 +83,7 @@ const BecomePartner = () => {
             marginBottom: '0px',
         },
         '.apply': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '20px',
@@ -138,6 +139,7 @@ const BecomePartner = () => {
             fontStyle: 'normal',
             fontSize: '24px',
             lineHeight: '30px',
+            fontWeight:'700',
             textAlign: 'center',
             letterSpacing: ' 0.06em',
             color: '#080B0E',
@@ -159,7 +161,7 @@ const BecomePartner = () => {
             justifyContent: 'space-between'
         },
         '.gold-membership-heading': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '700',
             fontSize: '20px',
@@ -168,7 +170,7 @@ const BecomePartner = () => {
             color: '#FBFBFB',
         },
         '.silver-membership-heading': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '700',
             fontSize: '20px',
@@ -205,7 +207,7 @@ const BecomePartner = () => {
             marginBottom: '20px',
         },
         '.gold-membership-details': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
             fontSize: '16px',
@@ -215,7 +217,7 @@ const BecomePartner = () => {
             marginBottom: '16px'
         },
         '.silver-membership-details': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
             fontSize: '16px',
@@ -233,7 +235,7 @@ const BecomePartner = () => {
             fontSize: '40px'
         },
         '.gold-amount': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '250',
             fontSize: '16px',
@@ -244,7 +246,7 @@ const BecomePartner = () => {
             display: 'block',
         },
         '.silver-amount': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '250',
             fontSize: '16px',
@@ -258,7 +260,7 @@ const BecomePartner = () => {
             position: 'absolute',
             width: 'auto',
             bottom: '0px',
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '600',
             fontSize: '15.6637px',
@@ -275,7 +277,7 @@ const BecomePartner = () => {
             background: '#101418',
         },
         '.booking-heading': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
             fontWeight: '700',
             fontSize: '24px',
@@ -286,7 +288,7 @@ const BecomePartner = () => {
             marginBottom: '25px',
         },
         '.book-title': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: '700',
             fontSize: '20px',
@@ -296,7 +298,7 @@ const BecomePartner = () => {
             marginBottom: '4px',
         },
         '.book-detail': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontSize: '18px',
             lineHeight: '24px',

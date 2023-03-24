@@ -431,7 +431,7 @@ const CorporateBooking = () => {
                         <Box className="apply_div">
                             <a href="" className="apply_btn">Apply</a>
                         </Box>
-                        <NeedHelp/>
+                        {/*<NeedHelp/>*/}
                         <Footer/>
                         <FooterEnd/>
                     </>

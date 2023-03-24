@@ -115,6 +115,9 @@ const BoxWrapper = styled(Box)(() => ({
     '.icon-rc-datepicker': {
         color: '#FBFBFB !important',
     },
+    '.react-datepicker-component': {
+        top: '-5px'
+    },
     '.react-datepicker-component .react-datepicker-input': {
         background: 'transparent',
         border: '0px',
@@ -682,7 +685,7 @@ const PriveeViewMore = () => {
                         </Grid>
                     </Grid>
                 </Box>
-                <NeedHelp/>
+                {/*<NeedHelp/>*/}
                 <Footer/>
                 <FooterEnd/>
 
