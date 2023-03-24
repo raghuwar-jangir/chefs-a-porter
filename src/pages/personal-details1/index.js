@@ -24,6 +24,9 @@ const PersonalDetails1 = () => {
     const [contactPopUp, setContactPopUp] = React.useState(false);
     const ContactOpen = () => setContactPopUp(true);
     const ContactClose = () => setContactPopUp(false);
+    const nextPage = () => {
+        navigate('/sc-booking-summary')
+    }
     const afterClick = () => {
         const newParam = 'newParamValue'
         navigate(`/personal-details/?myParam=${newParam}`);
@@ -1200,7 +1203,7 @@ marginBottom: '20px',
                             </Box>
                             <Box className="row viewbreak">
                                 <Box>
-                                    <button type="submit" className="submit-req">
+                                    <button type="submit" className="submit-req" onClick={nextPage}>
                                         Next
                                     </button>
                                 </Box>

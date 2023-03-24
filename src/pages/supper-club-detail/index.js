@@ -915,7 +915,7 @@ const SupperClubDetail = () => {
                                         className="main-img-2"
                                         onClick={handleImageClick}
                                     />
-                                    <Button className="show-btn"onClick={handleOpen} data-bs-toggle="modal"
+                                    <Button className="show-btn" onClick={handleOpen} data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" >Show All Photos</Button>
                                 </Grid>
                             </Grid>
