@@ -685,7 +685,7 @@ const PriveeViewMore = () => {
                         </Grid>
                     </Grid>
                 </Box>
-                {/*<NeedHelp/>*/}
+                <NeedHelp/>
                 <Footer/>
                 <FooterEnd/>
 

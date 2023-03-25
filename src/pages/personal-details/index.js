@@ -842,12 +842,12 @@ const PersonalDetails = () => {
         },
         '.main-modal':{
             position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 406,
-        boxShadow: 24,
-        background: '#FBFBFB',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 406,
+            boxShadow: 24,
+            background: '#FBFBFB',
         },
         '.close': {
             padding: '0px',
@@ -1267,6 +1267,37 @@ const PersonalDetails = () => {
                         </Formik>
                     </Box>
 
+                </Modal>
+                <Modal
+                    keepMounted
+                    open={contactPopUp}
+                    onClose={ContactClose}
+                    aria-labelledby="keep-mounted-modal-title"
+                    aria-describedby="keep-mounted-modal-description"
+                >
+                    <Box sx={style3}>
+                        <Box className='main-modal'>
+                            <Box className="allow-access">
+                                <Box className="modal-header">
+                                    <button type="button" data-bs-dismiss="modal" aria-label="Close"
+                                            className="close"
+                                            onClick={ContactClose}>
+                                        <CloseIcon/>
+                                    </button>
+                                </Box>
+                                <Box className="access-box">
+                                    <Typography className="allow-details">Allow <strong>Chefs-à-Porter</strong> to
+                                        access your contacts?</Typography>
+                                    <Box className="access-btn">
+                                        <Link href="/gift-cards"
+                                              className="deny-permission-button">Deny</Link>
+                                        <Link href="/mobile-contact"
+                                              className="allow-permission-button">Allow</Link>
+                                    </Box>
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Box>
                 </Modal>
                 <Modal
                             keepMounted

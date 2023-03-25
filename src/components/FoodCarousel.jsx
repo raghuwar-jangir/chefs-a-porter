@@ -238,10 +238,13 @@ const FoodCarousel = (isButtonShow) => {
                             return (
                                 <SwiperSlide>
                                     <img className='test-img' src={item.pictures}/>
-                                    <Box className='trending'>
-                                        <img className='trending-img' src={trending}/>
-                                        <Typography className='trending-title'>Trending</Typography>
-                                    </Box>
+                                    {
+                                        item.status &&
+                                        <Box className='trending'>
+                                            <img className='trending-img' src={trending}/>
+                                            <Typography className='trending-title'>Trending</Typography>
+                                        </Box>
+                                    }
                                     <Box className='supper-info'>
                                         <Typography className='super-title'>{item.title}</Typography>
                                         <Box className='super-chef-details'>
@@ -257,7 +260,8 @@ const FoodCarousel = (isButtonShow) => {
                                     </span>
                                             <span className='chef-tag'>
                                         <img className='img-tag' src={tag} alt="Rates"/>
-                                        <Typography className='tag-detail'><b>{`₹${item.price}`}</b>/per diner</Typography>
+                                        <Typography
+                                            className='tag-detail'><b>{`₹${item.price}`}</b>/per diner</Typography>
                                     </span>
                                         </Box>
                                     </Box>

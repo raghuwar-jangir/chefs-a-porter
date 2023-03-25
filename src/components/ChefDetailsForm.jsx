@@ -32,26 +32,26 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
 });
 const defaultTheme = createMuiTheme();
 const theme = createMuiTheme({
-  overrides: {
-    MuiTooltip: {
-      tooltip: {
-        fontSize: "8px",
-        color: "#080B0E",
-        backgroundColor: "#DCD7CB",
-        boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.4)',
-	padding: '16px 32px',
-	textAlign: 'center',
-	fontFamily: 'Proxima Nova Alt',
-	fontStyle:' normal',
-	fontWeight: 300,
-	// fontSize: '14px',
-	lineHeight: '17px',
-	opacity: '1',
-    width:'160px',
-    borderRadius:'1px'
-      }
+    overrides: {
+        MuiTooltip: {
+            tooltip: {
+                fontSize: "8px",
+                color: "#080B0E",
+                backgroundColor: "#DCD7CB",
+                boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.4)',
+                padding: '16px 32px',
+                textAlign: 'center',
+                fontFamily: 'Proxima Nova Alt',
+                fontStyle:' normal',
+                fontWeight: 300,
+                // fontSize: '14px',
+                lineHeight: '17px',
+                opacity: '1',
+                width:'160px',
+                borderRadius:'1px'
+            }
+        }
     }
-  }
 });
 const ChefDetailsForm = (props) => {
    const tipTitle ="Private Dining usually last upto 3 hrs but can extend upto 5 hrs based on number of courses"
@@ -78,9 +78,9 @@ const ChefDetailsForm = (props) => {
       const handleCoursesIncrement = () => {
         setNumberOfCourses(numberOfCourses + 1);
     }
-        const handleClick = () => {
-            navigate('/customer-details');
-        }
+    const handleClick = () => {
+        navigate('/customer-details');
+    }
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
         color: '#FBFBFB',
@@ -494,23 +494,23 @@ const ChefDetailsForm = (props) => {
         </MuiThemeProvider>
                                         </Typography>
                                         <Box className='time-picker'>
-                                        <input
-                                             type="time"
-                                             name="time"
-                                             value={values.time}
-                                             onChange={handleChange}
-                                             defaultValue={values.time}
-                                             style={{width:'100%'}}
-                                             className="form-control"
-                                             autoComplete="off"
-                                             variant="standard"
-                                             InputProps={{
-                                               disableUnderline: true,
-                                               autoCapitalize: true,
-                                             }}
-                                        />
-                                        {/* {touched.startTime && errors.startTime && <Typography className='error-msg'>{errors.startTime}</Typography>} */}
-                                        <ExpandMoreSharpIcon className="timer-drop-down"/>
+                                            <input
+                                                type="time"
+                                                name="time"
+                                                value={values.time}
+                                                onChange={handleChange}
+                                                defaultValue={values.time}
+                                                style={{width:'100%'}}
+                                                className="form-control"
+                                                autoComplete="off"
+                                                variant="standard"
+                                                InputProps={{
+                                                    disableUnderline: true,
+                                                    autoCapitalize: true,
+                                                }}
+                                            />
+                                            {/* {touched.startTime && errors.startTime && <Typography className='error-msg'>{errors.startTime}</Typography>} */}
+                                            <ExpandMoreSharpIcon className="timer-drop-down"/>
                                         </Box>
                                     </Box>
                                 </Box>

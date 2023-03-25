@@ -2,7 +2,7 @@ import React from "react";
 import {Box, styled, Typography} from "@mui/material";
 import '../assets/styles/fontStyle.css'
 
-const CommanTextCard = ({mainTitle, details, colors, fontSize}) => {
+const CommanTextCard = ({mainTitle, details, colors, fontSize,marginTop}) => {
     const BoxWrapper = styled(Box)((color) => ({
         ".main-heading": {
             fontWeight: '700',
@@ -10,6 +10,7 @@ const CommanTextCard = ({mainTitle, details, colors, fontSize}) => {
             lineHeight: "30px",
             textAlign: 'center',
             marginBottom: '20px',
+            marginTop:`${marginTop ? marginTop : '0px'}`,
             fontFamily: 'Bon Vivant !important',
             color: `${colors}`
         },

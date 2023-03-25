@@ -480,7 +480,11 @@ const BecomePartner = () => {
                                 </Box>
                             </Box>
                         </Box>
-                        {/*<NeedHelp/>*/}
+                        <NeedHelp title={data.become_patron.home_footer.desktop_title}
+                                  description={data.become_patron.home_footer.desktop_description}
+                                  button_call={data.become_patron.home_footer.desktop_button_call}
+                                  button_email={data.become_patron.home_footer.desktop_button_email}
+                        />
                         <Footer/>
                         <FooterEnd/>
                     </>

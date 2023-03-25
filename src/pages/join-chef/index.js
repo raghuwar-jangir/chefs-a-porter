@@ -424,7 +424,11 @@ const ContactUs = () => {
                                 </Formik>
                             </Box>
                         </Box>
-                        {/*<NeedHelp/>*/}
+                        <NeedHelp title={data.join_us.home_footer.desktop_title}
+                                  description={data.join_us.home_footer.desktop_description}
+                                  button_call={data.join_us.home_footer.desktop_button_call}
+                                  button_email={data.join_us.home_footer.desktop_button_email}
+                        />
                         <Footer/>
                         <FooterEnd/>
                     </>

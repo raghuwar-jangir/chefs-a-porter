@@ -171,7 +171,7 @@ const AboutCardComponent = (props) => {
         },
         '.conscious-option': {
             border: '1px solid #080B0E', padding: '27px', borderRadius: '100%',
-            width:'fit-content'
+            width: 'fit-content'
         },
         // '.parent-stack': {
         //     padding: '40px 0px'
@@ -251,9 +251,9 @@ const AboutCardComponent = (props) => {
             ".about-heading": {
                 display: 'none'
             },
-            ".main-heading": {
-                marginTop: '40px'
-            },
+            '.mt-40':{
+                marginTop:'40px !important'
+            }
         },
         "@media (min-width: 1px) and (max-width:325px)": {
             '.conscious-option': {
@@ -304,6 +304,7 @@ const AboutCardComponent = (props) => {
                                             details={data.about_us.who_we_are.description}
                                             colors='#080B0E'
                                             fontSize='20px'
+                                            marginTop='40px'
                                         />
                                     </Box>
                                     <ImageList variant="masonry" cols={3} rows={3} gap={10}
@@ -333,7 +334,6 @@ const AboutCardComponent = (props) => {
                                         direction={{xs: 'row'}}
                                         spacing={{xs: 2, md: 25}}
                                     >
-
                                         {
                                             data.about_us.dining.content.map((item) => {
                                                 return (
@@ -347,7 +347,7 @@ const AboutCardComponent = (props) => {
                                                             />
                                                         </Box>
                                                         <Box>
-                                                        <Typography className="sub-title">{item.text}</Typography>
+                                                            <Typography className="sub-title">{item.text}</Typography>
                                                         </Box>
                                                     </Box>
                                                 )
@@ -408,7 +408,10 @@ const AboutCardComponent = (props) => {
                             }
 
                         </Box>
-                        {/*<NeedHelp/>*/}
+                        <NeedHelp title={data.about_us.home_footer.desktop_title} description={data.about_us.home_footer.desktop_description}
+                                  button_call={data.about_us.home_footer.desktop_button_call}
+                                  button_email={data.about_us.home_footer.desktop_button_email}
+                        />
                         <OpenPosition/>
                         <Box className="lastBox">
                             <Box>

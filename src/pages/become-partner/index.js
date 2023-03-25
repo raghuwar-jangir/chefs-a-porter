@@ -426,7 +426,7 @@ const BecomePartner = () => {
                                                                         borderBottom: "1px solid black",
                                                                         fontWeight: '100',
                                                                         padding: '6px 0px',
-                                                                        justifyContent:'start'
+                                                                        justifyContent: 'start'
                                                                     },
                                                                     ul: {
                                                                         display: 'flex',
@@ -534,7 +534,7 @@ const BecomePartner = () => {
                                                                         borderBottom: "1px solid black",
                                                                         fontWeight: '100',
                                                                         padding: '6px 0px',
-                                                                        justifyContent:'start'
+                                                                        justifyContent: 'start'
                                                                     },
                                                                     ul: {
                                                                         display: 'flex',

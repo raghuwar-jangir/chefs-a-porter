@@ -27,7 +27,7 @@ const OtpComponent = () => {
         },
         '.number':{
             fontFamily: 'ProximaNovaA-Regular',
-    fontWeight: 400
+            fontWeight: 400
         },
         '.change-link':{
             fontFamily: 'ProximaNovaA-Regular',
@@ -98,7 +98,7 @@ const OtpComponent = () => {
     })
     return (
         <React.Fragment>
-            <MainBox>  
+            <MainBox>
                 <div className="modal-body">
                     <div className="modal-position">
                         <div>

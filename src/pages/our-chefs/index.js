@@ -106,7 +106,11 @@ const OurChefsPage = () => {
                             <Box className="footer-shadow">
                             </Box>
                         </Box>
-                        {/*<NeedHelp/>*/}
+                        <NeedHelp title={data.our_chefs.home_footer.desktop_title}
+                                  description={data.our_chefs.home_footer.desktop_description}
+                                  button_call={data.our_chefs.home_footer.desktop_button_call}
+                                  button_email={data.our_chefs.home_footer.desktop_button_email}
+                        />
                         <FoodCard/>
                         <Footer/>
                         <FooterEnd/>

@@ -163,20 +163,13 @@ const UpcomingSupperClubCard = () => {
                         <Box key={index} onClick={handleClick}>
                             <Box sx={{position: 'relative'}}>
                                 <img className='test-img' src={item.pictures}/>
-                                {/*{index === 0 && (*/}
-                                {/*    <div>*/}
-                                {/*        <Box className='trending'><img className='trending-img'*/}
-                                {/*                                       src={item.tend}/><Typography*/}
-                                {/*            className='trending-title'>{item.trendDetails}</Typography></Box>*/}
-                                {/*    </div>*/}
-                                {/*)}*/}
-                                {/*{index === cardDetails.length - 1 && (*/}
-                                {/*    <div>*/}
-                                {/*        <Box className='trending'><img className='trending-img'*/}
-                                {/*                                       src={item.tend}/><Typography*/}
-                                {/*            className='trending-title'>{item.trendDetails}</Typography></Box>*/}
-                                {/*    </div>*/}
-                                {/*)}*/}
+                                {
+                                    item.status &&
+                                    <Box className='trending'>
+                                        <img className='trending-img' src={trending}/>
+                                        <Typography className='trending-title'>Trending</Typography>
+                                    </Box>
+                                }
                                 <Box className='supper-info'>
                                     <Typography className='super-title'>{item.title}</Typography>
                                     <Box className='super-chef-details'>
@@ -188,11 +181,12 @@ const UpcomingSupperClubCard = () => {
                                         <img className='img-tag' src={date} alt="date"/>
                                             {/*<Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography>*/}
                                             <Typography
-                                                className='tag-detail'>{item.what_to_expect.Time}</Typography>
+                                                className='tag-detail'>{item.dates[0]}</Typography>
                                     </span>
                                         <span className='chef-tag'>
                                         <img className='img-tag' src={tag} alt="Rates"/>
-                                        <Typography className='tag-detail'><b>{`₹${item.price}`}</b>/per diner</Typography>
+                                        <Typography
+                                            className='tag-detail'><b>{`₹${item.price}`}</b>/per diner</Typography>
                                     </span>
                                     </Box>
                                 </Box>
