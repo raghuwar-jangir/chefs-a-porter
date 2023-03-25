@@ -919,6 +919,8 @@ const CustomerDetails = () => {
             background: '#101418',
             padding: '40px 20px',
             boxShadow: '0px 20px 24px rgb(0 0 0 / 6%)',
+            position:'sticky',
+            top:'50px'
         },
         '.event-div': {
             display: 'flex'
@@ -1111,9 +1113,9 @@ const CustomerDetails = () => {
             marginBottom: '8px'
         },
         '.exp-title': {
-            fontFamily: 'Proxima Nova',
+            fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
-            // fontWeight:'600',
+            fontWeight:'600',
             fontSize: '16px',
             lineHeight: '19px',
             color: '#FBFBFB',
@@ -1439,7 +1441,7 @@ const CustomerDetails = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isColor={true} isIcon={true} heading="Privee"/>
+                <Navbar to={'/customer-details'} isColor={true} isIcon={true} heading="Privee"/>
                 {/*{isMobile ? (*/}
                 {/*    <Box className='header-club'>*/}
                 {/*        <Typography className="addones-mobile-heading">Privee</Typography>*/}

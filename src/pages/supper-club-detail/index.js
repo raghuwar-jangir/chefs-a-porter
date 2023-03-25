@@ -324,6 +324,8 @@ const SupperClubDetail = () => {
             fontSize: '20px',
             lineHeight: '24px',
             padding: '8px',
+            color: '#FBFBFB !important',
+            backgroundColor: '#080B0E'
         },
         '.MuiTab-variantPlain': {
             border: '1px solid black',
@@ -847,7 +849,7 @@ const SupperClubDetail = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isImage={true}/>
+                <Navbar  isImage={true}/>
                 <Box className="main-box">
                     <Box className="sub-box">
                         <Typography className="sub-box-heading">

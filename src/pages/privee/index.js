@@ -634,7 +634,7 @@ const PriveePage = () => {
                 {
                     !_.isEmpty(data) &&
                     <>
-                        <Navbar isColor={true} heading="Privee"/>
+                        <Navbar  isColor={true} heading="Privee"/>
                         <MainBoxContent>
                             {/* //! privee header section for title */}
                             <MobileView>

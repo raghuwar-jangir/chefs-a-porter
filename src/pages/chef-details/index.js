@@ -635,7 +635,7 @@ const ChefDetails = (props) => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar heading="Privee" isColor={true} isIcon={true}/>
+                <Navbar to={'/chef-details'} heading="Privee" isColor={true} isIcon={true}/>
                 <Box className="supper-gallery chef-ind">
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">
