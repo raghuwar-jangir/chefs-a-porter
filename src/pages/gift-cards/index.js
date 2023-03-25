@@ -1048,7 +1048,7 @@ const GiftCards = () => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.gift_card) &&
                     <>
                         <Navbar isShareIcon={true} heading="Gift Cards"/>
                         <Box className="gallery-carousel"><ImageCarousel/></Box>

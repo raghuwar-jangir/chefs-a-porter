@@ -3,10 +3,12 @@ import {Box, Typography} from '@mui/material';
 import {styled} from '@mui/system';
 import StarIcon from '@mui/icons-material/Star';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
-import '../assets/styles/searchBar.css'
+import '../assets/styles/searchBar.css';
+import {navigate} from "gatsby";
 
 const MainContentBox = styled(Box)({
     position: 'relative',
+    cursor: 'pointer',
     '.dining-privee': {
         display: 'flex',
         justifyContent: 'space-between',
@@ -117,7 +119,9 @@ const AvlExperienceCarousel = (props) => {
 
     return (
         <React.Fragment>
-            <MainContentBox>
+            <MainContentBox onClick={() => {
+                navigate("/event-details")
+            }}>
                 <img src={props.image} alt="saffImage" style={{verticalAlign: 'top'}} width={'100%'}
                      className='main-chaf-image'/>
                 <Box className='saff-parent'>

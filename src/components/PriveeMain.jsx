@@ -212,9 +212,7 @@ const MainParent = styled(Box)({
 const PriveeMain = ({title, subTitle, isButtonShow = false}) => {
 
     const {data} = useContext(CmsContext)
-    const handleClick = () => {
-        navigate('/chef-details');
-    }
+
     return (
         <React.Fragment>
             <MainParent>
@@ -269,7 +267,7 @@ const PriveeMain = ({title, subTitle, isButtonShow = false}) => {
                                 className="mySwiper">
                                 {data.home.continue_browsing.chefs.map((item) => {
                                     return (
-                                        <SwiperSlide onClick={handleClick}>
+                                        <SwiperSlide onClick={() => navigate(`/chef-details/${item?.id}`)} style={{cursor: 'pointer'}}>
                                             <img className="img-size" src={item.picture}/>
                                             {
                                                 item.details.is_featured &&

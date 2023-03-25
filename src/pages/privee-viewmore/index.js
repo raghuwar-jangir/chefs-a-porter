@@ -432,7 +432,7 @@ const PriveeViewMore = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isColor={true} isIcon={true} heading="Privee"/>
+                <Navbar to={'/privee-viewmore'} isColor={true} isIcon={true} heading="Privee"/>
 
                 {/*{isMobile ? (*/}
                 {/*    <Box className='header-club'>*/}

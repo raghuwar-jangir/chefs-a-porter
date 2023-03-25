@@ -267,7 +267,7 @@ const SupperClub = () => {
     return (
         <React.Fragment>
             {
-                !_.isEmpty(data) &&
+                !_.isEmpty(data?.supper_club) &&
                 <MainBox>
                     <NavbarComponent/>
                     <Box className="home-banner">

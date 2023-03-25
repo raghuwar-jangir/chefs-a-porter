@@ -1439,7 +1439,7 @@ const CustomerDetails = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isColor={true} isIcon={true} heading="Privee"/>
+                <Navbar to={'/customer-details'} isColor={true} isIcon={true} heading="Privee"/>
                 {/*{isMobile ? (*/}
                 {/*    <Box className='header-club'>*/}
                 {/*        <Typography className="addones-mobile-heading">Privee</Typography>*/}

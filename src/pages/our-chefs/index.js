@@ -87,7 +87,7 @@ const OurChefsPage = () => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.our_chefs) &&
                     <>
                         <Navbar heading="Our Chefs"/>
                         <Box className="main-parent-box">

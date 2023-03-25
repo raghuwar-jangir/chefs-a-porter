@@ -245,7 +245,7 @@ const ContactUs = () => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.contact_us) &&
                     <>
                         <Navbar isIcon={true} heading="Get In Touch"/>
                         <Box className="joinaschef">

@@ -22,7 +22,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ShareIcon from '@mui/icons-material/Share';
 
 
-const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading}) => {
+const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading,to}) => {
 
     const props = {
         heading
@@ -341,7 +341,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading}) => {
                                         className={`browser-hamburger-menu`}
                                         activeClassName={'browser-hamburger-menu active'}
                                         activeStyle={{color: '#C6A87D'}}
-                                        to='/privee'>
+                                        to={to ? to : '/privee'}>
                                         Privee
                                     </Link>
                                     <Link

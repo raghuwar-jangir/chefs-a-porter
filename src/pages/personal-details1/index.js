@@ -24,6 +24,9 @@ const PersonalDetails1 = () => {
     const [contactPopUp, setContactPopUp] = React.useState(false);
     const ContactOpen = () => setContactPopUp(true);
     const ContactClose = () => setContactPopUp(false);
+    const nextPage = () => {
+        navigate('/sc-booking-summary')
+    }
     const afterClick = () => {
         const newParam = 'newParamValue'
         navigate(`/personal-details/?myParam=${newParam}`);
@@ -79,7 +82,7 @@ const PersonalDetails1 = () => {
             // fontSize: '20px',
         },
         ".dinner-box": {
-            paddingLeft:'20px',
+            paddingLeft:'10px',
             position: "relative",
             // flex: "0 0 auto",
             // width: "41.66666667%",
@@ -241,7 +244,7 @@ const PersonalDetails1 = () => {
             float: "left",
             width: "58.333%",
             background: "#FBFBFB",
-            border: "1px solid #FBFBFB",
+            borderRight: "10px solid #dcd7cb",
             padding: "40px 20px",
         },
         '.form-field':{
@@ -492,6 +495,9 @@ const PersonalDetails1 = () => {
             paddingBottom:'9px'
         },
         "@media (min-width: 1px) and (max-width:768px)": {
+            '.partner':{
+                borderRight:'0px'
+            },
             '.dinner-box':{
                 paddingLeft:'0px'
             }
@@ -1200,7 +1206,7 @@ const PersonalDetails1 = () => {
                             </Box>
                             <Box className="row viewbreak">
                                 <Box>
-                                    <button type="submit" className="submit-req">
+                                    <button type="submit" className="submit-req" onClick={nextPage}>
                                         Next
                                     </button>
                                 </Box>

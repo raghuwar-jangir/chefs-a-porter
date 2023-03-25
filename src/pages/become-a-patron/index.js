@@ -390,7 +390,7 @@ const BecomePartner = () => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.become_patron) &&
                     <>
                         <Navbar heading="Become a Patron"/>
                         <Box className="corporate-b">

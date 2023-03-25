@@ -1,4 +1,4 @@
-import React, {useEffect, useState,useLayoutEffect} from 'react';
+import React, {useEffect, useState, useLayoutEffect} from 'react';
 import axios from "axios";
 import {useLocation} from "@reach/router"
 import * as _ from "lodash";
@@ -35,42 +35,12 @@ const CmsProvider = (props) => {
     const emptyUrl = currentPath.startsWith(null) ? currentPath : currentPath + "/"
 
     const [data, setData] = useState()
-    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        console.log("========>UseEffect is called")
         axios.get(baseUrl + `/${pathInfo[!currentPath ? emptyUrl : currentPath]}/`).then(result => {
             setData(result.data)
         })
-    }, [currentPath])
-
-
-
-    // useEffect(() => {
-    //     setIsMounted(true);
-    // }, []);
-    //
-    // useLayoutEffect(() => {
-    //     if (isMounted) {
-    //         console.log("========>UseEffect is called")
-    //         axios.get(baseUrl + `/${pathInfo[!currentPath ? emptyUrl : currentPath]}/`).then(result => {
-    //             setData(result.data)
-    //         })
-    //     }
-    // }, [isMounted]);
-
-    // useEffect(() => {
-    //     console.log("========>UseEffect is called")
-    //     async function fetchData() {
-    //        await axios.get(baseUrl + `/${pathInfo[!currentPath ? emptyUrl : currentPath]}/`).then(result => {
-    //             setData(result.data)
-    //         })
-    //     }
-    //     fetchData();
-    // }, [currentPath]);
-
-    console.log("currentPath====>", currentPath);
-    console.log("data====>", data);
+    }, [path, currentPath])
 
     const {children} = props
     return (

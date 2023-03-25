@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import {Typography, styled} from "@mui/material";
 import img1 from '../assets/images/supper-1.png';
 import img2 from '../assets/images/testImage2.png';
@@ -12,6 +12,7 @@ import {Link} from "gatsby";
 import {navigate} from "gatsby";
 import CmsContext from "../context/CmsContext";
 import * as _ from "lodash";
+import moment from "moment";
 
 const UpcomingSupperClubCard = () => {
 
@@ -157,10 +158,10 @@ const UpcomingSupperClubCard = () => {
     return (
         <React.Fragment>
             {
-                !_.isEmpty(data) &&
+                !_.isEmpty(data?.supper_club) &&
                 <MainBox>
                     {data.supper_club.upcoming_supper_club.supper_clubs.map((item, index) => (
-                        <Box key={index} onClick={handleClick}>
+                        <Box key={index} onClick={handleClick} style={{cursor: 'pointer'}}>
                             <Box sx={{position: 'relative'}}>
                                 <img className='test-img' src={item.pictures}/>
                                 {
@@ -181,7 +182,7 @@ const UpcomingSupperClubCard = () => {
                                         <img className='img-tag' src={date} alt="date"/>
                                             {/*<Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography>*/}
                                             <Typography
-                                                className='tag-detail'>{item.dates[0]}</Typography>
+                                                className='tag-detail'>{moment(item.dates[0]).format("MMMM D")} | {moment(item.timefrom, 'HH:mm').format('h:mm A')} - {moment(item.timetill, 'HH:mm').format('h:mm A')}</Typography>
                                     </span>
                                         <span className='chef-tag'>
                                         <img className='img-tag' src={tag} alt="Rates"/>

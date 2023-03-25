@@ -9,10 +9,6 @@ import * as _ from "lodash";
 import reebok from "../assets/images/rebook.png";
 
 const Privee = (props) => {
-
-    const handleClick = () => {
-        navigate('/chef-details');
-    }
     const {data} = useContext(CmsContext);
 
     const MainContentBox = styled(Box)({
@@ -94,7 +90,8 @@ const Privee = (props) => {
             width: '100%',
         },
         '.cell': {
-            position: 'relative'
+            position: 'relative',
+            cursor:'pointer'
         },
         "@media (min-width: 768px) and (max-width:990px)": {
             '.grid': {
@@ -141,14 +138,15 @@ const Privee = (props) => {
 
     return (
         <React.Fragment>
-            <MainContentBox onClick={handleClick}>
+            <MainContentBox>
                 {
                     !_.isEmpty(data) &&
                     <div className="grid">
                         {
-                            data.our_chefs.our_chefs.chefs.results.map((item) => {
+                            data.our_chefs.our_chefs.chefs.results.map((item, index) => {
                                 return (
-                                    <div className="cell">
+                                    <div className="cell"
+                                         onClick={() => navigate(`/chef-details/${item?.id}`, {replace: true})}>
                                         <img className='privee-img' src={item.picture}/>
                                         {/*{*/}
                                         {/*    item.details.is_featured &&*/}
@@ -160,8 +158,11 @@ const Privee = (props) => {
                                         <Box className="name-box"><Typography
                                             className='chef-title'>{item.name}</Typography>
                                             <Box className="chef-details">
-                                                {item.details.tags.map((tagItem) => {
-                                                    return <span>{tagItem}<span className='line'>|</span></span>
+                                                {item.details.tags.map((tagsItem, index) => {
+                                                    return (
+                                                        <span>{tagsItem}{index !== item.details.tags.length - 1 && (
+                                                            <span className='line'>|</span>)}</span>
+                                                    )
                                                 })}
                                             </Box>
                                         </Box>

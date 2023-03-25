@@ -270,7 +270,7 @@ const ContactUs = () => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.join_us) &&
                     <>
                         <Navbar heading="Join as Chef"/>
                         <Box className="joinaschef">

@@ -78,7 +78,7 @@ const PersonalDetails = () => {
             // fontSize: '20px',
         },
         ".dinner-box": {
-            paddingLeft:'20px',
+            paddingLeft:'10px',
             position: "relative",
             // flex: "0 0 auto",
             // width: "41.66666667%",
@@ -240,7 +240,7 @@ const PersonalDetails = () => {
             float: "left",
             width: "58.333%",
             background: "#FBFBFB",
-            border: "1px solid #FBFBFB",
+            borderRight: "10px solid #dcd7cb",
             padding: "40px 20px",
         },
         '.form-field':{
@@ -491,6 +491,9 @@ const PersonalDetails = () => {
             paddingBottom:'9px'
         },
         "@media (min-width: 1px) and (max-width:768px)": {
+            '.partner':{
+                borderRight:'0px'
+            },
             '.dinner-box':{
                 paddingLeft:'0px'
             }
@@ -1267,6 +1270,37 @@ const PersonalDetails = () => {
                         </Formik>
                     </Box>
 
+                </Modal>
+                <Modal
+                    keepMounted
+                    open={contactPopUp}
+                    onClose={ContactClose}
+                    aria-labelledby="keep-mounted-modal-title"
+                    aria-describedby="keep-mounted-modal-description"
+                >
+                    <Box sx={style3}>
+                        <Box className='main-modal'>
+                            <Box className="allow-access">
+                                <Box className="modal-header">
+                                    <button type="button" data-bs-dismiss="modal" aria-label="Close"
+                                            className="close"
+                                            onClick={ContactClose}>
+                                        <CloseIcon/>
+                                    </button>
+                                </Box>
+                                <Box className="access-box">
+                                    <Typography className="allow-details">Allow <strong>Chefs-à-Porter</strong> to
+                                        access your contacts?</Typography>
+                                    <Box className="access-btn">
+                                        <Link href="/gift-cards"
+                                              className="deny-permission-button">Deny</Link>
+                                        <Link href="/mobile-contact"
+                                              className="allow-permission-button">Allow</Link>
+                                    </Box>
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Box>
                 </Modal>
                 <Modal
                     keepMounted

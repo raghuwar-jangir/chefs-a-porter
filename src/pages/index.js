@@ -586,7 +586,8 @@ const BoxWrapper = styled(Box)({
         boxShadow: '0px 8px 10px rgb(0 0 0 / 6%)',
         placeItems: 'center',
         alignItem: 'center',
-        marginBottom: '16px'
+        marginBottom: '16px',
+        cursor: 'pointer'
     },
     '.fresh-food-gallery-heading': {
         fontFamily: 'Proxima Nova',
@@ -874,10 +875,10 @@ const HomePage = () => {
 
     useEffect(() => {
         {
-            !_.isEmpty(data) &&
-                setImageData(data.home.food_drools.content)
+            !_.isEmpty(data?.home) &&
+            setImageData(data.home.food_drools.content)
         }
-    }, [data])
+    }, [data?.home])
 
     const valueAtIndex2 = imageData[1];
     imageData.splice(1, 1);
@@ -890,7 +891,6 @@ const HomePage = () => {
         return {rows: item};
     });
     const cols = [, , 2, ,];
-
     const ColsOfObjects = cols.map(item => {
         return {cols: item};
     });
@@ -909,7 +909,7 @@ const HomePage = () => {
             <BoxWrapper>
                 <React.Fragment>
                     {
-                        !_.isEmpty(data) &&
+                        !_.isEmpty(data?.home) &&
                         <>
                             <Box className="home-banner" sx={{backgroundImage: `url(${data.home.header.image})`}}>
                                 <Box className="row justify-content-center">
@@ -1336,7 +1336,8 @@ const HomePage = () => {
                                                       subTitle='@Privée'/>
                             <TemptedYet title={data.home.home_footer.moblie_title}
                                         buttonText={data.home.home_footer.mobile_button}/>
-                            <NeedHelp title={data.home.home_footer.desktop_title} description={data.home.home_footer.desktop_description}
+                            <NeedHelp title={data.home.home_footer.desktop_title}
+                                      description={data.home.home_footer.desktop_description}
                                       button_call={data.home.home_footer.desktop_button_call}
                                       button_email={data.home.home_footer.desktop_button_email}
                             />

@@ -558,7 +558,7 @@ const EventDetails = () => {
     return (
         <React.Fragment>
             <MainBox>
-                <Navbar isColor={true}/>
+                <Navbar to={'/event-details'} isColor={true} />
                 <Box className="main-box">
                     {isMobile ? (
                         <Box className="header-club">
