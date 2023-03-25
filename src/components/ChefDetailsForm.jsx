@@ -530,7 +530,7 @@ const ChefDetailsForm = (props) => {
                                     </Box>
                                 </Box>
                                 <Box className="sub-box-counter">
-                                    <Typography className="min-2-3">Number of Diners <span>(min 3)</span></Typography>
+                                    <Typography className="min-2-3">Number of Courses <span>(min 3)</span></Typography>
                                     <Box sx={{ display: 'flex' }}>
                                     <RemoveIcon
                                     style={numberOfCourses === 3 ? disabledStyle : {}}
