@@ -82,7 +82,7 @@ const PersonalDetails1 = () => {
             // fontSize: '20px',
         },
         ".dinner-box": {
-            paddingLeft:'20px',
+            paddingLeft:'10px',
             position: "relative",
             // flex: "0 0 auto",
             // width: "41.66666667%",
@@ -244,7 +244,7 @@ const PersonalDetails1 = () => {
             float: "left",
             width: "58.333%",
             background: "#FBFBFB",
-            border: "1px solid #FBFBFB",
+            borderRight: "10px solid #dcd7cb",
             padding: "40px 20px",
         },
         '.form-field':{
@@ -495,6 +495,9 @@ const PersonalDetails1 = () => {
             paddingBottom:'9px'
         },
         "@media (min-width: 1px) and (max-width:768px)": {
+            '.partner':{
+                borderRight:'0px'
+            },
             '.dinner-box':{
                 paddingLeft:'0px'
             }
