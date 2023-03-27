@@ -56,7 +56,7 @@ const theme = createMuiTheme({
 const ChefDetailsForm = (props) => {
    const tipTitle ="Private Dining usually last upto 3 hrs but can extend upto 5 hrs based on number of courses"
     const [startDate, setStartDate] = useState(new Date());
-    console.log("startDate=",moment(startDate).format("dddd, MMMM DD, YYYY"));
+    // console.log("startDate=",moment(startDate).format("dddd, MMMM DD, YYYY"));
     const [numberOfDenner, setNumberOfDenner] = useState(2)
     const [numberOfCourses, setNumberOfCourses] = useState(3)
 
@@ -139,7 +139,7 @@ const ChefDetailsForm = (props) => {
             outline:'none',
             backgroundColor: "transparent",
             border: "0px",
-            borderBottom: "0.25px solid #FBFBFB",
+            // borderBottom: "0.25px solid #FBFBFB",
             borderRadius: "0px",
             // paddingLeft: "0px",
             paddingRight: "0px",
@@ -168,7 +168,7 @@ const ChefDetailsForm = (props) => {
             fontWeight: 600,
             fontSize: "16px",
             lineHeight: "19px",
-            padding: '0px 0px 10px 0px',
+            padding: '0px 0px 18px 0px',
             fontFamily: 'ProximaNovaA-Regular',
 	fontStyle: 'normal',
 	color: '#FBFBFB',
@@ -371,28 +371,34 @@ const ChefDetailsForm = (props) => {
 },
 '.gcal-icon':{
     position:'absolute',
-    right:'6px',
-    bottom:'19px'
+    right:'17px',
+    bottom:'23px'
 },
 '.time-picker':{
     position:'relative'
 },
 '.timer-drop-down':{
     position:'absolute',
-    right: '-11px',
+    right: '-2px',
     fontSize: '38px',
-    bottom: '-4px'
+    bottom: '0px'
 },
 '.gInfo-logo':{
     height:'16px',
     width:'16px',
     marginLeft:'8px'
+},
+'.css-1aa5qj0-MuiInputBase-root-MuiInput-root':{
+    width:'100%'
+},
+'.react-datepicker__input-container':{
+                borderBottom: "0.25px solid #FBFBFB",
 }
     }))
     const disabledStyle = {
         opacity: 0.5,
       }
-
+      const [formData, setFormData] = useState(null);
 
     // for tooltip
     const positionRef = useRef({
@@ -419,22 +425,38 @@ const ChefDetailsForm = (props) => {
                     initialValues={{
                         yourName: "",
                         email: "",
-                        experienceDate: "",
-                        startTime: "",
+                        experienceDate: moment(startDate).format("ddd,DD MMM YYYY"),
                         time: new Date().getHours() + ":" + new Date().getMinutes(),
+                        numberOfDenner:'',
+                        numberOfCourses:''
                     }}
-                    validationSchema={DisplayingErrorMessagesSchema}
-                    onSubmit={values => {
-                        console.log("values===>", values);
-                    }}
+                    // validationSchema={DisplayingErrorMessagesSchema}
+                    // onSubmit={(values) => {
+                    //     console.log(values.date)
+                    //     const experienceData = {
+                    //         ...values,
+                    //         yourName: "",
+                    //         email: "",
+                    //         experienceDate: moment(startDate).format("ddd,DD MMM YYYY"),
+                    //         time: new Date().getHours() + ":" + new Date().getMinutes(),
+                    //         numberOfDenner: numberOfDenner,
+                    //         numberOfCourses:numberOfCourses
+                    //     }
+                    //     console.log("value===>", values)
+                    //     console.log("experienceData===>", experienceData)
+                    // }}
+                    onSubmit={(values, { setSubmitting }) => {
+                        setFormData(values);
+                        setSubmitting(false);
+                      }}
                 >
-                    {({ errors, touched, values, handleChange, handleSubmit }) => (
+                    {({ errors, touched, values, handleChange, handleSubmit, isSubmitting }) => (
                         <Form onSubmit={handleSubmit}>
-                            {console.log("errors", errors)}
+                            {console.log("errors", values)}
                             <Box sx={{}}>
                                 <Box className="comman-field-box" >
                                     <Typography className='field-title'>Your Name</Typography>
-                                    <input
+                                    <TextField
                                         className='form-control'
                                         name="yourName"
                                         value={values.yourName}
@@ -442,14 +464,18 @@ const ChefDetailsForm = (props) => {
                                         placeholder='Enter your full name'
                                         onChange={handleChange}
                                         variant="standard"
+                                        autoComplete="off"
                                         fullWidth
+                                        InputProps={{
+                                            disableUnderline: true,
+                                        }}
                                     />
                                     {/* {touched.yourName && errors.yourName && <Typography className='error-msg'>{errors.yourName}</Typography>} */}
                                 </Box>
 
                                 <Box className="comman-field-box">
                                     <Typography className='field-title'>Email Address</Typography>
-                                    <input
+                                    <TextField
                                         className='form-control'
                                         name="email"
                                         value={values.email}
@@ -457,7 +483,11 @@ const ChefDetailsForm = (props) => {
                                         placeholder='eg yourname@email.com'
                                         onChange={handleChange}
                                         variant="standard"
+                                        autoComplete="off"
                                         fullWidth
+                                        InputProps={{
+                                            disableUnderline: true,
+                                        }}
                                     />
                                     <Typography className='last-text'>A Email Confirmation will be sent to this ID after booking</Typography>
                                     {/* {touched.email && errors.email && <Typography className='error-msg'>{errors.email}</Typography>} */}
@@ -465,7 +495,7 @@ const ChefDetailsForm = (props) => {
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <Box className="comman-field-box date-box" sx={{ width: "49%" }}>
                                         <Typography className='field-title'>Experience Date</Typography>
-                                        <DatePicker selected={startDate}  className='form-control' onChange={(date) => setStartDate(date)} value={moment(startDate).format("ddd,DD MMM YYYY")}/>
+                                        <DatePicker selected={startDate}  className='form-control' onChange={(date) => setStartDate(date)} value={values.experienceDate}/>
                                         {/* {touched.experienceDate && errors.experienceDate && <Typography className='error-msg'>{errors.experienceDate}</Typography>} */}
                                         <Box className="gcal-icon">
                                         <img className="gcal" src={gCal}/>
@@ -494,13 +524,12 @@ const ChefDetailsForm = (props) => {
         </MuiThemeProvider>
                                         </Typography>
                                         <Box className='time-picker'>
-                                            <input
+                                            <TextField
                                                 type="time"
                                                 name="time"
-                                                value={values.time}
+                                                value={values.startTime}
                                                 onChange={handleChange}
-                                                defaultValue={values.time}
-                                                style={{width:'100%'}}
+                                                defaultValue={values.startTime}
                                                 className="form-control"
                                                 autoComplete="off"
                                                 variant="standard"
@@ -522,7 +551,52 @@ const ChefDetailsForm = (props) => {
                                            className="left-btn"
                                            onClick={handleDecrement}  disabled={numberOfDenner === 2}
                                         />
-                                        <Typography className="number-ans">{numberOfDenner}</Typography>
+                                        <TextField type="text" name="numberOfDenner" id="Qty"
+                                                                    //    name="numberOfDiner"
+                                                                       onChange={handleChange}
+                                                                       value={values.numberOfDenner}
+                                                                       value={numberOfDenner}
+                                                                       className="number-ans"
+                                                                // value={count}
+                                                                       InputProps={{
+                                                                           sx: {
+                                                                               width: "25px", background: 'transparent',
+                                                                               border: '0px',
+                                                                               fontFamily: 'ProximaNovaA-Regular',
+                                                                               fontStyle: 'normal',
+                                                                               fontWeight: '400',
+                                                                               fontSize: '14px',
+                                                                               color: 'white',
+                                                                               lineHeight: '17px',
+                                                                               paddingLeft: '0px',
+                                                                               paddingRight: '0px',
+                                                                               flex: 'none',
+                                                                               textAlign: 'center',
+                                                                           },
+                                                                       }}
+                                                                       autoComplete={"off"} sx={{
+                                                                '.MuiOutlinedInput-notchedOutline': {
+                                                                    border: 'none',
+                                                                    outline: 'none',
+                                                                },
+                                                                '& .MuiInputBase-input': {
+                                                                    width: "25px", background: 'transparent',
+                                                                    border: '0px',
+                                                                    fontFamily: 'ProximaNovaA-Regular',
+                                                                    fontStyle: 'normal',
+                                                                    fontWeight: '400',
+                                                                    fontSize: '14px',
+                                                                    color: 'white',
+                                                                    paddingTop:'5px',
+                                                                               paddingBottom:'0px',
+                                                                    lineHeight: '17px',
+                                                                    paddingLeft: '0px',
+                                                                    paddingRight: '0px',
+                                                                    flex: 'none',
+                                                                    textAlign: 'center'
+                                                                },
+                                                            }}
+                                                            />
                                         <AddIcon
                                             className="right-btn"
                                             onClick={handleIncrement}
@@ -537,7 +611,52 @@ const ChefDetailsForm = (props) => {
                                            className="left-btn"
                                            onClick={handleCoursesDecrement} disabled={numberOfCourses === 3}
                                         />
-                                        <Typography className="number-ans">{numberOfCourses}</Typography>
+                                         <TextField type="text" name="numberOfCourses" id="Qty"
+                                                                    //    name="numberOfCourses"
+                                                                       onChange={handleChange}
+                                                                       value={values.numberOfCourses}
+                                                                       value={numberOfCourses}
+                                                                       className="number-ans"
+                                                                // value={count}
+                                                                       InputProps={{
+                                                                           sx: {
+                                                                               width: "25px", background: 'transparent',
+                                                                               border: '0px',
+                                                                               fontFamily: 'ProximaNovaA-Regular',
+                                                                               fontStyle: 'normal',
+                                                                               fontWeight: '400',
+                                                                               fontSize: '14px',
+                                                                               color: 'white',
+                                                                               lineHeight: '17px',
+                                                                               paddingLeft: '0px',
+                                                                               paddingRight: '0px',
+                                                                               flex: 'none',
+                                                                               textAlign: 'center',
+                                                                           },
+                                                                       }}
+                                                                       autoComplete={"off"} sx={{
+                                                                '.MuiOutlinedInput-notchedOutline': {
+                                                                    border: 'none',
+                                                                    outline: 'none',
+                                                                },
+                                                                '& .MuiInputBase-input': {
+                                                                    width: "25px", background: 'transparent',
+                                                                    border: '0px',
+                                                                    fontFamily: 'ProximaNovaA-Regular',
+                                                                    fontStyle: 'normal',
+                                                                    fontWeight: '400',
+                                                                    fontSize: '14px',
+                                                                    color: 'white',
+                                                                    paddingTop:'5px',
+                                                                               paddingBottom:'0px',
+                                                                    lineHeight: '17px',
+                                                                    paddingLeft: '0px',
+                                                                    paddingRight: '0px',
+                                                                    flex: 'none',
+                                                                    textAlign: 'center'
+                                                                },
+                                                            }}
+                                                            />
                                         <AddIcon
                                             className="right-btn"
                                             onClick={handleCoursesIncrement}
@@ -558,6 +677,7 @@ const ChefDetailsForm = (props) => {
                                     className="experience-btn"
                                     type="submit"
                                     onClick={handleClick}
+                                    disabled={isSubmitting}
                                 >
                                     Book this Experience
                                 </Button>

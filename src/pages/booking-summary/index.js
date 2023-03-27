@@ -682,6 +682,15 @@ const BookingSummary = () => {
         overflowX: 'hidden',
         overflowY: 'auto',
         outline: '0',
+        '.error': {
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '14px',
+            lineHeight: '15px',
+            color: '#FBFBFB',
+            marginTop: '6px',
+        },
         '.modal-content': {
             padding: '40px 20px',
             backgroundColor: '#101418!important',
@@ -1164,13 +1173,15 @@ const BookingSummary = () => {
                             +91{" "}
                             <KeyboardArrowDownIcon className="drop-down-2" />
                           </span>
-                                                    <input
+                                                    <TextField
                                                         placeholder="10 digit number"
                                                         className="form-control"
                                                         type="text"
                                                         id="number"
-                                                        name="number"
+                                                        name="number1"
+                                                        autoComplete="off"
                                                     />
+                                                    <ErrorMessage className="error" name="number1"/>
                                                 </Box>
                                                 {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
                                             </Box>
@@ -1181,13 +1192,15 @@ const BookingSummary = () => {
                                                     Email{" "}
                                                 </label>
                                                 <Box className="form-group">
-                                                    <input
+                                                    <TextField
                                                         type="email"
-                                                        name=""
+                                                        name="email1"
                                                         id=""
                                                         placeholder="Kachwallasana@gmail.com"
                                                         class="form-control"
+                                                        autoComplete="off"
                                                     />
+                                                    <ErrorMessage className="error" name="email1"/>
                                                 </Box>
                                             </Box>
                                         </Box>
@@ -1384,32 +1397,32 @@ const BookingSummary = () => {
           <Box  className="row">
           <Box className='form-field'>
             <label className="form-label" htmlFor="number">GST Number</label>
-            <Field className="form-control" type="text" id="number" name="number" placeholder='Enter Location'/>
-            {/* <ErrorMessage name="number" /> */}
+            <Field className="form-control" type="text" id="number" name="number" placeholder='Enter Location' autoComplete='off' />
+            <ErrorMessage name="number" className="error"/>
           </Box>
 
           <Box className='form-field'>
             <label className="form-label" htmlFor="name">Registered Company Name</label>
-            <Field className="form-control" type="text" id="name" name="name" placeholder="Enter Location" />
-            {/* <ErrorMessage name="name" /> */}
+            <Field className="form-control" type="text" id="name" name="name" placeholder="Enter Location" autoComplete='off'/>
+            <ErrorMessage name="name" className="error"/>
           </Box>
 
           <Box className='form-field'>
             <label className="form-label" htmlFor="flatNumber">Building/ FlatNumber</label>
-            <Field className="form-control" type="text" id="flatNumber" name="flatNumber" placeholder='Enter Location'/>
-            {/* <ErrorMessage name="flatNumber" /> */}
+            <Field className="form-control" type="text" id="flatNumber" name="flatNumber" placeholder='Enter Location' autoComplete='off'/>
+            <ErrorMessage name="flatNumber" className="error"/>
           </Box>
 
           <Box className='form-field'>
             <label className="form-label" htmlFor="address">Street/area/ Road name</label>
-            <Field className="form-control" type="text" id="address" name="address" placeholder="Enter Locationr" />
-            {/* <ErrorMessage name="address" /> */}
+            <Field className="form-control" type="text" id="address" name="address" placeholder="Enter Locationr"  autoComplete='off'/>
+            <ErrorMessage name="address" className="error"/>
           </Box>
 
           <Box className='form-field'>
             <label className="form-label" htmlFor="pincode">Pincode</label>
-            <Field className="form-control" type="text" id="pincode" name="pincode" placeholder='Enter Location' />
-            {/* <ErrorMessage name="pincode" /> */}
+            <Field className="form-control" type="text" id="pincode" name="pincode" placeholder='Enter Location' autoComplete='off'/>
+            <ErrorMessage name="pincode" className="error"/>
           </Box>
 
                                                     <button type="submit" className="btn btn-primary"

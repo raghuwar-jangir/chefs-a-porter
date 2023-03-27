@@ -5,6 +5,7 @@ import {
     styled,
     TextField,
     Typography,
+    Checkbox
 } from "@mui/material";
 import Navbar from "../../components/NavbarComponent";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -31,7 +32,8 @@ import {navigate} from "gatsby";
 import OtpInput from "react-otp-input";
 
 const validationSchema = Yup.object({
-    contactNumber: Yup.number().typeError("Incorrect Contact Number").required('please enter contact number'),
+    contactNumber: Yup.number().typeError("pls enter the number").required('Incorrect Mobile Number'),
+    message: Yup.string().typeError("Please enter text").required('Please enter text')
 });
 
 
@@ -1171,22 +1173,33 @@ const CustomerDetails = () => {
             '-webkit-text-stroke': '1px',
         },
         '.form-check-input': {
-            background: '#080B0E',
-            borderColor: '#080B0E',
+            background: '#C6A87D',
+            borderColor: '#080B0E !important',
             borderRadius: '0px',
+            color:'#080B0E !important',
             width: '18px',
             height: '18px',
             marginRight: '11px',
         },
-        '.form-check-input:checked[type=checkbox]': {
-            background: '#080B0E',
-            borderColor: '#080B0E',
+        '.form-check-input:hover':{
+            background: '#C6A87D',
+            borderColor: '#080B0E !important',
             borderRadius: '0px',
-            backgroundImage: `url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='%23C6A87D' stroke-linecap='square' stroke-linejoin='square' stroke-width='3' d='m6 10 3 3 6-6'/></svg>")`,
+            color:'#080B0E !important',
             width: '18px',
             height: '18px',
             marginRight: '11px',
         },
+        // '.form-check-input:checked[type=checkbox]': {
+        //     background: '#080B0E',
+        //     borderColor: '#080B0E',
+        //     borderRadius: '0px',
+        //     color:'#C6A87D !important',
+        //     backgroundImage: `url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='%23C6A87D' stroke-linecap='square' stroke-linejoin='square' stroke-width='3' d='m6 10 3 3 6-6'/></svg>")`,
+        //     width: '18px',
+        //     height: '18px',
+        //     marginRight: '11px',
+        // },
         '.MuiTabList-root': {
             width: '140px'
         },
@@ -1611,8 +1624,9 @@ const CustomerDetails = () => {
                                                                 fullWidth
                                                                 multiline
                                                                 rows={1}
-                                                                autoComplete="off"
                                                             />
+                                                            <ErrorMessage name='message' component="div"
+                                                                              className="error"/>
                                                         </Grid>
                                                         re </Box>
                                                     <Box className="row add-details">
@@ -1651,6 +1665,7 @@ const CustomerDetails = () => {
                                                                         displayFormat="DD/MMMM/YYYY"
                                                                         returnFormat="DD/MMMM/YYYY"
                                                                         className="form-control"
+                                                                        autoComplete="off"
                                                                         placeholder="-DD/MM/YYYY-"
                                                                         onChange={(dateString) => setFieldValue('date', dateString)}
                                                                         defaultValue={values.date}/>
@@ -1688,6 +1703,7 @@ const CustomerDetails = () => {
                                                                         returnFormat="DD/MMMM/YYYY"
                                                                         className="form-control"
                                                                         placeholder="-DD/MM/YYYY-"
+                                                                        autoComplete="off"
                                                                         onChange={(dateString) => setFieldValue('date', dateString)}
                                                                         defaultValue={values.date}/>
                                                                     <Typography className="sp-occ ex-detail">We will
@@ -1706,6 +1722,7 @@ const CustomerDetails = () => {
                                                                         returnFormat="DD/MMMM/YYYY"
                                                                         className="form-control"
                                                                         placeholder="-DD/MM/YYYY-"
+                                                                        autoComplete="off"
                                                                         onChange={(dateString) => setFieldValue('date', dateString)}/>
                                                                     <Typography className="sp-occ ex-detail">We will
                                                                         send you exclusive offers on this
@@ -1716,15 +1733,15 @@ const CustomerDetails = () => {
                                                     </Box>
                                                     <Box className="row patron-check">
                                                         <Box className="col-lg-12 save-patron">
-                                                            <input className="form-check-input" type="checkbox"
-                                                                   defaultValue id="flexCheckDefault" defaultChecked/>
+                                                            <Checkbox className="form-check-input"
+                                                                    defaultChecked />
                                                             <Box sx={{width: '100%'}}>
                                                                 <Typography className="save-title">Save 15% on all
                                                                     experiences by becoming a patron</Typography>
                                                                 <Typography className="save-subtitle">You will
                                                                     save <b>₹1300</b> on this booking</Typography>
                                                             </Box>
-                                                            <ChevronRightIcon className="bi-chevron-right"/>
+                                                            {/* <ChevronRightIcon className="bi-chevron-right"/> */}
                                                         </Box>
                                                     </Box>
                                                 </Grid>
@@ -1810,7 +1827,7 @@ const CustomerDetails = () => {
                                                         <Box className="row viewbreak">
                                                             <Box className="col-lg-12">
                                                                 <button type="submit" className="submit-req"
-                                                                        onClick={handleOpenOtp}>Next
+                                                                 onClick={handleClick}>Next
                                                                 </button>
                                                             </Box>
                                                             <Typography className="contact-text">Our team will contact
