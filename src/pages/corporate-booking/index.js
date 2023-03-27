@@ -359,7 +359,7 @@ const CorporateBooking = () => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.corporate_booking) &&
                     <>
                         <Navbar heading="Corporate Booking"/>
                         <Box className="corporate-b"

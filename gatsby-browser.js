@@ -4,7 +4,8 @@ import smoothscroll from 'smoothscroll-polyfill'
 
 import "normalize.css"
 import {CmsProvider} from "./src/context/CmsContext";
-import { Location } from '@reach/router';
+import {Location} from '@reach/router';
+import {UsersProvider} from "./src/context/UsersContext";
 
 export const onClientEntry = () => {
     config({ssrFadeout: true})
@@ -14,5 +15,6 @@ export const onClientEntry = () => {
 // highlight-start
 // eslint-disable-next-line react/prop-types
 export const wrapRootElement = ({element}) =>
-    <Location>{locationProps => <CmsProvider {...locationProps}>{element}</CmsProvider>}</Location>
+    <Location>{locationProps =>
+        <CmsProvider {...locationProps}><UsersProvider >{element}</UsersProvider></CmsProvider>}</Location>
 // highlight-end

@@ -51,10 +51,10 @@ const AboutCardComponent = (props) => {
 
     useEffect(() => {
         {
-            !_.isEmpty(data) &&
+            !_.isEmpty(data?.about_us) &&
             setImageData(data.about_us.who_we_are.gallery)
         }
-    }, [data])
+    }, [data?.about_us])
 
     const imgData = imageData.map(item => {
         return {image: item};
@@ -291,7 +291,7 @@ const AboutCardComponent = (props) => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.about_us) &&
                     <React.Fragment>
                         <Navbar heading="About Us"/>
                         <Box>

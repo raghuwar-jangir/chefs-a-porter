@@ -70,7 +70,7 @@ const ExperienceCarousel = (props) => {
                                     <>
                                         <SwiperSlide><AvlExperienceCarousel
                                             // image={item.user.picture}
-                                            image={item.user.picture}
+                                            image={item.cover_picture}
                                             title={item.title} description={`by ${item.user.name}`}
                                             isLabelShow={item.status && true}/></SwiperSlide>
                                     </>

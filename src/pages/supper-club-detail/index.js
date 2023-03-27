@@ -14,15 +14,15 @@ import {
 import {DatePickerInput} from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
 import CloseIcon from '@mui/icons-material/Close';
-import { Formik,Form } from "formik";
-import React, { useState, useRef } from "react";
-import { useTheme } from "@mui/material/styles";
+import {Formik, Form} from "formik";
+import React, {useState, useRef} from "react";
+import {useTheme} from "@mui/material/styles";
 import RestorentImg from "../../assets/images/sc-gallery.png";
 import RestorentImgMobile from "../../assets/images/RestorentImgMobile.png";
 import CardChefComponent from "../../components/CardChefComponent";
 import ChefCarousel from "../../components/ChefCarousel";
 import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
+import {autoPlay} from "react-swipeable-views-utils";
 import Footer from "../../components/Footer";
 import NeedHelp from "../../components/NeedHelp";
 import Tabs from "@mui/joy/Tabs";
@@ -30,7 +30,7 @@ import TabList from "@mui/joy/TabList";
 import Tab from "@mui/joy/Tab";
 import TabPanel from "@mui/joy/TabPanel";
 import GoogleMapReact from "google-map-react";
-import { Link } from "gatsby";
+import {Link} from "gatsby";
 import pLogo from "../../assets/images/valet.png";
 import Navbar from "../../components/NavbarComponent";
 import SuperClubPopUpCarousel from "../../components/SuperClubPopUpCarousel";
@@ -67,7 +67,7 @@ const SupperClubDetail = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const AnyReactComponent = ({ text }) => <div>{text}</div>;
+    const AnyReactComponent = ({text}) => <div>{text}</div>;
     const defaultProps = {
         center: {
             lat: 10.99835602,
@@ -113,42 +113,42 @@ const SupperClubDetail = () => {
             objectFit: "cover",
         },
         ".sub-box-heading": {
-            fontFamily:'Bon Vivant',
+            fontFamily: 'Bon Vivant',
             fontSize: "26px",
-            fontWeight:700,
-            fontStyle:'normal',
+            fontWeight: 700,
+            fontStyle: 'normal',
             lineHeight: "32px",
             letterSpacing: "0.06em",
-            marginBottom:'8px',
+            marginBottom: '8px',
             color: "#080B0E",
         },
         ".sub-box-text": {
-            fontFamily:'ProximaNovaA-Regular',
-            fontStyle:'normal',
-            marginBottom:'8px',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            marginBottom: '8px',
             fontWeight: 400,
             fontSize: "16px",
             lineHeight: "19px",
-            letterSpacing:'0.06em',
-            display:'flex',
-            placeItems:'center'
+            letterSpacing: '0.06em',
+            display: 'flex',
+            placeItems: 'center'
         },
         ".sub-box-text-2": {
-            fontFamily:'ProximaNovaA-Regular',
-            fontStyle:'normal',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
             fontWeight: 400,
             fontSize: "20px",
             lineHeight: "24px",
-            paddingLeft:'10px'
+            paddingLeft: '10px'
         },
-        '.sub-box-link':{
-            fontFamily:'ProximaNovaA-Regular',
-            fontStyle:'normal',
+        '.sub-box-link': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
             fontWeight: 600,
-            textDecoration:'underline',
-            letterSpacing:'0.06em',
-            fontSize:'20px',
-            padding:'0px 8px'
+            textDecoration: 'underline',
+            letterSpacing: '0.06em',
+            fontSize: '20px',
+            padding: '0px 8px'
         },
         ".sub-box-2": {
             background: "#FBFBFB",
@@ -156,31 +156,31 @@ const SupperClubDetail = () => {
         },
         ".sub-text-price": {
             fontWeight: 600,
-            fontStyle:'normal',
-            fontFamily:'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontFamily: 'ProximaNovaA-Regular',
             fontSize: "36px",
             lineHeight: "44px",
             color: "#080B0E",
         },
         ".sub-text": {
-            fontStyle:'normal',
-            fontFamily:'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontFamily: 'Proxima Nova Alt',
             fontWeight: 300,
             fontSize: "20px",
             lineHeight: "24px",
             color: "#080B0E",
         },
         ".experience-date-box": {
-            marginBottom:'0.5rem'
+            marginBottom: '0.5rem'
         },
         ".experience-date-text": {
-            fontFamily:'Bon Vivant',
-            fontStyle:'normal',
-            fontWeight:700,
+            fontFamily: 'Bon Vivant',
+            fontStyle: 'normal',
+            fontWeight: 700,
             fontSize: "20px",
             lineHeight: "25px",
             color: "#080B0E",
-            marginBottom:'0.5rem'
+            marginBottom: '0.5rem'
         },
         ".experience-date-sub-test": {
             fontWeight: 300,
@@ -189,8 +189,8 @@ const SupperClubDetail = () => {
             color: "#080B0E",
         },
         ".main-date": {
-            fontFamily:'ProximaNovaA-Regular',
-            fontStyle:'normal',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
             fontWeight: 400,
             fontSize: "32px",
             lineHeight: "39px",
@@ -200,20 +200,20 @@ const SupperClubDetail = () => {
         ".date-month": {
             fontSize: "14px",
             lineHeight: "17px",
-            fontFamily:'ProximaNovaA-Regular',
-            fontStyle:'normal',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
             fontWeight: 600,
         },
         ".date-day": {
-            fontFamily:'Proxima Nova Alt',
-            fontStyle:'normal',
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
             fontWeight: 300,
             fontSize: "16px",
             lineHeight: "24px",
         },
         ".next-grid": {
             display: "inline",
-            paddingLeft:'0px !important'
+            paddingLeft: '0px !important'
         },
         ".date-time-box": {
             display: "flex",
@@ -262,18 +262,18 @@ const SupperClubDetail = () => {
             background: "rgba(189, 189, 189, 0.2)",
             padding: "16px 0px",
             placeContent: "center",
-            display:'flex',
-            placeItems:'center',
-            margin:'0px -30px 20px',
-            flexDirection:'row'
+            display: 'flex',
+            placeItems: 'center',
+            margin: '0px -30px 20px',
+            flexDirection: 'row'
         },
         ".date-description": {
             fontSize: "14px",
             fontWeight: 400,
             fontFamily: "ProximaNovaA-Regular",
             lineHeight: "17px",
-            textAlign:'center',
-            padding:'0px 4px'
+            textAlign: 'center',
+            padding: '0px 4px'
         },
         ".blowOut-description": {
             padding: "20px 16px",
@@ -350,7 +350,7 @@ const SupperClubDetail = () => {
             fontFamily: 'Proxima Nova Alt',
             fontSize: "20px",
             lineHeight: "0px",
-            fontWeight:300,
+            fontWeight: 300,
             marginBottom: "14px",
             color: "#080B0E",
             marginTop: "5%",
@@ -365,7 +365,7 @@ const SupperClubDetail = () => {
             color: "#080B0E",
             marginBottom: "16px",
             display: "block",
-            paddingTop:'8px'
+            paddingTop: '8px'
         },
         ".map-link:hover": {
             color: "#C6A87D",
@@ -397,7 +397,7 @@ const SupperClubDetail = () => {
         },
         ".child-container": {
             position: "relative",
-            marginLeft:'2px'
+            marginLeft: '2px'
         },
         ".show-btn": {
             position: "absolute",
@@ -409,11 +409,11 @@ const SupperClubDetail = () => {
             fontSize: "16px",
             lineHeight: "19px",
             color: "#080B0E",
-            textTransform:'math-auto',
+            textTransform: 'math-auto',
             background: "#FBFBFB",
             boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
             borderRadius: "1px",
-            padding:'8px 12px'
+            padding: '8px 12px'
         },
         ".show-btn:hover": {
             color: "#C6A87D",
@@ -453,10 +453,10 @@ const SupperClubDetail = () => {
         ".container": {
             position: "relative",
         },
-        '.pop-close-icon':{
-            width:'100px',
-            height:'40px',
-            color:'rgb(160, 160, 160)'
+        '.pop-close-icon': {
+            width: '100px',
+            height: '40px',
+            color: 'rgb(160, 160, 160)'
         },
         ".carousel-popup": {
             position: "fixed",
@@ -484,15 +484,15 @@ const SupperClubDetail = () => {
         ".swiper": {
             height: "100%",
         },
-        '.css-cr824o-JoyTab-root':{
-            backgroundColor:'#101418',
-            color:'#FBFBFB'
+        '.css-cr824o-JoyTab-root': {
+            backgroundColor: '#101418',
+            color: '#FBFBFB'
         },
-        '.css-6gpojs-JoyTab-root':{
-            backgroundColor:'#101418',
-            color:'#FBFBFB'
+        '.css-6gpojs-JoyTab-root': {
+            backgroundColor: '#101418',
+            color: '#FBFBFB'
         },
-        '.switch-field' :{
+        '.switch-field': {
             display: 'flex',
             overflow: 'hidden',
         },
@@ -525,7 +525,7 @@ const SupperClubDetail = () => {
             flexDirection: 'column',
             placeContent: 'center',
         },
-        '.time-text':{
+        '.time-text': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: 'bolder',
@@ -552,7 +552,7 @@ const SupperClubDetail = () => {
             flex: '0 0 auto',
             width: '58.33333333%'
         },
-        '.experience-date-sub-text':{
+        '.experience-date-sub-text': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
@@ -560,17 +560,17 @@ const SupperClubDetail = () => {
             lineHeight: '24px',
             color: '#080B0E',
         },
-        '.grid-item':{
-            paddingRight:'5px'
+        '.grid-item': {
+            paddingRight: '5px'
         },
-        '.restorent-1':{
-            paddingRight:'10px'
+        '.restorent-1': {
+            paddingRight: '10px'
         },
-        '.restorent-2':{
-            paddingLeft:'10px !important',
-            paddingRight:'14px'
+        '.restorent-2': {
+            paddingLeft: '10px !important',
+            paddingRight: '14px'
         },
-        '.dot':{
+        '.dot': {
             background: '#222222',
             width: '3px',
             height: '3px',
@@ -581,9 +581,9 @@ const SupperClubDetail = () => {
             top: '0px',
             bottom: '0px',
         },
-        '.supper-main-container':{
-            marginTop:'20px',
-            marginBottom:'40px'
+        '.supper-main-container': {
+            marginTop: '20px',
+            marginBottom: '40px'
         },
         ".exp-invite-btn": {
             border: "1px solid #C6A87D",
@@ -599,13 +599,13 @@ const SupperClubDetail = () => {
             textTransform: "math-auto",
         },
         ".exp-invite-btn :hover ": {
-            backgroundColor:'none'
+            backgroundColor: 'none'
         },
         ".last-contain": {
             display: "flex",
             justifyContent: "space-between",
             padding: "20px 16px",
-            placeItems:'center',
+            placeItems: 'center',
             backgroundColor: "#101418",
         },
         ".invite-friends-text": {
@@ -616,7 +616,7 @@ const SupperClubDetail = () => {
             lineHeight: "25px",
             color: "#FBFBFB",
             marginBottom: "0px",
-            letterSpacing:'0.06em'
+            letterSpacing: '0.06em'
         },
         ".experience-text": {
             fontFamily: 'ProximaNovaA-Regular',
@@ -646,34 +646,34 @@ const SupperClubDetail = () => {
                 padding: "0px 0px",
                 lineHeight: "15px",
             },
-            '.date-stack':{
-                display:'-webkit-inline-box'
+            '.date-stack': {
+                display: '-webkit-inline-box'
             }
         },
         "@media (min-width: 1px) and (max-width:768px)": {
-            '.date-stack':{
-                display:'flex'
+            '.date-stack': {
+                display: 'flex'
             },
             ".last-contain": {
-                flexDirection:'column',
-                placeItems:'flex-start'
+                flexDirection: 'column',
+                placeItems: 'flex-start'
             },
-            '.exp-invite-btn':{
-                width:'100%',
-                padding:'10px'
+            '.exp-invite-btn': {
+                width: '100%',
+                padding: '10px'
             },
             ".parent-container ": {
                 flex: '0 0 auto',
                 width: '58.33333333%',
-                maxWidth:'none'
+                maxWidth: 'none'
             },
             ".grid-box-2": {
                 flexDirection: "column",
             },
-            '.next-grid':{
-                flex:' 0 0 auto',
+            '.next-grid': {
+                flex: ' 0 0 auto',
                 width: '41.66666667%',
-                maxWidth:'none'
+                maxWidth: 'none'
             },
             ".grid-child-box": {
                 maxWidth: "100%",
@@ -681,19 +681,19 @@ const SupperClubDetail = () => {
             ".sub-box-2": {
                 marginTop: "10px",
             },
-            '.time-btn-box':{
-                width:'100%',
+            '.time-btn-box': {
+                width: '100%',
                 flexShrink: '0',
                 // width: '100%',
                 maxWidth: '100%',
             },
-            '.date-time-box':{
-                flexDirection:'column',
-                alignItems:'flex-start'
+            '.date-time-box': {
+                flexDirection: 'column',
+                alignItems: 'flex-start'
             },
-            '.grid-item':{
-                maxWidth:'100%',
-                paddingRight:'0px'
+            '.grid-item': {
+                maxWidth: '100%',
+                paddingRight: '0px'
             },
             '.Joy-selected': {
                 width: '80px',
@@ -720,8 +720,8 @@ const SupperClubDetail = () => {
             ".box2": {
                 width: "84%",
             },
-            '.grid-item':{
-                paddingRight:"0px"
+            '.grid-item': {
+                paddingRight: "0px"
             },
             ".grid-child-box": {
                 maxWidth: "100%",
@@ -918,7 +918,7 @@ const SupperClubDetail = () => {
                                         onClick={handleImageClick}
                                     />
                                     <Button className="show-btn" onClick={handleOpen} data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal" >Show All Photos</Button>
+                                            data-bs-target="#exampleModal">Show All Photos</Button>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -1057,7 +1057,7 @@ const SupperClubDetail = () => {
                                             <input type="radio" id="radio-one" name="switch-one" value="yes" checked/>
                                             <label for="radio-one"><Typography className="time-text">12:00 -
                                                 1:00pm</Typography>
-                                                <span style={{color:'#F8A039'}}>filling fast</span>
+                                                <span style={{color: '#F8A039'}}>filling fast</span>
                                             </label>
                                             <input type="radio" id="radio-two" name="switch-one" value="no"/>
                                             <label for="radio-two"><Typography className="time-text">7:30 -
@@ -1124,7 +1124,7 @@ const SupperClubDetail = () => {
                                             <input type="radio" id="radio-8" name="switch-four" value="no" checked/>
                                             <label for="radio-8"><Typography className="time-text">7:30 -
                                                 9:00pm</Typography>
-                                                <span style={{color:'#F8A039'}}>filling fast</span></label>
+                                                <span style={{color: '#F8A039'}}>filling fast</span></label>
                                         </Box>
                                     </Box>
                                 </Box>
@@ -1133,7 +1133,8 @@ const SupperClubDetail = () => {
                                 </Button>
                                 <Box></Box>
                             </Box>
-                            <SupperClubTreatyComponent padding={'40px 16px'} subTitle='Give the gift of an unforgettable food experience'/>
+                            <SupperClubTreatyComponent padding={'40px 16px'}
+                                                       subTitle='Give the gift of an unforgettable food experience'/>
                         </Grid>
                     </Grid>
                 </Box>

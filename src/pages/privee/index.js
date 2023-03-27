@@ -632,7 +632,7 @@ const PriveePage = () => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.privee) &&
                     <>
                         <Navbar  isColor={true} heading="Privee"/>
                         <MainBoxContent>
@@ -733,7 +733,7 @@ const PriveePage = () => {
                                                                     padding: '0px 5px',
                                                                     fontSize: '20px',
                                                                     fontFamily: 'Proxima Nova Alt',
-                                                                    fontWeight:'400'
+                                                                    fontWeight: '400'
                                                                 }
                                                             }}
                                                             MenuProps={{
@@ -809,7 +809,7 @@ const PriveePage = () => {
                                                                     padding: '0px 5px',
                                                                     fontSize: '20px',
                                                                     fontFamily: 'Proxima Nova Alt',
-                                                                    fontWeight:'400'
+                                                                    fontWeight: '400'
                                                                 }
                                                             }}
                                                             MenuProps={{

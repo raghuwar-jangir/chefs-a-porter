@@ -309,7 +309,7 @@ const PriveeCarousel = (props, {title, subTitle, isButtonShow = true}) => {
                         >
                             {data.home.chefs_private_dining.chefs.map((item) => {
                                 return (
-                                    <SwiperSlide>
+                                    <SwiperSlide style={{cursor: 'pointer'}}>
                                         <img className="img" src={item.picture}/>
                                         {
                                             item.details.is_featured &&

@@ -122,7 +122,7 @@ const TestimonialCarousel = () => {
     return (
         <BoxWrapper>
             {
-                !_.isEmpty(data) &&
+                !_.isEmpty(data?.home) &&
                 <React.Fragment>
                     <Swiper autoplay={{
                         delay: 5000,
