@@ -667,7 +667,7 @@ const ChefDetails = (props) => {
                                         <span className="chef-details">Specialty:<b>
                                             {!_.isEmpty(userData?.details?.tags) &&
                                                 <span>
-                                                {userData.details.tags.map((item, index) => {
+                                                {userData?.details?.tags?.map((item, index) => {
                                                     return <span>{item}{index !== userData.details.tags.length - 1 && (
                                                         <span>,</span>)}</span>
                                                 })}
