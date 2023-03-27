@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import {
     Box,
     Grid,
     styled,
     TextField,
+    Checkbox,
     Typography,
 } from "@mui/material";
 import Navbar from "../../components/NavbarComponent";
@@ -29,9 +30,11 @@ import GoogleMapReact from "google-map-react";
 import location from "../../assets/images/location.png";
 import {navigate} from "gatsby";
 import OtpInput from "react-otp-input";
+import OtpContext from "../../context/OtpContext";
 
 const validationSchema = Yup.object({
-    contactNumber: Yup.number().typeError("Incorrect Contact Number").required('please enter contact number'),
+    contactNumber: Yup.number().typeError("pls enter the number").required('Incorrect Mobile Number'),
+    message: Yup.string().typeError("Please enter text").required('Please enter text')
 });
 
 
@@ -1169,22 +1172,40 @@ const CustomerDetails = () => {
             '-webkit-text-stroke': '1px',
         },
         '.form-check-input': {
-            background: '#080B0E',
-            borderColor: '#080B0E',
+            background: '#C6A87D',
+            borderColor: '#080B0E !important',
             borderRadius: '0px',
+            color: '#080B0E !important',
             width: '18px',
             height: '18px',
             marginRight: '11px',
         },
-        '.form-check-input:checked[type=checkbox]': {
-            background: '#080B0E',
-            borderColor: '#080B0E',
+        '.form-check-input:hover': {
+            background: '#C6A87D',
+            borderColor: '#080B0E !important',
             borderRadius: '0px',
-            backgroundImage: `url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='%23C6A87D' stroke-linecap='square' stroke-linejoin='square' stroke-width='3' d='m6 10 3 3 6-6'/></svg>")`,
+            color: '#080B0E !important',
             width: '18px',
             height: '18px',
             marginRight: '11px',
         },
+        // '.form-check-input': {
+        //     background: '#080B0E',
+        //     borderColor: '#080B0E',
+        //     borderRadius: '0px',
+        //     width: '18px',
+        //     height: '18px',
+        //     marginRight: '11px',
+        // },
+        // '.form-check-input:checked[type=checkbox]': {
+        //     background: '#080B0E',
+        //     borderColor: '#080B0E',
+        //     borderRadius: '0px',
+        //     backgroundImage: `url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='%23C6A87D' stroke-linecap='square' stroke-linejoin='square' stroke-width='3' d='m6 10 3 3 6-6'/></svg>")`,
+        //     width: '18px',
+        //     height: '18px',
+        //     marginRight: '11px',
+        // },
         '.MuiTabList-root': {
             width: '140px'
         },
@@ -1440,13 +1461,6 @@ const CustomerDetails = () => {
         <React.Fragment>
             <BoxWrapper>
                 <Navbar to={'/customer-details'} isColor={true} isIcon={true} heading="Privee"/>
-                {/*{isMobile ? (*/}
-                {/*    <Box className='header-club'>*/}
-                {/*        <Typography className="addones-mobile-heading">Privee</Typography>*/}
-                {/*    </Box>*/}
-                {/*) : (*/}
-                {/*    ''*/}
-                {/*)}*/}
                 <Box className="supper-gallery cust-details">
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">
@@ -1611,6 +1625,8 @@ const CustomerDetails = () => {
                                                                 rows={1}
                                                                 autoComplete="off"
                                                             />
+                                                            <ErrorMessage name='message' component="div"
+                                                                          className="error"/>
                                                         </Grid>
                                                         re </Box>
                                                     <Box className="row add-details">
@@ -1649,6 +1665,7 @@ const CustomerDetails = () => {
                                                                         displayFormat="DD/MMMM/YYYY"
                                                                         returnFormat="DD/MMMM/YYYY"
                                                                         className="form-control"
+                                                                        autoComplete="off"
                                                                         placeholder="-DD/MM/YYYY-"
                                                                         onChange={(dateString) => setFieldValue('date', dateString)}
                                                                         defaultValue={values.date}/>
@@ -1666,6 +1683,7 @@ const CustomerDetails = () => {
                                                                         value={values.date}
                                                                         displayFormat="DD/MMMM/YYYY"
                                                                         returnFormat="DD/MMMM/YYYY"
+                                                                        autoComplete="off"
                                                                         className="form-control"
                                                                         placeholder="-DD/MM/YYYY-"
                                                                         onChange={(dateString) => setFieldValue('date', dateString)}
@@ -1684,6 +1702,7 @@ const CustomerDetails = () => {
                                                                         value={values.date}
                                                                         displayFormat="DD/MMMM/YYYY"
                                                                         returnFormat="DD/MMMM/YYYY"
+                                                                        autoComplete="off"
                                                                         className="form-control"
                                                                         placeholder="-DD/MM/YYYY-"
                                                                         onChange={(dateString) => setFieldValue('date', dateString)}
@@ -1702,6 +1721,7 @@ const CustomerDetails = () => {
                                                                         value={values.date}
                                                                         displayFormat="DD/MMMM/YYYY"
                                                                         returnFormat="DD/MMMM/YYYY"
+                                                                        autoComplete="off"
                                                                         className="form-control"
                                                                         placeholder="-DD/MM/YYYY-"
                                                                         onChange={(dateString) => setFieldValue('date', dateString)}/>
@@ -1714,15 +1734,17 @@ const CustomerDetails = () => {
                                                     </Box>
                                                     <Box className="row patron-check">
                                                         <Box className="col-lg-12 save-patron">
-                                                            <input className="form-check-input" type="checkbox"
-                                                                   defaultValue id="flexCheckDefault" defaultChecked/>
+                                                            {/*<input className="form-check-input" type="checkbox"*/}
+                                                            {/*       defaultValue id="flexCheckDefault" defaultChecked/>*/}
+                                                            <Checkbox className="form-check-input"
+                                                                      defaultChecked/>
                                                             <Box sx={{width: '100%'}}>
                                                                 <Typography className="save-title">Save 15% on all
                                                                     experiences by becoming a patron</Typography>
                                                                 <Typography className="save-subtitle">You will
                                                                     save <b>₹1300</b> on this booking</Typography>
                                                             </Box>
-                                                            <ChevronRightIcon className="bi-chevron-right"/>
+                                                            {/*<ChevronRightIcon className="bi-chevron-right"/>*/}
                                                         </Box>
                                                     </Box>
                                                 </Grid>
@@ -1836,6 +1858,7 @@ const CustomerDetails = () => {
                     onClose={handleCloseOtp}
                     aria-labelledby="keep-mounted-modal-title"
                     aria-describedby="keep-mounted-modal-description"
+
                 >
                     <Box sx={styleOtp}>
                         <div className="modal-content">
@@ -1868,15 +1891,15 @@ const CustomerDetails = () => {
                                                 <OtpInput
                                                     value={code}
                                                     onChange={handleChange}
-                                                    numInputs={4}
-                                                    separator={<span></span>}
+                                                    numInputs={6}
+                                                    separator={<span/>}
                                                     isInputNum={true}
                                                     shouldAutoFocus={true}
                                                     inputStyle={{
                                                         backgroundColor: '#080B0E',
                                                         border: '0px',
-                                                        width: '58px',
-                                                        height: '58px',
+                                                        width: '30px',
+                                                        height: '30px',
                                                         fontFamily: 'ProximaNovaA-Regular',
                                                         fontWeight: '400',
                                                         color: '#FFFFFF',
@@ -1889,7 +1912,8 @@ const CustomerDetails = () => {
                                             <div><span style={{paddingTop: '5px'}}>Resend OTP in 00:32 sec</span></div>
                                             <div className="btn-val">
                                                 <button className="btn validate" type="submit"
-                                                        onClick={handleClick}>Verfiy
+                                                        onClick={handleClick}
+                                                >Verfiy
                                                 </button>
                                             </div>
                                         </div>
@@ -1904,6 +1928,7 @@ const CustomerDetails = () => {
                         </div>
                     </Box>
                 </Modal>
+
             </BoxWrapper>
         </React.Fragment>
     )

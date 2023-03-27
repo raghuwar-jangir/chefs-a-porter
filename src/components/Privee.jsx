@@ -91,7 +91,7 @@ const Privee = (props) => {
         },
         '.cell': {
             position: 'relative',
-            cursor:'pointer'
+            cursor: 'pointer'
         },
         "@media (min-width: 768px) and (max-width:990px)": {
             '.grid': {
@@ -140,7 +140,7 @@ const Privee = (props) => {
         <React.Fragment>
             <MainContentBox>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.our_chefs) &&
                     <div className="grid">
                         {
                             data.our_chefs.our_chefs.chefs.results.map((item, index) => {

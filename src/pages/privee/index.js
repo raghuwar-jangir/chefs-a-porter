@@ -582,7 +582,7 @@ const MainContentBox = styled(Box)({
     }
 
 })
-const PriveePage = () => {
+const PriveePage = (props) => {
 
     const {data} = useContext(CmsContext);
 
@@ -631,10 +631,10 @@ const PriveePage = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
+                <Navbar isColor={true} heading="Privee"/>
                 {
                     !_.isEmpty(data?.privee) &&
                     <>
-                        <Navbar isColor={true} heading="Privee"/>
                         <MainBoxContent>
                             {/* //! privee header section for title */}
                             <MobileView>
@@ -922,7 +922,9 @@ const PriveePage = () => {
                                                     </Box>
                                                     <Box className="form-group">
                                                         <button type="submit" className="btn btn-primary"
-                                                                onClick={handleClick}>View Experiences
+                                                                onClick={handleClick}
+                                                        >
+                                                            View Experiences
                                                         </button>
                                                     </Box>
                                                 </Form>
@@ -941,7 +943,8 @@ const PriveePage = () => {
                                         <Grid item xl={4} md={4} sm={6} xs={12}>
                                             <AvlExperienceCarousel
                                                 image={item.user.picture}
-                                                title={item.title} description={`by ${item.user.name}`}/>
+                                                title={item.title} description={`by ${item.user.name}`}
+                                            />
                                         </Grid>
                                     )
                                 })}

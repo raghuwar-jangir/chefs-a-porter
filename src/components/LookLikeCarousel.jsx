@@ -106,7 +106,7 @@ const LookLikeCarousel = () => {
     return (
         <React.Fragment>
             {
-                !_.isEmpty(data) &&
+                !_.isEmpty(data?.supper_club) &&
                 <Box sx={style}>
                     <Box className='swiper-box'>
                         <Typography className="swiper-heading">See what our supper clubs look like</Typography>

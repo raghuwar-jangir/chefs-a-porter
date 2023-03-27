@@ -232,7 +232,7 @@ const Footer = () => {
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <Link className="listItem-subheading">As Vendor</Link>
+                                        <Link href="/join-chef" className="listItem-subheading">As Vendor</Link>
                                     </List>
                                 </Box>
                             </Grid>

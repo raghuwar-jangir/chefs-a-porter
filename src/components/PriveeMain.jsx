@@ -217,7 +217,7 @@ const PriveeMain = ({title, subTitle, isButtonShow = false}) => {
         <React.Fragment>
             <MainParent>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.home) &&
                     <>
                         <Box className='continue-browsing-box'>
                             <Typography className='main-heading'>

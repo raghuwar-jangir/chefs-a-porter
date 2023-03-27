@@ -186,7 +186,7 @@ const FoodCarousel = (isButtonShow) => {
     return (
         <React.Fragment>
             {
-                !_.isEmpty(data) &&
+                !_.isEmpty(data?.home) &&
                 <MainParent>
                     <Swiper style={{
                         "--swiper-navigation-color": "white",

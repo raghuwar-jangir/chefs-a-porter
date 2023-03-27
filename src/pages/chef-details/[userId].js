@@ -665,10 +665,14 @@ const ChefDetails = (props) => {
                                         </Breadcrumbs>
                                         <Typography className="chef-name">{userData.name}</Typography>
                                         <span className="chef-details">Specialty:<b>
-                                            {userData.details.tags.map((item, index) => {
-                                                return <span>{item}{index !== userData.details.tags.length - 1 && (
-                                                    <span>,</span>)}</span>
-                                            })}
+                                            {!_.isEmpty(userData?.details?.tags) &&
+                                                <span>
+                                                {userData.details.tags.map((item, index) => {
+                                                    return <span>{item}{index !== userData.details.tags.length - 1 && (
+                                                        <span>,</span>)}</span>
+                                                })}
+                                            </span>
+                                            }
                                         </b></span>
                                     </Box>
                                 </Box>

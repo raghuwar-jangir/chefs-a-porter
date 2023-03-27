@@ -6,6 +6,7 @@ import "normalize.css"
 import {CmsProvider} from "./src/context/CmsContext";
 import {Location} from '@reach/router';
 import {UsersProvider} from "./src/context/UsersContext";
+// import {OtpProvider} from "./src/context/OtpContext";
 
 export const onClientEntry = () => {
     config({ssrFadeout: true})
@@ -16,5 +17,9 @@ export const onClientEntry = () => {
 // eslint-disable-next-line react/prop-types
 export const wrapRootElement = ({element}) =>
     <Location>{locationProps =>
-        <CmsProvider {...locationProps}><UsersProvider >{element}</UsersProvider></CmsProvider>}</Location>
+        <CmsProvider {...locationProps}><UsersProvider>
+            {/*<OtpProvider>*/}
+                {element}
+            {/*</OtpProvider>*/}
+        </UsersProvider></CmsProvider>}</Location>
 // highlight-end

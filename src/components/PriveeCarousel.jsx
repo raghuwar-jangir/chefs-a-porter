@@ -235,7 +235,7 @@ const PriveeCarousel = (props, {title, subTitle, isButtonShow = true}) => {
     return (
         <React.Fragment>
             {
-                !_.isEmpty(data) &&
+                !_.isEmpty(data?.home) &&
                 <MainParent>
                     <Box className="continue-browsing-box">
                         <Box className="btn-view">
