@@ -15,8 +15,8 @@ const UsersProvider = (props) => {
     const pathInfo = {
         'chef-details': 'users',
         'event-details': 'menu',
-        'privee-viewmore': 'menu'
-
+        'privee-viewmore': 'menu',
+        'supper-club-details': 'event'
     }
 
     const path = useLocation()

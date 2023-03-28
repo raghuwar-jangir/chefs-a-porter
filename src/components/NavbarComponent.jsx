@@ -22,11 +22,15 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ShareIcon from '@mui/icons-material/Share';
 
 
-const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading,to}) => {
+const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to}) => {
 
     const props = {
         heading
     }
+    //calling button
+    const handleCallButton = () => {
+        window.location.href = `tel:${7698723169}`;
+    };
 
     const [isOpen, setOpen] = useState(false);
     const [search, setSearch] = useState(false);
@@ -393,7 +397,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading,to}) => {
                                             />
                                         </Box>
                                     }
-                                    <img src={telLogo} className='telePhoneLogo'/>
+                                    <img src={telLogo} onClick={handleCallButton} className='telePhoneLogo'/>
                                 </Grid>
                             </Grid>
                         </Box>

@@ -668,7 +668,8 @@ const EventDetails = (props) => {
                                                 {
                                                     userData.user.details.gallery_pictures.map((item) => {
                                                         return (
-                                                            <Grid className="item-img-1" item md={6} sm={6} xs={6} xl={6}>
+                                                            <Grid className="item-img-1" item md={6} sm={6} xs={6}
+                                                                  xl={6}>
                                                                 <img
                                                                     src={item}
                                                                     alt="RestorentImg"
@@ -682,7 +683,8 @@ const EventDetails = (props) => {
                                                 {
                                                     userData.user.details.gallery_pictures.map((item) => {
                                                         return (
-                                                            <Grid className="item-img-1" item md={6} sm={6} xs={6} xl={6}>
+                                                            <Grid className="item-img-1" item md={6} sm={6} xs={6}
+                                                                  xl={6}>
                                                                 <img
                                                                     src={item}
                                                                     alt="RestorentImg"

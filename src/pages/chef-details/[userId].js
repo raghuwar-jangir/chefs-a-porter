@@ -677,22 +677,28 @@ const ChefDetails = (props) => {
                                     </Box>
                                 </Box>
                                 <Box className="mobileView-chef">
-                                    <Typography className="chef-name mbl-chef-name">{userData.name}</Typography>
+                                    <Typography className="chef-name mbl-chef-name">{userData?.name}</Typography>
                                 </Box>
                                 <Box className="gallery-carousel"><ImageCarousel/></Box>
                                 <Box className="mobileView-chef">
-                                    <Typography className="chef-details mbl-chef-name">Specialty:<b> Thai,
+                                    <Typography className="chef-details mbl-chef-name">Specialty: <b> Thai,
                                         Japanese</b></Typography>
                                 </Box>
                                 <Grid container spacing={{md: 2}} className="container-spacing">
                                     <Grid className="parent-container" item xl={7} md={7} sm={6} xs={12}>
                                         <Box className="container">
-                                            <img
-                                                src={chef1}
-                                                alt="RestorentImg"
-                                                className="main-img"
-                                                onClick={handleImageOpen}
-                                            />
+                                         <span>
+                                                {userData.experinces.map((item) => {
+                                                    return (
+                                                        <img
+                                                            src={item.cover_picture}
+                                                            alt="RestorentImg"
+                                                            className="main-img"
+                                                            onClick={handleImageOpen}
+                                                        />
+                                                    )
+                                                })}
+                                         </span>
                                             {showCarousel && (
                                                 <Box className="carousel-popup">
                                                     <button className='close-button' onClick={handleImageClose}>
@@ -705,6 +711,7 @@ const ChefDetails = (props) => {
                                             )}
                                         </Box>
                                     </Grid>
+
                                     <Grid item md={5} sm={6} xs={12} xl={5} className="main-2">
                                         <Grid className="child-container" container spacing={2}>
                                             <Grid className="restorent-1" item md={6} sm={6} xs={6} xl={6}>
@@ -745,12 +752,12 @@ const ChefDetails = (props) => {
                                                             <Box className='about-container'>
                                                                 <img src={party} className="about-chef-icon" alt=""/>
                                                                 <Typography className="about-chef-details">Fun
-                                                                    facts: <b>{userData.details.fun_fact}</b></Typography>
+                                                                    facts: <b>{userData?.details?.fun_fact}</b></Typography>
                                                             </Box>
                                                             <Box className='about-container'>
                                                                 <img src={work} className="about-chef-icon" alt=""/>
                                                                 <Typography className="about-chef-details">Worked
-                                                                    at: <b>{userData.details.worked_at}</b></Typography>
+                                                                    at: <b>{userData?.details?.worked_at}</b></Typography>
                                                             </Box>
                                                             <Box className='about-container'>
                                                                 <img src={culinary} className="about-chef-icon" alt=""/>
@@ -822,7 +829,7 @@ const ChefDetails = (props) => {
                                 <SupperClubDetailsCarousel changeDetails={{fontSize: '16px'}}
                                                            changeFont={{fontSize: '20px'}}
                                                            backgroundColor='#DCD7CB'/>
-                                <GalleryCarousel image={chef1} title={'Gallery'}/>
+                                <GalleryCarousel title={'Gallery'}/>
                                 <Box className="chef-btn book-now">
                                     <Link href="/our-chefs" className="view-all-gallery">View More Chef</Link>
                                 </Box>

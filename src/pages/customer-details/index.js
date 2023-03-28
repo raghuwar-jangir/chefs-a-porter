@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect, useCallback} from "react";
 import {
     Box,
     Grid,
@@ -29,30 +29,44 @@ import Modal from "@mui/material/Modal";
 import GoogleMapReact from "google-map-react";
 import location from "../../assets/images/location.png";
 import {navigate} from "gatsby";
-import OtpInput from "react-otp-input";
+import OTPInput from "react-otp-input";
 import OtpContext from "../../context/OtpContext";
+import * as _ from 'lodash'
 
 const validationSchema = Yup.object({
-    contactNumber: Yup.number().typeError("pls enter the number").required('Incorrect Mobile Number'),
-    message: Yup.string().typeError("Please enter text").required('Please enter text')
+    contactNumber: Yup.number().required('please enter the number'),
+    message: Yup.string().required('Please enter text')
 });
 
 
-const CustomerDetails = () => {
+const CustomerDetails = (props) => {
+
+    const {setOtpNumber, setVerifyOtp} = useContext(OtpContext);
     const CHARACTER_LIMIT = 40;
     const [open, setOpen] = useState(false);
     const [currentModal, setCurrentModal] = useState(0);
     const [openOtp, setOpenOtp] = React.useState(false);
-    const handleOpenOtp = () => setOpenOtp(true);
+    const [contactNumber, setContactNumber] = useState('');
+
+    const handleOpenOtp = (contactNumber) => {
+        console.log("contactNumbercontactNumber====", contactNumber)
+        if (!_.isEmpty(contactNumber)) {
+            setOpenOtp(true);
+            setOtpNumber(`+91${contactNumber}`);
+            setContactNumber(contactNumber);
+        }
+    }
     const handleCloseOtp = () => setOpenOtp(false);
     const [code, setCode] = React.useState("");
-    const handleChange = (code) => setCode(code);
-
+    const handleChange = (code) => {
+        setCode(code);
+        console.log("code===",code)
+    };
+    //address model open and close code
     const handleOpen = () => {
         setOpen(true);
         setCurrentModal(0);
     };
-
     const handleClose = () => {
         if (currentModal < modals.length - 1) {
             setCurrentModal(currentModal + 1);
@@ -60,6 +74,13 @@ const CustomerDetails = () => {
             setOpen(false);
         }
     };
+    const handleModal = () => {
+        if (currentModal == 1) {
+            setCurrentModal(currentModal + 1);
+        }
+    }
+
+    //google map for address popup
     const AnyReactComponent = ({text}) => <div>{text}</div>;
     const defaultProps = {
         center: {
@@ -69,11 +90,6 @@ const CustomerDetails = () => {
         zoom: 11,
     };
 
-    const handleModal = () => {
-        if (currentModal == 1) {
-            setCurrentModal(currentModal + 1);
-        }
-    }
 
     const styleOtp = {
         position: 'absolute',
@@ -81,7 +97,6 @@ const CustomerDetails = () => {
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: 400,
-        height: 446,
         boxShadow: 24,
         '.modal-content': {
             backgroundColor: '#101418!important',
@@ -149,7 +164,7 @@ const CustomerDetails = () => {
         '#otp': {
             padding: '0px 10px',
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: 'space-evenly',
             flexDirection: 'row'
         },
         '.mt-2': {
@@ -212,7 +227,6 @@ const CustomerDetails = () => {
             width: '400px !important',
         },
     }
-
     const styleModel1 = {
         position: 'absolute',
         top: '50%',
@@ -883,7 +897,10 @@ const CustomerDetails = () => {
     ];
 
     const handleClick = () => {
-        navigate('/addons');
+        if (!_.isEmpty(code)) {
+            setVerifyOtp(code);
+            navigate('/addons');
+        }
     }
 
     const BoxWrapper = styled(Box)(() => ({
@@ -1456,7 +1473,6 @@ const CustomerDetails = () => {
         },
     }))
 
-
     return (
         <React.Fragment>
             <BoxWrapper>
@@ -1830,7 +1846,7 @@ const CustomerDetails = () => {
                                                         <Box className="row viewbreak">
                                                             <Box className="col-lg-12">
                                                                 <button type="submit" className="submit-req"
-                                                                        onClick={handleOpenOtp}>Next
+                                                                        onClick={() => handleOpenOtp(values?.contactNumber)}>Next
                                                                 </button>
                                                             </Box>
                                                             <Typography className="contact-text">Our team will contact
@@ -1871,40 +1887,30 @@ const CustomerDetails = () => {
                                 <div className="container-fluid house-no">
                                     <div className="position-relative">
                                         <div className="otp-div">
-                                            <h6>A 4 digit code has been sent to <b>+91 987324567</b> & your
+                                            <h6>A 6 digit code has been sent to <b>+{contactNumber}</b> & your
                                                 email <b>kachwallasana@gmail.com</b> <a
                                                     href="javascript:void(0);">Change</a></h6>
                                             <h4 className="enter-otp">Enter OTP</h4>
-                                            {/*<div id="otp" className="inputs d-flex flex-row justify-content-between mt-2">*/}
-                                            {/*    <input className="text-center form-control" type="text" id="first"*/}
-                                            {/*           maxLength="1"/>*/}
-                                            {/*    <input className="text-center form-control" type="text" id="second"*/}
-                                            {/*           maxLength="1"/>*/}
-                                            {/*    <input className="text-center form-control" type="text" id="third"*/}
-                                            {/*           maxLength="1"/>*/}
-                                            {/*    <input className="text-center form-control" type="text" id="fourth"*/}
-                                            {/*           maxLength="1"/>*/}
-                                            {/*</div>*/}
-                                            {/*<div><span>Resend OTP in 00:32 sec</span></div>*/}
                                             <div id="otp"
-                                                 className="inputs d-flex flex-row justify-content-between mt-2">
-                                                <OtpInput
+                                                 className="">
+                                                <OTPInput
                                                     value={code}
                                                     onChange={handleChange}
                                                     numInputs={6}
-                                                    separator={<span/>}
+                                                    separator={<span style={{padding:'0px',width: '1rem'}}></span>}
                                                     isInputNum={true}
                                                     shouldAutoFocus={true}
                                                     inputStyle={{
+                                                        border: "1px solid #FBFBFB",
                                                         backgroundColor: '#080B0E',
-                                                        border: '0px',
-                                                        width: '30px',
-                                                        height: '30px',
+                                                        width: '35px',
+                                                        height: '35px',
                                                         fontFamily: 'ProximaNovaA-Regular',
                                                         fontWeight: '400',
                                                         color: '#FFFFFF',
                                                     }}
                                                     focusStyle={{
+                                                        border: "1px solid #FBFBFB",
                                                         outline: "none"
                                                     }}
                                                 />
