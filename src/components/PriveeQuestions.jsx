@@ -118,7 +118,7 @@ const PriveeQuestions = ({isLightTheme = false}) => {
         <React.Fragment>
             <WrapperBox>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.privee) &&
                     <Box className='WrapperBox'>
                         <Typography className='title-question'>
                             {data.privee.faq.title}

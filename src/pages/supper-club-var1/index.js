@@ -61,14 +61,14 @@ const SupperClubVar1 = () => {
     const handleDecrement = () => {
         if (numberOfDenner > 0) {
             setNumberOfDenner(numberOfDenner - 1);
-          }
-      }
+        }
+    }
 
       const handleIncrement = () => {
         if (numberOfDenner < 4) {
         setNumberOfDenner(numberOfDenner + 1);
         }
-      }
+    }
     const handleClick = () => {
         navigate('/personal-details');
     }
@@ -98,7 +98,7 @@ const SupperClubVar1 = () => {
     };
     const disabledStyle = {
         opacity: 0.5,
-      }
+    }
     const BoxWrapper = styled(Box)(() => ({
         ".header-club": {
             padding: "20px",
@@ -649,8 +649,8 @@ const SupperClubVar1 = () => {
         },
         '.choose-seat':{
             display: 'flex',
-    placeContent: 'space-between',
-    marginBottom: '25px'
+            placeContent: 'space-between',
+            marginBottom: '25px'
         },
         '.choose-seat-text':{
             fontFamily: 'ProximaNovaA-Regular',
@@ -666,10 +666,10 @@ const SupperClubVar1 = () => {
         },
         '.regular-seat':{
             display: 'flex',
-    placeContent: 'space-between',
-    marginBottom: '20px',
-    marginTop: '20px',
-    padding:'0px 0.5rem'
+            placeContent: 'space-between',
+            marginBottom: '20px',
+            marginTop: '20px',
+            padding:'0px 0.5rem'
         },
         '.r-seat-text':{
             fontFamily: 'ProximaNovaA-Regular',
@@ -682,23 +682,23 @@ const SupperClubVar1 = () => {
         },
         '.r-seat-rate':{
             fontFamily: 'ProximaNovaA-Regular',
-    fontStyle: 'normal',
-    fontWeight: 600,
-    fontSize: '14px',
-    lineHeight: '17px',
-    color: '#080B0E'
+            fontStyle: 'normal',
+            fontWeight: 600,
+            fontSize: '14px',
+            lineHeight: '17px',
+            color: '#080B0E'
         },
         '.r-seat-money':{
             fontWeight:700
         },
         '.input-div':{
             placeContent: 'flex-start',
-    justifyContent: 'flex-end',
-    position: 'relative',
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'stretch',
-    width: '100%'
+            justifyContent: 'flex-end',
+            position: 'relative',
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'stretch',
+            width: '100%'
         },
         ".left-btn": {
             width: '24px',
@@ -718,55 +718,55 @@ const SupperClubVar1 = () => {
         },
         '.s-left':{
             fontFamily: 'Proxima Nova Alt',
-    fontStyle: 'normal',
-    fontWeight: 300,
-    fontSize: '12px',
-    lineHeight: '15px',
-    color: '#080B0E',
-    display: 'block',
-    textAlign: 'right',
-    marginTop: '8px'
+            fontStyle: 'normal',
+            fontWeight: 300,
+            fontSize: '12px',
+            lineHeight: '15px',
+            color: '#080B0E',
+            display: 'block',
+            textAlign: 'right',
+            marginTop: '8px'
         },
         '.seat-hr':{
             margin:'20px 0px',
             color: 'inherit',
-    border: '0',
-    borderTop: '1px solid',
-    opacity: '0.25'
+            border: '0',
+            borderTop: '1px solid',
+            opacity: '0.25'
         },
         '.no-seat':{
             background: '#BDBDBD',
-    padding: '8px 0px',
-    textAlign:'center',
-    marginTop:'10px'
+            padding: '8px 0px',
+            textAlign:'center',
+            marginTop:'10px'
         },
         '.sorry-text':{
             fontFamily: 'Proxima Nova Alt',
-    fontStyle: 'normal',
-    fontWeight: 300,
-    fontSize: '14px',
-    lineHeight: '24px',
-    textAlign: 'center',
-    color: '#080B0E',
-    marginBottom: '0px'
+            fontStyle: 'normal',
+            fontWeight: 300,
+            fontSize: '14px',
+            lineHeight: '24px',
+            textAlign: 'center',
+            color: '#080B0E',
+            marginBottom: '0px'
         },
         '.get-touch':{
             fontWeight: 600,
-    color: '#080B0E',
-    fontFamily: 'ProximaNovaA-Regular',
-    textDecoration:'underLine'
+            color: '#080B0E',
+            fontFamily: 'ProximaNovaA-Regular',
+            textDecoration:'underLine'
         },
         '.number-ans':{
             width: '24px',
-    fontFamily: 'Proxima Nova Alt',
-    fontStyle: 'normal',
-    fontWeight: '300',
-    fontSize: '16px',
-    // marginLeft: '5px',
-    // marginRight: '5px',
-    color: '#080B0E',
-    background: 'transparent',
-    textAlign:'center'
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '16px',
+            // marginLeft: '5px',
+            // marginRight: '5px',
+            color: '#080B0E',
+            background: 'transparent',
+            textAlign:'center'
         },
         "@media (min-width: 768px) and (max-width:1024px)": {
 
@@ -1214,19 +1214,19 @@ const SupperClubVar1 = () => {
                                         </div>
                                         <div>
                                             <div className="input-div">
-                                        <RemoveIcon
-                                           className="left-btn"
-                                           onClick={handleDecrement} 
-                                           style={numberOfDenner === 0 ? disabledStyle : {}}
-                                           disabled={numberOfDenner === 0}
-                                        />
-                                        <Typography className="number-ans">{numberOfDenner}</Typography>
-                                        <AddIcon
-                                            style={numberOfDenner === 4 ? disabledStyle : {}}
-                                            className="right-btn"
-                                            onClick={handleIncrement}
-                                             disabled={numberOfDenner === 4}
-                                        />
+                                                <RemoveIcon
+                                                    className="left-btn"
+                                                    onClick={handleDecrement}
+                                                    style={numberOfDenner === 0 ? disabledStyle : {}}
+                                                    disabled={numberOfDenner === 0}
+                                                />
+                                                <Typography className="number-ans">{numberOfDenner}</Typography>
+                                                <AddIcon
+                                                    style={numberOfDenner === 4 ? disabledStyle : {}}
+                                                    className="right-btn"
+                                                    onClick={handleIncrement}
+                                                    disabled={numberOfDenner === 4}
+                                                />
                                             </div>
                                             <span className="s-left">4 seats left</span>
                                         </div>
@@ -1272,7 +1272,7 @@ const SupperClubVar1 = () => {
                                             <label for="radio-six"><Typography className="time-text">7:30 -
                                                 9:00pm</Typography>
                                                 <span style={{color: '#F8A039'}}>filling fast</span>
-                                                </label>
+                                            </label>
                                         </Box>
                                     </Box>
                                 </Box>

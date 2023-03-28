@@ -87,7 +87,7 @@ const OpenPosition = () => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.about_us) &&
                     <Box className="open-positions-div">
                         <Typography className="main-div-open-positions">{data.about_us.positions.title}</Typography>
                         {

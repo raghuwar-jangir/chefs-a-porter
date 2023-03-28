@@ -119,9 +119,7 @@ const AvlExperienceCarousel = (props) => {
 
     return (
         <React.Fragment>
-            <MainContentBox onClick={() => {
-                navigate("/event-details")
-            }}>
+            <MainContentBox onClick={props.onClick}>
                 <img src={props.image} alt="saffImage" style={{verticalAlign: 'top'}} width={'100%'}
                      className='main-chaf-image'/>
                 <Box className='saff-parent'>

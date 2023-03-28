@@ -192,7 +192,7 @@ const SupperClubRatingCarousel = (props) => {
             // sx={{ maxWidth: 400, flexGrow: 1 }}
         >
             {
-                !_.isEmpty(data) &&
+                !_.isEmpty(data?.supper_club) &&
                 <React.Fragment>
                     <Box>
                         <Swiper autoplay={{

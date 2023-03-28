@@ -192,7 +192,7 @@ const PriveeRatingCarousel = (props) => {
             // sx={{ maxWidth: 400, flexGrow: 1 }}
         >
             {
-                !_.isEmpty(data) &&
+                !_.isEmpty(data?.privee) &&
                 <React.Fragment>
                     <Box>
                         <Swiper autoplay={{

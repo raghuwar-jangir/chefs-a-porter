@@ -221,7 +221,7 @@ const DiningPage = (props) => {
         <React.Fragment>
             <MainContentBox>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.home) &&
                     <React.Fragment>
                         <Typography className="dining-title">
                             {title}

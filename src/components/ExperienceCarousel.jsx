@@ -8,6 +8,7 @@ import avlExp2 from "../assets/images/avl-exp2.jpg";
 import '../assets/styles/fontStyle.css'
 import CmsContext from "../context/CmsContext";
 import * as _ from "lodash";
+import {navigate} from "gatsby";
 
 const ExperienceCarousel = (props) => {
 
@@ -54,7 +55,7 @@ const ExperienceCarousel = (props) => {
     return (
         <WrapBox>
             {
-                !_.isEmpty(data) &&
+                !_.isEmpty(data?.privee) &&
                 <Box className='main-box'>
                     <Box>
                         <Typography className="peek-heading">{props.title}</Typography>
@@ -72,7 +73,9 @@ const ExperienceCarousel = (props) => {
                                             // image={item.user.picture}
                                             image={item.cover_picture}
                                             title={item.title} description={`by ${item.user.name}`}
-                                            isLabelShow={item.status && true}/></SwiperSlide>
+                                            isLabelShow={item.status && true}
+                                            onClick={() => navigate(`/event-details/${item?.id}`)}
+                                        /></SwiperSlide>
                                     </>
                                 )
                             })}

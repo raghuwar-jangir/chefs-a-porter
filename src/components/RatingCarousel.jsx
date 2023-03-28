@@ -189,7 +189,7 @@ const RatingCarousel = (props) => {
             // sx={{ maxWidth: 400, flexGrow: 1 }}
         >
             {
-                !_.isEmpty(data) &&
+                !_.isEmpty(data?.home) &&
                 <React.Fragment>
                     <Box>
                         <Swiper autoplay={{

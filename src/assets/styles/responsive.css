@@ -1,0 +1,3186 @@
+@media (max-width:767px) {
+    .logo {
+        height: 35px;
+        width: 172px;
+    }
+
+    .offcanvas-header .btn-close {
+        filter: none;
+    }
+
+    a.navbar-brand {
+        margin: 0 auto;
+        padding: 0px;
+    }
+
+    .navbar-toggler {
+        position: absolute;
+        right: 10px;
+        bottom: auto;
+        top: auto;
+        margin: auto;
+    }
+
+    .offcanvas {
+        background: rgba(16, 20, 24, 0.9) !important;
+        backdrop-filter: blur(10px);
+    }
+
+    .offcanvas-header .btn-close {
+        background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23C6A87D'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+        opacity: 1;
+        margin-right: 0px;
+        margin-left: auto;
+    }
+
+    section.private-dining.our-chef .grids {
+        grid-template: repeat(1, 1fr) / repeat(2, 2fr);
+        display: grid;
+        gap: 15px;
+        margin-top: 25px;
+    }
+
+    .private-dining.our-chef .chef-image {
+        height: 220.24px;
+    }
+
+    .private-dining.our-chef .chef-details span {
+        display: none;
+    }
+
+    .private-dining.our-chef .chef-info {
+        text-align: center;
+    }
+
+    .private-dining.our-chef .chef-details {
+        place-content: center;
+    }
+
+    .private-dining.our-chef .chef-details h5 {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    .private-dining.our-chef .chef-cusions {
+        font-size: 12px;
+        line-height: 15px;
+        padding-top: 0px;
+    }
+
+    .private-dining.our-chef .view-more-chef {
+        position: relative;
+        padding: 0px 16px 0px 16px;
+    }
+
+    .private-dining .item {
+        margin-top: 0px;
+    }
+
+    .private-dining .owl-carousel .owl-item {
+        margin-bottom: 25px;
+    }
+
+    .private-dining .owl-carousel .owl-item.active:nth-child(2) {
+        margin-bottom: 0px !important;
+    }
+
+    .ourchef-title {
+        font-family: 'Bon Vivant';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px !important;
+        line-height: 18px;
+        text-align: center;
+        letter-spacing: -0.165px;
+        color: #000000 !important;
+        padding: 15px 0px !important;
+    }
+
+    .cop-booking.our-chef-join {
+        background: #DCD7CB;
+    }
+
+    .cop-booking.our-chef-join .cop-details {
+        margin-top: 0px;
+        background: #FBFBFB;
+        box-shadow: 0px 8px 8px rgb(0 0 0 / 8%);
+    }
+
+    .cop-booking.our-chef-join .cop-info {
+        padding: 10px;
+    }
+
+    .cop-booking.our-chef-join .cop-info h6 {
+        font-family: 'Bon Vivant';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 25px;
+        color: #080B0E;
+        text-transform: inherit;
+    }
+
+    .cop-booking.our-chef-join .cop-info a {
+        text-decoration: none;
+        font-weight: 400;
+        font-family: 'ProximaNovaA-Regular';
+    }
+
+    .cop-bookingour-chef-join img.cop-image {
+        width: 148px;
+    }
+
+    .private-dining.our-chef .chef-rebook,.upcoming .chef-rebook {
+        padding: 2px 12px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .private-dining.our-chef .chef-rebook img ,.upcoming .chef-rebook img{
+        width: 13px;
+        height: 13px;
+    }
+
+    .about-us .div-about {
+        padding: 16px 0px;
+    }
+
+    .div-about h4 {
+        display: none;
+    }
+
+    .about-us .div-about h5,
+    .mission h4 {
+        margin-top: 40px;
+        font-size: 20px;
+        line-height: 25px;
+        margin-bottom: 16px;
+    }
+
+    .about-us img.about1img {
+        height: 222.5px;
+        padding-bottom: 8px;
+    }
+
+    .about-us img.about2img {
+        height: 120px;
+    }
+
+    .about-us img.about3img {
+        height: 112.5px;
+    }
+
+    .about-us img.about4img {
+        padding: 0px 8px 8px;
+    }
+
+    .about-us img.about8img {
+        padding: 0px 8px 0px;
+    }
+
+    .about-us img.about4img,
+    .about-us img.about8img {
+        height: 167.5px;
+    }
+
+    .about-us img.about5img,
+    .about-us img.about6img {
+        height: 108px;
+        padding-bottom: 8px;
+    }
+
+    .about-us img.about7img {
+        height: 119px;
+    }
+
+    .cons-dining-img .col-lg-2 {
+        flex: 1;
+    }
+
+    .about-us .cons-dining-img .col-lg-2 div {
+        width: 70px;
+        height: 70px;
+        padding: 0px;
+        margin: 0px auto;
+        display: flex;
+        place-items: center;
+        place-content: center;
+    }
+
+    .about-us .cons-dining-img span {
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .mission,
+    .ourvalues {
+        padding: 0px;
+    }
+
+    .mission .container-fluid img,
+    .ourvalues .container-fluid img {
+        height: 224px;
+    }
+
+    .mission .container-fluid,
+    .ourvalues .container-fluid {
+        padding: 16px 16px 40px;
+    }
+
+    section.about-logo,
+    .open-positions,
+    .get-in-touch {
+        padding: 40px 0px;
+    }
+
+    .about-logo h4 {
+        margin-bottom: 20px;
+    }
+
+    .logo-img {
+        padding: 0px;
+        width: 76px;
+        height: 75px;
+    }
+
+    .logo-img img {
+        height: 58px;
+        width: 40px !important;
+    }
+
+    .team-members {
+        grid-template: repeat(1, 1fr) / repeat(1, 1fr);
+    }
+
+    .get-in-touch .row {
+        place-items: center;
+    }
+
+    .get-in-touch .row .col-lg-8 {
+        width: 60%;
+    }
+
+    .get-in-touch .row .col-lg-4 {
+        width: 40%;
+    }
+
+    .get-in-touch h5 {
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    .open-positions .enginers h5 {
+        font-size: 16px;
+    }
+
+    .get-in-touch a {
+        width: 100%;
+    }
+
+    .cookslider .owl-dots {
+        display: flex;
+    }
+
+    .cookslider .owl-dot {
+        flex: 1;
+    }
+
+    .about-us .about-us-img {
+        margin-bottom: 0px;
+    }
+
+    .mission.team .owl-theme .owl-dots .owl-dot span {
+        border-radius: 0px;
+    }
+
+    /* join as chef page */
+    .banner,
+    .joinchef-needhelp,
+    .co-book-mobile {
+        display: none;
+    }
+
+    .joinaschef .row.white-bg.justify-content-center {
+        margin-top: 0px;
+    }
+
+    .joinaschef .row .col-lg-6 {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 0px;
+    }
+
+    .joinaschef {
+        margin-top: 40px;
+        padding: 40px 16px 20px;
+        background: #FBFBFB;
+    }
+
+    .joinaschef .container-fluid {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .joinaschef p {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 24px;
+        color: #080B0E;
+        margin-bottom: 40px;
+    }
+
+    .joinaschef p b {
+        font-weight: 700;
+        font-family: 'ProximaNovaA-Regular';
+    }
+
+    .joinaschef form label {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        color: #080B0E;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .joinaschef form label span {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #080B0E;
+    }
+
+    .joinaschef form label span.red {
+        color: #EB4040;
+    }
+
+    .joinaschef form .form-control {
+        background-color: transparent;
+        border: 0px;
+        border-bottom: 0.25px solid #080B0E;
+        border-radius: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 19px;
+        color: #222222;
+    }
+
+    .joinaschef form .form-control:focus {
+        background-color: transparent;
+        box-shadow: none;
+        border-color: #080B0E;
+    }
+
+    .joinaschef form .invalid-feedback {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        color: #EB4040;
+        margin-top: 6px;
+    }
+
+    .joinaschef form .country {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .joinaschef form .country span {
+        border-bottom: 0.25px solid #080B0E;
+        display: inline-flex;
+        place-items: center;
+        padding-bottom: 0.375rem;
+    }
+
+    .joinaschef form .country .form-control {
+        padding-left: 10px;
+        flex: 1;
+    }
+
+    .joinaschef form .country span i.bi.bi-chevron-down {
+        font-size: 12px;
+        margin-left: 2.5px;
+        margin-right: 2.5px;
+    }
+
+    .joinaschef form .mb-3 {
+        margin-bottom: 40px !important;
+    }
+
+    .joinaschef form #validationCustom04,
+    .joinaschef form #validationCustomaboutbrand {
+        height: 149px;
+        background: rgba(189, 189, 189, 0.2);
+        padding: 15px 16px;
+        border: 0px;
+        min-height: 149px;
+        resize: none;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: 400;
+        color: #7D7D7D;
+    }
+
+    .joinaschef form .char-count {
+        text-align: right;
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        color: #7D7D7D;
+        margin-top: 8px;
+        margin-bottom: 0px;
+    }
+
+    .joinaschef form input.form-control-file::file-selector-button,
+    .joinaschef form .form-control-file {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        color: #080B0E;
+        background: transparent;
+        padding: 10px;
+        border-radius: 0px;
+    }
+
+    .joinaschef form .form-control-file {
+        color: #BDBDBD;
+        padding-left: 0px;
+        border-radius: 0px;
+    }
+
+    .joinaschef input::file-selector-button {
+        border: 1px solid #080B0E;
+        border-radius: 0px;
+    }
+
+    .joinaschef form button[type="submit"],
+    .joinaschef form button[type="submit"]:focus {
+        width: 100%;
+        background: #080B0E;
+        border: 0px;
+        border-radius: 0px;
+        padding: 19px 10px;
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        color: #FBFBFB;
+    }
+
+    .joinaschef form.form-inline .form-group {
+        display: flex;
+        place-items: center;
+    }
+
+    .joinaschef form.form-inline .form-group label {
+        width: 33px;
+        margin-bottom: 0px;
+    }
+
+    .joinaschef form.form-inline .form-group input#searchcontact {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 19px;
+        color: #222222;
+        border-bottom: 0px;
+    }
+
+    .joinaschef .contacts {
+        margin-top: 22.5px;
+    }
+
+    .joinaschef .contacts h6 {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        margin-bottom: 20px;
+    }
+
+    .joinaschef .contacts .contacts-detail {
+        background: #FBFBFB;
+        box-shadow: 0px 8px 10px rgb(0 0 0 / 6%);
+        display: flex;
+        place-items: center;
+        padding: 12px 16px;
+        margin-bottom: 8px;
+    }
+
+    .joinaschef .contacts .contacts-detail img.contacts-img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        border-radius: 100px;
+    }
+
+    .joinaschef .contacts .contacts-detail div {
+        margin-left: 10px;
+    }
+
+    .joinaschef .contacts .contacts-detail div span {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #222222;
+        display: block;
+    }
+
+    .joinaschef .contacts .contacts-detail div span:first-child {
+        margin-bottom: 8px;
+    }
+
+    .joinaschef .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+        width: 100%;
+    }
+
+    .joinaschef .bootstrap-select>.dropdown-toggle {
+        background: transparent;
+        border: 0px;
+        background-color: transparent;
+        border: 0px;
+        border-bottom: 0.25px solid #080B0E;
+        border-radius: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 19px;
+        color: #222222;
+    }
+
+    .joinaschef .bootstrap-select>.dropdown-toggle:after {
+        margin-top: 0px;
+        border-style: solid;
+        border-width: 2px 2px 0 0;
+        content: '';
+        display: inline-block;
+        height: 12px;
+        vertical-align: top;
+        width: 12px;
+        transform: rotate(135deg);
+        border-color: #080B0E;
+        border-left: 0px;
+        margin-left: 0px;
+    }
+
+    .joinaschef .dropdown-menu.show {
+        border-radius: 0px;
+        background: #DCD7CB;
+        box-shadow: 0px 5px 13px rgb(0 0 0 / 20%);
+        border: 0px;
+        padding: 16px;
+        margin-top: -2px !important;
+    }
+
+    .joinaschef .bootstrap-select .dropdown-menu li {
+        position: relative;
+        border-bottom: 0.25px solid #080B0E;
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #080B0E;
+        padding: 10px 0px;
+    }
+
+    .joinaschef .bootstrap-select .dropdown-menu li:first-child {
+        padding-top: 0px;
+    }
+
+    .joinaschef .bootstrap-select .dropdown-menu li:last-child {
+        padding-bottom: 0px;
+        border-bottom: 0px;
+    }
+
+    .joinaschef .bootstrap-select .dropdown-menu li a {
+        padding: 0px;
+    }
+
+    .joinaschef .dropdown-item.active {
+        background-color: transparent;
+        font-weight: 600;
+        color: #080B0E;
+    }
+
+    .joinaschef .bootstrap-select:focus-visible,
+    .joinaschef .bootstrap-select>.dropdown-toggle:focus-visible,
+    .joinaschef .bootstrap-select .dropdown-toggle:focus,
+    .joinaschef .bootstrap-select>select.mobile-device:focus+.dropdown-toggle {
+        outline: 0 !important;
+        box-shadow: none;
+    }
+
+    .joinaschef span#basic-addon1 {
+        position: absolute;
+        right: 0px;
+        background: transparent;
+        border: 0px;
+        padding: 0;
+        top: 0px;
+        bottom: 0px;
+    }
+
+    .joinaschef .bi-box-arrow-up-right::before {
+        color: #222222;
+        font-size: 24px;
+    }
+
+    .joinaschef .form-text {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 15px;
+        color: #080B0E;
+    }
+
+    .joinaschef #addButton {
+        width: 100%;
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #080B0E;
+        position: relative;
+        padding: 9.5px;
+        background: transparent;
+        border: 0.5px solid #080B0E;
+    }
+
+    .joinaschef .agree {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+        color: #080B0E;
+        margin-top: 16px;
+        margin-bottom: 0px;
+    }
+
+    .files input {
+        text-align: center !important;
+        margin: 0;
+        width: 100% !important;
+        background: rgba(189, 189, 189, 0.2);
+        border: 0px dashed #080B0E !important;
+        color: transparent !important;
+        position: absolute;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .files input:focus {
+        outline: 0px;
+    }
+
+    .files div {
+        position: relative;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        place-items: center;
+        height: 120px;
+        width: 100%;
+    }
+
+    .files div img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .files input::file-selector-button {
+        display: none;
+    }
+
+    .files {
+        position: relative;
+        height: 120px;
+        border: 1px dashed #080B0E !important;
+        background: rgba(189, 189, 189, 0.2);
+    }
+
+    .color input {
+        background-color: #f1f1f1;
+    }
+
+    .home-header {
+        height: auto;
+    }
+
+    .home-header nav.navbar.navbar-expand-lg {
+        position: relative;
+        height: 56px;
+        padding: 0px;
+    }
+
+    .home-header i.bi.bi-arrow-left-short {
+        left: 6px;
+        position: absolute;
+        font-size: 31px;
+        top: 0px;
+        line-height: 1.5;
+        bottom: 0px;
+        display: flex;
+        place-items: center;
+    }
+
+    .home-header .navbar-brand {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+    }
+
+    .home-header .navbar-brand b {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+    }
+
+    /* patron */
+    .patron {
+        padding: 30px 0px 0px;
+        /*margin-top: 40px;*/
+        display: block;
+    }
+
+    .patron .container-fluid,
+    .patron .container-fluid .row>* {
+        padding: 0px;
+    }
+
+    .patron .container-fluid .row {
+        margin: 0px;
+    }
+
+    .patron-slider .owl-dots {
+        position: absolute;
+        bottom: 10px;
+        left: 0px;
+        right: 0px;
+        display: flex;
+        place-items: center;
+        place-content: center;
+    }
+
+    .patron-slider .owl-dots .owl-dot span {
+        width: 9px !important;
+        height: 9px !important;
+        background: transparent !important;
+        border: 1px solid #FBFBFB !important;
+    }
+
+    .patron-slider .owl-dots .owl-dot.active span,
+    .patron-slider .owl-dots .owl-dot:hover span {
+        background: #FBFBFB !important;
+        border: 1px solid #FBFBFB !important;
+        width: 12px !important;
+        height: 12px !important;
+    }
+
+    .patron-slider .item img {
+        height: 270px;
+        object-fit: cover;
+    }
+
+    .patron-icons-details {
+        display: flex;
+        place-items: start;
+        margin-top: 31px;
+    }
+
+    .patron-more {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 24px;
+        text-align: right;
+        text-decoration-line: underline;
+        color: #C6A87D;
+        display: block;
+        margin-top: 20px;
+    }
+
+    section.become-patron {
+        background: #DCD7CB;
+        padding: 40px 16px;
+    }
+
+    .become-patron .container-fluid .row {
+        background: #101418;
+        padding: 20px 4px;
+    }
+
+    .become-patron h4 {
+        font-family: 'Bon Vivant';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 30px;
+        margin-bottom: 8px;
+        color: #FBFBFB;
+    }
+
+    .become-patron p {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 24px;
+        color: #FBFBFB;
+    }
+
+    .patron-icons-details img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+    }
+
+    .patron-icons-details div {
+        margin-left: 10px;
+    }
+
+    .patron-icons-details b {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 137.5%;
+        letter-spacing: -0.01em;
+        color: #FBFBFB;
+        margin-bottom: 4px;
+        display: block;
+    }
+
+    .patron-icons-details span {
+        display: block;
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 24px;
+        letter-spacing: -0.01em;
+        color: #FBFBFB;
+    }
+
+    .corporate-b {
+        display: none;
+    }
+
+    .mb-only,
+    .faq.co-book {
+        display: block;
+    }
+
+    .mb-only p {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 17px;
+        color: #FBFBFB;
+        margin-bottom: 20px;
+    }
+
+    section.big_dis,
+    .faq.co-book {
+        padding: 40px 4px;
+    }
+
+    .big_dis h5 {
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    .big_dis p {
+        font-size: 14px;
+    }
+
+    .big_dis .col-lg-4 {
+        border: 0px;
+        margin-bottom: 30px;
+    }
+
+    .big_dis .col-lg-4:last-child {
+        margin-bottom: 0px;
+    }
+
+    .booked_us h4 {
+        font-size: 20px;
+        line-height: 25px;
+    }
+
+    .booked_us {
+        padding: 40px 16px;
+    }
+
+    .booked_us .d-grid {
+        grid-template: repeat(1, 1fr)/repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .faq.co-book .title h4 {
+        margin-bottom: 30px;
+    }
+
+    .faq.co-book .accordion-item {
+        margin-bottom: 8px;
+        border: 0px;
+    }
+
+    .faq.co-book .accordion-item:last-child {
+        margin-bottom: 0px;
+    }
+
+    .faq.co-book button.accordion-button,
+    .faq.co-book .accordion-button:focus {
+        font-size: 14px;
+        line-height: 17px;
+        padding: 20px 10px;
+    }
+
+    .faq.co-book .accordion-button.collapsed::after {
+        content: "\F64D";
+        font-family: bootstrap-icons !important;
+        font-style: normal;
+        font-weight: normal !important;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        vertical-align: -0.125em;
+        -webkit-font-smoothing: antialiased;
+        font-size: 19px;
+        background-image: none !important;
+        -webkit-text-stroke: 1px;
+    }
+
+    .faq.co-book .accordion-button:not(.collapsed)::after {
+        content: '\F63B';
+        background-image: none !important;
+        display: inline-block;
+        font-family: bootstrap-icons !important;
+        font-style: normal;
+        font-weight: normal !important;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        vertical-align: -0.125em;
+        -webkit-font-smoothing: antialiased;
+        font-size: 19px;
+        -webkit-text-stroke: 1px;
+    }
+
+    .faq.co-book .accordion-body {
+        padding: 20px 10px;
+        background: #FBFBFB;
+        font-size: 14px;
+        line-height: 17px;
+        font-family: 'ProximaNovaA-Regular';
+    }
+
+    .co-contact_us {
+        background: #FBFBFB;
+        border: 1px solid #080B0E;
+        margin: 40px 16px;
+        padding: 20px 16px;
+        display: block;
+    }
+
+    .co-contact_us h4 {
+        font-family: 'Bon Vivant';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 25px;
+        letter-spacing: 0.06em;
+        margin-bottom: 8px;
+    }
+
+    .co-contact_us p {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 24px;
+        color: #080B0E;
+    }
+
+    .co-contact_us .d-grid {
+        grid-template: repeat(1, 1fr) / repeat(2, 1fr);
+        gap: 8px
+    }
+
+    .co-contact_us .row>* {
+        padding: 0px 0px;
+    }
+
+    .co-contact_us a.schedule_call {
+        background: #080B0E;
+        padding: 10px;
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #FBFBFB;
+        text-decoration: none;
+        text-align: center;
+        width: 100%;
+        display: block;
+    }
+
+    .co-contact_us a.email_us {
+        border: 0.5px solid #222222;
+        padding: 10px;
+        width: 100%;
+        display: block;
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        color: #080B0E;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    .save_booking {
+        margin-bottom: 0px;
+    }
+
+    .apply_div {
+        padding: 40px 4px;
+        display: block;
+    }
+
+    .apply_div .apply_btn {
+        width: 100%;
+        background: #080B0E;
+        border: 0px;
+        border-radius: 0px;
+        padding: 19px 10px;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #DCD7CB;
+    }
+
+    section.membership-type {
+        padding: 40px 4px;
+    }
+
+    .home-banner .pe-fo-exp,
+    .privee-desktop,
+    .supper-desktop,
+    .up-supper-club .col-lg-2 a.view-all,
+    .private-dining .col-lg-2 .view-more {
+        display: none;
+    }
+
+    .grids-slider .owl-stage,
+    .team-slider .owl-stage,
+    .avl-exp-slider .owl-stage {
+        display: flex;
+        flex-direction: column;
+        width: 100% !important;
+        transform: none !important;
+    }
+
+    .grids-slider .owl-item:not(.active),
+    .team-slider .owl-item:not(.active),
+    .avl-exp-slider .owl-item:not(.active) {
+        display: none;
+    }
+
+    .grids-slider .owl-item,
+    .team-slider .owl-item,
+    .avl-exp-slider .owl-item {
+        width: 100% !important;
+    }
+
+    .con-browsing .con-browsing-slider .chef-details,
+    .private-dining .chef-details {
+        place-content: center;
+    }
+
+    .con-browsing .con-browsing-slider .chef-cusions,
+    .private-dining .chef-cusions {
+        text-align: center;
+    }
+
+    .up-supper-club .mobile-show .view-all {
+        margin-top: 40px;
+        display: block;
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        border: 0.5px solid #080B0E;
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        color: #080B0E;
+        text-decoration: none;
+    }
+
+    .private-dining .mobile-show .view-more {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        width: 100%;
+        padding: 0px;
+        border: 0px;
+        margin-top: 40px;
+        display: block;
+        border: 0.5px solid #C6A87D;
+        padding: 10px;
+        color: #FBFBFB;
+    }
+
+    .cookslider .owl-dots p {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .gallery .width-50,
+    .gallery .width-501,
+    .gallery .width-51,
+    .join-table.join-table1,
+    .cop-booking.cop-booking1,
+    .m-div,
+    .our-chef .title h4 {
+        display: none;
+    }
+
+    .gallery .mobile-gallery,
+    .gallery .view-gallery,
+    .join-table,
+    .cop-booking,
+    .treat.treat1 {
+        display: block;
+    }
+
+    .gallery .mobile-gallery .row {
+        margin: 0px;
+    }
+
+    .gallery {
+        padding: 40px 6px;
+    }
+
+    .gallery .mobile-gallery .col-lg-12 {
+        padding: 0px;
+    }
+
+    .gallery .mobile-gallery .col-lg-12 img {
+        height: 199px;
+    }
+
+    .gallery .view-gallery {
+        padding: 0 12px;
+    }
+
+    .gallery .view-gallery a {
+        margin-top: 16px;
+    }
+
+    .gallery h4 {
+        font-size: 20px;
+        line-height: 25px;
+        text-align: left;
+        margin-bottom: 16px;
+    }
+
+    .mobile-gallery .col-lg-6 {
+        width: 50%;
+        padding: 0px;
+    }
+
+    .gallery .mobile-gallery .row .col-lg-6:first-child {
+        padding-right: 6px;
+        padding-top: 12px;
+    }
+
+    .gallery .mobile-gallery .row .col-lg-6:last-child {
+        padding-left: 6px;
+        padding-top: 12px;
+    }
+
+    .gallery .mobile-gallery .row .col-lg-6 img {
+        height: 111px;
+    }
+
+    .cop-booking .cop-info a {
+        width: 100%;
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .cop-booking .owl-dots .owl-dot.active span {
+        width: 8px;
+        height: 8px;
+    }
+
+    .cop-booking .owl-dots .owl-dot span {
+        width: 6px;
+        height: 6px;
+    }
+
+    .treat {
+        padding: 40px 0px;
+    }
+
+    .treat .treat-div {
+        padding: 20px 16px;
+    }
+
+    .treat .treat-div p {
+        font-size: 14px;
+        line-height: 24px;
+        margin-bottom: 8px;
+    }
+
+    .treat .treat-div h4 {
+        font-size: 20px;
+        line-height: 25px;
+        margin-bottom: 8px;
+    }
+
+    .treat .treat-div p.send-gift {
+        font-size: 14px;
+        line-height: 17px;
+        height: auto;
+    }
+
+    .treat .treat-div .view-all {
+        width: 100%;
+        font-size: 16px;
+        line-height: 19px;
+        margin-top: 8px;
+    }
+
+    .ourvalues p,
+    .mission p {
+        width: 100%;
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    .team-slider .owl-next {
+        right: 0px;
+    }
+
+    .team-slider .owl-prev {
+        left: 0px;
+    }
+
+    .team-slider .owl-nav i::before {
+        font-size: 14px;
+    }
+
+    .about-us .div-about p {
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+
+    .mission.team .container-fluid .col-lg-12 img.team-single-image {
+        margin-bottom: 30px;
+        margin-top: 16px;
+    }
+
+    .mission-single-img {
+        margin-bottom: 0px;
+    }
+
+    .mission.team .container-fluid {
+        padding-top: 0px;
+    }
+
+    .team-slider .owl-item.active.center {
+        margin-bottom: 20px;
+    }
+
+    .team-members .col-lg-3 {
+        padding: 40px 16px;
+    }
+
+    .mission.team .col-lg-12 .view-more {
+        display: block;
+        margin-top: 0px;
+    }
+
+    .open-positions,
+    .get-in-touch {
+        display: block;
+    }
+
+    .gift-cards .row .col-lg-6 {
+        width: 100%;
+        margin-bottom: 0px;
+    }
+
+    .gift-cards {
+        padding-bottom: 0px;
+    }
+
+    .gift-cards .row.justify-content-center {
+        margin-top: 0px;
+    }
+
+    .gift-cards .gift-work {
+        padding: 40px 16px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .gift-cards .gift-work h4 {
+        font-size: 20px;
+        line-height: 25px;
+        order: 1;
+    }
+
+    .gift-cards .gift-steps {
+        order: 2;
+    }
+
+    .gift-cards .gift-work .gift-steps .step-1 h5 {
+        font-size: 40px;
+        line-height: 50px;
+        width: 80px;
+        height: 50px;
+    }
+
+    .gift-cards .gift-work .gift-steps .step-1 span {
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .gift-cards .gift-work .gift-steps:before {
+        top: 25px;
+    }
+
+    .gift-cards .things-to-do {
+        order: 4;
+        margin-bottom: 0px;
+        border-top: 0.25px solid #FBFBFB;
+        padding-top: 20px;
+    }
+
+    .things-to-do ul {
+        margin-bottom: 0px;
+    }
+
+    .things-to-do ul li {
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .gift-cards .enter-amount {
+        margin-top: 40px;
+        order: 3;
+    }
+
+    .gift-cards .row.justify-content-between .col-lg-5 {
+        max-width: 200px;
+    }
+
+    .gift-cards .row.justify-content-between .col-lg-2 {
+        max-width: 100px;
+    }
+
+    .gift-cards .enter-amount .input-group-text {
+        height: 35px;
+    }
+
+    .donate-now {
+        gap: 8px;
+    }
+
+    .donate-now li {
+        height: 32px;
+        flex: 1 60px;
+    }
+
+    .enter-amount .donate-now label {
+        padding: 6px 0px;
+        border-width: 1px;
+    }
+
+    .gift-cards .occasion {
+        padding: 40px 0px 40px 16px;
+        background: #DCD7CB;
+    }
+
+    .gift-cards ul#piils-tab {
+        overflow: scroll;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .gift-cards ul#piils-tab li {
+        flex: 1;
+        margin-bottom: 10px;
+    }
+
+    .gift-cards ul#piils-tab li button {
+        width: 100%;
+        height: 31px;
+        padding: 8px 16px;
+    }
+
+    div#pills-tabContent {
+        margin-right: 16px;
+    }
+
+    .occasion-cards {
+        padding: 20px 20px 30px;
+    }
+
+    .occasion-cards u {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .occasion-cards .col-lg-7,
+    .occasion-cards .col-lg-7 img {
+        width: 141.36px;
+    }
+
+    .occasion-cards .col-lg-5 {
+        width: 100px;
+    }
+
+    .occasion-cards .row.align-items-center.personalize {
+        place-content: space-between;
+        margin-bottom: 40px;
+    }
+
+    .occasion-title h3 {
+        font-size: 20px;
+        line-height: 25px;
+    }
+
+    .occasion-title input,
+    .occasion-title input:focus,
+    .occasion-title input:focus-visible,
+    .occasion-title .char-count {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    span.clean {
+        top: 11px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .recipient {
+        padding: 40px 16px;
+    }
+
+    .recipient p,
+    .recipient .mb-3 {
+        margin-bottom: 20px !important;
+    }
+
+    .patronform .form-check-inline,
+    .patronform input#inlineRadio1,
+    .patronform input#inlineRadio2 {
+        margin-right: 5px;
+    }
+
+    .patron-submitted.pat-sent {
+        display: block;
+        background: #FBFBFB;
+    }
+
+    .pt-hide {
+        display: none;
+    }
+
+    .patron-submitted.pat-sent .receiver-details h6 {
+        text-align: left;
+        font-size: 20px;
+        line-height: 25px;
+    }
+
+    .patron-submitted.pat-sent .receiver-details p {
+        text-align: left;
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .home-header.dark {
+        background: #080B0E;
+    }
+
+    .home-header.dark .navbar-brand b {
+        font-family: 'Bon Vivant';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 30px;
+        color: #FBFBFB;
+    }
+
+    .home-header.dark .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 31 31'><path stroke='rgba%28251, 251, 251, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !important;
+    }
+
+    .home-banner video {
+        height: 737px;
+    }
+
+    .how-work {
+        padding: 40px 4px;
+    }
+
+    .how-work .gift-steps .step-1 h5 {
+        font-size: 40px;
+        line-height: 50px;
+        width: 80px;
+        height: 50px;
+    }
+
+    .how-work .gift-steps:before {
+        top: 25px;
+    }
+
+    .how-work .gift-steps .step-1 span,
+    .how-work .gift-steps .step-1 p {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .arrows img {
+        transform: translateY(-25px);
+    }
+
+    .privee-exp {
+        background-color: rgba(220, 215, 203, 1) !important;
+    }
+
+    .privee-exp .privee-ex-img {
+        height: 230px;
+    }
+
+    .privee-exp .col-lg-6:last-child {
+        padding: 20px 16px 40px !important;
+    }
+
+    .avl-exp .mobile-show .view-more {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        width: 100%;
+        padding: 0px;
+        border: 0px;
+        margin-top: 40px;
+        display: block;
+        border: 1px solid #C6A87D;
+        padding: 10px;
+        color: #FBFBFB;
+    }
+
+    .avl-exp .owl-carousel .owl-item {
+        margin-bottom: 25px;
+    }
+
+    .avl-exp .owl-carousel .owl-item.active:nth-child(2) {
+        margin-bottom: 0px !important;
+    }
+
+    .avl-exp {
+        padding: 40px 16px;
+    }
+
+    .avl-exp .avl-exp-slider .chef-cusions {
+        text-align: left;
+    }
+
+    .avl-exp .avl-exp-slider .chef-details h5 {
+        margin-bottom: 10px;
+    }
+
+    .avl-exp .avl-exp-slider .chef-cusions p {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 250;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: left;
+        color: #FBFBFB;
+        margin-bottom: 0px;
+        display: block;
+        margin-top: 8px;
+    }
+
+    .testimonials .owl-dots .owl-dot.active span {
+        width: 8px;
+        height: 8px;
+    }
+
+    .testimonials .owl-dots {
+        display: flex;
+        place-content: center;
+        place-items: center;
+    }
+
+    .privee.show,
+    .faq.show {
+        display: block;
+    }
+
+    .privee.show {
+        background: #101418;
+        padding: 40px 0px;
+    }
+
+    .privee.show .col-lg-12 {
+        padding: 0px;
+    }
+
+    .faq.show {
+        background: #080B0E;
+        padding: 40px 0px;
+    }
+
+    .privee.show h4 {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 250;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        color: #FBFBFB;
+        margin-bottom: 8px;
+    }
+
+    .privee.show h5 {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        color: #C6A87D;
+        margin-bottom: 20px;
+    }
+
+    .privee.show .item .ig-images {
+        width: 100%;
+        height: 111px;
+        object-fit: cover;
+    }
+
+    .privee.show .owl-carousel .owl-stage {
+        padding-left: 16px !important;
+    }
+
+    .faq.show .title h4 {
+        font-family: 'Bon Vivant';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 30px;
+        text-align: center;
+        letter-spacing: 0.06em;
+        color: #FBFBFB;
+        margin-bottom: 40px;
+    }
+
+    .faq.show button.accordion-button {
+        background: #101418;
+        color: #FBFBFB;
+        padding: 12px 10px;
+        box-shadow: none;
+        padding: 12px 10px;
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .faq.show .accordion-button:focus {
+        box-shadow: none !important;
+    }
+
+    .faq.show .accordion-flush .accordion-item {
+        margin-bottom: 20px;
+        border: 0px;
+    }
+
+    .faq.show .accordion-body {
+        padding: 12px 10px;
+        background: #080B0E;
+        color: #FBFBFB;
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .accordion-button:not(.collapsed)::after {
+        content: '\F63B';
+        color: #FBFBFB;
+        background-image: none !important;
+        display: inline-block;
+        font-family: bootstrap-icons !important;
+        font-style: normal;
+        font-weight: normal !important;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        vertical-align: -0.125em;
+        -webkit-font-smoothing: antialiased;
+        font-size: 19px;
+    }
+
+    .accordion-button.collapsed::after {
+        content: "\F64D";
+        color: #FBFBFB;
+        font-family: bootstrap-icons !important;
+        font-style: normal;
+        font-weight: normal !important;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        vertical-align: -0.125em;
+        -webkit-font-smoothing: antialiased;
+        font-size: 19px;
+        background-image: none !important;
+    }
+
+    .faq .accordion-flush .accordion-item:last-child {
+        margin-bottom: 0px;
+    }
+
+    .template.show {
+        background: #080B0E;
+    }
+
+    .template.show .title h4 {
+        color: #FBFBFB;
+        font-size: 20px;
+        line-height: 25px;
+        letter-spacing: 0.08em;
+    }
+
+    .template .view-all {
+        background: #C6A87D;
+        color: #080B0E;
+        margin-top: 6px;
+    }
+    .home-banner.dark .pe-fo-exp
+    {
+        display: block;
+        padding: 40px 16px 0px;
+        margin-top: 34px;
+    }
+    .home-banner .pe-fo-exp form .form-row .form-group.col-lg-2 label,.home-banner .pe-fo-exp form .form-row .form-group.col-lg-2 .bootstrap-select>.dropdown-toggle, .home-banner .pe-fo-exp form .form-row .form-group.col-lg-2 .form-control
+    {
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .home-banner .pe-fo-exp form .form-row .form-group.col-lg-2,.home-banner.dark .pe-fo-exp form .form-row .form-group.col-lg-2:last-child
+    {
+        padding: 8px;
+        height: 60px;
+    }
+    .home-banner.dark .pe-fo-exp input#indate
+    {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .avl-exp.dark
+    {
+        padding: 40px 16px;
+    }
+    .avl-exp.dark h4
+    {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    .exp-item
+    {
+        margin-top: 20px;
+        grid-template: repeat(1,1fr)/repeat(1,1fr);
+        gap:12px;
+    }
+    .home-header.dark i.bi.bi-arrow-left-short
+    {
+        color: #FBFBFB;
+    }
+    .home-banner.dark .pe-fo-exp a.edit {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 250;
+        font-size: 16px;
+        line-height: 19px;
+        color: #C6A87D;
+        text-align: right;
+        display: block;
+        margin-bottom: 12px;
+        text-decoration: none;
+    }
+    .exp-item .chef-details h5,.exp-item .chef-details span
+    {
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .exp-item .chef-details span
+    {
+        place-items: baseline;
+    }
+    .exp-item .chef-details span img
+    {
+        width: 16px;
+        height: 16px;
+    }
+    .exp-item .chef-cusions
+    {
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .exp-item .chef-cusions span b
+    {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .exp-item .chef-cusions p
+    {
+        margin-bottom: 0px;
+    }
+    #exampleModal1 .modal-dialog
+    {
+        margin: 0px;
+        transform: translate(0,-50px);
+    }
+    .supper-gallery.chef-ind ol.breadcrumb, .supper-gallery.chef-ind .tz-gallery,.sg-details .tz-gallery
+    {
+        display: none;
+    }
+    .supper-gallery.chef-ind .container-fluid
+    {
+        padding: 32px 0px 0px;
+    }
+    .supper-gallery.chef-ind .details h4
+    {
+        font-size: 20px;
+        line-height: 25px;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+    .supper-gallery.chef-ind .patron-slider
+    {
+        display: block;
+    }
+    .supper-gallery.chef-ind .details span
+    {
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+    .supper-gallery.chef-ind .supper-tabs
+    {
+        background-color: #171717;
+    }
+    .supper-gallery.chef-ind .supper-tabs h5
+    {
+        margin: 0px;
+        padding:40px 16px 22.5px;
+        font-size: 20px;
+        line-height: 25px;
+    }
+    .supper-gallery.chef-ind div#pills-tabContent
+    {
+        margin-right: 0px;
+    }
+    .supper-gallery.chef-ind .avl-exp.dark
+    {
+        padding: 40px 16px;
+    }
+    .supper-gallery.chef-ind .avl-exp.dark .exp-item h5
+    {
+        font-size: 16px;
+        line-height: 19px;
+    }
+    .supper-gallery.chef-ind div#pills-home .treat-div h4
+    {
+        text-align: left;
+        font-size: 20px;
+        line-height: 25px;
+    }
+    .supper-gallery.chef-ind div#pills-home .treat-div p br,.supper-gallery.chef-ind div#pills-home .testimonials .testimonails-slider .item p br
+    {
+        display: none;
+    }
+    .supper-gallery.chef-ind div#pills-home .treat-div .view-all
+    {
+        display: block;
+        width: 118px;
+        margin-left: auto;
+    }
+    .supper-gallery.chef-ind div#pills-home .cook .cookslider .owl-dots p
+    {
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .supper-gallery.chef-ind div#pills-home .cook .view-all
+    {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .supper-gallery.chef-ind  .row
+    {
+        margin: 0px;
+    }
+    .supper-gallery.chef-ind  .row>*,.supper-gallery.chef-ind .cook .col-lg-12
+    {
+        padding: 0px;
+    }
+    .supper-gallery.chef-ind div#pills-home .cook,.supper-gallery.chef-ind div#pills-home .cook .container-fluid,section.template.dark
+    {
+        background: #080B0E;
+    }
+    .template.dark .title h4
+    {
+        color: #FBFBFB;
+    }
+    .supper-gallery.chef-ind div#pills-home .testimonials
+    {
+        padding: 40px;
+    }
+    .supper-gallery.chef-ind.event-details .container-fluid
+    {
+        padding: 40px 0px 0px;
+    }
+    .supper-gallery.chef-ind.event-details .chef-name
+    {
+        display: block;
+        font-size: 14px;
+        line-height: 17px;
+        padding: 0 16px;
+        text-align: left;
+    }
+    .supper-gallery.chef-ind.event-details .details h4 span
+    {
+        font-size: 18px;
+        line-height: 22px;
+        margin-top: 0px;
+    }
+    .supper-gallery.chef-ind.event-details .details h4
+    {
+        padding: 0 16px;
+        place-content: space-between;
+        margin-bottom: 8px;
+        text-align: left;
+    }
+    .supper-gallery.chef-ind.event-details .chef-name a
+    {
+        text-decoration: underline;
+    }
+    .supper-gallery.chef-ind.event-details .chef-name a:after
+    {
+        display: none;
+    }
+    .supper-gallery.chef-ind.event-details div#pills-home .cook h4 {
+        padding-left: 16px;
+    }
+    .supper-gallery.chef-ind.event-details div#pills-home .treat-div h4
+    {
+        padding-left: 0px;
+    }
+    section.supper-gallery.chef-ind.event-details .row.supper-chef-details .col-lg-5
+    {
+        display: none;
+    }
+    section.supper-gallery.chef-ind.event-details .row.supper-chef-details .col-lg-5.show
+    {
+        display: block;
+        margin-top: 0px;
+    }
+    section.supper-gallery.chef-ind.event-details  .treat .treat-div  .col-lg-9
+    {
+        flex:70%
+    }
+    section.supper-gallery.chef-ind.event-details  .treat .treat-div  .col-lg-3
+    {
+        flex:30%
+    }
+    section.supper-gallery.chef-ind.event-details  div#pills-home .treat-div .col-lg-3 .view-all
+    {
+        width: auto;
+    }
+    .co-contact_us.dark
+    {
+        background: #101418;
+    }
+    .co-contact_us.dark h4,.co-contact_us.dark p
+    {
+        color: #FBFBFB;
+    }
+    .co-contact_us.dark a.schedule_call
+    {
+        background: #C6A87D;
+        color: #080B0E;
+        font-weight: 600;
+    }
+    .co-contact_us.dark a.email_us
+    {
+        color: #FBFBFB;
+        border: 0.5px solid #FBFBFB;
+    }
+    .home-header.dark .navbar-brand.book b
+    {
+        font-family: 'ProximaNovaA-Regular';
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .per-dinner
+    {
+        background: #080B0E;
+        padding: 0px 0px 80px;
+    }
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .time-slots .row .col-lg-12, .supper-gallery.chef-ind.event-details .col-lg-5.show .time-slots .row .col-lg-6
+    {
+        padding: 0px 16px;
+    }
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .time-slots .row .col-lg-6:first-child,.supper-gallery.chef-ind.event-details .col-lg-5.show .time-slots .row .col-lg-6:last-child
+    {
+        border: 0px;
+    }
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .time-slots .date_span
+    {
+        right: 15px;
+        bottom: 10px;
+    }
+    section.supper-gallery.chef-ind.event-details .row.supper-chef-details .col-lg-5.show .time-slots .form-group.d-flex.mar-top
+    {
+        margin-top: 24px;
+    }
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .save-patron
+    {
+        background: #DCD7CB;
+        margin-top: 24px;
+        padding: 16px!important;
+        display: flex;
+        place-items: center;
+        place-content: space-between;
+        margin-bottom: 0px;
+    }
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .save-patron h5 {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 17px;
+        color: #080B0E;
+    }
+
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .save-patron p {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 17px;
+        color: #080B0E;
+        margin-bottom: 0px;
+    }
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .save-patron i.bi-chevron-right::before
+    {
+        -webkit-text-stroke: 1px;
+        color: #080B0E;
+    }
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .our-team
+    {
+        padding: 36px 16px 17px!important;
+        margin-bottom: 0px;
+    }
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .our-team p
+    {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+        color: rgba(251, 251, 251, 0.6);
+        margin-bottom: 0px;
+    }
+    .viewbreak
+    {
+        background: #101418;
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        z-index: 2;
+        padding: 16px 0px;
+    }
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .time-slots .row.viewbreak .col-lg-6
+    {
+        flex: 1;
+        background: transparent;
+        margin-bottom: 0px;
+    }
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .time-slots .row.viewbreak .col-lg-6 h5
+    {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 24px;
+        color: #FBFBFB;
+        margin-bottom: 4px;
+    }
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .time-slots .row.viewbreak .col-lg-6 span
+    {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 250;
+        font-size: 16px;
+        line-height: 19px;
+        color: #FBFBFB;
+        display: inline-flex;
+    }
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .time-slots .row.viewbreak .col-lg-6 span i.bi.bi-chevron-up
+    {
+        padding-left: 5px;
+    }
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .time-slots .row.viewbreak .col-lg-6 span i.bi.bi-chevron-up::before
+    {
+        font-size: 12px;
+    }
+    .supper-gallery.chef-ind.event-details .col-lg-5.show .time-slots .row.viewbreak .col-lg-6 .submit-req
+    {
+        padding: 15px 10px;
+        margin-top: 0px;
+        font-size: 16px;
+        line-height: 19px;
+    }
+    .modal.stay-page .modal-content.dark
+    {
+        padding: 0px;
+        background: #101418!important;
+        box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
+    }
+    .access-box.dark {
+        background:#101418;
+        transform: none;
+    }
+    .access-box.dark h5
+    {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        color: #FBFBFB;
+    }
+    .access-box.dark .access-btn a
+    {
+        color: #FBFBFB;
+        border-color: #FBFBFB;
+    }
+    .access-box.dark .access-btn a:last-child {
+        color: #080B0E;
+        background: #C6A87D;
+        border-color: #C6A87D;
+    }
+    .our-chef .view-more-chef button {
+        display: block;
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        color: #FBFBFB;
+        border: 0.5px solid #C6A87D;
+        background: transparent;
+    }
+    .upcoming .container-fluid,.whatcooking .container-fluid
+    {
+        padding: 40px 16px;
+    }
+    .upcoming .upcom-div ul#piils-tab, .whatcooking .upcom-div ul#piils-tab{
+        flex-wrap: nowrap;
+        overflow: scroll;
+        gap:8px;
+    }
+    .upcoming .upcom-div ul#piils-tab li.nav-item
+    {
+        width: 114px;
+    }
+    .upcoming .upcom-div ul#piils-tab li button
+    {
+        font-size: 16px;
+        width: inherit;
+    }
+    .whatcooking .upcom-div ul#piils-tab li button
+    {
+        font-size: 14px;
+        line-height: 17px;
+        height: auto;
+    }
+    .whatcooking .upcom-div ul#piils-tab li button span,.behind-scene .supperclub-slider1 .sup-details span{
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .upcoming .upcom-div .grids,.whatcooking .upcom-div .grids
+    {
+        grid-template: repeat(1,1fr) / repeat(1,1fr);
+    }
+    .upcoming .mobile-show .view-all
+    {
+        display: block;
+    }
+    .upcoming .upcom-div  div#pills-tabContent,.whatcooking .upcom-div div#pills-tabContent
+    {
+        margin-right: 0px;
+    }
+    .row.s-display	{
+        display: block;
+    }
+    .privee-exp .s-display h5{
+        font-size: 20px;
+        line-height: 25px;
+        margin-bottom: 18px;
+        text-align: left;
+    }
+    .privee-exp,.supper-gallery .container-fluid,.behind-scene
+    {
+        padding: 40px 16px;
+    }
+    .privee-exp .col-lg-6:first-child{
+        width: 45%;
+    }
+    .privee-exp .col-lg-6:last-child.expect-sc{
+        padding: 0px!important;
+        width: 55%;
+    }
+    .privee-exp .privee-ex-img{
+        object-position: left;
+    }
+    .privee-exp .col-lg-6.px-0.expect-sc ul
+    {
+        padding-left: 2em;
+    }
+    .privee-exp .expect-sc ul li
+    {
+        margin-bottom: 8px;
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .privee-exp .expect-sc li::marker {
+        font-size: 18px;
+    }
+    .privee-exp .expect-sc h5,.privee-exp .expect-sc ul li:last-child,#thumbs .owl-item:last-child .item::after,#thumbs .owl-item:last-child .item::before{
+        display: none;
+    }
+    .supper-gallery.su-cl-look h4{
+        font-size: 24px;
+        line-height: 30px;
+    }
+    div#thumbs
+    {
+        padding: 8px 0px 0px;
+    }
+    #thumbs .item img
+    {
+        height: 57px;
+    }
+    #big .item img{
+        height: 200px;
+    }
+    .supper-gallery.su-cl-look .mobile-show .view-all
+    {
+        display: block;
+        color: #FBFBFB;
+        border-color: #FBFBFB;
+    }
+    .behind-scene
+    {
+        padding-right: 0px;
+    }
+    .behind-scene .col-lg-12
+    {
+        padding: 0px;
+    }
+    .behind-scene .supperclub-slider1 video,.behind-scene .supperclub-slider1 img
+    {
+        height: 370px;
+    }
+    .behind-scene .supperclub-slider1 .sup-details h6
+    {
+        font-size: 16px;
+        line-height: 19px;
+    }
+    .template.show1 .view-all
+    {
+        background: #080B0E;
+        color: #FCFBF9;
+    }
+    .supper-gallery.sg-details .container-fluid
+    {
+        padding: 40px 0px 0px;
+        overflow: hidden;
+    }
+    .supper-gallery.sg-details{
+        margin-top: 15px;
+    }
+    .get-in-touch.invite{
+        display: none;
+    }
+    .sg-details .selected-details span{
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        letter-spacing: 0.06em;
+        color: #FBFBFB;
+        margin-bottom: 0px;
+        text-align: center;
+        padding: 0px 6px;
+        position: relative;
+        flex: none;
+    }
+    .sg-details .selected-details span:after {
+        content: '|';
+        display: inline-block;
+        position: absolute;
+        height: 100%;
+        width: 0.5px;
+        right: 0px;
+    }
+    .sg-details .selected-details span:last-child:after,.sg-details .supper-chef-details .col-lg-5 .per-dinner,.supper-gallery.sg-details .details span p::before,.supper-gallery.sg-details div#pills-home .testimonials .testimonails-slider .item h3 br
+    {
+        display: none;
+    }
+    .sg-details .supper-chef-details #pills-tabContent
+    {
+        margin-right: 0px;
+    }
+
+    .supper-gallery.sg-details .col-lg-7,.supper-gallery.sg-details .col-lg-5{
+        background: #FBFBFB;
+    }
+    .supper-gallery.sg-details .col-lg-5 .treat{
+        background: #DCD7CB;
+    }
+    .supper-gallery.sg-details .supper-chef-details:first-child .selected-details{
+        display: flex!important;
+    }
+    .supper-gallery.sg-details .patron-slider
+    {
+        display: block;
+    }
+    .supper-gallery.sg-details .supper-chef-details:first-child .details{
+        padding: 20px 16px;
+    }
+    .supper-gallery .details h4,.supper-gallery .supper-tabs h5
+    {
+        font-size: 20px;
+        line-height: 25px;
+    }
+    .supper-gallery.sg-details .details span{
+        display: flex;
+    }
+    .sg-details .details .slot
+    {
+        font-size: 14px;
+        line-height: 17px;
+        text-align: right;
+        flex: 1;
+    }
+    .supper-gallery.sg-details .details span a,.supper-gallery.sg-details .nav-pills .nav-link,.supper-gallery.sg-details .supper-tabs .chef-icons p
+    {
+        font-size: 16px;
+        line-height: 19px;
+    }
+    /* .supper-gallery.sg-details ul#pills-tab{
+        margin: 0px;
+    }
+    .supper-gallery.sg-details .supper-tabs h5,.supper-gallery.sg-details .chef-icons,.supper-gallery.sg-details read-more{
+        margin-left: 0px;
+        margin-right: 0px;
+    } */
+    .supper-gallery.sg-details .supper-tabs .chef-icons img {
+        width: 20px;
+        height: 20px;
+    }
+    .supper-gallery.sg-details .supper-tabs div#pills-home .container h5
+    {
+        margin-left: 0px;
+    }
+    .supper-gallery.sg-details div#pills-home .testimonials {
+        padding: 40px 16px;
+    }
+    .supper-gallery.sg-details 	div#pills-home .testimonials .testimonails-slider .item img
+    {
+        height: 18px;
+    }
+    .supper-gallery.sg-details div#pills-home .testimonials .testimonails-slider .item p,.supper-gallery.sg-details div#pills-home .testimonials .testimonails-slider .item h6,.supper-gallery.sg-details div#pills-home .need-help .treat-div p
+    {
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .supper-gallery.sg-details div#pills-home .need-help .col-lg-9
+    {
+        width: 70%;
+    }
+    .supper-gallery.sg-details div#pills-home .need-help .col-lg-3
+    {
+        width: 30%;
+    }
+    .supper-gallery.sg-details div#pills-home .treat-div .view-all{
+        background: #101418;
+        color: #FBFBFB!important;
+    }
+    .viewbreak1
+    {
+        display: flex!important;
+    }
+}
+@media (min-width:768px) and (max-width:991px) {
+    .logo {
+        height: 70px;
+    }
+
+    .offcanvas-header .btn-close {
+        filter: none;
+    }
+}
+
+@media (min-width:992px) {
+
+    .home-header,
+    .template,
+    .row.mb-only {
+        display: none;
+    }
+
+    .desktop-header {
+        background: #FBFBFB;
+        position: fixed;
+        width: 100%;
+        height: 80px;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        z-index: 999;
+        padding: 8px 120px;
+        display: block;
+    }
+
+    .desktop-header .logo {
+        height: 64px;
+        width: 226.29px;
+    }
+
+    .desktop-header .navbar-expand-lg {
+        padding: 0px;
+    }
+
+    .desktop-header .navbar-expand-lg a.navbar-brand {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    /* .desktop-header .me-auto
+    {
+        left: calc(50% - 495px/2 - 0.5px);
+        position: absolute;
+        place-content: center;
+        place-items: center;
+    } */
+    .desktop-header .navbar-expand-lg .navbar-collapse {
+        flex: none
+    }
+
+    .desktop-header .nav-link {
+        font-size: 16px;
+        line-height: 19px;
+        display: flex;
+        align-items: center;
+        text-align: right;
+        color: #080B0E !important;
+        padding: 0 20px !important;
+    }
+
+    .home-banner {
+        margin-top: 80px;
+    }
+
+    .home-banner .home-img {
+        height: 600px;
+        object-position: center;
+    }
+
+    /* .home-banner .pe-fo-exp
+    {
+        place-content: center;
+    }
+    .home-banner .pe-fo-exp span{
+        font-size: 36px;
+        line-height: 44px;
+        width: max-content;
+        padding: 0 30px;
+    }
+    .home-banner .pe-fo-exp span:nth-child(2)
+    {
+        padding-left: 30px;
+        padding-right: 30px;
+        margin: 0 30px;
+    } */
+    .clubs .container-fluid {
+        display: none;
+    }
+
+    .clubs .container-fluid .col-4 {
+        width: 33.33%;
+        padding: 40px;
+    }
+
+    .clubs .card .card-image {
+        height: 225px;
+    }
+
+    .clubs .card-body .card-title {
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .clubs .card .card-overlay .card-title {
+        font-size: 32px;
+        line-height: 40px;
+        margin-bottom: 12px;
+    }
+
+    .clubs .card .card-overlay p {
+        font-size: 16px;
+        padding: 0 60px;
+        margin-bottom: 30px;
+    }
+
+    .clubs .card .card-overlay a {
+        padding: 18px;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 600;
+        font-family: 'ProximaNovaA-Regular';
+    }
+
+    .clubs .card .card-overlay .card-overlay-inner {
+        padding: 0 16px;
+    }
+
+    .con-browsing,
+    .up-supper-club,
+    .private-dining,
+    .faq {
+        padding: 80px 120px;
+    }
+
+    .con-browsing .title h4,
+    .up-supper-club .title h4,
+    .private-dining .title h4 {
+        font-size: 24px;
+        line-height: 24px;
+        margin-bottom: 16px;
+    }
+
+    .con-browsing .title span,
+    .up-supper-club .title span {
+        font-size: 20px;
+        margin-bottom: 10px;
+        display: block;
+        line-height: 24px;
+    }
+
+    .con-browsing .chef-image,
+    .private-dining .chef-image {
+        height: 426px;
+        object-position: top;
+    }
+
+    .con-browsing .con-browsing-slider .chef-rebook,
+    .grids-slider .chef-rebook {
+        font-size: 16px;
+        line-height: 19px;
+        padding: 5px 20px;
+        left: 0px;
+    }
+
+    .con-browsing .con-browsing-slider .chef-rebook img,
+    .grids-slider .chef-rebook img {
+        width: 12px !important;
+        height: 16px;
+    }
+
+    .con-browsing .chef-details span,
+    .private-dining .chef-details span {
+        display: none;
+    }
+
+    .con-browsing .con-browsing-slider .chef-details,
+    .private-dining .chef-details {
+        place-content: center;
+    }
+
+    .con-browsing .con-browsing-slider .chef-cusions,
+    .private-dining .chef-cusions {
+        text-align: center;
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    .con-browsing .chef-details h5,
+    .private-dining .chef-details h5 {
+        font-size: 20px;
+        line-height: 25px;
+        margin-bottom: 6px;
+    }
+
+    .con-browsing .con-browsing-slider .chef-info,
+    .private-dining .chef-info {
+        padding: 16px 20px;
+    }
+
+    /* .up-supper-club .grids-slider,.private-dining .grids
+    {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        gap: 15px;
+        margin-top: 30px;
+    } */
+    a.view-all,
+    .view-more {
+        width: 420px;
+        margin: 40px auto 0px;
+        font-size: 24px;
+        line-height: 29px;
+        padding: 16px 10px;
+        font-weight: 400;
+    }
+
+    .up-supper-club .supper-blog{
+        margin-top: 0px;
+        position: relative;
+    }
+
+    .up-supper-club img.supper-img {
+        height: 284px;
+    }
+
+    .up-supper-club .chef-rebook {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 300;
+        text-align: right;
+        letter-spacing: 0.02em;
+        color: #C6A87D;
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        background: #101418;
+        display: flex;
+        place-content: flex-end;
+        font-size: 16px;
+        line-height: 19px;
+        padding: 5px 20px;
+    }
+
+    .up-supper-club .chef-rebook img {
+        height: 16px;
+        object-fit: contain;
+        margin-right: 4px;
+        width: 12px !important;
+    }
+
+    .testimonials {
+        padding: 80px 206px;
+    }
+
+    .testimonials .testimonails-slider .item h3 {
+        font-size: 40px;
+        line-height: 60px;
+    }
+
+    .testimonials .testimonails-slider .item img {
+        height: 40px;
+    }
+
+    .testimonials .testimonails-slider .item p {
+        font-size: 24px;
+        line-height: 29px;
+    }
+
+    .testimonials .testimonails-slider .item h6 {
+        font-size: 20px;
+    }
+
+    .testimonials .testimonails-slider .owl-dots {
+        display: flex;
+        place-content: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+
+    .testimonials .testimonails-slider .owl-dots .owl-dot {
+        margin: 0 10px;
+    }
+
+    .testimonials .testimonails-slider .owl-dots .owl-dot span {
+        width: 10px;
+        height: 10px;
+        margin: 0;
+    }
+
+    .testimonials .testimonails-slider .owl-dot.active span {
+        width: 14px;
+        height: 14px;
+    }
+
+    .privee {
+        display: block;
+        background: #101418;
+        padding: 80px 0px;
+        text-align: center;
+    }
+
+    .privee h4 {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 250;
+        font-size: 24px;
+        line-height: 29px;
+        text-align: center;
+        color: #FBFBFB;
+    }
+
+    .privee h5 {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 36px;
+        line-height: 44px;
+        text-align: center;
+        color: #C6A87D;
+    }
+
+    .privee .item .ig-images {
+        width: 100%;
+        height: 230.54px;
+        object-fit: cover;
+    }
+
+    .privee #owl-demo {
+        margin-top: 30px;
+    }
+
+    .faq {
+        background: #080B0E;
+        display: block;
+    }
+
+    .faq .title h4 {
+        font-family: 'Bon Vivant';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 45px;
+        text-align: center;
+        letter-spacing: 0.06em;
+        color: #FBFBFB;
+        margin-bottom: 40px;
+    }
+
+    .faq button.accordion-button {
+        background: #101418;
+        color: #FBFBFB;
+        padding: 20px 10px;
+        box-shadow: none;
+    }
+
+    .faq .accordion-button:focus {
+        box-shadow: none !important;
+    }
+
+    .faq .accordion-flush .accordion-item {
+        margin-bottom: 20px;
+        border: 0px;
+    }
+
+    .faq .accordion-body {
+        padding: 20px 10px;
+        background: #080B0E;
+        color: #FBFBFB;
+    }
+
+    .accordion-button:not(.collapsed)::after {
+        content: '\F63B';
+        color: #FBFBFB;
+        background-image: none !important;
+        display: inline-block;
+        font-family: bootstrap-icons !important;
+        font-style: normal;
+        font-weight: normal !important;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        vertical-align: -0.125em;
+        -webkit-font-smoothing: antialiased;
+        font-size: 19px;
+    }
+
+    .accordion-button.collapsed::after {
+        content: "\F64D";
+        color: #FBFBFB;
+        font-family: bootstrap-icons !important;
+        font-style: normal;
+        font-weight: normal !important;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        vertical-align: -0.125em;
+        -webkit-font-smoothing: antialiased;
+        font-size: 19px;
+        background-image: none !important;
+    }
+
+    .faq .accordion-flush .accordion-item:last-child {
+        margin-bottom: 0px;
+    }
+
+    footer.desktop-footer {
+        padding: 40px 120px;
+        background: #101418;
+        display: block;
+    }
+
+    .desktop-footer .row:first-child {
+        border-bottom: 0.25px solid #FBFBFB;
+        padding-bottom: 16px;
+    }
+
+    .desktop-footer .row:last-child {
+        padding-top: 40px;
+    }
+
+    .footer-logo {
+        width: 226.29px;
+        height: 50px;
+    }
+
+    .desktop-footer a {
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 250;
+        font-size: 14px;
+        line-height: 17px;
+        color: #FBFBFB;
+        text-decoration: none !important;
+        margin-bottom: 23px;
+        display: block;
+    }
+
+    .desktop-footer .col-lg-4 {
+        width: 282px;
+        display: block;
+        margin-left: auto;
+    }
+
+    .desktop-footer ul {
+        padding-left: 1em;
+        list-style-type: none;
+    }
+
+    .desktop-footer ul li {
+        position: relative;
+    }
+
+    .desktop-footer ul li::before {
+        position: absolute;
+        top: 0px;
+        vertical-align: middle;
+        display: inline-block;
+        width: 8px;
+        height: 10px;
+        background: url(/assets/images/footer-arrow.png);
+        content: "";
+        background-size: contain;
+        background-repeat: no-repeat;
+        left: -1em;
+        background-position: center;
+        bottom: 0px;
+        margin: auto;
+    }
+
+    .desktop-footer h4 {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
+        color: #FBFBFB;
+        margin-bottom: 20px;
+    }
+
+    .desktop-footer form {
+        margin-bottom: 20px;
+    }
+
+    .desktop-footer form input#email-address,
+    .desktop-footer form input#email-address::placeholder {
+        border-radius: 0px;
+        background: #FBFBFB;
+        font-family: 'Proxima Nova Alt';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 25px;
+        color: #BDBDBD;
+    }
+
+    .desktop-footer form input.btn.btn-primary {
+        border-radius: 0px;
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 25px;
+        color: #080B0E;
+        background: #C6A87D;
+        border-color: #C6A87D;
+    }
+
+    .desktop-footer .social-icon {
+        display: flex;
+        place-content: flex-end;
+    }
+
+    .desktop-footer .social-icon a {
+        width: 32px;
+        height: 32px;
+        background: #fff;
+        padding: 6px;
+        border-radius: 100%;
+        margin-right: 6px;
+    }
+
+    .desktop-footer i.bi.bi-instagram:before {
+        color: #ffffff;
+        background: linear-gradient(90deg, #fff 10%, #000 10%);
+        border-radius: 10px;
+    }
+
+    .desktop-footer .social-icon a i::before {
+        font-size: 20px;
+        color: #080B0E;
+    }
+
+    .mobile-footer .footer-mobile-links li a {
+        text-decoration-line: none !important;
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .footer-mobile-links li {
+        width: 20%;
+        text-align: center;
+        position: relative;
+    }
+
+    .footer-mobile-links li:nth-child(2):before {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(251, 251, 251, 0.6);
+        border-radius: 100%;
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+        margin: auto;
+    }
+
+    .footer-mobile-links li:nth-child(2):after {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(251, 251, 251, 0.6);
+        border-radius: 100%;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        margin: auto;
+    }
+
+    .cookslider .item img {
+        height: 550px;
+        object-fit: cover;
+    }
+
+    .cookslider .owl-dot,
+    .cookslider .owl-dot.active {
+        width: 200px;
+    }
+
+    .cookslider .owl-dot {
+        margin: 0 20px;
+    }
+
+    .cook .cookslider .owl-dots {
+        margin-top: 28px !important;
+    }
+
+    .cookslider .owl-dots p {
+        margin-top: 8px;
+    }
+
+    .cook h4 {
+        padding: 0px 120px;
+        margin-bottom: 20px;
+    }
+
+    .cook .col-lg-12 {
+        padding: 0px;
+    }
+
+    section.testimonials.testimonials1 {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    section.testimonials.testimonials1 .item h3 {
+        font-size: 24px;
+        line-height: 30px;
+    }
+
+    section.testimonials.testimonials1 .item p {
+        font-family: 'ProximaNovaA-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .fresh-blog {
+        padding: 80px 120px;
+    }
+
+    .fresh-blog .f-blog {
+        padding: 0px;
+        margin-bottom: 16px;
+        padding-right: 20px;
+    }
+
+    .fresh-blog a:last-child .f-blog {
+        margin-bottom: 0px;
+    }
+
+    .fresh-blog .f-blog img.food-image {
+        width: 250px;
+        height: 160px;
+    }
+
+    .fresh-blog .f-blog .fresh-details {
+        margin-left: 20px;
+        flex: 1;
+    }
+
+    .fresh-blog .f-blog .fresh-details h6 {
+        font-size: 20px;
+        line-height: 150%;
+        font-weight: 600;
+    }
+
+    .fresh-blog .f-blog .fresh-details p {
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 150%;
+    }
+
+    #navbarSupportedContent li.nav-item .nav-link {
+        position: relative;
+    }
+
+    #navbarSupportedContent li.nav-item.active .nav-link:after {
+        content: '';
+        background: #080B0E;
+        width: 75px;
+        height: 2px;
+        display: block;
+        margin: auto;
+        bottom: -12.5px;
+        position: absolute;
+        left: 0;
+        right: 0px;
+    }
+
+    section.private-dining.our-chef {
+        padding-bottom: 0px;
+    }
+
+    section.private-dining.our-chef .grids {
+        height: 1200px;
+        overflow: hidden;
+    }
+}

@@ -122,7 +122,7 @@ const BecomeAPatronQuestion = (props) => {
         <React.Fragment>
             <WrapperBox>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.become_patron) &&
                     <Box className='WrapperBox'>
                         <Typography className='title-question'>
                             {data.become_patron.faq.title}

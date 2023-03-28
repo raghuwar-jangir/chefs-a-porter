@@ -184,7 +184,7 @@ const TeamCarousel = (props) => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.about_us) &&
                     <Box sx={{background: "#080B0E", padding: "40px 16px"}}>
                         <Swiper
                             style={{

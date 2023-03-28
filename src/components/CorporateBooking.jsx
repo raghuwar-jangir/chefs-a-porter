@@ -292,7 +292,7 @@ const CorporateBooking = () => {
             <BoxWrapper>
                 <Box className='main-box'>
                     {
-                        !_.isEmpty(data) &&
+                        !_.isEmpty(data?.home) &&
                         <React.Fragment>
                             <Box>
                                 <Typography className="title">{data.home.corporate.title}</Typography>

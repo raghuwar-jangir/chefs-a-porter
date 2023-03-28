@@ -5,8 +5,8 @@ import {
     createMuiTheme,
     MuiThemeProvider,
     withStyles
-  } from "@material-ui/core/styles";
-  import Tooltip from "@material-ui/core/Tooltip";
+} from "@material-ui/core/styles";
+import Tooltip from "@material-ui/core/Tooltip";
 // import styled from "styled-components";
 import * as Yup from 'yup';
 import InfoIcon from '@mui/icons-material/Info';
@@ -54,7 +54,7 @@ const theme = createMuiTheme({
     }
 });
 const ChefDetailsForm = (props) => {
-   const tipTitle ="Private Dining usually last upto 3 hrs but can extend upto 5 hrs based on number of courses"
+    const tipTitle ="Private Dining usually last upto 3 hrs but can extend upto 5 hrs based on number of courses"
     const [startDate, setStartDate] = useState(new Date());
     // console.log("startDate=",moment(startDate).format("dddd, MMMM DD, YYYY"));
     const [numberOfDenner, setNumberOfDenner] = useState(2)
@@ -62,20 +62,20 @@ const ChefDetailsForm = (props) => {
 
     const handleDecrement = () => {
         if (numberOfDenner > 2) {
-          setNumberOfDenner(numberOfDenner - 1);
+            setNumberOfDenner(numberOfDenner - 1);
         }
-      }
+    }
 
-      const handleIncrement = () => {
+    const handleIncrement = () => {
         setNumberOfDenner(numberOfDenner + 1);
-      }
-      const handleCoursesDecrement = () => {
+    }
+    const handleCoursesDecrement = () => {
         if (numberOfCourses > 3) {
-          setNumberOfCourses(numberOfCourses - 1);
+            setNumberOfCourses(numberOfCourses - 1);
         }
-      }
+    }
 
-      const handleCoursesIncrement = () => {
+    const handleCoursesIncrement = () => {
         setNumberOfCourses(numberOfCourses + 1);
     }
     const handleClick = () => {
@@ -115,11 +115,11 @@ const ChefDetailsForm = (props) => {
             outline:'none',
             backgroundColor: "transparent",
             border: "0px",
-            borderBottom: "0.25px solid #FBFBFB",
+            // borderBottom: "0.25px solid #FBFBFB !important",
             borderRadius: "0px",
             // paddingLeft: "0px",
             paddingRight: "0px",
-            fontFamily: "Proxima Nova Alt",
+            fontFamily: "Proxima Nova Alt !important",
             fontStyle: "normal",
             fontWeight: "300",
             fontSize: "16px",
@@ -139,7 +139,7 @@ const ChefDetailsForm = (props) => {
             outline:'none',
             backgroundColor: "transparent",
             border: "0px",
-            // borderBottom: "0.25px solid #FBFBFB",
+            borderBottom: "0.25px solid #FBFBFB",
             borderRadius: "0px",
             // paddingLeft: "0px",
             paddingRight: "0px",
@@ -168,10 +168,10 @@ const ChefDetailsForm = (props) => {
             fontWeight: 600,
             fontSize: "16px",
             lineHeight: "19px",
-            padding: '0px 0px 18px 0px',
+            padding: '0px 0px 21px 0px',
             fontFamily: 'ProximaNovaA-Regular',
-	fontStyle: 'normal',
-	color: '#FBFBFB',
+            fontStyle: 'normal',
+            color: '#FBFBFB',
         },
         ".experience-btn": {
             fontFamily: 'ProximaNovaA-Regular',
@@ -268,34 +268,34 @@ const ChefDetailsForm = (props) => {
             lineHeight: "44px",
             color: "#FBFBFB",
             fontFamily: 'ProximaNovaA-Regular',
-	fontStyle: 'normal',
-          },
-          ".sub-text": {
+            fontStyle: 'normal',
+        },
+        ".sub-text": {
             fontWeight: 300,
             fontSize: "20px",
             lineHeight: "24px",
             color: "#FBFBFB",
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
-          },
-          '.min-2-3':{
+        },
+        '.min-2-3':{
             flex: '1',
-    marginBottom: '0px',
-    fontFamily: 'Proxima Nova Alt',
-    fontWeight: '300',
-    fontSize: '16px',
-    lineHeight: '19px',
-    color: '#FBFBFB',
-          },
-          '.gold-cal':{
+            marginBottom: '0px',
+            fontFamily: 'Proxima Nova Alt',
+            fontWeight: '300',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#FBFBFB',
+        },
+        '.gold-cal':{
             height: '22.8px',
-    objectFit: 'contain',
-    position: 'absolute',
-    right: '15px',
-    bottom: '25px',
-    zIndex:' 0'
-          },
-          '.input-group-btn button': {
+            objectFit: 'contain',
+            position: 'absolute',
+            right: '15px',
+            bottom: '25px',
+            zIndex:' 0'
+        },
+        '.input-group-btn button': {
             width: '24px',
             height: '24px',
             borderRadius: '0px',
@@ -308,97 +308,109 @@ const ChefDetailsForm = (props) => {
         },
         '.number-ans':{
             width: '24px',
-    fontFamily: 'Proxima Nova Alt',
-    fontStyle: 'normal',
-    fontWeight: '300',
-    fontSize: '16px',
-    marginLeft: '5px',
-    marginRight: '5px',
-    color: 'rgba(251, 251, 251, 1)',
-    background: 'transparent',
-    textAlign:'center'
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '16px',
+            marginLeft: '5px',
+            marginRight: '5px',
+            color: 'rgba(251, 251, 251, 1)',
+            background: 'transparent',
+            textAlign:'center'
         },
         '.surprise-box':{
             background: '#080B0E',
-    padding: '16px',
-    position: 'relative',
-    marginBottom: '16px'
+            padding: '16px',
+            position: 'relative',
+            marginBottom: '16px'
         },
         '.form-check':{
             display: 'block',
-    minHeight: '1.5rem',
-    marginBottom: '0.125rem',
-},
-'.form-check-input':{
-    backgroundColor: '#C6A87D',
-    borderColor: '#C6A87D',
-    borderRadius: '0px',
-},
-".form-check-label":{
-    fontFamily: 'Bon Vivant',
-    fontStyle: 'normal',
-    fontWeight: '700',
-    fontSize: '16px',
-    lineHeight: '20px',
-    color: '#FBFBFB',
-},
-'.email-confirm':{
-    fontFamily: 'Proxima Nova Alt',
-    fontStyle: 'normal',
-    fontWeight: '300',
-    fontSize: '12px',
-    lineHeight: '15px',
-    color: 'rgba(251, 251, 251, 0.6)',
-    display: 'block',
-    marginTop: '4px',
-    marginLeft:'1.5rem'
-},
-'.surprise-check-box':{
-    display:'flex',
-    placeItems:'center'
-},
-'.input-check':{
-    paddingRight:'5px !important',
-    padding:'0px',
-    marginBottom:'0.125rem',
-    color:'#C6A87D !important'
-},
-'.date-box':{
-    position:'relative'
-},
-'.gcal':{
-    height:'22.8px',
-},
-'.gcal-icon':{
-    position:'absolute',
-    right:'17px',
-    bottom:'23px'
-},
-'.time-picker':{
-    position:'relative'
-},
-'.timer-drop-down':{
-    position:'absolute',
-    right: '-2px',
-    fontSize: '38px',
-    bottom: '0px'
-},
-'.gInfo-logo':{
-    height:'16px',
-    width:'16px',
-    marginLeft:'8px'
-},
-'.css-1aa5qj0-MuiInputBase-root-MuiInput-root':{
-    width:'100%'
-},
-'.react-datepicker__input-container':{
-                borderBottom: "0.25px solid #FBFBFB",
-}
+            minHeight: '1.5rem',
+            marginBottom: '0.125rem',
+        },
+        '.form-check-input':{
+            backgroundColor: '#C6A87D',
+            borderColor: '#C6A87D',
+            borderRadius: '0px',
+        },
+        ".form-check-label":{
+            fontFamily: 'Bon Vivant',
+            fontStyle: 'normal',
+            fontWeight: '700',
+            fontSize: '16px',
+            lineHeight: '20px',
+            color: '#FBFBFB',
+        },
+        '.email-confirm':{
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '12px',
+            lineHeight: '15px',
+            color: 'rgba(251, 251, 251, 0.6)',
+            display: 'block',
+            marginTop: '4px',
+            marginLeft:'1.5rem'
+        },
+        '.surprise-check-box':{
+            display:'flex',
+            placeItems:'center'
+        },
+        '.input-check':{
+            paddingRight:'5px !important',
+            padding:'0px',
+            marginBottom:'0.125rem',
+            color:'#C6A87D !important'
+        },
+        '.date-box':{
+            position:'relative'
+        },
+        '.gcal':{
+            height:'22.8px',
+        },
+        '.gcal-icon':{
+            position:'absolute',
+            right:'17px',
+            bottom:'23px'
+        },
+        '.time-picker':{
+            position:'relative'
+        },
+        '.timer-drop-down':{
+            position:'absolute',
+            right: '-9px',
+            fontSize: '38px',
+            bottom: '-2px !important'
+        },
+        '.gInfo-logo':{
+            height:'16px',
+            width:'16px',
+            marginLeft:'8px'
+        },
+        '.css-1aa5qj0-MuiInputBase-root-MuiInput-root':{
+            width:'100%'
+        },
+        '.css-rb2hiw ':{
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: "300",
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#FBFBFB",
+            padding: "0.375rem 0.75rem 0.375rem 0px",
+        },
+        '.css-10iatzg':{
+            width:'100%'
+        }
+        // '.react-datepicker__input-container':{
+        //     borderBottom: "0.25px solid #FBFBFB",
+        // }
     }))
     const disabledStyle = {
         opacity: 0.5,
-      }
-      const [formData, setFormData] = useState(null);
+    }
+    const [formData, setFormData] = useState(null);
 
     // for tooltip
     const positionRef = useRef({
@@ -418,9 +430,9 @@ const ChefDetailsForm = (props) => {
     return (
         <React.Fragment>
             <BoxWrapper sx={{position:'sticky',top:'100px'}}>
-            <Typography className="sub-text-price">
-                                        ₹ 2,500 <sub className="sub-text">Per Diner</sub>
-                                    </Typography>
+                <Typography className="sub-text-price">
+                    ₹ 2,500 <sub className="sub-text">Per Diner</sub>
+                </Typography>
                 <Formik
                     initialValues={{
                         yourName: "",
@@ -448,7 +460,7 @@ const ChefDetailsForm = (props) => {
                     onSubmit={(values, { setSubmitting }) => {
                         setFormData(values);
                         setSubmitting(false);
-                      }}
+                    }}
                 >
                     {({ errors, touched, values, handleChange, handleSubmit, isSubmitting }) => (
                         <Form onSubmit={handleSubmit}>
@@ -498,7 +510,7 @@ const ChefDetailsForm = (props) => {
                                         <DatePicker selected={startDate}  className='form-control' onChange={(date) => setStartDate(date)} value={values.experienceDate}/>
                                         {/* {touched.experienceDate && errors.experienceDate && <Typography className='error-msg'>{errors.experienceDate}</Typography>} */}
                                         <Box className="gcal-icon">
-                                        <img className="gcal" src={gCal}/>
+                                            <img className="gcal" src={gCal}/>
                                         </Box>
                                     </Box>
                                     <Box className="comman-field-box" sx={{ width: "48.5%" }}>
@@ -509,19 +521,19 @@ const ChefDetailsForm = (props) => {
                                             paddingBottom:'6px !important'
                                         }}>
                                             Start Time
-                                             <MuiThemeProvider theme={defaultTheme}>
-      <Box className="App">
-        <MuiThemeProvider theme={theme}>
-          <Tooltip title={tipTitle}
-          arrow
-          placement="top">
-            <Box>
-              <img className="gInfo-logo" src={gInfo}/>
-            </Box>
-          </Tooltip>
-        </MuiThemeProvider>
-        </Box>
-        </MuiThemeProvider>
+                                            <MuiThemeProvider theme={defaultTheme}>
+                                                <Box className="App">
+                                                    <MuiThemeProvider theme={theme}>
+                                                        <Tooltip title={tipTitle}
+                                                                 arrow
+                                                                 placement="top">
+                                                            <Box>
+                                                                <img className="gInfo-logo" src={gInfo}/>
+                                                            </Box>
+                                                        </Tooltip>
+                                                    </MuiThemeProvider>
+                                                </Box>
+                                            </MuiThemeProvider>
                                         </Typography>
                                         <Box className='time-picker'>
                                             <TextField
@@ -548,55 +560,55 @@ const ChefDetailsForm = (props) => {
                                     <Box sx={{ display: 'flex' }}>
                                         <RemoveIcon
                                             style={numberOfDenner === 2 ? disabledStyle : {}}
-                                           className="left-btn"
-                                           onClick={handleDecrement}  disabled={numberOfDenner === 2}
+                                            className="left-btn"
+                                            onClick={handleDecrement}  disabled={numberOfDenner === 2}
                                         />
                                         <TextField type="text" name="numberOfDenner" id="Qty"
-                                                                    //    name="numberOfDiner"
-                                                                       onChange={handleChange}
-                                                                       value={values.numberOfDenner}
-                                                                       value={numberOfDenner}
-                                                                       className="number-ans"
-                                                                // value={count}
-                                                                       InputProps={{
-                                                                           sx: {
-                                                                               width: "25px", background: 'transparent',
-                                                                               border: '0px',
-                                                                               fontFamily: 'ProximaNovaA-Regular',
-                                                                               fontStyle: 'normal',
-                                                                               fontWeight: '400',
-                                                                               fontSize: '14px',
-                                                                               color: 'white',
-                                                                               lineHeight: '17px',
-                                                                               paddingLeft: '0px',
-                                                                               paddingRight: '0px',
-                                                                               flex: 'none',
-                                                                               textAlign: 'center',
-                                                                           },
-                                                                       }}
-                                                                       autoComplete={"off"} sx={{
-                                                                '.MuiOutlinedInput-notchedOutline': {
-                                                                    border: 'none',
-                                                                    outline: 'none',
-                                                                },
-                                                                '& .MuiInputBase-input': {
-                                                                    width: "25px", background: 'transparent',
-                                                                    border: '0px',
-                                                                    fontFamily: 'ProximaNovaA-Regular',
-                                                                    fontStyle: 'normal',
-                                                                    fontWeight: '400',
-                                                                    fontSize: '14px',
-                                                                    color: 'white',
-                                                                    paddingTop:'5px',
-                                                                               paddingBottom:'0px',
-                                                                    lineHeight: '17px',
-                                                                    paddingLeft: '0px',
-                                                                    paddingRight: '0px',
-                                                                    flex: 'none',
-                                                                    textAlign: 'center'
-                                                                },
-                                                            }}
-                                                            />
+                                            //    name="numberOfDiner"
+                                                   onChange={handleChange}
+                                                   value={values.numberOfDenner}
+                                                   value={numberOfDenner}
+                                                   className="number-ans"
+                                            // value={count}
+                                                   InputProps={{
+                                                       sx: {
+                                                           width: "25px", background: 'transparent',
+                                                           border: '0px',
+                                                           fontFamily: 'ProximaNovaA-Regular',
+                                                           fontStyle: 'normal',
+                                                           fontWeight: '400',
+                                                           fontSize: '14px',
+                                                           color: 'white',
+                                                           lineHeight: '17px',
+                                                           paddingLeft: '0px',
+                                                           paddingRight: '0px',
+                                                           flex: 'none',
+                                                           textAlign: 'center',
+                                                       },
+                                                   }}
+                                                   autoComplete={"off"} sx={{
+                                            '.MuiOutlinedInput-notchedOutline': {
+                                                border: 'none',
+                                                outline: 'none',
+                                            },
+                                            '& .MuiInputBase-input': {
+                                                width: "25px", background: 'transparent',
+                                                border: '0px',
+                                                fontFamily: 'ProximaNovaA-Regular',
+                                                fontStyle: 'normal',
+                                                fontWeight: '400',
+                                                fontSize: '14px',
+                                                color: 'white',
+                                                paddingTop:'5px',
+                                                paddingBottom:'0px',
+                                                lineHeight: '17px',
+                                                paddingLeft: '0px',
+                                                paddingRight: '0px',
+                                                flex: 'none',
+                                                textAlign: 'center'
+                                            },
+                                        }}
+                                        />
                                         <AddIcon
                                             className="right-btn"
                                             onClick={handleIncrement}
@@ -606,57 +618,57 @@ const ChefDetailsForm = (props) => {
                                 <Box className="sub-box-counter">
                                     <Typography className="min-2-3">Number of Courses <span>(min 3)</span></Typography>
                                     <Box sx={{ display: 'flex' }}>
-                                    <RemoveIcon
-                                    style={numberOfCourses === 3 ? disabledStyle : {}}
-                                           className="left-btn"
-                                           onClick={handleCoursesDecrement} disabled={numberOfCourses === 3}
+                                        <RemoveIcon
+                                            style={numberOfCourses === 3 ? disabledStyle : {}}
+                                            className="left-btn"
+                                            onClick={handleCoursesDecrement} disabled={numberOfCourses === 3}
                                         />
-                                         <TextField type="text" name="numberOfCourses" id="Qty"
-                                                                    //    name="numberOfCourses"
-                                                                       onChange={handleChange}
-                                                                       value={values.numberOfCourses}
-                                                                       value={numberOfCourses}
-                                                                       className="number-ans"
-                                                                // value={count}
-                                                                       InputProps={{
-                                                                           sx: {
-                                                                               width: "25px", background: 'transparent',
-                                                                               border: '0px',
-                                                                               fontFamily: 'ProximaNovaA-Regular',
-                                                                               fontStyle: 'normal',
-                                                                               fontWeight: '400',
-                                                                               fontSize: '14px',
-                                                                               color: 'white',
-                                                                               lineHeight: '17px',
-                                                                               paddingLeft: '0px',
-                                                                               paddingRight: '0px',
-                                                                               flex: 'none',
-                                                                               textAlign: 'center',
-                                                                           },
-                                                                       }}
-                                                                       autoComplete={"off"} sx={{
-                                                                '.MuiOutlinedInput-notchedOutline': {
-                                                                    border: 'none',
-                                                                    outline: 'none',
-                                                                },
-                                                                '& .MuiInputBase-input': {
-                                                                    width: "25px", background: 'transparent',
-                                                                    border: '0px',
-                                                                    fontFamily: 'ProximaNovaA-Regular',
-                                                                    fontStyle: 'normal',
-                                                                    fontWeight: '400',
-                                                                    fontSize: '14px',
-                                                                    color: 'white',
-                                                                    paddingTop:'5px',
-                                                                               paddingBottom:'0px',
-                                                                    lineHeight: '17px',
-                                                                    paddingLeft: '0px',
-                                                                    paddingRight: '0px',
-                                                                    flex: 'none',
-                                                                    textAlign: 'center'
-                                                                },
-                                                            }}
-                                                            />
+                                        <TextField type="text" name="numberOfCourses" id="Qty"
+                                            //    name="numberOfCourses"
+                                                   onChange={handleChange}
+                                                   value={values.numberOfCourses}
+                                                   value={numberOfCourses}
+                                                   className="number-ans"
+                                            // value={count}
+                                                   InputProps={{
+                                                       sx: {
+                                                           width: "25px", background: 'transparent',
+                                                           border: '0px',
+                                                           fontFamily: 'ProximaNovaA-Regular',
+                                                           fontStyle: 'normal',
+                                                           fontWeight: '400',
+                                                           fontSize: '14px',
+                                                           color: 'white',
+                                                           lineHeight: '17px',
+                                                           paddingLeft: '0px',
+                                                           paddingRight: '0px',
+                                                           flex: 'none',
+                                                           textAlign: 'center',
+                                                       },
+                                                   }}
+                                                   autoComplete={"off"} sx={{
+                                            '.MuiOutlinedInput-notchedOutline': {
+                                                border: 'none',
+                                                outline: 'none',
+                                            },
+                                            '& .MuiInputBase-input': {
+                                                width: "25px", background: 'transparent',
+                                                border: '0px',
+                                                fontFamily: 'ProximaNovaA-Regular',
+                                                fontStyle: 'normal',
+                                                fontWeight: '400',
+                                                fontSize: '14px',
+                                                color: 'white',
+                                                paddingTop:'5px',
+                                                paddingBottom:'0px',
+                                                lineHeight: '17px',
+                                                paddingLeft: '0px',
+                                                paddingRight: '0px',
+                                                flex: 'none',
+                                                textAlign: 'center'
+                                            },
+                                        }}
+                                        />
                                         <AddIcon
                                             className="right-btn"
                                             onClick={handleCoursesIncrement}
@@ -664,14 +676,14 @@ const ChefDetailsForm = (props) => {
                                     </Box>
                                 </Box>
                             </Box>
-                                                <Box className='surprise-box'>
-                                                <Box className="form-check">
-                                                    <Box className='surprise-check-box'>
-                                                <Checkbox className="input-check" defaultChecked/>
-                                    <Typography className="form-check-label" for="flexCheckChecked">Surprise me</Typography></Box>
-                                        <Typography className="email-confirm">An agnostic menu that explores a diverse culinary journey with chef mako at the helm.</Typography>
-                                  </Box>
-                                                </Box>
+                            <Box className='surprise-box'>
+                                <Box className="form-check">
+                                    <Box className='surprise-check-box'>
+                                        <Checkbox className="input-check" defaultChecked/>
+                                        <Typography className="form-check-label" for="flexCheckChecked">Surprise me</Typography></Box>
+                                    <Typography className="email-confirm">An agnostic menu that explores a diverse culinary journey with chef mako at the helm.</Typography>
+                                </Box>
+                            </Box>
                             <Box>
                                 <Button
                                     className="experience-btn"

@@ -122,7 +122,7 @@ const CorporateBookingQuestion = (props) => {
         <React.Fragment>
             <WrapperBox>
                 {
-                    !_.isEmpty(data) &&
+                    !_.isEmpty(data?.corporate_booking) &&
                     <Box className='WrapperBox'>
                         <Typography className='title-question'>
                             {data.corporate_booking.faq.title}

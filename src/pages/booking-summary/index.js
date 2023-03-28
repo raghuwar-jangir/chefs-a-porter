@@ -40,7 +40,9 @@ const BookingSummary = () => {
     address: Yup.string()
       .required('Address is required'),
     pincode: Yup.string()
-      .required('Pincode is required')
+      .required('Pincode is required'),
+      number1: Yup.string()
+      .required('Number is required'),
   });
 
   const initialValues = {
@@ -1077,6 +1079,13 @@ const BookingSummary = () => {
                                     Booking Summary
                                 </Typography>
                             </Box>
+                            <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+         {({values, handleChange, handleSubmit, setFieldValue}) => (
+        <Form>
                             <Box className="row customer-details addons-div">
                                 <Grid container>
                                     <Grid
@@ -1173,13 +1182,18 @@ const BookingSummary = () => {
                             +91{" "}
                             <KeyboardArrowDownIcon className="drop-down-2" />
                           </span>
-                                                    <TextField
+                                                    <Field
                                                         placeholder="10 digit number"
                                                         className="form-control"
                                                         type="text"
                                                         id="number"
                                                         name="number1"
                                                         autoComplete="off"
+                                                        onChange={handleChange}
+                                                        value={values.number}
+                                                        InputProps={{
+                                                            disableUnderline: true,
+                                                    }}
                                                     />
                                                     <ErrorMessage className="error" name="number1"/>
                                                 </Box>
@@ -1192,7 +1206,7 @@ const BookingSummary = () => {
                                                     Email{" "}
                                                 </label>
                                                 <Box className="form-group">
-                                                    <TextField
+                                                    <Field
                                                         type="email"
                                                         name="email1"
                                                         id=""
@@ -1365,6 +1379,9 @@ const BookingSummary = () => {
                                     </Grid>
                                 </Grid>
                             </Box>
+                            </Form>
+         )}
+         </Formik>
                         </Box>
                     </Box>
                 </Box>
