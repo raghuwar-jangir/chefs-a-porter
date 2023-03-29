@@ -32,6 +32,9 @@ import {navigate} from "gatsby";
 import OTPInput from "react-otp-input";
 import OtpContext from "../../context/OtpContext";
 import * as _ from 'lodash'
+import {useTimer} from "react-timer-hook";
+import OtpVerificationModal from "../../components/OtpVerificationModal";
+
 
 const validationSchema = Yup.object({
     contactNumber: Yup.number().required('please enter the number'),
@@ -41,15 +44,28 @@ const validationSchema = Yup.object({
 
 const CustomerDetails = (props) => {
 
-    const {setOtpNumber, setVerifyOtp} = useContext(OtpContext);
+    const {setOtpNumber, setVerifyOtp, setResendOtp} = useContext(OtpContext);
     const CHARACTER_LIMIT = 40;
     const [open, setOpen] = useState(false);
     const [currentModal, setCurrentModal] = useState(0);
     const [openOtp, setOpenOtp] = React.useState(false);
     const [contactNumber, setContactNumber] = useState('');
 
+
+    // otp limit
+    // const [resendAttempts, setResendAttempts] = useState(0);
+
+    // function handleResendClick() {
+    //     if (resendAttempts >= 3) {
+    //         setResendOtp(contactNumber)
+    //         alert('You have exceeded the maximum number of OTP resend attempts.');
+    //         return;
+    //     }
+    //     setResendAttempts(resendAttempts + 1);
+    // }
+
+
     const handleOpenOtp = (contactNumber) => {
-        console.log("contactNumbercontactNumber====", contactNumber)
         if (!_.isEmpty(contactNumber)) {
             setOpenOtp(true);
             setOtpNumber(`+91${contactNumber}`);
@@ -58,10 +74,6 @@ const CustomerDetails = (props) => {
     }
     const handleCloseOtp = () => setOpenOtp(false);
     const [code, setCode] = React.useState("");
-    const handleChange = (code) => {
-        setCode(code);
-        console.log("code===",code)
-    };
     //address model open and close code
     const handleOpen = () => {
         setOpen(true);
@@ -90,143 +102,6 @@ const CustomerDetails = (props) => {
         zoom: 11,
     };
 
-
-    const styleOtp = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        boxShadow: 24,
-        '.modal-content': {
-            backgroundColor: '#101418!important',
-            boxShadow: '0px 8px 12px rgb(0 0 0 / 16%)',
-            padding: '40px 20px',
-            display: 'flex',
-            flexDirection: 'column',
-            pointerEvents: 'auto',
-            backgroundClip: 'paddingBox',
-            outline: '0'
-        },
-        ".close": {
-            border: 'none !important',
-            background: "transparent",
-            borderRadius: "0px",
-            color: "#FBFBFB",
-            cursor: 'pointer'
-        },
-        '.modal-header': {
-            padding: '0px',
-            // marginBottom: '30px',
-            borderBottom: 'none',
-            display: 'flex',
-            position: 'relative',
-            justifyContent: 'flex-end',
-        },
-        '.house-no': {
-            padding: '0px'
-        },
-        '.position-relative': {
-            position: 'relative',
-        },
-        '.otp-div h6': {
-            fontFamily: 'Proxima Nova Alt',
-            fontStyle: 'normal',
-            fontWeight: '250',
-            fontSize: '14px',
-            lineHeight: '17px',
-            color: '#FBFBFB',
-            marginTop: '0px',
-            marginBottom: '0.5rem'
-        },
-        '.otp-div h6 a': {
-            fontFamily: 'ProximaNovaA-Regular',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            fontSize: '14px',
-            lineHeight: '17px',
-            color: '#C6A87D !important',
-        },
-        '.enter-otp': {
-            fontFamily: 'ProximaNovaA-Regular',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            fontSize: '16px',
-            lineHeight: '19px',
-            color: '#FBFBFB',
-            padding: '0px 16px',
-            marginTop: '30px',
-            marginBottom: '16px'
-        },
-        '.btn-val': {
-            padding: '0 16px'
-        },
-        '#otp': {
-            padding: '0px 10px',
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            flexDirection: 'row'
-        },
-        '.mt-2': {
-            marginTop: '0.5rem'
-        },
-        '.form-control': {
-            backgroundColor: '#080B0E',
-            border: '0px',
-            width: '66px',
-            height: '66px',
-            fontFamily: 'ProximaNovaA-Regular',
-            fontWeight: '400',
-            color: '#FFFFFF',
-        },
-        '.form-control:focus-visible': {
-            outline: 'unset !important'
-        },
-        '.text-center': {
-            textAlign: 'center !important'
-        },
-        '.otp-div div span': {
-            fontFamily: 'Proxima Nova Alt',
-            fontStyle: 'normal',
-            fontWeight: '300',
-            fontSize: '14px',
-            lineHeight: '17px',
-            color: '#FBFBFB',
-            padding: '0 16px',
-        },
-        '.otp-div button': {
-            background: '#C6A87D',
-            color: '#080B0E',
-            fontFamily: 'ProximaNovaA-Regular',
-            fontSize: '20px',
-            lineHeight: '24px',
-            border: '0px',
-            padding: '14.5px 10px',
-            width: '100%',
-            fontWeight: '400',
-            margin: '30px 0px',
-            borderRadius: '0px',
-            cursor: 'pointer',
-        },
-        '.content': {
-            fontFamily: 'Proxima Nova Alt',
-            fontStyle: 'italic',
-            fontWeight: '300',
-            fontSize: '14px',
-            lineHeight: '17px',
-            color: 'rgba(251, 251, 251, 0.6)',
-        },
-
-        "@media (min-width: 426px) and (max-width:768px)": {
-            width: '400px'
-        },
-        "@media (min-width: 1px) and (max-width:400px)": {
-            width: '310px !important',
-        },
-        "@media (min-width: 400px) and (max-width:425px)": {
-            width: '400px !important',
-        },
-    }
     const styleModel1 = {
         position: 'absolute',
         top: '50%',
@@ -509,6 +384,7 @@ const CustomerDetails = (props) => {
             color: '#FBFBFB',
             fontSize: '20px',
             marginRight: '16px',
+            cursor: 'pointer'
         },
         '.map-box': {
             height: "100px",
@@ -896,12 +772,6 @@ const CustomerDetails = (props) => {
         </Box>
     ];
 
-    const handleClick = () => {
-        if (!_.isEmpty(code)) {
-            setVerifyOtp(code);
-            navigate('/addons');
-        }
-    }
 
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
@@ -1868,72 +1738,85 @@ const CustomerDetails = (props) => {
                     {modals[currentModal]}
                 </Modal>
 
-                <Modal
-                    keepMounted
-                    open={openOtp}
-                    onClose={handleCloseOtp}
-                    aria-labelledby="keep-mounted-modal-title"
-                    aria-describedby="keep-mounted-modal-description"
-
-                >
-                    <Box sx={styleOtp}>
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <button type="button" data-bs-dismiss="modal" aria-label="Close" className="close"
-                                        onClick={handleCloseOtp}>
-                                    <CloseIcon sx={{fontSize: "30px"}}/></button>
-                            </div>
-                            <div className="modal-body">
-                                <div className="container-fluid house-no">
-                                    <div className="position-relative">
-                                        <div className="otp-div">
-                                            <h6>A 6 digit code has been sent to <b>+{contactNumber}</b> & your
-                                                email <b>kachwallasana@gmail.com</b> <a
-                                                    href="javascript:void(0);">Change</a></h6>
-                                            <h4 className="enter-otp">Enter OTP</h4>
-                                            <div id="otp"
-                                                 className="">
-                                                <OTPInput
-                                                    value={code}
-                                                    onChange={handleChange}
-                                                    numInputs={6}
-                                                    separator={<span style={{padding:'0px',width: '1rem'}}></span>}
-                                                    isInputNum={true}
-                                                    shouldAutoFocus={true}
-                                                    inputStyle={{
-                                                        border: "1px solid #FBFBFB",
-                                                        backgroundColor: '#080B0E',
-                                                        width: '35px',
-                                                        height: '35px',
-                                                        fontFamily: 'ProximaNovaA-Regular',
-                                                        fontWeight: '400',
-                                                        color: '#FFFFFF',
-                                                    }}
-                                                    focusStyle={{
-                                                        border: "1px solid #FBFBFB",
-                                                        outline: "none"
-                                                    }}
-                                                />
-                                            </div>
-                                            <div><span style={{paddingTop: '5px'}}>Resend OTP in 00:32 sec</span></div>
-                                            <div className="btn-val">
-                                                <button className="btn validate" type="submit"
-                                                        onClick={handleClick}
-                                                >Verfiy
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div className="card-2">
-                                            <div className="content"> By continuing you agree to Chefs-à-Porter’s T&C,
-                                                Privacy Policy, Terms of Service
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </Box>
-                </Modal>
+                {/*{openOtp &&*/}
+                {/*    <Modal*/}
+                {/*        open={openOtp}*/}
+                {/*        onClose={handleCloseOtp}*/}
+                {/*        aria-labelledby="keep-mounted-modal-title"*/}
+                {/*        aria-describedby="keep-mounted-modal-description"*/}
+                {/*    >*/}
+                {/*        <Box sx={styleOtp}>*/}
+                {/*            <div className="modal-content">*/}
+                {/*                <div className="modal-header">*/}
+                {/*                    <button type="button" data-bs-dismiss="modal" aria-label="Close" className="close"*/}
+                {/*                            onClick={handleCloseOtp}>*/}
+                {/*                        <CloseIcon sx={{fontSize: "30px"}}/></button>*/}
+                {/*                </div>*/}
+                {/*                <div className="modal-body">*/}
+                {/*                    <div className="container-fluid house-no">*/}
+                {/*                        <div className="position-relative">*/}
+                {/*                            <div className="otp-div">*/}
+                {/*                                <h6>A 6 digit code has been sent to <b>+{contactNumber}</b> & your*/}
+                {/*                                    email <b>kachwallasana@gmail.com</b> <a*/}
+                {/*                                        href="javascript:void(0);">Change</a></h6>*/}
+                {/*                                <h4 className="enter-otp">Enter OTP</h4>*/}
+                {/*                                <div id="otp"*/}
+                {/*                                     className="">*/}
+                {/*                                    <OTPInput*/}
+                {/*                                        value={''}*/}
+                {/*                                        onChange={(number) => {*/}
+                {/*                                            console.log('number',number)*/}
+                {/*                                            // setCode(number)*/}
+                {/*                                        }}*/}
+                {/*                                        numInputs={6}*/}
+                {/*                                        separator={<span style={{padding: '0px', width: '1rem'}}></span>}*/}
+                {/*                                        isInputNum={true}*/}
+                {/*                                        shouldAutoFocus={true}*/}
+                {/*                                        inputStyle={{*/}
+                {/*                                            border: "1px solid #FBFBFB",*/}
+                {/*                                            backgroundColor: '#080B0E',*/}
+                {/*                                            width: '35px',*/}
+                {/*                                            height: '35px',*/}
+                {/*                                            fontFamily: 'ProximaNovaA-Regular',*/}
+                {/*                                            fontWeight: '400',*/}
+                {/*                                            color: '#FFFFFF',*/}
+                {/*                                        }}*/}
+                {/*                                        focusStyle={{*/}
+                {/*                                            border: "1px solid #FBFBFB",*/}
+                {/*                                            outline: "none"*/}
+                {/*                                        }}*/}
+                {/*                                    />*/}
+                {/*                                </div>*/}
+                {/*                                /!*{seconds > 0 ? (*!/*/}
+                {/*                                /!*    <div><span>Resend OTP in : {seconds} sec</span></div>*!/*/}
+                {/*                                /!*) : (*!/*/}
+                {/*                                    <div><span><a onClick={handleResendClick}*/}
+                {/*                                                  style={{textDecoration: 'underline', cursor: 'pointer'}}>Resend OTP</a></span>*/}
+                {/*                                    </div>*/}
+                {/*                                /!*)}*!/*/}
+                {/*                                <div className="btn-val">*/}
+                {/*                                    <button className="btn validate" type="submit"*/}
+                {/*                                            onClick={handleClick}*/}
+                {/*                                    >Verfiy*/}
+                {/*                                    </button>*/}
+                {/*                                </div>*/}
+                {/*                            </div>*/}
+                {/*                            <div className="card-2">*/}
+                {/*                                <div className="content"> By continuing you agree to Chefs-à-Porter’s T&C,*/}
+                {/*                                    Privacy Policy, Terms of Service*/}
+                {/*                                </div>*/}
+                {/*                            </div>*/}
+                {/*                        </div>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </Box>*/}
+                {/*    </Modal>*/}
+                {/*}*/}
+                <OtpVerificationModal openOtp={openOtp}
+                                      handleCloseOtp={handleCloseOtp}
+                                      contactNumber={contactNumber}
+                />
 
             </BoxWrapper>
         </React.Fragment>

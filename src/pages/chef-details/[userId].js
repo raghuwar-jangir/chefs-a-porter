@@ -105,10 +105,13 @@ const ChefDetails = (props) => {
             background: '#080B0E',
             '.supper-gallery': {
                 marginTop: '40px',
-                // padding: '0px 20px'
             },
             '.container-fluid': {
                 padding: '80px 235px'
+            },
+            '.container': {
+                position: 'relative',
+                padding: '0px 10px 0px 0px'
             },
             '.carousel-box': {
                 display: 'none'
@@ -175,36 +178,36 @@ const ChefDetails = (props) => {
                 paddingBottom: '40px'
             },
             '.all-photos': {
-                fontFamily: 'ProximaNovaA-Regular',
-                fontStyle: 'normal',
-                fontWeight: '400',
-                fontSize: '16px',
-                lineHeight: '19px',
-                color: '#080B0E',
-                textDecoration: 'none',
-                background: '#FBFBFB',
-                boxShadow: '0px 20px 24px rgb(0 0 0 / 6%)',
-                padding: '8px 12px',
-                position: 'absolute',
-                bottom: '22px',
-                right: '18px',
-                borderRadius: '1px',
+                position: "absolute",
+                bottom: "20px",
+                right: "27px",
+                fontFamily: "ProximaNovaA-Regular",
+                fontStyle: "normal",
+                fontWeight: 400,
+                fontSize: "16px",
+                lineHeight: "19px",
+                color: "#080B0E",
+                textTransform: "math-auto",
+                background: "#FBFBFB",
+                boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
+                borderRadius: "1px",
+                padding: "8px 12px",
             },
             '.all-photos:hover': {
-                fontFamily: 'ProximaNovaA-Regular',
-                fontStyle: 'normal',
-                fontWeight: '400',
-                fontSize: '16px',
-                lineHeight: '19px',
-                color: '#080B0E',
-                textDecoration: 'none',
-                background: '#FBFBFB',
-                boxShadow: '0px 20px 24px rgb(0 0 0 / 6%)',
-                padding: '8px 12px',
-                position: 'absolute',
-                bottom: '22px',
-                right: '18px',
-                borderRadius: '1px',
+                position: "absolute",
+                bottom: "20px",
+                right: "27px",
+                fontFamily: "ProximaNovaA-Regular",
+                fontStyle: "normal",
+                fontWeight: 400,
+                fontSize: "16px",
+                lineHeight: "19px",
+                color: "#080B0E",
+                textTransform: "math-auto",
+                background: "#FBFBFB",
+                boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
+                borderRadius: "1px",
+                padding: "8px 12px",
             },
             '.read-more-less--more, .read-more-less--less': {
                 all: 'unset',
@@ -346,7 +349,7 @@ const ChefDetails = (props) => {
             },
             ".main-img": {
                 width: "100%",
-                height: "390px",
+                height: "395px",
                 display: "block",
                 objectFit: "cover",
                 boxShadow: "0px 8px 16px rgb(0 0 0 / 16%)",
@@ -366,23 +369,27 @@ const ChefDetails = (props) => {
                 height: "190px",
                 boxShadow: "0px 8px 16px rgb(0 0 0 / 16%)",
                 objectFit: "cover",
+                marginTop: '20px'
             },
             '.child-container': {
                 display: 'flex',
-                flexDirection: 'column',
-                position: 'relative'
+                flexWrap: 'wrap'
             },
             '.restorent-1': {
-                maxWidth: '100% !important',
+                position: 'relative',
+                flex: '0 0 auto',
+                width: "100%"
             },
             '.next-grid': {
                 maxWidth: '100% !important'
             },
             '.main-2': {
-                paddingLeft: "20px !important"
+                position: 'relative',
+                padding: '0px 0px 0px 10px',
             },
             '.container-spacing': {
-                marginTop: '5px'
+                display: 'grid',
+                gridTemplateColumns: '58.33333333% 41.66666667%'
             },
             '.supper-chef-details': {
                 paddingTop: '20px'
@@ -443,9 +450,9 @@ const ChefDetails = (props) => {
                 }
             },
             "@media (min-width: 1px) and (max-width:425px)": {
-                // '.supper-chef-details': {
-                //     display: 'none'
-                // },
+                '.supper-chef-details': {
+                    display: 'none'
+                },
                 '.gallery-carousel': {
                     display: 'block'
                 },
@@ -684,21 +691,19 @@ const ChefDetails = (props) => {
                                     <Typography className="chef-details mbl-chef-name">Specialty: <b> Thai,
                                         Japanese</b></Typography>
                                 </Box>
-                                <Grid container spacing={{md: 2}} className="container-spacing">
-                                    <Grid className="parent-container" item xl={7} md={7} sm={6} xs={12}>
-                                        <Box className="container">
-                                         <span>
-                                                {userData.experinces.map((item) => {
-                                                    return (
-                                                        <img
-                                                            src={item.cover_picture}
-                                                            alt="RestorentImg"
-                                                            className="main-img"
-                                                            onClick={handleImageOpen}
-                                                        />
-                                                    )
-                                                })}
-                                         </span>
+                                <Box>
+                                    <Box className="container-spacing">
+                                        <Box className='container'>
+                                            {userData.experinces.map((item) => {
+                                                return (
+                                                    <img
+                                                        src={item.cover_picture}
+                                                        alt="RestorentImg"
+                                                        className="main-img"
+                                                        onClick={handleImageOpen}
+                                                    />
+                                                )
+                                            })}
                                             {showCarousel && (
                                                 <Box className="carousel-popup">
                                                     <button className='close-button' onClick={handleImageClose}>
@@ -710,34 +715,35 @@ const ChefDetails = (props) => {
                                                 </Box>
                                             )}
                                         </Box>
-                                    </Grid>
-
-                                    <Grid item md={5} sm={6} xs={12} xl={5} className="main-2">
-                                        <Grid className="child-container" container spacing={2}>
-                                            <Grid className="restorent-1" item md={6} sm={6} xs={6} xl={6}>
-                                                <img
-                                                    src={sGallery}
-                                                    alt="RestorentImg"
-                                                    className="main-img-1"
-                                                    onClick={handleImageOpen}
-                                                />
-                                            </Grid>
-                                            <Grid item md={5} sm={6} xs={12} xl={5} className="next-grid">
-                                                <Grid className="restorent-1" item md={6} sm={6} xs={6} xl={6}>
-                                                    <img
-                                                        src={chef2}
-                                                        alt="RestorentImg"
-                                                        className="main-img-2"
-                                                        onClick={handleImageOpen}
-                                                    />
-                                                </Grid>
-                                                <Button className="all-photos" onClick={handleOpen}
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal">Show All Photos</Button>
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
+                                        <Box className='main-2'>
+                                            <Box className='child-container'>
+                                                {userData.details.gallery_pictures.map((item, index) => {
+                                                    return (
+                                                        <Box className="restorent-1">
+                                                            <img
+                                                                src={item}
+                                                                alt="RestorentImg"
+                                                                className="main-img-1"
+                                                                onClick={handleImageOpen}
+                                                            />
+                                                        </Box>
+                                                    )
+                                                })}
+                                                {userData.details.gallery_pictures.map((item, index) => {
+                                                    return <span>{index !== userData.details.gallery_pictures.length - 1 && (
+                                                        <Button
+                                                            className="all-photos"
+                                                            onClick={handleOpen}
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal">
+                                                            Show All Photos
+                                                        </Button>
+                                                    )}</span>
+                                                })}
+                                            </Box>
+                                        </Box>
+                                    </Box>
+                                </Box>
                                 <Box className="row supper-chef-details">
                                     <Box className="col-lg-12">
                                         <Box className="details">

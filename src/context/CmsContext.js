@@ -37,10 +37,13 @@ const CmsProvider = (props) => {
     const [data, setData] = useState()
 
     useEffect(() => {
-        axios.get(baseUrl + `/${pathInfo[!currentPath ? emptyUrl : currentPath]}/`).then(result => {
-            setData(result.data)
-        })
+        if (path) {
+            axios.get(baseUrl + `/${pathInfo[!currentPath ? emptyUrl : currentPath]}/`).then(result => {
+                setData(result.data)
+            })
+        }
     }, [path, currentPath])
+
 
     const {children} = props
     return (

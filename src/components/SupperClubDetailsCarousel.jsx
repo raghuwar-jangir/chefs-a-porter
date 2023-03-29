@@ -8,52 +8,39 @@ import "swiper/css";
 import "swiper/css/pagination";
 import {Autoplay, Pagination} from "swiper";
 import UsersContext from "../context/UsersContext";
+import * as _ from "lodash";
 
 
-// const images = [
-//     {
-//         mainTitle: '"Mako and his eccentric Personality,',
-//         subTitle:'lit up the room and our taste buds!"',
-//         details: "I had chef Mako over to host a few business partners.",
-//         details2:" The dinner experience was absolutely amazing and he makes amazing Sushi!",
-//         ceoName: "Arvind Mohan, CEO of Alpha",
-//     },
-//     {
-//         mainTitle: '"Mako and his eccentric Personality,',
-//         subTitle:'lit up the room and our taste buds!"',
-//         details: "I had chef Mako over to host a few business partners.",
-//         details2:" The dinner experience was absolutely amazing and he makes amazing Sushi!",
-//         ceoName: "Arvind Mohan, CEO of Alpha",
-//     },
-//     {
-//         mainTitle: '"Mako and his eccentric Personality,',
-//         subTitle:'lit up the room and our taste buds!"',
-//         details: "I had chef Mako over to host a few business partners.",
-//         details2:" The dinner experience was absolutely amazing and he makes amazing Sushi!",
-//         ceoName: "Arvind Mohan, CEO of Alpha",
-//     },
-//     {
-//         mainTitle: '"Mako and his eccentric Personality,',
-//         subTitle:'lit up the room and our taste buds!"',
-//         details: "I had chef Mako over to host a few business partners.",
-//         details2:" The dinner experience was absolutely amazing and he makes amazing Sushi!",
-//         ceoName: "Arvind Mohan, CEO of Alpha",
-//     },
-//     {
-//         mainTitle: '"Mako and his eccentric Personality,',
-//         subTitle:'lit up the room and our taste buds!"',
-//         details: "I had chef Mako over to host a few business partners.",
-//         details2:" The dinner experience was absolutely amazing and he makes amazing Sushi!",
-//         ceoName: "Arvind Mohan, CEO of Alpha",
-//     },
-// ];
+const images = [
+    {
+        mainTitle: '"Mako and his eccentric Personality,',
+        subTitle: 'lit up the room and our taste buds!"',
+        details: "I had chef Mako over to host a few business partners.",
+        details2: " The dinner experience was absolutely amazing and he makes amazing Sushi!",
+        ceoName: "Arvind Mohan, CEO of Alpha",
+    },
+    {
+        mainTitle: '"Mako and his eccentric Personality,',
+        subTitle: 'lit up the room and our taste buds!"',
+        details: "I had chef Mako over to host a few business partners.",
+        details2: " The dinner experience was absolutely amazing and he makes amazing Sushi!",
+        ceoName: "Arvind Mohan, CEO of Alpha",
+    },
+    {
+        mainTitle: '"Mako and his eccentric Personality,',
+        subTitle: 'lit up the room and our taste buds!"',
+        details: "I had chef Mako over to host a few business partners.",
+        details2: " The dinner experience was absolutely amazing and he makes amazing Sushi!",
+        ceoName: "Arvind Mohan, CEO of Alpha",
+    },
+];
 
 const SupperClubDetailsCarousel = ({backgroundColor, changeFont, changeDetails, mainBox}) => {
     const [value, setValue] = useState(4);
     const {userData} = useContext(UsersContext);
 
     const BoxWrapper = styled(Box)(() => ([{
-        padding: '80px 80px 40px',
+        padding: '40px 80px 40px',
         background: `${backgroundColor}`,
         color: '#222222',
         ".mainTitle": [{
@@ -62,14 +49,16 @@ const SupperClubDetailsCarousel = ({backgroundColor, changeFont, changeDetails, 
             textAlign: "center",
             fontFamily: 'Bon Vivant',
             fontWeight: 700,
-            fonStyle: 'normal'
+            fonStyle: 'normal',
+            whiteSpace: 'pre-wrap'
         }, changeFont],
         ".details": [{
             textAlign: "center",
             fontSize: "20px",
             fontWeight: 400,
             lineHeight: '24px',
-            fontFamily: 'ProximaNovaA-Regular'
+            fontFamily: 'ProximaNovaA-Regular',
+            whiteSpace: 'pre-wrap'
         }, changeDetails],
         ".star": {
             textAlign: "center",
@@ -137,41 +126,89 @@ const SupperClubDetailsCarousel = ({backgroundColor, changeFont, changeDetails, 
                     pagination={{
                         clickable: true,
                     }} modules={[Autoplay, Pagination]} className="mySwiper">
-                {userData?.feedbacks?.map((item, index) => (
-                    <div key={index}>
-                        <SwiperSlide className='main-div'>
-                            <Typography className='mainTitle'>
-                                {item.title}
-                            </Typography>
-                            <Typography className='details'>
-                                {item.description}
-                            </Typography>
-                            <Typography
-                                className='star'
-                            >
-                                <Rating
-                                    sx={{
-                                        color: '#222222',
-                                        borderColor: '#222222'
-                                    }}
-                                    name="simple-controlled"
-                                    value={item.rating}
-                                    // value={value}
-                                    // onChange={(newValue) => {
-                                    //     setValue(newValue);
-                                    // }}
-                                    size="large"
-                                />
-                            </Typography>
-                            <Typography className='ceoName'>
-                                {item.from}
-                            </Typography>
-                        </SwiperSlide>
+                {!_.isEmpty(userData?.feedbacks) &&
+                    <div>
+                        {userData?.feedbacks?.map((item, index) => (
+                            <div key={index}>
+                                <SwiperSlide className='main-div'>
+                                    <Typography className='mainTitle'>
+                                        {item.title.replace(',', ',\n')}
+                                    </Typography>
+                                    <Typography
+                                        className='star'
+                                    >
+                                        <Rating
+                                            sx={{
+                                                color: '#222222',
+                                                borderColor: '#222222'
+                                            }}
+                                            name="simple-controlled"
+                                            value={item.rating}
+                                            // value={value}
+                                            // onChange={(newValue) => {
+                                            //     setValue(newValue);
+                                            // }}
+                                            size="large"
+                                        />
+                                    </Typography>
+                                    <Typography className='details'>
+                                        {item.description.replace('.', '.\n')}
+                                    </Typography>
+                                    <Typography className='ceoName'>
+                                        {item.from}
+                                    </Typography>
+                                </SwiperSlide>
+                            </div>
+                        ))}
                     </div>
-                ))}
+                }
+                {
+                    _.isEmpty(userData?.feedbacks) &&
+                    <div>{images.map((step, index) => (
+                        <div key={index}>
+                            <SwiperSlide className='main-div'>
+                                <Typography className='mainTitle'>
+                                    {step.mainTitle}
+                                </Typography>
+                                <Typography className='mainTitle'>
+                                    {step.subTitle}
+                                </Typography>
+                                <Typography
+                                    className='star'
+                                >
+                                    <Rating
+                                        sx={{
+                                            color: '#222222',
+                                            borderColor: '#222222'
+                                        }}
+                                        name="simple-controlled"
+                                        value={value}
+                                        onChange={(newValue) => {
+                                            setValue(newValue);
+                                        }}
+                                        size="large"
+                                    />
+                                </Typography>
+                                <Typography className='details'>
+                                    {step.details}
+                                </Typography>
+                                <Typography className='details'>
+                                    {step.details2}
+                                </Typography>
+                                <Typography >
+                                    {step.name}
+                                </Typography>
+                                <Typography className='ceoName'>
+                                    {step.ceoName}
+                                </Typography>
+                            </SwiperSlide>
+                        </div>
+                    ))}</div>
+                }
+
+
             </Swiper>
         </BoxWrapper>
     );
 }
-
 export default SupperClubDetailsCarousel;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Box, Grid, ImageListItem, styled, Typography,} from "@mui/material";
 import Navbar from "../../components/NavbarComponent";
 import add1 from "../../assets/images/add1.png";
@@ -15,9 +15,12 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {isMobile} from "react-device-detect";
 import "../../assets/styles/fontStyle.css"
 import {navigate} from "gatsby";
+import UsersContext from "../../context/UsersContext";
+import * as _ from "lodash";
 
 
 const Addons = () => {
+    const {userData} = useContext(UsersContext);
 
     const handleClick = () => {
         navigate('/booking-summary');
@@ -353,118 +356,124 @@ const Addons = () => {
         <React.Fragment>
             <BoxWrapper>
                 <Navbar to={'/addons'} isColor={true} isIcon={true} heading="Privee"/>
-                {/*{isMobile ? (*/}
-                {/*    <Box className='header-club'>*/}
-                {/*        <Typography className="addones-mobile-heading">Privee</Typography>*/}
-                {/*    </Box>*/}
-                {/*) : (*/}
-                {/*    ''*/}
-                {/*)}*/}
-                <Box className="supper-gallery cust-details">
-                    <Box className="container-fluid">
-                        <Box className="row supper-chef-details">
-                            <Box className="book-trad">
-                                <ArrowBackIcon className="arrow-left"/>
-                                <Typography className="addons-title">Add-on Services</Typography>
-                            </Box>
-                            <Box className="row customer-details addons-div">
-                                <Grid container>
-                                    <Grid xl={7} lg={7} xs={7} md={7} sm={12} xs={12} className="partner">
-                                        <Box className="addons">
-                                            <Typography className="addons-heading">Our partners help you get set up with
-                                                the perfect custom experience</Typography>
-                                            <Grid container className="addon-grid" rowSpacing={2} columnSpacing={2}>
-                                                {addonsCardDetail.map((item, index) => (
-                                                    <Grid item xl={4} md={4} sm={6} xs={6} key={index}>
-                                                        <AddonsCard image={item.image} title={item.title}/>
-                                                    </Grid>
-                                                ))}
-                                            </Grid>
-                                        </Box>
+                {
+                    !_.isEmpty(userData) &&
+                    <Box className="supper-gallery cust-details">
+                        <Box className="container-fluid">
+                            <Box className="row supper-chef-details">
+                                <Box className="book-trad">
+                                    <ArrowBackIcon className="arrow-left"/>
+                                    <Typography className="addons-title">Add-on Services</Typography>
+                                </Box>
+                                <Box className="row customer-details addons-div">
+                                    <Grid container>
+                                        <Grid xl={7} lg={7} xs={7} md={7} sm={12} xs={12} className="partner">
+                                            <Box className="addons">
+                                                <Typography className="addons-heading">Our partners help you get set up
+                                                    with
+                                                    the perfect custom experience</Typography>
+                                                <Grid container className="addon-grid" rowSpacing={2} columnSpacing={2}>
+                                                    {userData.results.map((item, index) => (
+                                                        <Grid item xl={4} md={4} sm={6} xs={6} key={index}>
+                                                            <AddonsCard image={item.image} title={item.name}/>
+                                                        </Grid>
+                                                    ))}
+                                                </Grid>
+                                            </Box>
+                                        </Grid>
+                                        <Grid xl={5} lg={5} xs={5} md={5} sm={12} xs={12}
+                                              className="cust-details dinner-box">
+                                            <Box className="per-dinner adsss">
+                                                <Box className="event-div">
+                                                    <img src={sGallery} alt="" className="per-dinner-img"/>
+                                                    <Box sx={{marginLeft: '12px'}}>
+                                                        <Typography className="event-title">The Big Fat Parsi
+                                                            Blowout</Typography>
+                                                        <Typography className="event-subtitle">Curated by <a href="#"
+                                                                                                             className="event-link">Chef
+                                                            Mako</a></Typography>
+                                                        <Typography className='rating-star'>
+                                                            <StarIcon
+                                                                sx={{
+                                                                    color: '#C6A87D',
+                                                                    height: '24px',
+                                                                    width: '24px'
+                                                                }}/> 4.7
+                                                        </Typography>
+                                                    </Box>
+                                                </Box>
+                                                <Box className="experience-breakup">
+                                                    <Box className="ex-details">
+                                                        <Typography className="ex-heading">Experience
+                                                            Breakup</Typography>
+                                                        <Typography className="ex-detail">This is an estimate, final
+                                                            price
+                                                            will be <br/>communicated on
+                                                            call
+                                                        </Typography>
+                                                        <ExpandMoreIcon className="ex-icon"/>
+                                                    </Box>
+                                                    <Box className="table table-borderless">
+                                                        <Box className="table-box">
+                                                            <Typography
+                                                                className="table-details">Food</Typography>
+                                                            <Typography className="table-details">₹ 2,500</Typography>
+                                                        </Box>
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details">Service
+                                                                Charge</Typography>
+                                                            <Typography className="table-details">₹ 2,500</Typography>
+                                                        </Box>
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details"
+                                                            >Tax</Typography>
+                                                            <Typography className="table-details">₹ 2,500</Typography>
+                                                        </Box>
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details"
+                                                            >Venue</Typography>
+                                                            <Typography className="table-details">₹ 2,500</Typography>
+                                                        </Box>
+                                                        <Box className="table-box">
+                                                            <Box className="table-details">Additional Courses
+                                                                +2</Box>
+                                                            <Box className="table-details">₹ 2,500</Box>
+                                                        </Box>
+                                                        <Box className="table-box border">
+                                                            <Typography className=" grand-total table-details">Grand
+                                                                Total</Typography>
+                                                            <Typography className="table-details grand-total">₹
+                                                                2,5000</Typography>
+                                                        </Box>
+                                                        <Box className="tax tax1 table-box">
+                                                            <Typography className="table-details">+Incl Of
+                                                                GST</Typography>
+                                                        </Box>
+                                                        <Box className="tax">
+                                                            <Typography className="table-details">++1.95% +
+                                                                GST</Typography>
+                                                        </Box>
+                                                    </Box>
+                                                </Box>
+                                                <Box className="row viewbreak">
+                                                    <Box className="col-lg-12">
+                                                        <button type="submit" className="submit-req"
+                                                                onClick={handleClick}>Next
+                                                        </button>
+                                                    </Box>
+                                                    <Typography className="contact-text">Our team will contact you
+                                                        regarding
+                                                        your protein and allergeen
+                                                        Information after booking is confirmed</Typography>
+                                                </Box>
+                                            </Box>
+                                        </Grid>
                                     </Grid>
-                                    <Grid xl={5} lg={5} xs={5} md={5} sm={12} xs={12}
-                                          className="cust-details dinner-box">
-                                        <Box className="per-dinner adsss">
-                                            <Box className="event-div">
-                                                <img src={sGallery} alt="" className="per-dinner-img"/>
-                                                <Box sx={{marginLeft: '12px'}}>
-                                                    <Typography className="event-title">The Big Fat Parsi
-                                                        Blowout</Typography>
-                                                    <Typography className="event-subtitle">Curated by <a href="#"
-                                                                                                         className="event-link">Chef
-                                                        Mako</a></Typography>
-                                                    <Typography className='rating-star'>
-                                                        <StarIcon
-                                                            sx={{color: '#C6A87D', height: '24px', width: '24px'}}/> 4.7
-                                                    </Typography>
-                                                </Box>
-                                            </Box>
-                                            <Box className="experience-breakup">
-                                                <Box className="ex-details">
-                                                    <Typography className="ex-heading">Experience Breakup</Typography>
-                                                    <Typography className="ex-detail">This is an estimate, final price
-                                                        will be <br/>communicated on
-                                                        call
-                                                    </Typography>
-                                                    <ExpandMoreIcon className="ex-icon"/>
-                                                </Box>
-                                                <Box className="table table-borderless">
-                                                    <Box className="table-box">
-                                                        <Typography
-                                                            className="table-details">Food</Typography>
-                                                        <Typography className="table-details">₹ 2,500</Typography>
-                                                    </Box>
-                                                    <Box className="table-box">
-                                                        <Typography className="table-details">Service
-                                                            Charge</Typography>
-                                                        <Typography className="table-details">₹ 2,500</Typography>
-                                                    </Box>
-                                                    <Box className="table-box">
-                                                        <Typography className="table-details"
-                                                        >Tax</Typography>
-                                                        <Typography className="table-details">₹ 2,500</Typography>
-                                                    </Box>
-                                                    <Box className="table-box">
-                                                        <Typography className="table-details"
-                                                        >Venue</Typography>
-                                                        <Typography className="table-details">₹ 2,500</Typography>
-                                                    </Box>
-                                                    <Box className="table-box">
-                                                        <Box className="table-details">Additional Courses
-                                                            +2</Box>
-                                                        <Box className="table-details">₹ 2,500</Box>
-                                                    </Box>
-                                                    <Box className="table-box border">
-                                                        <Typography className=" grand-total table-details">Grand
-                                                            Total</Typography>
-                                                        <Typography className="table-details grand-total">₹
-                                                            2,5000</Typography>
-                                                    </Box>
-                                                    <Box className="tax tax1 table-box">
-                                                        <Typography className="table-details">+Incl Of GST</Typography>
-                                                    </Box>
-                                                    <Box className="tax">
-                                                        <Typography className="table-details">++1.95% + GST</Typography>
-                                                    </Box>
-                                                </Box>
-                                            </Box>
-                                            <Box className="row viewbreak">
-                                                <Box className="col-lg-12">
-                                                    <button type="submit" className="submit-req"
-                                                            onClick={handleClick}>Next
-                                                    </button>
-                                                </Box>
-                                                <Typography className="contact-text">Our team will contact you regarding
-                                                    your protein and allergeen
-                                                    Information after booking is confirmed</Typography>
-                                            </Box>
-                                        </Box>
-                                    </Grid>
-                                </Grid>
+                                </Box>
                             </Box>
                         </Box>
                     </Box>
-                </Box>
+                }
             </BoxWrapper>
         </React.Fragment>
     )

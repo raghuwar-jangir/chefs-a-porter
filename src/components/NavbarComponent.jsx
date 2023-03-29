@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import {Box, styled} from '@mui/system';
 import {slide as Menu} from 'react-burger-menu'
 import '../assets/styles/bergerMenu.css'
@@ -20,6 +20,7 @@ import {Drawer, IconButton, Toolbar} from "@material-ui/core";
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ShareIcon from '@mui/icons-material/Share';
+import CmsContext from "../context/CmsContext"
 
 
 const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to}) => {
@@ -27,9 +28,11 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to}) => {
     const props = {
         heading
     }
+    const {headerData} = useContext(CmsContext);
+
     //calling button
-    const handleCallButton = () => {
-        window.location.href = `tel:${7698723169}`;
+    const handlePhoneCall = () => {
+        window.location.href = `tel:${+918147170055}`;
     };
 
     const [isOpen, setOpen] = useState(false);
@@ -397,7 +400,9 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to}) => {
                                             />
                                         </Box>
                                     }
-                                    <img src={telLogo} onClick={handleCallButton} className='telePhoneLogo'/>
+                                    {/*<a href="#" onClick={handlePhoneCall}>*/}
+                                        <img src={telLogo}  onClick={handlePhoneCall} className='telePhoneLogo'/>
+                                    {/*</a>*/}
                                 </Grid>
                             </Grid>
                         </Box>

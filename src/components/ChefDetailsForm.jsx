@@ -115,11 +115,11 @@ const ChefDetailsForm = (props) => {
             outline:'none',
             backgroundColor: "transparent",
             border: "0px",
-            borderBottom: "0.25px solid #FBFBFB",
+            // borderBottom: "0.25px solid #FBFBFB !important",
             borderRadius: "0px",
             // paddingLeft: "0px",
             paddingRight: "0px",
-            fontFamily: "Proxima Nova Alt",
+            fontFamily: "Proxima Nova Alt !important",
             fontStyle: "normal",
             fontWeight: "300",
             fontSize: "16px",
@@ -139,7 +139,7 @@ const ChefDetailsForm = (props) => {
             outline:'none',
             backgroundColor: "transparent",
             border: "0px",
-            // borderBottom: "0.25px solid #FBFBFB",
+            borderBottom: "0.25px solid #FBFBFB",
             borderRadius: "0px",
             // paddingLeft: "0px",
             paddingRight: "0px",
@@ -168,7 +168,7 @@ const ChefDetailsForm = (props) => {
             fontWeight: 600,
             fontSize: "16px",
             lineHeight: "19px",
-            padding: '0px 0px 18px 0px',
+            padding: '0px 0px 21px 0px',
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             color: '#FBFBFB',
@@ -379,9 +379,9 @@ const ChefDetailsForm = (props) => {
         },
         '.timer-drop-down':{
             position:'absolute',
-            right: '-2px',
+            right: '-9px',
             fontSize: '38px',
-            bottom: '0px'
+            bottom: '-2px !important'
         },
         '.gInfo-logo':{
             height:'16px',
@@ -391,9 +391,21 @@ const ChefDetailsForm = (props) => {
         '.css-1aa5qj0-MuiInputBase-root-MuiInput-root':{
             width:'100%'
         },
-        '.react-datepicker__input-container':{
-            borderBottom: "0.25px solid #FBFBFB",
+        '.css-rb2hiw ':{
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: "300",
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#FBFBFB",
+            padding: "0.375rem 0.75rem 0.375rem 0px",
+        },
+        '.css-10iatzg':{
+            width:'100%'
         }
+        // '.react-datepicker__input-container':{
+        //     borderBottom: "0.25px solid #FBFBFB",
+        // }
     }))
     const disabledStyle = {
         opacity: 0.5,
