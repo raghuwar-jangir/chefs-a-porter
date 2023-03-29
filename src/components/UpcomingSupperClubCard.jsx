@@ -153,6 +153,9 @@ const UpcomingSupperClubCard = () => {
         },
         '.link': {
             textDecoration: 'none'
+        },
+        "@media (min-width: 1px) and (max-width:767px)": {
+            gridTemplate: 'repeat(1,1fr) / repeat(1,1fr)'
         }
     })
     return (

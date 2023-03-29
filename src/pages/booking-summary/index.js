@@ -39,6 +39,7 @@ import output from "../../assets/images/output.png";
 import download from "../../assets/images/download.png";
 import useRazorpay from "react-razorpay";
 import { useCallback } from "react";
+import paymentLogo from '../../assets/images/logo-gold.png'
 
 const BookingSummary = () => {
   const validationSchema = Yup.object().shape({
@@ -76,9 +77,10 @@ const BookingSummary = () => {
       key: "rzp_test_MHRk336eUPGyWR",
       amount: 1000 * 100,
       currency: "INR",
-      name: "Acme Corp",
+      name: "Chefs-A-Porter",
       description: "Test Transaction",
-      image: "https://example.com/your_logo",
+      image: 'https://chefsaporter.com/assets/img/logo_black.svg',
+      theme: {color: '#C6A87D'},
 
       handler: (res) => {
         console.log("res",res);

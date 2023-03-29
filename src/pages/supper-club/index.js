@@ -94,8 +94,6 @@ const SupperClub = () => {
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'center'
-            // marginLeft:'1.5rem',
-            // marginRight:'1.5rem'
         },
         '.supper-box': {
             flex: '0 0 auto',
@@ -143,6 +141,13 @@ const SupperClub = () => {
             animationDuration: '1s',
             animationIterationCount: '1'
         },
+        '.tab-sec':{
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            fontSize: '20px',
+            lineHeight: '24px'
+        },
         '@keyframes fadeIn': {
             '0%': {opacity: '0'},
             '100%': {opacity: '1'}
@@ -159,10 +164,6 @@ const SupperClub = () => {
         '.cooking-tab': {
             height: '67.8px'
         },
-        // ".MuiTabList-root": {
-        //     width: "96% !important",
-        //     left: "2% !important",
-        // },
         '.what-we-cooking': {
             background: '#C2BAA6'
         },
@@ -175,7 +176,6 @@ const SupperClub = () => {
         '.table-box': {
             display: 'inline-flex',
             width: '100%'
-            // flexWrap:'wrap'
         },
         '.table-child': {
             flex: '0 0 auto',
@@ -261,6 +261,31 @@ const SupperClub = () => {
             fontSize: '20px !important',
             lineHeight: '24px !important',
             padding: '0px !important'
+        },
+        "@media (min-width: 1px) and (max-width:767px)": {
+            '.upcoming-container':{
+                padding:'40px 16px'
+            },
+            '.css-130r91k-JoyTabList-root':{
+                overflow:'auto'
+            },
+            '.cooking-box':{
+                padding:'40px 16px'
+            },
+            '.table-box':{
+                padding:'40px 16px'
+            },
+            '.MuiTab-variantPlain': {
+                fontSize: '14px',
+    lineHeight: '17px'
+            },
+            '.tab-sec':{
+                fontSize: '14px',
+                lineHeight: '17px'
+            },
+            '.cooking-tab':{
+                height:'auto'
+            }
         }
     }))
 
@@ -269,7 +294,7 @@ const SupperClub = () => {
             {
                 !_.isEmpty(data?.supper_club) &&
                 <MainBox>
-                    <NavbarComponent/>
+                    <NavbarComponent heading="Supper Club"/>
                     <Box className="home-banner">
                         <Box className="container-fluid">
                             <Box className="justify-content-center">
@@ -344,15 +369,15 @@ const SupperClub = () => {
                                     <TabList>
                                         <Tab className='cooking-tab' value={0}>
                                             This Week
-                                            <Typography>2-5 nov</Typography>
+                                            <Typography className="tab-sec">2-5 nov</Typography>
                                         </Tab>
                                         <Tab className='cooking-tab' value={1}>
                                             Next Week
-                                            <Typography>7-6 nov</Typography>
+                                            <Typography className="tab-sec">7-6 nov</Typography>
                                         </Tab>
                                         <Tab className='cooking-tab' value={2}>
                                             Next Month
-                                            <Typography>December</Typography>
+                                            <Typography className="tab-sec">December</Typography>
                                         </Tab>
                                     </TabList>
                                     <TabPanel value={0} sx={{p: 0}}>

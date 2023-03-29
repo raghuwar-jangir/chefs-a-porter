@@ -40,11 +40,29 @@ import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
 
 const EventDetails = (props) => {
-
-    // const getEventId = props?.params?.eventId;
     const getEventId = '640b22b691e7236a1d0a264e';
     const {setEventId, userData} = useContext(UsersContext);
+    // const getEventId = props?.params?.eventId;
 
+    const [imageData, setImageData] = useState([]);
+    useEffect(() => {
+        {
+            !_.isEmpty(userData?.user) &&
+            setImageData(userData.user.details.gallery_pictures)
+        }
+    }, [userData?.user])
+    console.log('imageData',imageData);
+    const imgData = imageData.map(item => {
+        return {image: item};
+    });
+    console.log('imageData',imgData);
+    const title1 = ['img1','img2'];
+    const rowOfObjects = title1.map(item => {
+        return {title1: item};
+    });
+    const finalImageData = imgData.map((item, i) => Object.assign({}, item, rowOfObjects[i]));
+    console.log("finalImageData",finalImageData);
+console.log('===>',userData?.user?.details?.gallery_pictures);
     useEffect(() => {
         setEventId(getEventId)
     }, [getEventId])
@@ -52,12 +70,16 @@ const EventDetails = (props) => {
     console.log("userData====>", userData)
 
     const [showCarousel, setShowCarousel] = useState(false);
-    const handleImageClick = () => {
+
+    const [title, setTitle] = useState('');
+    const handleImageOpen = (title) => {
         setShowCarousel(true);
+        setTitle(title);
     };
-    const handleCloseCarousel = () => {
+    const handleImageClose = () => {
         setShowCarousel(false);
     };
+
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -80,20 +102,19 @@ const EventDetails = (props) => {
         {
             img: chef1,
             title: "chef1",
-            rows: 2,
-            cols: 3,
         },
+    ];
+    
+    const itemData2= [
         {
             img: sGallery,
             title: "sGallery",
-            cols: 4,
         },
         {
             img: chef2,
             title: "chef2",
-            cols: 4,
         },
-    ];
+    ]
 
     const MainBox = styled(Box)(() => ({
         ".main-box": {
@@ -113,9 +134,10 @@ const EventDetails = (props) => {
         },
         ".main-img-1": {
             width: "100%",
-            height: "180px",
+            height: "185px",
             boxShadow: "0px 8px 16px rgb(0 0 0 / 16%)",
             objectFit: "cover",
+            marginBottom:'16px'
         },
         ".main-img-2": {
             width: "100%",
@@ -157,8 +179,8 @@ const EventDetails = (props) => {
         },
         ".show-btn": {
             position: "absolute",
-            bottom: "20px",
-            right: "27px",
+            bottom: "32px",
+            right: "29px",
             fontFamily: "ProximaNovaA-Regular",
             fontStyle: "normal",
             fontWeight: 400,
@@ -640,22 +662,27 @@ const EventDetails = (props) => {
                                 <Grid className="main-grid" container spacing={{md: 2}}>
                                     <Grid className="container-parent" item xl={7} md={7} sm={6} xs={12}>
                                         <Box className="container">
+                                        {itemData.map((item) => (
                                             <img
-                                                src={userData.cover_picture}
-                                                alt="RestorentImg"
+                                            src={userData.cover_picture}
+                                                alt={item.img}
                                                 className="main-img"
-                                                onClick={handleImageClick}
+                                                loading="lazy"
+                                                onClick={() => {
+                                                    handleImageOpen(item.title)
+                                                }}
                                             />
+                                        ))}
                                             {showCarousel && (
                                                 <Box className="carousel-popup">
                                                     <button
                                                         className="close-button"
-                                                        onClick={handleCloseCarousel}
+                                                        onClick={handleImageClose}
                                                     >
                                                         <CloseIcon className="pop-close-icon"/>
                                                     </button>
                                                     <Box className="carousel">
-                                                        <EventPopUpCarosuel/>
+                                                        <EventPopUpCarosuel title={title}/>
                                                     </Box>
                                                 </Box>
                                             )}
@@ -663,34 +690,44 @@ const EventDetails = (props) => {
                                     </Grid>
                                     <Grid item md={5} sm={6} xs={12} xl={5} className="next-grid">
                                         {
-                                            !_.isEmpty(userData?.user?.details?.gallery_pictures) &&
+                                            // !_.isEmpty(userData?.user?.details?.gallery_pictures) &&
                                             <Grid className="child-container" container spacing={2}>
-                                                {
+                                                {/* {
                                                     userData.user.details.gallery_pictures.map((item) => {
-                                                        return (
+                                                        return ( */}
                                                             <Grid className="item-img-1" item md={6} sm={6} xs={6} xl={6}>
+                                                            {finalImageData.map((item) => (
                                                                 <img
-                                                                    src={item}
-                                                                    alt="RestorentImg"
+                                                                src={item.image}
+                                                                alt={item.title1}
                                                                     className="main-img-1"
-                                                                    onClick={handleImageClick}
+                                                                    loading="lazy"
+                                                                    onClick={() => {
+                                                                        handleImageOpen(item.title1)
+                                                                    }}
                                                                 />
+                                                            ))}
                                                             </Grid>
-                                                        )
+                                                        {/* )
                                                     })
-                                                }
-                                                {
+                                                } */}
+                                                {/* {
                                                     userData.user.details.gallery_pictures.map((item) => {
-                                                        return (
+                                                        return ( */}
                                                             <Grid className="item-img-1" item md={6} sm={6} xs={6} xl={6}>
+                                                            {finalImageData.map((item) => (
                                                                 <img
-                                                                    src={item}
-                                                                    alt="RestorentImg"
-                                                                    className="main-img-1"
-                                                                    onClick={handleImageClick}
+                                                                     src={item.image}
+                                                                     alt={item.title1}
+                                                                         className="main-img-1"
+                                                                         loading="lazy"
+                                                                         onClick={() => {
+                                                                             handleImageOpen(item.title1)
+                                                                         }}
                                                                 />
-                                                                {userData.user.details.gallery_pictures.map((item, index) => {
-                                                                    return <span>{index !== userData.user.details.gallery_pictures.length - 1 && (
+                                                                ))}
+                                                                {/* {userData.user.details.gallery_pictures.map((item, index) => {
+                                                                    return <span>{index !== userData.user.details.gallery_pictures.length - 1 && ( */}
                                                                         <Button
                                                                             className="show-btn"
                                                                             onClick={handleOpen}
@@ -698,12 +735,12 @@ const EventDetails = (props) => {
                                                                             data-bs-target="#exampleModal">
                                                                             Show All Photos
                                                                         </Button>
-                                                                    )}</span>
-                                                                })}
+                                                                    {/* )}</span>
+                                                                })} */}
                                                             </Grid>
-                                                        )
+                                                        {/* )
                                                     })
-                                                }
+                                                } */}
                                             </Grid>
                                         }
 
