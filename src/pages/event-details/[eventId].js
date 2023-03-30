@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
     Box,
     Button,
@@ -10,9 +10,9 @@ import {
     TextField,
     TextareaAutosize,
 } from "@mui/material";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import {Formik, Form} from "formik";
-import {DatePickerInput} from "rc-datepicker";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Formik, Form } from "formik";
+import { DatePickerInput } from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
 import CloseIcon from "@mui/icons-material/Close";
 import Navbar from "../../components/NavbarComponent";
@@ -20,7 +20,7 @@ import Footer from "../../components/Footer";
 import FooterEnd from "../../components/FooterEndSection";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NeedHelp from "../../components/NeedHelp";
-import {isMobile, MobileView} from "react-device-detect";
+import { isMobile, MobileView } from "react-device-detect";
 import ImageCarousel from "../../components/ImageCarousel";
 import chef1 from "../../assets/images/chef5.png";
 import chef2 from "../../assets/images/chef6.png";
@@ -32,33 +32,36 @@ import ChefDetailsForm from "../../components/ChefDetailsForm";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
 import "../../assets/styles/fontStyle.css";
-import EventPopUpCarosuel from "../../components/EventPopUpCarosuel"
-import TemptedYet from '../../components/TemptedYet';
+import EventPopUpCarosuel from "../../components/EventPopUpCarosuel";
+import TemptedYet from "../../components/TemptedYet";
 import NeedHelpEvent from "../../components/NeedHelpEvent";
 import EventChefCarousel from "../../components/EventChefCarousel";
 import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
 
 const EventDetails = (props) => {
-
+    const getEventId = "640b22b691e7236a1d0a264e";
+    const { setEventId, userData } = useContext(UsersContext);
     // const getEventId = props?.params?.eventId;
-    const getEventId = '640b22b691e7236a1d0a264e';
-    const {setEventId, userData} = useContext(UsersContext);
 
     useEffect(() => {
-        setEventId(getEventId)
-    }, [getEventId])
+        setEventId(getEventId);
+    }, [getEventId]);
 
-    console.log("userData====>", userData)
+    console.log("userData====>", userData);
 
     const [showCarousel, setShowCarousel] = useState(false);
-    const handleImageClick = () => {
+
+    const [title, setTitle] = useState("");
+    const handleImageOpen = (title) => {
         setShowCarousel(true);
+        setTitle(title);
     };
-    const handleCloseCarousel = () => {
+    const handleImageClose = () => {
         setShowCarousel(false);
     };
-    const [open, setOpen] = useState(false);
+
+    const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const bread = {
@@ -78,20 +81,19 @@ const EventDetails = (props) => {
     ];
     const itemData = [
         {
-            img: chef1,
+            img: userData?.cover_picture,
             title: "chef1",
-            rows: 2,
-            cols: 3,
         },
+    ];
+
+    const itemData2 = [
         {
-            img: sGallery,
+            img: userData?.user.details.gallery_pictures[0],
             title: "sGallery",
-            cols: 4,
         },
         {
-            img: chef2,
+            img: userData?.user.details.gallery_pictures[1],
             title: "chef2",
-            cols: 4,
         },
     ];
 
@@ -113,9 +115,10 @@ const EventDetails = (props) => {
         },
         ".main-img-1": {
             width: "100%",
-            height: "180px",
+            height: "185px",
             boxShadow: "0px 8px 16px rgb(0 0 0 / 16%)",
             objectFit: "cover",
+            marginBottom: "16px",
         },
         ".main-img-2": {
             width: "100%",
@@ -157,8 +160,8 @@ const EventDetails = (props) => {
         },
         ".show-btn": {
             position: "absolute",
-            bottom: "20px",
-            right: "27px",
+            bottom: "32px",
+            right: "29px",
             fontFamily: "ProximaNovaA-Regular",
             fontStyle: "normal",
             fontWeight: 400,
@@ -202,9 +205,9 @@ const EventDetails = (props) => {
             marginBottom: "8px",
         },
         ".chef-name-rate": {
-            display: 'flex',
-            justifyContent: 'center',
-            placeItems: 'center',
+            display: "flex",
+            justifyContent: "center",
+            placeItems: "center",
             fontSize: "20px",
             lineHeight: "24px",
             fontWeight: 400,
@@ -258,7 +261,6 @@ const EventDetails = (props) => {
             position: "relative",
             fontFamily: "Proxima Nova Alt",
             fontStyle: "normal",
-            fontWeight: 300,
             fontSize: "20px",
             lineHeight: "24px",
             letterSpacing: "0.06em",
@@ -348,107 +350,107 @@ const EventDetails = (props) => {
             marginLeft: "0.5rem",
             marginRight: "0.5rem",
         },
-        '.item-img-1': {
-            paddingLeft: '10px !important',
-            paddingRight: '10px !important'
+        ".item-img-1": {
+            paddingLeft: "10px !important",
+            paddingRight: "10px !important",
         },
-        '.item-img-2': {
-            paddingLeft: '10px !important',
-            paddingRight: '10px !important'
+        ".item-img-2": {
+            paddingLeft: "10px !important",
+            paddingRight: "10px !important",
         },
-        '.container-parent': {
-            paddingRight: '5px !important'
+        ".container-parent": {
+            paddingRight: "5px !important",
         },
-        '@media(min-width: 425px) and (max-width: 768px)': {
-            '.container-parent': {
-                flex: '0 0 auto',
-                maxWidth: '58.333333%'
+        "@media(min-width: 425px) and (max-width: 768px)": {
+            ".container-parent": {
+                flex: "0 0 auto",
+                maxWidth: "58.333333%",
             },
-            '.next-grid': {
-                flex: '0 0 auto',
-                width: '41.66666667%'
-            }
+            ".next-grid": {
+                flex: "0 0 auto",
+                width: "41.66666667%",
+            },
         },
-        '@media(min-width: 1px) and (max-width: 768px)': {
-            '.grid-box-2': {
-                display: 'flex',
-                flexDirection: 'column'
+        "@media(min-width: 1px) and (max-width: 768px)": {
+            ".grid-box-2": {
+                display: "flex",
+                flexDirection: "column",
             },
-            '.grid-item': {
-                maxWidth: '100%',
-                paddingRight: '0px'
+            ".grid-item": {
+                maxWidth: "100%",
+                paddingRight: "0px",
             },
-            '.grid-child-box': {
-                maxWidth: '100%'
+            ".grid-child-box": {
+                maxWidth: "100%",
             },
         },
         "@media (min-width: 1px) and (max-width:425px)": {
-            '.main-grid': {
-                display: 'none'
+            ".main-grid": {
+                display: "none",
             },
-            '.main-box': {
-                padding: '40px 0px 0px'
+            ".main-box": {
+                padding: "40px 0px 0px",
             },
-            '.breadcrumbs-heading': {
-                display: 'none'
+            ".breadcrumbs-heading": {
+                display: "none",
             },
-            '.star-box': {
-                padding: '0px 16px',
-                justifyContent: 'space-between'
+            ".star-box": {
+                padding: "0px 16px",
+                justifyContent: "space-between",
             },
-            '.chef-name': {
-                fontSize: '20px',
-                lineHeight: '25px',
+            ".chef-name": {
+                fontSize: "20px",
+                lineHeight: "25px",
             },
-            '.chef-name-rate': {
-                fontSize: '18px',
-                lineHeight: '22px'
+            ".chef-name-rate": {
+                fontSize: "18px",
+                lineHeight: "22px",
             },
-            '.chef-details': {
-                flexFlow: 'wrap',
-                padding: '0px 16px',
-                marginBottom: '8px'
+            ".chef-details": {
+                flexFlow: "wrap",
+                padding: "0px 16px",
+                marginBottom: "8px",
             },
-            '.chef-details-by': {
-                fontSize: '14px',
-                lineHeight: '17px'
+            ".chef-details-by": {
+                fontSize: "14px",
+                lineHeight: "17px",
             },
-            '.detail-1': {
-                fontSize: '14px',
-                lineHeight: '17px',
+            ".detail-1": {
+                fontSize: "14px",
+                lineHeight: "17px",
                 fontWeight: 300,
-                textDecoration: 'underline',
-                paddingLeft: '5px'
+                textDecoration: "underline",
+                paddingLeft: "5px",
             },
-            '.line': {
-                display: 'none'
+            ".line": {
+                display: "none",
             },
-            '.grid-child-box': {
-                display: 'none'
+            ".grid-child-box": {
+                display: "none",
             },
-            '.invite-btn': {
-                width: '114px'
+            ".invite-btn": {
+                width: "114px",
             },
-            '.template': {
-                background: '#080B0E'
+            ".template": {
+                background: "#080B0E",
             },
-            '.template-title': {
-                color: '#FBFBFB !important'
-            }
+            ".template-title": {
+                color: "#FBFBFB !important",
+            },
         },
         "@media (min-width: 1px) and (max-width:320px)": {
-            '.invite-btn': {
-                width: '80px'
-            }
-        },
-        '@media(min-width:600px) and (max-width: 768px)': {
-            '.template': {
-                backgroundColor: '#FBFBFB !important'
+            ".invite-btn": {
+                width: "80px",
             },
-            '.template-title': {
-                color: '#080B0E !important'
-            }
-        }
+        },
+        "@media(min-width:600px) and (max-width: 768px)": {
+            ".template": {
+                backgroundColor: "#FBFBFB !important",
+            },
+            ".template-title": {
+                color: "#080B0E !important",
+            },
+        },
     }));
     const style = {
         position: "absolute",
@@ -571,15 +573,16 @@ const EventDetails = (props) => {
     return (
         <React.Fragment>
             <MainBox>
-                {
-                    !_.isEmpty(userData) &&
+                {!_.isEmpty(userData) && (
                     <>
-                        <Navbar to={'/event-details'} isColor={true}/>
+                        <Navbar to={"/event-details"} isColor={true} />
                         <Box className="main-box">
                             {isMobile ? (
                                 <Box className="header-club">
-                                    <ArrowBackIcon className="header-icon"/>
-                                    <Typography className="chef-mobile-heading">Privée</Typography>
+                                    <ArrowBackIcon className="header-icon" />
+                                    <Typography className="chef-mobile-heading">
+                                        Privée
+                                    </Typography>
                                 </Box>
                             ) : (
                                 ""
@@ -588,7 +591,7 @@ const EventDetails = (props) => {
                                 <Box className="row supper-chef-details">
                                     <Box className="details">
                                         <Breadcrumbs
-                                            separator={<ChevronRightIcon className="chevron-right"/>}
+                                            separator={<ChevronRightIcon className="chevron-right" />}
                                             aria-label="breadcrumb"
                                             color="white"
                                             className="breadcrumbs-heading"
@@ -600,14 +603,13 @@ const EventDetails = (props) => {
                                                 {userData.title}
                                             </Typography>
                                             <Typography className="chef-name-rate">
-                                                <img className="star-logo" src={star}/>
+                                                <img className="star-logo" src={star} />
                                                 4.7
                                             </Typography>
                                         </Box>
                                         <Box className="chef-details">
                                             <Typography className="chef-details-by">by</Typography>
-                                            {
-                                                !_.isEmpty(userData?.user) &&
+                                            {!_.isEmpty(userData?.user) && (
                                                 <>
                                                     <Link href="/chef-details" className="detail-1">
                                                         {userData.user.name}
@@ -617,7 +619,7 @@ const EventDetails = (props) => {
                                                         Starting from ₹{userData.price_per_course} per diner
                                                     </Typography>
                                                 </>
-                                            }
+                                            )}
                                         </Box>
                                     </Box>
                                 </Box>
@@ -626,36 +628,50 @@ const EventDetails = (props) => {
                                         {userData.title}
                                     </Typography>
                                 </Box>
-                                <ImageCarousel/>
-                                {
-                                    !_.isEmpty(userData?.user) &&
+                                <ImageCarousel />
+                                {!_.isEmpty(userData?.user) && (
                                     <Box className="mobileView-chef">
                                         <Typography className="chef-details mbl-chef-name">
-                                            by {userData.user.name}<b> Starting from ₹{userData.price_per_course} per
-                                            diner</b>
+                                            by {userData.user.name}
+                                            <b>
+                                                {" "}
+                                                Starting from ₹{userData.price_per_course} per diner
+                                            </b>
                                         </Typography>
                                     </Box>
-                                }
+                                )}
 
-                                <Grid className="main-grid" container spacing={{md: 2}}>
-                                    <Grid className="container-parent" item xl={7} md={7} sm={6} xs={12}>
+                                <Grid className="main-grid" container spacing={{ md: 2 }}>
+                                    <Grid
+                                        className="container-parent"
+                                        item
+                                        xl={7}
+                                        md={7}
+                                        sm={6}
+                                        xs={12}
+                                    >
                                         <Box className="container">
-                                            <img
-                                                src={userData.cover_picture}
-                                                alt="RestorentImg"
-                                                className="main-img"
-                                                onClick={handleImageClick}
-                                            />
+                                            {itemData.map((item) => (
+                                                <img
+                                                    src={item.img}
+                                                    alt={item.title}
+                                                    className="main-img"
+                                                    loading="lazy"
+                                                    onClick={() => {
+                                                        handleImageOpen(item.title);
+                                                    }}
+                                                />
+                                            ))}
                                             {showCarousel && (
                                                 <Box className="carousel-popup">
                                                     <button
                                                         className="close-button"
-                                                        onClick={handleCloseCarousel}
+                                                        onClick={handleImageClose}
                                                     >
-                                                        <CloseIcon className="pop-close-icon"/>
+                                                        <CloseIcon className="pop-close-icon" />
                                                     </button>
                                                     <Box className="carousel">
-                                                        <EventPopUpCarosuel/>
+                                                        <EventPopUpCarosuel title={title} />
                                                     </Box>
                                                 </Box>
                                             )}
@@ -663,62 +679,67 @@ const EventDetails = (props) => {
                                     </Grid>
                                     <Grid item md={5} sm={6} xs={12} xl={5} className="next-grid">
                                         {
-                                            !_.isEmpty(userData?.user?.details?.gallery_pictures) &&
                                             <Grid className="child-container" container spacing={2}>
-                                                {
-                                                    userData.user.details.gallery_pictures.map((item) => {
-                                                        return (
-                                                            <Grid className="item-img-1" item md={6} sm={6} xs={6}
-                                                                  xl={6}>
-                                                                <img
-                                                                    src={item}
-                                                                    alt="RestorentImg"
-                                                                    className="main-img-1"
-                                                                    onClick={handleImageClick}
-                                                                />
-                                                            </Grid>
-                                                        )
-                                                    })
-                                                }
-                                                {
-                                                    userData.user.details.gallery_pictures.map((item) => {
-                                                        return (
-                                                            <Grid className="item-img-1" item md={6} sm={6} xs={6}
-                                                                  xl={6}>
-                                                                <img
-                                                                    src={item}
-                                                                    alt="RestorentImg"
-                                                                    className="main-img-1"
-                                                                    onClick={handleImageClick}
-                                                                />
-                                                                {userData.user.details.gallery_pictures.map((item, index) => {
-                                                                    return <span>{index !== userData.user.details.gallery_pictures.length - 1 && (
-                                                                        <Button
-                                                                            className="show-btn"
-                                                                            onClick={handleOpen}
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#exampleModal">
-                                                                            Show All Photos
-                                                                        </Button>
-                                                                    )}</span>
-                                                                })}
-                                                            </Grid>
-                                                        )
-                                                    })
-                                                }
+                                                <Grid
+                                                    className="item-img-1"
+                                                    item
+                                                    md={6}
+                                                    sm={6}
+                                                    xs={6}
+                                                    xl={6}
+                                                >
+                                                    {itemData2.map((item) => (
+                                                        <img
+                                                            src={item.img}
+                                                            alt={item.title}
+                                                            className="main-img-1"
+                                                            loading="lazy"
+                                                            onClick={() => {
+                                                                handleImageOpen(item.title);
+                                                            }}
+                                                        />
+                                                    ))}
+                                                </Grid>
+                                                <Grid
+                                                    className="item-img-1"
+                                                    item
+                                                    md={6}
+                                                    sm={6}
+                                                    xs={6}
+                                                    xl={6}
+                                                >
+                                                    {itemData2.map((item) => (
+                                                        <img
+                                                            src={item.img}
+                                                            alt={item.img}
+                                                            className="main-img-1"
+                                                            loading="lazy"
+                                                            onClick={() => {
+                                                                handleImageOpen(item.title);
+                                                            }}
+                                                        />
+                                                    ))}
+                                                    <Button
+                                                        className="show-btn"
+                                                        onClick={handleOpen}
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal"
+                                                    >
+                                                        Show All Photos
+                                                    </Button>
+                                                </Grid>
                                             </Grid>
                                         }
-
                                     </Grid>
                                 </Grid>
-                                <Grid className="grid-box-2" container spacing={{md: 2}}>
+                                <Grid className="grid-box-2" container spacing={{ md: 2 }}>
                                     <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
-                                        <EventCard/>
-                                        <EventChefCarousel/>
+                                        <EventCard />
+                                        <EventChefCarousel />
                                         <SupperClubDetailsCarousel
-                                            mainBox={{padding: "40px 0px"}}
-                                            changeDetails={{fontSize: "16px"}}
-                                            changeFont={{fontSize: "20px"}}
+                                            mainBox={{ padding: "40px 0px" }}
+                                            changeDetails={{ fontSize: "16px" }}
+                                            changeFont={{ fontSize: "20px" }}
                                             backgroundColor="#DCD7CB"
                                         />
                                         <Box className="last-contain">
@@ -741,7 +762,7 @@ const EventDetails = (props) => {
                                         xs={12}
                                         xl={5}
                                     >
-                                        <ChefDetailsForm/>
+                                        <ChefDetailsForm />
                                     </Grid>
                                 </Grid>
                             </Box>
@@ -769,27 +790,35 @@ const EventDetails = (props) => {
                                             className="close"
                                             onClick={handleClose}
                                         >
-                                            <CloseIcon/>
+                                            <CloseIcon />
                                         </button>
                                     </Box>
                                     <Box className="container-fluid">
                                         <Formik
                                             initialValues={{
                                                 day: new Date(),
-                                                time: new Date().getHours() + ":" + new Date().getMinutes(),
+                                                time:
+                                                    new Date().getHours() + ":" + new Date().getMinutes(),
                                                 contactNumber: "",
                                                 queryMessage: "",
                                             }}
                                             onSubmit={(values) => {
                                                 const experienceData = {
                                                     ...values,
-                                                    day: moment(_.get(values, "day")).format("ddd,DD MMM "),
+                                                    day: moment(_.get(values, "day")).format(
+                                                        "ddd,DD MMM "
+                                                    ),
                                                 };
                                                 console.log("value===>", values);
-                                                console.log("===>", experienceData);
+                                                console.log("experienceData===>", experienceData);
                                             }}
                                         >
-                                            {({values, handleChange, handleSubmit, setFieldValue}) => (
+                                            {({
+                                                  values,
+                                                  handleChange,
+                                                  handleSubmit,
+                                                  setFieldValue,
+                                              }) => (
                                                 <Form onSubmit={handleSubmit}>
                                                     <Box className="row">
                                                         <Box className="mb-3">
@@ -869,7 +898,7 @@ const EventDetails = (props) => {
                                                         <button
                                                             className="btn btn-primary"
                                                             type="submit"
-                                                            style={{width: "100% !important"}}
+                                                            style={{ width: "100% !important" }}
                                                         >
                                                             Apply
                                                         </button>
@@ -881,13 +910,17 @@ const EventDetails = (props) => {
                                 </Box>
                             </Box>
                         </Modal>
-                        <NeedHelpEvent isColor={true}/>
-                        <TemptedYet title={'Tempted yet?'} buttonText='Book this Experience' isTempted={false}/>
-                        <NeedHelp/>
-                        <Footer/>
-                        <FooterEnd/>
+                        <NeedHelpEvent isColor={true} />
+                        <TemptedYet
+                            title={"Tempted yet?"}
+                            buttonText="Book this Experience"
+                            isTempted={false}
+                        />
+                        <NeedHelp />
+                        <Footer />
+                        <FooterEnd />
                     </>
-                }
+                )}
             </MainBox>
         </React.Fragment>
     );
