@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, useState, useContext} from "react";
 import {Box} from "@mui/system";
 import styled from "styled-components";
 import {Typography} from "@mui/material";
@@ -9,9 +9,12 @@ import image4 from '../assets/images/ig4.png';
 import image5 from '../assets/images/ig5.png';
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
+import CmsContext from "../context/CmsContext";
+import * as _ from "lodash";
 
 const DiningExperienceCarousel = (props) => {
-    const {title,subTitle,titleBox,linkTitle} = props
+    const {title, subTitle, titleBox, linkTitle} = props
+    const {data} = useContext(CmsContext)
     const WrapBox = styled(Box)({
         '.main-box': {
             background: '#101418',
@@ -46,9 +49,9 @@ const DiningExperienceCarousel = (props) => {
             height: '230.54px',
             objectFit: 'cover'
         },
-        '.title-box':[{
-            display:'content'
-        },titleBox],
+        '.title-box': [{
+            display: 'content'
+        }, titleBox],
         "@media (min-width: 1px) and (max-width:768px)": {
             '.main-box': {
                 display: 'none'
@@ -58,26 +61,83 @@ const DiningExperienceCarousel = (props) => {
     return (
         <WrapBox>
             <Box className='main-box'>
-                <Box className='title-box'>
-                    <Typography className="peek-heading">{title}</Typography>
-                    <Typography className="peek-name">{subTitle}</Typography>
-                </Box>
-                <Box className='slider-box'>
-                    <Swiper
-                        slidesPerView={6}
-                        spaceBetween={8}
-                        className="mySwiper"
-                    >
+                {
+                    !_.isEmpty(data?.home) &&
+                    <>
+                        <Box>
+                            <Typography className="peek-heading">{data.home.private_dining.title}</Typography>
+                            <Typography className="peek-name">@Privée</Typography>
+                        </Box>
+                        <Box className='slider-box'>
+                            <Swiper
+                                // slidesPerView={6}
+                                // spaceBetween={8}
+                                className="mySwiper"
+                                breakpoints={{
+                                    320: {
+                                        slidesPerView: 3,
+                                        spaceBetween: 8,
+                                    },
+                                    375: {
+                                        slidesPerView: 3,
+                                        spaceBetween: 8,
+                                    },
+                                    425: {
+                                        slidesPerView: 3,
+                                        spaceBetween: 8,
+                                    },
+                                    768: {
+                                        slidesPerView: 6,
+                                        spaceBetween: 8,
+                                    },
+                                    1024: {
+                                        slidesPerView: 6,
+                                        spaceBetween: 8,
+                                    },
+                                    1440: {
+                                        slidesPerView: 6,
+                                        spaceBetween: 8,
+                                    },
+                                    2560: {
+                                        slidesPerView: 6,
+                                        spaceBetween: 8,
+                                    },
+                                }}>
+                                {data.home.private_dining.images.map((item) => {
+                                    return (
+                                        <SwiperSlide><img className="img" src={item}/></SwiperSlide>
+                                    )
 
-                        <SwiperSlide><img className="img" src={image1}/></SwiperSlide>
-                        <SwiperSlide><img className="img" src={image2}/></SwiperSlide>
-                        <SwiperSlide><img className="img" src={image3}/></SwiperSlide>
-                        <SwiperSlide><img className="img" src={image4}/></SwiperSlide>
-                        <SwiperSlide><img className="img" src={image5}/></SwiperSlide>
-                        <SwiperSlide><img className="img" src={image2}/></SwiperSlide>
-                        <SwiperSlide><img className="img" src={image5}/></SwiperSlide>
-                    </Swiper>
-                </Box>
+                                })}
+                            </Swiper>
+                        </Box>
+                    </>
+                }
+                {
+                    _.isEmpty(data?.home) &&
+                    <>
+                        <Box className='title-box'>
+                            <Typography className="peek-heading">{title}</Typography>
+                            <Typography className="peek-name">{subTitle}</Typography>
+                        </Box>
+                        <Box className='slider-box'>
+                            <Swiper
+                                slidesPerView={6}
+                                spaceBetween={8}
+                                className="mySwiper"
+                            >
+                                <SwiperSlide><img className="img" src={image1}/></SwiperSlide>
+                                <SwiperSlide><img className="img" src={image2}/></SwiperSlide>
+                                <SwiperSlide><img className="img" src={image3}/></SwiperSlide>
+                                <SwiperSlide><img className="img" src={image4}/></SwiperSlide>
+                                <SwiperSlide><img className="img" src={image5}/></SwiperSlide>
+                                <SwiperSlide><img className="img" src={image2}/></SwiperSlide>
+                                <SwiperSlide><img className="img" src={image5}/></SwiperSlide>
+                            </Swiper>
+                        </Box>
+                    </>
+                }
+
             </Box>
         </WrapBox>
     )

@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import {
-  Box,
-  Grid,
-  Modal,
-  styled,
-  Typography,
-  TextField,
-  TextareaAutosize,
-  Checkbox,
+    Box,
+    Grid,
+    Modal,
+    styled,
+    Typography,
+    TextField,
+    TextareaAutosize,
+    Checkbox,
 } from "@mui/material";
 import Navbar from "../../components/NavbarComponent";
 import add1 from "../../assets/images/add1.png";

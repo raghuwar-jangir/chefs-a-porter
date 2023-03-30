@@ -140,43 +140,89 @@ const SupperClubDetailsCarousel = ({backgroundColor, changeFont, changeDetails, 
                     pagination={{
                         clickable: true,
                     }} modules={[Autoplay, Pagination]} className="mySwiper">
-                {userData?.feedbacks?.map((item, index) => (
-                    <div key={index}>
-                        <SwiperSlide className='main-div'>
-                            <Typography className='mainTitle'>
-                                {/* {item.title.split('')} */}
-                                {item.title.replace(',', ',\n')}
-                                {/* {console.log("=====>",item.title.replace(',', '\n'))} */}
-                            </Typography>
-                            <Typography
-                                className='star'
-                            >
-                                <Rating
-                                    sx={{
-                                        color: '#222222',
-                                        borderColor: '#222222'
-                                    }}
-                                    name="simple-controlled"
-                                    value={item.rating}
-                                    // value={value}
-                                    // onChange={(newValue) => {
-                                    //     setValue(newValue);
-                                    // }}
-                                    size="large"
-                                />
-                            </Typography>
-                            <Typography className='details'>
-                                {item.description.replace('.', '.\n')}
-                            </Typography>
-                            <Typography className='ceoName'>
-                                {item.from}
-                            </Typography>
-                        </SwiperSlide>
+                {!_.isEmpty(userData?.feedbacks) &&
+                    <div>
+                        {userData?.feedbacks?.map((item, index) => (
+                            <div key={index}>
+                                <SwiperSlide className='main-div'>
+                                    <Typography className='mainTitle'>
+                                        {item.title.replace(',', ',\n')}
+                                    </Typography>
+                                    <Typography
+                                        className='star'
+                                    >
+                                        <Rating
+                                            sx={{
+                                                color: '#222222',
+                                                borderColor: '#222222'
+                                            }}
+                                            name="simple-controlled"
+                                            value={item.rating}
+                                            // value={value}
+                                            // onChange={(newValue) => {
+                                            //     setValue(newValue);
+                                            // }}
+                                            size="large"
+                                        />
+                                    </Typography>
+                                    <Typography className='details'>
+                                        {item.description.replace('.', '.\n')}
+                                    </Typography>
+                                    <Typography className='ceoName'>
+                                        {item.from}
+                                    </Typography>
+                                </SwiperSlide>
+                            </div>
+                        ))}
                     </div>
-                ))}
+                }
+                {
+                    _.isEmpty(userData?.feedbacks) &&
+                    <div>{images.map((step, index) => (
+                        <div key={index}>
+                            <SwiperSlide className='main-div'>
+                                <Typography className='mainTitle'>
+                                    {step.mainTitle}
+                                </Typography>
+                                <Typography className='mainTitle'>
+                                    {step.subTitle}
+                                </Typography>
+                                <Typography
+                                    className='star'
+                                >
+                                    <Rating
+                                        sx={{
+                                            color: '#222222',
+                                            borderColor: '#222222'
+                                        }}
+                                        name="simple-controlled"
+                                        value={value}
+                                        onChange={(newValue) => {
+                                            setValue(newValue);
+                                        }}
+                                        size="large"
+                                    />
+                                </Typography>
+                                <Typography className='details'>
+                                    {step.details}
+                                </Typography>
+                                <Typography className='details'>
+                                    {step.details2}
+                                </Typography>
+                                <Typography >
+                                    {step.name}
+                                </Typography>
+                                <Typography className='ceoName'>
+                                    {step.ceoName}
+                                </Typography>
+                            </SwiperSlide>
+                        </div>
+                    ))}</div>
+                }
+
+
             </Swiper>
         </BoxWrapper>
     );
 }
-
 export default SupperClubDetailsCarousel;

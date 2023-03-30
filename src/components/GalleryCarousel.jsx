@@ -1,10 +1,12 @@
-import { Box, Stack, styled, Typography } from '@mui/material';
-import React, { useRef, useState }  from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import {Box, Stack, styled, Typography} from '@mui/material';
+import React, {useContext, useRef, useState} from 'react';
+import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 import { Autoplay, Pagination} from "swiper";
 import "swiper/css/pagination";
 import diningPicture from '../assets/images/cook1.png'
+import UsersContext from "../context/UsersContext";
+import * as _ from "lodash";
 
 const MainContentBox = styled(Box)({
     backgroundColor: '#101418',
@@ -60,7 +62,7 @@ const MainContentBox = styled(Box)({
         position:'relative'
     },
     '.swiper-pagination-bullet-active:before':{
-        backgroundColor:'##C6A87D', 
+        backgroundColor:'##C6A87D',
         '-webkit-animation': 'backgroundLinera 5s linear',
        ' animation': 'backgroundLinera 5s linear',
         position: 'absolute',
@@ -151,7 +153,7 @@ const MainContentBox = styled(Box)({
         backgroundColor: '#C6A87D',
         opacity: '1',
         positionX: 'end'
-    }, 
+    },
     '@keyframes load': {
         '0%': {
             // background: '#FBFBFB',
@@ -230,39 +232,54 @@ const MainContentBox = styled(Box)({
 })
 
 const GalleryCarousel = (props) => {
-    let labels = ['Conscious Dining', 'Championing Chefs', 'Community'];
+
+    const {userData} = useContext(UsersContext);
+
+    const labels = userData?.details?.sliders?.map((item) => {
+        return item.text
+    })
+
+    const image = userData?.details?.sliders?.map((item) => {
+        return item.image
+    })
+    // let labels = ['Conscious Dining', 'Championing Chefs', 'Community'];
     return (
         <React.Fragment>
             <MainContentBox>
-                <Typography className="dining-title">
-                    {props.title}
-                </Typography>
-                <Swiper
-       slidesPerView={1}
-       spaceBetween={30}
-       loop={true}
-       pagination={{
-         clickable: true,
-         renderBullet: function (index, className) {
-            return '<div class="' + className + '">' + (labels[index]) + 
-           '</div>';
-          
-          },
-       }}
-       autoplay={{
-        delay: 8000,
-        disableOnInteraction: false,
-    }}
-    speed={500}
-       navigation={false}
-       modules={[Pagination,Autoplay]}
-       className="mySwiper"
-    >
-      <SwiperSlide><img className='img' src={props.image}></img></SwiperSlide>
-      <SwiperSlide><img className='img'  src={props.image}></img></SwiperSlide>
-      <SwiperSlide><img className='img' src={props.image}></img></SwiperSlide>
-      ...
-    </Swiper>
+                {
+                    !_.isEmpty(userData) &&
+                    <>
+                        <Typography className="dining-title">
+                            {props.title}
+                        </Typography>
+                        <Swiper
+                            slidesPerView={1}
+                            spaceBetween={30}
+                            loop={true}
+                            pagination={{
+                                clickable: true,
+                                renderBullet: function (index, className) {
+                                    return '<div class="' + className + '">' + (labels[index]) +
+                                        '</div>';
+
+                                },
+                            }}
+                            autoplay={{
+                                delay: 8000,
+                                disableOnInteraction: false,
+                            }}
+                            speed={500}
+                            navigation={false}
+                            modules={[Pagination, Autoplay]}
+                            className="mySwiper"
+                        >
+                            {image.map((item) => {
+                                return <SwiperSlide><img className='img' src={item}></img></SwiperSlide>
+                            })}
+                            ...
+                        </Swiper>
+                    </>
+                }
             </MainContentBox>
         </React.Fragment>
     )

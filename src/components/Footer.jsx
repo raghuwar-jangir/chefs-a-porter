@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
     Box, styled, TextField, Typography, List, ListItemIcon, Grid, Link
 } from '@mui/material';
@@ -279,7 +279,7 @@ const Footer = () => {
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <Link href="/" className='listItem-subheading'>Join as Community</Link>
+                                        <Link href="/" className='listItem-subheading'>Join our Community</Link>
                                     </List>
                                 </Box>
                             </Grid>

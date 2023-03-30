@@ -192,20 +192,20 @@ const ChefDetails = (props) => {
                 textTransform:'math-auto'
             },
             '.all-photos:hover': {
-                fontFamily: 'ProximaNovaA-Regular',
-                fontStyle: 'normal',
-                fontWeight: '400',
-                fontSize: '16px',
-                lineHeight: '19px',
-                color: '#080B0E',
-                textDecoration: 'none',
-                background: '#FBFBFB',
-                boxShadow: '0px 20px 24px rgb(0 0 0 / 6%)',
-                padding: '8px 12px',
-                position: 'absolute',
-                bottom: '22px',
-                right: '18px',
-                borderRadius: '1px',
+                position: "absolute",
+                bottom: "20px",
+                right: "27px",
+                fontFamily: "ProximaNovaA-Regular",
+                fontStyle: "normal",
+                fontWeight: 400,
+                fontSize: "16px",
+                lineHeight: "19px",
+                color: "#080B0E",
+                textTransform: "math-auto",
+                background: "#FBFBFB",
+                boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
+                borderRadius: "1px",
+                padding: "8px 12px",
             },
             '.read-more-less--more, .read-more-less--less': {
                 all: 'unset',
@@ -687,11 +687,11 @@ const ChefDetails = (props) => {
                                     </Box>
                                 </Box>
                                 <Box className="mobileView-chef">
-                                    <Typography className="chef-name mbl-chef-name">{userData.name}</Typography>
+                                    <Typography className="chef-name mbl-chef-name">{userData?.name}</Typography>
                                 </Box>
                                 <Box className="gallery-carousel"><ImageCarousel/></Box>
                                 <Box className="mobileView-chef">
-                                    <Typography className="chef-details mbl-chef-name">Specialty:<b> Thai,
+                                    <Typography className="chef-details mbl-chef-name">Specialty: <b> Thai,
                                         Japanese</b></Typography>
                                 </Box>
                                 <Box>
@@ -755,12 +755,12 @@ const ChefDetails = (props) => {
                                                             <Box className='about-container'>
                                                                 <img src={party} className="about-chef-icon" alt=""/>
                                                                 <Typography className="about-chef-details">Fun
-                                                                    facts: <b>{userData.details.fun_fact}</b></Typography>
+                                                                    facts: <b>{userData?.details?.fun_fact}</b></Typography>
                                                             </Box>
                                                             <Box className='about-container'>
                                                                 <img src={work} className="about-chef-icon" alt=""/>
                                                                 <Typography className="about-chef-details">Worked
-                                                                    at: <b>{userData.details.worked_at}</b></Typography>
+                                                                    at: <b>{userData?.details?.worked_at}</b></Typography>
                                                             </Box>
                                                             <Box className='about-container'>
                                                                 <img src={culinary} className="about-chef-icon" alt=""/>
@@ -832,7 +832,7 @@ const ChefDetails = (props) => {
                                 <SupperClubDetailsCarousel changeDetails={{fontSize: '16px'}}
                                                            changeFont={{fontSize: '20px'}}
                                                            backgroundColor='#DCD7CB'/>
-                                <GalleryCarousel image={chef1} title={'Gallery'}/>
+                                <GalleryCarousel title={'Gallery'}/>
                                 <Box className="chef-btn book-now">
                                     <Link href="/our-chefs" className="view-all-gallery">View More Chef</Link>
                                 </Box>

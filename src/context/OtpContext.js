@@ -9,25 +9,44 @@ const defaultState = {
 }
 
 const OtpContext = React.createContext(defaultState)
-
 const OtpProvider = (props) => {
 
-    const baseUrl = `https://chefv2.hypervergedemo.site/v1`
-    const [otpData, setOtpData] = useState()
+    const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
+    // const [otpData, setOtpData] = useState();
+    const [otpNumber, setOtpNumber] = useState();
+    const [verifyOtp, setVerifyOtp] = useState();
+    const [resendOtp, setResendOtp] = useState();
 
     useEffect(() => {
-        axios.post(baseUrl + `/util/sendotp`).then(result => {
-            setOtpData(result.data)
-        })
-    }, [])
-
-    console.log("otpData===", otpData)
+        if (otpNumber) {
+            axios.post(baseUrl + `/util/sendotp`, {
+                mobile: otpNumber,
+                otp: '',
+            })
+            setOtpNumber(null)
+        } else if (verifyOtp) {
+            axios.post(baseUrl + '/util/verifyotp', {
+                mobile: otpNumber,
+                otp: '',
+            })
+            setVerifyOtp(null)
+        } else if (resendOtp) {
+            axios.post(baseUrl + '/util/resendotp', {
+                mobile: otpNumber,
+                otp: '',
+            })
+            setResendOtp(null)
+        }
+    }, [otpNumber, verifyOtp, resendOtp])
 
     const {children} = props
     return (
         <OtpContext.Provider
             value={{
-                otpData,
+                // otpData,
+                setOtpNumber,
+                setVerifyOtp,
+                setResendOtp
             }}
         >
             {children}

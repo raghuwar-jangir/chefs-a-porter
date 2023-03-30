@@ -952,7 +952,7 @@ const PriveePage = (props) => {
                             <button type="submit" className="exp-btn">View More</button>
                         </Box>
                         <PriveeRatingCarousel backgroundColor={'#DCD7CB'} isFontSize={true}/>
-                        <PriveeComponentSlider title={data.privee.private_dining.title}/>
+                        <PriveeComponentSlider/>
                         <Box className="frequently-questions-box">
                             <PriveeQuestions/>
                         </Box>

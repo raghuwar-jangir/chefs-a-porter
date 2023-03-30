@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Box, styled, Typography} from "@mui/material";
 import image1 from '../assets/images/ig1.png';
 import image2 from '../assets/images/ig2.png';
@@ -8,8 +8,12 @@ import image5 from '../assets/images/ig5.png';
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import '../assets/styles/fontStyle.css'
+import CmsContext from "../context/CmsContext";
+import * as _ from "lodash";
 
 const  PriveeComponentSlider = (props) => {
+    const {data} = useContext(CmsContext);
+
     const WrapBox = styled(Box) ({
         '.main-box':{
             background: '#101418',
@@ -91,55 +95,58 @@ const  PriveeComponentSlider = (props) => {
     return(
         <WrapBox>
             <Box className='main-box'>
-                <Box>
-                    <Typography className="peek-heading">{props.title}</Typography>
-                    <Typography className="peek-name">@Privée</Typography>
-                </Box>
-                <Box className='slider-box'>
-                    <Swiper
-                        // slidesPerView={6}
-                        // spaceBetween={8}
-                        className="mySwiper"
-                        breakpoints={{
-                            320:{
-                                slidesPerView:3,
-                                spaceBetween: 8,
-                            },
-                            375:{
-                                slidesPerView:3,
-                                spaceBetween: 8,
-                            },
-                            425: {
-                                slidesPerView:3,
-                                spaceBetween: 8,
-                            },
-                            768: {
-                                slidesPerView: 6,
-                                spaceBetween: 8,
-                            },
-                            1024: {
-                                slidesPerView: 6,
-                                spaceBetween: 8,
-                            },
-                            1440: {
-                                slidesPerView: 6,
-                                spaceBetween: 8,
-                            },
-                            2560: {
-                                slidesPerView: 6,
-                                spaceBetween: 8,
-                            },
-                        }}>
+                {
+                    !_.isEmpty(data?.privee) &&
+                    <>
+                        <Box>
+                            <Typography className="peek-heading">{data.privee.private_dining.title}</Typography>
+                            <Typography className="peek-name">@Privée</Typography>
+                        </Box>
+                        <Box className='slider-box'>
+                            <Swiper
+                                // slidesPerView={6}
+                                // spaceBetween={8}
+                                className="mySwiper"
+                                breakpoints={{
+                                    320:{
+                                        slidesPerView:3,
+                                        spaceBetween: 8,
+                                    },
+                                    375:{
+                                        slidesPerView:3,
+                                        spaceBetween: 8,
+                                    },
+                                    425: {
+                                        slidesPerView:3,
+                                        spaceBetween: 8,
+                                    },
+                                    768: {
+                                        slidesPerView: 6,
+                                        spaceBetween: 8,
+                                    },
+                                    1024: {
+                                        slidesPerView: 6,
+                                        spaceBetween: 8,
+                                    },
+                                    1440: {
+                                        slidesPerView: 6,
+                                        spaceBetween: 8,
+                                    },
+                                    2560: {
+                                        slidesPerView: 6,
+                                        spaceBetween: 8,
+                                    },
+                                }}>
+                                {data.privee.private_dining.images.map((item)=>{
+                                    return(
+                                        <SwiperSlide><img className="img" src={item}/></SwiperSlide>
+                                    )
 
-                        <SwiperSlide><img className="img" src={image1}/></SwiperSlide>
-                        <SwiperSlide><img className="img" src={image2}/></SwiperSlide>
-                        <SwiperSlide><img className="img" src={image3}/></SwiperSlide>
-                        <SwiperSlide><img className="img" src={image4}/></SwiperSlide>
-                        <SwiperSlide><img className="img" src={image5}/></SwiperSlide>
-                        <SwiperSlide><img className="img" src={image2}/></SwiperSlide>
-                        <SwiperSlide><img className="img" src={image5}/></SwiperSlide>
-                    </Swiper>
-                </Box>
+                                })}
+                            </Swiper>
+                        </Box>
+                    </>
+                }
             </Box>
         </WrapBox>
     )
