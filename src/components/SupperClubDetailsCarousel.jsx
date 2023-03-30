@@ -11,43 +11,29 @@ import UsersContext from "../context/UsersContext";
 import * as _ from "lodash";
 
 
-// const images = [
-//     {
-//         mainTitle: '"Mako and his eccentric Personality,',
-//         subTitle:'lit up the room and our taste buds!"',
-//         details: "I had chef Mako over to host a few business partners.",
-//         details2:" The dinner experience was absolutely amazing and he makes amazing Sushi!",
-//         ceoName: "Arvind Mohan, CEO of Alpha",
-//     },
-//     {
-//         mainTitle: '"Mako and his eccentric Personality,',
-//         subTitle:'lit up the room and our taste buds!"',
-//         details: "I had chef Mako over to host a few business partners.",
-//         details2:" The dinner experience was absolutely amazing and he makes amazing Sushi!",
-//         ceoName: "Arvind Mohan, CEO of Alpha",
-//     },
-//     {
-//         mainTitle: '"Mako and his eccentric Personality,',
-//         subTitle:'lit up the room and our taste buds!"',
-//         details: "I had chef Mako over to host a few business partners.",
-//         details2:" The dinner experience was absolutely amazing and he makes amazing Sushi!",
-//         ceoName: "Arvind Mohan, CEO of Alpha",
-//     },
-//     {
-//         mainTitle: '"Mako and his eccentric Personality,',
-//         subTitle:'lit up the room and our taste buds!"',
-//         details: "I had chef Mako over to host a few business partners.",
-//         details2:" The dinner experience was absolutely amazing and he makes amazing Sushi!",
-//         ceoName: "Arvind Mohan, CEO of Alpha",
-//     },
-//     {
-//         mainTitle: '"Mako and his eccentric Personality,',
-//         subTitle:'lit up the room and our taste buds!"',
-//         details: "I had chef Mako over to host a few business partners.",
-//         details2:" The dinner experience was absolutely amazing and he makes amazing Sushi!",
-//         ceoName: "Arvind Mohan, CEO of Alpha",
-//     },
-// ];
+const images = [
+    {
+        mainTitle: '"Mako and his eccentric Personality,',
+        subTitle: 'lit up the room and our taste buds!"',
+        details: "I had chef Mako over to host a few business partners.",
+        details2: " The dinner experience was absolutely amazing and he makes amazing Sushi!",
+        ceoName: "Arvind Mohan, CEO of Alpha",
+    },
+    {
+        mainTitle: '"Mako and his eccentric Personality,',
+        subTitle: 'lit up the room and our taste buds!"',
+        details: "I had chef Mako over to host a few business partners.",
+        details2: " The dinner experience was absolutely amazing and he makes amazing Sushi!",
+        ceoName: "Arvind Mohan, CEO of Alpha",
+    },
+    {
+        mainTitle: '"Mako and his eccentric Personality,',
+        subTitle: 'lit up the room and our taste buds!"',
+        details: "I had chef Mako over to host a few business partners.",
+        details2: " The dinner experience was absolutely amazing and he makes amazing Sushi!",
+        ceoName: "Arvind Mohan, CEO of Alpha",
+    },
+];
 
 const SupperClubDetailsCarousel = ({backgroundColor, changeFont, changeDetails, mainBox}) => {
     const [value, setValue] = useState(4);
@@ -64,7 +50,7 @@ const SupperClubDetailsCarousel = ({backgroundColor, changeFont, changeDetails, 
             fontFamily: 'Bon Vivant',
             fontWeight: 700,
             fonStyle: 'normal',
-            whiteSpace:'pre-wrap'
+            whiteSpace: 'pre-wrap'
         }, changeFont],
         ".details": [{
             textAlign: "center",
@@ -72,7 +58,7 @@ const SupperClubDetailsCarousel = ({backgroundColor, changeFont, changeDetails, 
             fontWeight: 400,
             lineHeight: '24px',
             fontFamily: 'ProximaNovaA-Regular',
-            whiteSpace:'pre-wrap'
+            whiteSpace: 'pre-wrap'
         }, changeDetails],
         ".star": {
             textAlign: "center",
