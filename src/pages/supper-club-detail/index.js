@@ -64,7 +64,7 @@ const SupperClubDetail = () => {
     const handleCloseCarousel = () => {
         setShowCarousel(false);
     };
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const AnyReactComponent = ({text}) => <div>{text}</div>;
@@ -76,7 +76,7 @@ const SupperClubDetail = () => {
         zoom: 11,
     };
     const theme = useTheme();
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = useState(0);
     const maxSteps = images.length;
     const handleStepChange = (step) => {
         setActiveStep(step);

@@ -52,7 +52,7 @@ const ChefDetails = (props) => {
 
     const {setUserId, userData} = useContext(UsersContext);
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -694,7 +694,7 @@ const ChefDetails = (props) => {
                                 <Box>
                                     <Box className="container-spacing">
                                         <Box className='container'>
-                                            {userData.experinces.map((item) => {
+                                            {userData?.experinces?.map((item) => {
                                                 return (
                                                     <img
                                                         src={item.cover_picture}
@@ -717,7 +717,7 @@ const ChefDetails = (props) => {
                                         </Box>
                                         <Box className='main-2'>
                                             <Box className='child-container'>
-                                                {userData.details.gallery_pictures.map((item, index) => {
+                                                {userData?.details?.gallery_pictures?.map((item, index) => {
                                                     return (
                                                         <Box className="restorent-1">
                                                             <img

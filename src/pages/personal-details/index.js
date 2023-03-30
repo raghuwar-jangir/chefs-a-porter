@@ -1,5 +1,5 @@
 import { styled, Box, Grid, Typography, Select, MenuItem,Stack,Modal,TextField,Link } from "@mui/material";
-import React from "react";
+import React, {useState} from "react";
 import { Formik,Form,ErrorMessage,Field } from "formik";
 import * as Yup from 'yup';
 import Navbar from "../../components/NavbarComponent";
@@ -20,7 +20,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 
 
 const PersonalDetails = () => {
-    const [contactPopUp, setContactPopUp] = React.useState(false);
+    const [contactPopUp, setContactPopUp] = useState(false);
     const ContactOpen = () => setContactPopUp(true);
     const ContactClose = () => setContactPopUp(false);
     const newPage = () =>{
@@ -30,7 +30,7 @@ const PersonalDetails = () => {
         const newParam = 'newParamValue'
         navigate(`/personal-details/?myParam=${newParam}`);
     }
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const validationSchema = Yup.object().shape({

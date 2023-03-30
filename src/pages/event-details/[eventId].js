@@ -58,7 +58,7 @@ const EventDetails = (props) => {
     const handleCloseCarousel = () => {
         setShowCarousel(false);
     };
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const bread = {
@@ -786,7 +786,7 @@ const EventDetails = (props) => {
                                                     day: moment(_.get(values, "day")).format("ddd,DD MMM "),
                                                 };
                                                 console.log("value===>", values);
-                                                console.log("experienceData===>", experienceData);
+                                                console.log("===>", experienceData);
                                             }}
                                         >
                                             {({values, handleChange, handleSubmit, setFieldValue}) => (

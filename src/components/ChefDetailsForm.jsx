@@ -21,14 +21,13 @@ import Checkbox from '@mui/material/Checkbox';
 import '../assets/styles/fontStyle.css';
 import ExpandMoreSharpIcon from '@mui/icons-material/ExpandMoreSharp';
 import {navigate} from "gatsby";
+import * as _ from "lodash";
 
 const DisplayingErrorMessagesSchema = Yup.object().shape({
     yourName: Yup.string().required('Your Name Required'),
     email: Yup.string().required('Email id Required'),
     experienceDate: Yup.string().required('Experience Date Required'),
     startTime: Yup.string().required('Start Time Required'),
-
-
 });
 const defaultTheme = createMuiTheme();
 const theme = createMuiTheme({
@@ -460,6 +459,14 @@ const ChefDetailsForm = (props) => {
                     onSubmit={(values, { setSubmitting }) => {
                         setFormData(values);
                         setSubmitting(false);
+                        console.log("values=======>>>>>",values)
+                        const eventDetails = {
+                            ...values,
+                            numberOfDenner: numberOfDenner,
+                        }
+                        console.log("value===>", values)
+                        console.log("eventDetails===>", eventDetails)
+
                     }}
                 >
                     {({ errors, touched, values, handleChange, handleSubmit, isSubmitting }) => (

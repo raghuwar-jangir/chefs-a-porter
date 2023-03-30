@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext,useState} from "react";
 import {Box, styled, Grid, Typography, Select, MenuItem, TextField, TextareaAutosize} from "@mui/material";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/NavbarComponent";
@@ -426,7 +426,7 @@ const PriveeViewMore = () => {
 
     console.log("userData======", userData)
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 

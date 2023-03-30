@@ -61,11 +61,11 @@ const BookingSummary = () => {
         console.log(values);
         setSubmitting(false);
     };
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const Razorpay = useRazorpay();
-    const [bookingSuccessOpen, setBookingSuccessOpen] = React.useState(false);
+    const [bookingSuccessOpen, setBookingSuccessOpen] = useState(false);
     const handleBookingSuccessOpen = () => setBookingSuccessOpen(true);
     const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
 

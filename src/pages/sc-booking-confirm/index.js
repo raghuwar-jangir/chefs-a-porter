@@ -68,10 +68,10 @@ const ScBookingConfirm = () => {
         address: "Manchester",
         pincode: "400022",
     };
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const [bookingSuccessOpen, setBookingSuccessOpen] = React.useState(false);
+    const [bookingSuccessOpen, setBookingSuccessOpen] = useState(false);
     const handleBookingSuccessOpen = () => setBookingSuccessOpen(true);
     const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
     const MainBox = styled(Box)({

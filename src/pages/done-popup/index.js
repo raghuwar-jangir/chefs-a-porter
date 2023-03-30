@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Modal from "@mui/material/Modal";
 import {Box} from "@mui/material";
 import "../../assets/styles/fontStyle.css";
@@ -6,7 +6,7 @@ import "../../assets/styles/fontStyle.css";
 
 const DonePopUp = () => {
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 

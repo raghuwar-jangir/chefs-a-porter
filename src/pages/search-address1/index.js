@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     Box,
     Grid,
@@ -35,7 +35,7 @@ const validationSchema = Yup.object({
 
 const SearchAddress = () => {
     const CHARACTER_LIMIT = 40;
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 

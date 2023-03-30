@@ -2,16 +2,16 @@ import {Box} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import OTPInput from "react-otp-input";
 import Modal from "@mui/material/Modal";
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import OtpContext from "../context/OtpContext";
 import * as _ from "lodash";
 import {navigate} from "gatsby";
 
 const OtpVerificationModal = (props) => {
     const {openOtp, handleCloseOtp, contactNumber} = props;
-    const {setOtpNumber, setVerifyOtp, setResendOtp} = useContext(OtpContext);
-    const [otp, setOtp] = React.useState('')
-    const [seconds, setSeconds] = React.useState(10);
+    const {countOfResendOtp, setVerifyOtp, setResendOtp} = useContext(OtpContext);
+    const [otp, setOtp] = useState('')
+    const [seconds, setSeconds] = useState(10);
 
     //otp timer
     React.useEffect(() => {
@@ -29,6 +29,7 @@ const OtpVerificationModal = (props) => {
             clearInterval(interval);
         };
     }, [seconds]);
+
     const handleClick = () => {
         if (!_.isEmpty(otp)) {
             setVerifyOtp(otp);
@@ -36,13 +37,19 @@ const OtpVerificationModal = (props) => {
         }
     }
 
-    const [countOfResendOtp, setCountOfResendOtp] = React.useState(0)
+    const [error, setError] = useState('');
 
-    if (countOfResendOtp > 3) {
-        alert('You have exceeded the maximum number of OTP resend attempts.');
-    }
-
-    console.log('countOfResendOtp===',countOfResendOtp)
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const otpRegex = /^[0-9]{6}$/; // 6 digits OTP regex
+        if (_.isEmpty(otp)) {
+            setError('Please Enter OTP');
+        } else if (!otpRegex.test(otp)) {
+            setError('Please Enter Valid OTP');
+        } else {
+            setError('Invalid Otp');
+        }
+    };
 
     const styleOtp = {
         position: 'absolute',
@@ -202,52 +209,57 @@ const OtpVerificationModal = (props) => {
                                         email <b>kachwallasana@gmail.com</b> <a
                                             href="javascript:void(0);">Change</a></h6>
                                     <h4 className="enter-otp">Enter OTP</h4>
-                                    <div id="otp"
-                                         className="">
-                                        <OTPInput
-                                            value={otp}
-                                            onChange={(number) => {
-                                                console.log('number', number)
-                                                setOtp(number)
-                                            }}
-                                            numInputs={6}
-                                            separator={<span style={{padding: '0px', width: '1rem'}}></span>}
-                                            isInputNum={true}
-                                            shouldAutoFocus={true}
-                                            inputStyle={{
-                                                border: "1px solid #FBFBFB",
-                                                backgroundColor: '#080B0E',
-                                                width: '35px',
-                                                height: '35px',
-                                                fontFamily: 'ProximaNovaA-Regular',
-                                                fontWeight: '400',
-                                                color: '#FFFFFF',
-                                            }}
-                                            focusStyle={{
-                                                border: "1px solid #FBFBFB",
-                                                outline: "none"
-                                            }}
-                                        />
-                                    </div>
-                                    {seconds > 0 ? (
-                                        <div><span>Resend OTP in : {seconds} sec</span></div>
-                                    ) : (
-                                        <div><span><a onClick={() => {
-                                            setResendOtp(contactNumber);
-                                            setCountOfResendOtp(countOfResendOtp + 1)
-                                        }
-                                        }
-                                                      style={{
-                                                          textDecoration: 'underline',
-                                                          cursor: 'pointer'
-                                                      }}>Resend OTP</a></span>
+                                    <form onSubmit={handleSubmit}>
+                                        <div id="otp"
+                                             className="">
+                                            <OTPInput
+                                                value={otp}
+                                                onChange={(number) => {
+                                                    console.log('number', number)
+                                                    setOtp(number)
+                                                }}
+                                                numInputs={6}
+                                                separator={<span style={{padding: '0px', width: '1rem'}}></span>}
+                                                isInputNum={true}
+                                                shouldAutoFocus={true}
+                                                inputStyle={{
+                                                    border: "1px solid #FBFBFB",
+                                                    backgroundColor: '#080B0E',
+                                                    width: '35px',
+                                                    height: '35px',
+                                                    fontFamily: 'ProximaNovaA-Regular',
+                                                    fontWeight: '400',
+                                                    color: '#FFFFFF',
+                                                }}
+                                                focusStyle={{
+                                                    border: "1px solid #FBFBFB",
+                                                    outline: "none"
+                                                }}
+                                            />
                                         </div>
-                                    )}
-                                    <div className="btn-val">
-                                        <button className="btn validate" type="submit"
-                                                onClick={handleClick}>Verfiy
-                                        </button>
-                                    </div>
+                                        {error && <div className="error"><span>{error}</span></div>}
+                                        {seconds > 0 ? (
+                                            <div><span>Resend OTP in : {seconds} sec</span></div>
+                                        ) : (<div><span>
+                                            {countOfResendOtp < 3 && (
+                                                <a onClick={() => {
+                                                    setResendOtp(contactNumber);
+                                                }}
+                                                   style={{
+                                                       textDecoration: 'underline',
+                                                       cursor: 'pointer'
+                                                   }}>Resend OTP</a>
+                                            )}
+                                                {countOfResendOtp >= 3 &&
+                                                    <div><span>you can resend otp maximum 3 times!</span></div>}
+                                            </span></div>
+                                        )}
+                                        <div className="btn-val">
+                                            <button className="btn validate" type="submit"
+                                                    onClick={handleClick}>Verfiy
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div className="card-2">
                                     <div className="content"> By continuing you agree to Chefs-à-Porter’s T&C,
@@ -262,5 +274,4 @@ const OtpVerificationModal = (props) => {
         </Modal>
     )
 }
-
 export default OtpVerificationModal

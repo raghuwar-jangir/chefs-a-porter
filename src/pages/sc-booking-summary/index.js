@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { styled, Box, Grid, Typography, Select, MenuItem,Stack,Modal,TextField,Link,Checkbox } from "@mui/material";
 import Navbar from "../../components/NavbarComponent";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -41,7 +41,7 @@ const ScBookingSummary = () => {
         address:'Manchester',
         pincode:'400022'
     };
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const handleSubmit = (values, { setSubmitting }) => {

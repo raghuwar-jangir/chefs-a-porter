@@ -26,11 +26,14 @@ const UsersProvider = (props) => {
     const [userId, setUserId] = useState()
     const [eventId, setEventId] = useState()
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
-    axios.defaults.headers.common['Authorization'] = `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTM1MWZmNmIzYjBmOTYxY2IxZGQxNjciLCJpYXQiOjE2ODAwODc2MjIsImV4cCI6MTY4MDA5MTIyMiwidHlwZSI6ImFjY2VzcyJ9.IwOdR8qjsWmvZQN_s7s9WxW3zCqlHbz30z619uvNo6Y'}`;
 
     useEffect(() => {
-        if (userId || eventId) {
-            axios.get(baseUrl + `/${pathInfo[currentPath]}/` + `${currentPath === 'chef-details' ? userId : eventId}`).then(result => {
+        if (userId) {
+            axios.get(baseUrl + `/${pathInfo[currentPath]}/` + userId).then(result => {
+                setUserData(result.data)
+            })
+        } else if (eventId) {
+            axios.get(baseUrl + `/${pathInfo[currentPath]}/` + eventId).then(result => {
                 setUserData(result.data)
             })
         } else if (currentPath === 'privee-viewmore') {
@@ -38,13 +41,14 @@ const UsersProvider = (props) => {
                 setUserData(result.data)
             })
         } else if (currentPath === 'addons') {
-            axios.get(baseUrl + '/addon_category_master',).then(result => {
+            axios.get(baseUrl + '/addon_category_master/all',).then(result => {
                 setUserData(result.data)
             })
         }
     }, [userId, eventId, currentPath])
 
-    const {children} = props
+    const {children} = props;
+
     return (
         <UsersContext.Provider
             value={{

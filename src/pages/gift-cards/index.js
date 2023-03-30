@@ -56,10 +56,10 @@ const GiftCards = () => {
 
     const [occassionMessage, setOccassionMessage] = useState("");
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpenPopUp = () => setOpen(true);
     const handleClosePopUp = () => setOpen(false);
-    const [contactPopUp, setContactPopUp] = React.useState(false);
+    const [contactPopUp, setContactPopUp] = useState(false);
     const ContactOpen = () => setContactPopUp(true);
     const ContactClose = () => setContactPopUp(false);
     //for Cover Letter
