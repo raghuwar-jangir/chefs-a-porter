@@ -20,7 +20,7 @@ import {DatePickerInput} from "rc-datepicker";
 const GetInTouch = () => {
     const [startDate, setStartDate] = useState(new Date());
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     let [course1, setCourse1] = useState(1);

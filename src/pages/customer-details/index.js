@@ -48,21 +48,8 @@ const CustomerDetails = (props) => {
     const CHARACTER_LIMIT = 40;
     const [open, setOpen] = useState(false);
     const [currentModal, setCurrentModal] = useState(0);
-    const [openOtp, setOpenOtp] = React.useState(false);
+    const [openOtp, setOpenOtp] = useState(false);
     const [contactNumber, setContactNumber] = useState('');
-
-
-    // otp limit
-    // const [resendAttempts, setResendAttempts] = useState(0);
-
-    // function handleResendClick() {
-    //     if (resendAttempts >= 3) {
-    //         setResendOtp(contactNumber)
-    //         alert('You have exceeded the maximum number of OTP resend attempts.');
-    //         return;
-    //     }
-    //     setResendAttempts(resendAttempts + 1);
-    // }
 
 
     const handleOpenOtp = (contactNumber) => {
@@ -73,7 +60,7 @@ const CustomerDetails = (props) => {
         }
     }
     const handleCloseOtp = () => setOpenOtp(false);
-    const [code, setCode] = React.useState("");
+    const [code, setCode] = useState("");
     //address model open and close code
     const handleOpen = () => {
         setOpen(true);
@@ -1739,86 +1726,13 @@ const CustomerDetails = (props) => {
                 <Modal open={open} onClose={handleClose}>
                     {modals[currentModal]}
                 </Modal>
+                {
+                    openOtp &&  <OtpVerificationModal openOtp={openOtp}
+                                                         handleCloseOtp={handleCloseOtp}
+                                                         contactNumber={contactNumber}
+                    />
+                }
 
-                {/*{openOtp &&*/}
-                {/*    <Modal*/}
-                {/*        open={openOtp}*/}
-                {/*        onClose={handleCloseOtp}*/}
-                {/*        aria-labelledby="keep-mounted-modal-title"*/}
-                {/*        aria-describedby="keep-mounted-modal-description"*/}
-                {/*    >*/}
-                {/*        <Box sx={styleOtp}>*/}
-                {/*            <div className="modal-content">*/}
-                {/*                <div className="modal-header">*/}
-                {/*                    <button type="button" data-bs-dismiss="modal" aria-label="Close" className="close"*/}
-                {/*                            onClick={handleCloseOtp}>*/}
-                {/*                        <CloseIcon sx={{fontSize: "30px"}}/></button>*/}
-                {/*                </div>*/}
-                {/*                <div className="modal-body">*/}
-                {/*                    <div className="container-fluid house-no">*/}
-                {/*                        <div className="position-relative">*/}
-                {/*                            <div className="otp-div">*/}
-                {/*                                <h6>A 6 digit code has been sent to <b>+{contactNumber}</b> & your*/}
-                {/*                                    email <b>kachwallasana@gmail.com</b> <a*/}
-                {/*                                        href="javascript:void(0);">Change</a></h6>*/}
-                {/*                                <h4 className="enter-otp">Enter OTP</h4>*/}
-                {/*                                <div id="otp"*/}
-                {/*                                     className="">*/}
-                {/*                                    <OTPInput*/}
-                {/*                                        value={''}*/}
-                {/*                                        onChange={(number) => {*/}
-                {/*                                            console.log('number',number)*/}
-                {/*                                            // setCode(number)*/}
-                {/*                                        }}*/}
-                {/*                                        numInputs={6}*/}
-                {/*                                        separator={<span style={{padding: '0px', width: '1rem'}}></span>}*/}
-                {/*                                        isInputNum={true}*/}
-                {/*                                        shouldAutoFocus={true}*/}
-                {/*                                        inputStyle={{*/}
-                {/*                                            border: "1px solid #FBFBFB",*/}
-                {/*                                            backgroundColor: '#080B0E',*/}
-                {/*                                            width: '35px',*/}
-                {/*                                            height: '35px',*/}
-                {/*                                            fontFamily: 'ProximaNovaA-Regular',*/}
-                {/*                                            fontWeight: '400',*/}
-                {/*                                            color: '#FFFFFF',*/}
-                {/*                                        }}*/}
-                {/*                                        focusStyle={{*/}
-                {/*                                            border: "1px solid #FBFBFB",*/}
-                {/*                                            outline: "none"*/}
-                {/*                                        }}*/}
-                {/*                                    />*/}
-                {/*                                </div>*/}
-                {/*                                /!*{seconds > 0 ? (*!/*/}
-                {/*                                /!*    <div><span>Resend OTP in : {seconds} sec</span></div>*!/*/}
-                {/*                                /!*) : (*!/*/}
-                {/*                                    <div><span><a onClick={handleResendClick}*/}
-                {/*                                                  style={{textDecoration: 'underline', cursor: 'pointer'}}>Resend OTP</a></span>*/}
-                {/*                                    </div>*/}
-                {/*                                /!*)}*!/*/}
-                {/*                                <div className="btn-val">*/}
-                {/*                                    <button className="btn validate" type="submit"*/}
-                {/*                                            onClick={handleClick}*/}
-                {/*                                    >Verfiy*/}
-                {/*                                    </button>*/}
-                {/*                                </div>*/}
-                {/*                            </div>*/}
-                {/*                            <div className="card-2">*/}
-                {/*                                <div className="content"> By continuing you agree to Chefs-à-Porter’s T&C,*/}
-                {/*                                    Privacy Policy, Terms of Service*/}
-                {/*                                </div>*/}
-                {/*                            </div>*/}
-                {/*                        </div>*/}
-                {/*                    </div>*/}
-                {/*                </div>*/}
-                {/*            </div>*/}
-                {/*        </Box>*/}
-                {/*    </Modal>*/}
-                {/*}*/}
-                <OtpVerificationModal openOtp={openOtp}
-                                      handleCloseOtp={handleCloseOtp}
-                                      contactNumber={contactNumber}
-                />
 
             </BoxWrapper>
         </React.Fragment>

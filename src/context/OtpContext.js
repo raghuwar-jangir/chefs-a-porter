@@ -1,6 +1,5 @@
-import React, {useEffect, useState, useLayoutEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
-
 
 const defaultState = {
     data: {},
@@ -12,28 +11,27 @@ const OtpContext = React.createContext(defaultState)
 const OtpProvider = (props) => {
 
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
-    // const [otpData, setOtpData] = useState();
     const [otpNumber, setOtpNumber] = useState();
     const [verifyOtp, setVerifyOtp] = useState();
     const [resendOtp, setResendOtp] = useState();
+    const [countOfResendOtp, setCountOfResendOtp] = useState(0)
 
     useEffect(() => {
         if (otpNumber) {
             axios.post(baseUrl + `/util/sendotp`, {
-                mobile: otpNumber,
-                otp: '',
+                mobile: '',
             })
             setOtpNumber(null)
         } else if (verifyOtp) {
             axios.post(baseUrl + '/util/verifyotp', {
-                mobile: otpNumber,
+                mobile: '',
                 otp: '',
             })
             setVerifyOtp(null)
         } else if (resendOtp) {
+            setCountOfResendOtp(countOfResendOtp + 1)
             axios.post(baseUrl + '/util/resendotp', {
-                mobile: otpNumber,
-                otp: '',
+                mobile: '',
             })
             setResendOtp(null)
         }
@@ -43,10 +41,10 @@ const OtpProvider = (props) => {
     return (
         <OtpContext.Provider
             value={{
-                // otpData,
                 setOtpNumber,
                 setVerifyOtp,
-                setResendOtp
+                setResendOtp,
+                countOfResendOtp
             }}
         >
             {children}

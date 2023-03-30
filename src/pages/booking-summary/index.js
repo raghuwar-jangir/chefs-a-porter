@@ -51,24 +51,24 @@ const BookingSummary = () => {
     number1: Yup.string().required("Number is required"),
   });
 
-  const initialValues = {
-    number: "9876543210",
-    name: "Teqzo International",
-    flatNumber: "111",
-    address: "Manchester",
-    pincode: "400022",
-  };
-  const handleSubmit = (values, { setSubmitting }) => {
-    console.log(values);
-    setSubmitting(false);
-  };
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const Razorpay = useRazorpay();
-  const [bookingSuccessOpen, setBookingSuccessOpen] = React.useState(false);
-  const handleBookingSuccessOpen = () => setBookingSuccessOpen(true);
-  const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
+    const initialValues = {
+        number: "9876543210",
+        name: "Teqzo International",
+        flatNumber: "111",
+        address: "Manchester",
+        pincode: "400022",
+    };
+    const handleSubmit = (values, { setSubmitting }) => {
+        console.log(values);
+        setSubmitting(false);
+    };
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const Razorpay = useRazorpay();
+    const [bookingSuccessOpen, setBookingSuccessOpen] = useState(false);
+    const handleBookingSuccessOpen = () => setBookingSuccessOpen(true);
+    const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
 
   const handlePayment = useCallback(() => {
     // const order = await createOrder(params);

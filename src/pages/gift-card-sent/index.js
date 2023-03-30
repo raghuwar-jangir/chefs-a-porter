@@ -54,7 +54,7 @@ const images = [
 
 const GiftCardSent = () => {
     const [showCarousel, setShowCarousel] = useState(false);
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpenPopup = () => setOpen(true);
     const handleClosePopup = () => setOpen(false);
     const handleImageClick = () => {
@@ -73,7 +73,7 @@ const GiftCardSent = () => {
         zoom: 11,
     };
     const theme = useTheme();
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = useState(0);
     const maxSteps = images.length;
     const handleStepChange = (step) => {
         setActiveStep(step);

@@ -22,37 +22,10 @@ import * as _ from "lodash";
 const Addons = () => {
     const {userData} = useContext(UsersContext);
 
+    console.log("userData=======", userData)
     const handleClick = () => {
         navigate('/booking-summary');
     }
-
-    const addonsCardDetail = [
-        {
-            image: add1,
-            title: 'Table',
-        },
-        {
-            image: add2,
-            title: 'Flowers',
-        },
-        {
-            image: add3,
-            title: 'Cake',
-        },
-        {
-            image: add4,
-            title: 'Artisanal Cheese',
-        },
-        {
-            image: add5,
-            title: 'Gluten free bread',
-        },
-        {
-            image: add6,
-            title: 'Sauces',
-        },
-
-    ];
 
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
@@ -373,7 +346,7 @@ const Addons = () => {
                                                     with
                                                     the perfect custom experience</Typography>
                                                 <Grid container className="addon-grid" rowSpacing={2} columnSpacing={2}>
-                                                    {userData.results.map((item, index) => (
+                                                    {userData.map((item, index) => (
                                                         <Grid item xl={4} md={4} sm={6} xs={6} key={index}>
                                                             <AddonsCard image={item.image} title={item.name}/>
                                                         </Grid>

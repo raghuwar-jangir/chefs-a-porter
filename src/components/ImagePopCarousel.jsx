@@ -12,74 +12,74 @@ import { ImageListItem } from "@mui/material";
 import UsersContext from "../context/UsersContext";
 
 const MainBox = styled(Box)({
-  ".swiper-button-prev": {
-    left: "3%",
-    position: "fixed",
-    color: "#ddd",
-  },
-  ".swiper-button-next": {
-    right: "3%",
-    position: "fixed",
-    color: "#ddd",
-  },
-  ".mySwiper": {
-    margin: "auto",
-    display: "block",
-    width: "75%",
-    boxShadow: "0 0 8px rgb(0 0 0 / 60%)",
-  },
-  ".swiper-slide": {
-    maxHeight: "100%",
-    maxWidth: "100%",
-    alignSelf: "center",
-  },
+    ".swiper-button-prev": {
+        left: "3%",
+        position: "fixed",
+        color: "#ddd",
+    },
+    ".swiper-button-next": {
+        right: "3%",
+        position: "fixed",
+        color: "#ddd",
+    },
+    ".mySwiper": {
+        margin: "auto",
+        display: "block",
+        width: "75%",
+        boxShadow: "0 0 8px rgb(0 0 0 / 60%)",
+    },
+    ".swiper-slide": {
+        maxHeight: "100%",
+        maxWidth: "100%",
+        alignSelf: "center",
+    },
 });
 const ImagePopCarousel = ({ title }) => {
-  const getEventId = "640b22b691e7236a1d0a264e";
-  const { setEventId, userData } = useContext(UsersContext);
-  const itemData = [
-    {
-      img: userData.experinces[0].cover_picture,
-      title: "chef1",
-    },
-    {
-      img: userData.details.gallery_pictures[0],
-      title: " sGallery",
-    },
-    {
-      img: userData.details.gallery_pictures[1],
-      title: "chef2",
-    },
-  ];
-  console.log("tittle", title);
-  return (
-    <React.Fragment>
-      <MainBox>
-        <Box style={{ background: "rgba(0, 0, 0, 0.8)" }}>
-          <Swiper
-            navigation={true}
-            modules={[Navigation]}
-            grabCursor={true}
-            className="mySwiper"
-            initialSlide={`${
-              title === "chef1"
-                ? 0
-                : title === "sGallery"
-                ? 1
-                : title === "chef2"
-                ? 2
-                : 0
-            }`}
-          >
-            {itemData.map((item) => (
-              <SwiperSlide>
-                <img className="carousel-img" src={item.img} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </Box>
-      </MainBox>
-    </React.Fragment>
-  );
+    const getEventId = "640b22b691e7236a1d0a264e";
+    const { setEventId, userData } = useContext(UsersContext);
+    const itemData = [
+        {
+            img: userData.experinces[0].cover_picture,
+            title: "chef1",
+        },
+        {
+            img: userData.details.gallery_pictures[0],
+            title: " sGallery",
+        },
+        {
+            img: userData.details.gallery_pictures[1],
+            title: "chef2",
+        },
+    ];
+    console.log("tittle", title);
+    return (
+        <React.Fragment>
+            <MainBox>
+                <Box style={{ background: "rgba(0, 0, 0, 0.8)" }}>
+                    <Swiper
+                        navigation={true}
+                        modules={[Navigation]}
+                        grabCursor={true}
+                        className="mySwiper"
+                        initialSlide={`${
+                            title === "chef1"
+                                ? 0
+                                : title === "sGallery"
+                                    ? 1
+                                    : title === "chef2"
+                                        ? 2
+                                        : 0
+                        }`}
+                    >
+                        {itemData.map((item) => (
+                            <SwiperSlide>
+                                <img className="carousel-img" src={item.img} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </Box>
+            </MainBox>
+        </React.Fragment>
+    );
 };
 export default ImagePopCarousel;
