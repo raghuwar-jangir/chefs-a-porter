@@ -1,6 +1,6 @@
-import { Box, Button, styled, TextField, Typography } from "@mui/material";
-import { Form, Formik } from "formik";
-import React, { useRef, useState } from "react";
+import {Box, Button, styled, TextField, Typography} from "@mui/material";
+import {Form, Formik} from "formik";
+import React, {useRef, useState} from "react";
 import {
     createMuiTheme,
     MuiThemeProvider,
@@ -22,6 +22,7 @@ import '../assets/styles/fontStyle.css';
 import ExpandMoreSharpIcon from '@mui/icons-material/ExpandMoreSharp';
 import {navigate} from "gatsby";
 import * as _ from "lodash";
+import Cookies from 'js-cookie';
 
 const DisplayingErrorMessagesSchema = Yup.object().shape({
     yourName: Yup.string().required('Your Name Required'),
@@ -41,23 +42,25 @@ const theme = createMuiTheme({
                 padding: '16px 32px',
                 textAlign: 'center',
                 fontFamily: 'Proxima Nova Alt',
-                fontStyle:' normal',
+                fontStyle: ' normal',
                 fontWeight: 300,
                 // fontSize: '14px',
                 lineHeight: '17px',
                 opacity: '1',
-                width:'160px',
-                borderRadius:'1px'
+                width: '160px',
+                borderRadius: '1px'
             }
         }
     }
 });
 const ChefDetailsForm = (props) => {
-    const tipTitle ="Private Dining usually last upto 3 hrs but can extend upto 5 hrs based on number of courses"
+    const tipTitle = "Private Dining usually last upto 3 hrs but can extend upto 5 hrs based on number of courses"
     const [startDate, setStartDate] = useState(new Date());
     // console.log("startDate=",moment(startDate).format("dddd, MMMM DD, YYYY"));
     const [numberOfDenner, setNumberOfDenner] = useState(2)
     const [numberOfCourses, setNumberOfCourses] = useState(3)
+    const [EventData, setEventData] = useState({});
+
 
     const handleDecrement = () => {
         if (numberOfDenner > 2) {
@@ -78,8 +81,9 @@ const ChefDetailsForm = (props) => {
         setNumberOfCourses(numberOfCourses + 1);
     }
     const handleClick = () => {
-        navigate('/customer-details');
+        navigate('/customer-details')
     }
+
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
         color: '#FBFBFB',
@@ -111,7 +115,7 @@ const ChefDetailsForm = (props) => {
         ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
             paddingLeft: "10px",
             flex: "1",
-            outline:'none',
+            outline: 'none',
             backgroundColor: "transparent",
             border: "0px",
             // borderBottom: "0.25px solid #FBFBFB !important",
@@ -128,14 +132,14 @@ const ChefDetailsForm = (props) => {
             width: "100%",
             padding: "0.375rem 0.75rem 0.375rem 0px",
             transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
-            zIndex:'1'
+            zIndex: '1'
         },
-        '.form-control':{
-            position:'relative',
-            zIndex:'1',
+        '.form-control': {
+            position: 'relative',
+            zIndex: '1',
             paddingLeft: "10px",
             flex: "1",
-            outline:'none',
+            outline: 'none',
             backgroundColor: "transparent",
             border: "0px",
             borderBottom: "0.25px solid #FBFBFB",
@@ -176,14 +180,14 @@ const ChefDetailsForm = (props) => {
             fontFamily: 'ProximaNovaA-Regular',
             background: "#C6A87D",
             fontSize: "20px",
-            lineHeight:'24px',
+            lineHeight: '24px',
             width: '100%',
             fontWeight: 600,
             borderRadius: "0px",
             color: "#080B0E",
             textTransform: "math-auto",
-            padding:'18.5px 10px',
-            marginTop:'20px'
+            padding: '18.5px 10px',
+            marginTop: '20px'
         },
 
         ".error-msg": {
@@ -232,7 +236,7 @@ const ChefDetailsForm = (props) => {
             borderRadius: '0px',
             color: '#C6A87D',
             border: '0.25px solid #C6A87D',
-            backgroundColor:'black'
+            backgroundColor: 'black'
         },
         ".right-btn": {
             width: '24px',
@@ -240,7 +244,7 @@ const ChefDetailsForm = (props) => {
             borderRadius: '0px',
             color: 'black',
             border: '0.25px solid #C6A87D',
-            backgroundColor:'#C6A87D'
+            backgroundColor: '#C6A87D'
         },
         ".details-box": {
             display: 'flex',
@@ -277,7 +281,7 @@ const ChefDetailsForm = (props) => {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
         },
-        '.min-2-3':{
+        '.min-2-3': {
             flex: '1',
             marginBottom: '0px',
             fontFamily: 'Proxima Nova Alt',
@@ -286,13 +290,13 @@ const ChefDetailsForm = (props) => {
             lineHeight: '19px',
             color: '#FBFBFB',
         },
-        '.gold-cal':{
+        '.gold-cal': {
             height: '22.8px',
             objectFit: 'contain',
             position: 'absolute',
             right: '15px',
             bottom: '25px',
-            zIndex:' 0'
+            zIndex: ' 0'
         },
         '.input-group-btn button': {
             width: '24px',
@@ -305,7 +309,7 @@ const ChefDetailsForm = (props) => {
         '.input-group-btn button:disabled': {
             opacity: '0.65',
         },
-        '.number-ans':{
+        '.number-ans': {
             width: '24px',
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
@@ -315,25 +319,25 @@ const ChefDetailsForm = (props) => {
             marginRight: '5px',
             color: 'rgba(251, 251, 251, 1)',
             background: 'transparent',
-            textAlign:'center'
+            textAlign: 'center'
         },
-        '.surprise-box':{
+        '.surprise-box': {
             background: '#080B0E',
             padding: '16px',
             position: 'relative',
             marginBottom: '16px'
         },
-        '.form-check':{
+        '.form-check': {
             display: 'block',
             minHeight: '1.5rem',
             marginBottom: '0.125rem',
         },
-        '.form-check-input':{
+        '.form-check-input': {
             backgroundColor: '#C6A87D',
             borderColor: '#C6A87D',
             borderRadius: '0px',
         },
-        ".form-check-label":{
+        ".form-check-label": {
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
             fontWeight: '700',
@@ -341,7 +345,7 @@ const ChefDetailsForm = (props) => {
             lineHeight: '20px',
             color: '#FBFBFB',
         },
-        '.email-confirm':{
+        '.email-confirm': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '300',
@@ -350,47 +354,47 @@ const ChefDetailsForm = (props) => {
             color: 'rgba(251, 251, 251, 0.6)',
             display: 'block',
             marginTop: '4px',
-            marginLeft:'1.5rem'
+            marginLeft: '1.5rem'
         },
-        '.surprise-check-box':{
-            display:'flex',
-            placeItems:'center'
+        '.surprise-check-box': {
+            display: 'flex',
+            placeItems: 'center'
         },
-        '.input-check':{
-            paddingRight:'5px !important',
-            padding:'0px',
-            marginBottom:'0.125rem',
-            color:'#C6A87D !important'
+        '.input-check': {
+            paddingRight: '5px !important',
+            padding: '0px',
+            marginBottom: '0.125rem',
+            color: '#C6A87D !important'
         },
-        '.date-box':{
-            position:'relative'
+        '.date-box': {
+            position: 'relative'
         },
-        '.gcal':{
-            height:'22.8px',
+        '.gcal': {
+            height: '22.8px',
         },
-        '.gcal-icon':{
-            position:'absolute',
-            right:'17px',
-            bottom:'23px'
+        '.gcal-icon': {
+            position: 'absolute',
+            right: '17px',
+            bottom: '23px'
         },
-        '.time-picker':{
-            position:'relative'
+        '.time-picker': {
+            position: 'relative'
         },
-        '.timer-drop-down':{
-            position:'absolute',
+        '.timer-drop-down': {
+            position: 'absolute',
             right: '-9px',
             fontSize: '38px',
             bottom: '-2px !important'
         },
-        '.gInfo-logo':{
-            height:'16px',
-            width:'16px',
-            marginLeft:'8px'
+        '.gInfo-logo': {
+            height: '16px',
+            width: '16px',
+            marginLeft: '8px'
         },
-        '.css-1aa5qj0-MuiInputBase-root-MuiInput-root':{
-            width:'100%'
+        '.css-1aa5qj0-MuiInputBase-root-MuiInput-root': {
+            width: '100%'
         },
-        '.css-rb2hiw ':{
+        '.css-rb2hiw ': {
             fontFamily: "Proxima Nova Alt",
             fontStyle: "normal",
             fontWeight: "300",
@@ -399,8 +403,8 @@ const ChefDetailsForm = (props) => {
             color: "#FBFBFB",
             padding: "0.375rem 0.75rem 0.375rem 0px",
         },
-        '.css-10iatzg':{
-            width:'100%'
+        '.css-10iatzg': {
+            width: '100%'
         }
         // '.react-datepicker__input-container':{
         //     borderBottom: "0.25px solid #FBFBFB",
@@ -410,7 +414,6 @@ const ChefDetailsForm = (props) => {
         opacity: 0.5,
     }
     const [formData, setFormData] = useState(null);
-
     // for tooltip
     const positionRef = useRef({
         x: 0,
@@ -420,7 +423,7 @@ const ChefDetailsForm = (props) => {
     const areaRef = useRef(null);
 
     const handleMouseMove = (event) => {
-        positionRef.current = { x: event.clientX, y: event.clientY };
+        positionRef.current = {x: event.clientX, y: event.clientY};
 
         if (popperRef.current != null) {
             popperRef.current.update();
@@ -428,7 +431,7 @@ const ChefDetailsForm = (props) => {
     };
     return (
         <React.Fragment>
-            <BoxWrapper sx={{position:'sticky',top:'100px'}}>
+            <BoxWrapper sx={{position: 'sticky', top: '100px'}}>
                 <Typography className="sub-text-price">
                     ₹ 2,500 <sub className="sub-text">Per Diner</sub>
                 </Typography>
@@ -438,42 +441,27 @@ const ChefDetailsForm = (props) => {
                         email: "",
                         experienceDate: moment(startDate).format("ddd,DD MMM YYYY"),
                         time: new Date().getHours() + ":" + new Date().getMinutes(),
-                        numberOfDenner:'',
-                        numberOfCourses:''
+                        numberOfDenner: '',
+                        numberOfCourses: ''
                     }}
-                    // validationSchema={DisplayingErrorMessagesSchema}
-                    // onSubmit={(values) => {
-                    //     console.log(values.date)
-                    //     const experienceData = {
-                    //         ...values,
-                    //         yourName: "",
-                    //         email: "",
-                    //         experienceDate: moment(startDate).format("ddd,DD MMM YYYY"),
-                    //         time: new Date().getHours() + ":" + new Date().getMinutes(),
-                    //         numberOfDenner: numberOfDenner,
-                    //         numberOfCourses:numberOfCourses
-                    //     }
-                    //     console.log("value===>", values)
-                    //     console.log("experienceData===>", experienceData)
-                    // }}
-                    onSubmit={(values, { setSubmitting }) => {
+                    onSubmit={(values, {setSubmitting}) => {
                         setFormData(values);
                         setSubmitting(false);
-                        console.log("values=======>>>>>",values)
+                        console.log("values=======>>>>>", values)
                         const eventDetails = {
                             ...values,
                             numberOfDenner: numberOfDenner,
+                            numberOfCourses: numberOfCourses,
                         }
-                        console.log("value===>", values)
                         console.log("eventDetails===>", eventDetails)
-
+                        Cookies.set('eventData', JSON.stringify(eventDetails));
                     }}
                 >
-                    {({ errors, touched, values, handleChange, handleSubmit, isSubmitting }) => (
+                    {({errors, touched, values, setFieldValue, handleChange, handleSubmit}) => (
                         <Form onSubmit={handleSubmit}>
                             {console.log("errors", values)}
                             <Box sx={{}}>
-                                <Box className="comman-field-box" >
+                                <Box className="comman-field-box">
                                     <Typography className='field-title'>Your Name</Typography>
                                     <TextField
                                         className='form-control'
@@ -508,24 +496,29 @@ const ChefDetailsForm = (props) => {
                                             disableUnderline: true,
                                         }}
                                     />
-                                    <Typography className='last-text'>A Email Confirmation will be sent to this ID after booking</Typography>
+                                    <Typography className='last-text'>A Email Confirmation will be sent to this ID after
+                                        booking</Typography>
                                     {/* {touched.email && errors.email && <Typography className='error-msg'>{errors.email}</Typography>} */}
                                 </Box>
-                                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <Box className="comman-field-box date-box" sx={{ width: "49%" }}>
+                                <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+                                    <Box className="comman-field-box date-box" sx={{width: "49%"}}>
                                         <Typography className='field-title'>Experience Date</Typography>
-                                        <DatePicker selected={startDate}  className='form-control' onChange={(date) => setStartDate(date)} value={values.experienceDate}/>
+                                        <DatePicker selected={startDate} className='form-control'
+                                            // onChange={(date) => setStartDate(date)}
+                                                    name="experienceDate"
+                                                    onChange={(dateString) => setFieldValue('experienceDate', dateString)}
+                                                    value={values.experienceDate}/>
                                         {/* {touched.experienceDate && errors.experienceDate && <Typography className='error-msg'>{errors.experienceDate}</Typography>} */}
                                         <Box className="gcal-icon">
                                             <img className="gcal" src={gCal}/>
                                         </Box>
                                     </Box>
-                                    <Box className="comman-field-box" sx={{ width: "48.5%" }}>
+                                    <Box className="comman-field-box" sx={{width: "48.5%"}}>
                                         <Typography className='field-title' sx={{
                                             display: "flex",
                                             alignItems: "center",
                                             paddingRight: '10px',
-                                            paddingBottom:'6px !important'
+                                            paddingBottom: '6px !important'
                                         }}>
                                             Start Time
                                             <MuiThemeProvider theme={defaultTheme}>
@@ -564,11 +557,11 @@ const ChefDetailsForm = (props) => {
                                 </Box>
                                 <Box className="sub-box-counter">
                                     <Typography className="min-2-3">Number of Diners <span>(min 2)</span></Typography>
-                                    <Box sx={{ display: 'flex' }}>
+                                    <Box sx={{display: 'flex'}}>
                                         <RemoveIcon
                                             style={numberOfDenner === 2 ? disabledStyle : {}}
                                             className="left-btn"
-                                            onClick={handleDecrement}  disabled={numberOfDenner === 2}
+                                            onClick={handleDecrement} disabled={numberOfDenner === 2}
                                         />
                                         <TextField type="text" name="numberOfDenner" id="Qty"
                                             //    name="numberOfDiner"
@@ -606,8 +599,8 @@ const ChefDetailsForm = (props) => {
                                                 fontWeight: '400',
                                                 fontSize: '14px',
                                                 color: 'white',
-                                                paddingTop:'5px',
-                                                paddingBottom:'0px',
+                                                paddingTop: '5px',
+                                                paddingBottom: '0px',
                                                 lineHeight: '17px',
                                                 paddingLeft: '0px',
                                                 paddingRight: '0px',
@@ -624,7 +617,7 @@ const ChefDetailsForm = (props) => {
                                 </Box>
                                 <Box className="sub-box-counter">
                                     <Typography className="min-2-3">Number of Courses <span>(min 3)</span></Typography>
-                                    <Box sx={{ display: 'flex' }}>
+                                    <Box sx={{display: 'flex'}}>
                                         <RemoveIcon
                                             style={numberOfCourses === 3 ? disabledStyle : {}}
                                             className="left-btn"
@@ -666,8 +659,8 @@ const ChefDetailsForm = (props) => {
                                                 fontWeight: '400',
                                                 fontSize: '14px',
                                                 color: 'white',
-                                                paddingTop:'5px',
-                                                paddingBottom:'0px',
+                                                paddingTop: '5px',
+                                                paddingBottom: '0px',
                                                 lineHeight: '17px',
                                                 paddingLeft: '0px',
                                                 paddingRight: '0px',
@@ -687,8 +680,10 @@ const ChefDetailsForm = (props) => {
                                 <Box className="form-check">
                                     <Box className='surprise-check-box'>
                                         <Checkbox className="input-check" defaultChecked/>
-                                        <Typography className="form-check-label" for="flexCheckChecked">Surprise me</Typography></Box>
-                                    <Typography className="email-confirm">An agnostic menu that explores a diverse culinary journey with chef mako at the helm.</Typography>
+                                        <Typography className="form-check-label" for="flexCheckChecked">Surprise
+                                            me</Typography></Box>
+                                    <Typography className="email-confirm">An agnostic menu that explores a diverse
+                                        culinary journey with chef mako at the helm.</Typography>
                                 </Box>
                             </Box>
                             <Box>
@@ -696,7 +691,7 @@ const ChefDetailsForm = (props) => {
                                     className="experience-btn"
                                     type="submit"
                                     onClick={handleClick}
-                                    disabled={isSubmitting}
+                                    // disabled={isSubmitting}
                                 >
                                     Book this Experience
                                 </Button>
@@ -705,8 +700,8 @@ const ChefDetailsForm = (props) => {
                     )}
                 </Formik>
 
-            </BoxWrapper >
-        </React.Fragment >
+            </BoxWrapper>
+        </React.Fragment>
     )
 
 }

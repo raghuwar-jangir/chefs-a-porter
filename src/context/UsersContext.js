@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import {useLocation} from "@reach/router";
+import Cookies from "js-cookie";
 
 const defaultState = {
     data: {},
@@ -11,7 +12,6 @@ const defaultState = {
 const UsersContext = React.createContext(defaultState)
 
 const UsersProvider = (props) => {
-
     const pathInfo = {
         'chef-details': 'users',
         'event-details': 'menu',
@@ -26,6 +26,16 @@ const UsersProvider = (props) => {
     const [userId, setUserId] = useState()
     const [eventId, setEventId] = useState()
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
+    const [bookingId, setBookingId] = useState()
+    const cookieValue = Cookies.get('BookingId');
+
+    useEffect(() => {
+        if (cookieValue) {
+            setBookingId(JSON.parse(cookieValue));
+        }
+    }, [cookieValue])
+
+    console.log("bookingId=======", bookingId)
 
     useEffect(() => {
         if (userId) {
@@ -44,6 +54,8 @@ const UsersProvider = (props) => {
             axios.get(baseUrl + '/addon_category_master/all',).then(result => {
                 setUserData(result.data)
             })
+        } else if (currentPath === 'addons') {
+            axios.post(baseUrl + '/booking/calculate' + bookingId)
         }
     }, [userId, eventId, currentPath])
 

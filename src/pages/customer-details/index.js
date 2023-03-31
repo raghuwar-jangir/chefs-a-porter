@@ -32,8 +32,8 @@ import {navigate} from "gatsby";
 import OTPInput from "react-otp-input";
 import OtpContext from "../../context/OtpContext";
 import * as _ from 'lodash'
-import {useTimer} from "react-timer-hook";
 import OtpVerificationModal from "../../components/OtpVerificationModal";
+import Cookies from "js-cookie";
 
 
 const validationSchema = Yup.object({
@@ -43,20 +43,19 @@ const validationSchema = Yup.object({
 
 
 const CustomerDetails = (props) => {
-
-    const {setOtpNumber, setVerifyOtp, setResendOtp} = useContext(OtpContext);
+    const {setOtpNumber, setVerifyOtp, setResendOtp, setIsSendOtpApiCall} = useContext(OtpContext);
     const CHARACTER_LIMIT = 40;
     const [open, setOpen] = useState(false);
     const [currentModal, setCurrentModal] = useState(0);
     const [openOtp, setOpenOtp] = useState(false);
     const [contactNumber, setContactNumber] = useState('');
 
-
-    const handleOpenOtp = (contactNumber) => {
+    const handleOpenOtp = (contactNumber, values) => {
         if (!_.isEmpty(contactNumber)) {
             setOpenOtp(true);
             setOtpNumber(`+91${contactNumber}`);
             setContactNumber(contactNumber);
+            setIsSendOtpApiCall(true);
         }
     }
     const handleCloseOtp = () => setOpenOtp(false);
@@ -78,7 +77,6 @@ const CustomerDetails = (props) => {
             setCurrentModal(currentModal + 1);
         }
     }
-
     //google map for address popup
     const AnyReactComponent = ({text}) => <div>{text}</div>;
     const defaultProps = {
@@ -1350,7 +1348,8 @@ const CustomerDetails = (props) => {
                                     }}
                                     validationSchema={validationSchema}
                                     onSubmit={(values) => {
-                                        console.log("value===>", values)
+                                        console.log("value===>", values.contactNumber)
+                                        Cookies.set('customerData', JSON.stringify(values));
                                     }}
                                 >
                                     {({values, handleChange, handleSubmit, setFieldValue}) => (
@@ -1703,7 +1702,9 @@ const CustomerDetails = (props) => {
                                                         <Box className="row viewbreak">
                                                             <Box className="col-lg-12">
                                                                 <button type="submit" className="submit-req"
-                                                                        onClick={() => handleOpenOtp(values?.contactNumber)}>Next
+                                                                        onClick={() => {
+                                                                            handleOpenOtp(values?.contactNumber, values);
+                                                                        }}>Next
                                                                 </button>
                                                             </Box>
                                                             <Typography className="contact-text">Our team will contact
@@ -1725,13 +1726,11 @@ const CustomerDetails = (props) => {
                     {modals[currentModal]}
                 </Modal>
                 {
-                    openOtp &&  <OtpVerificationModal openOtp={openOtp}
-                                                         handleCloseOtp={handleCloseOtp}
-                                                         contactNumber={contactNumber}
+                    openOtp && <OtpVerificationModal openOtp={openOtp}
+                                                     handleCloseOtp={handleCloseOtp}
+                                                     contactNumber={contactNumber}
                     />
                 }
-
-
             </BoxWrapper>
         </React.Fragment>
     )

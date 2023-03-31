@@ -92,18 +92,18 @@ const ChefDetails = (props) => {
 
     const itemData = [
         {
-            img: userData?.experinces[0].cover_picture,
+            img: userData?.experinces[0]?.cover_picture,
             title: "chef1",
         },
     ];
 
     const itemData2 = [
         {
-            img: userData?.details.gallery_pictures[0],
+            img: userData?.details?.gallery_pictures[0],
             title: "sGallery",
         },
         {
-            img: userData?.details.gallery_pictures[1],
+            img: userData?.details?.gallery_pictures[1],
             title: "chef2",
         },
     ];

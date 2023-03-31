@@ -2,16 +2,38 @@ import {Box} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import OTPInput from "react-otp-input";
 import Modal from "@mui/material/Modal";
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import OtpContext from "../context/OtpContext";
 import * as _ from "lodash";
 import {navigate} from "gatsby";
+import Cookies from "js-cookie";
 
 const OtpVerificationModal = (props) => {
-    const {openOtp, handleCloseOtp, contactNumber} = props;
-    const {countOfResendOtp, setVerifyOtp, setResendOtp} = useContext(OtpContext);
+    const {
+        openOtp,
+        handleCloseOtp,
+        contactNumber,
+    } = props;
+    const {
+        countOfResendOtp, setVerifyOtp,
+        setOtpNumber,
+        setResendOtp,
+        setIsVerifiedOtpApiCall,
+        setIsReSendOtpApiCall,
+        setIsBookingAPiCall
+    } = useContext(OtpContext);
     const [otp, setOtp] = useState('')
     const [seconds, setSeconds] = useState(10);
+
+    const [eventData, setEventData] = useState()
+
+    const cookieValue = Cookies.get('eventData');
+    useEffect(() => {
+        if (cookieValue) {
+            setEventData(JSON.parse(cookieValue));
+        }
+    }, [cookieValue])
+    console.log("===========", eventData)
 
     //otp timer
     React.useEffect(() => {
@@ -19,12 +41,10 @@ const OtpVerificationModal = (props) => {
             if (seconds > 0) {
                 setSeconds(seconds - 1);
             }
-
             if (seconds === 0) {
                 clearInterval(interval);
             }
         }, 1000);
-
         return () => {
             clearInterval(interval);
         };
@@ -33,6 +53,8 @@ const OtpVerificationModal = (props) => {
     const handleClick = () => {
         if (!_.isEmpty(otp)) {
             setVerifyOtp(otp);
+            setIsVerifiedOtpApiCall(true);
+            setIsBookingAPiCall(true);
             navigate('/addons');
         }
     }
@@ -205,8 +227,10 @@ const OtpVerificationModal = (props) => {
                         <div className="container-fluid house-no">
                             <div className="position-relative">
                                 <div className="otp-div">
-                                    <h6>A 6 digit code has been sent to <b>+{contactNumber}</b> & your
-                                        email <b>kachwallasana@gmail.com</b> <a
+                                    <h6>A 6 digit code has been sent to <b>+91 {contactNumber}</b> & your
+                                        email
+                                        <b> {eventData?.email} </b>
+                                        <a
                                             href="javascript:void(0);">Change</a></h6>
                                     <h4 className="enter-otp">Enter OTP</h4>
                                     <form onSubmit={handleSubmit}>
@@ -243,6 +267,7 @@ const OtpVerificationModal = (props) => {
                                         ) : (<div><span>
                                             {countOfResendOtp < 3 && (
                                                 <a onClick={() => {
+                                                    setIsReSendOtpApiCall(true);
                                                     setResendOtp(contactNumber);
                                                 }}
                                                    style={{

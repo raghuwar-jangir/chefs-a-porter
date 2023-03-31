@@ -899,8 +899,11 @@ const HomePage = () => {
 
     const finalImageData = finalImgData.map((item, i) => Object.assign({}, item, ColsOfObjects[i]));
 
+    const [priveeData, setPriveeData] = useState({});
     const handleClick = () => {
-        navigate('/privee-viewmore', {state: true});
+        if (!_.isEmpty(priveeData)) {
+            navigate('/privee-viewmore', {state: {priveeInfo: priveeData}})
+        }
     }
 
     return (
@@ -929,7 +932,7 @@ const HomePage = () => {
                                                         ...values,
                                                         on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
                                                     }
-                                                    console.log("value===>", values)
+                                                    setPriveeData(experienceData)
                                                     console.log("experienceData===>", experienceData)
                                                 }}
                                             >

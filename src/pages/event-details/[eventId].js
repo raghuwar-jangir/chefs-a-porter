@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {
     Box,
     Button,
@@ -11,8 +11,8 @@ import {
     TextareaAutosize,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Formik, Form } from "formik";
-import { DatePickerInput } from "rc-datepicker";
+import {Formik, Form} from "formik";
+import {DatePickerInput} from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
 import CloseIcon from "@mui/icons-material/Close";
 import Navbar from "../../components/NavbarComponent";
@@ -20,7 +20,7 @@ import Footer from "../../components/Footer";
 import FooterEnd from "../../components/FooterEndSection";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NeedHelp from "../../components/NeedHelp";
-import { isMobile, MobileView } from "react-device-detect";
+import {isMobile, MobileView} from "react-device-detect";
 import ImageCarousel from "../../components/ImageCarousel";
 import chef1 from "../../assets/images/chef5.png";
 import chef2 from "../../assets/images/chef6.png";
@@ -40,19 +40,18 @@ import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
 
 const EventDetails = (props) => {
+    const {setEventId, userData} = useContext(UsersContext);
+    const [showCarousel, setShowCarousel] = useState(false);
+    const [title, setTitle] = useState("");
+    const [open, setOpen] = React.useState(false);
     const getEventId = "640b22b691e7236a1d0a264e";
-    const { setEventId, userData } = useContext(UsersContext);
     // const getEventId = props?.params?.eventId;
 
     useEffect(() => {
         setEventId(getEventId);
     }, [getEventId]);
 
-    console.log("userData====>", userData);
 
-    const [showCarousel, setShowCarousel] = useState(false);
-
-    const [title, setTitle] = useState("");
     const handleImageOpen = (title) => {
         setShowCarousel(true);
         setTitle(title);
@@ -60,8 +59,6 @@ const EventDetails = (props) => {
     const handleImageClose = () => {
         setShowCarousel(false);
     };
-
-    const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const bread = {
@@ -88,11 +85,11 @@ const EventDetails = (props) => {
 
     const itemData2 = [
         {
-            img: userData?.user.details.gallery_pictures[0],
+            img: userData?.user?.details?.gallery_pictures[0],
             title: "sGallery",
         },
         {
-            img: userData?.user.details.gallery_pictures[1],
+            img: userData?.user?.details?.gallery_pictures[1],
             title: "chef2",
         },
     ];
@@ -575,11 +572,11 @@ const EventDetails = (props) => {
             <MainBox>
                 {!_.isEmpty(userData) && (
                     <>
-                        <Navbar to={"/event-details"} isColor={true} />
+                        <Navbar to={"/event-details"} isColor={true}/>
                         <Box className="main-box">
                             {isMobile ? (
                                 <Box className="header-club">
-                                    <ArrowBackIcon className="header-icon" />
+                                    <ArrowBackIcon className="header-icon"/>
                                     <Typography className="chef-mobile-heading">
                                         Privée
                                     </Typography>
@@ -591,7 +588,7 @@ const EventDetails = (props) => {
                                 <Box className="row supper-chef-details">
                                     <Box className="details">
                                         <Breadcrumbs
-                                            separator={<ChevronRightIcon className="chevron-right" />}
+                                            separator={<ChevronRightIcon className="chevron-right"/>}
                                             aria-label="breadcrumb"
                                             color="white"
                                             className="breadcrumbs-heading"
@@ -603,7 +600,7 @@ const EventDetails = (props) => {
                                                 {userData.title}
                                             </Typography>
                                             <Typography className="chef-name-rate">
-                                                <img className="star-logo" src={star} />
+                                                <img className="star-logo" src={star}/>
                                                 4.7
                                             </Typography>
                                         </Box>
@@ -628,7 +625,7 @@ const EventDetails = (props) => {
                                         {userData.title}
                                     </Typography>
                                 </Box>
-                                <ImageCarousel />
+                                <ImageCarousel/>
                                 {!_.isEmpty(userData?.user) && (
                                     <Box className="mobileView-chef">
                                         <Typography className="chef-details mbl-chef-name">
@@ -641,7 +638,7 @@ const EventDetails = (props) => {
                                     </Box>
                                 )}
 
-                                <Grid className="main-grid" container spacing={{ md: 2 }}>
+                                <Grid className="main-grid" container spacing={{md: 2}}>
                                     <Grid
                                         className="container-parent"
                                         item
@@ -668,10 +665,10 @@ const EventDetails = (props) => {
                                                         className="close-button"
                                                         onClick={handleImageClose}
                                                     >
-                                                        <CloseIcon className="pop-close-icon" />
+                                                        <CloseIcon className="pop-close-icon"/>
                                                     </button>
                                                     <Box className="carousel">
-                                                        <EventPopUpCarosuel title={title} />
+                                                        <EventPopUpCarosuel title={title}/>
                                                     </Box>
                                                 </Box>
                                             )}
@@ -732,14 +729,14 @@ const EventDetails = (props) => {
                                         }
                                     </Grid>
                                 </Grid>
-                                <Grid className="grid-box-2" container spacing={{ md: 2 }}>
+                                <Grid className="grid-box-2" container spacing={{md: 2}}>
                                     <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
-                                        <EventCard />
-                                        <EventChefCarousel />
+                                        <EventCard/>
+                                        <EventChefCarousel/>
                                         <SupperClubDetailsCarousel
-                                            mainBox={{ padding: "40px 0px" }}
-                                            changeDetails={{ fontSize: "16px" }}
-                                            changeFont={{ fontSize: "20px" }}
+                                            mainBox={{padding: "40px 0px"}}
+                                            changeDetails={{fontSize: "16px"}}
+                                            changeFont={{fontSize: "20px"}}
                                             backgroundColor="#DCD7CB"
                                         />
                                         <Box className="last-contain">
@@ -762,7 +759,7 @@ const EventDetails = (props) => {
                                         xs={12}
                                         xl={5}
                                     >
-                                        <ChefDetailsForm />
+                                        <ChefDetailsForm/>
                                     </Grid>
                                 </Grid>
                             </Box>
@@ -790,7 +787,7 @@ const EventDetails = (props) => {
                                             className="close"
                                             onClick={handleClose}
                                         >
-                                            <CloseIcon />
+                                            <CloseIcon/>
                                         </button>
                                     </Box>
                                     <Box className="container-fluid">
@@ -898,7 +895,7 @@ const EventDetails = (props) => {
                                                         <button
                                                             className="btn btn-primary"
                                                             type="submit"
-                                                            style={{ width: "100% !important" }}
+                                                            style={{width: "100% !important"}}
                                                         >
                                                             Apply
                                                         </button>
@@ -910,15 +907,15 @@ const EventDetails = (props) => {
                                 </Box>
                             </Box>
                         </Modal>
-                        <NeedHelpEvent isColor={true} />
+                        <NeedHelpEvent isColor={true}/>
                         <TemptedYet
                             title={"Tempted yet?"}
                             buttonText="Book this Experience"
                             isTempted={false}
                         />
-                        <NeedHelp />
-                        <Footer />
-                        <FooterEnd />
+                        <NeedHelp/>
+                        <Footer/>
+                        <FooterEnd/>
                     </>
                 )}
             </MainBox>

@@ -21,8 +21,6 @@ import * as _ from "lodash";
 
 const Addons = () => {
     const {userData} = useContext(UsersContext);
-
-    console.log("userData=======", userData)
     const handleClick = () => {
         navigate('/booking-summary');
     }
