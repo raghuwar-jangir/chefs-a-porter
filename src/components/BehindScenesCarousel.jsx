@@ -100,6 +100,20 @@ const BehindScenesCarousel = (props) => {
         },
         '.supper-details-box': {
             backgroundColor: `${detailsBox ? '#DCD7CB' : ''}`,
+        },
+        "@media (min-width: 1px) and (max-width:767px)": {
+            padding:'40px 16px',
+            '.supper-heading':{
+                padding:'0px !important'
+            },
+            '.chef-name':{
+                fontSize:'16px !important',
+                lineHeight:'19px !important'
+            },
+            '.chef-details':{
+                fontSize:'12px !important',
+                lineHeight:'15px !important'
+            }
         }
     }))
     return (

@@ -70,13 +70,27 @@ const CardChefComponent = ({ bgColor }) => {
             fontFamily:'ProximaNovaA-Regular',
             fontWeight:700
         },
-        "@media (min-width: 425px) and (max-width:768px)": {
+        "@media (min-width: 1px) and (max-width:768px)": {
             '.details':{
                 padding:'12px 16px 0px 0px'
+            },
+            '.heading':{
+                fontSize: "20px",
+                lineHeight: "25px",
+            },
+            '.logo':{
+                width:'20px',
+                height:'20px'
+            },
+            '.field-name':{
+                fontSize: "16px",
+                lineHeight: "19px",
+            },
+            '.field-ans':{
+                fontSize: "16px",
+                lineHeight: "19px",
             }
         },
-        "@media (min-width: 1px) and (max-width:425px)": {
-        }
     }))
     return (
         <React.Fragment>

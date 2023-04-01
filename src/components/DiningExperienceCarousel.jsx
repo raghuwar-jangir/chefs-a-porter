@@ -1,6 +1,5 @@
 import React, {useRef, useState, useContext} from "react";
-import {Box} from "@mui/system";
-import styled from "styled-components";
+import {Box, styled} from "@mui/system";
 import {Typography} from "@mui/material";
 import image1 from '../assets/images/ig1.png';
 import image2 from '../assets/images/ig2.png';
@@ -13,14 +12,14 @@ import CmsContext from "../context/CmsContext";
 import * as _ from "lodash";
 
 const DiningExperienceCarousel = (props) => {
-    const {title, subTitle, titleBox, linkTitle} = props
+    const {title, subTitle, titleBox, linkTitle, main, peek} = props
     const {data} = useContext(CmsContext)
     const WrapBox = styled(Box)({
-        '.main-box': {
+        '.main-box': [{
             background: '#101418',
             padding: '80px 0px',
             textAlign: 'center'
-        },
+        },main],
         '.peek-heading': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
@@ -31,7 +30,7 @@ const DiningExperienceCarousel = (props) => {
             color: '#FBFBFB',
             marginBottom: '0.5rem'
         },
-        '.peek-name': {
+        '.peek-name': [{
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: '200',
@@ -40,7 +39,7 @@ const DiningExperienceCarousel = (props) => {
             textAlign: 'center',
             color: '#C6A87D',
             marginBottom: '0.5rem'
-        },
+        },peek],
         '.slider-box': {
             marginTop: '30px'
         },
@@ -53,8 +52,22 @@ const DiningExperienceCarousel = (props) => {
             display: 'content'
         }, titleBox],
         "@media (min-width: 1px) and (max-width:768px)": {
-            '.main-box': {
-                display: 'none'
+            '.img':{
+                height:'111px'
+            },
+            '.main-box':{
+                padding:'40px 0px'
+            },
+            '.peek-heading':{
+                fontSize:'20px',
+                lineHeight:'24px'
+            },
+            '.peek-name':{
+                fontSize:'20px !important',
+                lineHeight:'24px !important'
+            },
+            '.slider-box':{
+                marginTop:'0px'
             }
         },
     })
@@ -122,9 +135,39 @@ const DiningExperienceCarousel = (props) => {
                         </Box>
                         <Box className='slider-box'>
                             <Swiper
-                                slidesPerView={6}
-                                spaceBetween={8}
+                                // slidesPerView={6}
+                                // spaceBetween={8}
                                 className="mySwiper"
+                                breakpoints={{
+                                    320: {
+                                        slidesPerView: 3,
+                                        spaceBetween: 8,
+                                    },
+                                    375: {
+                                        slidesPerView: 3,
+                                        spaceBetween: 8,
+                                    },
+                                    425: {
+                                        slidesPerView: 3,
+                                        spaceBetween: 8,
+                                    },
+                                    768: {
+                                        slidesPerView: 6,
+                                        spaceBetween: 8,
+                                    },
+                                    1024: {
+                                        slidesPerView: 6,
+                                        spaceBetween: 8,
+                                    },
+                                    1440: {
+                                        slidesPerView: 6,
+                                        spaceBetween: 8,
+                                    },
+                                    2560: {
+                                        slidesPerView: 6,
+                                        spaceBetween: 8,
+                                    },
+                                }}
                             >
                                 <SwiperSlide><img className="img" src={image1}/></SwiperSlide>
                                 <SwiperSlide><img className="img" src={image2}/></SwiperSlide>

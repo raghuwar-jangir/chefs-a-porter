@@ -88,11 +88,11 @@ const EventDetails = (props) => {
 
   const itemData2 = [
     {
-      img: userData?.user.details.gallery_pictures[0],
+      img: userData?.user?.details?.gallery_pictures[0],
       title: "sGallery",
     },
     {
-      img: userData?.user.details.gallery_pictures[1],
+      img: userData?.user?.details?.gallery_pictures[1],
       title: "chef2",
     },
   ];

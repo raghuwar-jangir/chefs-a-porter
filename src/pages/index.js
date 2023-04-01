@@ -864,6 +864,11 @@ const BoxWrapper = styled(Box)({
             width: '987px',
         },
     },
+    '@media(min-width: 1px) and (max-width: 768px)': {
+        '.main-box':{
+            display:'none'
+        }
+    }
 
 })
 
