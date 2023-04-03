@@ -62,16 +62,17 @@ const OtpProvider = (props) => {
             setIsReSendOtpApiCall(false)
         } else if (isStatus) {
             axios.post(baseUrl + '/booking', {
-                name: eventData.yourName,
+                name: eventData.name,
                 email: eventData.email,
                 mobile: otpNumber,
                 type: "chef_table",
                 meal: priveeData.experience,
                 diner_count: priveeData.numberOfDiner,
+                courses: eventData.numberOfCourses,
                 city: priveeData.city,
                 booking_date: priveeData.date,
-                booking_time: eventData.time,
-                otp: verifyOtp
+                booking_time: eventData.startTime,
+                otp: verifyOtp,
             }).then((response) => {
                 if (response.status === 200) {
                     Cookies.remove('eventData');

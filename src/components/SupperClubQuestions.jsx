@@ -86,14 +86,14 @@ const SupperClubQuestion = (props) => {
         },
         // !media query for accodion component(mobileView)
 
-        '@media(min-width: 1px) and (max-width: 425px)': {
+        '@media(min-width: 1px) and (max-width: 768px)': {
             '.title-question': {
                 fontSize: '24px',
                 fontWeight: '700',
                 lineHeight: '29px',
             },
             '.WrapperBox': {
-                padding: '20px 16px'
+                padding: '40px 4px !important'
             },
             '.frequently-questions': {
                 fontFamily: 'Proxima Nova Alt',

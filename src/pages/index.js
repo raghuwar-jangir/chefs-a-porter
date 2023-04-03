@@ -60,6 +60,7 @@ import axios from "axios";
 import CmsContext from "../context/CmsContext";
 import "../assets/styles/searchBar.css"
 import "../assets/styles/fontStyle.css"
+import Cookies from "js-cookie";
 
 
 const MainBoxContent = styled(Box)({
@@ -864,6 +865,11 @@ const BoxWrapper = styled(Box)({
             width: '987px',
         },
     },
+    '@media(min-width: 1px) and (max-width: 768px)': {
+        '.main-box': {
+            display: 'none'
+        }
+    }
 
 })
 
@@ -898,12 +904,8 @@ const HomePage = () => {
     const finalImgData = imgData.map((item, i) => Object.assign({}, item, rowOfObjects[i]));
 
     const finalImageData = finalImgData.map((item, i) => Object.assign({}, item, ColsOfObjects[i]));
-
-    const [priveeData, setPriveeData] = useState({});
     const handleClick = () => {
-        if (!_.isEmpty(priveeData)) {
-            navigate('/privee-viewmore', {state: {priveeInfo: priveeData}})
-        }
+        navigate('/privee-viewmore')
     }
 
     return (
@@ -930,10 +932,10 @@ const HomePage = () => {
                                                     console.log(values.date)
                                                     const experienceData = {
                                                         ...values,
-                                                        on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
+                                                        // on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
+                                                        on: moment(_.get(values, 'date')).toISOString(),
                                                     }
-                                                    setPriveeData(experienceData)
-                                                    console.log("experienceData===>", experienceData)
+                                                    Cookies.set('priveeData', JSON.stringify(experienceData));
                                                 }}
                                             >
                                                 {({values, handleChange, handleSubmit, setFieldValue}) => (

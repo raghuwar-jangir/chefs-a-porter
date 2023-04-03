@@ -113,8 +113,30 @@ const SupperClubDetailsCarousel = ({backgroundColor, changeFont, changeDetails, 
                 margin: '0px 8px !important'
             },
             padding: '40px',
+        },
+        "@media (min-width: 1px) and (max-width:767px)": {
+            padding: '40px 16px',
+        },
+        '.details':{
+            textAlign: "center",
+            fontSize: "14px",
+            fontWeight: 400,
+            lineHeight: '17px',
+            fontFamily: 'ProximaNovaA-Regular',
+            whiteSpace: 'pre-wrap'
+        },
+        '.ceoName':{
+            textAlign: "center",
+            fontSize: "14px",
+            padding: '30px 0px 24px 0px ',
+            fontFamily: 'ProximaNovaA-Regular',
+            fonStyle: 'normal',
+            lineHeight: '17px',
+            textTransform: 'uppercase',
+            color: '#080B0E',
+            marginBottom: '32px',
+            fontWeight: 600
         }
-
 
     }, mainBox]))
     return (

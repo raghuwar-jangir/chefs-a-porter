@@ -22,10 +22,10 @@ const UsersProvider = (props) => {
 
     const path = useLocation()
     const currentPath = path.pathname.split("/")[1];
+    const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
     const [userData, setUserData] = useState()
     const [userId, setUserId] = useState()
     const [eventId, setEventId] = useState()
-    const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
     const [bookingId, setBookingId] = useState()
     const cookieValue = Cookies.get('BookingId');
 
@@ -55,7 +55,12 @@ const UsersProvider = (props) => {
                 setUserData(result.data)
             })
         } else if (currentPath === 'addons') {
-            axios.post(baseUrl + '/booking/calculate' + bookingId)
+            axios.post(baseUrl + '/booking/calculate/' + bookingId).then((response) => {
+                if (response.status === 200) {
+                    console.log("response.data.id=====", response.data)
+                    Cookies.set('calcuklationData', JSON.stringify(response.data));
+                }
+            })
         }
     }, [userId, eventId, currentPath])
 
