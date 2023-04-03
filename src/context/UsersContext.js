@@ -17,25 +17,16 @@ const UsersProvider = (props) => {
         'event-details': 'menu',
         'privee-viewmore': 'menu',
         'supper-club-details': 'event',
-        'addons': 'addon_category_master'
     }
-
     const path = useLocation()
     const currentPath = path.pathname.split("/")[1];
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
     const [userData, setUserData] = useState()
     const [userId, setUserId] = useState()
     const [eventId, setEventId] = useState()
-    const [bookingId, setBookingId] = useState()
+    const [supperClubDetailId, setSupperClubDetailId] = useState();
     const cookieValue = Cookies.get('BookingId');
-
-    useEffect(() => {
-        if (cookieValue) {
-            setBookingId(JSON.parse(cookieValue));
-        }
-    }, [cookieValue])
-
-    console.log("bookingId=======", bookingId)
+    const summaryCookieValue = Cookies?.get('BookingId');
 
     useEffect(() => {
         if (userId) {
@@ -46,23 +37,31 @@ const UsersProvider = (props) => {
             axios.get(baseUrl + `/${pathInfo[currentPath]}/` + eventId).then(result => {
                 setUserData(result.data)
             })
+        } else if (supperClubDetailId) {
+            axios.get(baseUrl + '/event/' + supperClubDetailId).then(result => {
+                setUserData(result.data)
+            })
         } else if (currentPath === 'privee-viewmore') {
             axios.get(baseUrl + '/menu').then(result => {
                 setUserData(result.data)
             })
-        } else if (currentPath === 'addons') {
+        } else if (currentPath === 'addons' && JSON.parse(cookieValue)) {
             axios.get(baseUrl + '/addon_category_master/all',).then(result => {
                 setUserData(result.data)
             })
-        } else if (currentPath === 'addons') {
-            axios.post(baseUrl + '/booking/calculate/' + bookingId).then((response) => {
+            axios.post(baseUrl + '/booking/calculate/' + JSON.parse(cookieValue)).then((response) => {
                 if (response.status === 200) {
-                    console.log("response.data.id=====", response.data)
-                    Cookies.set('calcuklationData', JSON.stringify(response.data));
+                    Cookies.set('paymentCalculation', JSON.stringify(response.data));
+                }
+            })
+        } else if (currentPath === 'booking-summary') {
+            axios.post(baseUrl + '/booking/calculate/' + JSON.parse(summaryCookieValue)).then((response) => {
+                if (response.status === 200) {
+                    Cookies.set('paymentCalculation', JSON.stringify(response.data));
                 }
             })
         }
-    }, [userId, eventId, currentPath])
+    }, [userId, eventId, currentPath, supperClubDetailId])
 
     const {children} = props;
 
@@ -72,6 +71,7 @@ const UsersProvider = (props) => {
                 userData,
                 setUserId,
                 setEventId,
+                setSupperClubDetailId,
             }}
         >
             {children}

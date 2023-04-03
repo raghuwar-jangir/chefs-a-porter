@@ -456,7 +456,7 @@ const PriveeViewMore = (props) => {
                                         <a className="edit" onClick={handleOpen}>Edit</a>
                                         <Formik
                                             initialValues={{
-                                                city: priveeInfo.city,
+                                                city: priveeInfo?.city,
                                                 on: new Date(),
                                                 time: 'Lunch',
                                                 diners: 1

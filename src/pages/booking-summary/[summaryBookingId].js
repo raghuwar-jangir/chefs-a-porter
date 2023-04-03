@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import * as Yup from "yup";
-import { Form, Formik, Field, ErrorMessage } from "formik";
+import {Form, Formik, Field, ErrorMessage} from "formik";
 import {
     Box,
     Grid,
@@ -22,7 +22,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import sGallery from "../../assets/images/sc-gallery.png";
 import StarIcon from "@mui/icons-material/Star";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { isMobile } from "react-device-detect";
+import {isMobile} from "react-device-detect";
 import chefImg from "../../assets/images/chef-img.png";
 import dateGold from "../../assets/images/date-gold.png";
 import location from "../../assets/images/location.png";
@@ -38,7 +38,9 @@ import "../../assets/styles/fontStyle.css";
 import output from "../../assets/images/output.png";
 import download from "../../assets/images/download.png";
 import useRazorpay from "react-razorpay";
-import { useCallback } from "react";
+import {useCallback} from "react";
+import Cookies from "js-cookie";
+import * as _ from "lodash";
 
 const BookingSummary = () => {
     const validationSchema = Yup.object().shape({
@@ -50,6 +52,16 @@ const BookingSummary = () => {
         number1: Yup.string().required("Number is required"),
     });
 
+    const [paymentCalulationData, setPaymentCalulationData] = useState()
+    const cookieValue = Cookies.get('paymentCalculation');
+    useEffect(() => {
+        if (cookieValue) {
+            setPaymentCalulationData(JSON.parse(cookieValue));
+        }
+    }, [cookieValue])
+    console.log("paymentCalulationData=====", paymentCalulationData)
+
+
     const initialValues = {
         number: "9876543210",
         name: "Teqzo International",
@@ -57,7 +69,7 @@ const BookingSummary = () => {
         address: "Manchester",
         pincode: "400022",
     };
-    const handleSubmit = (values, { setSubmitting }) => {
+    const handleSubmit = (values, {setSubmitting}) => {
         console.log(values);
         setSubmitting(false);
     };
@@ -74,18 +86,18 @@ const BookingSummary = () => {
 
         const options = {
             key: "rzp_test_MHRk336eUPGyWR",
-            amount: 1000 * 100,
+            amount: `${paymentCalulationData?.payment?.total * 100}`,
             currency: "INR",
-            name: "Acme Corp",
+            name: "Chefs-à-Porter",
             description: "Test Transaction",
-            image: "https://example.com/your_logo",
+            image: 'https://chefsaporter.com/assets/img/logo_black.svg',
+            theme: {color: '#C6A87D', fontFamily: 'ProximaNovaA-Regular'},
 
             handler: (res) => {
-                console.log("res",res);
+                console.log("res", res);
                 handleBookingSuccessOpen(true);
             },
         };
-
         const rzpay = new Razorpay(options);
         console.log("rzpay", rzpay);
         rzpay.open();
@@ -93,32 +105,6 @@ const BookingSummary = () => {
             console.log("fails", response);
         });
     }, [Razorpay]);
-    const addonsCardDetail = [
-        {
-            image: add1,
-            title: "Table",
-        },
-        {
-            image: add2,
-            title: "Flowers",
-        },
-        {
-            image: add3,
-            title: "Cake",
-        },
-        {
-            image: add4,
-            title: "Artisanal Cheese",
-        },
-        {
-            image: add5,
-            title: "Gluten free bread",
-        },
-        {
-            image: add6,
-            title: "Sauces",
-        },
-    ];
 
     const BoxWrapper = styled(Box)(() => ({
         background: "#080B0E",
@@ -1085,12 +1071,12 @@ const BookingSummary = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar to={"/booking-summary"} isColor={true} heading="Privee" />
+                <Navbar to={"/booking-summary"} isColor={true} heading="Privee"/>
                 <Box className="supper-gallery cust-details">
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">
                             <Box className="book-trad">
-                                <ArrowBackIcon className="arrow-left" />
+                                <ArrowBackIcon className="arrow-left"/>
                                 <Typography className="addons-title">
                                     Booking Summary
                                 </Typography>
@@ -1100,7 +1086,7 @@ const BookingSummary = () => {
                                 validationSchema={validationSchema}
                                 onSubmit={handleSubmit}
                             >
-                                {({ values, handleChange, handleSubmit, setFieldValue }) => (
+                                {({values, handleChange, handleSubmit, setFieldValue}) => (
                                     <Form>
                                         <Box className="row customer-details addons-div">
                                             <Grid container>
@@ -1122,11 +1108,11 @@ const BookingSummary = () => {
                                                     </Box>
                                                     <Box className="booking-box">
                                                         <Box class="chef-edit">
-                                                            <img className="chef-edit-img" src={chefImg} />
+                                                            <img className="chef-edit-img" src={chefImg}/>
                                                             <Typography className="chef-edit-title">
                                                                 Chef Mako Ravindran
                                                             </Typography>
-                                                            <CreateIcon className="pencil-icon" />
+                                                            <CreateIcon className="pencil-icon"/>
                                                         </Box>
                                                         <Box class="chef-profile">
                                                             <Box className="chef-profile-detail">
@@ -1163,7 +1149,7 @@ const BookingSummary = () => {
                                                             <Typography className="exp-info-heading">
                                                                 Important Experience Info
                                                             </Typography>
-                                                            <KeyboardArrowDownIcon className="drop-down" />
+                                                            <KeyboardArrowDownIcon className="drop-down"/>
                                                             <ul className="exp-ul">
                                                                 <li className="exp-li">Service Includes</li>
                                                                 <li className="exp-li">Service Excludes</li>
@@ -1173,7 +1159,7 @@ const BookingSummary = () => {
                                                                 </li>
                                                                 <li className="exp-li">Decor not included</li>
                                                             </ul>
-                                                            <hr className="hr" />
+                                                            <hr className="hr"/>
                                                         </Box>
                                                     </Box>
                                                     <Box className="contact">
@@ -1195,7 +1181,7 @@ const BookingSummary = () => {
                                                                 className="forward-arrow"
                                                             />
                                                         </Box>
-                                                        <hr className="hr" />
+                                                        <hr className="hr"/>
                                                     </Box>
                                                     <Box className="booking-box">
                                                         <Typography className="email-text">
@@ -1213,7 +1199,7 @@ const BookingSummary = () => {
                                                             <Box className="form-group">
                                 <span className="country-code">
                                   +91{" "}
-                                    <KeyboardArrowDownIcon className="drop-down-2" />
+                                    <KeyboardArrowDownIcon className="drop-down-2"/>
                                 </span>
                                                                 <Field
                                                                     placeholder="10 digit number"
@@ -1250,17 +1236,17 @@ const BookingSummary = () => {
                                                                     class="form-control"
                                                                     autoComplete="off"
                                                                 />
-                                                                <ErrorMessage className="error" name="email1" />
+                                                                <ErrorMessage className="error" name="email1"/>
                                                             </Box>
                                                         </Box>
                                                     </Box>
                                                     <Box className="booking-box">
                                                         <Box className="chef-profile">
                                                             <Box className="chef-profile-box">
-                                                                <img className="chef-profile-logo" src={done} />
+                                                                <img className="chef-profile-logo" src={done}/>
                                                                 <Typography className="chef-profile-dis">
                                                                     An email confirmation has been sent to
-                                                                    kachwallsana@gmail.com <br />
+                                                                    kachwallsana@gmail.com <br/>
                                                                     and SMS sent to 23456745
                                                                 </Typography>
                                                             </Box>
@@ -1271,7 +1257,7 @@ const BookingSummary = () => {
                                                                 />
                                                                 <Typography className="chef-profile-dis">
                                                                     Our team and Chef will get in touch with you
-                                                                    to discuss menu <br />
+                                                                    to discuss menu <br/>
                                                                     (allergen+protein info), venue, set up and
                                                                     pricing
                                                                 </Typography>
@@ -1283,7 +1269,7 @@ const BookingSummary = () => {
                                                             <Typography className="exp-info-heading">
                                                                 Cancellation Policy
                                                             </Typography>
-                                                            <KeyboardArrowDownIcon className="drop-down" />
+                                                            <KeyboardArrowDownIcon className="drop-down"/>
                                                             <Box className="contact">
                                                                 <Box className="form-check">
                                                                     <Checkbox
@@ -1320,7 +1306,7 @@ const BookingSummary = () => {
                                                                 alt=""
                                                                 className="per-dinner-img"
                                                             />
-                                                            <Box sx={{ marginLeft: "12px" }}>
+                                                            <Box sx={{marginLeft: "12px"}}>
                                                                 <Typography className="event-title">
                                                                     The Big Fat Parsi Blowout
                                                                 </Typography>
@@ -1351,69 +1337,45 @@ const BookingSummary = () => {
                                                                 </Typography>
                                                                 <Typography className="ex-detail">
                                                                     This is an estimate, final price will be{" "}
-                                                                    <br />
+                                                                    <br/>
                                                                     communicated on call
                                                                 </Typography>
-                                                                <ExpandMoreIcon className="ex-icon" />
+                                                                <ExpandMoreIcon className="ex-icon"/>
                                                             </Box>
-                                                            <Box className="table table-borderless">
-                                                                <Box className="table-box">
-                                                                    <Typography className="table-details">
-                                                                        Food
-                                                                    </Typography>
-                                                                    <Typography className="table-details">
-                                                                        ₹ 2,500
-                                                                    </Typography>
-                                                                </Box>
-                                                                <Box className="table-box">
-                                                                    <Typography className="table-details">
-                                                                        Service Charge
-                                                                    </Typography>
-                                                                    <Typography className="table-details">
-                                                                        ₹ 2,500
-                                                                    </Typography>
-                                                                </Box>
-                                                                <Box className="table-box">
-                                                                    <Typography className="table-details">
-                                                                        Tax
-                                                                    </Typography>
-                                                                    <Typography className="table-details">
-                                                                        ₹ 2,500
-                                                                    </Typography>
-                                                                </Box>
-                                                                <Box className="table-box">
-                                                                    <Typography className="table-details">
-                                                                        Venue
-                                                                    </Typography>
-                                                                    <Typography className="table-details">
-                                                                        ₹ 2,500
-                                                                    </Typography>
-                                                                </Box>
-                                                                <Box className="table-box">
-                                                                    <Box className="table-details">
-                                                                        Additional Courses +2
+                                                            {
+                                                                !_.isEmpty(paymentCalulationData) &&
+                                                                <Box className="table table-borderless">
+                                                                    {
+                                                                        Object.keys(paymentCalulationData?.payment).map((key) => {
+                                                                            return (
+                                                                                <Box className="table-box">
+                                                                                    <Typography
+                                                                                        className="table-details">{key}</Typography>
+                                                                                    <Typography
+                                                                                        className="table-details">₹
+                                                                                        {paymentCalulationData?.payment[key]}</Typography>
+                                                                                </Box>
+                                                                            )
+                                                                        })
+                                                                    }
+                                                                    <Box className="table-box border">
+                                                                        <Typography
+                                                                            className=" grand-total table-details">Grand
+                                                                            Total</Typography>
+                                                                        <Typography
+                                                                            className="table-details grand-total">₹
+                                                                            {paymentCalulationData?.total}</Typography>
                                                                     </Box>
-                                                                    <Box className="table-details">₹ 2,500</Box>
+                                                                    <Box className="tax tax1 table-box">
+                                                                        <Typography className="table-details">+Incl Of
+                                                                            GST</Typography>
+                                                                    </Box>
+                                                                    <Box className="tax">
+                                                                        <Typography className="table-details">++1.95% +
+                                                                            GST</Typography>
+                                                                    </Box>
                                                                 </Box>
-                                                                <Box className="table-box border">
-                                                                    <Typography className=" grand-total table-details">
-                                                                        Grand Total
-                                                                    </Typography>
-                                                                    <Typography className="table-details grand-total">
-                                                                        ₹ 2,5000
-                                                                    </Typography>
-                                                                </Box>
-                                                                <Box className="tax tax1 table-box">
-                                                                    <Typography className="table-details">
-                                                                        +Incl Of GST
-                                                                    </Typography>
-                                                                </Box>
-                                                                <Box className="tax">
-                                                                    <Typography className="table-details">
-                                                                        ++1.95% + GST
-                                                                    </Typography>
-                                                                </Box>
-                                                            </Box>
+                                                            }
                                                         </Box>
                                                         <Box className="row viewbreak">
                                                             <Box className="col-lg-12">
@@ -1422,7 +1384,9 @@ const BookingSummary = () => {
                                                                     className="submit-req"
                                                                     onClick={handlePayment}
                                                                 >
-                                                                    Proceed to pay ₹25,000
+                                                                    Proceed to pay
+                                                                    ₹{paymentCalulationData?.payment?.total}
+                                                                    {/*Proceed to pay ₹25,000*/}
                                                                 </button>
                                                             </Box>
                                                             <Typography className="contact-text">
@@ -1450,7 +1414,7 @@ const BookingSummary = () => {
                     <Box sx={style}>
                         <Box className="modal-content">
                             <Box className="modal-header">
-                                <ArrowBackIcon className="form-arrow" />
+                                <ArrowBackIcon className="form-arrow"/>
                                 <Typography className="modal-title" id="exampleModalLabel">
                                     GST Details
                                 </Typography>
@@ -1461,7 +1425,7 @@ const BookingSummary = () => {
                                     className="close"
                                     onClick={handleClose}
                                 >
-                                    <CloseIcon className="close-icon" />
+                                    <CloseIcon className="close-icon"/>
                                 </button>
                             </Box>
                             <Box class="modal-body">
@@ -1471,7 +1435,7 @@ const BookingSummary = () => {
                                         validationSchema={validationSchema}
                                         onSubmit={handleSubmit}
                                     >
-                                        {({ isSubmitting }) => (
+                                        {({isSubmitting}) => (
                                             <Form>
                                                 <Box className="row">
                                                     <Box className="form-field">
@@ -1486,7 +1450,7 @@ const BookingSummary = () => {
                                                             placeholder="Enter Location"
                                                             autoComplete="off"
                                                         />
-                                                        <ErrorMessage name="number" className="error" />
+                                                        <ErrorMessage name="number" className="error"/>
                                                     </Box>
 
                                                     <Box className="form-field">
@@ -1501,7 +1465,7 @@ const BookingSummary = () => {
                                                             placeholder="Enter Location"
                                                             autoComplete="off"
                                                         />
-                                                        <ErrorMessage name="name" className="error" />
+                                                        <ErrorMessage name="name" className="error"/>
                                                     </Box>
 
                                                     <Box className="form-field">
@@ -1516,7 +1480,7 @@ const BookingSummary = () => {
                                                             placeholder="Enter Location"
                                                             autoComplete="off"
                                                         />
-                                                        <ErrorMessage name="flatNumber" className="error" />
+                                                        <ErrorMessage name="flatNumber" className="error"/>
                                                     </Box>
 
                                                     <Box className="form-field">
@@ -1531,7 +1495,7 @@ const BookingSummary = () => {
                                                             placeholder="Enter Locationr"
                                                             autoComplete="off"
                                                         />
-                                                        <ErrorMessage name="address" className="error" />
+                                                        <ErrorMessage name="address" className="error"/>
                                                     </Box>
 
                                                     <Box className="form-field">
@@ -1546,7 +1510,7 @@ const BookingSummary = () => {
                                                             placeholder="Enter Location"
                                                             autoComplete="off"
                                                         />
-                                                        <ErrorMessage name="pincode" className="error" />
+                                                        <ErrorMessage name="pincode" className="error"/>
                                                     </Box>
 
                                                     <button
@@ -1582,25 +1546,25 @@ const BookingSummary = () => {
                                     className="close"
                                     onClick={handleBookingSuccessClose}
                                 >
-                                    <CloseIcon sx={{ fontSize: "25px" }} />
+                                    <CloseIcon sx={{fontSize: "25px"}}/>
                                 </button>
                             </div>
                             <div className="modal-body">
                                 <div className="container-fluid">
                                     <div className="booking-details">
-                                        <img src={output} alt="" className="output" />
+                                        <img src={output} alt="" className="output"/>
                                         <h3>Booking Successful</h3>
                                         <span>Booking ID - 123456</span>
                                         <p>
-                                            We look forward to serving you a conscious <br />
+                                            We look forward to serving you a conscious <br/>
                                             dining experience!
                                         </p>
                                         <a href="javascript:void(0);">
-                                            <img src={download} alt="" />
+                                            <img src={download} alt=""/>
                                             Download Invoice
                                         </a>
                                         <button className="add-cal">
-                                            <img src={dateGold} alt="" />
+                                            <img src={dateGold} alt=""/>
                                             Add to calender
                                         </button>
                                     </div>
@@ -1621,40 +1585,40 @@ const BookingSummary = () => {
                                                     </div>
                                                     <div className="col-lg-12">
                                                         <div className="chef-edit">
-                                                            <img src={chefImg} alt="" />
+                                                            <img src={chefImg} alt=""/>
                                                             <h5>Chef Mako Ravindran</h5>
                                                         </div>
                                                         <div className="chef-profile">
                                                             <div>
-                                                                <img src={dateGold} alt="" />
+                                                                <img src={dateGold} alt=""/>
                                                                 <span>April 9 | 7:30 PM - 10 PM</span>
                                                             </div>
                                                             <div>
-                                                                <img src={location} alt="" />
+                                                                <img src={location} alt=""/>
                                                                 <span>Silver bar, Downtown</span>
                                                             </div>
                                                             <div>
-                                                                <img src={people} alt="" />
+                                                                <img src={people} alt=""/>
                                                                 <span>6 Diners</span>
                                                             </div>
                                                         </div>
-                                                        <hr className="hr" />
+                                                        <hr className="hr"/>
                                                     </div>
                                                     <div className="col-lg-12">
                                                         <div className="chef-profile done-div">
                                                             <div>
-                                                                <img src={done} alt="" />
+                                                                <img src={done} alt=""/>
                                                                 <span>
                                   An email confirmation has been sent to
-                                  kachwallsana@gmail.com <br />
+                                  kachwallsana@gmail.com <br/>
                                   and SMS sent to 23456745
                                 </span>
                                                             </div>
                                                             <div>
-                                                                <img src={support} alt="" />
+                                                                <img src={support} alt=""/>
                                                                 <span>
                                   Our team and Chef will get in touch with you
-                                  to discuss menu <br />
+                                  to discuss menu <br/>
                                   (allergen+protein info), venue, set up and
                                   pricing
                                 </span>
@@ -1676,7 +1640,7 @@ const BookingSummary = () => {
                                                     <div className="experience-breakup">
                                                         <div className="ex-details">
                                                             <h5>Payment Summary</h5>
-                                                            <KeyboardArrowDownIcon className="i" />
+                                                            <KeyboardArrowDownIcon className="i"/>
                                                         </div>
                                                         <div className="table table-borderless">
                                                             <div className="table-box">

@@ -3,6 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import OTPInput from "react-otp-input";
 import Modal from "@mui/material/Modal";
 import React, {useContext, useState, useEffect} from "react";
+import UsersContext from "../context/UsersContext";
 import OtpContext from "../context/OtpContext";
 import * as _ from "lodash";
 import {navigate} from "gatsby";
@@ -20,20 +21,25 @@ const OtpVerificationModal = (props) => {
         setResendOtp,
         setIsVerifiedOtpApiCall,
         setIsReSendOtpApiCall,
-        setIsBookingAPiCall
+        setIsBookingAPiCall,
     } = useContext(OtpContext);
     const [otp, setOtp] = useState('')
     const [seconds, setSeconds] = useState(10);
-
     const [eventData, setEventData] = useState()
-
     const cookieValue = Cookies.get('eventData');
+    const [bookingId, setBookingId] = useState()
+    const otpCookieValue = Cookies?.get('BookingId');
+
     useEffect(() => {
         if (cookieValue) {
             setEventData(JSON.parse(cookieValue));
         }
-    }, [cookieValue])
-    console.log("===========", eventData)
+        if (otpCookieValue) {
+            setBookingId(JSON.parse(otpCookieValue));
+        }
+    }, [cookieValue, otpCookieValue])
+
+    console.log("bookingId=======", bookingId)
 
     //otp timer
     React.useEffect(() => {
@@ -55,7 +61,7 @@ const OtpVerificationModal = (props) => {
             setVerifyOtp(otp);
             setIsVerifiedOtpApiCall(true);
             setIsBookingAPiCall(true);
-            navigate('/addons');
+            navigate(`/addons/${bookingId}`);
         }
     }
 

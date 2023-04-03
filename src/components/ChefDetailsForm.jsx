@@ -247,6 +247,7 @@ const ChefDetailsForm = () => {
             textTransform: "math-auto",
             padding: "18.5px 10px",
             marginTop: "20px",
+            cursor: 'pointer'
         },
     }));
 
@@ -279,14 +280,11 @@ const ChefDetailsForm = () => {
                 }}
                 onSubmit={(values, {setSubmitting}) => {
                     setSubmitting(false);
-                    console.log("values=======>>>>>", values);
                     // const eventDetails = {
                     //     ...values,
                     // };
                     Cookies.set('eventData', JSON.stringify(values));
                     setSubmitting(false);
-                    console.log("eventDetails======", eventDetails)
-
                 }}
             >
                 {({isSubmitting, values, setFieldValue}) => (<Form>
