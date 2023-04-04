@@ -27,17 +27,14 @@ const OtpVerificationModal = (props) => {
     const [seconds, setSeconds] = useState(10);
     const [eventData, setEventData] = useState()
     const cookieValue = Cookies.get('eventData');
-    const [bookingId, setBookingId] = useState()
-    const otpCookieValue = Cookies?.get('BookingId');
+    const bookingIdCookieValue = Cookies.get('BookingId');
+    const bookingId = bookingIdCookieValue.replaceAll('"', '')
 
     useEffect(() => {
         if (cookieValue) {
             setEventData(JSON.parse(cookieValue));
         }
-        if (otpCookieValue) {
-            setBookingId(JSON.parse(otpCookieValue));
-        }
-    }, [cookieValue, otpCookieValue])
+    }, [cookieValue])
 
     console.log("bookingId=======", bookingId)
 

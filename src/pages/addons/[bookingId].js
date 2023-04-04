@@ -22,10 +22,11 @@ import Cookies from "js-cookie";
 
 const Addons = (props) => {
     const {userData} = useContext(UsersContext);
-    const summaryCookieValue = Cookies?.get('BookingId');
+    const summaryCookieValue = Cookies.get('BookingId');
+    const summaryBookingId = summaryCookieValue?.replaceAll('"', '')
 
     const handleClick = () => {
-        navigate(`/booking-summary/${JSON.parse(summaryCookieValue)}`);
+        navigate(`/booking-summary/${summaryBookingId}`);
     }
 
     const [paymentCalulationData, setPaymentCalulationData] = useState()

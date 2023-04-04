@@ -18,15 +18,19 @@ const UsersProvider = (props) => {
         'privee-viewmore': 'menu',
         'supper-club-details': 'event',
     }
-    const path = useLocation()
+    const path = useLocation();
     const currentPath = path.pathname.split("/")[1];
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
-    const [userData, setUserData] = useState()
-    const [userId, setUserId] = useState()
-    const [eventId, setEventId] = useState()
+    const [userData, setUserData] = useState();
+    const [userId, setUserId] = useState();
+    const [eventId, setEventId] = useState();
     const [supperClubDetailId, setSupperClubDetailId] = useState();
     const cookieValue = Cookies.get('BookingId');
-    const summaryCookieValue = Cookies?.get('BookingId');
+    const bookingId = cookieValue?.replaceAll('"', '');
+    const summaryBookingId = cookieValue?.replaceAll('"', '');
+
+    console.log("bookingId===", bookingId);
+    console.log("cookieValue===", cookieValue);
 
     useEffect(() => {
         if (userId) {
@@ -45,23 +49,23 @@ const UsersProvider = (props) => {
             axios.get(baseUrl + '/menu').then(result => {
                 setUserData(result.data)
             })
-        } else if (currentPath === 'addons' && JSON.parse(cookieValue)) {
+        } else if (currentPath === 'addons' && bookingId) {
             axios.get(baseUrl + '/addon_category_master/all',).then(result => {
                 setUserData(result.data)
             })
-            axios.post(baseUrl + '/booking/calculate/' + JSON.parse(cookieValue)).then((response) => {
+            axios.post(baseUrl + '/booking/calculate/' + bookingId).then((response) => {
                 if (response.status === 200) {
                     Cookies.set('paymentCalculation', JSON.stringify(response.data));
                 }
             })
         } else if (currentPath === 'booking-summary') {
-            axios.post(baseUrl + '/booking/calculate/' + JSON.parse(summaryCookieValue)).then((response) => {
+            axios.post(baseUrl + '/booking/calculate/' + summaryBookingId).then((response) => {
                 if (response.status === 200) {
                     Cookies.set('paymentCalculation', JSON.stringify(response.data));
                 }
             })
         }
-    }, [userId, eventId, currentPath, supperClubDetailId])
+    }, [userId, eventId, currentPath, supperClubDetailId, bookingId])
 
     const {children} = props;
 

@@ -80,7 +80,6 @@ const OtpProvider = (props) => {
                     Cookies.remove('eventData');
                     Cookies.remove('priveeData');
                     console.log("reponse=====", response.data)
-                    // alert( JSON.stringify(response.data.id))
                     Cookies.set('BookingId', JSON.stringify(response.data.id));
                     Cookies.set('summaryBookingId', JSON.stringify(response.data.id));
                 }
