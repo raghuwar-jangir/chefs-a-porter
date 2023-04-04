@@ -38,6 +38,7 @@ import NeedHelpEvent from "../../components/NeedHelpEvent";
 import EventChefCarousel from "../../components/EventChefCarousel";
 import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
+import Cookies from "js-cookie";
 
 const EventDetails = (props) => {
     const {setEventId, userData} = useContext(UsersContext);
@@ -794,8 +795,7 @@ const EventDetails = (props) => {
                                         <Formik
                                             initialValues={{
                                                 day: new Date(),
-                                                time:
-                                                    new Date().getHours() + ":" + new Date().getMinutes(),
+                                                time: new Date().getHours() + ":" + new Date().getMinutes(),
                                                 contactNumber: "",
                                                 queryMessage: "",
                                             }}

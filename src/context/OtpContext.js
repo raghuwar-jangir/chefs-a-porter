@@ -77,8 +77,8 @@ const OtpProvider = (props) => {
                 otp: verifyOtp,
             }).then((response) => {
                 if (response.status === 200) {
-                    Cookies.remove('eventData');
-                    Cookies.remove('priveeData');
+                    // Cookies.remove('eventData');
+                    // Cookies.remove('priveeData');
                     console.log("reponse=====", response.data)
                     Cookies.set('BookingId', JSON.stringify(response.data.id));
                     Cookies.set('summaryBookingId', JSON.stringify(response.data.id));

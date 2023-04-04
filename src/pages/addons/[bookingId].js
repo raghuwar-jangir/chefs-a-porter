@@ -21,22 +21,23 @@ import Cookies from "js-cookie";
 
 
 const Addons = (props) => {
-    const {userData} = useContext(UsersContext);
+    const {userData,setIsBookingStatus} = useContext(UsersContext);
     const summaryCookieValue = Cookies.get('BookingId');
     const summaryBookingId = summaryCookieValue?.replaceAll('"', '')
 
     const handleClick = () => {
         navigate(`/booking-summary/${summaryBookingId}`);
+        setIsBookingStatus(true)
     }
 
-    const [paymentCalulationData, setPaymentCalulationData] = useState()
+    const [paymentCalculationData, setPaymentCaclulationData] = useState()
     const cookieValue = Cookies.get('paymentCalculation');
     useEffect(() => {
         if (cookieValue) {
-            setPaymentCalulationData(JSON.parse(cookieValue));
+            setPaymentCaclulationData(JSON.parse(cookieValue));
         }
     }, [cookieValue])
-    console.log("paymentCalulationData=====", paymentCalulationData)
+    console.log("paymentCalulationData=====", paymentCaclulationData)
 
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
@@ -398,16 +399,16 @@ const Addons = (props) => {
                                                         <ExpandMoreIcon className="ex-icon"/>
                                                     </Box>
                                                     {
-                                                        !_.isEmpty(paymentCalulationData) &&
+                                                        !_.isEmpty(paymentCalculationData) &&
                                                         <Box className="table table-borderless">
                                                             {
-                                                                Object.keys(paymentCalulationData?.payment).map((key) => {
+                                                                Object.keys(paymentCalculationData?.payment).map((key) => {
                                                                     return (
                                                                         <Box className="table-box">
                                                                             <Typography
                                                                                 className="table-details">{key}</Typography>
                                                                             <Typography className="table-details">₹
-                                                                                {paymentCalulationData?.payment[key]}</Typography>
+                                                                                {paymentCalculationData?.payment[key]}</Typography>
                                                                         </Box>
                                                                     )
                                                                 })
@@ -416,7 +417,7 @@ const Addons = (props) => {
                                                                 <Typography className=" grand-total table-details">Grand
                                                                     Total</Typography>
                                                                 <Typography className="table-details grand-total">₹
-                                                                    {paymentCalulationData?.total}</Typography>
+                                                                    {paymentCalculationData?.total}</Typography>
                                                             </Box>
                                                             <Box className="tax tax1 table-box">
                                                                 <Typography className="table-details">+Incl Of

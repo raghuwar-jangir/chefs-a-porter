@@ -1,7 +1,7 @@
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import {Box, styled, Typography} from "@mui/material";
 import {DatePickerInput} from "rc-datepicker";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import gInfo from "../assets/images/info.png";
 import drop from "../assets/images/drop.png";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -39,6 +39,18 @@ const theme = createMuiTheme({
 });
 
 const ChefDetailsForm = () => {
+
+    const [chefInfo, setChefInfo] = useState('')
+    const cookieValue = Cookies?.get('eventData');
+
+    {
+        !_.isEmpty(cookieValue) &&
+        useEffect(() => {
+            if (cookieValue) {
+                setChefInfo(JSON.parse(cookieValue));
+            }
+        }, [cookieValue])
+    }
     const handleClick = () => {
         navigate("/customer-details");
     };
@@ -259,12 +271,12 @@ const ChefDetailsForm = () => {
 
             <Formik
                 initialValues={{
-                    name: "",
-                    email: "",
-                    experienceDate: new Date(),
-                    startTime: new Date().getHours() + ":" + new Date().getMinutes(),
-                    numberOfDinner: 2,
-                    numberOfCourses: 3,
+                    name: chefInfo?.name,
+                    email: chefInfo?.email,
+                    experienceDate: chefInfo?.experienceDate ? chefInfo?.experienceDate : new Date(),
+                    startTime: chefInfo?.startTime ? chefInfo?.startTime : new Date().getHours() + ":" + new Date().getMinutes(),
+                    numberOfDinner: chefInfo?.numberOfDinner ? chefInfo?.numberOfDinner : 2,
+                    numberOfCourses: chefInfo?.numberOfCourses ? chefInfo?.numberOfCourses : 3,
                 }}
                 validate={(values) => {
                     const errors = {};

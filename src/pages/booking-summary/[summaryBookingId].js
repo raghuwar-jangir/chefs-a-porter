@@ -106,6 +106,24 @@ const BookingSummary = () => {
         });
     }, [Razorpay]);
 
+    const [customerInfo, setCustomerInfo] = useState('')
+    const customerInfoCookieValue = Cookies?.get('customerData');
+    const eventDataCookieValue = Cookies.get('eventData');
+    const [eventData, setEventData] = useState()
+    {
+        !_.isEmpty(customerInfoCookieValue) &&
+        useEffect(() => {
+            if (customerInfoCookieValue) {
+                setCustomerInfo(JSON.parse(customerInfoCookieValue));
+            }
+            if (eventDataCookieValue) {
+                setEventData(JSON.parse(eventDataCookieValue));
+            }
+        }, [customerInfoCookieValue,eventDataCookieValue])
+    }
+
+    console.log("customerInfo======", customerInfo)
+
     const BoxWrapper = styled(Box)(() => ({
         background: "#080B0E",
         ".popup-form": {
@@ -1082,7 +1100,10 @@ const BookingSummary = () => {
                                 </Typography>
                             </Box>
                             <Formik
-                                initialValues={initialValues}
+                                initialValues={{
+                                    number: customerInfo?.contactNumber,
+                                    email: eventData?.email
+                                }}
                                 validationSchema={validationSchema}
                                 onSubmit={handleSubmit}
                             >
@@ -1230,7 +1251,7 @@ const BookingSummary = () => {
                                                             <Box className="form-group">
                                                                 <Field
                                                                     type="email"
-                                                                    name="email1"
+                                                                    name="email"
                                                                     id=""
                                                                     placeholder="Kachwallasana@gmail.com"
                                                                     class="form-control"
@@ -1245,9 +1266,8 @@ const BookingSummary = () => {
                                                             <Box className="chef-profile-box">
                                                                 <img className="chef-profile-logo" src={done}/>
                                                                 <Typography className="chef-profile-dis">
-                                                                    An email confirmation has been sent to
-                                                                    kachwallsana@gmail.com <br/>
-                                                                    and SMS sent to 23456745
+                                                                    An email confirmation has been sent to {eventData?.email} <br/>
+                                                                    and SMS sent to +91 {customerInfo?.contactNumber}
                                                                 </Typography>
                                                             </Box>
                                                             <Box className="chef-profile-box">

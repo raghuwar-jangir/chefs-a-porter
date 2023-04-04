@@ -425,13 +425,16 @@ const PriveeViewMore = (props) => {
 
     const {userData} = useContext(UsersContext);
     const [priveeInfo, setPriveeInfo] = useState()
-    const cookieValue = Cookies.get('priveeData');
+    const cookieValue = Cookies?.get('priveeData');
 
-    useEffect(() => {
-        if (cookieValue) {
-            setPriveeInfo(JSON.parse(cookieValue));
-        }
-    }, [cookieValue])
+    {
+        !_.isEmpty(cookieValue) &&
+        useEffect(() => {
+            if (cookieValue) {
+                setPriveeInfo(JSON.parse(cookieValue));
+            }
+        }, [cookieValue])
+    }
 
 
     const [open, setOpen] = useState(false);

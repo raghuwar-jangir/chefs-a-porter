@@ -28,9 +28,7 @@ const UsersProvider = (props) => {
     const cookieValue = Cookies.get('BookingId');
     const bookingId = cookieValue?.replaceAll('"', '');
     const summaryBookingId = cookieValue?.replaceAll('"', '');
-
-    console.log("bookingId===", bookingId);
-    console.log("cookieValue===", cookieValue);
+    const [isBookingStatus, setIsBookingStatus] = useState(false);
 
     useEffect(() => {
         if (userId && currentPath === 'chef-details') {
@@ -58,6 +56,13 @@ const UsersProvider = (props) => {
                     Cookies.set('paymentCalculation', JSON.stringify(response.data));
                 }
             })
+        } else if (isBookingStatus) {
+            axios.post(baseUrl + '/booking/confirm/' + bookingId).then((response) => {
+                if (response.status === 200) {
+                    Cookies.set('bookingConfirm', JSON.stringify(response.data));
+                    console.log("bookingConfirm response======",response.data)
+                }
+            })
         } else if (currentPath === 'booking-summary') {
             axios.post(baseUrl + '/booking/calculate/' + summaryBookingId).then((response) => {
                 if (response.status === 200) {
@@ -65,7 +70,7 @@ const UsersProvider = (props) => {
                 }
             })
         }
-    }, [userId, eventId, currentPath, supperClubDetailId, bookingId])
+    }, [userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId,isBookingStatus])
 
     const {children} = props;
 
@@ -76,6 +81,7 @@ const UsersProvider = (props) => {
                 setUserId,
                 setEventId,
                 setSupperClubDetailId,
+                setIsBookingStatus
             }}
         >
             {children}

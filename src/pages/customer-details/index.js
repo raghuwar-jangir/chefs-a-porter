@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect, useCallback} from "react";
+import React, {useState, useContext, useEffect, useCallback,useRef} from "react";
 import {
     Box,
     Grid,
@@ -49,7 +49,21 @@ const CustomerDetails = (props) => {
     const [currentModal, setCurrentModal] = useState(0);
     const [openOtp, setOpenOtp] = useState(false);
     const [contactNumber, setContactNumber] = useState('');
+    const [customerInfo, setCustomerInfo] = useState('')
+    const cookieValue = Cookies?.get('customerData');
+    const inputRef = useRef(null);
 
+
+    {
+        !_.isEmpty(cookieValue) &&
+        useEffect(() => {
+            if (cookieValue) {
+                setCustomerInfo(JSON.parse(cookieValue));
+            }
+        }, [cookieValue])
+    }
+
+    console.log("customerInfo======", customerInfo)
     const handleOpenOtp = (contactNumber, values) => {
         if (!_.isEmpty(contactNumber)) {
             setOpenOtp(true);
@@ -57,6 +71,7 @@ const CustomerDetails = (props) => {
             setContactNumber(contactNumber);
             setIsSendOtpApiCall(true);
         }
+        Cookies.set('customerData', JSON.stringify(values));
     }
     const handleCloseOtp = () => setOpenOtp(false);
     const [code, setCode] = useState("");
@@ -757,7 +772,6 @@ const CustomerDetails = (props) => {
         </Box>
     ];
 
-
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
 
@@ -1342,14 +1356,13 @@ const CustomerDetails = (props) => {
                             <Box className="row customer-details addons-div">
                                 <Formik
                                     initialValues={{
-                                        contactNumber: '',
-                                        address: '',
-                                        message: ''
+                                        contactNumber: customerInfo?.contactNumber,
+                                        address: customerInfo?.address,
+                                        message: customerInfo?.message ? customerInfo?.message : '',
                                     }}
                                     validationSchema={validationSchema}
                                     onSubmit={(values) => {
-                                        console.log("value===>", values.contactNumber)
-                                        Cookies.set('customerData', JSON.stringify(values));
+                                        // console.log("value===>", values.contactNumber)
                                     }}
                                 >
                                     {({values, handleChange, handleSubmit, setFieldValue}) => (
@@ -1369,6 +1382,7 @@ const CustomerDetails = (props) => {
                                                                            onChange={handleChange}
                                                                            autoComplete="off"
                                                                            variant="standard"
+                                                                           ref={inputRef}
                                                                            sx={{
                                                                                '& .MuiInputBase-input': {
                                                                                    background: 'transparent',
