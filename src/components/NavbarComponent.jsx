@@ -23,7 +23,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import CmsContext from "../context/CmsContext"
 
 
-const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to}) => {
+const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to,supperClubLink}) => {
 
     const props = {
         heading
@@ -401,7 +401,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to}) => {
                                         </Box>
                                     }
                                     {/*<a href="#" onClick={handlePhoneCall}>*/}
-                                        <img src={telLogo}  onClick={handlePhoneCall} className='telePhoneLogo'/>
+                                    <img src={telLogo} onClick={handlePhoneCall} className='telePhoneLogo'/>
                                     {/*</a>*/}
                                 </Grid>
                             </Grid>

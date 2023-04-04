@@ -19,11 +19,17 @@ import * as Yup from 'yup';
 import "../../assets/styles/fontStyle.css"
 import {isMobile} from "react-device-detect";
 import CmsContext from "../../context/CmsContext";
+import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
 
 const ContactUs = () => {
 
     const {data} = useContext(CmsContext);
+    const {setContactUsData, setIsContactUsData} = useContext(UsersContext);
+    const handleClick = (values) => {
+        setContactUsData(values);
+        setIsContactUsData(true)
+    }
 
     //validations
     const validationSchema = Yup.object({
@@ -240,7 +246,6 @@ const ContactUs = () => {
             },
         },
     }))
-
     return (
         <React.Fragment>
             <BoxWrapper>
@@ -267,7 +272,7 @@ const ContactUs = () => {
                                     }}
                                     validationSchema={validationSchema}
                                     onSubmit={(values) => {
-                                        console.log("value===>", values)
+
                                     }}
                                 >
                                     {({values, handleChange, handleSubmit}) => (
@@ -378,7 +383,10 @@ const ContactUs = () => {
                                                                           className="error"/>
                                                         </Grid>
                                                         <Grid xs={12} className="col-lg-12">
-                                                            <button className="btn btn-primary" type="submit">Apply
+                                                            <button className="btn btn-primary" type="submit"
+                                                                    onClick={() => {
+                                                                        handleClick(values)
+                                                                    }}>Apply
                                                             </button>
                                                         </Grid>
                                                     </Grid>

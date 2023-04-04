@@ -18,7 +18,7 @@ export const wrapRootElement = ({element}) =>
     <Location>{locationProps =>
         <CmsProvider {...locationProps}><UsersProvider>
             <OtpProvider>
-                    {element}
+                {element}
             </OtpProvider>
         </UsersProvider></CmsProvider>}</Location>
 // highlight-end

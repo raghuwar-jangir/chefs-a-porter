@@ -20,10 +20,17 @@ import "../../assets/styles/fontStyle.css"
 import {isMobile} from "react-device-detect";
 import * as _ from "lodash";
 import CmsContext from "../../context/CmsContext";
+import UsersContext from "../../context/UsersContext";
 
 const ContactUs = () => {
 
     const {data} = useContext(CmsContext);
+    const {setJoinChefData, setIsJoinChefData} = useContext(UsersContext);
+
+    const handleClick = (values) => {
+        setJoinChefData(values);
+        setIsJoinChefData(true)
+    }
 
     //validations
     const validationSchema = Yup.object({
@@ -31,6 +38,7 @@ const ContactUs = () => {
         email: Yup.string().email('Incorrect Email Id').required('please enter email'),
         contactNumber: Yup.number().typeError("Incorrect Contact Number").required('please enter contact number'),
         coverLetterMessage: Yup.string().required('Please enter text'),
+        resume: Yup.string().required('Please upload your resume'),
     });
 
     //for Cover Letter
@@ -226,7 +234,7 @@ const ContactUs = () => {
                 padding: '0px',
             },
             '.become-partner-form': {
-                padding:'10px',
+                padding: '10px',
                 width: 'auto',
                 marginTop: '55px',
                 marginBottom: '36px',
@@ -288,11 +296,12 @@ const ContactUs = () => {
                                         name: '',
                                         email: '',
                                         contactNumber: '',
-                                        coverLetterMessage: ''
+                                        coverLetterMessage: '',
+                                        resume: ''
                                     }}
                                     validationSchema={validationSchema}
                                     onSubmit={(values) => {
-                                        console.log("value===>", values)
+                                        console.log("value==========", values)
                                     }}
                                 >
                                     {({values, handleChange, handleSubmit}) => (
@@ -406,6 +415,11 @@ const ContactUs = () => {
                                                             <label htmlFor="validationCustom05">Resume
                                                                 (Required)</label>
                                                             <input type="file" name="resume"
+                                                                   value={values.resume}
+                                                                   onChange={handleChange}
+                                                                // onChange={(event) => {
+                                                                //     setFieldValue("resume", event.currentTarget.files[0]);
+                                                                // }}
                                                                    className="form-control-file"
                                                                    id="validationCustom05"
                                                             />
@@ -413,7 +427,11 @@ const ContactUs = () => {
                                                                           className="error"/>
                                                         </Grid>
                                                         <Grid xs={12} className="col-lg-12">
-                                                            <button className="btn btn-primary" type="submit">Apply
+                                                            <button className="btn btn-primary" type="submit"
+                                                                    onClick={() => {
+                                                                        handleClick(values)
+                                                                    }}
+                                                            >Apply
                                                             </button>
                                                         </Grid>
                                                     </Grid>

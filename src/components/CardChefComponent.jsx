@@ -161,7 +161,8 @@ const CardChefComponent = ({bgColor}) => {
                                 readMoreClassName="read-more-less--more"
                                 readLessClassName="read-more-less--less"
                             >
-                                {longText2}
+                                {/*{longText2}*/}
+                                {userData?.desc}
                             </ReactReadMoreReadLess>
                         </Typography>
                     </>

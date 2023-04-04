@@ -45,6 +45,7 @@ import DiningPage from "../../components/DiningPage";
 import {navigate} from "gatsby";
 import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
+import moment from "moment/moment";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -82,8 +83,8 @@ const SupperClubDetail = (props) => {
     const AnyReactComponent = ({text}) => <div>{text}</div>;
     const defaultProps = {
         center: {
-            lat: 10.99835602,
-            lng: 77.01502627,
+            lat: userData?.chef?.details?.coordinates?.lat,
+            lng: userData?.chef?.details?.coordinates?.lng,
         },
         zoom: 11,
     };
@@ -361,7 +362,7 @@ const SupperClubDetail = (props) => {
         ".map-heading": {
             fontFamily: "Proxima Nova Alt",
             fontSize: "20px",
-            lineHeight: "0px",
+            lineHeight: "24px",
             fontWeight: 300,
             marginBottom: "14px",
             color: "#080B0E",
@@ -922,7 +923,9 @@ const SupperClubDetail = (props) => {
                                     Curated by{" "}
                                     <span><b className="sub-box-link">{userData?.chef?.name}</b></span>
                                     <Typography className="dot"></Typography>
-                                    <Typography className="sub-box-text-2">2 Slots Left!</Typography>
+                                    <Typography
+                                        className="sub-box-text-2">{userData?.seats - userData?.booking_count} Slots
+                                        Left!</Typography>
                                 </Typography>
                             </Box>
                             <Grid className="supper-main-container" container spacing={{md: 2}}>
@@ -935,12 +938,18 @@ const SupperClubDetail = (props) => {
                                     xs={12}
                                 >
                                     <Box className="container">
-                                        <img
-                                            src={RestorentImg}
-                                            alt="RestorentImg"
-                                            className="main-img"
-                                            onClick={handleImageClick}
-                                        />
+                                        {
+                                            userData?.chef?.details?.experinces?.map((item) => {
+                                                return (
+                                                    <img
+                                                        src={item.cover_picture}
+                                                        alt="RestorentImg"
+                                                        className="main-img"
+                                                        onClick={handleImageClick}
+                                                    />
+                                                )
+                                            })
+                                        }
                                         {showCarousel && (
                                             <Box className="carousel-popup">
                                                 <button
@@ -1056,7 +1065,8 @@ const SupperClubDetail = (props) => {
                                                         }}
                                                     >
                                                         <Box className="map-heading">
-                                                            Blue Cafe, Kamanahalli
+                                                            {/*{userData?.venue}*/}
+                                                            {userData?.chef?.details?.address2}
                                                         </Box>
                                                         <Link className="map-link">Get Directions</Link>
                                                         <Box
@@ -1098,22 +1108,22 @@ const SupperClubDetail = (props) => {
                                             }}
                                         >
                                             <Typography className="sub-text-price">
-                                                ₹ 2,500 <sub className="sub-text">Per Diner</sub>
+                                                ₹ {userData?.price} <sub className="sub-text">Per Diner</sub>
                                             </Typography>
                                         </Box>
                                         <Box>
                                             <Stack className="date-stack">
                                                 <Typography className="date-description">
-                                                    April 9
+                                                    {moment(userData?.dates[0]).format("MMMM D")}
                                                 </Typography>
                                                 <span className="line">|</span>
                                                 <Typography className="date-description">
                                                     {" "}
-                                                    7:30 PM - 10 PM
+                                                    {moment(userData?.timefrom, 'HH:mm').format('h:mm A')} - {moment(userData?.timetill, 'HH:mm').format('h:mm A')}
                                                 </Typography>
                                                 <span className="line">|</span>
                                                 <Typography className="date-description">
-                                                    Blue Cafe, Kamanahalli
+                                                    {userData?.venue}
                                                 </Typography>
                                             </Stack>
                                         </Box>
@@ -1125,6 +1135,41 @@ const SupperClubDetail = (props) => {
                                                 Pick your preferred experience date
                                             </Typography>
                                         </Box>
+                                        {
+                                            userData?.new_dates.map((item) => {
+                                                return (
+                                                    <Box className="date-time-box">
+                                                        <Box sx={{display: "flex", alignItems: "center"}}>
+                                                            <Typography
+                                                                className="main-date">{moment(item.date).format("D")}</Typography>
+                                                            <Box>
+                                                                <Typography
+                                                                    className="date-month">{moment(item.date).format("MMMM")}</Typography>
+                                                                <Typography
+                                                                    className="date-day">{moment(item.date).format("dddd")}</Typography>
+                                                            </Box>
+                                                        </Box>
+                                                        <Box className="time-btn-box">
+                                                            <Box className="switch-field">
+                                                                <input
+                                                                    type="radio"
+                                                                    id="radio-one"
+                                                                    name="switch-one"
+                                                                    value="yes"
+                                                                    // checked
+                                                                />
+                                                                <label for="radio-one">
+                                                                    <Typography className="time-text">
+                                                                        {moment(item?.from, 'HH:mm').format('h:mm A')} - {moment(item?.to, 'HH:mm').format('h:mm A')}
+                                                                    </Typography>
+                                                                    {/*<span style={{color: "#F8A039"}}>filling fast</span>*/}
+                                                                </label>
+                                                            </Box>
+                                                        </Box>
+                                                    </Box>
+                                                )
+                                            })
+                                        }
                                         <Box className="date-time-box">
                                             <Box sx={{display: "flex", alignItems: "center"}}>
                                                 <Typography className="main-date">12</Typography>

@@ -30,6 +30,12 @@ const UsersProvider = (props) => {
     const summaryBookingId = cookieValue?.replaceAll('"', '');
     const [isBookingStatus, setIsBookingStatus] = useState(false);
 
+    //for submitting forms
+    const [contactUsData, setContactUsData] = useState({})
+    const [isContactUsData, setIsContactUsData] = useState(false)
+    const [joinChefData, setJoinChefData] = useState({})
+    const [isJoinChefData, setIsJoinChefData] = useState(false)
+
     useEffect(() => {
         if (userId && currentPath === 'chef-details') {
             axios.get(baseUrl + '/users/' + userId).then(result => {
@@ -39,7 +45,7 @@ const UsersProvider = (props) => {
             axios.get(baseUrl + `/menu/` + eventId).then(result => {
                 setUserData(result.data)
             })
-        } else if (supperClubDetailId) {
+        } else if (supperClubDetailId && currentPath === 'supper-club-detail') {
             axios.get(baseUrl + '/event/' + supperClubDetailId).then(result => {
                 setUserData(result.data)
             })
@@ -60,7 +66,7 @@ const UsersProvider = (props) => {
             axios.post(baseUrl + '/booking/confirm/' + bookingId).then((response) => {
                 if (response.status === 200) {
                     Cookies.set('bookingConfirm', JSON.stringify(response.data));
-                    console.log("bookingConfirm response======",response.data)
+                    console.log("bookingConfirm response======", response.data)
                 }
             })
         } else if (currentPath === 'booking-summary') {
@@ -69,8 +75,26 @@ const UsersProvider = (props) => {
                     Cookies.set('paymentCalculation', JSON.stringify(response.data));
                 }
             })
+        } else if (isContactUsData) {
+            axios.post(baseUrl + '/contact_us', {
+                name: contactUsData.name,
+                email: contactUsData.email,
+                mobile: contactUsData.contactNumber,
+                cover_letter: contactUsData.coverLetterMessage,
+            })
+            setIsContactUsData(false)
         }
-    }, [userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId,isBookingStatus])
+        else if (isJoinChefData) {
+            axios.post(baseUrl + '/users/requestjoin', {
+                name: joinChefData.name,
+                email: joinChefData.email,
+                mobile: joinChefData.contactNumber,
+                resume:joinChefData.resume,
+                cover_letter: joinChefData.coverLetterMessage,
+            })
+            setIsJoinChefData(false)
+        }
+    }, [userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, isBookingStatus, contactUsData, isContactUsData,isJoinChefData,joinChefData])
 
     const {children} = props;
 
@@ -81,7 +105,12 @@ const UsersProvider = (props) => {
                 setUserId,
                 setEventId,
                 setSupperClubDetailId,
-                setIsBookingStatus
+                setIsBookingStatus,
+                setContactUsData,
+                setIsContactUsData,
+                setJoinChefData,
+                setIsJoinChefData
+
             }}
         >
             {children}
