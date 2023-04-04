@@ -12,12 +12,12 @@ const defaultState = {
 const UsersContext = React.createContext(defaultState)
 
 const UsersProvider = (props) => {
-    const pathInfo = {
-        'chef-details': 'users',
-        'event-details': 'menu',
-        'privee-viewmore': 'menu',
-        'supper-club-details': 'event',
-    }
+    // const pathInfo = {
+    //     'chef-details': 'users',
+    //     'event-details': 'menu',
+    //     'privee-viewmore': 'menu',
+    //     'supper-club-details': 'event',
+    // }
     const path = useLocation();
     const currentPath = path.pathname.split("/")[1];
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
@@ -33,12 +33,12 @@ const UsersProvider = (props) => {
     console.log("cookieValue===", cookieValue);
 
     useEffect(() => {
-        if (userId) {
-            axios.get(baseUrl + `/${pathInfo[currentPath]}/` + userId).then(result => {
+        if (userId && currentPath === 'chef-details') {
+            axios.get(baseUrl + '/users/' + userId).then(result => {
                 setUserData(result.data)
             })
-        } else if (eventId) {
-            axios.get(baseUrl + `/${pathInfo[currentPath]}/` + eventId).then(result => {
+        } else if (eventId && currentPath === 'event-details') {
+            axios.get(baseUrl + `/menu/` + eventId).then(result => {
                 setUserData(result.data)
             })
         } else if (supperClubDetailId) {
