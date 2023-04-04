@@ -486,7 +486,7 @@ const ChefDetailsForm = () => {
                 onClick={handleClick}
                 disabled={isSubmitting}
               >
-                Submit
+                Book this Experience
               </button>
             </Form>
           )}

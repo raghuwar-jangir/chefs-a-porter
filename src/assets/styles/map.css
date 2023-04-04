@@ -1,0 +1,14 @@
+.pac-container {
+    z-index: 1400 !important;
+}
+.pac-logo:after{
+    display:none
+}
+.map-container{
+    position: fixed;
+    width:100%
+}
+.pac-target-input{
+    color: white !important;
+    border-bottom: 0.25px solid white !important;
+}

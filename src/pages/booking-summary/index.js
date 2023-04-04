@@ -77,10 +77,10 @@ const BookingSummary = () => {
       key: "rzp_test_MHRk336eUPGyWR",
       amount: 1000 * 100,
       currency: "INR",
-      name: "Chefs-A-Porter",
+      name: "Chefs-à-Porter",
       description: "Test Transaction",
       image: 'https://chefsaporter.com/assets/img/logo_black.svg',
-      theme: {color: '#C6A87D'},
+      theme: {color: '#C6A87D',fontFamily:'ProximaNovaA-Regular'},
 
       handler: (res) => {
         console.log("res",res);
