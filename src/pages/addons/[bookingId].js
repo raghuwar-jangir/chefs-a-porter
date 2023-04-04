@@ -37,7 +37,7 @@ const Addons = (props) => {
             setPaymentCaclulationData(JSON.parse(cookieValue));
         }
     }, [cookieValue])
-    console.log("paymentCalulationData=====", paymentCaclulationData)
+    console.log("paymentCalulationData=====", paymentCalculationData)
 
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
