@@ -29,6 +29,11 @@ const UsersProvider = (props) => {
     const bookingId = cookieValue?.replaceAll('"', '');
     const summaryBookingId = cookieValue?.replaceAll('"', '');
     const [isBookingStatus, setIsBookingStatus] = useState(false);
+    const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
+    const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
+    const [isSupperBookingStatus, setIsSupperBookingStatus] = useState(false);
+
+    console.log("isSupperBookingStatus=======", isSupperBookingStatus)
 
     //for submitting forms
     const [contactUsData, setContactUsData] = useState({})
@@ -68,6 +73,7 @@ const UsersProvider = (props) => {
                     Cookies.set('bookingConfirm', JSON.stringify(response.data));
                     console.log("bookingConfirm response======", response.data)
                 }
+                setIsBookingStatus(false)
             })
         } else if (currentPath === 'booking-summary') {
             axios.post(baseUrl + '/booking/calculate/' + summaryBookingId).then((response) => {
@@ -83,18 +89,37 @@ const UsersProvider = (props) => {
                 cover_letter: contactUsData.coverLetterMessage,
             })
             setIsContactUsData(false)
-        }
-        else if (isJoinChefData) {
+        } else if (isJoinChefData) {
             axios.post(baseUrl + '/users/requestjoin', {
                 name: joinChefData.name,
                 email: joinChefData.email,
                 mobile: joinChefData.contactNumber,
-                resume:joinChefData.resume,
+                resume: joinChefData.resume,
                 cover_letter: joinChefData.coverLetterMessage,
             })
             setIsJoinChefData(false)
+        } else if (currentPath === 'sc-booking-summary' && supperClubBookingId) {
+            axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId).then((response) => {
+                if (response.status === 200) {
+                    Cookies.set('supperClubBookingPaymentCalculation', JSON.stringify(response.data));
+                }
+            })
+        } else if (isSupperBookingStatus) {
+            axios.post(baseUrl + '/booking/confirm/' + supperClubBookingId).then((response) => {
+                if (response.status === 200) {
+                    Cookies.set('supperClubBookingBookingConfirm', JSON.stringify(response.data));
+                    console.log("supperClubBookingBookingConfirm response======", response.data)
+                }
+                setIsSupperBookingStatus(false)
+            })
+        } else if (currentPath === 'sc-booking-confirm') {
+            axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId).then((response) => {
+                if (response.status === 200) {
+                    Cookies.set('supperClubBookingPaymentCalculation', JSON.stringify(response.data));
+                }
+            })
         }
-    }, [userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, isBookingStatus, contactUsData, isContactUsData,isJoinChefData,joinChefData])
+    }, [userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, isBookingStatus, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus])
 
     const {children} = props;
 
@@ -109,7 +134,8 @@ const UsersProvider = (props) => {
                 setContactUsData,
                 setIsContactUsData,
                 setJoinChefData,
-                setIsJoinChefData
+                setIsJoinChefData,
+                setIsSupperBookingStatus
 
             }}
         >

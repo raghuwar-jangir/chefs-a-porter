@@ -21,7 +21,7 @@ import Cookies from "js-cookie";
 
 
 const Addons = (props) => {
-    const {userData,setIsBookingStatus} = useContext(UsersContext);
+    const {userData, setIsBookingStatus} = useContext(UsersContext);
     const summaryCookieValue = Cookies.get('BookingId');
     const summaryBookingId = summaryCookieValue?.replaceAll('"', '')
 
@@ -406,7 +406,7 @@ const Addons = (props) => {
                                                                     return (
                                                                         <Box className="table-box">
                                                                             <Typography
-                                                                                className="table-details">{key}</Typography>
+                                                                                className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
                                                                             <Typography className="table-details">₹
                                                                                 {paymentCalculationData?.payment[key]}</Typography>
                                                                         </Box>

@@ -1,7 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import Cookies from "js-cookie";
 import * as _ from "lodash";
+import {useLocation} from "@reach/router";
+import CmsContext from "./CmsContext";
 
 const defaultState = {
     data: {},
@@ -11,7 +13,9 @@ const defaultState = {
 
 const OtpContext = React.createContext(defaultState)
 const OtpProvider = (props) => {
-
+    const path = useLocation();
+    const currentPath = path.pathname.split("/")[1];
+    const {data} = useContext(CmsContext);
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
     const [otpNumber, setOtpNumber] = useState('');
     const [verifyOtp, setVerifyOtp] = useState('');
@@ -22,10 +26,15 @@ const OtpProvider = (props) => {
     const [isVerifiedOtpApiCall, setIsVerifiedOtpApiCall] = useState(false);
     const [isBookingAPiCall, setIsBookingAPiCall] = useState(false);
     const [isStatus, setIsStatus] = useState(false);
+    const [isSupperClubStatus, setSupperClubStatus] = useState(false);
     const [eventData, setEventData] = useState()
     const [priveeData, setPriveeData] = useState()
+    const [superClubBookingDetails, setsuperClubBookingDetails] = useState()
     const cookieValue = Cookies.get('eventData');
     const cookieValue1 = Cookies.get('priveeData');
+    const cookieValue2 = Cookies.get('supperClubBookingPersonalDetail');
+    const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
+    const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
 
     useEffect(() => {
         if (cookieValue1) {
@@ -34,9 +43,13 @@ const OtpProvider = (props) => {
         if (cookieValue) {
             setEventData(JSON.parse(cookieValue));
         }
+        if(cookieValue2){
+            setsuperClubBookingDetails(JSON.parse(cookieValue2));
+        }
     }, [cookieValue1, cookieValue])
     console.log("eventData=====", eventData)
     console.log("priveeData=====", priveeData)
+    console.log("superClubBookingDetails=====", superClubBookingDetails)
 
     useEffect(() => {
         if (isSendOtpApiCall) {
@@ -50,7 +63,8 @@ const OtpProvider = (props) => {
                 otp: verifyOtp,
             }).then((response) => {
                 if (response.status === 200) {
-                    setIsStatus(true)
+                    setIsStatus(true);
+                    setSupperClubStatus(true);
                     // Cookies.remove('BookingId')
                 }
             })
@@ -62,7 +76,7 @@ const OtpProvider = (props) => {
             })
             setResendOtp(null)
             setIsReSendOtpApiCall(false)
-        } else if (isStatus) {
+        } else if (isStatus && currentPath === 'customer-details') {
             axios.post(baseUrl + '/booking', {
                 name: eventData.name,
                 email: eventData.email,
@@ -82,6 +96,28 @@ const OtpProvider = (props) => {
                     console.log("reponse=====", response.data)
                     Cookies.set('BookingId', JSON.stringify(response.data.id));
                     Cookies.set('summaryBookingId', JSON.stringify(response.data.id));
+                }
+            })
+        } else if (isSupperClubStatus && currentPath === 'personal-details1') {
+            axios.post(baseUrl + '/booking', {
+                name: eventData.name,
+                email: eventData.email,
+                mobile: otpNumber,
+                type: "chef_event",
+                // event: supperClubBookingId,
+                // event: "642d5567086e9b0e5f84e65c",
+                event: "632d4509d85b82aae968dc88",
+                meal: priveeData.experience,
+                diner_count: priveeData.numberOfDiner,
+                courses: eventData.numberOfCourses,
+                city: priveeData.city,
+                booking_date: priveeData.date,
+                otp: verifyOtp,
+            }).then((response) => {
+                if (response.status === 200) {
+                    console.log("reponse=====", response.data)
+                    Cookies.set('supperClubBookingId', JSON.stringify(response.data.id));
+                    Cookies.set('supperClubConfirmBookingId', JSON.stringify(response.data.id));
                 }
             })
         }

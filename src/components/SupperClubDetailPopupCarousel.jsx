@@ -1,13 +1,13 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import chef1 from "./../assets/images/chef5.png";
 import chef2 from "./../assets/images/chef6.png";
 import sGallery from "./../assets/images/sc-gallery.png";
-import {Swiper, SwiperSlide} from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import {Navigation} from "swiper";
+import { Navigation } from "swiper";
 import styled from "styled-components";
-import {Box} from "@mui/system";
+import { Box } from "@mui/system";
 import "../assets/styles/fontStyle.css";
 import UsersContext from "../context/UsersContext";
 
@@ -41,57 +41,57 @@ const MainBox = styled(Box)({
     },
 });
 
-const EventPopUpCarousel = ({title}) => {
+const SupperClubDetailPopupCarousel = ({ title }) => {
     const getEventId = "640b22b691e7236a1d0a264e";
-    const {setEventId, userData} = useContext(UsersContext);
+    const { setEventId, userData } = useContext(UsersContext);
     const itemData = [
         {
-            img: userData.cover_picture,
-            title: "chef1",
+            img: userData?.pictures[0],
+            title: "img1",
         },
         {
-            img: userData.user.details.gallery_pictures[0],
-            title: "sGallery",
+            img: userData?.pictures[1],
+            title: "img2",
         },
         {
-            img: userData.user.details.gallery_pictures[0],
-            title: "sGallery",
+            img: userData?.pictures[2],
+            title: "img3",
         },
         {
-            img: userData.user.details.gallery_pictures[1],
-            title: "chef2",
+            img: userData?.pictures[3],
+            title: "img4",
         },
         {
-            img: userData.user.details.gallery_pictures[1],
-            title: "chef2",
+            img: userData?.pictures[4],
+            title: "img5",
         },
     ];
     return (
         <React.Fragment>
             <MainBox>
-                <Box style={{background: "rgba(0, 0, 0, 0.8)"}}>
+                <Box style={{ background: "rgba(0, 0, 0, 0.8)" }}>
                     <Swiper
                         navigation={true}
                         modules={[Navigation]}
                         grabCursor={true}
                         className="mySwiper"
                         initialSlide={`${
-                            title === "chef1"
+                            title === "img1"
                                 ? 0
-                                : title === "sGallery"
+                                : title === "img2"
                                     ? 1
-                                    : title === "sGallery"
+                                    : title === "img3"
                                         ? 2
-                                        : title === "chef2"
+                                        : title === "img4"
                                             ? 3
-                                            : title === "chef2"
+                                            : title === "img5"
                                                 ? 4
                                                 : 0
                         }`}
                     >
                         {itemData.map((item) => (
                             <SwiperSlide>
-                                <img className="carousel-img" src={item.img}/>
+                                <img className="carousel-img" src={item.img} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
@@ -100,4 +100,4 @@ const EventPopUpCarousel = ({title}) => {
         </React.Fragment>
     );
 };
-export default EventPopUpCarousel;
+export default SupperClubDetailPopupCarousel;

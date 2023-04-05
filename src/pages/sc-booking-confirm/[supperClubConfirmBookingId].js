@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     styled,
     Box,
@@ -28,10 +28,10 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import giftCard from "../../assets/images/giftcard.png";
 import CloseIcon from "@mui/icons-material/Close";
-import { Form, Formik, Field, ErrorMessage } from "formik";
+import {Form, Formik, Field, ErrorMessage} from "formik";
 import * as Yup from "yup";
-import { navigate } from "gatsby";
-import { DatePickerInput } from "rc-datepicker";
+import {navigate} from "gatsby";
+import {DatePickerInput} from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
 import output from "../../assets/images/output.png";
 import download from "../../assets/images/download.png";
@@ -39,12 +39,22 @@ import chefImg from "../../assets/images/chef-img.png";
 import done from "../../assets/images/done.png";
 import "../../assets/styles/fontStyle.css";
 import support from "../../assets/images/support.png";
+import * as _ from "lodash";
+import Cookies from "js-cookie";
 
 const ScBookingConfirm = () => {
-    const handleClick = () => {
-        navigate("/sc-booking-confirm");
-    };
+    // const handleClick = () => {
+    //     navigate("/sc-booking-confirm");
+    // };
     const [inputValue, setInputValue] = useState("Chefsaporter/privatediner/AefDFC..");
+    const [supperClubPaymentCalculationData, setSupperClubPaymentCalculationData] = useState()
+    const cookieValue = Cookies.get('supperClubBookingPaymentCalculation');
+
+    useEffect(() => {
+        if (cookieValue) {
+            setSupperClubPaymentCalculationData(JSON.parse(cookieValue));
+        }
+    }, [cookieValue])
 
     const handleCopyClick = () => {
         navigator.clipboard.writeText(inputValue);
@@ -413,7 +423,7 @@ const ScBookingConfirm = () => {
             margin: "1rem 0 !important",
             opacity: "0.25",
             borderTop: "1px solid",
-            border:'0'
+            border: '0'
         },
         ".email": {
             fontFamily: "ProximaNovaA-Regular",
@@ -546,11 +556,11 @@ const ScBookingConfirm = () => {
             color: "#080B0E",
         },
         "@media (min-width: 1px) and (max-width:768px)": {
-            '.partner':{
-                borderRight:'0px'
+            '.partner': {
+                borderRight: '0px'
             },
-            '.dinner-box':{
-                paddingLeft:'0px'
+            '.dinner-box': {
+                paddingLeft: '0px'
             }
         }
     });
@@ -680,7 +690,7 @@ const ScBookingConfirm = () => {
         width: 800,
         // height: 841,
         boxShadow: 24,
-        margin:'auto',
+        margin: 'auto',
         maxHeight: 'calc(100% - 2.25em)',
         ".modal-content": {
             backgroundColor: "#DCD7CB !important",
@@ -1030,37 +1040,37 @@ const ScBookingConfirm = () => {
         ".form-control": {
             paddingLeft: "16px",
             flex: "1",
-            outline:'none',
+            outline: 'none',
             backgroundColor: "transparent",
             border: "0.2px solid #080B0E",
             borderRadius: "0px",
             paddingRight: "0px",
             display: "block",
             width: "95%",
-            marginTop:'4px',
-            marginBottom:'16px',
+            marginTop: '4px',
+            marginBottom: '16px',
             transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
         },
-        '.form-input':{
+        '.form-input': {
             fontFamily: 'DM Sans',
             fontStyle: "normal",
             fontWeight: 400,
             fontSize: "14px",
             lineHeight: "25px",
             color: "#BDBDBD",
-            height:'0px',
-            padding:'18px 0px'
+            height: '0px',
+            padding: '18px 0px'
         },
-        '.copy-btn':{
+        '.copy-btn': {
             borderRadius: '0px',
             background: '#222222',
             color: '#FBFBFB',
             borderColor: '#222222',
-            textTransform:'math-auto',
-            fontFamily:'Proxima Nova Alt'
+            textTransform: 'math-auto',
+            fontFamily: 'Proxima Nova Alt'
         },
-        '.input-icon':{
-            padding:'0px !important'
+        '.input-icon': {
+            padding: '0px !important'
         },
         "@media (min-width: 426px) and (max-width:768px)": {
             width: "500px",
@@ -1075,7 +1085,7 @@ const ScBookingConfirm = () => {
     return (
         <React.Fragment>
             <MainBox>
-                <Navbar heading="Privee" isColor={true} />
+                <Navbar heading="Privee" isColor={true}/>
                 <div className="row supper-chef-details">
                     <div className="book-trad">
                         <ArrowBackIcon
@@ -1100,33 +1110,33 @@ const ScBookingConfirm = () => {
                                 <Typography className="booking-summary-title">
                                     The Big Fat Parsi Blowout
                                 </Typography>
-                                <CreateIcon className="pencil-icon" />
+                                <CreateIcon className="pencil-icon"/>
                             </Box>
                             <Box class="chef-edit">
                                 <Typography className="chef-edit-title">
                                     Curated by <span className="chef-edit-sub">Chef Mako</span>
                                 </Typography>
                                 <Typography className="chef-seats">
-                                    <img className="chef-people" src={people} />
+                                    <img className="chef-people" src={people}/>
                                     <Typography className="chef-people-no">4 Seats</Typography>
                                 </Typography>
                             </Box>
-                            <hr className="hr" />
+                            <hr className="hr"/>
                             <Box class="chef-profile">
                                 <Box className="chef-profile-detail">
-                                    <img className="chef-profile-icon" src={dateGold} />
+                                    <img className="chef-profile-icon" src={dateGold}/>
                                     <Typography className="chef-profile-date">
                                         April 9 | 7:30 PM - 10 PM
                                     </Typography>
                                 </Box>
                                 <Box className="chef-profile-detail">
-                                    <img className="chef-profile-icon" src={location} />
+                                    <img className="chef-profile-icon" src={location}/>
                                     <Typography className="chef-profile-date">
                                         Silver bar, Downtown
                                     </Typography>
                                 </Box>
                                 <Box className="chef-profile-detail">
-                                    <img className="chef-profile-icon" src={people} />
+                                    <img className="chef-profile-icon" src={people}/>
                                     <Typography className="chef-profile-date">
                                         6 Diners
                                     </Typography>
@@ -1159,7 +1169,7 @@ const ScBookingConfirm = () => {
                                 </label>
                                 <Box className="form-group">
                   <span className="country-code">
-                    +91 <KeyboardArrowDownIcon className="drop-down-2" />
+                    +91 <KeyboardArrowDownIcon className="drop-down-2"/>
                   </span>
                                     <input
                                         placeholder="10 digit number"
@@ -1174,7 +1184,7 @@ const ScBookingConfirm = () => {
                         </Box>
                         <Box className="gst-block">
                             <Box className="form-check">
-                                <Checkbox className="input-check" defaultChecked />
+                                <Checkbox className="input-check" defaultChecked/>
                                 <label className="form-check-label" for="flexCheckDefault">
                                     Enter GSTIN for tax benefits (Optional)
                                 </label>
@@ -1188,7 +1198,7 @@ const ScBookingConfirm = () => {
                         </Box>
                         <div className="gift-div">
                             <div className="gift-child">
-                                <img className="gift-img" src={giftCard} />
+                                <img className="gift-img" src={giftCard}/>
                                 <div className="gift-text">
                                     If you have a coupon/ gift card, please enter details in the
                                     next step
@@ -1222,8 +1232,8 @@ const ScBookingConfirm = () => {
                                 </Stack>
                             </Box>
                             <Box className="event-div">
-                                <img src={sGallery} alt="" className="per-dinner-img" />
-                                <Box sx={{ marginLeft: "12px" }}>
+                                <img src={sGallery} alt="" className="per-dinner-img"/>
+                                <Box sx={{marginLeft: "12px"}}>
                                     <Typography className="event-title">
                                         The Big Fat Parsi Blowout
                                     </Typography>
@@ -1234,7 +1244,7 @@ const ScBookingConfirm = () => {
                                         </a>
                                     </Typography>
                                     <Typography className="rating-star">
-                                        <img className="rating-people" src={people} />
+                                        <img className="rating-people" src={people}/>
                                         <Typography className="rating-star">4 Seats</Typography>
                                     </Typography>
                                 </Box>
@@ -1247,38 +1257,40 @@ const ScBookingConfirm = () => {
                                     <Typography className="ex-heading">
                                         Price Breakdown
                                     </Typography>
-                                    <ExpandMoreIcon className="ex-icon" />
+                                    <ExpandMoreIcon className="ex-icon"/>
                                 </Box>
-                                <Box className="table table-borderless">
-                                    <Box className="table-box">
-                                        <Typography className="table-details">Food</Typography>
-                                        <Typography className="table-details">₹ 2,500</Typography>
+                                {
+                                    !_.isEmpty(supperClubPaymentCalculationData) &&
+                                    <Box className="table table-borderless">
+                                        {
+                                            Object.keys(supperClubPaymentCalculationData?.payment).map((key) => {
+                                                return (
+                                                    <Box className="table-box">
+                                                        <Typography
+                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
+                                                        <Typography
+                                                            className="table-details">₹
+                                                            {supperClubPaymentCalculationData?.payment[key]}</Typography>
+                                                    </Box>
+                                                )
+                                            })
+                                        }
+                                        <Box className="table-box border">
+                                            <Typography
+                                                className=" grand-total table-details">Grand
+                                                Total</Typography>
+                                            <Typography
+                                                className="table-details grand-total">₹
+                                                {supperClubPaymentCalculationData?.total}</Typography>
+                                        </Box>
                                     </Box>
-                                    <Box className="table-box">
-                                        <Typography className="table-details">
-                                            Service Charge
-                                        </Typography>
-                                        <Typography className="table-details">₹ 2,500</Typography>
-                                    </Box>
-                                    <Box className="table-box">
-                                        <Typography className="table-details">Tax</Typography>
-                                        <Typography className="table-details">₹ 2,500</Typography>
-                                    </Box>
-                                    <Box className="table-box border">
-                                        <Typography className=" grand-total table-details">
-                                            Grand Total
-                                        </Typography>
-                                        <Typography className="table-details grand-total">
-                                            ₹ 2,5000
-                                        </Typography>
-                                    </Box>
-                                </Box>
+                                }
                             </Box>
                             <Box className="row viewbreak">
                                 <Box>
                                     <button
                                         type="submit"
-                                        onClick={handleClick}
+                                        // onClick={handleClick}
                                         className="submit-req"
                                     >
                                         Reserve a seat
@@ -1315,7 +1327,7 @@ const ScBookingConfirm = () => {
                                     className="close"
                                     onClick={handleClose}
                                 >
-                                    <CloseIcon />
+                                    <CloseIcon/>
                                 </button>
                             </Box>
                             <Box className="container-fluid">
@@ -1335,7 +1347,7 @@ const ScBookingConfirm = () => {
                                         console.log("experienceData===>", experienceData);
                                     }}
                                 >
-                                    {({ values, handleChange, handleSubmit, setFieldValue }) => (
+                                    {({values, handleChange, handleSubmit, setFieldValue}) => (
                                         <Form onSubmit={handleSubmit}>
                                             <Box className="row">
                                                 <Box className="mb-3">
@@ -1415,7 +1427,7 @@ const ScBookingConfirm = () => {
                                                 <button
                                                     className="btn btn-primary"
                                                     type="submit"
-                                                    style={{ width: "100% !important" }}
+                                                    style={{width: "100% !important"}}
                                                 >
                                                     Apply
                                                 </button>
@@ -1433,7 +1445,7 @@ const ScBookingConfirm = () => {
                     onClose={handleBookingSuccessClose}
                     aria-labelledby="keep-mounted-modal-title"
                     aria-describedby="keep-mounted-modal-description"
-                    sx={{overflowY:'auto !important'}}
+                    sx={{overflowY: 'auto !important'}}
                 >
                     <Box sx={styleOtp}>
                         <div className="modal-content">
@@ -1445,25 +1457,25 @@ const ScBookingConfirm = () => {
                                     className="close"
                                     onClick={handleBookingSuccessClose}
                                 >
-                                    <CloseIcon sx={{ fontSize: "25px" }} />
+                                    <CloseIcon sx={{fontSize: "25px"}}/>
                                 </button>
                             </div>
                             <div className="modal-body">
                                 <div className="container-fluid">
                                     <div className="booking-details">
-                                        <img src={output} alt="" className="output" />
+                                        <img src={output} alt="" className="output"/>
                                         <h3>Booking Successful</h3>
                                         <span>Booking ID - 123456</span>
                                         <p>
-                                            We look forward to serving you a conscious <br />
+                                            We look forward to serving you a conscious <br/>
                                             dining experience!
                                         </p>
                                         <a href="javascript:void(0);">
-                                            <img src={download} alt="" />
+                                            <img src={download} alt=""/>
                                             Download Invoice
                                         </a>
                                         <button className="add-cal">
-                                            <img src={dateGold} alt="" />
+                                            <img src={dateGold} alt=""/>
                                             Add to calender
                                         </button>
                                     </div>
@@ -1485,36 +1497,36 @@ const ScBookingConfirm = () => {
                                                     </div>
                                                     <div className="col-lg-12">
                                                         <div className="chef-edit">
-                                                            <img src={chefImg} alt="" />
+                                                            <img src={chefImg} alt=""/>
                                                             <h5>Chef Mako Ravindran</h5>
                                                         </div>
                                                         <div className="chef-profile">
                                                             <div>
-                                                                <img src={dateGold} alt="" />
+                                                                <img src={dateGold} alt=""/>
                                                                 <span>April 9 | 7:30 PM - 10 PM</span>
                                                             </div>
                                                             <div>
-                                                                <img src={location} alt="" />
+                                                                <img src={location} alt=""/>
                                                                 <span>Silver bar, Downtown</span>
                                                             </div>
                                                             <div>
-                                                                <img src={people} alt="" />
+                                                                <img src={people} alt=""/>
                                                                 <span>6 Diners</span>
                                                             </div>
                                                         </div>
-                                                        <hr className="hr" />
+                                                        <hr className="hr"/>
                                                     </div>
                                                     <div className="col-lg-12">
                                                         <div className="chef-profile done-div">
                                                             <div>
-                                                                <img src={done} alt="" />
+                                                                <img src={done} alt=""/>
                                                                 <span>
                                   An email confirmation has been sent to
-                                  kachwallsana@gmail.com <br />
+                                  kachwallsana@gmail.com <br/>
                                   and SMS sent to 23456745
                                 </span>
                                                             </div>
-                                                            <hr className="hr" />
+                                                            <hr className="hr"/>
                                                         </div>
                                                     </div>
                                                     <div className="col-lg-12">
@@ -1532,11 +1544,13 @@ const ScBookingConfirm = () => {
                                                                     margin="normal"
                                                                     variant="standard"
                                                                     InputProps={{
-                                                                        className:'form-input',
+                                                                        className: 'form-input',
                                                                         disableUnderline: true,
                                                                         endAdornment: (
-                                                                            <IconButton className="input-icon" onClick={handleCopyClick}>
-                                                                                <Button className="copy-btn">Copy</Button>
+                                                                            <IconButton className="input-icon"
+                                                                                        onClick={handleCopyClick}>
+                                                                                <Button
+                                                                                    className="copy-btn">Copy</Button>
                                                                             </IconButton>
                                                                         ),
                                                                     }}
@@ -1544,7 +1558,7 @@ const ScBookingConfirm = () => {
                                                             </form>
                                                         </div>
                                                     </div>
-                                                    <hr className="hr" />
+                                                    <hr className="hr"/>
                                                     <div className="col-lg-12">
                                                         <div className="form-check">
                                                             <label
@@ -1553,7 +1567,7 @@ const ScBookingConfirm = () => {
                                                             >
                                                                 GST Details
                                                             </label>
-                                                            <KeyboardArrowRightIcon className="right-icon" />
+                                                            <KeyboardArrowRightIcon className="right-icon"/>
                                                         </div>
                                                     </div>
                                                 </div>

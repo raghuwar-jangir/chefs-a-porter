@@ -9,7 +9,7 @@ import * as _ from "lodash";
 import {navigate} from "gatsby";
 import Cookies from "js-cookie";
 
-const OtpVerificationModal = (props) => {
+const SupperClubOtpVerificationModal = (props) => {
     const {
         openOtp,
         handleCloseOtp,
@@ -27,16 +27,15 @@ const OtpVerificationModal = (props) => {
     const [seconds, setSeconds] = useState(10);
     const [eventData, setEventData] = useState()
     const cookieValue = Cookies.get('eventData');
-    const bookingIdCookieValue = Cookies.get('BookingId');
-    const bookingId = bookingIdCookieValue.replaceAll('"', '')
+    const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
+    const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
+    console.log("supperClubBookingId===========", supperClubBookingId)
 
     useEffect(() => {
         if (cookieValue) {
             setEventData(JSON.parse(cookieValue));
         }
     }, [cookieValue])
-
-    console.log("bookingId=======", bookingId)
 
     //otp timer
     React.useEffect(() => {
@@ -58,7 +57,7 @@ const OtpVerificationModal = (props) => {
             setVerifyOtp(otp);
             setIsVerifiedOtpApiCall(true);
             setIsBookingAPiCall(true);
-            navigate(`/addons/${bookingId}`);
+            navigate(`/sc-booking-summary/${supperClubBookingId}`);
         }
     }
 
@@ -84,7 +83,7 @@ const OtpVerificationModal = (props) => {
         width: 400,
         boxShadow: 24,
         '.modal-content': {
-            backgroundColor: '#101418!important',
+            backgroundColor: '#DCD7CB!important',
             boxShadow: '0px 8px 12px rgb(0 0 0 / 16%)',
             padding: '40px 20px',
             display: 'flex',
@@ -97,7 +96,7 @@ const OtpVerificationModal = (props) => {
             border: 'none !important',
             background: "transparent",
             borderRadius: "0px",
-            color: "#FBFBFB",
+            color: "#080B0E",
             cursor: 'pointer'
         },
         '.modal-header': {
@@ -120,7 +119,7 @@ const OtpVerificationModal = (props) => {
             fontWeight: '250',
             fontSize: '14px',
             lineHeight: '17px',
-            color: '#FBFBFB',
+            color: '#080B0E',
             marginTop: '0px',
             marginBottom: '0.5rem'
         },
@@ -130,7 +129,7 @@ const OtpVerificationModal = (props) => {
             fontWeight: '400',
             fontSize: '14px',
             lineHeight: '17px',
-            color: '#C6A87D !important',
+            color: '#080B0E !important',
         },
         '.enter-otp': {
             fontFamily: 'ProximaNovaA-Regular',
@@ -138,7 +137,7 @@ const OtpVerificationModal = (props) => {
             fontWeight: '400',
             fontSize: '16px',
             lineHeight: '19px',
-            color: '#FBFBFB',
+            color: '#080B0E',
             padding: '0px 16px',
             marginTop: '30px',
             marginBottom: '16px'
@@ -162,7 +161,7 @@ const OtpVerificationModal = (props) => {
             height: '66px',
             fontFamily: 'ProximaNovaA-Regular',
             fontWeight: '400',
-            color: '#FFFFFF',
+            color: '#080B0E',
         },
         '.form-control:focus-visible': {
             outline: 'unset !important'
@@ -176,12 +175,13 @@ const OtpVerificationModal = (props) => {
             fontWeight: '300',
             fontSize: '14px',
             lineHeight: '17px',
-            color: '#FBFBFB',
+            color: '#080B0E',
             padding: '0 16px',
         },
         '.otp-div button': {
-            background: '#C6A87D',
-            color: '#080B0E',
+            cursor: 'pointer',
+            background: '#080B0E',
+            color: '#FBFBFB',
             fontFamily: 'ProximaNovaA-Regular',
             fontSize: '20px',
             lineHeight: '24px',
@@ -191,7 +191,6 @@ const OtpVerificationModal = (props) => {
             fontWeight: '400',
             margin: '30px 0px',
             borderRadius: '0px',
-            cursor: 'pointer',
         },
         '.content': {
             fontFamily: 'Proxima Nova Alt',
@@ -199,9 +198,14 @@ const OtpVerificationModal = (props) => {
             fontWeight: '300',
             fontSize: '14px',
             lineHeight: '17px',
-            color: 'rgba(251, 251, 251, 0.6)',
+            textAlign: 'center',
+            color: '#080B0E',
         },
-
+        '.term': {
+            fontWeight: '400',
+            fontFamily: 'ProximaNovaA-Regular',
+            textDecoration: 'underline'
+        },
         "@media (min-width: 426px) and (max-width:768px)": {
             width: '400px'
         },
@@ -250,16 +254,15 @@ const OtpVerificationModal = (props) => {
                                                 isInputNum={true}
                                                 shouldAutoFocus={true}
                                                 inputStyle={{
-                                                    border: "1px solid #FBFBFB",
-                                                    backgroundColor: '#080B0E',
-                                                    width: '35px',
-                                                    height: '35px',
+                                                    backgroundColor: '#FBFBFB',
+                                                    border: '0px',
+                                                    width: '37px',
+                                                    height: '38px',
                                                     fontFamily: 'ProximaNovaA-Regular',
                                                     fontWeight: '400',
-                                                    color: '#FFFFFF',
+                                                    color: '#080B0E',
                                                 }}
                                                 focusStyle={{
-                                                    border: "1px solid #FBFBFB",
                                                     outline: "none"
                                                 }}
                                             />
@@ -279,7 +282,7 @@ const OtpVerificationModal = (props) => {
                                                    }}>Resend OTP</a>
                                             )}
                                                 {countOfResendOtp >= 2 &&
-                                                    <div><span>you can resend otp maximum 3 times!</span></div>}
+                                                    <div><span>you can resend otp maximum 2 times!</span></div>}
                                             </span></div>
                                         )}
                                         <div className="btn-val">
@@ -290,8 +293,8 @@ const OtpVerificationModal = (props) => {
                                     </form>
                                 </div>
                                 <div className="card-2">
-                                    <div className="content"> By continuing you agree to Chefs-à-Porter’s T&C,
-                                        Privacy Policy, Terms of Service
+                                    <div className="content"> By continuing you agree to Chefs-à-Porter’s<span
+                                        className="term">T&amp;C</span>
                                     </div>
                                 </div>
                             </div>
@@ -302,4 +305,4 @@ const OtpVerificationModal = (props) => {
         </Modal>
     )
 }
-export default OtpVerificationModal
+export default SupperClubOtpVerificationModal

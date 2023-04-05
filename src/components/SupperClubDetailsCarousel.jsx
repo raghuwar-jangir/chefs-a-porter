@@ -117,7 +117,7 @@ const SupperClubDetailsCarousel = ({backgroundColor, changeFont, changeDetails, 
         "@media (min-width: 1px) and (max-width:767px)": {
             padding: '40px 16px',
         },
-        '.details':{
+        '.details': {
             textAlign: "center",
             fontSize: "14px",
             fontWeight: 400,
@@ -125,7 +125,7 @@ const SupperClubDetailsCarousel = ({backgroundColor, changeFont, changeDetails, 
             fontFamily: 'ProximaNovaA-Regular',
             whiteSpace: 'pre-wrap'
         },
-        '.ceoName':{
+        '.ceoName': {
             textAlign: "center",
             fontSize: "14px",
             padding: '30px 0px 24px 0px ',
@@ -217,7 +217,7 @@ const SupperClubDetailsCarousel = ({backgroundColor, changeFont, changeDetails, 
                                 <Typography className='details'>
                                     {step.details2}
                                 </Typography>
-                                <Typography >
+                                <Typography>
                                     {step.name}
                                 </Typography>
                                 <Typography className='ceoName'>

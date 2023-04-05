@@ -272,7 +272,6 @@ const ContactUs = () => {
                                     }}
                                     validationSchema={validationSchema}
                                     onSubmit={(values) => {
-
                                     }}
                                 >
                                     {({values, handleChange, handleSubmit}) => (

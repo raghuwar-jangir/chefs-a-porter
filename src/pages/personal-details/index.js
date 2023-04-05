@@ -17,8 +17,6 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import contact from '../../assets/images/contact-form.png';
 import {navigate} from "gatsby";
 import InputAdornment from "@mui/material/InputAdornment";
-
-
 const PersonalDetails = () => {
     const [contactPopUp, setContactPopUp] = useState(false);
     const ContactOpen = () => setContactPopUp(true);

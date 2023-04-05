@@ -119,7 +119,7 @@ const BookingSummary = () => {
             if (eventDataCookieValue) {
                 setEventData(JSON.parse(eventDataCookieValue));
             }
-        }, [customerInfoCookieValue,eventDataCookieValue])
+        }, [customerInfoCookieValue, eventDataCookieValue])
     }
 
     console.log("customerInfo======", customerInfo)
@@ -1266,7 +1266,8 @@ const BookingSummary = () => {
                                                             <Box className="chef-profile-box">
                                                                 <img className="chef-profile-logo" src={done}/>
                                                                 <Typography className="chef-profile-dis">
-                                                                    An email confirmation has been sent to {eventData?.email} <br/>
+                                                                    An email confirmation has been sent
+                                                                    to {eventData?.email} <br/>
                                                                     and SMS sent to +91 {customerInfo?.contactNumber}
                                                                 </Typography>
                                                             </Box>
@@ -1370,10 +1371,9 @@ const BookingSummary = () => {
                                                                             return (
                                                                                 <Box className="table-box">
                                                                                     <Typography
-                                                                                        className="table-details">{key}</Typography>
+                                                                                        className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
                                                                                     <Typography
-                                                                                        className="table-details">₹
-                                                                                        {paymentCalulationData?.payment[key]}</Typography>
+                                                                                        className="table-details">₹{paymentCalulationData?.payment[key]}</Typography>
                                                                                 </Box>
                                                                             )
                                                                         })

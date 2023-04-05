@@ -46,6 +46,7 @@ import {navigate} from "gatsby";
 import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
 import moment from "moment/moment";
+import SupperClubDetailPopUpCarousel from "../../components/SupperClubDetailPopUpCarousel";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -62,13 +63,22 @@ const SupperClubDetail = (props) => {
     const getSupperClubDetailId = '62fe25e2d75a11bcf635e206';
     // const getSupperClubDetailId = props?.params?.supperClubDetailId;
 
+    // const groupedData = userData?.new_dates?.reduce((acc, item) => {
+    //     if (!acc[item.date]) {
+    //         acc[item.date] = [];
+    //     }
+    //     acc[item.date].push(item);
+    //     return acc;
+    // }, {});
+    // console.log("groupedData====",groupedData)
+
     useEffect(() => {
         setSupperClubDetailId(getSupperClubDetailId);
     }, [getSupperClubDetailId]);
 
     console.log("SupperClubDetail userData========", userData)
     const handleClick = () => {
-        navigate("/personal-details");
+        navigate("/personal-details1");
     };
     const [showCarousel, setShowCarousel] = useState(false);
     const handleImageClick = () => {
@@ -94,6 +104,43 @@ const SupperClubDetail = (props) => {
     const handleStepChange = (step) => {
         setActiveStep(step);
     };
+    const [title, setTitle] = useState("");
+    const handleImageOpen = (title) => {
+        setShowCarousel(true);
+        setTitle(title);
+    };
+    const handleImageClose = () => {
+        setShowCarousel(false);
+    };
+
+
+    const itemData = [
+        {
+            img: userData?.pictures[0],
+            title: "img1",
+        },
+    ];
+
+    const itemData2 = [
+        {
+            img: userData?.pictures[1],
+            title: "img2",
+        },
+        {
+            img: userData?.pictures[2],
+            title: "img3",
+        },
+        {
+            img: userData?.pictures[3],
+            title: "img4",
+        },
+        {
+            img: userData?.pictures[4],
+            title: "img5",
+        },
+    ];
+
+
     const BoxWrapper = styled(Box)(() => ({
         ".header-club": {
             padding: "20px",
@@ -114,8 +161,8 @@ const SupperClubDetail = (props) => {
             cursor: "pointer",
         },
         ".main-img-1": {
-            width: "100%",
-            height: "165px",
+            width: "95%",
+            height: "182px",
             boxShadow: "0px 8px 16px rgb(0 0 0 / 16%)",
             objectFit: "cover",
         },
@@ -938,28 +985,27 @@ const SupperClubDetail = (props) => {
                                     xs={12}
                                 >
                                     <Box className="container">
-                                        {
-                                            userData?.chef?.details?.experinces?.map((item) => {
-                                                return (
-                                                    <img
-                                                        src={item.cover_picture}
-                                                        alt="RestorentImg"
-                                                        className="main-img"
-                                                        onClick={handleImageClick}
-                                                    />
-                                                )
-                                            })
-                                        }
+                                        {itemData.map((item) => (
+                                            <img
+                                                src={item.img}
+                                                alt={item.title}
+                                                className="main-img"
+                                                loading="lazy"
+                                                onClick={() => {
+                                                    handleImageOpen(item.title);
+                                                }}
+                                            />
+                                        ))}
                                         {showCarousel && (
                                             <Box className="carousel-popup">
                                                 <button
                                                     className="close-button"
-                                                    onClick={handleCloseCarousel}
+                                                    onClick={handleImageClose}
                                                 >
                                                     <CloseIcon className="pop-close-icon"/>
                                                 </button>
                                                 <Box className="carousel">
-                                                    <SuperClubPopUpCarousel/>
+                                                    <SupperClubDetailPopUpCarousel title={title}/>
                                                 </Box>
                                             </Box>
                                         )}
@@ -967,46 +1013,34 @@ const SupperClubDetail = (props) => {
                                 </Grid>
                                 <Grid item md={5} sm={6} xs={12} xl={5} className="next-grid">
                                     <Grid className="child-container" container spacing={2}>
-                                        <Grid className="restorent-1" item md={6} sm={6} xs={6} xl={6}>
-                                            <img
-                                                src={RestorentImg}
-                                                alt="RestorentImg"
-                                                className="main-img-1"
-                                                onClick={handleImageClick}
-                                            />
-                                        </Grid>
-                                        <Grid className="restorent-2" item md={6} sm={6} xs={6} xl={6}>
-                                            <img
-                                                src={RestorentImg}
-                                                alt="RestorentImg"
-                                                className="main-img-1"
-                                                onClick={handleImageClick}
-                                            />
-                                        </Grid>
-                                        <Grid className="restorent-1" item md={6} sm={6} xs={6} xl={6}>
-                                            <img
-                                                src={RestorentImg}
-                                                alt="RestorentImg"
-                                                className="main-img-2"
-                                                onClick={handleImageClick}
-                                            />
-                                        </Grid>
-                                        <Grid className="restorent-2" item md={6} sm={6} xs={6} xl={6}>
-                                            <img
-                                                src={RestorentImg}
-                                                alt="RestorentImg"
-                                                className="main-img-2"
-                                                onClick={handleImageClick}
-                                            />
-                                            <Button
-                                                className="show-btn"
-                                                onClick={handleOpen}
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal"
+                                        {itemData2.map((item) => (
+                                            <Grid
+                                                className="item-img-1"
+                                                item
+                                                md={6}
+                                                sm={6}
+                                                xs={6}
+                                                xl={6}
                                             >
-                                                Show All Photos
-                                            </Button>
-                                        </Grid>
+                                                <img
+                                                    src={item.img}
+                                                    alt={item.title}
+                                                    className="main-img-1"
+                                                    loading="lazy"
+                                                    onClick={() => {
+                                                        handleImageOpen(item.title);
+                                                    }}
+                                                />
+                                            </Grid>
+                                        ))}
+                                        <Button
+                                            className="show-btn"
+                                            onClick={handleOpen}
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal"
+                                        >
+                                            Show All Photos
+                                        </Button>
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -1113,9 +1147,11 @@ const SupperClubDetail = (props) => {
                                         </Box>
                                         <Box>
                                             <Stack className="date-stack">
-                                                <Typography className="date-description">
-                                                    {moment(userData?.dates[0]).format("MMMM D")}
-                                                </Typography>
+                                                {!_.isEmpty(userData?.dates) &&
+                                                    <Typography className="date-description">
+                                                        {moment(userData?.dates[0]).format("MMMM D")}
+                                                    </Typography>
+                                                }
                                                 <span className="line">|</span>
                                                 <Typography className="date-description">
                                                     {" "}

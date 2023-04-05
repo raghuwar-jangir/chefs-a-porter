@@ -1,5 +1,5 @@
-import React,{useState} from "react";
-import { styled, Box, Grid, Typography, Select, MenuItem,Stack,Modal,TextField,Link,Checkbox } from "@mui/material";
+import React, {useEffect, useState,useContext} from "react";
+import {styled, Box, Grid, Typography, Select, MenuItem, Stack, Modal, TextField, Link, Checkbox} from "@mui/material";
 import Navbar from "../../components/NavbarComponent";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import sGallery from "../../assets/images/sc-gallery.png";
@@ -13,13 +13,31 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import giftCard from '../../assets/images/giftcard.png';
 import CloseIcon from '@mui/icons-material/Close';
-import {Form, Formik,Field,ErrorMessage } from "formik";
+import {Form, Formik, Field, ErrorMessage} from "formik";
 import * as Yup from 'yup';
 import {navigate} from "gatsby";
+import Cookies from "js-cookie";
+import * as _ from "lodash";
+import UsersContext from "../../context/UsersContext";
 
 const ScBookingSummary = () => {
+    const {setIsSupperBookingStatus}= useContext(UsersContext)
+    const [supperClubPaymentCalculationData, setSupperClubPaymentCalculationData] = useState()
+    const cookieValue = Cookies.get('supperClubBookingPaymentCalculation');
+    const supperClubBookingIdCookieValue = Cookies?.get('supperClubConfirmBookingId');
+    const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
+
+    useEffect(() => {
+        if (cookieValue) {
+            setSupperClubPaymentCalculationData(JSON.parse(cookieValue));
+        }
+    }, [cookieValue])
+
+    console.log("supperClubPaymentCalculationData======",supperClubPaymentCalculationData)
+
     const handleClick = () => {
-        navigate('/sc-booking-confirm')
+        navigate(`/sc-booking-confirm/${supperClubBookingId}`);
+        setIsSupperBookingStatus(true)
     }
     const validationSchema = Yup.object().shape({
         number: Yup.string()
@@ -35,16 +53,16 @@ const ScBookingSummary = () => {
     });
 
     const initialValues = {
-        number:'9876543210',
-        name:'Teqzo International',
-        flatNumber:'111',
-        address:'Manchester',
-        pincode:'400022'
+        number: '9876543210',
+        name: 'Teqzo International',
+        flatNumber: '111',
+        address: 'Manchester',
+        pincode: '400022'
     };
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const handleSubmit = (values, { setSubmitting }) => {
+    const handleSubmit = (values, {setSubmitting}) => {
         console.log(values);
         setSubmitting(false);
     }
@@ -73,7 +91,7 @@ const ScBookingSummary = () => {
             // fontSize: '20px',
         },
         ".dinner-box": {
-            paddingLeft:'10px',
+            paddingLeft: '10px',
             position: "relative",
             // flex: "0 0 auto",
             // width: "41.66666667%",
@@ -87,7 +105,7 @@ const ScBookingSummary = () => {
         },
         ".event-div": {
             display: "flex",
-            placeItems:'center'
+            placeItems: 'center'
         },
         ".per-dinner-img": {
             width: "116px",
@@ -180,10 +198,10 @@ const ScBookingSummary = () => {
             lineHeight: "19px",
             color: "#101418",
         },
-        '.rating-people':{
-            width:'24px',
-            height:'24px',
-            marginRight:'8px'
+        '.rating-people': {
+            width: '24px',
+            height: '24px',
+            marginRight: '8px'
         },
         ".table": {
             marginTop: "20px",
@@ -248,25 +266,25 @@ const ScBookingSummary = () => {
             background: "rgba(189, 189, 189, 0.2)",
             padding: "16px 0px",
             placeContent: "center",
-            display:'flex',
-            placeItems:'center',
-            margin:'0px -20px 20px',
-            flexDirection:'row'
+            display: 'flex',
+            placeItems: 'center',
+            margin: '0px -20px 20px',
+            flexDirection: 'row'
         },
         ".date-description": {
             fontSize: "14px",
             fontWeight: 400,
             fontFamily: 'ProximaNovaA-Regular',
             lineHeight: "17px",
-            letterSpacing:'0.06em',
-            textAlign:'center',
-            padding:'0px 6px'
+            letterSpacing: '0.06em',
+            textAlign: 'center',
+            padding: '0px 6px'
         },
         ".line": {
             margin: "0px",
             fontSize: "15px",
         },
-        '.confirm-details':{
+        '.confirm-details': {
             background: 'rgba(189, 189, 189, 0.4)',
             padding: '16px 0px',
             fontFamily: 'ProximaNovaA-Regular',
@@ -287,7 +305,7 @@ const ScBookingSummary = () => {
         ".chef-edit": {
             display: "flex",
             placeItems: "center",
-            justifyContent:'space-between',
+            justifyContent: 'space-between',
             position: "relative",
             marginBottom: "20px",
         },
@@ -305,12 +323,12 @@ const ScBookingSummary = () => {
             lineHeight: "19px",
             color: "#080B0E"
         },
-        '.chef-edit-sub':{
+        '.chef-edit-sub': {
             color: '#080B0E',
             fontWeight: 600,
         },
-        '.chef-edit-sub:hover':{
-            color:'#C6A87D'
+        '.chef-edit-sub:hover': {
+            color: '#C6A87D'
         },
         ".pencil-icon": {
             marginLeft: "2.5px",
@@ -322,7 +340,7 @@ const ScBookingSummary = () => {
             top: "auto",
             bottom: "auto",
             lineHeight: "1",
-            height:'20px'
+            height: '20px'
         },
         ".chef-profile-detail": {
             marginBottom: "16px",
@@ -333,7 +351,7 @@ const ScBookingSummary = () => {
             width: "18px",
             objectFit: "contain",
             marginRight: "10px",
-            filter:'brightness(0)'
+            filter: 'brightness(0)'
         },
         ".chef-profile-date": {
             fontFamily: "Proxima Nova Alt",
@@ -343,13 +361,13 @@ const ScBookingSummary = () => {
             lineHeight: "19px",
             color: "#080B0E",
         },
-        '.chef-box':{
+        '.chef-box': {
             display: 'flex',
             placeItems: 'center',
             position: 'relative',
             marginBottom: '20px'
         },
-        '.booking-summary-title':{
+        '.booking-summary-title': {
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
             fontWeight: 700,
@@ -358,45 +376,45 @@ const ScBookingSummary = () => {
             letterSpacing: '0.06em',
             color: '#080B0E',
             marginLeft: '0px',
-            marginBottom:'0.5em'
+            marginBottom: '0.5em'
         },
-        '.chef-seats':{
+        '.chef-seats': {
             fontFamily: 'ProximaNovaA-Regular',
             display: "flex",
-            fontWeight:400,
+            fontWeight: 400,
             alignItems: "center",
             fontSize: "14px",
             lineHeight: "17px",
             color: "#080B0E",
         },
-        '.chef-people':{
+        '.chef-people': {
             width: '18px',
             height: '18px',
             marginRight: '6px'
         },
-        '.chef-people-no':{
+        '.chef-people-no': {
             fontFamily: 'ProximaNovaA-Regular',
             display: "flex",
-            fontWeight:400,
+            fontWeight: 400,
             alignItems: "center",
             fontSize: "14px",
             lineHeight: "17px",
             color: "#080B0E",
         },
-        '.hr':{
-            margin:'1rem 0',
-            opacity:'0.25',
-            borderTop:'1px solid'
+        '.hr': {
+            margin: '1rem 0',
+            opacity: '0.25',
+            borderTop: '1px solid'
         },
-        '.email':{
+        '.email': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
-            fontWeight:400,
+            fontWeight: 400,
             fontSize: "16px",
             lineHeight: "19px",
             color: "#080B0E",
             marginBottom: '33px',
-            paddingTop:'16px'
+            paddingTop: '16px'
         },
         ".contact": {
             position: "relative",
@@ -414,7 +432,7 @@ const ScBookingSummary = () => {
         ".form-group": {
             display: "flex",
             flexWrap: "wrap",
-            paddingTop:'16px'
+            paddingTop: '16px'
         },
         ".country-code": {
             borderBottom: "0.25px solid #080B0E",
@@ -430,7 +448,7 @@ const ScBookingSummary = () => {
         ".form-control": {
             paddingLeft: "10px",
             flex: "1",
-            outline:'none',
+            outline: 'none',
             backgroundColor: "transparent",
             border: "0px",
             borderBottom: "0.25px solid #080B0E",
@@ -452,13 +470,13 @@ const ScBookingSummary = () => {
             fontSize: "19px",
             marginLeft: "0.5px",
             marginRight: "2.5px",
-            paddingBottom:'7px'
+            paddingBottom: '7px'
         },
         ".form-check": {
             marginBottom: "30px",
             minHeight: "1.5rem",
-            paddingTop:'20px',
-            background:'rgba(189, 189, 189, 0.2)',
+            paddingTop: '20px',
+            background: 'rgba(189, 189, 189, 0.2)',
             display: 'flex',
         },
         ".form-check-input": {
@@ -482,48 +500,48 @@ const ScBookingSummary = () => {
         ".forward-arrow": {
             position: "absolute",
             right: "10px",
-            fontSize:'30px',
+            fontSize: '30px',
             bottom: "auto",
             color: "#080B0E",
             webkitTextStroke: "1px",
             top: "auto",
             // paddingTop:'20px'
         },
-        '.gst-block':{
+        '.gst-block': {
             marginTop: '35px',
             marginBottom: '30px',
-            position:'relative',
+            position: 'relative',
         },
-        '.input-check':{
-            color:'#C6A87D !important',
-            bottom:'8px !important'
+        '.input-check': {
+            color: '#C6A87D !important',
+            bottom: '8px !important'
         },
-        '.gift-div':{
-            marginTop:'5px'
+        '.gift-div': {
+            marginTop: '5px'
         },
-        '.gift-child':{
-            marginBottom:'16px',
-            display:'flex'
+        '.gift-child': {
+            marginBottom: '16px',
+            display: 'flex'
         },
-        '.gift-img':{
-            height:'22.5px',
-            width:'32.01px',
-            marginRight:'10px'
+        '.gift-img': {
+            height: '22.5px',
+            width: '32.01px',
+            marginRight: '10px'
         },
-        '.gift-text':{
+        '.gift-text': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: 250,
             fontSize: '14px',
             lineHeight: '20px',
-            color:'#080B0E'
+            color: '#080B0E'
         },
         "@media (min-width: 1px) and (max-width:768px)": {
-            '.partner':{
-                borderRight:'0px'
+            '.partner': {
+                borderRight: '0px'
             },
-            '.dinner-box':{
-                paddingLeft:'0px'
+            '.dinner-box': {
+                paddingLeft: '0px'
             }
         }
     })
@@ -644,13 +662,13 @@ const ScBookingSummary = () => {
             marginTop: "0px",
         },
     }
-    return(
+    return (
         <React.Fragment>
             <MainBox>
-                <Navbar heading="Privee" isColor={true} />
+                <Navbar heading="Privee" isColor={true}/>
                 <div className="row supper-chef-details">
                     <div className="book-trad">
-                        <ArrowBackIcon className="arrow-left" />
+                        <ArrowBackIcon className="arrow-left"/>
                         <div className="addons-title">Booking Summary</div>
                     </div>
                 </div>
@@ -676,7 +694,7 @@ const ScBookingSummary = () => {
                                     Curated by <span className="chef-edit-sub">Chef Mako</span>
                                 </Typography>
                                 <Typography className="chef-seats">
-                                    <img className="chef-people" src={people} />
+                                    <img className="chef-people" src={people}/>
                                     <Typography className="chef-people-no">4 Seats</Typography>
                                 </Typography>
                             </Box>
@@ -729,7 +747,7 @@ const ScBookingSummary = () => {
                                 <Box className="form-group">
                           <span className="country-code">
                             +91{" "}
-                              <KeyboardArrowDownIcon className="drop-down-2" />
+                              <KeyboardArrowDownIcon className="drop-down-2"/>
                           </span>
                                     <input
                                         placeholder="10 digit number"
@@ -759,7 +777,9 @@ const ScBookingSummary = () => {
                         <div className="gift-div">
                             <div className="gift-child">
                                 <img className="gift-img" src={giftCard}/>
-                                <div className="gift-text">If you have a coupon/ gift card, please enter details in the next step</div>
+                                <div className="gift-text">If you have a coupon/ gift card, please enter details in the
+                                    next step
+                                </div>
                             </div>
                         </div>
                     </Grid>
@@ -791,8 +811,8 @@ const ScBookingSummary = () => {
                                 </Stack>
                             </Box>
                             <Box className="event-div">
-                                <img src={sGallery} alt="" className="per-dinner-img" />
-                                <Box sx={{ marginLeft: "12px" }}>
+                                <img src={sGallery} alt="" className="per-dinner-img"/>
+                                <Box sx={{marginLeft: "12px"}}>
                                     <Typography className="event-title">
                                         The Big Fat Parsi Blowout
                                     </Typography>
@@ -803,7 +823,7 @@ const ScBookingSummary = () => {
                                         </a>
                                     </Typography>
                                     <Typography className="rating-star">
-                                        <img className="rating-people" src={people} />
+                                        <img className="rating-people" src={people}/>
                                         <Typography className="rating-star">4 Seats</Typography>
                                     </Typography>
                                 </Box>
@@ -814,32 +834,34 @@ const ScBookingSummary = () => {
                                     <Typography className="ex-heading">
                                         Price Breakdown
                                     </Typography>
-                                    <ExpandMoreIcon className="ex-icon" />
+                                    <ExpandMoreIcon className="ex-icon"/>
                                 </Box>
+                                {
+                                    !_.isEmpty(supperClubPaymentCalculationData) &&
                                 <Box className="table table-borderless">
-                                    <Box className="table-box">
-                                        <Typography className="table-details">Food</Typography>
-                                        <Typography className="table-details">₹ 2,500</Typography>
-                                    </Box>
-                                    <Box className="table-box">
-                                        <Typography className="table-details">
-                                            Service Charge
-                                        </Typography>
-                                        <Typography className="table-details">₹ 2,500</Typography>
-                                    </Box>
-                                    <Box className="table-box">
-                                        <Typography className="table-details">Tax</Typography>
-                                        <Typography className="table-details">₹ 2,500</Typography>
-                                    </Box>
+                                    {
+                                        Object.keys(supperClubPaymentCalculationData?.payment).map((key) => {
+                                            return (
+                                                <Box className="table-box">
+                                                    <Typography
+                                                        className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
+                                                    <Typography
+                                                        className="table-details">₹
+                                                        {supperClubPaymentCalculationData?.payment[key]}</Typography>
+                                                </Box>
+                                            )
+                                        })
+                                    }
                                     <Box className="table-box border">
-                                        <Typography className=" grand-total table-details">
-                                            Grand Total
-                                        </Typography>
-                                        <Typography className="table-details grand-total">
-                                            ₹ 2,5000
-                                        </Typography>
+                                        <Typography
+                                            className=" grand-total table-details">Grand
+                                            Total</Typography>
+                                        <Typography
+                                            className="table-details grand-total">₹
+                                            {supperClubPaymentCalculationData?.total}</Typography>
                                     </Box>
                                 </Box>
+                                }
                             </Box>
                             <Box className="row viewbreak">
                                 <Box>
@@ -879,36 +901,45 @@ const ScBookingSummary = () => {
                                         validationSchema={validationSchema}
                                         onSubmit={handleSubmit}
                                     >
-                                        {({ isSubmitting }) => (
+                                        {({isSubmitting}) => (
                                             <Form>
-                                                <Box  className="row">
+                                                <Box className="row">
                                                     <Box className='form-field'>
-                                                        <label className="form-label" htmlFor="number">GST Number</label>
-                                                        <Field className="form-control" type="text" id="number" name="number" placeholder='Enter Location'/>
+                                                        <label className="form-label" htmlFor="number">GST
+                                                            Number</label>
+                                                        <Field className="form-control" type="text" id="number"
+                                                               name="number" placeholder='Enter Location'/>
                                                         {/* <ErrorMessage name="number" /> */}
                                                     </Box>
 
                                                     <Box className='form-field'>
-                                                        <label className="form-label" htmlFor="name">Registered Company Name</label>
-                                                        <Field className="form-control" type="text" id="name" name="name" placeholder="Enter Location" />
+                                                        <label className="form-label" htmlFor="name">Registered Company
+                                                            Name</label>
+                                                        <Field className="form-control" type="text" id="name"
+                                                               name="name" placeholder="Enter Location"/>
                                                         {/* <ErrorMessage name="name" /> */}
                                                     </Box>
 
                                                     <Box className='form-field'>
-                                                        <label className="form-label" htmlFor="flatNumber">Building/ FlatNumber</label>
-                                                        <Field className="form-control" type="text" id="flatNumber" name="flatNumber" placeholder='Enter Location'/>
+                                                        <label className="form-label" htmlFor="flatNumber">Building/
+                                                            FlatNumber</label>
+                                                        <Field className="form-control" type="text" id="flatNumber"
+                                                               name="flatNumber" placeholder='Enter Location'/>
                                                         {/* <ErrorMessage name="flatNumber" /> */}
                                                     </Box>
 
                                                     <Box className='form-field'>
-                                                        <label className="form-label" htmlFor="address">Street/area/ Road name</label>
-                                                        <Field className="form-control" type="text" id="address" name="address" placeholder="Enter Locationr" />
+                                                        <label className="form-label" htmlFor="address">Street/area/
+                                                            Road name</label>
+                                                        <Field className="form-control" type="text" id="address"
+                                                               name="address" placeholder="Enter Locationr"/>
                                                         {/* <ErrorMessage name="address" /> */}
                                                     </Box>
 
                                                     <Box className='form-field'>
                                                         <label className="form-label" htmlFor="pincode">Pincode</label>
-                                                        <Field className="form-control" type="text" id="pincode" name="pincode" placeholder='Enter Location' />
+                                                        <Field className="form-control" type="text" id="pincode"
+                                                               name="pincode" placeholder='Enter Location'/>
                                                         {/* <ErrorMessage name="pincode" /> */}
                                                     </Box>
 

@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect, useCallback,useRef} from "react";
+import React, {useState, useContext, useEffect, useCallback, useRef} from "react";
 import {
     Box,
     Grid,
@@ -51,8 +51,6 @@ const CustomerDetails = (props) => {
     const [contactNumber, setContactNumber] = useState('');
     const [customerInfo, setCustomerInfo] = useState('')
     const cookieValue = Cookies?.get('customerData');
-    const inputRef = useRef(null);
-
 
     {
         !_.isEmpty(cookieValue) &&
@@ -1382,7 +1380,6 @@ const CustomerDetails = (props) => {
                                                                            onChange={handleChange}
                                                                            autoComplete="off"
                                                                            variant="standard"
-                                                                           ref={inputRef}
                                                                            sx={{
                                                                                '& .MuiInputBase-input': {
                                                                                    background: 'transparent',

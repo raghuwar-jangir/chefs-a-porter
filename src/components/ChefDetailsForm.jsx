@@ -299,7 +299,8 @@ const ChefDetailsForm = () => {
                     setSubmitting(false);
                 }}
             >
-                {({isSubmitting, values, setFieldValue}) => (<Form>
+                {({isSubmitting, values, setFieldValue}) => (
+                    <Form>
                     <Box className="common-field-box">
                         <label htmlFor="name" className="field-title">
                             Name

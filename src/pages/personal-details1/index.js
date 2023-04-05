@@ -1,6 +1,6 @@
-import { styled, Box, Grid, Typography, Select, MenuItem,Stack,Modal,TextField,Link } from "@mui/material";
-import React,{useState} from "react";
-import { Formik,Form,ErrorMessage,Field } from "formik";
+import {styled, Box, Grid, Typography, Select, MenuItem, Stack, Modal, TextField, Link} from "@mui/material";
+import React, {useContext, useState} from "react";
+import {Formik, Form, ErrorMessage, Field} from "formik";
 import * as Yup from 'yup';
 import Navbar from "../../components/NavbarComponent";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -18,44 +18,49 @@ import contact from '../../assets/images/contact-form.png';
 import {navigate} from "gatsby";
 import InputAdornment from "@mui/material/InputAdornment";
 import OtpComponent from "../../components/OtpComponent";
+import * as _ from "lodash";
+import Cookies from "js-cookie";
+import SupperClubOtpVerificationModal from "../../components/SupperClubOtpVerificationModal";
+import OtpContext from "../../context/OtpContext";
 
 
 const PersonalDetails1 = () => {
+    const {setOtpNumber, setVerifyOtp, setResendOtp, setIsSendOtpApiCall} = useContext(OtpContext);
     const [contactPopUp, setContactPopUp] = useState(false);
     const ContactOpen = () => setContactPopUp(true);
     const ContactClose = () => setContactPopUp(false);
-    const nextPage = () => {
-        navigate('/sc-booking-summary')
-    }
+    // const nextPage = () => {
+    //     navigate('/sc-booking-summary')
+    // }
     const afterClick = () => {
         const newParam = 'newParamValue'
         navigate(`/personal-details/?myParam=${newParam}`);
     }
-    const [openModal, setOpenModal] = useState(false);
-    const handleOpenModal = () => setOpenModal(true);
-    const handleCloseModal = () => setOpenModal(false);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const [openOtp, setOpenOtp] = useState(false);
+    const [contactNumber, setContactNumber] = useState('');
+    const CHARACTER_LIMIT = 40;
+    const handleOpenOtp = (contactNumber, values) => {
+        if (!_.isEmpty(contactNumber)) {
+            setOpenOtp(true);
+            setOtpNumber(`+91${contactNumber}`);
+            setContactNumber(contactNumber);
+            setIsSendOtpApiCall(true);
+        }
+        // Cookies.set('customerData', JSON.stringify(values));
+    }
+    const handleCloseOtp = () => setOpenOtp(false);
+
     const validationSchema = Yup.object().shape({
-        number: Yup.string()
-            .required('Number is required'),
         name: Yup.string()
             .required('Name is required'),
-        flatNumber: Yup.string()
-            .required('Flat number is required'),
-        address: Yup.string()
-            .required('Address is required'),
-        pincode: Yup.string()
-            .required('Pincode is required')
+        contactNumber: Yup.string()
+            .required('contactNumber is required'),
+        email: Yup.string().email('Incorrect Email Id').required('please enter email'),
     });
-    //   const initialValues = {
-    //     number:'9876543210',
-    //     name:'Teqzo International',
-    //     flatNumber:'111',
-    //     address:'Manchester',
-    //     pincode:'400022'
-    //   };
 
     const MainBox = styled(Box)({
         padding: "80px 120px",
@@ -81,8 +86,23 @@ const PersonalDetails1 = () => {
             color: "#080B0E",
             // fontSize: '20px',
         },
+        '.MuiFormHelperText-root': {
+            textAlign: 'right',
+            fontFamily: 'Proxima Nova ALT',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '14px',
+            lineHeight: '17px',
+            color: '#7D7D7D',
+            margin: '0px',
+            // marginBottom: '0px',
+        },
+        '.css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root': {
+            borderRadius: '0px',
+            padding: "0px",
+        },
         ".dinner-box": {
-            paddingLeft:'10px',
+            paddingLeft: '10px',
             position: "relative",
             // flex: "0 0 auto",
             // width: "41.66666667%",
@@ -96,7 +116,7 @@ const PersonalDetails1 = () => {
         },
         ".event-div": {
             display: "flex",
-            placeItems:'center'
+            placeItems: 'center'
         },
         ".per-dinner-img": {
             width: "116px",
@@ -247,13 +267,13 @@ const PersonalDetails1 = () => {
             borderRight: "10px solid #dcd7cb",
             padding: "40px 20px",
         },
-        '.form-field':{
+        '.form-field': {
             // paddingLeft:'0.5rem',
             // paddingRight:'0.5rem',
             marginBottom: '40px',
             position: 'relative'
         },
-        '.form-label':{
+        '.form-label': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: 600,
@@ -265,7 +285,7 @@ const PersonalDetails1 = () => {
         ".form-control": {
             paddingLeft: "10px",
             flex: "1",
-            outline:'none',
+            outline: 'none',
             backgroundColor: "transparent",
             border: "0px",
             borderBottom: "0.25px solid #080B0E",
@@ -286,7 +306,7 @@ const PersonalDetails1 = () => {
         ".form-control-drop": {
             paddingLeft: "10px",
             flex: "1",
-            outline:'none',
+            outline: 'none',
             backgroundColor: "transparent",
             border: "0px",
             borderBottom: "0.25px solid #080B0E",
@@ -304,14 +324,14 @@ const PersonalDetails1 = () => {
             padding: "0px 0.75rem 0.375rem 0px",
             transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
         },
-        '.your-box':{
-            display:'flex',
-            justifyContent:'space-between'
+        '.your-box': {
+            display: 'flex',
+            justifyContent: 'space-between'
         },
-        '.your-food':{
-            marginBottom:'40px'
+        '.your-food': {
+            marginBottom: '40px'
         },
-        '.view-text':{
+        '.view-text': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: 700,
@@ -320,14 +340,14 @@ const PersonalDetails1 = () => {
             textDecoration: 'underline',
             color: '#080B0E',
         },
-        '.view-text:hover':{
-            color:'#C6A87D'
+        '.view-text:hover': {
+            color: '#C6A87D'
         },
-        '.who-join':{
-            backgroundColor:'#101418',
-            padding:'20px 30px'
+        '.who-join': {
+            backgroundColor: '#101418',
+            padding: '20px 30px'
         },
-        '.who-heading':{
+        '.who-heading': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: 600,
@@ -336,20 +356,20 @@ const PersonalDetails1 = () => {
             color: '#FBFBFB',
             marginBottom: '8px',
         },
-        '.who-heading-option':{
+        '.who-heading-option': {
             fontFamily: 'Proxima Nova Alt',
             fontWeight: 300
         },
-        '.who-sub-heading':{
+        '.who-sub-heading': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: 300,
             fontSize: '14px',
             lineHeight: '24px',
             color: '#FBFBFB',
-            marginBottom:'1rem'
+            marginBottom: '1rem'
         },
-        '.guest-details':{
+        '.guest-details': {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
@@ -359,12 +379,12 @@ const PersonalDetails1 = () => {
             boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.08)',
             position: 'relative',
         },
-        '.user-logo':{
+        '.user-logo': {
             width: '18px',
             height: '18px',
             objectFit: 'contain',
         },
-        '.user-name':{
+        '.user-name': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: 400,
@@ -373,14 +393,14 @@ const PersonalDetails1 = () => {
             color: '#FBFBFB',
             marginBottom: '0px',
         },
-        '.line':{
-            color:'#FBFBFB',
-            fontSize:'25px',
+        '.line': {
+            color: '#FBFBFB',
+            fontSize: '25px',
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: 300,
         },
-        '.guest-mail':{
+        '.guest-mail': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: 300,
@@ -390,17 +410,17 @@ const PersonalDetails1 = () => {
             marginBottom: '0px',
             position: 'relative',
         },
-        '.guest-close':{
+        '.guest-close': {
             color: '#FBFBFB',
             fontSize: '18px',
             position: 'absolute',
             right: '8px',
         },
-        '.guest-number':{
-            display:'flex',
-            alignItems:'center'
+        '.guest-number': {
+            display: 'flex',
+            alignItems: 'center'
         },
-        '.guest-remain':{
+        '.guest-remain': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: 300,
@@ -410,7 +430,7 @@ const PersonalDetails1 = () => {
             marginBottom: '0px',
             marginTop: '20px',
         },
-        '.add-guest':{
+        '.add-guest': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: 400,
@@ -425,177 +445,177 @@ const PersonalDetails1 = () => {
             width: 'max-content',
             marginLeft: 'auto',
             marginTop: '20px',
-            background:'transparent'
+            background: 'transparent'
         },
-        '.add-guest:hover':{
-            color:'#C6A87D'
+        '.add-guest:hover': {
+            color: '#C6A87D'
         },
-        '.main-title':{
-            fontSize:'14px !important',
-            lineHeight:'17px !important'
+        '.main-title': {
+            fontSize: '14px !important',
+            lineHeight: '17px !important'
         },
-        '.treaty-box':{
-            flexDirection:'row !important'
+        '.treaty-box': {
+            flexDirection: 'row !important'
         },
-        ".sub-div":{
-            padding:'20px 30px !important'
+        ".sub-div": {
+            padding: '20px 30px !important'
         },
         ".date-stack": {
             color: "#FBFBFB",
             background: "#101418",
             padding: "16px 0px",
             placeContent: "center",
-            display:'flex',
-            placeItems:'center',
-            margin:'0px -20px 20px',
-            flexDirection:'row'
+            display: 'flex',
+            placeItems: 'center',
+            margin: '0px -20px 20px',
+            flexDirection: 'row'
         },
         ".date-description": {
             fontSize: "12px",
             fontWeight: 300,
             fontFamily: 'Proxima Nova Alt',
             lineHeight: "15px",
-            letterSpacing:'0.06em',
-            textAlign:'center',
-            padding:'0px 6px'
+            letterSpacing: '0.06em',
+            textAlign: 'center',
+            padding: '0px 6px'
         },
         ".line": {
             margin: "0px",
             fontSize: "15px",
         },
-        '.text-box-1':{
+        '.text-box-1': {
             background: 'rgba(189, 189, 189, 0.2)',
             padding: '16px',
             border: '0px',
-            width:'-webkit-fill-available',
-            maxWidth:'-webkit-fill-available',
-            minWidth:'-webkit-fill-available',
-            maxHeight:'110px',
-            minHeight:'110px'
+            width: '-webkit-fill-available',
+            maxWidth: '-webkit-fill-available',
+            minWidth: '-webkit-fill-available',
+            maxHeight: '110px',
+            minHeight: '110px'
         },
-        '.text-box':{
+        '.text-box': {
             height: '110px',
             background: 'rgba(189, 189, 189, 0.2)',
             padding: '16px',
             border: '0px',
-            width:'-webkit-fill-available',
-            maxWidth:'-webkit-fill-available',
-            minWidth:'-webkit-fill-available'
+            width: '-webkit-fill-available',
+            maxWidth: '-webkit-fill-available',
+            minWidth: '-webkit-fill-available'
         },
-        '.rating-people':{
-            width:'24px',
-            height:'24px',
-            marginRight:'8px'
+        '.rating-people': {
+            width: '24px',
+            height: '24px',
+            marginRight: '8px'
         },
-        '.css-1x51dt5-MuiInputBase-input-MuiInput-input':{
-            padding:'0px !important'
+        '.css-1x51dt5-MuiInputBase-input-MuiInput-input': {
+            padding: '0px !important'
         },
-        '.contact-down':{
-            fontSize:'15px',
-            paddingBottom:'9px'
+        '.contact-down': {
+            fontSize: '15px',
+            paddingBottom: '9px'
         },
         "@media (min-width: 1px) and (max-width:768px)": {
-            '.partner':{
-                borderRight:'0px'
+            '.partner': {
+                borderRight: '0px'
             },
-            '.dinner-box':{
-                paddingLeft:'0px'
+            '.dinner-box': {
+                paddingLeft: '0px'
             }
         }
     });
-    const style= {
-        '.modal-div':{
-            display:'block',
-            zIndex:'1055',
-            width:'100%',
-            height:'100%',
-            position:'fixed',
-            top:'0px',
-            left:'0px',
-            overflowX:'hidden',
-            overflowY:'auto',
-            outline:'0',
+    const style = {
+        '.modal-div': {
+            display: 'block',
+            zIndex: '1055',
+            width: '100%',
+            height: '100%',
+            position: 'fixed',
+            top: '0px',
+            left: '0px',
+            overflowX: 'hidden',
+            overflowY: 'auto',
+            outline: '0',
         },
-        '.modal-content':{
-            position:'relative',
-            display:'flex',
-            flexDirection:'column',
-            width:'100%',
+        '.modal-content': {
+            position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+            width: '100%',
             backgroundColor: '#DCD7CB',
             boxShadow: '0px 8px 12px rgba(0, 0, 0, 0.16)',
             padding: '40px 30px 20px',
             borderRadius: '0px'
         },
-        '.modal-dialog':{
-            width:'800px',
-            alignItems:'center',
-            display:'flex',
-            position:'relative',
-            marginLeft:'auto',
-            marginRight:'auto',
-            marginTop:'4.25em'
+        '.modal-dialog': {
+            width: '800px',
+            alignItems: 'center',
+            display: 'flex',
+            position: 'relative',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginTop: '4.25em'
         },
-        '.modal-header':{
-            display:'flex',
+        '.modal-header': {
+            display: 'flex',
             padding: '0px',
             marginBottom: '30px',
             borderBottom: 'none',
-            position:'relative',
+            position: 'relative',
             justifyContent: 'flex-start',
-            flexShrink:'0',
-            alignItems:'center'
+            flexShrink: '0',
+            alignItems: 'center'
         },
-        '.form-arrow':{
+        '.form-arrow': {
             fontSize: '20px',
             marginRight: '16px',
         },
-        '.modal-title':{
+        '.modal-title': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: "normal",
             fontWeight: "600",
             fontSize: "20px",
             lineHeight: "24px",
         },
-        '.close':{
-            position:'absolute',
-            padding:' 0px',
-            border:' 0px',
+        '.close': {
+            position: 'absolute',
+            padding: ' 0px',
+            border: ' 0px',
             background: 'transparent',
-            right:'0px'
+            right: '0px'
         },
-        '.close-icon':{
-            fontSize:'28px',
-            marginRight:'0px',
+        '.close-icon': {
+            fontSize: '28px',
+            marginRight: '0px',
         },
-        '.modal-body':{
-            padding:'0px',
-            position:'relative',
-            flex:'1 1 auto'
+        '.modal-body': {
+            padding: '0px',
+            position: 'relative',
+            flex: '1 1 auto'
         },
-        '.modal-child':{
+        '.modal-child': {
             display: 'grid',
             gridTemplateColumns: '1fr 1fr'
         },
-        '.initial-box':{
-            borderRight:'10px solid #DCD7CB',
-            padding:'20px 16px',
-            background:'#FBFBFB',
+        '.initial-box': {
+            borderRight: '10px solid #DCD7CB',
+            padding: '20px 16px',
+            background: '#FBFBFB',
         },
-        '.second-box':{
-            borderLeft:'10px solid #DCD7CB',
-            padding:'20px 16px',
-            background:'#FBFBFB'
+        '.second-box': {
+            borderLeft: '10px solid #DCD7CB',
+            padding: '20px 16px',
+            background: '#FBFBFB'
         },
-        '.modal-people':{
-            fontSize:'1rem',
-            lineHeight:'1.2',
-            fontWeight:'500',
-            marginBottom:'0.5rem',
-            display:'flex',
-            fontFamily:'ProximaNovaA-Regular',
-            alignItems:'center'
+        '.modal-people': {
+            fontSize: '1rem',
+            lineHeight: '1.2',
+            fontWeight: '500',
+            marginBottom: '0.5rem',
+            display: 'flex',
+            fontFamily: 'ProximaNovaA-Regular',
+            alignItems: 'center'
         },
-        '.modal-people-details':{
+        '.modal-people-details': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: 300,
@@ -604,7 +624,7 @@ const PersonalDetails1 = () => {
             color: '#080B0E',
             marginBottom: '40px'
         },
-        '.add-btn':{
+        '.add-btn': {
             padding: '12px 8px',
             border: '1px solid #C6A87D',
             fontFamily: 'ProximaNovaA-Regular',
@@ -616,21 +636,21 @@ const PersonalDetails1 = () => {
             background: 'transparent',
             display: 'flex',
             placeContent: 'center',
-            placeItems:'center'
+            placeItems: 'center'
         },
-        '.add-icon':{
+        '.add-icon': {
             marginRight: '10px',
             fontSize: '22px'
         },
-        '.recipient':{
-            padding:'0px',
-            display:'flex',
-            flexWrap:'wrap',
-            background:'#FBFBFB',
-            justifyContent:'center',
-            flexDirection:'column'
+        '.recipient': {
+            padding: '0px',
+            display: 'flex',
+            flexWrap: 'wrap',
+            background: '#FBFBFB',
+            justifyContent: 'center',
+            flexDirection: 'column'
         },
-        '.guest-1':{
+        '.guest-1': {
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
             fontWeight: 700,
@@ -640,13 +660,13 @@ const PersonalDetails1 = () => {
             textAlign: 'center',
             marginBottom: '38px'
         },
-        '.form-field':{
+        '.form-field': {
             // paddingLeft:'0.5rem',
             // paddingRight:'0.5rem',
             marginBottom: '28px',
             position: 'relative'
         },
-        '.form-label':{
+        '.form-label': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: 600,
@@ -658,7 +678,7 @@ const PersonalDetails1 = () => {
         ".form-control": {
             paddingLeft: "10px",
             flex: "1",
-            outline:'none',
+            outline: 'none',
             backgroundColor: "transparent",
             border: "0px",
             borderBottom: "0.25px solid #080B0E",
@@ -679,7 +699,7 @@ const PersonalDetails1 = () => {
         ".form-control-drop": {
             paddingLeft: "10px",
             flex: "1",
-            outline:'none',
+            outline: 'none',
             backgroundColor: "transparent",
             border: "0px",
             borderBottom: "0.25px solid #080B0E",
@@ -697,16 +717,16 @@ const PersonalDetails1 = () => {
             padding: "0px 0.75rem 0.375rem 0px",
             transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
         },
-        '.your-box':{
-            display:'flex',
-            justifyContent:'space-between'
+        '.your-box': {
+            display: 'flex',
+            justifyContent: 'space-between'
         },
-        '.your-food':{
-            marginBottom:'28px'
+        '.your-food': {
+            marginBottom: '28px'
         },
-        '.modal-add':{
+        '.modal-add': {
             width: '100%',
-            background:' #080B0E',
+            background: ' #080B0E',
             border: '0px',
             borderRadius: '0px',
             padding: '19px 10px',
@@ -717,15 +737,15 @@ const PersonalDetails1 = () => {
             lineHeight: '19px',
             color: '#FBFBFB',
         },
-        '.view-break':{
-            marginTop:'40px'
+        '.view-break': {
+            marginTop: '40px'
         },
-        '.view-text-box':{
-            display:'flex',
-            padding:'0px',
-            placeItems:'center'
+        '.view-text-box': {
+            display: 'flex',
+            padding: '0px',
+            placeItems: 'center'
         },
-        '.rate-text':{
+        '.rate-text': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: 600,
@@ -733,7 +753,7 @@ const PersonalDetails1 = () => {
             lineHeight: '39px',
             color: '#080B0E',
         },
-        '.per-text':{
+        '.per-text': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: 250,
@@ -742,34 +762,34 @@ const PersonalDetails1 = () => {
             color: '#080B0E',
             marginLeft: '8px'
         },
-        '.done-btn':{
+        '.done-btn': {
             width: 'max-content',
             marginLeft: 'auto',
             border: '0px',
             background: '#080B0E',
-            color:' #FBFBFB',
+            color: ' #FBFBFB',
             padding: '14.5px 30px',
-            marginTop:' 0px',
+            marginTop: ' 0px',
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: 600,
             fontSize: '16px',
             lineHeight: '19px'
         },
-        '.contact':{
-            position:'absolute',
-            bottom:'0px',
-            right:'0px',
-            zIndex:1000
+        '.contact': {
+            position: 'absolute',
+            bottom: '0px',
+            right: '0px',
+            zIndex: 1000
         },
-        '.css-1x51dt5-MuiInputBase-input-MuiInput-input':{
-            padding:'0px !important'
+        '.css-1x51dt5-MuiInputBase-input-MuiInput-input': {
+            padding: '0px !important'
         },
-        '.contact-down':{
-            fontSize:'15px',
-            paddingBottom:'9px'
+        '.contact-down': {
+            fontSize: '15px',
+            paddingBottom: '9px'
         },
-        '.guest-required-details':{
+        '.guest-required-details': {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
@@ -779,7 +799,7 @@ const PersonalDetails1 = () => {
             position: 'relative',
             marginBottom: '20px',
         },
-        '.guest-no':{
+        '.guest-no': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: 300,
@@ -788,104 +808,57 @@ const PersonalDetails1 = () => {
             textAlign: 'center',
             color: '#080B0E',
         },
-        '.guest-name':{
+        '.guest-name': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
             fontWeight: 400,
             fontSize: '14px',
             lineHeight: '17px',
             color: '#080B0E',
-            marginBottom:'0px'
+            marginBottom: '0px'
         },
-        '.guest-gmail':{
+        '.guest-gmail': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: 300,
             fontSize: '14px',
             lineHeight: '17px',
             color: '#080B0E',
-            marginBottom:'0px',
+            marginBottom: '0px',
             position: 'relative'
         },
-        '.divider':{
+        '.divider': {
             fontFamily: 'Proxima Nova Alt',
             fontStyle: 'normal',
             fontWeight: 300,
             fontSize: '20px',
             color: '#080B0E',
-            marginBottom:'0px',
+            marginBottom: '0px',
             position: 'relative'
         },
-        '.guest-close':{
-            color:' #080B0E',
+        '.guest-close': {
+            color: ' #080B0E',
             fontSize: '19px',
             position: 'absolute',
             right: '8px',
         },
         "@media (min-width: 1px) and (max-width:768px)": {
-            '.modal-child':{
-                display:'flex',
-                flexDirection:'column',
+            '.modal-child': {
+                display: 'flex',
+                flexDirection: 'column',
             },
-            '.modal-dialog':{
-                width:'500px'
+            '.modal-dialog': {
+                width: '500px'
             },
-            '.initial-box':{
-                borderRight:'0px'
+            '.initial-box': {
+                borderRight: '0px'
             },
-            '.second-box':{
-                borderLeft:'0px'
+            '.second-box': {
+                borderLeft: '0px'
             },
         }
     }
-    const style2={
-        '.otp-modal':{
-            display:'block',
-            zIndex:'1055',
-            position: 'fixed',
-            top: '0',
-            left: '0',
-            width: '100%',
-            height: '100%',
-            overflowX: 'hidden',
-            overflowY: 'auto',
-            outline:' 0'
-        },
-        '.modal-dialog':{
-            width:'400px',
-            marginLeft:'auto',
-            marginRight:'auto',
-            display: 'flex',
-            alignItems: 'center',
-            position:'relative',
-            marginTop:'10.75em'
-        },
-        '.modal-content':{
-            position: 'relative',
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            backgroundColor:'#DCD7CB',
-            boxShadow: '0px 8px 12px rgba(0, 0, 0, 0.16)',
-            padding: '40px 30px 20px',
-            borderRadius: '0px'
-        },
-        '.modal-header':{
-            padding: '0px',
-            marginBottom: '30px',
-            borderBottom: 'none',
-            position: 'relative',
-            justifyContent: 'flex-start'
-        },
-        '.close-icon':{
-            position: 'absolute',
-            right: '0px',
-            padding: '0px',
-            border:'0px',
-            background: 'transparent'
-        }
-    }
-    const style3={
+    const style3 = {
         '.allow-access': {
             padding: '20px',
             background: '#DCD7CB',
@@ -947,7 +920,7 @@ const PersonalDetails1 = () => {
             display: 'flex',
             justifyContent: 'end'
         },
-        '.main-modal':{
+        '.main-modal': {
             position: 'absolute',
             top: '50%',
             left: '50%',
@@ -966,263 +939,345 @@ const PersonalDetails1 = () => {
     return (
         <React.Fragment>
             <MainBox>
-                <Navbar heading="Privee" />
+                <Navbar heading="Privee"/>
                 <div className="row supper-chef-details">
                     <div className="book-trad">
-                        <ArrowBackIcon className="arrow-left" />
+                        <ArrowBackIcon className="arrow-left"/>
                         <div className="addons-title">Personal Details</div>
                     </div>
                 </div>
-                <Grid container>
-                    <Grid
-                        xl={7}
-                        lg={7}
-                        xs={7}
-                        md={7}
-                        sm={12}
-                        // xs={12}
-                        className="partner"
+                <div>
+                    <Formik
+                        initialValues={{
+                            name: '',
+                            email: '',
+                            contactNumber: '',
+                            city: 'Mumbai',
+                            allergyMessage: '',
+                            AdditionalMessage: ''
+                        }}
+                        onSubmit={(values) => {
+                            console.log("value==========", values)
+                            Cookies.set('supperClubBookingPersonalDetail', JSON.stringify(values));
+                        }}
+                        validationSchema={validationSchema}
                     >
-                        <Formik
-                            initialValues={{
-                                city: 'Mumbai',
-                            }}
-                            //   initialValues={initialValues}
-                            validationSchema={validationSchema}
-                            //   onSubmit={handleSubmit}
-                        >
-                            {/* {({ isSubmitting }) => ( */}
-                            {({values, handleChange}) => (
-                                <Form>
-                                    <Box  className="row">
-                                        <Box className='form-field'>
-                                            <label className="form-label" htmlFor="number">Your Name</label>
-                                            <Field className="form-control" type="text" id="number" name="number" placeholder='Enter your full name'/>
-                                            {/* <ErrorMessage name="number" /> */}
-                                        </Box>
-                                        <Box className='form-field'>
-                                            <label className="form-label" htmlFor="name">Email Address</label>
-                                            <Field className="form-control" type="text" id="name" name="name" placeholder="kachwallasana@gmail.con" />
-                                            {/* <ErrorMessage name="name" /> */}
-                                        </Box>
-                                        <Box className='form-field'>
-                                            <label className="form-label" htmlFor="flatNumber" onClick={handleOpenModal} data-bs-toggle="modal"
-                                                   data-bs-target="#exampleModal">Contact Number</label>
-                                            <TextField variant="standard" className="form-control" type="text" id="flatNumber" name="flatNumber" placeholder='10 digit number'  InputProps={{
-                                                disableUnderline: true,
+                        {({values, handleChange, handleSubmit}) => (
+                            <Form onSubmit={handleSubmit}>
+                                <Grid container>
+                                    <Grid
+                                        xl={7}
+                                        lg={7}
+                                        xs={7}
+                                        md={7}
+                                        sm={12}
+                                        // xs={12}
+                                        className="partner"
+                                    >
+                                        <Box className="row">
+                                            <Box className='form-field'>
+                                                <label className="form-label" htmlFor="number">Your Name</label>
+                                                <Field className="form-control" type="text" id="number" name="name"
+                                                       onChange={handleChange}
+                                                       value={values.name}
+                                                       autoComplete="off"
+                                                       placeholder='Enter your full name'/>
+                                                <ErrorMessage name="name"/>
+                                            </Box>
+                                            <Box className='form-field'>
+                                                <label className="form-label" htmlFor="name">Email Address</label>
+                                                <Field className="form-control" type="email" id="name" name="email"
+                                                       placeholder="kachwallasana@gmail.con"
+                                                       autoComplete="off"
+                                                       onChange={handleChange}
+                                                       value={values.email}
+                                                />
+                                                <ErrorMessage name="email"/>
+                                            </Box>
+                                            <Box className='form-field'>
+                                                <label className="form-label" htmlFor="flatNumber"
+                                                       data-bs-toggle="modal"
+                                                       data-bs-target="#exampleModal">Contact Number</label>
+                                                <TextField variant="standard" className="form-control" type="text"
+                                                           id="flatNumber" name="contactNumber"
+                                                           placeholder='10 digit number'
+                                                           onChange={handleChange}
+                                                           value={values.contactNumber}
+                                                           autoComplete="off"
+                                                           InputProps={{
+                                                               disableUnderline: true,
+                                                               startAdornment: <InputAdornment
+                                                                   position="start">+91<KeyboardArrowDownIcon
+                                                                   className="contact-down"/></InputAdornment>
+                                                           }}/>
+                                                <ErrorMessage name="contactNumber"/>
+                                            </Box>
+                                            <Box className="your-food">
+                                                <div className="your-box">
+                                                    <label className="form-label" htmlFor="pincode">Your Food
+                                                        Preference</label>
+                                                    <div className="view-text">View Menu</div>
+                                                </div>
+                                                <Select
+                                                    labelId="demo-simple-select-label"
+                                                    id="demo-simple-select"
+                                                    name="city"
+                                                    value={values.city}
+                                                    onChange={handleChange}
+                                                    defaultValue={values.city}
+                                                    className="form-control-drop"
+                                                    sx={{
+                                                        fontSize: "20px",
+                                                        ".MuiOutlinedInput-notchedOutline": {border: 0},
+                                                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                                                            border: "none",
+                                                        },
+                                                        ".MuiSelect-select": {
+                                                            padding: "0px 5px",
+                                                            fontFamily: 'Proxima Nova Alt',
+                                                            fontStyle: 'normal',
+                                                            fontWeight: 300,
+                                                            fontSize: '16px',
+                                                            lineHeight: '19px',
+                                                            color: '#222222',
+                                                            height: '20px !important',
+                                                            minHeight: '0px !important'
+                                                        },
+                                                    }}
+                                                    MenuProps={{
+                                                        PaperProps: {
+                                                            sx: {
+                                                                backgroundColor: "#DCD7CB !important",
+                                                                li: {
+                                                                    fontFamily: "ProximaNovaA-Regular",
+                                                                    borderBottom: "1px solid black",
+                                                                    fontSize: "20px",
+                                                                    fontWeight: "100",
+                                                                    padding: "6px 0px",
+                                                                    justifyContent: "start",
+                                                                },
+                                                                ul: {
+                                                                    display: "flex",
+                                                                    flexDirection: "column",
+                                                                    padding: "16px",
+                                                                },
+                                                                "li:hover": {
+                                                                    color: "#C6A87D!important",
+                                                                    backgroundColor: "unset !important",
+                                                                },
+                                                                "li:last-child": {
+                                                                    borderBottom: "none",
+                                                                },
+                                                                "&& .Mui-selected": {
+                                                                    backgroundColor: "unset !important",
 
-                                                startAdornment: <InputAdornment
-                                                    position="start">+91<KeyboardArrowDownIcon className="contact-down"/></InputAdornment>
-                                            }}/>
-                                            {/* <ErrorMessage name="flatNumber" /> */}
-                                        </Box>
-                                        <Box className="your-food">
-                                            <div className="your-box">
-                                                <label className="form-label" htmlFor="pincode">Your Food Preference</label>
-                                                <div className="view-text">View Menu</div>
-                                            </div>
-                                            <Select
-                                                labelId="demo-simple-select-label"
-                                                id="demo-simple-select"
-                                                name="city"
-                                                value={values.city}
-                                                onChange={handleChange}
-                                                defaultValue={values.city}
-                                                className="form-control-drop"
-                                                sx={{
-                                                    fontSize: "20px",
-                                                    ".MuiOutlinedInput-notchedOutline": { border: 0 },
-                                                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                                                        border: "none",
-                                                    },
-                                                    ".MuiSelect-select": {
-                                                        padding: "0px 5px",
-                                                        fontFamily: 'Proxima Nova Alt',
-                                                        fontStyle: 'normal',
-                                                        fontWeight: 300,
-                                                        fontSize: '16px',
-                                                        lineHeight: '19px',
-                                                        color: '#222222',
-                                                        height:'20px !important',
-                                                        minHeight:'0px !important'
-                                                    },
-                                                }}
-                                                MenuProps={{
-                                                    PaperProps: {
-                                                        sx: {
-                                                            backgroundColor: "#DCD7CB !important",
-                                                            li: {
-                                                                fontFamily: "ProximaNovaA-Regular",
-                                                                borderBottom: "1px solid black",
-                                                                fontSize: "20px",
-                                                                fontWeight: "100",
-                                                                padding: "6px 0px",
-                                                                justifyContent: "start",
-                                                            },
-                                                            ul: {
-                                                                display: "flex",
-                                                                flexDirection: "column",
-                                                                padding: "16px",
-                                                            },
-                                                            "li:hover": {
-                                                                color: "#C6A87D!important",
-                                                                backgroundColor: "unset !important",
-                                                            },
-                                                            "li:last-child": {
-                                                                borderBottom: "none",
-                                                            },
-                                                            "&& .Mui-selected": {
-                                                                backgroundColor: "unset !important",
-
-                                                            },
-                                                            ".MuiSelect-select": {
-                                                                padding: "5px !important",
-                                                                fontSize: "17px",
+                                                                },
+                                                                ".MuiSelect-select": {
+                                                                    padding: "5px !important",
+                                                                    fontSize: "17px",
+                                                                },
                                                             },
                                                         },
-                                                    },
-                                                }}
-                                            >
-                                                <MenuItem value="Mumbai">Mumbai</MenuItem>
-                                                <MenuItem value="Delhi">Delhi</MenuItem>
-                                                <MenuItem value="Goa">Goa</MenuItem>
-                                                <MenuItem value="Banglore">Banglore</MenuItem>
-                                                <MenuItem value="Hydrabad">Hydrabad</MenuItem>
-                                            </Select>
-                                        </Box>
-                                        <Box className='form-field'>
-                                            <div style={{display:'flex'}}>
-                                                <label className="form-label" htmlFor="comment">Are you allergic to something</label>
-                                                <InfoIcon sx={{fontSize:'20px',paddingLeft:'5px'}}/>
-                                            </div>
-                                            <textarea className="form-control text-box" type="text-area" id="comment" name="comment" placeholder="Specific ingredients eg nuts, milk, soy...  "/>
-                                        </Box>
-                                        <Box className='form-field'>
-                                            <Box className='who-join'>
-                                                <div className="who-heading">Who will be joining you? <span className="who-heading-option">(optional)</span></div>
-                                                <div className="who-sub-heading">Chefs à Porter will contact your guests to collect allergen details directly.</div>
-                                                <div className="guest-details">
-                                                    <img className="user-logo" src={gUser}/>
-                                                    <div className="user-name">Mayank Jain</div>
-                                                    <span className="line">|</span>
-                                                    <div className="guest-mail">mayankjain@gmail.com</div>
-                                                    <CloseIcon className="guest-close"/>
+                                                    }}
+                                                >
+                                                    <MenuItem value="Mumbai">Mumbai</MenuItem>
+                                                    <MenuItem value="Delhi">Delhi</MenuItem>
+                                                    <MenuItem value="Goa">Goa</MenuItem>
+                                                    <MenuItem value="Banglore">Banglore</MenuItem>
+                                                    <MenuItem value="Hydrabad">Hydrabad</MenuItem>
+                                                </Select>
+                                            </Box>
+                                            <Box className='form-field'>
+                                                <div style={{display: 'flex'}}>
+                                                    <label className="form-label" htmlFor="comment">Are you allergic to
+                                                        something</label>
+                                                    <InfoIcon sx={{fontSize: '20px', paddingLeft: '5px'}}/>
                                                 </div>
-                                                <div className="guest-number">
-                                                    <div className="guest-remain">2 Guests Remaining</div>
-                                                    <button type="button" onClick={handleOpen} className="add-guest" data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModal"
-                                                    >Add Guest Details</button>
+                                                <textarea className="form-control text-box" type="text-area"
+                                                          id="comment"
+                                                          name="allergyMessage"
+                                                          onChange={handleChange}
+                                                          value={values.allergyMessage}
+                                                          placeholder="Specific ingredients eg nuts, milk, soy...  "/>
+                                            </Box>
+                                            <Box className='form-field'>
+                                                <Box className='who-join'>
+                                                    <div className="who-heading">Who will be joining you? <span
+                                                        className="who-heading-option">(optional)</span></div>
+                                                    <div className="who-sub-heading">Chefs à Porter will contact your
+                                                        guests
+                                                        to collect allergen details directly.
+                                                    </div>
+                                                    <div className="guest-details">
+                                                        <img className="user-logo" src={gUser}/>
+                                                        <div className="user-name">Mayank Jain</div>
+                                                        <span className="line">|</span>
+                                                        <div className="guest-mail">mayankjain@gmail.com</div>
+                                                        <CloseIcon className="guest-close"/>
+                                                    </div>
+                                                    <div className="guest-number">
+                                                        <div className="guest-remain">2 Guests Remaining</div>
+                                                        <button type="button" onClick={handleOpen} className="add-guest"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#exampleModal"
+                                                        >Add Guest Details
+                                                        </button>
+                                                    </div>
+                                                </Box>
+                                            </Box>
+                                            <Box className='form-field'>
+                                                <div style={{display: 'flex'}}>
+                                                    <label className="form-label" htmlFor="comment-box">Additional
+                                                        Requests</label>
                                                 </div>
+                                                <TextField
+                                                    inputProps={{
+                                                        maxlength: CHARACTER_LIMIT,
+                                                    }}
+                                                    sx={{
+                                                        '.MuiOutlinedInput-notchedOutline': {
+                                                            border: 'none',
+                                                            outline: 'none'
+                                                        },
+                                                        '& .MuiInputBase-input': {
+                                                            height: '149px',
+                                                            background: 'rgba(189, 189, 189, 0.2)',
+                                                            border: '0px',
+                                                            minHeight: '149px',
+                                                            resize: 'none',
+                                                            fontFamily: 'Inter, sans-serif',
+                                                            fontSize: '14px',
+                                                            lineHeight: '17px',
+                                                            fontWeight: '400',
+                                                            color: ' #7D7D7D',
+                                                            padding: '16px 15px',
+                                                        },
+                                                        '& .css-15kq27i': {
+                                                            padding: '0px'
+                                                        }
+                                                    }}
+                                                    id="validationCustom04"
+                                                    name="AdditionalMessage"
+                                                    autoComplete="off"
+                                                    // className="form-control"
+                                                    value={values.AdditionalMessage}
+                                                    placeholder="Specific ingredients eg nuts, milk, soy...  "
+                                                    helperText={`${values.AdditionalMessage.length}/${CHARACTER_LIMIT} Characters`}
+                                                    onChange={handleChange("AdditionalMessage")}
+                                                    margin="normal"
+                                                    variant="outlined"
+                                                    fullWidth
+                                                    multiline
+                                                    rows={1}
+                                                    autoComplete="off"
+                                                />
                                             </Box>
                                         </Box>
-                                        <Box className='form-field'>
-                                            <div style={{display:'flex'}}>
-                                                <label className="form-label" htmlFor="comment-box">Additional Requests</label>
-                                            </div>
-                                            <textarea maxLength='40' className="form-control text-box-1" type="text-area" id="comment" name="comment" placeholder="Do you have any special requests or concerns ?"/>
+                                        <SupperClubTreatyComponent background={true}
+                                                                   subTitle='Save 15% on all experiences by becoming a patron'/>
+                                    </Grid>
+                                    <Grid
+                                        xl={5}
+                                        lg={5}
+                                        xs={5}
+                                        md={5}
+                                        sm={12}
+                                        // xs={12}
+                                        className="cust-details dinner-box"
+                                    >
+                                        <Box className="per-dinner adsss">
+                                            <Box>
+                                                <Stack
+                                                    className="date-stack"
+                                                >
+                                                    <Typography className="date-description">April 9</Typography>
+                                                    <span className="line">|</span>
+                                                    <Typography className="date-description">
+                                                        {" "}
+                                                        7:30 PM - 10 PM
+                                                    </Typography>
+                                                    <span className="line">|</span>
+                                                    <Typography className="date-description">
+                                                        Blue Cafe, Kamanahalli
+                                                    </Typography>
+                                                </Stack>
+                                            </Box>
+                                            <Box className="event-div">
+                                                <img src={sGallery} alt="" className="per-dinner-img"/>
+                                                <Box sx={{marginLeft: "12px"}}>
+                                                    <Typography className="event-title">
+                                                        The Big Fat Parsi Blowout
+                                                    </Typography>
+                                                    <Typography className="event-subtitle">
+                                                        Curated by{" "}
+                                                        <a href="#" className="event-link">
+                                                            Chef Mako
+                                                        </a>
+                                                    </Typography>
+                                                    <Typography className="rating-star">
+                                                        <img className="rating-people" src={people}/>
+                                                        <Typography className="rating-star">4 Seats</Typography>
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                            <Box className="experience-breakup">
+                                                <Box className="ex-details">
+                                                    <Typography className="ex-heading">
+                                                        Payment Summary
+                                                    </Typography>
+                                                    <ExpandMoreIcon className="ex-icon"/>
+                                                </Box>
+                                                <Box className="table table-borderless">
+                                                    <Box className="table-box">
+                                                        <Typography className="table-details">Food</Typography>
+                                                        <Typography className="table-details">₹ 2,500</Typography>
+                                                    </Box>
+                                                    <Box className="table-box">
+                                                        <Typography className="table-details">
+                                                            Service Charge
+                                                        </Typography>
+                                                        <Typography className="table-details">₹ 2,500</Typography>
+                                                    </Box>
+                                                    <Box className="table-box">
+                                                        <Typography className="table-details">Tax</Typography>
+                                                        <Typography className="table-details">₹ 2,500</Typography>
+                                                    </Box>
+                                                    <Box className="table-box border">
+                                                        <Typography className=" grand-total table-details">
+                                                            Grand Total
+                                                        </Typography>
+                                                        <Typography className="table-details grand-total">
+                                                            ₹ 2,5000
+                                                        </Typography>
+                                                    </Box>
+                                                </Box>
+                                            </Box>
+                                            <Box className="row viewbreak">
+                                                <Box>
+                                                    <button type="submit" className="submit-req"
+                                                            onClick={() => {
+                                                                handleOpenOtp(values?.contactNumber, values)
+                                                                // handleOpenOtp();
+                                                            }}>Next
+                                                    </button>
+                                                </Box>
+                                                <Typography className="contact-text">
+                                                    Our team will contact you regarding your protein and allergeen
+                                                    Information after booking is confirmed
+                                                </Typography>
+                                            </Box>
                                         </Box>
-                                    </Box>
-                                </Form>
-                            )}
-                        </Formik>
-                        <SupperClubTreatyComponent background={true} subTitle='Save 15% on all experiences by becoming a patron'/>
-                    </Grid>
-                    <Grid
-                        xl={5}
-                        lg={5}
-                        xs={5}
-                        md={5}
-                        sm={12}
-                        // xs={12}
-                        className="cust-details dinner-box"
-                    >
-                        <Box className="per-dinner adsss">
-                            <Box>
-                                <Stack
-                                    className="date-stack"
-                                >
-                                    <Typography className="date-description">April 9</Typography>
-                                    <span className="line">|</span>
-                                    <Typography className="date-description">
-                                        {" "}
-                                        7:30 PM - 10 PM
-                                    </Typography>
-                                    <span className="line">|</span>
-                                    <Typography className="date-description">
-                                        Blue Cafe, Kamanahalli
-                                    </Typography>
-                                </Stack>
-                            </Box>
-                            <Box className="event-div">
-                                <img src={sGallery} alt="" className="per-dinner-img" />
-                                <Box sx={{ marginLeft: "12px" }}>
-                                    <Typography className="event-title">
-                                        The Big Fat Parsi Blowout
-                                    </Typography>
-                                    <Typography className="event-subtitle">
-                                        Curated by{" "}
-                                        <a href="#" className="event-link">
-                                            Chef Mako
-                                        </a>
-                                    </Typography>
-                                    <Typography className="rating-star">
-                                        <img className="rating-people" src={people} />
-                                        <Typography className="rating-star">4 Seats</Typography>
-                                    </Typography>
-                                </Box>
-                            </Box>
-                            <Box className="experience-breakup">
-                                <Box className="ex-details">
-                                    <Typography className="ex-heading">
-                                        Payment Summary
-                                    </Typography>
-                                    <ExpandMoreIcon className="ex-icon" />
-                                </Box>
-                                <Box className="table table-borderless">
-                                    <Box className="table-box">
-                                        <Typography className="table-details">Food</Typography>
-                                        <Typography className="table-details">₹ 2,500</Typography>
-                                    </Box>
-                                    <Box className="table-box">
-                                        <Typography className="table-details">
-                                            Service Charge
-                                        </Typography>
-                                        <Typography className="table-details">₹ 2,500</Typography>
-                                    </Box>
-                                    <Box className="table-box">
-                                        <Typography className="table-details">Tax</Typography>
-                                        <Typography className="table-details">₹ 2,500</Typography>
-                                    </Box>
-                                    <Box className="table-box border">
-                                        <Typography className=" grand-total table-details">
-                                            Grand Total
-                                        </Typography>
-                                        <Typography className="table-details grand-total">
-                                            ₹ 2,5000
-                                        </Typography>
-                                    </Box>
-                                </Box>
-                            </Box>
-                            <Box className="row viewbreak">
-                                <Box>
-                                    <button type="submit" className="submit-req" onClick={nextPage}>
-                                        Next
-                                    </button>
-                                </Box>
-                                <Typography className="contact-text">
-                                    Our team will contact you regarding your protein and allergeen
-                                    Information after booking is confirmed
-                                </Typography>
-                            </Box>
-                        </Box>
-                    </Grid>
-                </Grid>
-                <Modal  keepMounted
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="keep-mounted-modal-title"
-                        aria-describedby="keep-mounted-modal-description">
+                                    </Grid>
+                                </Grid>
+                            </Form>
+                        )}
+                    </Formik>
+                </div>
+                <Modal keepMounted
+                       open={open}
+                       onClose={handleClose}
+                       aria-labelledby="keep-mounted-modal-title"
+                       aria-describedby="keep-mounted-modal-description">
                     <Box sx={style}>
                         <Formik
                             initialValues={{
@@ -1238,8 +1293,10 @@ const PersonalDetails1 = () => {
                                                 <div className="modal-header">
                                                     <ArrowBackIcon className="form-arrow"/>
                                                     <div className="modal-title" id="exampleModalLabel">
-                                                        Add Guests</div>
-                                                    <button type="button" data-bs-dismiss="modal" aria-label="Close" className="close"
+                                                        Add Guests
+                                                    </div>
+                                                    <button type="button" data-bs-dismiss="modal" aria-label="Close"
+                                                            className="close"
                                                             onClick={handleClose}>
                                                         <CloseIcon className="close-icon"/>
                                                     </button>
@@ -1249,24 +1306,28 @@ const PersonalDetails1 = () => {
                                                         <div className="initial-box">
                                                             <div>
                                                                 <div className="modal-people">
-                                                                    <img src={people} />1/3 Guest details entered
+                                                                    <img src={people}/>1/3 Guest details entered
                                                                 </div>
                                                                 <div className="modal-people-details">
-                                                                    Chefs à Porter will contact your guests to collect allergen details directly. <br/> This experience is not suitable for children
+                                                                    Chefs à Porter will contact your guests to collect
+                                                                    allergen details directly. <br/> This experience is
+                                                                    not suitable for children
                                                                 </div>
                                                                 {/* <button className="add-btn"><AddIcon className="add-icon"/>Add Guest</button> */}
                                                                 <div className="guest-required-details">
                                                                     <span className="guest-no"># 1</span>
                                                                     <span className="guest-name">Mayank jain</span>
                                                                     <span className="divider">|</span>
-                                                                    <div className="guest-gmail">mayankjain@gmail.com</div>
+                                                                    <div className="guest-gmail">mayankjain@gmail.com
+                                                                    </div>
                                                                     <CloseIcon className="guest-close"/>
                                                                 </div>
                                                                 <div className="guest-required-details">
                                                                     <span className="guest-no"># 2</span>
                                                                     <span className="guest-name">Wade Warren</span>
                                                                     <span className="divider">|</span>
-                                                                    <div className="guest-gmail">mayankjain@gmail.com</div>
+                                                                    <div className="guest-gmail">mayankjain@gmail.com
+                                                                    </div>
                                                                     <CloseIcon className="guest-close"/>
                                                                 </div>
                                                             </div>
@@ -1274,31 +1335,47 @@ const PersonalDetails1 = () => {
                                                         <div className="second-box">
                                                             <div className="recipient">
                                                                 <div className="guest-1">Guest #2</div>
-                                                                <Box  className="row">
+                                                                <Box className="row">
                                                                     <Box className='form-field'>
-                                                                        <label className="form-label" htmlFor="number">Your Name</label>
-                                                                        <Field className="form-control" type="text" id="number" name="number" placeholder='Guest Name'/>
+                                                                        <label className="form-label" htmlFor="number">Your
+                                                                            Name</label>
+                                                                        <Field className="form-control" type="text"
+                                                                               id="number" name="number"
+                                                                               placeholder='Guest Name'/>
                                                                         {/* <ErrorMessage name="number" /> */}
                                                                     </Box>
                                                                     <Box className='form-field'>
-                                                                        <label className="form-label" htmlFor="name">Email Address</label>
-                                                                        <Field className="form-control" type="text" id="name" name="name" placeholder="email id" />
+                                                                        <label className="form-label" htmlFor="name">Email
+                                                                            Address</label>
+                                                                        <Field className="form-control" type="text"
+                                                                               id="name" name="name"
+                                                                               placeholder="email id"/>
                                                                         {/* <ErrorMessage name="name" /> */}
                                                                     </Box>
                                                                     <Box className='form-field'>
-                                                                        <label className="form-label" htmlFor="flatNumber">Contact Number</label>
-                                                                        <img className="contact" onClick={ContactOpen} src={contact}/>
-                                                                        <TextField variant="standard" className="form-control" type="text" id="flatNumber" name="flatNumber" placeholder='10 digit number' InputProps={{
-                                                                            disableUnderline: true,
-                                                                            padding:'0px',
-                                                                            startAdornment: <InputAdornment
-                                                                                position="start">+91 <KeyboardArrowDownIcon className="contact-down"/></InputAdornment>
-                                                                        }}/>
+                                                                        <label className="form-label"
+                                                                               htmlFor="flatNumber">Contact
+                                                                            Number</label>
+                                                                        <img className="contact" onClick={ContactOpen}
+                                                                             src={contact}/>
+                                                                        <TextField variant="standard"
+                                                                                   className="form-control" type="text"
+                                                                                   id="flatNumber" name="flatNumber"
+                                                                                   placeholder='10 digit number'
+                                                                                   InputProps={{
+                                                                                       disableUnderline: true,
+                                                                                       padding: '0px',
+                                                                                       startAdornment: <InputAdornment
+                                                                                           position="start">+91 <KeyboardArrowDownIcon
+                                                                                           className="contact-down"/></InputAdornment>
+                                                                                   }}/>
                                                                         {/* <ErrorMessage name="flatNumber" /> */}
                                                                     </Box>
                                                                     <Box className="your-food">
                                                                         <div className="your-box">
-                                                                            <label className="form-label" htmlFor="pincode">Your Food Preference</label>
+                                                                            <label className="form-label"
+                                                                                   htmlFor="pincode">Your Food
+                                                                                Preference</label>
                                                                         </div>
                                                                         <Select
                                                                             labelId="demo-simple-select-label"
@@ -1310,7 +1387,7 @@ const PersonalDetails1 = () => {
                                                                             className="form-control-drop"
                                                                             sx={{
                                                                                 fontSize: "20px",
-                                                                                ".MuiOutlinedInput-notchedOutline": { border: 0 },
+                                                                                ".MuiOutlinedInput-notchedOutline": {border: 0},
                                                                                 "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                                                                                     border: "none",
                                                                                 },
@@ -1322,8 +1399,8 @@ const PersonalDetails1 = () => {
                                                                                     fontSize: '16px',
                                                                                     lineHeight: '19px',
                                                                                     color: '#222222',
-                                                                                    height:'20px !important',
-                                                                                    minHeight:'0px !important'
+                                                                                    height: '20px !important',
+                                                                                    minHeight: '0px !important'
                                                                                 },
                                                                             }}
                                                                             MenuProps={{
@@ -1365,11 +1442,15 @@ const PersonalDetails1 = () => {
                                                                             <MenuItem value="Mumbai">Mumbai</MenuItem>
                                                                             <MenuItem value="Delhi">Delhi</MenuItem>
                                                                             <MenuItem value="Goa">Goa</MenuItem>
-                                                                            <MenuItem value="Banglore">Banglore</MenuItem>
-                                                                            <MenuItem value="Hydrabad">Hydrabad</MenuItem>
+                                                                            <MenuItem
+                                                                                value="Banglore">Banglore</MenuItem>
+                                                                            <MenuItem
+                                                                                value="Hydrabad">Hydrabad</MenuItem>
                                                                         </Select>
                                                                     </Box>
-                                                                    <button onClick={afterClick} className="modal-add">Add</button>
+                                                                    <button onClick={afterClick}
+                                                                            className="modal-add">Add
+                                                                    </button>
                                                                 </Box>
                                                             </div>
                                                         </div>
@@ -1377,8 +1458,11 @@ const PersonalDetails1 = () => {
                                                 </div>
                                                 <div className="view-break">
                                                     <div className="view-text-box">
-                                                        <div className="rate-text">₹ 2,500<span className="per-text">Per dinner</span></div>
-                                                        <button type="submit" onClick={afterClick} className="done-btn">Done</button>
+                                                        <div className="rate-text">₹ 2,500<span className="per-text">Per dinner</span>
+                                                        </div>
+                                                        <button type="submit" onClick={afterClick}
+                                                                className="done-btn">Done
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1387,24 +1471,6 @@ const PersonalDetails1 = () => {
                                 </Form>
                             )}
                         </Formik>
-                    </Box>
-                </Modal>
-                <Modal  keepMounted
-                        open={openModal}
-                        onClose={handleCloseModal}
-                        aria-labelledby="keep-mounted-modal-title"
-                        aria-describedby="keep-mounted-modal-description">
-                    <Box sx={style2}>
-                        <div className="otp-modal">
-                            <div className="modal-dialog">
-                                <div className="modal-content">
-                                    <div className="modal-header">
-                                        <CloseIcon className="close-icon" onClick={handleCloseModal}/>
-                                    </div>
-                                    <OtpComponent/>
-                                </div>
-                            </div>
-                        </div>
                     </Box>
                 </Modal>
                 <Modal
@@ -1438,6 +1504,12 @@ const PersonalDetails1 = () => {
                         </Box>
                     </Box>
                 </Modal>
+
+                {
+                    openOtp && <SupperClubOtpVerificationModal openOtp={openOtp}
+                                                               handleCloseOtp={handleCloseOtp}
+                                                               contactNumber={contactNumber}/>
+                }
             </MainBox>
         </React.Fragment>
     );
