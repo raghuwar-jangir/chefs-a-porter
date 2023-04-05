@@ -13,6 +13,8 @@ import {
   Checkbox,
   Typography,
 } from "@mui/material";
+import { render } from "react-dom";
+import { withScriptjs } from "react-google-maps";
 import Navbar from "../../components/NavbarComponent";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Formik, Form, ErrorMessage, Field } from "formik";
@@ -46,8 +48,8 @@ const validationSchema = Yup.object({
   message: Yup.string().required("Please enter text"),
 });
 
-const CustomerDetails = (props) => {
-  const [newState, setNewState] = useState(true);
+const CustomerDetails = () => {
+  const MapLoader = withScriptjs(MapComponent);
   const [openOtp, setOpenOtp] = useState(false);
   const [open, setOpen] = useState(false);
   const [contactNumber, setContactNumber] = useState("");
@@ -56,22 +58,6 @@ const CustomerDetails = (props) => {
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [showCarousel, setShowCarousel] = useState(false);
-  const [showCarousel2, setShowCarousel2] = useState(false);
-
-  const handleImageClick = () => {
-    setShowCarousel(true);
-    setNewState(false);
-    console.log("new===>",newState);
-  };
-
-  const handleImageClick1 = () => {
-    setShowCarousel2(true);
-  };
-
-  const handleCloseCarousel = () => {
-    setShowCarousel(false);
-  };
 
   const handleOpenOtp = (contactNumber) => {
     if (!_.isEmpty(contactNumber)) {
@@ -128,7 +114,7 @@ const CustomerDetails = (props) => {
       width: "100%",
       fontWeight: "600",
       cursor: "pointer",
-      marginTop: "45px",
+      marginTop: "30px",
     },
 
     ".modal-header": {
@@ -184,8 +170,8 @@ const CustomerDetails = (props) => {
       lineHeight: "19px",
       color: "#FBFBFB",
       width: "100%",
+      outline:'none'
     },
-
     ".loc-ad": {
       display: "flex",
       borderBottom: "0.25px solid #FBFBFB",
@@ -278,6 +264,7 @@ const CustomerDetails = (props) => {
       width: "100%",
       fontWeight: "600",
       cursor: "pointer",
+      marginTop: "30px",
     },
 
     "@media (min-width: 426px) and (max-width:768px)": {
@@ -316,6 +303,7 @@ const CustomerDetails = (props) => {
       lineHeight: "19px",
       color: "#FBFBFB",
       width: "100%",
+      outline:'none'
     },
 
     ".loc-ad": {
@@ -618,6 +606,7 @@ const CustomerDetails = (props) => {
       lineHeight: "19px",
       color: "#FBFBFB",
       width: "100%",
+      outline:'none'
     },
 
     ".remove-bottom-border": {
@@ -1507,6 +1496,7 @@ const CustomerDetails = (props) => {
           onClose={handleClose}
           aria-labelledby="keep-mounted-modal-title"
           aria-describedby="keep-mounted-modal-description"
+          sx={{ overflowX: "scroll" }}
         >
           <Box sx={styleModel1}>
             <Box className="modal-content">
@@ -1535,201 +1525,11 @@ const CustomerDetails = (props) => {
                     <Box className="row">
                       <Box className="col-lg-12">
                         <Box className="map-box">
-                          <MapComponent/>
+                          <MapLoader
+                            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlUV7Gli9S0rwtq72UMXLf9HlrRWkvqc8&libraries=places"
+                            loadingElement={<div style={{ height: `100%` }} />}
+                          />
                         </Box>
-                        {!showCarousel && (
-                          <Box className="second">
-                            <Typography className="label">
-                              Experience Location
-                            </Typography>
-                            <button
-                              className="add-location"
-                              onClick={handleImageClick}
-                            >
-                              Add Location
-                            </button>
-                          </Box>
-                        )}
-
-                        {showCarousel && !showCarousel2 && (
-                          <Box>
-                            <Box >
-                              <Box className="modal-body">
-                                <Box className="container-fluid">
-                                  <Box className="row">
-                                    <Box className="col-lg-12">
-                                      <Box sx={{ position: "relative" }}>
-                                        <Typography className="address-title">
-                                          Silver Bunglows
-                                        </Typography>
-                                        <Typography className="address-detail">
-                                          Deonar Village Road, Deonar, Govandi
-                                          East, MumbaI, Karnataka, India.
-                                        </Typography>
-                                        <a
-                                          href="javascript:void(0);"
-                                          className="change-detail"
-                                        >
-                                          Change
-                                        </a>
-                                      </Box>
-                                      <button
-                                        type="button"
-                                        className="add-flat"
-                                        onClick={handleImageClick1}
-                                      >
-                                        Add Flat No/ House No/ Buidling
-                                      </button>
-                                    </Box>
-                                  </Box>
-                                </Box>
-                              </Box>
-                            </Box>
-                          </Box>
-                        )}
-                        {showCarousel2 && (
-                          <Box>
-                            <Box sx={{ marginBottom: "30px" }}>
-                              <Typography className="label">
-                                House/Flat Floor No
-                              </Typography>
-                              <TextField
-                                type="tel"
-                                name="address"
-                                className="form-control"
-                                id="validationCustom03"
-                                placeholder="Enter Location"
-                                // value={values.address}
-                                // onChange={handleChange}
-                                autoComplete="off"
-                                variant="standard"
-                                InputProps={{
-                                  disableUnderline: true,
-                                }}
-                                sx={{
-                                  "& .MuiInputBase-input": {
-                                    background: "transparent",
-                                    height: "31px",
-                                    borderRadius: "0px",
-                                    fontFamily: "Proxima Nova",
-                                    fontStyle: "normal",
-                                    fontWeight: "400",
-                                    fontSize: "16px",
-                                    lineHeight: "19px",
-                                    color: "#FBFBFB",
-                                    padding: "0px",
-                                  },
-                                }}
-                              />
-                            </Box>
-                            <Box sx={{ marginBottom: "30px" }}>
-                              <Typography className="label">
-                                Experience Location
-                              </Typography>
-                              <TextField
-                                type="tel"
-                                name="address"
-                                className="form-control"
-                                id="validationCustom03"
-                                placeholder="Enter Location"
-                                // value={values.address}
-                                // onChange={handleChange}
-                                autoComplete="off"
-                                variant="standard"
-                                InputProps={{
-                                  disableUnderline: true,
-                                }}
-                                sx={{
-                                  "& .MuiInputBase-input": {
-                                    background: "transparent",
-                                    height: "31px",
-                                    borderRadius: "0px",
-                                    fontFamily: "Proxima Nova",
-                                    fontStyle: "normal",
-                                    fontWeight: "400",
-                                    fontSize: "16px",
-                                    lineHeight: "19px",
-                                    color: "#FBFBFB",
-                                    padding: "0px",
-                                  },
-                                }}
-                              />
-                            </Box>
-                            <Box sx={{ marginBottom: "30px" }}>
-                              <Typography className="label">
-                                Landmark
-                              </Typography>
-                              <TextField
-                                type="tel"
-                                name="address"
-                                className="form-control"
-                                id="validationCustom03"
-                                placeholder="Enter Location"
-                                // value={values.address}
-                                // onChange={handleChange}
-                                autoComplete="off"
-                                variant="standard"
-                                InputProps={{
-                                  disableUnderline: true,
-                                }}
-                                sx={{
-                                  "& .MuiInputBase-input": {
-                                    background: "transparent",
-                                    height: "31px",
-                                    borderRadius: "0px",
-                                    fontFamily: "Proxima Nova",
-                                    fontStyle: "normal",
-                                    fontWeight: "400",
-                                    fontSize: "16px",
-                                    lineHeight: "19px",
-                                    color: "#FBFBFB",
-                                    padding: "0px",
-                                  },
-                                }}
-                              />
-                            </Box>
-                            <Box sx={{ marginBottom: "30px" }}>
-                              <Typography className="label">
-                                Society Locality
-                              </Typography>
-                              <TextField
-                                type="tel"
-                                name="address"
-                                className="form-control"
-                                id="validationCustom03"
-                                placeholder="Enter Location"
-                                // value={values.address}
-                                // onChange={handleChange}
-                                autoComplete="off"
-                                variant="standard"
-                                InputProps={{
-                                  disableUnderline: true,
-                                }}
-                                sx={{
-                                  "& .MuiInputBase-input": {
-                                    background: "transparent",
-                                    height: "31px",
-                                    borderRadius: "0px",
-                                    fontFamily: "Proxima Nova",
-                                    fontStyle: "normal",
-                                    fontWeight: "400",
-                                    fontSize: "16px",
-                                    lineHeight: "19px",
-                                    color: "#FBFBFB",
-                                    padding: "0px",
-                                  },
-                                }}
-                              />
-                            </Box>
-                            <button
-                              type="button"
-                              className="save-btn"
-                              onClick={handleClose}
-                            >
-                              Save Address
-                            </button>
-                          </Box>
-                        )}
                       </Box>
                     </Box>
                   </form>

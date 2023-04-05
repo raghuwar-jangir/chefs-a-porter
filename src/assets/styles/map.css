@@ -1,14 +1,36 @@
-.pac-container {
-    z-index: 1400 !important;
+.location-search-input {
+    border-color: transparent transparent white transparent;
+border-style: none none solid none;
+border-width: 0px 0px 0.25px 0px;
+width: -webkit-fill-available;
+background: transparent;
+color: white;
 }
-.pac-logo:after{
-    display:none
+
+.location-search-input:focus-visible{
+    outline: none;
 }
-.map-container{
-    position: fixed;
-    width:100%
+.autocomplete-dropdown-container{
+    color: #080B0E !important;
+    position: absolute;
+    top: 50px;
+    width: -webkit-fill-available;
+    padding: 0px 30px;
 }
-.pac-target-input{
-    color: white !important;
-    border-bottom: 0.25px solid white !important;
+.main-map-box{
+  position:absolute;
+   top:510px;
+    width:100%;
+    left:0;
+    background-color: #101418;
+      box-shadow: 0px 8px 12px rgb(0 0 0 / 16%);
+}
+.second{
+    padding: 0px 30px 30px;
+}
+.second-map-box{
+    padding: 0px 30px 30px;
+}
+.third-map-box{
+    padding: 0px 30px 30px;
 }
