@@ -19,6 +19,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {navigate} from "gatsby";
 import UsersContext from "../../context/UsersContext";
+import CmsContext from "../../context/CmsContext";
 import Cookies from 'js-cookie';
 
 const BoxWrapper = styled(Box)(() => ({
@@ -424,6 +425,7 @@ const style = {
 const PriveeViewMore = (props) => {
 
     const {userData} = useContext(UsersContext);
+    const {mealData} = useContext(CmsContext);
     const [priveeInfo, setPriveeInfo] = useState()
     const cookieValue = Cookies?.get('priveeData');
 
@@ -463,7 +465,7 @@ const PriveeViewMore = (props) => {
                                                 initialValues={{
                                                     city: priveeInfo?.city,
                                                     on: moment(priveeInfo?.date).format('ddd,DD MMM') ? moment(priveeInfo?.date).format('ddd,DD MMM') : new Date(),
-                                                    time: 'Lunch',
+                                                    time: priveeInfo?.time,
                                                     diners: 1
                                                 }}
                                                 onSubmit={(values) => {
@@ -604,9 +606,15 @@ const PriveeViewMore = (props) => {
                                                                         },
                                                                     }}
                                                                 >
-                                                                    <MenuItem value="Lunch">Lunch</MenuItem>
-                                                                    <MenuItem value="Dinner">Dinner</MenuItem>
-                                                                    <MenuItem value="BreakFast">BreakFast</MenuItem>
+                                                                    {
+                                                                        mealData.map((item) => {
+                                                                            return <MenuItem
+                                                                                value={item.name}>{item.name}</MenuItem>
+                                                                        })
+                                                                    }
+                                                                    {/*<MenuItem value="Lunch">Lunch</MenuItem>*/}
+                                                                    {/*<MenuItem value="Dinner">Dinner</MenuItem>*/}
+                                                                    {/*<MenuItem value="BreakFast">BreakFast</MenuItem>*/}
                                                                 </Select>
                                                             </Box>
                                                             <Box className="form-group">

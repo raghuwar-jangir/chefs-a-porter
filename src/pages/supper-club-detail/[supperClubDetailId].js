@@ -1064,7 +1064,6 @@ const SupperClubDetail = (props) => {
                                                 <Box className="chef-carousel">
                                                     <ChefMakoCarousel title="What's Cooking?"/>
                                                     <SupperClubDetailsPastCarousel chefHeading="Past Supper Clubs"/>
-                                                    {/*<ChefCarousel chefHeading="Past Supper Clubs"/>*/}
                                                     <SupperClubDetailsCarousel/>
                                                 </Box>
                                                 <Box className="last-contain">
@@ -1091,7 +1090,6 @@ const SupperClubDetail = (props) => {
                                                         }}
                                                     >
                                                         <Box className="map-heading">
-                                                            {/*{userData?.venue}*/}
                                                             {userData?.chef?.details?.address2}
                                                         </Box>
                                                         <Link className="map-link">Get Directions</Link>

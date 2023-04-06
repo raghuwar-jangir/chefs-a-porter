@@ -874,7 +874,7 @@ const BoxWrapper = styled(Box)({
 })
 
 const HomePage = () => {
-    const {data} = useContext(CmsContext);
+    const {data,mealData} = useContext(CmsContext);
 
     //FoodDrool
     const [imageData, setImageData] = useState([]);
@@ -1075,9 +1075,14 @@ const HomePage = () => {
                                                                         },
                                                                     }}
                                                                 >
-                                                                    <MenuItem value="Lunch">Lunch</MenuItem>
-                                                                    <MenuItem value="Dinner">Dinner</MenuItem>
-                                                                    <MenuItem value="BreakFast">BreakFast</MenuItem>
+                                                                    {
+                                                                        mealData?.map((item)=>{
+                                                                            return <MenuItem value={item.name}>{item.name}</MenuItem>
+                                                                        })
+                                                                    }
+                                                                    {/*<MenuItem value="Lunch">Lunch</MenuItem>*/}
+                                                                    {/*<MenuItem value="Dinner">Dinner</MenuItem>*/}
+                                                                    {/*<MenuItem value="BreakFast">BreakFast</MenuItem>*/}
                                                                 </Select>
                                                             </Box>
                                                             <Box className="form-group">

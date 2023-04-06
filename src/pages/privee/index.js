@@ -585,7 +585,9 @@ const MainContentBox = styled(Box)({
 })
 const PriveePage = (props) => {
 
-    const {data} = useContext(CmsContext);
+    const {data,mealData} = useContext(CmsContext);
+
+    console.log("mealData=====",mealData)
     const [search, setSearch] = useState(false);
     const handleChange = () => {
         setSearch(true);
@@ -831,11 +833,11 @@ const PriveePage = (props) => {
                                                             }}
                                                         >
                                                             <MenuItem value="Experiences">Experiences</MenuItem>
-                                                            <MenuItem value="Cocktail">Cocktail</MenuItem>
-                                                            <MenuItem value="Brunch">Brunch</MenuItem>
-                                                            <MenuItem value="High Tea">High Tea</MenuItem>
-                                                            <MenuItem value="Lunch">Lunch</MenuItem>
-                                                            <MenuItem value="Dinner">Dinner</MenuItem>
+                                                            {
+                                                                mealData.map((item)=>{
+                                                                    return <MenuItem value={item.name}>{item.name}</MenuItem>
+                                                                })
+                                                            }
                                                         </Select>
                                                     </Box>
                                                     <Box className="form-group d-flex">
