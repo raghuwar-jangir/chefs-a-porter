@@ -924,7 +924,7 @@ const HomePage = () => {
                                             <Formik
                                                 initialValues={{
                                                     city: 'Mumbai',
-                                                    on: new Date(),
+                                                    date: new Date(),
                                                     time: 'Lunch',
                                                     diners: '1'
                                                 }}
@@ -933,7 +933,7 @@ const HomePage = () => {
                                                     const experienceData = {
                                                         ...values,
                                                         // on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
-                                                        on: moment(_.get(values, 'date')).toISOString(),
+                                                        date: moment(_.get(values, 'date')).toISOString(),
                                                     }
                                                     Cookies.set('priveeData', JSON.stringify(experienceData));
                                                 }}
@@ -1010,13 +1010,13 @@ const HomePage = () => {
                                                                 <label className="label"
                                                                        style={{marginBottom: '1px !important'}}>On</label>
                                                                 <DatePickerInput
-                                                                    name="on"
-                                                                    value={values.on}
+                                                                    name="date"
+                                                                    value={values.date}
                                                                     displayFormat="ddd,DD MMM"
                                                                     returnFormat="ddd,DD MMM"
                                                                     className="form-control"
-                                                                    onChange={(dateString) => setFieldValue('on', dateString)}
-                                                                    defaultValue={values.on}
+                                                                    onChange={(dateString) => setFieldValue('date', dateString)}
+                                                                    defaultValue={values.date}
                                                                 />
                                                             </Box>
                                                             <Box className="form-group">
