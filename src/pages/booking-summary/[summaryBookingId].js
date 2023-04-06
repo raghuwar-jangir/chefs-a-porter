@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
-import {Form, Formik, Field, ErrorMessage} from "formik";
+import { Form, Formik, Field, ErrorMessage } from "formik";
 import {
-    Box,
-    Grid,
-    Modal,
-    styled,
-    Typography,
-    TextField,
-    TextareaAutosize,
-    Checkbox,
+  Box,
+  Grid,
+  Modal,
+  styled,
+  Typography,
+  TextField,
+  TextareaAutosize,
+  Checkbox,
 } from "@mui/material";
 import Navbar from "../../components/NavbarComponent";
 import add1 from "../../assets/images/add1.png";
@@ -22,7 +22,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import sGallery from "../../assets/images/sc-gallery.png";
 import StarIcon from "@mui/icons-material/Star";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {isMobile} from "react-device-detect";
+import { isMobile } from "react-device-detect";
 import chefImg from "../../assets/images/chef-img.png";
 import dateGold from "../../assets/images/date-gold.png";
 import location from "../../assets/images/location.png";
@@ -38,7 +38,7 @@ import "../../assets/styles/fontStyle.css";
 import output from "../../assets/images/output.png";
 import download from "../../assets/images/download.png";
 import useRazorpay from "react-razorpay";
-import {useCallback} from "react";
+import { useCallback } from "react";
 import Cookies from "js-cookie";
 import * as _ from "lodash";
 
@@ -52,78 +52,89 @@ const BookingSummary = () => {
     number1: Yup.string().required("Number is required"),
   });
 
-    const [paymentCalulationData, setPaymentCalulationData] = useState()
-    const cookieValue = Cookies.get('paymentCalculation');
-    useEffect(() => {
-        if (cookieValue) {
-            setPaymentCalulationData(JSON.parse(cookieValue));
-        }
-    }, [cookieValue])
-    console.log("paymentCalulationData=====", paymentCalulationData)
+  const cookieValue = Cookies.get("paymentCalculation");
+  const bookingCookieValue = Cookies.get("bookingConfirm");
+  const [paymentCalulationData, setPaymentCalulationData] = useState(
+    JSON.parse(cookieValue)
+  );
+  const [razorpayData, setRazorpayData] = useState(
+    JSON.parse(bookingCookieValue)
+  );
+  useEffect(() => {
+    if (cookieValue) {
+      setPaymentCalulationData(JSON.parse(cookieValue));
+    }
+  }, [cookieValue]);
+  useEffect(() => {
+    if (bookingCookieValue) {
+      setRazorpayData(JSON.parse(bookingCookieValue));
+    }
+  }, [bookingCookieValue]);
 
-
-    const initialValues = {
-        number: "9876543210",
-        name: "Teqzo International",
-        flatNumber: "111",
-        address: "Manchester",
-        pincode: "400022",
-    };
-    const handleSubmit = (values, {setSubmitting}) => {
-        console.log(values);
-        setSubmitting(false);
-    };
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const Razorpay = useRazorpay();
-    const [bookingSuccessOpen, setBookingSuccessOpen] = useState(false);
-    const handleBookingSuccessOpen = () => setBookingSuccessOpen(true);
-    const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
+  const initialValues = {
+    number: "9876543210",
+    name: "Teqzo International",
+    flatNumber: "111",
+    address: "Manchester",
+    pincode: "400022",
+  };
+  const handleSubmit = (values, { setSubmitting }) => {
+    console.log(values);
+    setSubmitting(false);
+  };
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const Razorpay = useRazorpay();
+  const [bookingSuccessOpen, setBookingSuccessOpen] = useState(false);
+  const handleBookingSuccessOpen = () => setBookingSuccessOpen(true);
+  const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
 
   const handlePayment = useCallback(() => {
-    // const order = await createOrder(params);
 
-        const options = {
-            key: "rzp_test_MHRk336eUPGyWR",
-            // amount: `${paymentCalulationData?.payment?.total * 100}`,
-            amount: 400 * 100,
-            currency: "INR",
-            name: "Chefs-à-Porter",
-            description: "Test Transaction",
-            image: 'https://chefsaporter.com/assets/img/logo_black.svg',
-            theme: {color: '#C6A87D', fontFamily: 'ProximaNovaA-Regular'},
+    const options = {
+      // key: razorpayData?.razorpay_key,
+      key:'rzp_test_OqWbWLVoLIKRZ7',
+      amount: paymentCalulationData?.total * 100,
+      currency: "INR",
+      name: "Chefs-à-Porter",
+      // order_id: razorpayData?.razorpay_order_id,
+      description: "Test Transaction",
+      image: "https://chefsaporter.com/assets/img/logo_black.svg",
+      theme: { color: "#C6A87D", fontFamily: "ProximaNovaA-Regular" },
 
-            handler: (res) => {
-                console.log("res", res);
-                handleBookingSuccessOpen(true);
-            },
-        };
-        const rzpay = new Razorpay(options);
-        console.log("rzpay", rzpay);
-        rzpay.open();
-        rzpay.on("payment.failed", function (response) {
-            console.log("fails", response);
-        });
-    }, [Razorpay]);
+      handler: (res) => {
+        console.log("res", res);
+        handleBookingSuccessOpen(true);
+      },
+    };
 
-    const [customerInfo, setCustomerInfo] = useState('')
-    const customerInfoCookieValue = Cookies?.get('customerData');
-    const eventDataCookieValue = Cookies.get('eventData');
-    const [eventData, setEventData] = useState()
-    {
-        !_.isEmpty(customerInfoCookieValue) &&
-        useEffect(() => {
-            if (customerInfoCookieValue) {
-                setCustomerInfo(JSON.parse(customerInfoCookieValue));
-            }
-            if (eventDataCookieValue) {
-                setEventData(JSON.parse(eventDataCookieValue));
-            }
-        }, [customerInfoCookieValue, eventDataCookieValue])
-    }
+    const rzpay = new Razorpay(options);
+    console.log("amount===>", typeof paymentCalulationData?.payment?.total);
+    console.log("razorpayKey====>",razorpayData?.razorpay_key);
+    rzpay.open();
+    rzpay.on("payment.failed", function (response) {
+      console.log("fails", response);
+    });
+  }, [Razorpay]);
 
-    console.log("customerInfo======", customerInfo)
+  const [customerInfo, setCustomerInfo] = useState("");
+  const customerInfoCookieValue = Cookies?.get("customerData");
+  const eventDataCookieValue = Cookies.get("eventData");
+  const [eventData, setEventData] = useState();
+  {
+    !_.isEmpty(customerInfoCookieValue) &&
+      useEffect(() => {
+        if (customerInfoCookieValue) {
+          setCustomerInfo(JSON.parse(customerInfoCookieValue));
+        }
+        if (eventDataCookieValue) {
+          setEventData(JSON.parse(eventDataCookieValue));
+        }
+      }, [customerInfoCookieValue, eventDataCookieValue]);
+  }
+
+  console.log("customerInfo======", customerInfo);
 
   const BoxWrapper = styled(Box)(() => ({
     background: "#080B0E",
@@ -1087,611 +1098,616 @@ const BookingSummary = () => {
     },
   };
 
-    return (
-        <React.Fragment>
-            <BoxWrapper>
-                <Navbar to={"/booking-summary"} isColor={true} heading="Privee"/>
-                <Box className="supper-gallery cust-details">
-                    <Box className="container-fluid">
-                        <Box className="row supper-chef-details">
-                            <Box className="book-trad">
-                                <ArrowBackIcon className="arrow-left"/>
-                                <Typography className="addons-title">
-                                    Booking Summary
-                                </Typography>
+  return (
+    <React.Fragment>
+      <BoxWrapper>
+        <Navbar to={"/booking-summary"} isColor={true} heading="Privee" />
+        <Box className="supper-gallery cust-details">
+          <Box className="container-fluid">
+            <Box className="row supper-chef-details">
+              <Box className="book-trad">
+                <ArrowBackIcon className="arrow-left" />
+                <Typography className="addons-title">
+                  Booking Summary
+                </Typography>
+              </Box>
+              <Formik
+                initialValues={{
+                  number: customerInfo?.contactNumber,
+                  email: eventData?.email,
+                }}
+                validationSchema={validationSchema}
+                onSubmit={handleSubmit}
+              >
+                {({ values, handleChange, handleSubmit, setFieldValue }) => (
+                  <Form>
+                    <Box className="row customer-details addons-div">
+                      <Grid container>
+                        <Grid
+                          xl={7}
+                          lg={7}
+                          xs={7}
+                          md={7}
+                          sm={12}
+                          className="partner"
+                        >
+                          <Box className="booking-box">
+                            <Typography className="booking-summary-title">
+                              Booking Summary
+                            </Typography>
+                            <Typography className="booking-summary-sub-title">
+                              Confirm Details before proceeding to pay
+                            </Typography>
+                          </Box>
+                          <Box className="booking-box">
+                            <Box class="chef-edit">
+                              <img className="chef-edit-img" src={chefImg} />
+                              <Typography className="chef-edit-title">
+                                Chef Mako Ravindran
+                              </Typography>
+                              <CreateIcon className="pencil-icon" />
                             </Box>
-                            <Formik
-                                initialValues={{
-                                    number: customerInfo?.contactNumber,
-                                    email: eventData?.email
-                                }}
-                                validationSchema={validationSchema}
-                                onSubmit={handleSubmit}
-                            >
-                                {({values, handleChange, handleSubmit, setFieldValue}) => (
-                                    <Form>
-                                        <Box className="row customer-details addons-div">
-                                            <Grid container>
-                                                <Grid
-                                                    xl={7}
-                                                    lg={7}
-                                                    xs={7}
-                                                    md={7}
-                                                    sm={12}
-                                                    className="partner"
-                                                >
-                                                    <Box className="booking-box">
-                                                        <Typography className="booking-summary-title">
-                                                            Booking Summary
-                                                        </Typography>
-                                                        <Typography className="booking-summary-sub-title">
-                                                            Confirm Details before proceeding to pay
-                                                        </Typography>
-                                                    </Box>
-                                                    <Box className="booking-box">
-                                                        <Box class="chef-edit">
-                                                            <img className="chef-edit-img" src={chefImg}/>
-                                                            <Typography className="chef-edit-title">
-                                                                Chef Mako Ravindran
-                                                            </Typography>
-                                                            <CreateIcon className="pencil-icon"/>
-                                                        </Box>
-                                                        <Box class="chef-profile">
-                                                            <Box className="chef-profile-detail">
-                                                                <img
-                                                                    className="chef-profile-icon"
-                                                                    src={dateGold}
-                                                                />
-                                                                <Typography className="chef-profile-date">
-                                                                    April 9 | 7:30 PM - 10 PM
-                                                                </Typography>
-                                                            </Box>
-                                                            <Box className="chef-profile-detail">
-                                                                <img
-                                                                    className="chef-profile-icon"
-                                                                    src={location}
-                                                                />
-                                                                <Typography className="chef-profile-date">
-                                                                    Silver bar, Downtown
-                                                                </Typography>
-                                                            </Box>
-                                                            <Box className="chef-profile-detail">
-                                                                <img
-                                                                    className="chef-profile-icon"
-                                                                    src={people}
-                                                                />
-                                                                <Typography className="chef-profile-date">
-                                                                    6 Diners
-                                                                </Typography>
-                                                            </Box>
-                                                        </Box>
-                                                    </Box>
-                                                    <Box className="booking-box">
-                                                        <Box class="exp-info-imp">
-                                                            <Typography className="exp-info-heading">
-                                                                Important Experience Info
-                                                            </Typography>
-                                                            <KeyboardArrowDownIcon className="drop-down"/>
-                                                            <ul className="exp-ul">
-                                                                <li className="exp-li">Service Includes</li>
-                                                                <li className="exp-li">Service Excludes</li>
-                                                                <li className="exp-li">Table set upincludes</li>
-                                                                <li className="exp-li">
-                                                                    Confirm Details before proceeding to pay
-                                                                </li>
-                                                                <li className="exp-li">Decor not included</li>
-                                                            </ul>
-                                                            <hr className="hr"/>
-                                                        </Box>
-                                                    </Box>
-                                                    <Box className="contact">
-                                                        <Box className="form-check">
-                                                            <Checkbox
-                                                                className="input-check"
-                                                                defaultChecked
-                                                            />
-                                                            <label
-                                                                className="form-check-label"
-                                                                for="flexCheckDefault"
-                                                            >
-                                                                Enter GSTIN for tax benefits (Optional)
-                                                            </label>
-                                                            <KeyboardArrowRightIcon
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#exampleModal"
-                                                                onClick={handleOpen}
-                                                                className="forward-arrow"
-                                                            />
-                                                        </Box>
-                                                        <hr className="hr"/>
-                                                    </Box>
-                                                    <Box className="booking-box">
-                                                        <Typography className="email-text">
-                                                            An Email Confirmation will be sent to
-                                                        </Typography>
-                                                    </Box>
-                                                    <Box class="booking-box">
-                                                        <Box class="contact">
-                                                            <label
-                                                                className="contact-number"
-                                                                for="contact-number"
-                                                            >
-                                                                Mobile
-                                                            </label>
-                                                            <Box className="form-group">
+                            <Box class="chef-profile">
+                              <Box className="chef-profile-detail">
+                                <img
+                                  className="chef-profile-icon"
+                                  src={dateGold}
+                                />
+                                <Typography className="chef-profile-date">
+                                  April 9 | 7:30 PM - 10 PM
+                                </Typography>
+                              </Box>
+                              <Box className="chef-profile-detail">
+                                <img
+                                  className="chef-profile-icon"
+                                  src={location}
+                                />
+                                <Typography className="chef-profile-date">
+                                  Silver bar, Downtown
+                                </Typography>
+                              </Box>
+                              <Box className="chef-profile-detail">
+                                <img
+                                  className="chef-profile-icon"
+                                  src={people}
+                                />
+                                <Typography className="chef-profile-date">
+                                  6 Diners
+                                </Typography>
+                              </Box>
+                            </Box>
+                          </Box>
+                          <Box className="booking-box">
+                            <Box class="exp-info-imp">
+                              <Typography className="exp-info-heading">
+                                Important Experience Info
+                              </Typography>
+                              <KeyboardArrowDownIcon className="drop-down" />
+                              <ul className="exp-ul">
+                                <li className="exp-li">Service Includes</li>
+                                <li className="exp-li">Service Excludes</li>
+                                <li className="exp-li">Table set upincludes</li>
+                                <li className="exp-li">
+                                  Confirm Details before proceeding to pay
+                                </li>
+                                <li className="exp-li">Decor not included</li>
+                              </ul>
+                              <hr className="hr" />
+                            </Box>
+                          </Box>
+                          <Box className="contact">
+                            <Box className="form-check">
+                              <Checkbox
+                                className="input-check"
+                                defaultChecked
+                              />
+                              <label
+                                className="form-check-label"
+                                for="flexCheckDefault"
+                              >
+                                Enter GSTIN for tax benefits (Optional)
+                              </label>
+                              <KeyboardArrowRightIcon
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                                onClick={handleOpen}
+                                className="forward-arrow"
+                              />
+                            </Box>
+                            <hr className="hr" />
+                          </Box>
+                          <Box className="booking-box">
+                            <Typography className="email-text">
+                              An Email Confirmation will be sent to
+                            </Typography>
+                          </Box>
+                          <Box class="booking-box">
+                            <Box class="contact">
+                              <label
+                                className="contact-number"
+                                for="contact-number"
+                              >
+                                Mobile
+                              </label>
+                              <Box className="form-group">
                                 <span className="country-code">
                                   +91{" "}
-                                    <KeyboardArrowDownIcon className="drop-down-2"/>
+                                  <KeyboardArrowDownIcon className="drop-down-2" />
                                 </span>
-                                                                <Field
-                                                                    placeholder="10 digit number"
-                                                                    className="form-control"
-                                                                    type="text"
-                                                                    id="number"
-                                                                    name="number1"
-                                                                    autoComplete="off"
-                                                                    onChange={handleChange}
-                                                                    value={values.number}
-                                                                    InputProps={{
-                                                                        disableUnderline: true,
-                                                                    }}
-                                                                />
-                                                                <ErrorMessage
-                                                                    className="error"
-                                                                    name="number1"
-                                                                />
-                                                            </Box>
-                                                            {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
-                                                        </Box>
-                                                    </Box>
-                                                    <Box className="booking-box">
-                                                        <Box className="contact">
-                                                            <label className="contact-number" for="">
-                                                                Email{" "}
-                                                            </label>
-                                                            <Box className="form-group">
-                                                                <Field
-                                                                    type="email"
-                                                                    name="email"
-                                                                    id=""
-                                                                    placeholder="Kachwallasana@gmail.com"
-                                                                    class="form-control"
-                                                                    autoComplete="off"
-                                                                />
-                                                                <ErrorMessage className="error" name="email1"/>
-                                                            </Box>
-                                                        </Box>
-                                                    </Box>
-                                                    <Box className="booking-box">
-                                                        <Box className="chef-profile">
-                                                            <Box className="chef-profile-box">
-                                                                <img className="chef-profile-logo" src={done}/>
-                                                                <Typography className="chef-profile-dis">
-                                                                    An email confirmation has been sent
-                                                                    to {eventData?.email} <br/>
-                                                                    and SMS sent to +91 {customerInfo?.contactNumber}
-                                                                </Typography>
-                                                            </Box>
-                                                            <Box className="chef-profile-box">
-                                                                <img
-                                                                    className="chef-profile-logo"
-                                                                    src={support}
-                                                                />
-                                                                <Typography className="chef-profile-dis">
-                                                                    Our team and Chef will get in touch with you
-                                                                    to discuss menu <br/>
-                                                                    (allergen+protein info), venue, set up and
-                                                                    pricing
-                                                                </Typography>
-                                                            </Box>
-                                                        </Box>
-                                                    </Box>
-                                                    <Box className="booking-box">
-                                                        <Box className="exp-info-imp">
-                                                            <Typography className="exp-info-heading">
-                                                                Cancellation Policy
-                                                            </Typography>
-                                                            <KeyboardArrowDownIcon className="drop-down"/>
-                                                            <Box className="contact">
-                                                                <Box className="form-check">
-                                                                    <Checkbox
-                                                                        className="input-check"
-                                                                        defaultChecked
-                                                                    />
-                                                                    <label
-                                                                        className="form-check-label"
-                                                                        for="flexCheckDefault"
-                                                                    >
-                                                                        I agree to cancellation and refund policy
-                                                                    </label>
-                                                                </Box>
-                                                            </Box>
-                                                            <Typography className="policy-link">
-                                                                View Cancellation Policy
-                                                            </Typography>
-                                                        </Box>
-                                                    </Box>
-                                                </Grid>
-                                                <Grid
-                                                    xl={5}
-                                                    lg={5}
-                                                    xs={5}
-                                                    md={5}
-                                                    sm={12}
-                                                    xs={12}
-                                                    className="cust-details dinner-box"
-                                                >
-                                                    <Box className="per-dinner adsss">
-                                                        <Box className="event-div">
-                                                            <img
-                                                                src={sGallery}
-                                                                alt=""
-                                                                className="per-dinner-img"
-                                                            />
-                                                            <Box sx={{marginLeft: "12px"}}>
-                                                                <Typography className="event-title">
-                                                                    The Big Fat Parsi Blowout
-                                                                </Typography>
-                                                                <Typography className="event-subtitle">
-                                                                    Curated by{" "}
-                                                                    <a href="#" className="event-link">
-                                                                        Chef Mako
-                                                                    </a>
-                                                                </Typography>
-                                                                <Typography className="rating-star">
-                                                                    <StarIcon
-                                                                        sx={{
-                                                                            color: "#C6A87D",
-                                                                            height: "24px",
-                                                                            width: "24px",
-                                                                        }}
-                                                                    />{" "}
-                                                                    <Typography className="rating-star">
-                                                                        4.7
-                                                                    </Typography>
-                                                                </Typography>
-                                                            </Box>
-                                                        </Box>
-                                                        <Box className="experience-breakup">
-                                                            <Box className="ex-details">
-                                                                <Typography className="ex-heading">
-                                                                    Experience Breakup
-                                                                </Typography>
-                                                                <Typography className="ex-detail">
-                                                                    This is an estimate, final price will be{" "}
-                                                                    <br/>
-                                                                    communicated on call
-                                                                </Typography>
-                                                                <ExpandMoreIcon className="ex-icon"/>
-                                                            </Box>
-                                                            {
-                                                                !_.isEmpty(paymentCalulationData) &&
-                                                                <Box className="table table-borderless">
-                                                                    {
-                                                                        Object.keys(paymentCalulationData?.payment).map((key) => {
-                                                                            return (
-                                                                                <Box className="table-box">
-                                                                                    <Typography
-                                                                                        className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
-                                                                                    <Typography
-                                                                                        className="table-details">₹{paymentCalulationData?.payment[key]}</Typography>
-                                                                                </Box>
-                                                                            )
-                                                                        })
-                                                                    }
-                                                                    <Box className="table-box border">
-                                                                        <Typography
-                                                                            className=" grand-total table-details">Grand
-                                                                            Total</Typography>
-                                                                        <Typography
-                                                                            className="table-details grand-total">₹
-                                                                            {paymentCalulationData?.total}</Typography>
-                                                                    </Box>
-                                                                    <Box className="tax tax1 table-box">
-                                                                        <Typography className="table-details">+Incl Of
-                                                                            GST</Typography>
-                                                                    </Box>
-                                                                    <Box className="tax">
-                                                                        <Typography className="table-details">++1.95% +
-                                                                            GST</Typography>
-                                                                    </Box>
-                                                                </Box>
-                                                            }
-                                                        </Box>
-                                                        <Box className="row viewbreak">
-                                                            <Box className="col-lg-12">
-                                                                <button
-                                                                    type="submit"
-                                                                    className="submit-req"
-                                                                    onClick={handlePayment}
-                                                                >
-                                                                    Proceed to pay
-                                                                    ₹{paymentCalulationData?.payment?.total}
-                                                                    {/*Proceed to pay ₹25,000*/}
-                                                                </button>
-                                                            </Box>
-                                                            <Typography className="contact-text">
-                                                                Estimate figure, further changes may amend the
-                                                                total
-                                                            </Typography>
-                                                        </Box>
-                                                    </Box>
-                                                </Grid>
-                                            </Grid>
-                                        </Box>
-                                    </Form>
-                                )}
-                            </Formik>
-                        </Box>
-                    </Box>
-                </Box>
-                <Modal
-                    keepMounted
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="keep-mounted-modal-title"
-                    aria-describedby="keep-mounted-modal-description"
-                >
-                    <Box sx={style}>
-                        <Box className="modal-content">
-                            <Box className="modal-header">
-                                <ArrowBackIcon className="form-arrow"/>
-                                <Typography className="modal-title" id="exampleModalLabel">
-                                    GST Details
+                                <Field
+                                  placeholder="10 digit number"
+                                  className="form-control"
+                                  type="text"
+                                  id="number"
+                                  name="number1"
+                                  autoComplete="off"
+                                  onChange={handleChange}
+                                  value={values.number}
+                                  InputProps={{
+                                    disableUnderline: true,
+                                  }}
+                                />
+                                <ErrorMessage
+                                  className="error"
+                                  name="number1"
+                                />
+                              </Box>
+                              {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
+                            </Box>
+                          </Box>
+                          <Box className="booking-box">
+                            <Box className="contact">
+                              <label className="contact-number" for="">
+                                Email{" "}
+                              </label>
+                              <Box className="form-group">
+                                <Field
+                                  type="email"
+                                  name="email"
+                                  id=""
+                                  placeholder="Kachwallasana@gmail.com"
+                                  class="form-control"
+                                  autoComplete="off"
+                                />
+                                <ErrorMessage className="error" name="email1" />
+                              </Box>
+                            </Box>
+                          </Box>
+                          <Box className="booking-box">
+                            <Box className="chef-profile">
+                              <Box className="chef-profile-box">
+                                <img className="chef-profile-logo" src={done} />
+                                <Typography className="chef-profile-dis">
+                                  An email confirmation has been sent to{" "}
+                                  {eventData?.email} <br />
+                                  and SMS sent to +91{" "}
+                                  {customerInfo?.contactNumber}
                                 </Typography>
-                                <button
-                                    type="button"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
-                                    className="close"
-                                    onClick={handleClose}
-                                >
-                                    <CloseIcon className="close-icon"/>
-                                </button>
-                            </Box>
-                            <Box class="modal-body">
-                                <Box class="container-fluid">
-                                    <Formik
-                                        initialValues={initialValues}
-                                        validationSchema={validationSchema}
-                                        onSubmit={handleSubmit}
-                                    >
-                                        {({isSubmitting}) => (
-                                            <Form>
-                                                <Box className="row">
-                                                    <Box className="form-field">
-                                                        <label className="form-label" htmlFor="number">
-                                                            GST Number
-                                                        </label>
-                                                        <Field
-                                                            className="form-control"
-                                                            type="text"
-                                                            id="number"
-                                                            name="number"
-                                                            placeholder="Enter Location"
-                                                            autoComplete="off"
-                                                        />
-                                                        <ErrorMessage name="number" className="error"/>
-                                                    </Box>
-
-                                                    <Box className="form-field">
-                                                        <label className="form-label" htmlFor="name">
-                                                            Registered Company Name
-                                                        </label>
-                                                        <Field
-                                                            className="form-control"
-                                                            type="text"
-                                                            id="name"
-                                                            name="name"
-                                                            placeholder="Enter Location"
-                                                            autoComplete="off"
-                                                        />
-                                                        <ErrorMessage name="name" className="error"/>
-                                                    </Box>
-
-                                                    <Box className="form-field">
-                                                        <label className="form-label" htmlFor="flatNumber">
-                                                            Building/ FlatNumber
-                                                        </label>
-                                                        <Field
-                                                            className="form-control"
-                                                            type="text"
-                                                            id="flatNumber"
-                                                            name="flatNumber"
-                                                            placeholder="Enter Location"
-                                                            autoComplete="off"
-                                                        />
-                                                        <ErrorMessage name="flatNumber" className="error"/>
-                                                    </Box>
-
-                                                    <Box className="form-field">
-                                                        <label className="form-label" htmlFor="address">
-                                                            Street/area/ Road name
-                                                        </label>
-                                                        <Field
-                                                            className="form-control"
-                                                            type="text"
-                                                            id="address"
-                                                            name="address"
-                                                            placeholder="Enter Locationr"
-                                                            autoComplete="off"
-                                                        />
-                                                        <ErrorMessage name="address" className="error"/>
-                                                    </Box>
-
-                                                    <Box className="form-field">
-                                                        <label className="form-label" htmlFor="pincode">
-                                                            Pincode
-                                                        </label>
-                                                        <Field
-                                                            className="form-control"
-                                                            type="text"
-                                                            id="pincode"
-                                                            name="pincode"
-                                                            placeholder="Enter Location"
-                                                            autoComplete="off"
-                                                        />
-                                                        <ErrorMessage name="pincode" className="error"/>
-                                                    </Box>
-
-                                                    <button
-                                                        type="submit"
-                                                        className="btn btn-primary"
-                                                        disabled={isSubmitting}
-                                                    >
-                                                        Save
-                                                    </button>
-                                                </Box>
-                                            </Form>
-                                        )}
-                                    </Formik>
-                                </Box>
-                            </Box>
-                        </Box>
-                    </Box>
-                </Modal>
-                <Modal
-                    keepMounted
-                    open={bookingSuccessOpen}
-                    onClose={handleBookingSuccessClose}
-                    aria-labelledby="keep-mounted-modal-title"
-                    aria-describedby="keep-mounted-modal-description"
-                >
-                    <Box sx={styleOtp}>
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <button
-                                    type="button"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
-                                    className="close"
-                                    onClick={handleBookingSuccessClose}
-                                >
-                                    <CloseIcon sx={{fontSize: "25px"}}/>
-                                </button>
-                            </div>
-                            <div className="modal-body">
-                                <div className="container-fluid">
-                                    <div className="booking-details">
-                                        <img src={output} alt="" className="output"/>
-                                        <h3>Booking Successful</h3>
-                                        <span>Booking ID - 123456</span>
-                                        <p>
-                                            We look forward to serving you a conscious <br/>
-                                            dining experience!
-                                        </p>
-                                        <a href="javascript:void(0);">
-                                            <img src={download} alt=""/>
-                                            Download Invoice
-                                        </a>
-                                        <button className="add-cal">
-                                            <img src={dateGold} alt=""/>
-                                            Add to calender
-                                        </button>
-                                    </div>
-                                    <div className="bookingBox">
-                                        <Grid container className="row booking-sum">
-                                            <Grid
-                                                item
-                                                xl={6}
-                                                lg={6}
-                                                xs={6}
-                                                md={6}
-                                                sm={12}
-                                                className="grid-box"
-                                            >
-                                                <div className="row">
-                                                    <div className="col-lg-12">
-                                                        <h4 className="booking-summary">Booking Summary</h4>
-                                                    </div>
-                                                    <div className="col-lg-12">
-                                                        <div className="chef-edit">
-                                                            <img src={chefImg} alt=""/>
-                                                            <h5>Chef Mako Ravindran</h5>
-                                                        </div>
-                                                        <div className="chef-profile">
-                                                            <div>
-                                                                <img src={dateGold} alt=""/>
-                                                                <span>April 9 | 7:30 PM - 10 PM</span>
-                                                            </div>
-                                                            <div>
-                                                                <img src={location} alt=""/>
-                                                                <span>Silver bar, Downtown</span>
-                                                            </div>
-                                                            <div>
-                                                                <img src={people} alt=""/>
-                                                                <span>6 Diners</span>
-                                                            </div>
-                                                        </div>
-                                                        <hr className="hr"/>
-                                                    </div>
-                                                    <div className="col-lg-12">
-                                                        <div className="chef-profile done-div">
-                                                            <div>
-                                                                <img src={done} alt=""/>
-                                                                <span>
-                                  An email confirmation has been sent to
-                                  kachwallsana@gmail.com <br/>
-                                  and SMS sent to 23456745
-                                </span>
-                                                            </div>
-                                                            <div>
-                                                                <img src={support} alt=""/>
-                                                                <span>
+                              </Box>
+                              <Box className="chef-profile-box">
+                                <img
+                                  className="chef-profile-logo"
+                                  src={support}
+                                />
+                                <Typography className="chef-profile-dis">
                                   Our team and Chef will get in touch with you
-                                  to discuss menu <br/>
+                                  to discuss menu <br />
+                                  (allergen+protein info), venue, set up and
+                                  pricing
+                                </Typography>
+                              </Box>
+                            </Box>
+                          </Box>
+                          <Box className="booking-box">
+                            <Box className="exp-info-imp">
+                              <Typography className="exp-info-heading">
+                                Cancellation Policy
+                              </Typography>
+                              <KeyboardArrowDownIcon className="drop-down" />
+                              <Box className="contact">
+                                <Box className="form-check">
+                                  <Checkbox
+                                    className="input-check"
+                                    defaultChecked
+                                  />
+                                  <label
+                                    className="form-check-label"
+                                    for="flexCheckDefault"
+                                  >
+                                    I agree to cancellation and refund policy
+                                  </label>
+                                </Box>
+                              </Box>
+                              <Typography className="policy-link">
+                                View Cancellation Policy
+                              </Typography>
+                            </Box>
+                          </Box>
+                        </Grid>
+                        <Grid
+                          xl={5}
+                          lg={5}
+                          xs={5}
+                          md={5}
+                          sm={12}
+                          xs={12}
+                          className="cust-details dinner-box"
+                        >
+                          <Box className="per-dinner adsss">
+                            <Box className="event-div">
+                              <img
+                                src={sGallery}
+                                alt=""
+                                className="per-dinner-img"
+                              />
+                              <Box sx={{ marginLeft: "12px" }}>
+                                <Typography className="event-title">
+                                  The Big Fat Parsi Blowout
+                                </Typography>
+                                <Typography className="event-subtitle">
+                                  Curated by{" "}
+                                  <a href="#" className="event-link">
+                                    Chef Mako
+                                  </a>
+                                </Typography>
+                                <Typography className="rating-star">
+                                  <StarIcon
+                                    sx={{
+                                      color: "#C6A87D",
+                                      height: "24px",
+                                      width: "24px",
+                                    }}
+                                  />{" "}
+                                  <Typography className="rating-star">
+                                    4.7
+                                  </Typography>
+                                </Typography>
+                              </Box>
+                            </Box>
+                            <Box className="experience-breakup">
+                              <Box className="ex-details">
+                                <Typography className="ex-heading">
+                                  Experience Breakup
+                                </Typography>
+                                <Typography className="ex-detail">
+                                  This is an estimate, final price will be{" "}
+                                  <br />
+                                  communicated on call
+                                </Typography>
+                                <ExpandMoreIcon className="ex-icon" />
+                              </Box>
+                              {!_.isEmpty(paymentCalulationData) && (
+                                <Box className="table table-borderless">
+                                  {Object.keys(
+                                    paymentCalulationData?.payment
+                                  ).map((key) => {
+                                    return (
+                                      <Box className="table-box">
+                                        <Typography className="table-details">
+                                          {key.charAt(0).toUpperCase() +
+                                            key.slice(1)}
+                                        </Typography>
+                                        <Typography className="table-details">
+                                          ₹{paymentCalulationData?.payment[key]}
+                                        </Typography>
+                                      </Box>
+                                    );
+                                  })}
+                                  <Box className="table-box border">
+                                    <Typography className=" grand-total table-details">
+                                      Grand Total
+                                    </Typography>
+                                    <Typography className="table-details grand-total">
+                                      ₹{paymentCalulationData?.total}
+                                    </Typography>
+                                  </Box>
+                                  <Box className="tax tax1 table-box">
+                                    <Typography className="table-details">
+                                      +Incl Of GST
+                                    </Typography>
+                                  </Box>
+                                  <Box className="tax">
+                                    <Typography className="table-details">
+                                      ++1.95% + GST
+                                    </Typography>
+                                  </Box>
+                                </Box>
+                              )}
+                            </Box>
+                            <Box className="row viewbreak">
+                              <Box className="col-lg-12">
+                                <button
+                                  type="submit"
+                                  className="submit-req"
+                                  onClick={handlePayment}
+                                >
+                                  Proceed to pay ₹
+                                  {paymentCalulationData?.payment?.total}
+                                  {/*Proceed to pay ₹25,000*/}
+                                </button>
+                              </Box>
+                              <Typography className="contact-text">
+                                Estimate figure, further changes may amend the
+                                total
+                              </Typography>
+                            </Box>
+                          </Box>
+                        </Grid>
+                      </Grid>
+                    </Box>
+                  </Form>
+                )}
+              </Formik>
+            </Box>
+          </Box>
+        </Box>
+        <Modal
+          keepMounted
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="keep-mounted-modal-title"
+          aria-describedby="keep-mounted-modal-description"
+        >
+          <Box sx={style}>
+            <Box className="modal-content">
+              <Box className="modal-header">
+                <ArrowBackIcon className="form-arrow" />
+                <Typography className="modal-title" id="exampleModalLabel">
+                  GST Details
+                </Typography>
+                <button
+                  type="button"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  className="close"
+                  onClick={handleClose}
+                >
+                  <CloseIcon className="close-icon" />
+                </button>
+              </Box>
+              <Box class="modal-body">
+                <Box class="container-fluid">
+                  <Formik
+                    initialValues={initialValues}
+                    validationSchema={validationSchema}
+                    onSubmit={handleSubmit}
+                  >
+                    {({ isSubmitting }) => (
+                      <Form>
+                        <Box className="row">
+                          <Box className="form-field">
+                            <label className="form-label" htmlFor="number">
+                              GST Number
+                            </label>
+                            <Field
+                              className="form-control"
+                              type="text"
+                              id="number"
+                              name="number"
+                              placeholder="Enter Location"
+                              autoComplete="off"
+                            />
+                            <ErrorMessage name="number" className="error" />
+                          </Box>
+
+                          <Box className="form-field">
+                            <label className="form-label" htmlFor="name">
+                              Registered Company Name
+                            </label>
+                            <Field
+                              className="form-control"
+                              type="text"
+                              id="name"
+                              name="name"
+                              placeholder="Enter Location"
+                              autoComplete="off"
+                            />
+                            <ErrorMessage name="name" className="error" />
+                          </Box>
+
+                          <Box className="form-field">
+                            <label className="form-label" htmlFor="flatNumber">
+                              Building/ FlatNumber
+                            </label>
+                            <Field
+                              className="form-control"
+                              type="text"
+                              id="flatNumber"
+                              name="flatNumber"
+                              placeholder="Enter Location"
+                              autoComplete="off"
+                            />
+                            <ErrorMessage name="flatNumber" className="error" />
+                          </Box>
+
+                          <Box className="form-field">
+                            <label className="form-label" htmlFor="address">
+                              Street/area/ Road name
+                            </label>
+                            <Field
+                              className="form-control"
+                              type="text"
+                              id="address"
+                              name="address"
+                              placeholder="Enter Locationr"
+                              autoComplete="off"
+                            />
+                            <ErrorMessage name="address" className="error" />
+                          </Box>
+
+                          <Box className="form-field">
+                            <label className="form-label" htmlFor="pincode">
+                              Pincode
+                            </label>
+                            <Field
+                              className="form-control"
+                              type="text"
+                              id="pincode"
+                              name="pincode"
+                              placeholder="Enter Location"
+                              autoComplete="off"
+                            />
+                            <ErrorMessage name="pincode" className="error" />
+                          </Box>
+
+                          <button
+                            type="submit"
+                            className="btn btn-primary"
+                            disabled={isSubmitting}
+                          >
+                            Save
+                          </button>
+                        </Box>
+                      </Form>
+                    )}
+                  </Formik>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        </Modal>
+        <Modal
+          keepMounted
+          open={bookingSuccessOpen}
+          onClose={handleBookingSuccessClose}
+          aria-labelledby="keep-mounted-modal-title"
+          aria-describedby="keep-mounted-modal-description"
+        >
+          <Box sx={styleOtp}>
+            <div className="modal-content">
+              <div className="modal-header">
+                <button
+                  type="button"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  className="close"
+                  onClick={handleBookingSuccessClose}
+                >
+                  <CloseIcon sx={{ fontSize: "25px" }} />
+                </button>
+              </div>
+              <div className="modal-body">
+                <div className="container-fluid">
+                  <div className="booking-details">
+                    <img src={output} alt="" className="output" />
+                    <h3>Booking Successful</h3>
+                    <span>Booking ID {razorpayData?.order_number}</span>
+                    <p>
+                      We look forward to serving you a conscious <br />
+                      dining experience!
+                    </p>
+                    <a href="javascript:void(0);">
+                      <img src={download} alt="" />
+                      Download Invoice
+                    </a>
+                    <button className="add-cal">
+                      <img src={dateGold} alt="" />
+                      Add to calender
+                    </button>
+                  </div>
+                  <div className="bookingBox">
+                    <Grid container className="row booking-sum">
+                      <Grid
+                        item
+                        xl={6}
+                        lg={6}
+                        xs={6}
+                        md={6}
+                        sm={12}
+                        className="grid-box"
+                      >
+                        <div className="row">
+                          <div className="col-lg-12">
+                            <h4 className="booking-summary">Booking Summary</h4>
+                          </div>
+                          <div className="col-lg-12">
+                            <div className="chef-edit">
+                              <img src={chefImg} alt="" />
+                              <h5>Chef Mako Ravindran</h5>
+                            </div>
+                            <div className="chef-profile">
+                              <div>
+                                <img src={dateGold} alt="" />
+                                <span>April 9 | 7:30 PM - 10 PM</span>
+                              </div>
+                              <div>
+                                <img src={location} alt="" />
+                                <span>Silver bar, Downtown</span>
+                              </div>
+                              <div>
+                                <img src={people} alt="" />
+                                <span>6 Diners</span>
+                              </div>
+                            </div>
+                            <hr className="hr" />
+                          </div>
+                          <div className="col-lg-12">
+                            <div className="chef-profile done-div">
+                              <div>
+                                <img src={done} alt="" />
+                                <span>
+                                  An email confirmation has been sent to
+                                  {eventData?.email} <br />
+                                  and SMS sent to {customerInfo?.contactNumber}
+                                </span>
+                              </div>
+                              <div>
+                                <img src={support} alt="" />
+                                <span>
+                                  Our team and Chef will get in touch with you
+                                  to discuss menu <br />
                                   (allergen+protein info), venue, set up and
                                   pricing
                                 </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Grid>
-                                            <Grid
-                                                item
-                                                xl={6}
-                                                lg={6}
-                                                xs={6}
-                                                md={6}
-                                                sm={12}
-                                                className="grid-box"
-                                            >
-                                                <div className="per-dinner">
-                                                    <div className="experience-breakup">
-                                                        <div className="ex-details">
-                                                            <h5>Payment Summary</h5>
-                                                            <KeyboardArrowDownIcon className="i"/>
-                                                        </div>
-                                                        <div className="table table-borderless">
-                                                            <div className="table-box">
-                                                                <span>Food</span>
-                                                                <span className="price">₹ 2,500</span>
-                                                            </div>
-                                                            <div className="table-box">
-                                                                <span>Service Charge</span>
-                                                                <span className="price">₹ 2,500</span>
-                                                            </div>
-                                                            <div className="table-box">
-                                                                <span>Tax</span>
-                                                                <span className="price">₹ 2,500</span>
-                                                            </div>
-                                                            <div className="table-box border">
-                                                                <span className="grand-total">Grand Total</span>
-                                                                <span className="grand-total">₹ 2,5000</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="experience-breakup">
-                                                        <div className="table table-borderless">
-                                                            <div className="table-box">
-                                                                <span>State Bank of India</span>
-                                                                <span className="price">₹ 2,500</span>
-                                                            </div>
-                                                            <div className="table-box">
-                                                                <span className="tax">04 Nov 11:14 AM</span>
-                                                            </div>
-                                                            <div className="table-box">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </Grid>
+                      <Grid
+                        item
+                        xl={6}
+                        lg={6}
+                        xs={6}
+                        md={6}
+                        sm={12}
+                        className="grid-box"
+                      >
+                        <div className="per-dinner">
+                          <div className="experience-breakup">
+                            <div className="ex-details">
+                              <h5>Payment Summary</h5>
+                              <KeyboardArrowDownIcon className="i" />
+                            </div>
+                            <div className="table table-borderless">
+                              <div className="table-box">
+                                <span>Meal</span>
+                                <span className="price">{paymentCalulationData?.payment?.meal}</span>
+                              </div>
+                              <div className="table-box">
+                                <span>Delivery Charge</span>
+                                <span className="price">{paymentCalulationData?.payment?.delivery_charges}</span>
+                              </div>
+                              <div className="table-box">
+                                <span>Tax</span>
+                                <span className="price">{paymentCalulationData?.payment?.taxes}</span>
+                              </div>
+                              <div className="table-box border">
+                                <span className="grand-total">Grand Total</span>
+                                <span className="grand-total"> {paymentCalulationData?.payment?.total}</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="experience-breakup">
+                            <div className="table table-borderless">
+                              <div className="table-box">
+                                <span>State Bank of India</span>
+                                <span className="price">{paymentCalulationData?.payment?.total}</span>
+                              </div>
+                              <div className="table-box">
+                                <span className="tax">{razorpayData.booking_date}</span>
+                              </div>
+                              <div className="table-box">
                                 <span className="tax">
                                   Transaction ID 12434454689
                                 </span>
