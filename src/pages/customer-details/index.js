@@ -54,11 +54,13 @@ const CustomerDetails = () => {
   const [open, setOpen] = useState(false);
   const [contactNumber, setContactNumber] = useState("");
   const { setOtpNumber, setVerifyOtp, setResendOtp } = useContext(OtpContext);
-  const CHARACTER_LIMIT = 40;
-  const AnyReactComponent = ({ text }) => <div>{text}</div>;
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const [newAddress, setNewAddress] = useState();
+  const CHARACTER_LIMIT = 40;
+  const AnyReactComponent = ({ text }) => <div>{text}</div>;
+  const formAddress = _.values(newAddress)
+  
   const handleOpenOtp = (contactNumber) => {
     if (!_.isEmpty(contactNumber)) {
       setOpenOtp(true);
@@ -1094,7 +1096,7 @@ const CustomerDetails = () => {
                                   className="form-control"
                                   id="validationCustom03"
                                   placeholder="Add Address"
-                                  value={values.address}
+                                  value={formAddress}
                                   onChange={handleChange}
                                   autoComplete="off"
                                   variant="standard"
@@ -1488,8 +1490,7 @@ const CustomerDetails = () => {
               </Box>
             </Box>
           </Box>
-        </Box>
-
+        </Box>                 
         <Modal
           keepMounted
           open={open}
@@ -1525,7 +1526,7 @@ const CustomerDetails = () => {
                     <Box className="row">
                       <Box className="col-lg-12">
                         <Box className="map-box">
-                          <MapLoader
+                          <MapLoader setNewAddress={setNewAddress} setOpen={setOpen}
                             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlUV7Gli9S0rwtq72UMXLf9HlrRWkvqc8&libraries=places"
                             loadingElement={<div style={{ height: `100%` }} />}
                           />
@@ -1537,7 +1538,7 @@ const CustomerDetails = () => {
               </Box>
             </Box>
           </Box>
-        </Modal>
+        </Modal> 
         {openOtp && (
           <OtpVerificationModal
             openOtp={openOtp}
