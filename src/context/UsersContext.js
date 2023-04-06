@@ -25,15 +25,13 @@ const UsersProvider = (props) => {
     const [userId, setUserId] = useState();
     const [eventId, setEventId] = useState();
     const [supperClubDetailId, setSupperClubDetailId] = useState();
-    const cookieValue = Cookies.get('BookingId');
+    const cookieValue = Cookies?.get('BookingId');
     const bookingId = cookieValue?.replaceAll('"', '');
     const summaryBookingId = cookieValue?.replaceAll('"', '');
     const [isBookingStatus, setIsBookingStatus] = useState(false);
     const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
     const [isSupperBookingStatus, setIsSupperBookingStatus] = useState(false);
-
-    console.log("isSupperBookingStatus=======", isSupperBookingStatus)
 
     //for submitting forms
     const [contactUsData, setContactUsData] = useState({})
@@ -112,7 +110,7 @@ const UsersProvider = (props) => {
                 }
                 setIsSupperBookingStatus(false)
             })
-        } else if (currentPath === 'sc-booking-confirm') {
+        } else if (currentPath === 'sc-booking-confirm' && supperClubBookingId) {
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId).then((response) => {
                 if (response.status === 200) {
                     Cookies.set('supperClubBookingPaymentCalculation', JSON.stringify(response.data));

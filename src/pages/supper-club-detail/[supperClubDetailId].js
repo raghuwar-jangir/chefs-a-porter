@@ -47,6 +47,8 @@ import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
 import moment from "moment/moment";
 import SupperClubDetailPopUpCarousel from "../../components/SupperClubDetailPopUpCarousel";
+import Cookies from "js-cookie";
+import SupperClubDetailsPastCarousel from "../../components/SupperClubDetailsPastCarousel";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -63,20 +65,13 @@ const SupperClubDetail = (props) => {
     const getSupperClubDetailId = '62fe25e2d75a11bcf635e206';
     // const getSupperClubDetailId = props?.params?.supperClubDetailId;
 
-    // const groupedData = userData?.new_dates?.reduce((acc, item) => {
-    //     if (!acc[item.date]) {
-    //         acc[item.date] = [];
-    //     }
-    //     acc[item.date].push(item);
-    //     return acc;
-    // }, {});
-    // console.log("groupedData====",groupedData)
+    const groupedDates = _.groupBy(userData?.new_dates, (item) => item.date);
+
+    console.log("groupedDates====", groupedDates)
 
     useEffect(() => {
         setSupperClubDetailId(getSupperClubDetailId);
     }, [getSupperClubDetailId]);
-
-    console.log("SupperClubDetail userData========", userData)
     const handleClick = () => {
         navigate("/personal-details1");
     };
@@ -113,14 +108,12 @@ const SupperClubDetail = (props) => {
         setShowCarousel(false);
     };
 
-
     const itemData = [
         {
             img: userData?.pictures[0],
             title: "img1",
         },
     ];
-
     const itemData2 = [
         {
             img: userData?.pictures[1],
@@ -139,8 +132,6 @@ const SupperClubDetail = (props) => {
             title: "img5",
         },
     ];
-
-
     const BoxWrapper = styled(Box)(() => ({
         ".header-club": {
             padding: "20px",
@@ -1072,7 +1063,8 @@ const SupperClubDetail = (props) => {
                                                 <CardChefComponent bgColor="#FBFBFB"/>
                                                 <Box className="chef-carousel">
                                                     <ChefMakoCarousel title="What's Cooking?"/>
-                                                    <ChefCarousel chefHeading="Past Supper Clubs"/>
+                                                    <SupperClubDetailsPastCarousel chefHeading="Past Supper Clubs"/>
+                                                    {/*<ChefCarousel chefHeading="Past Supper Clubs"/>*/}
                                                     <SupperClubDetailsCarousel/>
                                                 </Box>
                                                 <Box className="last-contain">
@@ -1171,6 +1163,7 @@ const SupperClubDetail = (props) => {
                                                 Pick your preferred experience date
                                             </Typography>
                                         </Box>
+
                                         {
                                             userData?.new_dates.map((item) => {
                                                 return (

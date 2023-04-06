@@ -49,12 +49,17 @@ const ScBookingConfirm = () => {
     const [inputValue, setInputValue] = useState("Chefsaporter/privatediner/AefDFC..");
     const [supperClubPaymentCalculationData, setSupperClubPaymentCalculationData] = useState()
     const cookieValue = Cookies.get('supperClubBookingPaymentCalculation');
+    const [superClubBookingDetails, setSuperClubBookingDetails] = useState()
+    const cookieValue2 = Cookies.get('supperClubBookingPersonalDetail');
 
     useEffect(() => {
         if (cookieValue) {
             setSupperClubPaymentCalculationData(JSON.parse(cookieValue));
         }
-    }, [cookieValue])
+        if (cookieValue2) {
+            setSuperClubBookingDetails(JSON.parse(cookieValue2));
+        }
+    }, [cookieValue, cookieValue2])
 
     const handleCopyClick = () => {
         navigator.clipboard.writeText(inputValue);
@@ -70,6 +75,13 @@ const ScBookingConfirm = () => {
         address: Yup.string().required("Address is required"),
         pincode: Yup.string().required("Pincode is required"),
     });
+
+    const bookingSummaryValidationSchema = Yup.object().shape({
+        contactNumber: Yup.string()
+            .required('contactNumber is required'),
+        email: Yup.string().email('Incorrect Email Id').required('please enter email'),
+    });
+
 
     const initialValues = {
         number: "9876543210",
@@ -1095,215 +1107,237 @@ const ScBookingConfirm = () => {
                         <div className="addons-title">Booking Summary</div>
                     </div>
                 </div>
-                <Grid container>
-                    <Grid
-                        xl={7}
-                        lg={7}
-                        xs={7}
-                        md={7}
-                        sm={12}
-                        // xs={12}
-                        className="partner"
-                    >
-                        <Box className="booking-box">
-                            <Box className="chef-box">
-                                <Typography className="booking-summary-title">
-                                    The Big Fat Parsi Blowout
-                                </Typography>
-                                <CreateIcon className="pencil-icon"/>
-                            </Box>
-                            <Box class="chef-edit">
-                                <Typography className="chef-edit-title">
-                                    Curated by <span className="chef-edit-sub">Chef Mako</span>
-                                </Typography>
-                                <Typography className="chef-seats">
-                                    <img className="chef-people" src={people}/>
-                                    <Typography className="chef-people-no">4 Seats</Typography>
-                                </Typography>
-                            </Box>
-                            <hr className="hr"/>
-                            <Box class="chef-profile">
-                                <Box className="chef-profile-detail">
-                                    <img className="chef-profile-icon" src={dateGold}/>
-                                    <Typography className="chef-profile-date">
-                                        April 9 | 7:30 PM - 10 PM
-                                    </Typography>
-                                </Box>
-                                <Box className="chef-profile-detail">
-                                    <img className="chef-profile-icon" src={location}/>
-                                    <Typography className="chef-profile-date">
-                                        Silver bar, Downtown
-                                    </Typography>
-                                </Box>
-                                <Box className="chef-profile-detail">
-                                    <img className="chef-profile-icon" src={people}/>
-                                    <Typography className="chef-profile-date">
-                                        6 Diners
-                                    </Typography>
-                                </Box>
-                            </Box>
-                        </Box>
-                        <Box className="booking-box">
-                            <div className="email">An Email Confirmation will be sent to</div>
-                        </Box>
-                        <Box className="booking-box">
-                            <Box className="contact">
-                                <label className="contact-number" for="">
-                                    Email{" "}
-                                </label>
-                                <Box className="form-group">
-                                    <input
-                                        type="email"
-                                        name=""
-                                        id=""
-                                        placeholder="Kachwallasana@gmail.com"
-                                        class="form-control"
-                                    />
-                                </Box>
-                            </Box>
-                        </Box>
-                        <Box class="booking-box">
-                            <Box class="contact">
-                                <label className="contact-number" for="contact-number">
-                                    Mobile
-                                </label>
-                                <Box className="form-group">
+                <Formik
+                    initialValues={{
+                        contactNumber: superClubBookingDetails?.contactNumber,
+                        email: superClubBookingDetails?.email,
+                    }}
+                    validationSchema={bookingSummaryValidationSchema}
+                    onSubmit={(values) => {
+                        console.log("sc booking confrim value==========", values)
+                    }}
+                >
+                    {({values, handleChange, handleSubmit, setFieldValue}) => (
+                        <Form onSubmit={handleSubmit}>
+                            <Grid container>
+                                <Grid
+                                    xl={7}
+                                    lg={7}
+                                    xs={7}
+                                    md={7}
+                                    sm={12}
+                                    // xs={12}
+                                    className="partner"
+                                >
+                                    <Box className="booking-box">
+                                        <Box className="chef-box">
+                                            <Typography className="booking-summary-title">
+                                                The Big Fat Parsi Blowout
+                                            </Typography>
+                                            <CreateIcon className="pencil-icon"/>
+                                        </Box>
+                                        <Box class="chef-edit">
+                                            <Typography className="chef-edit-title">
+                                                Curated by <span className="chef-edit-sub">Chef Mako</span>
+                                            </Typography>
+                                            <Typography className="chef-seats">
+                                                <img className="chef-people" src={people}/>
+                                                <Typography className="chef-people-no">4 Seats</Typography>
+                                            </Typography>
+                                        </Box>
+                                        <hr className="hr"/>
+                                        <Box class="chef-profile">
+                                            <Box className="chef-profile-detail">
+                                                <img className="chef-profile-icon" src={dateGold}/>
+                                                <Typography className="chef-profile-date">
+                                                    April 9 | 7:30 PM - 10 PM
+                                                </Typography>
+                                            </Box>
+                                            <Box className="chef-profile-detail">
+                                                <img className="chef-profile-icon" src={location}/>
+                                                <Typography className="chef-profile-date">
+                                                    Silver bar, Downtown
+                                                </Typography>
+                                            </Box>
+                                            <Box className="chef-profile-detail">
+                                                <img className="chef-profile-icon" src={people}/>
+                                                <Typography className="chef-profile-date">
+                                                    6 Diners
+                                                </Typography>
+                                            </Box>
+                                        </Box>
+                                    </Box>
+                                    <Box className="booking-box">
+                                        <div className="email">An Email Confirmation will be sent to</div>
+                                    </Box>
+                                    <Box className="booking-box">
+                                        <Box className="contact">
+                                            <label className="contact-number" for="">
+                                                Email{" "}
+                                            </label>
+                                            <Box className="form-group">
+                                                <input
+                                                    type="email"
+                                                    name="email"
+                                                    value={values.email}
+                                                    onChange={handleChange}
+                                                    placeholder="Kachwallasana@gmail.com"
+                                                    className="form-control"
+                                                    autoComplete="off"
+                                                />
+                                            </Box>
+                                            <ErrorMessage name="email"/>
+                                        </Box>
+                                    </Box>
+                                    <Box class="booking-box">
+                                        <Box class="contact">
+                                            <label className="contact-number" for="contact-number">
+                                                Mobile
+                                            </label>
+                                            <Box className="form-group">
                   <span className="country-code">
                     +91 <KeyboardArrowDownIcon className="drop-down-2"/>
                   </span>
-                                    <input
-                                        placeholder="10 digit number"
-                                        className="form-control"
-                                        type="text"
-                                        id="number"
-                                        name="number"
-                                    />
-                                </Box>
-                                {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
-                            </Box>
-                        </Box>
-                        <Box className="gst-block">
-                            <Box className="form-check">
-                                <Checkbox className="input-check" defaultChecked/>
-                                <label className="form-check-label" for="flexCheckDefault">
-                                    Enter GSTIN for tax benefits (Optional)
-                                </label>
-                                <KeyboardArrowRightIcon
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"
-                                    onClick={handleOpen}
-                                    className="forward-arrow"
-                                />
-                            </Box>
-                        </Box>
-                        <div className="gift-div">
-                            <div className="gift-child">
-                                <img className="gift-img" src={giftCard}/>
-                                <div className="gift-text">
-                                    If you have a coupon/ gift card, please enter details in the
-                                    next step
-                                </div>
-                            </div>
-                        </div>
-                    </Grid>
-
-                    <Grid
-                        xl={5}
-                        lg={5}
-                        xs={5}
-                        md={5}
-                        sm={12}
-                        // xs={12}
-                        className="cust-details dinner-box"
-                    >
-                        <Box className="per-dinner adsss">
-                            <Box>
-                                <Stack className="date-stack">
-                                    <Typography className="date-description">April 9</Typography>
-                                    <span className="line">|</span>
-                                    <Typography className="date-description">
-                                        {" "}
-                                        7:30 PM - 10 PM
-                                    </Typography>
-                                    <span className="line">|</span>
-                                    <Typography className="date-description">
-                                        Blue Cafe, Kamanahalli
-                                    </Typography>
-                                </Stack>
-                            </Box>
-                            <Box className="event-div">
-                                <img src={sGallery} alt="" className="per-dinner-img"/>
-                                <Box sx={{marginLeft: "12px"}}>
-                                    <Typography className="event-title">
-                                        The Big Fat Parsi Blowout
-                                    </Typography>
-                                    <Typography className="event-subtitle">
-                                        Curated by{" "}
-                                        <a href="#" className="event-link">
-                                            Chef Mako
-                                        </a>
-                                    </Typography>
-                                    <Typography className="rating-star">
-                                        <img className="rating-people" src={people}/>
-                                        <Typography className="rating-star">4 Seats</Typography>
-                                    </Typography>
-                                </Box>
-                            </Box>
-                            <Box className="experience-breakup">
-                                <div className="confirm-details">
-                                    Confirm Details before proceeding to pay
-                                </div>
-                                <Box className="ex-details">
-                                    <Typography className="ex-heading">
-                                        Price Breakdown
-                                    </Typography>
-                                    <ExpandMoreIcon className="ex-icon"/>
-                                </Box>
-                                {
-                                    !_.isEmpty(supperClubPaymentCalculationData) &&
-                                    <Box className="table table-borderless">
-                                        {
-                                            Object.keys(supperClubPaymentCalculationData?.payment).map((key) => {
-                                                return (
-                                                    <Box className="table-box">
-                                                        <Typography
-                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
-                                                        <Typography
-                                                            className="table-details">₹
-                                                            {supperClubPaymentCalculationData?.payment[key]}</Typography>
-                                                    </Box>
-                                                )
-                                            })
-                                        }
-                                        <Box className="table-box border">
-                                            <Typography
-                                                className=" grand-total table-details">Grand
-                                                Total</Typography>
-                                            <Typography
-                                                className="table-details grand-total">₹
-                                                {supperClubPaymentCalculationData?.total}</Typography>
+                                                <input
+                                                    placeholder="10 digit number"
+                                                    className="form-control"
+                                                    type="text"
+                                                    id="number"
+                                                    name="contactNumber"
+                                                    value={values.contactNumber}
+                                                    onChange={handleChange}
+                                                    autoComplete="off"
+                                                />
+                                            </Box>
+                                            <ErrorMessage name="contactNumber"/>
+                                            {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
                                         </Box>
                                     </Box>
-                                }
-                            </Box>
-                            <Box className="row viewbreak">
-                                <Box>
-                                    <button
-                                        type="submit"
-                                        // onClick={handleClick}
-                                        className="submit-req"
-                                    >
-                                        Reserve a seat
-                                    </button>
-                                </Box>
-                                <Typography className="contact-text">
-                                    Our team will contact you regarding your protein and allergeen
-                                    Information after booking is confirmed
-                                </Typography>
-                            </Box>
-                        </Box>
-                    </Grid>
-                </Grid>
+                                    <Box className="gst-block">
+                                        <Box className="form-check">
+                                            <Checkbox className="input-check" defaultChecked/>
+                                            <label className="form-check-label" for="flexCheckDefault">
+                                                Enter GSTIN for tax benefits (Optional)
+                                            </label>
+                                            <KeyboardArrowRightIcon
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal"
+                                                onClick={handleOpen}
+                                                className="forward-arrow"
+                                            />
+                                        </Box>
+                                    </Box>
+                                    <div className="gift-div">
+                                        <div className="gift-child">
+                                            <img className="gift-img" src={giftCard}/>
+                                            <div className="gift-text">
+                                                If you have a coupon/ gift card, please enter details in the
+                                                next step
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Grid>
+
+                                <Grid
+                                    xl={5}
+                                    lg={5}
+                                    xs={5}
+                                    md={5}
+                                    sm={12}
+                                    // xs={12}
+                                    className="cust-details dinner-box"
+                                >
+                                    <Box className="per-dinner adsss">
+                                        <Box>
+                                            <Stack className="date-stack">
+                                                <Typography className="date-description">April 9</Typography>
+                                                <span className="line">|</span>
+                                                <Typography className="date-description">
+                                                    {" "}
+                                                    7:30 PM - 10 PM
+                                                </Typography>
+                                                <span className="line">|</span>
+                                                <Typography className="date-description">
+                                                    Blue Cafe, Kamanahalli
+                                                </Typography>
+                                            </Stack>
+                                        </Box>
+                                        <Box className="event-div">
+                                            <img src={sGallery} alt="" className="per-dinner-img"/>
+                                            <Box sx={{marginLeft: "12px"}}>
+                                                <Typography className="event-title">
+                                                    The Big Fat Parsi Blowout
+                                                </Typography>
+                                                <Typography className="event-subtitle">
+                                                    Curated by{" "}
+                                                    <a href="#" className="event-link">
+                                                        Chef Mako
+                                                    </a>
+                                                </Typography>
+                                                <Typography className="rating-star">
+                                                    <img className="rating-people" src={people}/>
+                                                    <Typography className="rating-star">4 Seats</Typography>
+                                                </Typography>
+                                            </Box>
+                                        </Box>
+                                        <Box className="experience-breakup">
+                                            <div className="confirm-details">
+                                                Confirm Details before proceeding to pay
+                                            </div>
+                                            <Box className="ex-details">
+                                                <Typography className="ex-heading">
+                                                    Price Breakdown
+                                                </Typography>
+                                                <ExpandMoreIcon className="ex-icon"/>
+                                            </Box>
+                                            {
+                                                !_.isEmpty(supperClubPaymentCalculationData) &&
+                                                <Box className="table table-borderless">
+                                                    {
+                                                        Object.keys(supperClubPaymentCalculationData?.payment).map((key) => {
+                                                            return (
+                                                                <Box className="table-box">
+                                                                    <Typography
+                                                                        className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
+                                                                    <Typography
+                                                                        className="table-details">₹
+                                                                        {supperClubPaymentCalculationData?.payment[key]}</Typography>
+                                                                </Box>
+                                                            )
+                                                        })
+                                                    }
+                                                    <Box className="table-box border">
+                                                        <Typography
+                                                            className=" grand-total table-details">Grand
+                                                            Total</Typography>
+                                                        <Typography
+                                                            className="table-details grand-total">₹
+                                                            {supperClubPaymentCalculationData?.total}</Typography>
+                                                    </Box>
+                                                </Box>
+                                            }
+                                        </Box>
+                                        <Box className="row viewbreak">
+                                            <Box>
+                                                <button
+                                                    type="submit"
+                                                    // onClick={handleClick}
+                                                    className="submit-req"
+                                                >
+                                                    Reserve a seat
+                                                </button>
+                                            </Box>
+                                            <Typography className="contact-text">
+                                                Our team will contact you regarding your protein and allergeen
+                                                Information after booking is confirmed
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                        </Form>
+                    )}
+                </Formik>
                 <Modal
                     keepMounted
                     open={open}

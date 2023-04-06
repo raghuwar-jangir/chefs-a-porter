@@ -43,10 +43,10 @@ const OtpProvider = (props) => {
         if (cookieValue) {
             setEventData(JSON.parse(cookieValue));
         }
-        if(cookieValue2){
+        if (cookieValue2) {
             setsuperClubBookingDetails(JSON.parse(cookieValue2));
         }
-    }, [cookieValue1, cookieValue])
+    }, [cookieValue1, cookieValue, cookieValue2])
     console.log("eventData=====", eventData)
     console.log("priveeData=====", priveeData)
     console.log("superClubBookingDetails=====", superClubBookingDetails)
@@ -100,8 +100,8 @@ const OtpProvider = (props) => {
             })
         } else if (isSupperClubStatus && currentPath === 'personal-details1') {
             axios.post(baseUrl + '/booking', {
-                name: eventData.name,
-                email: eventData.email,
+                name: superClubBookingDetails.name,
+                email: superClubBookingDetails.email,
                 mobile: otpNumber,
                 type: "chef_event",
                 // event: supperClubBookingId,
@@ -110,7 +110,7 @@ const OtpProvider = (props) => {
                 meal: priveeData.experience,
                 diner_count: priveeData.numberOfDiner,
                 courses: eventData.numberOfCourses,
-                city: priveeData.city,
+                city: superClubBookingDetails.city,
                 booking_date: priveeData.date,
                 otp: verifyOtp,
             }).then((response) => {

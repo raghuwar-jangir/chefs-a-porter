@@ -1,5 +1,5 @@
 import {styled, Box, Grid, Typography, Select, MenuItem, Stack, Modal, TextField, Link} from "@mui/material";
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Formik, Form, ErrorMessage, Field} from "formik";
 import * as Yup from 'yup';
 import Navbar from "../../components/NavbarComponent";
@@ -29,9 +29,6 @@ const PersonalDetails1 = () => {
     const [contactPopUp, setContactPopUp] = useState(false);
     const ContactOpen = () => setContactPopUp(true);
     const ContactClose = () => setContactPopUp(false);
-    // const nextPage = () => {
-    //     navigate('/sc-booking-summary')
-    // }
     const afterClick = () => {
         const newParam = 'newParamValue'
         navigate(`/personal-details/?myParam=${newParam}`);
@@ -43,6 +40,17 @@ const PersonalDetails1 = () => {
     const [openOtp, setOpenOtp] = useState(false);
     const [contactNumber, setContactNumber] = useState('');
     const CHARACTER_LIMIT = 40;
+    const [superClubBookingDetails, setSuperClubBookingDetails] = useState()
+    const cookieValue2 = Cookies.get('supperClubBookingPersonalDetail');
+
+
+    useEffect(() => {
+        if (cookieValue2) {
+            setSuperClubBookingDetails(JSON.parse(cookieValue2));
+        }
+    }, [cookieValue2])
+
+    console.log("======== s data", superClubBookingDetails)
     const handleOpenOtp = (contactNumber, values) => {
         if (!_.isEmpty(contactNumber)) {
             setOpenOtp(true);
@@ -50,7 +58,7 @@ const PersonalDetails1 = () => {
             setContactNumber(contactNumber);
             setIsSendOtpApiCall(true);
         }
-        // Cookies.set('customerData', JSON.stringify(values));
+        Cookies.set('supperClubBookingPersonalDetail', JSON.stringify(values));
     }
     const handleCloseOtp = () => setOpenOtp(false);
 
@@ -949,20 +957,19 @@ const PersonalDetails1 = () => {
                 <div>
                     <Formik
                         initialValues={{
-                            name: '',
-                            email: '',
-                            contactNumber: '',
-                            city: 'Mumbai',
-                            allergyMessage: '',
-                            AdditionalMessage: ''
-                        }}
-                        onSubmit={(values) => {
-                            console.log("value==========", values)
-                            Cookies.set('supperClubBookingPersonalDetail', JSON.stringify(values));
+                            name: superClubBookingDetails?.name,
+                            email: superClubBookingDetails?.email,
+                            contactNumber: superClubBookingDetails?.contactNumber,
+                            city: superClubBookingDetails?.city ? superClubBookingDetails?.city : "Mumbai",
+                            allergyMessage: superClubBookingDetails?.allergyMessage,
+                            AdditionalMessage: superClubBookingDetails?.AdditionalMessage ? superClubBookingDetails?.AdditionalMessage : ''
                         }}
                         validationSchema={validationSchema}
+                        onSubmit={(values) => {
+                            console.log("value==========", values)
+                        }}
                     >
-                        {({values, handleChange, handleSubmit}) => (
+                        {({values, handleChange, handleSubmit, setFieldValue}) => (
                             <Form onSubmit={handleSubmit}>
                                 <Grid container>
                                     <Grid

@@ -86,7 +86,8 @@ const BookingSummary = () => {
 
         const options = {
             key: "rzp_test_MHRk336eUPGyWR",
-            amount: `${paymentCalulationData?.payment?.total * 100}`,
+            // amount: `${paymentCalulationData?.payment?.total * 100}`,
+            amount: 400 * 100,
             currency: "INR",
             name: "Chefs-à-Porter",
             description: "Test Transaction",
