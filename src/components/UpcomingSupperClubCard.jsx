@@ -18,9 +18,9 @@ const UpcomingSupperClubCard = () => {
 
     const {data} = useContext(CmsContext);
 
-    const handleClick = () => {
-        navigate('/supper-club-detail');
-    }
+    // const handleClick = () => {
+    //     navigate('/supper-club-detail');
+    // }
     const cardDetails = [
         {
             potImg: img1,
@@ -164,7 +164,8 @@ const UpcomingSupperClubCard = () => {
                 !_.isEmpty(data?.supper_club) &&
                 <MainBox>
                     {data.supper_club.upcoming_supper_club.supper_clubs.map((item, index) => (
-                        <Box key={index} onClick={handleClick} style={{cursor: 'pointer'}}>
+                        <Box key={index} onClick={() => navigate(`/supper-club-detail/${item?.id}`)}
+                             style={{cursor: 'pointer'}}>
                             <Box sx={{position: 'relative'}}>
                                 <img className='test-img' src={item.pictures}/>
                                 {

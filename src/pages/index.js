@@ -60,6 +60,7 @@ import axios from "axios";
 import CmsContext from "../context/CmsContext";
 import "../assets/styles/searchBar.css"
 import "../assets/styles/fontStyle.css"
+import Cookies from "js-cookie";
 
 
 const MainBoxContent = styled(Box)({
@@ -865,8 +866,8 @@ const BoxWrapper = styled(Box)({
         },
     },
     '@media(min-width: 1px) and (max-width: 768px)': {
-        '.main-box':{
-            display:'none'
+        '.main-box': {
+            display: 'none'
         }
     }
 
@@ -903,9 +904,8 @@ const HomePage = () => {
     const finalImgData = imgData.map((item, i) => Object.assign({}, item, rowOfObjects[i]));
 
     const finalImageData = finalImgData.map((item, i) => Object.assign({}, item, ColsOfObjects[i]));
-
     const handleClick = () => {
-        navigate('/privee-viewmore', {state: true});
+        navigate('/privee-viewmore')
     }
 
     return (
@@ -932,10 +932,10 @@ const HomePage = () => {
                                                     console.log(values.date)
                                                     const experienceData = {
                                                         ...values,
-                                                        on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
+                                                        // on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
+                                                        on: moment(_.get(values, 'date')).toISOString(),
                                                     }
-                                                    console.log("value===>", values)
-                                                    console.log("experienceData===>", experienceData)
+                                                    Cookies.set('priveeData', JSON.stringify(experienceData));
                                                 }}
                                             >
                                                 {({values, handleChange, handleSubmit, setFieldValue}) => (

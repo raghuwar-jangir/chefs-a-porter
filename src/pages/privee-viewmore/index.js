@@ -1,4 +1,4 @@
-import React, {useContext,useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import {Box, styled, Grid, Typography, Select, MenuItem, TextField, TextareaAutosize} from "@mui/material";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/NavbarComponent";
@@ -19,6 +19,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {navigate} from "gatsby";
 import UsersContext from "../../context/UsersContext";
+import Cookies from 'js-cookie';
 
 const BoxWrapper = styled(Box)(() => ({
     background: "#080B0E",
@@ -420,11 +421,21 @@ const style = {
         borderRadius: '0px',
     },
 }
-const PriveeViewMore = () => {
+const PriveeViewMore = (props) => {
 
     const {userData} = useContext(UsersContext);
+    const [priveeInfo, setPriveeInfo] = useState()
+    const cookieValue = Cookies?.get('priveeData');
 
-    console.log("userData======", userData)
+    {
+        !_.isEmpty(cookieValue) &&
+        useEffect(() => {
+            if (cookieValue) {
+                setPriveeInfo(JSON.parse(cookieValue));
+            }
+        }, [cookieValue])
+    }
+
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -448,10 +459,10 @@ const PriveeViewMore = () => {
                                         <a className="edit" onClick={handleOpen}>Edit</a>
                                         <Formik
                                             initialValues={{
-                                                city: 'Mumbai',
+                                                city: priveeInfo?.city,
                                                 on: new Date(),
                                                 time: 'Lunch',
-                                                diners: '1'
+                                                diners: 1
                                             }}
                                             onSubmit={(values) => {
                                                 console.log(values.date)
@@ -665,25 +676,24 @@ const PriveeViewMore = () => {
                         </Box>
                         <Box className="available-experiences">
                             <Typography className="chef-header">Available Experiences</Typography>
-                                <Grid container spacing={5}>
-                                    {userData?.results?.map((item) => {
-                                        return (
-                                            <Grid item xl={4} md={4} sm={6} xs={12}>
-                                                <AvlExperienceCarousel
-                                                    // image={item.cover_picture}
-                                                    image={item.user.picture}
-                                                    title={item.title} description={`by ${item.user.name}`}
-                                                    onClick={() => navigate(`/event-details/${item?.id}`)}
-                                                />
-                                            </Grid>
-                                        )
-                                    })}
-                                </Grid>
+                            <Grid container spacing={5}>
+                                {userData?.results?.map((item) => {
+                                    return (
+                                        <Grid item xl={4} md={4} sm={6} xs={12}>
+                                            <AvlExperienceCarousel
+                                                // image={item.cover_picture}
+                                                image={item.user.picture}
+                                                title={item.title} description={`by ${item.user.name}`}
+                                                onClick={() => navigate(`/event-details/${item?.id}`)}
+                                            />
+                                        </Grid>
+                                    )
+                                })}
+                            </Grid>
                         </Box>
                         <NeedHelp/>
                         <Footer/>
                         <FooterEnd/>
-
                         <Modal
                             keepMounted
                             open={open}

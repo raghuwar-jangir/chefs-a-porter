@@ -30,6 +30,7 @@ import StarIcon from "@mui/icons-material/Star";
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import {SwiperSlide} from "swiper/react";
 import "../../assets/styles/fontStyle.css"
+import Cookies from 'js-cookie';
 
 const MainBoxContent = styled(Box)({
     position: 'relative',
@@ -585,13 +586,10 @@ const MainContentBox = styled(Box)({
 const PriveePage = (props) => {
 
     const {data} = useContext(CmsContext);
-
     const [search, setSearch] = useState(false);
-
     const handleChange = () => {
         setSearch(true);
     }
-
     let [count, setCount] = useState(1);
     let Qty = 10;
 
@@ -610,23 +608,8 @@ const PriveePage = (props) => {
     }
 
     const handleClick = () => {
-        navigate('/privee-viewmore', {state: true});
+        navigate('/privee-viewmore')
     }
-
-    // const styles = theme => ({
-    //     input: {
-    //         width: 40
-    //     },
-    //     button: {
-    //         width: 40
-    //     },
-    //     selectRoot: {
-    //         width: 40,
-    //     },
-    //     select: {
-    //         width: 40,
-    //     }
-    // });
 
     return (
         <React.Fragment>
@@ -702,13 +685,13 @@ const PriveePage = (props) => {
                                             }}
                                             onSubmit={(values) => {
                                                 console.log(values.date)
-                                                const experienceData = {
+                                                const PriveeDetails = {
                                                     ...values,
-                                                    date: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
+                                                    date: moment(_.get(values, 'date')).toISOString(),
                                                     numberOfDiner: count,
                                                 }
-                                                console.log("value===>", values)
-                                                console.log("experienceData===>", experienceData)
+                                                console.log("PriveeDetails===>", PriveeDetails)
+                                                Cookies.set('priveeData', JSON.stringify(PriveeDetails));
                                             }}
                                         >
                                             {({values, handleChange, handleSubmit, setFieldValue}) => (

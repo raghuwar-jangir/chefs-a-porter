@@ -225,7 +225,7 @@ const EventChefCarousel = (props) => {
                             modules={[Pagination, Autoplay]}
                             className="mySwiper"
                         >
-                            {image.map((item) => {
+                            {image?.map((item) => {
                                 return <SwiperSlide><img className='img' src={item}></img></SwiperSlide>
                             })}
                             ...

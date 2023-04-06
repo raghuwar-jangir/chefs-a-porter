@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Box, Grid, ImageListItem, styled, Typography,} from "@mui/material";
 import Navbar from "../../components/NavbarComponent";
 import add1 from "../../assets/images/add1.png";
@@ -17,15 +17,27 @@ import "../../assets/styles/fontStyle.css"
 import {navigate} from "gatsby";
 import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
+import Cookies from "js-cookie";
 
 
-const Addons = () => {
-    const {userData} = useContext(UsersContext);
+const Addons = (props) => {
+    const {userData, setIsBookingStatus} = useContext(UsersContext);
+    const summaryCookieValue = Cookies.get('BookingId');
+    const summaryBookingId = summaryCookieValue?.replaceAll('"', '')
 
-    console.log("userData=======", userData)
     const handleClick = () => {
-        navigate('/booking-summary');
+        navigate(`/booking-summary/${summaryBookingId}`);
+        setIsBookingStatus(true)
     }
+
+    const [paymentCalculationData, setPaymentCaclulationData] = useState()
+    const cookieValue = Cookies.get('paymentCalculation');
+    useEffect(() => {
+        if (cookieValue) {
+            setPaymentCaclulationData(JSON.parse(cookieValue));
+        }
+    }, [cookieValue])
+    console.log("paymentCalulationData=====", paymentCalculationData)
 
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
@@ -386,47 +398,38 @@ const Addons = () => {
                                                         </Typography>
                                                         <ExpandMoreIcon className="ex-icon"/>
                                                     </Box>
-                                                    <Box className="table table-borderless">
-                                                        <Box className="table-box">
-                                                            <Typography
-                                                                className="table-details">Food</Typography>
-                                                            <Typography className="table-details">₹ 2,500</Typography>
+                                                    {
+                                                        !_.isEmpty(paymentCalculationData) &&
+                                                        <Box className="table table-borderless">
+                                                            {
+                                                                Object.keys(paymentCalculationData?.payment).map((key) => {
+                                                                    return (
+                                                                        <Box className="table-box">
+                                                                            <Typography
+                                                                                className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
+                                                                            <Typography className="table-details">₹
+                                                                                {paymentCalculationData?.payment[key]}</Typography>
+                                                                        </Box>
+                                                                    )
+                                                                })
+                                                            }
+                                                            <Box className="table-box border">
+                                                                <Typography className=" grand-total table-details">Grand
+                                                                    Total</Typography>
+                                                                <Typography className="table-details grand-total">₹
+                                                                    {paymentCalculationData?.total}</Typography>
+                                                            </Box>
+                                                            <Box className="tax tax1 table-box">
+                                                                <Typography className="table-details">+Incl Of
+                                                                    GST</Typography>
+                                                            </Box>
+                                                            <Box className="tax">
+                                                                <Typography className="table-details">++1.95% +
+                                                                    GST</Typography>
+                                                            </Box>
                                                         </Box>
-                                                        <Box className="table-box">
-                                                            <Typography className="table-details">Service
-                                                                Charge</Typography>
-                                                            <Typography className="table-details">₹ 2,500</Typography>
-                                                        </Box>
-                                                        <Box className="table-box">
-                                                            <Typography className="table-details"
-                                                            >Tax</Typography>
-                                                            <Typography className="table-details">₹ 2,500</Typography>
-                                                        </Box>
-                                                        <Box className="table-box">
-                                                            <Typography className="table-details"
-                                                            >Venue</Typography>
-                                                            <Typography className="table-details">₹ 2,500</Typography>
-                                                        </Box>
-                                                        <Box className="table-box">
-                                                            <Box className="table-details">Additional Courses
-                                                                +2</Box>
-                                                            <Box className="table-details">₹ 2,500</Box>
-                                                        </Box>
-                                                        <Box className="table-box border">
-                                                            <Typography className=" grand-total table-details">Grand
-                                                                Total</Typography>
-                                                            <Typography className="table-details grand-total">₹
-                                                                2,5000</Typography>
-                                                        </Box>
-                                                        <Box className="tax tax1 table-box">
-                                                            <Typography className="table-details">+Incl Of
-                                                                GST</Typography>
-                                                        </Box>
-                                                        <Box className="tax">
-                                                            <Typography className="table-details">++1.95% +
-                                                                GST</Typography>
-                                                        </Box>
-                                                    </Box>
+                                                    }
+
                                                 </Box>
                                                 <Box className="row viewbreak">
                                                     <Box className="col-lg-12">

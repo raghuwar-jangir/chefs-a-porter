@@ -1,7 +1,6 @@
 import React from 'react'
 import config from 'react-reveal/globals'
 import smoothscroll from 'smoothscroll-polyfill'
-
 import "normalize.css"
 import {CmsProvider} from "./src/context/CmsContext";
 import {Location} from '@reach/router';
