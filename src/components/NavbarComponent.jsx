@@ -28,11 +28,11 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to,supperClubLi
     const props = {
         heading
     }
-    const {headerData} = useContext(CmsContext);
+    const {callMobileNumber} = useContext(CmsContext);
 
     //calling button
     const handlePhoneCall = () => {
-        window.location.href = `tel:${+918147170055}`;
+        window.location.href = `tel:${callMobileNumber}`;
     };
 
     const [isOpen, setOpen] = useState(false);
@@ -400,7 +400,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to,supperClubLi
                                             />
                                         </Box>
                                     }
-                                    {/*<a href="#" onClick={handlePhoneCall}>*/}
+                                    {/*<a href="tel:`${callMobileNumber}`">*/}
                                     <img src={telLogo} onClick={handlePhoneCall} className='telePhoneLogo'/>
                                     {/*</a>*/}
                                 </Grid>

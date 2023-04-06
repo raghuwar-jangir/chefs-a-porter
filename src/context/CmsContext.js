@@ -26,19 +26,24 @@ const CmsProvider = (props) => {
         'corporate-booking': 'corporate_booking'
     }
 
-    const path = useLocation()
+    const path = useLocation();
 
     const currentPath = path.pathname.split("/")[1];
 
     const baseUrl = `https://chefv2.hypervergedemo.site/v1/cms`;
 
-    const emptyUrl = currentPath.startsWith(null) ? currentPath : currentPath + "/"
+    const emptyUrl = currentPath.startsWith(null) ? currentPath : currentPath + "/";
 
-    const [data, setData] = useState()
+    const [data, setData] = useState();
+    const [callMobileNumber, setCallMobileNumber] = useState();
 
     useEffect(() => {
         axios.get(baseUrl + `/${pathInfo[!currentPath ? emptyUrl : currentPath]}/`).then(result => {
             setData(result.data)
+        })
+
+        axios.get(baseUrl + '/footer').then(result => {
+            setCallMobileNumber(result.data.footer.footer.mobile)
         })
     }, [path, currentPath])
 
@@ -47,6 +52,7 @@ const CmsProvider = (props) => {
         <CmsContext.Provider
             value={{
                 data,
+                callMobileNumber,
             }}
         >
             {children}

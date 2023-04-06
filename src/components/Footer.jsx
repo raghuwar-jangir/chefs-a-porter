@@ -272,14 +272,15 @@ const Footer = () => {
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <Link href="mailto:reservations@chefsaporter.com."
-                                              className='listItem-subheading'>reservations@chefsaporter.com.</Link>
+                                        <Link href="mailto:rsvp@chefsaporter.com"
+                                              className='listItem-subheading'>rsvp@chefsaporter.com</Link>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <Link href="/" className='listItem-subheading'>Join our Community</Link>
+                                        <Link href="https://chat.whatsapp.com/DOEPvVVFkaQLKDScEeTYOq"
+                                              className='listItem-subheading'>Join our Community</Link>
                                     </List>
                                 </Box>
                             </Grid>
