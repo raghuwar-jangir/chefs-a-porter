@@ -54,22 +54,16 @@ const BookingSummary = () => {
 
   const cookieValue = Cookies.get("paymentCalculation");
   const bookingCookieValue = Cookies.get("bookingConfirm");
-  const [paymentCalulationData, setPaymentCalulationData] = useState(
-    JSON.parse(cookieValue)
-  );
-  const [razorpayData, setRazorpayData] = useState(
-    JSON.parse(bookingCookieValue)
-  );
+  const [paymentCalulationData, setPaymentCalulationData] = useState();
+  const [razorpayData, setRazorpayData] = useState();
   useEffect(() => {
     if (cookieValue) {
       setPaymentCalulationData(JSON.parse(cookieValue));
     }
-  }, [cookieValue]);
-  useEffect(() => {
     if (bookingCookieValue) {
       setRazorpayData(JSON.parse(bookingCookieValue));
     }
-  }, [bookingCookieValue]);
+  }, [cookieValue, bookingCookieValue]);
 
   const initialValues = {
     number: "9876543210",

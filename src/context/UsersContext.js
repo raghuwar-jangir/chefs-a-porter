@@ -99,7 +99,7 @@ const UsersProvider = (props) => {
         } else if (currentPath === 'sc-booking-summary' && supperClubBookingId) {
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId).then((response) => {
                 if (response.status === 200) {
-                    Cookies.set('supperClubBookingData', JSON.stringify(response.data));
+                    Cookies.set('supperClubBookingPaymentCalculation', JSON.stringify(response.data));
                 }
             })
         } else if (isSupperBookingStatus) {
@@ -107,13 +107,14 @@ const UsersProvider = (props) => {
                 if (response.status === 200) {
                     Cookies.set('supperClubBookingBookingConfirm', JSON.stringify(response.data));
                     console.log("supperClubBookingBookingConfirm response======", response.data)
+                    // console.log("supperClubBookingPaymentCalculation response",response.data);
                 }
                 setIsSupperBookingStatus(false)
             })
         } else if (currentPath === 'sc-booking-confirm' && supperClubBookingId) {
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId).then((response) => {
                 if (response.status === 200) {
-                    Cookies.set('supperClubBookingData', JSON.stringify(response.data));
+                    Cookies.set('supperClubBookingPaymentCalculation', JSON.stringify(response.data));
                 }
             })
         }
