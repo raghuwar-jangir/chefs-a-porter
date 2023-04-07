@@ -25,8 +25,8 @@ import moment from "moment";
 const ScBookingSummary = () => {
     const {setIsSupperBookingStatus} = useContext(UsersContext)
     const [supperClubBookingData, setSupperClubBookingData] = useState()
-    const cookieValue = Cookies.get('supperClubBookingData');
-    const supperClubBookingIdCookieValue = Cookies?.get('supperClubConfirmBookingId');
+    const cookieValue = Cookies?.get('supperClubBookingData');
+    const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
     const [superClubBookingDetails, setSuperClubBookingDetails] = useState()
     const cookieValue2 = Cookies.get('supperClubBookingPersonalDetail');
@@ -714,11 +714,13 @@ const ScBookingSummary = () => {
                                         </Box>
                                         <Box class="chef-edit">
                                             <Typography className="chef-edit-title">
-                                                Curated by <span className="chef-edit-sub">{supperClubBookingData?.event?.chef?.name}</span>
+                                                Curated by <span
+                                                className="chef-edit-sub">{supperClubBookingData?.event?.chef?.name}</span>
                                             </Typography>
                                             <Typography className="chef-seats">
                                                 <img className="chef-people" src={people}/>
-                                                <Typography className="chef-people-no">{supperClubBookingData?.event?.seats}</Typography>
+                                                <Typography
+                                                    className="chef-people-no">{supperClubBookingData?.event?.seats}</Typography>
                                             </Typography>
                                         </Box>
                                         <hr className="hr"/>
@@ -846,7 +848,8 @@ const ScBookingSummary = () => {
                                             </Stack>
                                         </Box>
                                         <Box className="event-div">
-                                            <img src={supperClubBookingData?.event?.pictures[0]} alt="" className="per-dinner-img"/>
+                                            <img src={supperClubBookingData?.event?.pictures[0]} alt=""
+                                                 className="per-dinner-img"/>
                                             <Box sx={{marginLeft: "12px"}}>
                                                 <Typography className="event-title">
                                                     {supperClubBookingData?.event?.title}
@@ -859,7 +862,8 @@ const ScBookingSummary = () => {
                                                 </Typography>
                                                 <Typography className="rating-star">
                                                     <img className="rating-people" src={people}/>
-                                                    <Typography className="rating-star">{supperClubBookingData?.event?.seats}</Typography>
+                                                    <Typography
+                                                        className="rating-star">{supperClubBookingData?.event?.seats}</Typography>
                                                 </Typography>
                                             </Box>
                                         </Box>

@@ -1161,42 +1161,41 @@ const SupperClubDetail = (props) => {
                                                 Pick your preferred experience date
                                             </Typography>
                                         </Box>
-
-                                        {
-                                            userData?.new_dates.map((item) => {
-                                                return (
-                                                    <Box className="date-time-box">
-                                                        <Box sx={{display: "flex", alignItems: "center"}}>
-                                                            <Typography
-                                                                className="main-date">{moment(item.date).format("D")}</Typography>
-                                                            <Box>
-                                                                <Typography
-                                                                    className="date-month">{moment(item.date).format("MMMM")}</Typography>
-                                                                <Typography
-                                                                    className="date-day">{moment(item.date).format("dddd")}</Typography>
-                                                            </Box>
-                                                        </Box>
-                                                        <Box className="time-btn-box">
-                                                            <Box className="switch-field">
-                                                                <input
-                                                                    type="radio"
-                                                                    id="radio-one"
-                                                                    name="switch-one"
-                                                                    value="yes"
-                                                                    // checked
-                                                                />
-                                                                <label for="radio-one">
-                                                                    <Typography className="time-text">
-                                                                        {moment(item?.from, 'HH:mm').format('h:mm A')} - {moment(item?.to, 'HH:mm').format('h:mm A')}
-                                                                    </Typography>
-                                                                    {/*<span style={{color: "#F8A039"}}>filling fast</span>*/}
-                                                                </label>
-                                                            </Box>
-                                                        </Box>
-                                                    </Box>
-                                                )
-                                            })
-                                        }
+                                        {/*{*/}
+                                        {/*    userData?.new_dates.map((item) => {*/}
+                                        {/*        return (*/}
+                                        {/*            <Box className="date-time-box">*/}
+                                        {/*                <Box sx={{display: "flex", alignItems: "center"}}>*/}
+                                        {/*                    <Typography*/}
+                                        {/*                        className="main-date">{moment(item.date).format("D")}</Typography>*/}
+                                        {/*                    <Box>*/}
+                                        {/*                        <Typography*/}
+                                        {/*                            className="date-month">{moment(item.date).format("MMMM")}</Typography>*/}
+                                        {/*                        <Typography*/}
+                                        {/*                            className="date-day">{moment(item.date).format("dddd")}</Typography>*/}
+                                        {/*                    </Box>*/}
+                                        {/*                </Box>*/}
+                                        {/*                <Box className="time-btn-box">*/}
+                                        {/*                    <Box className="switch-field">*/}
+                                        {/*                        <input*/}
+                                        {/*                            type="radio"*/}
+                                        {/*                            id="radio-one"*/}
+                                        {/*                            name="switch-one"*/}
+                                        {/*                            value="yes"*/}
+                                        {/*                            // checked*/}
+                                        {/*                        />*/}
+                                        {/*                        <label for="radio-one">*/}
+                                        {/*                            <Typography className="time-text">*/}
+                                        {/*                                {moment(item?.from, 'HH:mm').format('h:mm A')} - {moment(item?.to, 'HH:mm').format('h:mm A')}*/}
+                                        {/*                            </Typography>*/}
+                                        {/*                            /!*<span style={{color: "#F8A039"}}>filling fast</span>*!/*/}
+                                        {/*                        </label>*/}
+                                        {/*                    </Box>*/}
+                                        {/*                </Box>*/}
+                                        {/*            </Box>*/}
+                                        {/*        )*/}
+                                        {/*    })*/}
+                                        {/*}*/}
                                         <Box className="date-time-box">
                                             <Box sx={{display: "flex", alignItems: "center"}}>
                                                 <Typography className="main-date">12</Typography>

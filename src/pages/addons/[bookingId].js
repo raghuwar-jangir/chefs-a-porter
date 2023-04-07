@@ -358,9 +358,9 @@ const Addons = (props) => {
                                                     with
                                                     the perfect custom experience</Typography>
                                                 <Grid container className="addon-grid" rowSpacing={2} columnSpacing={2}>
-                                                    {userData.map((item, index) => (
+                                                    {userData?.map((item, index) => (
                                                         <Grid item xl={4} md={4} sm={6} xs={6} key={index}>
-                                                            <AddonsCard image={item.image} title={item.name}/>
+                                                            <AddonsCard image={item?.image} title={item?.name}/>
                                                         </Grid>
                                                     ))}
                                                 </Grid>

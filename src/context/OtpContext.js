@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import * as _ from "lodash";
 import {useLocation} from "@reach/router";
 import CmsContext from "./CmsContext";
+import UsersContext from "./UsersContext";
 
 const defaultState = {
     data: {},
@@ -16,6 +17,7 @@ const OtpProvider = (props) => {
     const path = useLocation();
     const currentPath = path.pathname.split("/")[1];
     const {data} = useContext(CmsContext);
+    const {eventId,supperClubDetailId} = useContext(UsersContext);
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
     const [otpNumber, setOtpNumber] = useState('');
     const [verifyOtp, setVerifyOtp] = useState('');
@@ -89,6 +91,9 @@ const OtpProvider = (props) => {
                 booking_date: priveeData.date,
                 booking_time: eventData.startTime,
                 otp: verifyOtp,
+                // menu_selection: "host",
+                common_menu: eventId,
+                message:"Addition info"
             }).then((response) => {
                 if (response.status === 200) {
                     // Cookies.remove('eventData');
@@ -112,6 +117,8 @@ const OtpProvider = (props) => {
                 courses: eventData.numberOfCourses,
                 city: superClubBookingDetails.city,
                 booking_date: priveeData.date,
+                common_menu: supperClubDetailId,
+                message:"Addition info",
                 otp: verifyOtp,
             }).then((response) => {
                 if (response.status === 200) {
@@ -121,7 +128,7 @@ const OtpProvider = (props) => {
                 }
             })
         }
-    }, [otpNumber, verifyOtp, resendOtp, isStatus])
+    }, [otpNumber, verifyOtp, resendOtp, isStatus,isSupperClubStatus])
     const {children} = props
     return (
         <OtpContext.Provider
