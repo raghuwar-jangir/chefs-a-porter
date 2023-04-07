@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import * as Yup from "yup";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import {
@@ -41,6 +41,7 @@ import useRazorpay from "react-razorpay";
 import { useCallback } from "react";
 import Cookies from "js-cookie";
 import * as _ from "lodash";
+import UsersContext from "../../context/UsersContext";
 
 const BookingSummary = () => {
   const validationSchema = Yup.object().shape({
@@ -56,6 +57,8 @@ const BookingSummary = () => {
   const bookingCookieValue = Cookies.get("bookingConfirm");
   const [paymentCalulationData, setPaymentCalulationData] = useState(JSON?.parse(cookieValue));
   const [razorpayData, setRazorpayData] = useState();
+  const {setPaymentVerification} = useContext(UsersContext);
+  // console.log("paymentVerification=====>", setPaymentVerification);
   useEffect(() => {
     if (cookieValue) {
       setPaymentCalulationData(JSON.parse(cookieValue));
@@ -64,7 +67,6 @@ const BookingSummary = () => {
       setRazorpayData(JSON.parse(bookingCookieValue));
     }
   }, [cookieValue, bookingCookieValue]);
-
   const initialValues = {
     number: "9876543210",
     name: "Teqzo International",
@@ -87,24 +89,25 @@ const BookingSummary = () => {
   const handlePayment = useCallback(() => {
 
         const options = {
-            key: "rzp_test_MHRk336eUPGyWR",
+            // key: "rzp_test_MHRk336eUPGyWR",
+            key: "rzp_test_OqWbWLVoLIKRZ7",
             amount: paymentCalulationData?.total * 100,
             // amount: 400 * 100,
             currency: "INR",
             name: "Chefs-à-Porter",
+            order_id: razorpayData?.razorpay_order_id,
             description: "Test Transaction",
             image: 'https://chefsaporter.com/assets/img/logo_black.svg',
             theme: {color: '#C6A87D', fontFamily: 'ProximaNovaA-Regular'},
 
       handler: (res) => {
         console.log("res", res);
+        setPaymentVerification(true);
         handleBookingSuccessOpen(true);
       },
     };
 
     const rzpay = new Razorpay(options);
-    console.log("amount===>", typeof paymentCalulationData?.payment?.total);
-    console.log("razorpayKey====>",razorpayData?.razorpay_key);
     rzpay.open();
     rzpay.on("payment.failed", function (response) {
       console.log("fails", response);
@@ -126,9 +129,6 @@ const BookingSummary = () => {
         }
       }, [customerInfoCookieValue, eventDataCookieValue]);
   }
-
-  console.log("customerInfo======", customerInfo);
-  console.log("paymentCalulationData========>",paymentCalulationData);
 
   const BoxWrapper = styled(Box)(() => ({
     background: "#080B0E",
