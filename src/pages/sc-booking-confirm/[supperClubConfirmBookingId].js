@@ -42,6 +42,8 @@ import support from "../../assets/images/support.png";
 import * as _ from "lodash";
 import Cookies from "js-cookie";
 import moment from "moment/moment";
+// import useRazorpay from "react-razorpay";
+// import { useCallback } from "react";
 
 const ScBookingConfirm = () => {
     // const handleClick = () => {
@@ -97,6 +99,34 @@ const ScBookingConfirm = () => {
     const [bookingSuccessOpen, setBookingSuccessOpen] = useState(false);
     const handleBookingSuccessOpen = () => setBookingSuccessOpen(true);
     const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
+
+    // const Razorpay = useRazorpay();
+    //
+    // const handlePayment = useCallback(() => {
+    //     const options = {
+    //         // key: razorpayData?.razorpay_key,
+    //         key:'rzp_test_OqWbWLVoLIKRZ7',
+    //         amount: 100 * 100,
+    //         currency: "INR",
+    //         name: "Chefs-à-Porter",
+    //         // order_id: razorpayData?.razorpay_order_id,
+    //         description: "Test Transaction",
+    //         image: "https://chefsaporter.com/assets/img/logo_black.svg",
+    //         theme: { color: "#C6A87D", fontFamily: "ProximaNovaA-Regular" },
+    //
+    //         handler: (res) => {
+    //             console.log("res", res);
+    //             handleBookingSuccessOpen(true);
+    //         },
+    //     };
+    //
+    //     const rzpay = new Razorpay(options);
+    //     rzpay.open();
+    //     rzpay.on("payment.failed", function (response) {
+    //         console.log("fails", response);
+    //     });
+    // }, [Razorpay]);
+
     const MainBox = styled(Box)({
         padding: "80px 120px",
         marginTop: "40px",
@@ -1329,7 +1359,7 @@ const ScBookingConfirm = () => {
                                             <Box>
                                                 <button
                                                     type="submit"
-                                                    // onClick={handleClick}
+                                                    onClick={handlePayment}
                                                     className="submit-req"
                                                 >
                                                     Reserve a seat

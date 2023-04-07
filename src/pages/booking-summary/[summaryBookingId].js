@@ -51,14 +51,17 @@ const BookingSummary = () => {
         pincode: Yup.string().required("Pincode is required"),
         number1: Yup.string().required("Number is required"),
     });
-
-    const [paymentCalulationData, setPaymentCalulationData] = useState()
     const cookieValue = Cookies.get('paymentCalculation');
+    const [paymentCalulationData, setPaymentCalulationData] = useState(JSON.parse(cookieValue));
+    const [razorpayData, setRazorpayData] = useState();
     useEffect(() => {
         if (cookieValue) {
             setPaymentCalulationData(JSON.parse(cookieValue));
         }
-    }, [cookieValue])
+        if (bookingCookieValue) {
+            setRazorpayData(JSON.parse(bookingCookieValue));
+        }
+    }, [cookieValue,bookingCookieValue])
     console.log("paymentCalulationData=====", paymentCalulationData)
 
 
@@ -86,8 +89,8 @@ const BookingSummary = () => {
 
         const options = {
             key: "rzp_test_MHRk336eUPGyWR",
-            // amount: `${paymentCalulationData?.payment?.total * 100}`,
-            amount: 400 * 100,
+            amount: paymentCalulationData?.total * 100,
+            // amount: 400 * 100,
             currency: "INR",
             name: "Chefs-à-Porter",
             description: "Test Transaction",
