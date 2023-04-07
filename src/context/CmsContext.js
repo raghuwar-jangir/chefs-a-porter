@@ -26,19 +26,31 @@ const CmsProvider = (props) => {
         'corporate-booking': 'corporate_booking'
     }
 
-    const path = useLocation()
+    const path = useLocation();
 
     const currentPath = path.pathname.split("/")[1];
 
     const baseUrl = `https://chefv2.hypervergedemo.site/v1/cms`;
 
-    const emptyUrl = currentPath.startsWith(null) ? currentPath : currentPath + "/"
+    const emptyUrl = currentPath.startsWith(null) ? currentPath : currentPath + "/";
 
-    const [data, setData] = useState()
+    const [data, setData] = useState();
+    const [callMobileNumber, setCallMobileNumber] = useState();
+    const [mealData, setMealData] = useState();
 
     useEffect(() => {
         axios.get(baseUrl + `/${pathInfo[!currentPath ? emptyUrl : currentPath]}/`).then(result => {
             setData(result.data)
+        })
+        axios.get(baseUrl + '/footer').then(result => {
+            setCallMobileNumber(result.data.footer.footer.mobile)
+        })
+        axios.get('https://chefv2.hypervergedemo.site/v1/meal_times', {
+            headers: {
+                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTM1MWZmNmIzYjBmOTYxY2IxZGQxNjciLCJpYXQiOjE2ODA3ODk1NjksImV4cCI6MTY4MDc5MzE2OSwidHlwZSI6ImFjY2VzcyJ9.HG9EDz1XRdcDX0XXsdGpgOySGd6QijmrqiJnnz6DU0k`
+            }
+        }).then(result => {
+            setMealData(result.data.results)
         })
     }, [path, currentPath])
 
@@ -47,6 +59,8 @@ const CmsProvider = (props) => {
         <CmsContext.Provider
             value={{
                 data,
+                callMobileNumber,
+                mealData
             }}
         >
             {children}

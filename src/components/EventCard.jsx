@@ -173,7 +173,7 @@ const EventCard = () => {
                         <ReactReadMoreReadLess
                             readMoreStyle={{textDecoration: "underline"}}
                             readLessStyle={{textDecoration: "underline"}}
-                            charLimit={125}
+                            charLimit={100}
                             readMoreText={"Read more"}
                             readLessText={"Read less"}
                             readMoreClassName="read-more-less--more"
@@ -199,19 +199,21 @@ const EventCard = () => {
                             <Box className="sub-box-card">
                                 <img className="logo" src={culinary}/>
                                 <Typography className="field-name-2">Culinary School:</Typography>
-                                <Typography className="field-ans-2">{userData?.user?.details?.culinary_school}</Typography>
+                                <Typography
+                                    className="field-ans-2">{userData?.user?.details?.culinary_school}</Typography>
                             </Box>
                             <Box className="sub-box-card">
                                 <img className="logo" src={chef}/>
                                 <Typography className="field-name-2">Trained under:</Typography>
-                                <Typography className="field-ans-2">{userData?.user?.details?.trained_under}</Typography>
+                                <Typography
+                                    className="field-ans-2">{userData?.user?.details?.trained_under}</Typography>
                             </Box>
                         </Box>
                         <Typography className="details-2">
                             <ReactReadMoreReadLess
                                 readMoreStyle={{textDecoration: "underline"}}
                                 readLessStyle={{textDecoration: "underline"}}
-                                charLimit={125}
+                                charLimit={100}
                                 readMoreText={"Read more"}
                                 readLessText={"Read less"}
                                 readMoreClassName="read-more-less--more-2"

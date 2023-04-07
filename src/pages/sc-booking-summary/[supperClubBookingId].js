@@ -19,12 +19,13 @@ import {navigate} from "gatsby";
 import Cookies from "js-cookie";
 import * as _ from "lodash";
 import UsersContext from "../../context/UsersContext";
+import moment from "moment";
 
 
 const ScBookingSummary = () => {
     const {setIsSupperBookingStatus} = useContext(UsersContext)
-    const [supperClubPaymentCalculationData, setSupperClubPaymentCalculationData] = useState()
-    const cookieValue = Cookies.get('supperClubBookingPaymentCalculation');
+    const [supperClubBookingData, setSupperClubBookingData] = useState()
+    const cookieValue = Cookies.get('supperClubBookingData');
     const supperClubBookingIdCookieValue = Cookies?.get('supperClubConfirmBookingId');
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
     const [superClubBookingDetails, setSuperClubBookingDetails] = useState()
@@ -32,16 +33,12 @@ const ScBookingSummary = () => {
 
     useEffect(() => {
         if (cookieValue) {
-            setSupperClubPaymentCalculationData(JSON.parse(cookieValue));
+            setSupperClubBookingData(JSON.parse(cookieValue));
         }
         if (cookieValue2) {
             setSuperClubBookingDetails(JSON.parse(cookieValue2));
         }
     }, [cookieValue, cookieValue2])
-
-    console.log("======== s data", superClubBookingDetails)
-
-    console.log("supperClubPaymentCalculationData======", supperClubPaymentCalculationData)
 
     const handleClick = () => {
         navigate(`/sc-booking-confirm/${supperClubBookingId}`);
@@ -711,17 +708,17 @@ const ScBookingSummary = () => {
                                     <Box className="booking-box">
                                         <Box className="chef-box">
                                             <Typography className="booking-summary-title">
-                                                The Big Fat Parsi Blowout
+                                                {supperClubBookingData?.event?.title}
                                             </Typography>
                                             <CreateIcon className="pencil-icon"/>
                                         </Box>
                                         <Box class="chef-edit">
                                             <Typography className="chef-edit-title">
-                                                Curated by <span className="chef-edit-sub">Chef Mako</span>
+                                                Curated by <span className="chef-edit-sub">{supperClubBookingData?.event?.chef?.name}</span>
                                             </Typography>
                                             <Typography className="chef-seats">
                                                 <img className="chef-people" src={people}/>
-                                                <Typography className="chef-people-no">4 Seats</Typography>
+                                                <Typography className="chef-people-no">{supperClubBookingData?.event?.seats}</Typography>
                                             </Typography>
                                         </Box>
                                         <hr className="hr"/>
@@ -729,13 +726,13 @@ const ScBookingSummary = () => {
                                             <Box className="chef-profile-detail">
                                                 <img className="chef-profile-icon" src={dateGold}/>
                                                 <Typography className="chef-profile-date">
-                                                    April 9 | 7:30 PM - 10 PM
+                                                    {moment(supperClubBookingData?.event?.dates[0]).format("MMMM D")} | {moment(supperClubBookingData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubBookingData?.event?.timetill, 'HH:mm').format('h:mm A')}
                                                 </Typography>
                                             </Box>
                                             <Box className="chef-profile-detail">
                                                 <img className="chef-profile-icon" src={location}/>
                                                 <Typography className="chef-profile-date">
-                                                    Silver bar, Downtown
+                                                    {supperClubBookingData?.event?.venue}
                                                 </Typography>
                                             </Box>
                                             <Box className="chef-profile-detail">
@@ -831,33 +828,38 @@ const ScBookingSummary = () => {
                                             <Stack
                                                 className="date-stack"
                                             >
-                                                <Typography className="date-description">April 9</Typography>
+                                                {!_.isEmpty(supperClubBookingData) &&
+                                                    <Typography className="date-description">
+                                                        {moment(supperClubBookingData?.event?.dates[0]).format("MMMM D")}
+                                                    </Typography>
+                                                }
                                                 <span className="line">|</span>
                                                 <Typography className="date-description">
                                                     {" "}
-                                                    7:30 PM - 10 PM
+                                                    {/*7:30 PM - 10 PM*/}
+                                                    {moment(supperClubBookingData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubBookingData?.event?.timetill, 'HH:mm').format('h:mm A')}
                                                 </Typography>
                                                 <span className="line">|</span>
                                                 <Typography className="date-description">
-                                                    Blue Cafe, Kamanahalli
+                                                    {supperClubBookingData?.event?.venue}
                                                 </Typography>
                                             </Stack>
                                         </Box>
                                         <Box className="event-div">
-                                            <img src={sGallery} alt="" className="per-dinner-img"/>
+                                            <img src={supperClubBookingData?.event?.pictures[0]} alt="" className="per-dinner-img"/>
                                             <Box sx={{marginLeft: "12px"}}>
                                                 <Typography className="event-title">
-                                                    The Big Fat Parsi Blowout
+                                                    {supperClubBookingData?.event?.title}
                                                 </Typography>
                                                 <Typography className="event-subtitle">
                                                     Curated by{" "}
                                                     <a href="#" className="event-link">
-                                                        Chef Mako
+                                                        {supperClubBookingData?.event?.chef?.name}
                                                     </a>
                                                 </Typography>
                                                 <Typography className="rating-star">
                                                     <img className="rating-people" src={people}/>
-                                                    <Typography className="rating-star">4 Seats</Typography>
+                                                    <Typography className="rating-star">{supperClubBookingData?.event?.seats}</Typography>
                                                 </Typography>
                                             </Box>
                                         </Box>
@@ -871,17 +873,17 @@ const ScBookingSummary = () => {
                                                 <ExpandMoreIcon className="ex-icon"/>
                                             </Box>
                                             {
-                                                !_.isEmpty(supperClubPaymentCalculationData) &&
+                                                !_.isEmpty(supperClubBookingData) &&
                                                 <Box className="table table-borderless">
                                                     {
-                                                        Object.keys(supperClubPaymentCalculationData?.payment).map((key) => {
+                                                        Object.keys(supperClubBookingData?.payment).map((key) => {
                                                             return (
                                                                 <Box className="table-box">
                                                                     <Typography
                                                                         className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
                                                                     <Typography
                                                                         className="table-details">₹
-                                                                        {supperClubPaymentCalculationData?.payment[key]}</Typography>
+                                                                        {supperClubBookingData?.payment[key]}</Typography>
                                                                 </Box>
                                                             )
                                                         })
@@ -892,7 +894,7 @@ const ScBookingSummary = () => {
                                                             Total</Typography>
                                                         <Typography
                                                             className="table-details grand-total">₹
-                                                            {supperClubPaymentCalculationData?.total}</Typography>
+                                                            {supperClubBookingData?.total}</Typography>
                                                     </Box>
                                                 </Box>
                                             }

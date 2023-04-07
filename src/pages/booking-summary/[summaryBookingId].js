@@ -135,6 +135,7 @@ const BookingSummary = () => {
   }
 
   console.log("customerInfo======", customerInfo);
+  console.log("paymentCalulationData========>",paymentCalulationData);
 
   const BoxWrapper = styled(Box)(() => ({
     background: "#080B0E",
@@ -1705,7 +1706,7 @@ const BookingSummary = () => {
                                 <span className="price">{paymentCalulationData?.payment?.total}</span>
                               </div>
                               <div className="table-box">
-                                <span className="tax">{razorpayData.booking_date}</span>
+                                <span className="tax">{razorpayData?.booking_date}</span>
                               </div>
                               <div className="table-box">
                                 <span className="tax">

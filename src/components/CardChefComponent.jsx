@@ -127,7 +127,7 @@ const CardChefComponent = ({bgColor}) => {
                             <ReactReadMoreReadLess
                                 readMoreStyle={{textDecoration: "underline"}}
                                 readLessStyle={{textDecoration: "underline"}}
-                                charLimit={125}
+                                charLimit={100}
                                 readMoreText={"Read more"}
                                 readLessText={"Read less"}
                                 readMoreClassName="read-more-less--more"
@@ -155,7 +155,7 @@ const CardChefComponent = ({bgColor}) => {
                             <ReactReadMoreReadLess
                                 readMoreStyle={{textDecoration: "underline", fontWeight: 'bold'}}
                                 readLessStyle={{textDecoration: "underline", fontWeight: 'bold'}}
-                                charLimit={125}
+                                charLimit={100}
                                 readMoreText={"Read more"}
                                 readLessText={"Read less"}
                                 readMoreClassName="read-more-less--more"

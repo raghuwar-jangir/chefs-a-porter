@@ -23,16 +23,16 @@ import ShareIcon from '@mui/icons-material/Share';
 import CmsContext from "../context/CmsContext"
 
 
-const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to,supperClubLink}) => {
+const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubLink}) => {
 
     const props = {
         heading
     }
-    const {headerData} = useContext(CmsContext);
+    const {callMobileNumber} = useContext(CmsContext);
 
     //calling button
     const handlePhoneCall = () => {
-        window.location.href = `tel:${+918147170055}`;
+        window.location.href = `tel:${callMobileNumber}`;
     };
 
     const [isOpen, setOpen] = useState(false);
@@ -73,6 +73,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to,supperClubLi
             width: "310px",
             height: '100%',
             backgroundColor: '#080B0E',
+            paddingRight: '8px'
         },
         '.MuiButtonBase-root-MuiListItem-root': {
             padding: '8px 16px',
@@ -400,7 +401,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to,supperClubLi
                                             />
                                         </Box>
                                     }
-                                    {/*<a href="#" onClick={handlePhoneCall}>*/}
+                                    {/*<a href="tel:`${callMobileNumber}`">*/}
                                     <img src={telLogo} onClick={handlePhoneCall} className='telePhoneLogo'/>
                                     {/*</a>*/}
                                 </Grid>
@@ -446,7 +447,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to,supperClubLi
                                 // onKeyDown={toggleDrawer(false)}
                             >
                                 <List>
-                                    <ListItem button sx={{display: 'flex', justifyContent: 'end'}}>
+                                    <ListItem button sx={{display: 'flex', justifyContent: 'flex-end'}}>
                                         <CloseIcon sx={{color: '#c6a87d'}}
                                                    onClick={toggleDrawer(false)}/>
                                     </ListItem>
@@ -480,7 +481,8 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to,supperClubLi
                                     <ListItem button>
                                         <List
                                             sx={{
-                                                width: '100%', maxWidth: '100%', '.css-fpvc7o-MuiList-root': {
+                                                width: '100%', maxWidth: '100%',
+                                                '.css-fpvc7o-MuiList-root': {
                                                     paddingBottom: '0px !important',
                                                     paddingTop: '0px !important'
                                                 },

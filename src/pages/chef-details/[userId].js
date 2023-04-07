@@ -851,7 +851,7 @@ const ChefDetails = (props) => {
                                                         </Box>
                                                         <Box className="read-more">
                                                             <ReactReadMoreReadLess
-                                                                charLimit={125}
+                                                                charLimit={100}
                                                                 className="read-more-content"
                                                                 readMoreClassName="read-more-less--more"
                                                                 readLessClassName="read-more-less--less"

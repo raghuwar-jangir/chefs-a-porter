@@ -19,6 +19,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {navigate} from "gatsby";
 import UsersContext from "../../context/UsersContext";
+import CmsContext from "../../context/CmsContext";
 import Cookies from 'js-cookie';
 
 const BoxWrapper = styled(Box)(() => ({
@@ -424,6 +425,7 @@ const style = {
 const PriveeViewMore = (props) => {
 
     const {userData} = useContext(UsersContext);
+    const {mealData} = useContext(CmsContext);
     const [priveeInfo, setPriveeInfo] = useState()
     const cookieValue = Cookies?.get('priveeData');
 
@@ -457,239 +459,251 @@ const PriveeViewMore = (props) => {
                                 <Box className="privee-container">
                                     <Box className="pe-fo-exp">
                                         <a className="edit" onClick={handleOpen}>Edit</a>
-                                        <Formik
-                                            initialValues={{
-                                                city: priveeInfo?.city,
-                                                on: new Date(),
-                                                time: 'Lunch',
-                                                diners: 1
-                                            }}
-                                            onSubmit={(values) => {
-                                                console.log(values.date)
-                                                const experienceData = {
-                                                    ...values,
-                                                    on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
-                                                }
-                                                console.log("value===>", values)
-                                                console.log("experienceData===>", experienceData)
-                                            }}
-                                        >
-                                            {({values, handleChange, handleSubmit, setFieldValue}) => (
-                                                <Form onSubmit={handleSubmit}>
-                                                    <Box className="form-row">
-                                                        <Box className="form-group">
-                                                            <label className="label">Where</label>
-                                                            <Select
-                                                                labelId="demo-simple-select-label"
-                                                                id="demo-simple-select"
-                                                                name="city"
-                                                                value={values.city}
-                                                                onChange={handleChange}
-                                                                defaultValue={values.city}
-                                                                className="selectpicker my-select dropdown-toggle form-control"
-                                                                sx={{
-                                                                    fontSize: '20px',
-                                                                    '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                        border: 'none',
-                                                                    },
-                                                                    '.MuiSelect-icon': {
-                                                                        color: '#FBFBFB'
-                                                                    },
-                                                                    '.MuiSelect-select': {
-                                                                        padding: '0px 5px',
+                                        {
+                                            !_.isEmpty(priveeInfo) &&
+                                            <Formik
+                                                initialValues={{
+                                                    city: priveeInfo?.city,
+                                                    on: moment(priveeInfo?.date).format('ddd,DD MMM') ? moment(priveeInfo?.date).format('ddd,DD MMM') : new Date(),
+                                                    time: priveeInfo?.time,
+                                                    diners: 1
+                                                }}
+                                                onSubmit={(values) => {
+                                                    console.log(values.date)
+                                                    const experienceData = {
+                                                        ...values,
+                                                        on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
+                                                    }
+                                                    console.log("value===>", values)
+                                                    console.log("experienceData===>", experienceData)
+                                                }}
+                                            >
+                                                {({values, handleChange, handleSubmit, setFieldValue}) => (
+                                                    <Form onSubmit={handleSubmit}>
+                                                        <Box className="form-row">
+                                                            <Box className="form-group">
+                                                                <label className="label">Where</label>
+                                                                <Select
+                                                                    labelId="demo-simple-select-label"
+                                                                    id="demo-simple-select"
+                                                                    name="city"
+                                                                    value={values.city}
+                                                                    onChange={handleChange}
+                                                                    defaultValue={values.city}
+                                                                    className="selectpicker my-select dropdown-toggle form-control"
+                                                                    sx={{
                                                                         fontSize: '20px',
-                                                                        fontWeight: '100'
-                                                                    }
-                                                                }}
-                                                                MenuProps={{
-                                                                    PaperProps: {
-                                                                        sx: {
-                                                                            background: "#080B0E",
-                                                                            color: '#FBFBFB',
-                                                                            li: {
-                                                                                fontSize: '20px',
-                                                                                fontWeight: '100',
-                                                                                padding: '6px 16px'
-                                                                            },
-                                                                            ul: {
-                                                                                display: 'flex',
-                                                                                flexDirection: 'column'
-                                                                            },
-                                                                            'li:last-child': {
-                                                                                borderBottom: 'none'
-                                                                            },
-                                                                            'li:hover': {
-                                                                                color: '#C6A87D!important',
-                                                                                backgroundColor: '#DCD7CB !important'
-                                                                            },
-                                                                            "&& .Mui-selected": {
-                                                                                backgroundColor: "#0000FF !important"
-                                                                            }
+                                                                        '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                            border: 'none',
                                                                         },
-                                                                    },
-                                                                }}
-                                                            >
-                                                                <MenuItem value="Mumbai">Mumbai</MenuItem>
-                                                                <MenuItem value="Delhi">Delhi</MenuItem>
-                                                                <MenuItem value="Goa">Goa</MenuItem>
-                                                                <MenuItem value="Banglore">Banglore</MenuItem>
-                                                                <MenuItem value="Hydrabad">Hydrabad</MenuItem>
-                                                            </Select>
-                                                        </Box>
-                                                        <Box className="form-group">
-                                                            <label className="label">On</label>
-                                                            <DatePickerInput
-                                                                name="on"
-                                                                value={values.on}
-                                                                displayFormat="ddd,DD MMM"
-                                                                returnFormat="ddd,DD MMM"
-                                                                className="form-control"
-                                                                onChange={(dateString) => setFieldValue('on', dateString)}
-                                                                defaultValue={values.on}
-                                                            />
-                                                        </Box>
-                                                        <Box className="form-group">
-                                                            <label className="label">Time</label>
-                                                            <Select
-                                                                labelId="demo-simple-select-label"
-                                                                id="demo-simple-select"
-                                                                name="time"
-                                                                value={values.time}
-                                                                onChange={handleChange}
-                                                                defaultValue={values.time}
-                                                                className="selectpicker my-select dropdown-toggle form-control"
-                                                                sx={{
-                                                                    fontSize: '20px',
-                                                                    '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                        border: 'none',
-                                                                    },
-                                                                    '.MuiSelect-icon': {
-                                                                        color: '#FBFBFB'
-                                                                    },
-                                                                    '.MuiSelect-select': {
-                                                                        padding: '0px 5px',
+                                                                        '.MuiSelect-icon': {
+                                                                            color: '#FBFBFB'
+                                                                        },
+                                                                        '.MuiSelect-select': {
+                                                                            padding: '0px 5px',
+                                                                            fontSize: '20px',
+                                                                            fontWeight: '100'
+                                                                        }
+                                                                    }}
+                                                                    MenuProps={{
+                                                                        PaperProps: {
+                                                                            sx: {
+                                                                                background: "#080B0E",
+                                                                                color: '#FBFBFB',
+                                                                                li: {
+                                                                                    fontSize: '20px',
+                                                                                    fontWeight: '100',
+                                                                                    padding: '6px 16px'
+                                                                                },
+                                                                                ul: {
+                                                                                    display: 'flex',
+                                                                                    flexDirection: 'column'
+                                                                                },
+                                                                                'li:last-child': {
+                                                                                    borderBottom: 'none'
+                                                                                },
+                                                                                'li:hover': {
+                                                                                    color: '#C6A87D!important',
+                                                                                    backgroundColor: '#DCD7CB !important'
+                                                                                },
+                                                                                "&& .Mui-selected": {
+                                                                                    backgroundColor: "#0000FF !important"
+                                                                                }
+                                                                            },
+                                                                        },
+                                                                    }}
+                                                                >
+                                                                    <MenuItem value="Mumbai">Mumbai</MenuItem>
+                                                                    <MenuItem value="Delhi">Delhi</MenuItem>
+                                                                    <MenuItem value="Goa">Goa</MenuItem>
+                                                                    <MenuItem value="Banglore">Banglore</MenuItem>
+                                                                    <MenuItem value="Hydrabad">Hydrabad</MenuItem>
+                                                                </Select>
+                                                            </Box>
+                                                            <Box className="form-group">
+                                                                <label className="label">On</label>
+                                                                <DatePickerInput
+                                                                    name="on"
+                                                                    value={values.on}
+                                                                    displayFormat="ddd,DD MMM"
+                                                                    returnFormat="ddd,DD MMM"
+                                                                    className="form-control"
+                                                                    onChange={(dateString) => setFieldValue('on', dateString)}
+                                                                    defaultValue={values.on}
+                                                                />
+                                                            </Box>
+                                                            <Box className="form-group">
+                                                                <label className="label">Time</label>
+                                                                <Select
+                                                                    labelId="demo-simple-select-label"
+                                                                    id="demo-simple-select"
+                                                                    name="time"
+                                                                    value={values.time}
+                                                                    onChange={handleChange}
+                                                                    defaultValue={values.time}
+                                                                    className="selectpicker my-select dropdown-toggle form-control"
+                                                                    sx={{
                                                                         fontSize: '20px',
-                                                                        fontWeight: '100'
-                                                                    }
-                                                                }}
-                                                                MenuProps={{
-                                                                    PaperProps: {
-                                                                        sx: {
-                                                                            background: "#080B0E",
-                                                                            color: '#FBFBFB',
-                                                                            li: {
-                                                                                fontSize: '20px',
-                                                                                fontWeight: '100',
-                                                                                padding: '6px 16px'
-                                                                            },
-                                                                            ul: {
-                                                                                display: 'flex',
-                                                                                flexDirection: 'column'
-                                                                            },
-                                                                            'li:last-child': {
-                                                                                borderBottom: 'none'
-                                                                            },
-                                                                            'li:hover': {
-                                                                                color: '#C6A87D!important',
-                                                                                backgroundColor: '#DCD7CB !important'
-                                                                            },
-                                                                            "&& .Mui-selected": {
-                                                                                backgroundColor: "#0000FF !important"
-                                                                            }
+                                                                        '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                            border: 'none',
                                                                         },
-                                                                    },
-                                                                }}
-                                                            >
-                                                                <MenuItem value="Lunch">Lunch</MenuItem>
-                                                                <MenuItem value="Dinner">Dinner</MenuItem>
-                                                                <MenuItem value="BreakFast">BreakFast</MenuItem>
-                                                            </Select>
-                                                        </Box>
-                                                        <Box className="form-group">
-                                                            <label className="label">Diners</label>
-                                                            <Select
-                                                                labelId="demo-simple-select-label"
-                                                                id="demo-simple-select"
-                                                                name="diners"
-                                                                value={values.diners}
-                                                                onChange={handleChange}
-                                                                defaultValue={values.diners}
-                                                                className="selectpicker my-select dropdown-toggle form-control"
-                                                                sx={{
-                                                                    fontSize: '20px',
-                                                                    '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                        border: 'none',
-                                                                    },
-                                                                    '.MuiSelect-icon': {
-                                                                        color: '#FBFBFB'
-                                                                    },
-                                                                    '.MuiSelect-select': {
-                                                                        padding: '0px 5px',
+                                                                        '.MuiSelect-icon': {
+                                                                            color: '#FBFBFB'
+                                                                        },
+                                                                        '.MuiSelect-select': {
+                                                                            padding: '0px 5px',
+                                                                            fontSize: '20px',
+                                                                            fontWeight: '100'
+                                                                        }
+                                                                    }}
+                                                                    MenuProps={{
+                                                                        PaperProps: {
+                                                                            sx: {
+                                                                                background: "#080B0E",
+                                                                                color: '#FBFBFB',
+                                                                                li: {
+                                                                                    fontSize: '20px',
+                                                                                    fontWeight: '100',
+                                                                                    padding: '6px 16px'
+                                                                                },
+                                                                                ul: {
+                                                                                    display: 'flex',
+                                                                                    flexDirection: 'column'
+                                                                                },
+                                                                                'li:last-child': {
+                                                                                    borderBottom: 'none'
+                                                                                },
+                                                                                'li:hover': {
+                                                                                    color: '#C6A87D!important',
+                                                                                    backgroundColor: '#DCD7CB !important'
+                                                                                },
+                                                                                "&& .Mui-selected": {
+                                                                                    backgroundColor: "#0000FF !important"
+                                                                                }
+                                                                            },
+                                                                        },
+                                                                    }}
+                                                                >
+                                                                    {
+                                                                        mealData.map((item) => {
+                                                                            return <MenuItem
+                                                                                value={item.name}>{item.name}</MenuItem>
+                                                                        })
+                                                                    }
+                                                                    {/*<MenuItem value="Lunch">Lunch</MenuItem>*/}
+                                                                    {/*<MenuItem value="Dinner">Dinner</MenuItem>*/}
+                                                                    {/*<MenuItem value="BreakFast">BreakFast</MenuItem>*/}
+                                                                </Select>
+                                                            </Box>
+                                                            <Box className="form-group">
+                                                                <label className="label">Diners</label>
+                                                                <Select
+                                                                    labelId="demo-simple-select-label"
+                                                                    id="demo-simple-select"
+                                                                    name="diners"
+                                                                    value={values.diners}
+                                                                    onChange={handleChange}
+                                                                    defaultValue={values.diners}
+                                                                    className="selectpicker my-select dropdown-toggle form-control"
+                                                                    sx={{
                                                                         fontSize: '20px',
-                                                                        fontWeight: '100'
-                                                                    }
-                                                                }}
-                                                                MenuProps={{
-                                                                    PaperProps: {
-                                                                        sx: {
-                                                                            background: "#080B0E",
-                                                                            color: '#FBFBFB',
-                                                                            li: {
-                                                                                fontSize: '20px',
-                                                                                fontWeight: '100',
-                                                                                padding: '6px 16px'
-                                                                            },
-                                                                            ul: {
-                                                                                display: 'flex',
-                                                                                flexDirection: 'column'
-                                                                            },
-                                                                            'li:last-child': {
-                                                                                borderBottom: 'none'
-                                                                            },
-                                                                            'li:hover': {
-                                                                                color: '#C6A87D!important',
-                                                                                backgroundColor: '#DCD7CB !important'
-                                                                            },
-                                                                            "&& .Mui-selected": {
-                                                                                backgroundColor: "#0000FF !important"
-                                                                            }
+                                                                        '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                            border: 'none',
                                                                         },
-                                                                    },
-                                                                }}
-                                                            >
-                                                                <MenuItem value="1">1</MenuItem>
-                                                                <MenuItem value="2">2</MenuItem>
-                                                                <MenuItem value="3">3</MenuItem>
+                                                                        '.MuiSelect-icon': {
+                                                                            color: '#FBFBFB'
+                                                                        },
+                                                                        '.MuiSelect-select': {
+                                                                            padding: '0px 5px',
+                                                                            fontSize: '20px',
+                                                                            fontWeight: '100'
+                                                                        }
+                                                                    }}
+                                                                    MenuProps={{
+                                                                        PaperProps: {
+                                                                            sx: {
+                                                                                background: "#080B0E",
+                                                                                color: '#FBFBFB',
+                                                                                li: {
+                                                                                    fontSize: '20px',
+                                                                                    fontWeight: '100',
+                                                                                    padding: '6px 16px'
+                                                                                },
+                                                                                ul: {
+                                                                                    display: 'flex',
+                                                                                    flexDirection: 'column'
+                                                                                },
+                                                                                'li:last-child': {
+                                                                                    borderBottom: 'none'
+                                                                                },
+                                                                                'li:hover': {
+                                                                                    color: '#C6A87D!important',
+                                                                                    backgroundColor: '#DCD7CB !important'
+                                                                                },
+                                                                                "&& .Mui-selected": {
+                                                                                    backgroundColor: "#0000FF !important"
+                                                                                }
+                                                                            },
+                                                                        },
+                                                                    }}
+                                                                >
+                                                                    <MenuItem value="1">1</MenuItem>
+                                                                    <MenuItem value="2">2</MenuItem>
+                                                                    <MenuItem value="3">3</MenuItem>
 
-                                                            </Select>
+                                                                </Select>
+                                                            </Box>
                                                         </Box>
-                                                    </Box>
-                                                </Form>
-                                            )}
-                                        </Formik>
+                                                    </Form>
+                                                )}
+                                            </Formik>
+                                        }
                                     </Box>
                                 </Box>
                             </Box>
                         </Box>
                         <Box className="available-experiences">
                             <Typography className="chef-header">Available Experiences</Typography>
-                            <Grid container spacing={5}>
-                                {userData?.results?.map((item) => {
-                                    return (
-                                        <Grid item xl={4} md={4} sm={6} xs={12}>
-                                            <AvlExperienceCarousel
-                                                // image={item.cover_picture}
-                                                image={item.user.picture}
-                                                title={item.title} description={`by ${item.user.name}`}
-                                                onClick={() => navigate(`/event-details/${item?.id}`)}
-                                            />
-                                        </Grid>
-                                    )
-                                })}
-                            </Grid>
+                            {
+                                !_.isEmpty(userData?.results) &&
+                                <Grid container spacing={5}>
+                                    {userData?.results?.map((item) => {
+                                        return (
+                                            <Grid item xl={4} md={4} sm={6} xs={12}>
+                                                <AvlExperienceCarousel
+                                                    // image={item.cover_picture}
+                                                    image={item.user.picture}
+                                                    title={item.title} description={`by ${item.user.name}`}
+                                                    onClick={() => navigate(`/event-details/${item?.id}`)}
+                                                />
+                                            </Grid>
+                                        )
+                                    })}
+                                </Grid>
+                            }
                         </Box>
                         <NeedHelp/>
                         <Footer/>
