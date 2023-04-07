@@ -133,7 +133,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                 // width:'100%'
             },
             '.grid-box': {
-                width: '48%',
+                width: '54%',
                 border: 'none !Important'
             },
             '.browser-hamburger-menu': {
@@ -168,7 +168,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                 display: 'flex',
                 justifyContent: 'space-evenly',
                 alignItems: 'center',
-                height: '20px'
+                // height: '20px'
             },
             '.browser-search': {
                 display: 'flex',
@@ -271,10 +271,13 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
             },
             '@media(min-width: 1000px) and (max-width: 1024px)': {
                 '.grid-box': {
-                    width: '70% !important'
+                    width: '75% !important'
                 },
                 '.header-search-box': {
                     display: 'none !important',
+                },
+                '.main-container': {
+                    padding: '8px 100px'
                 },
             },
             '@media(min-width: 1100px) and (max-width: 1450px)': {
@@ -361,6 +364,12 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                                     <Link
                                         className={`browser-hamburger-menu`}
                                         activeClassName={'browser-hamburger-menu active'}
+                                        to='/join-chef'>
+                                        Join As Chef
+                                    </Link>
+                                    <Link
+                                        className={`browser-hamburger-menu`}
+                                        activeClassName={'browser-hamburger-menu active'}
                                         to='/our-chefs'>
                                         Our Chefs
                                     </Link>
@@ -369,12 +378,6 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                                         activeClassName={'browser-hamburger-menu active'}
                                         to='/contact-us'>
                                         Contact
-                                    </Link>
-                                    <Link
-                                        className={`browser-hamburger-menu`}
-                                        activeClassName={'browser-hamburger-menu active'}
-                                        to='/about-us'>
-                                        About Us
                                     </Link>
                                 </Grid>
                                 <Grid className='header-search-box browser-search' item xl={3.7} md={3.7}

@@ -103,8 +103,8 @@ const OurChefsPage = () => {
                                     </Button>
                                 </Box>
                             </Box>
-                            <Box className="footer-shadow">
-                            </Box>
+                            {/*<Box className="footer-shadow">*/}
+                            {/*</Box>*/}
                         </Box>
                         <NeedHelp title={data.our_chefs.home_footer.desktop_title}
                                   description={data.our_chefs.home_footer.desktop_description}

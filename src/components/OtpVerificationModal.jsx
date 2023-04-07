@@ -57,8 +57,8 @@ const OtpVerificationModal = (props) => {
         if (!_.isEmpty(otp)) {
             setVerifyOtp(otp);
             setIsVerifiedOtpApiCall(true);
-            setIsBookingAPiCall(true);
             navigate(`/addons/${bookingId}`);
+            setIsBookingAPiCall(true);
         }
     }
 

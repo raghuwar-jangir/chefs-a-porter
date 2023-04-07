@@ -41,6 +41,9 @@ import * as _ from "lodash";
 import Cookies from "js-cookie";
 
 const EventDetails = (props) => {
+    const {eventId} = props;
+    console.log("=================---------",eventId)
+
     const {setEventId, userData} = useContext(UsersContext);
     const [showCarousel, setShowCarousel] = useState(false);
     const [title, setTitle] = useState("");
@@ -571,7 +574,7 @@ const EventDetails = (props) => {
     return (
         <React.Fragment>
             <MainBox>
-                {!_.isEmpty(userData) && (
+                {!_.isEmpty(userData && eventId) &&
                     <>
                         <Navbar to={"/event-details"} isColor={true}/>
                         <Box className="main-box">
@@ -917,7 +920,7 @@ const EventDetails = (props) => {
                         <Footer/>
                         <FooterEnd/>
                     </>
-                )}
+                }
             </MainBox>
         </React.Fragment>
     );

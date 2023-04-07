@@ -16,7 +16,7 @@ const Privee = (props) => {
             display: 'grid',
             gridTemplate: 'repeat(1, 1fr) / repeat(3, 3fr)',
             gap: '40px',
-            height: '1200px',
+            // height: '1200px',
             overflow: 'hidden',
             paddingLeft: '0.5rem',
             paddingRight: '0.5rem'

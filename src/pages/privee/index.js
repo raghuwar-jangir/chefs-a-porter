@@ -618,7 +618,7 @@ const PriveePage = (props) => {
             <BoxWrapper>
                 <Navbar isColor={true} heading="Privee"/>
                 {
-                    !_.isEmpty(data?.privee) &&
+                    !_.isEmpty(data?.privee && mealData) &&
                     <>
                         <MainBoxContent>
                             {/* //! privee header section for title */}

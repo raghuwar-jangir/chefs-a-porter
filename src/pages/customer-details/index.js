@@ -34,7 +34,7 @@ import OtpContext from "../../context/OtpContext";
 import * as _ from 'lodash'
 import OtpVerificationModal from "../../components/OtpVerificationModal";
 import Cookies from "js-cookie";
-import { withScriptjs } from "react-google-maps";
+import {withScriptjs} from "react-google-maps";
 import MapComponent from "../../components/MapComponent";
 
 
@@ -46,6 +46,8 @@ const validationSchema = Yup.object({
 
 const CustomerDetails = (props) => {
 
+    const eventIdCookieValue = Cookies.get('eventIdValue');
+    const eventId = eventIdCookieValue?.replaceAll('"', '')
     const {setOtpNumber, setVerifyOtp, setResendOtp, setIsSendOtpApiCall} = useContext(OtpContext);
     const CHARACTER_LIMIT = 40;
     const [newAddress, setNewAddress] = useState();
@@ -85,7 +87,7 @@ const CustomerDetails = (props) => {
         setCurrentModal(0);
     };
     const handleClose = () => {
-            setOpen(false);
+        setOpen(false);
     };
     //google map for address popup
     const AnyReactComponent = ({text}) => <div>{text}</div>;
@@ -222,7 +224,7 @@ const CustomerDetails = (props) => {
             lineHeight: "19px",
             color: "#FBFBFB",
             width: "100%",
-            outline:'none'
+            outline: 'none'
         },
 
         ".loc-ad": {
@@ -314,6 +316,7 @@ const CustomerDetails = (props) => {
         },
         '.arrow-left': {
             color: '#FBFBFB',
+            cursor: 'pointer'
             // fontSize: '20px',
         },
         '.cust-details': {
@@ -865,7 +868,9 @@ const CustomerDetails = (props) => {
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">
                             <Box className="book-trad">
-                                <ArrowBackIcon className="arrow-left"/>
+                                <ArrowBackIcon className="arrow-left" onClick={() => {
+                                    navigate(`/event-details/${eventId}`)
+                                }}/>
                                 <Typography className="addons-title">Book a Traditional Oma Kase</Typography>
                             </Box>
                             <Box className="row customer-details addons-div">
@@ -933,7 +938,7 @@ const CustomerDetails = (props) => {
                                                                            className="form-control"
                                                                            id="validationCustom03"
                                                                            placeholder="Add Address"
-                                                                           // value={values.address}
+                                                                    // value={values.address}
                                                                            value={formAddress}
                                                                            onChange={handleChange}
                                                                            autoComplete="off"
@@ -1257,13 +1262,13 @@ const CustomerDetails = (props) => {
                     onClose={handleClose}
                     aria-labelledby="keep-mounted-modal-title"
                     aria-describedby="keep-mounted-modal-description"
-                    sx={{ overflowX: "scroll" }}
+                    sx={{overflowX: "scroll"}}
                 >
                     <Box sx={styleModel1}>
                         <Box className="modal-content">
                             <Box className="modal-header">
-                                <Box sx={{ display: "flex", alignItems: "center" }}>
-                                    <ArrowBackIcon className="arrow-left" />
+                                <Box sx={{display: "flex", alignItems: "center"}}>
+                                    <ArrowBackIcon className="arrow-left"/>
                                     <Typography id="exampleModalLabel" className="modal-title">
                                         Address
                                     </Typography>
@@ -1276,7 +1281,7 @@ const CustomerDetails = (props) => {
                                         className="btn-primary"
                                         onClick={handleClose}
                                     >
-                                        <CloseIcon />
+                                        <CloseIcon/>
                                     </button>
                                 </Box>
                             </Box>
@@ -1288,7 +1293,7 @@ const CustomerDetails = (props) => {
                                                 <Box className="map-box">
                                                     <MapLoader setNewAddress={setNewAddress} setOpen={setOpen}
                                                                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlUV7Gli9S0rwtq72UMXLf9HlrRWkvqc8&libraries=places"
-                                                               loadingElement={<div style={{ height: `100%` }} />}
+                                                               loadingElement={<div style={{height: `100%`}}/>}
                                                     />
                                                 </Box>
                                             </Box>

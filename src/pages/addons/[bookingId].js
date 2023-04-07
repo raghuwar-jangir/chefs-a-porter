@@ -21,10 +21,11 @@ import Cookies from "js-cookie";
 
 
 const Addons = (props) => {
-    const {userData, setIsBookingStatus} = useContext(UsersContext);
     const summaryCookieValue = Cookies.get('BookingId');
     const summaryBookingId = summaryCookieValue?.replaceAll('"', '')
-
+    const {bookingId} = props;
+    const {userData, setIsBookingStatus} = useContext(UsersContext);
+    console.log("addons userData==========",userData)
     const handleClick = () => {
         navigate(`/booking-summary/${summaryBookingId}`);
         setIsBookingStatus(true)
@@ -65,6 +66,7 @@ const Addons = (props) => {
         },
         '.arrow-left': {
             color: '#FBFBFB',
+            cursor:'pointer',
             // fontSize: '20px',
         },
         '.partner': {
@@ -337,17 +339,20 @@ const Addons = (props) => {
         },
     }))
 
+    console.log("======bookingId=============",bookingId)
+    console.log("======userData=============", userData)
+
     return (
         <React.Fragment>
             <BoxWrapper>
                 <Navbar to={'/addons'} isColor={true} isIcon={true} heading="Privee"/>
                 {
-                    !_.isEmpty(userData) &&
+                    !_.isEmpty(userData && bookingId) &&
                     <Box className="supper-gallery cust-details">
                         <Box className="container-fluid">
                             <Box className="row supper-chef-details">
                                 <Box className="book-trad">
-                                    <ArrowBackIcon className="arrow-left"/>
+                                    <ArrowBackIcon className="arrow-left" onClick={()=>navigate(`/customer-details`)}/>
                                     <Typography className="addons-title">Add-on Services</Typography>
                                 </Box>
                                 <Box className="row customer-details addons-div">
@@ -357,13 +362,17 @@ const Addons = (props) => {
                                                 <Typography className="addons-heading">Our partners help you get set up
                                                     with
                                                     the perfect custom experience</Typography>
-                                                <Grid container className="addon-grid" rowSpacing={2} columnSpacing={2}>
-                                                    {userData?.map((item, index) => (
-                                                        <Grid item xl={4} md={4} sm={6} xs={6} key={index}>
-                                                            <AddonsCard image={item?.image} title={item?.name}/>
-                                                        </Grid>
-                                                    ))}
-                                                </Grid>
+                                                {
+                                                    !_.isEmpty(userData) &&
+                                                    <Grid container className="addon-grid" rowSpacing={2} columnSpacing={2}>
+                                                        {userData.map((item, index) => (
+                                                            <Grid item xl={4} md={4} sm={6} xs={6} key={index}>
+                                                                <AddonsCard image={item?.image} title={item?.name}/>
+                                                            </Grid>
+                                                        ))}
+                                                    </Grid>
+                                                }
+
                                             </Box>
                                         </Grid>
                                         <Grid xl={5} lg={5} xs={5} md={5} sm={12} xs={12}
