@@ -47,7 +47,7 @@ const CmsProvider = (props) => {
         })
         axios.get('https://chefv2.hypervergedemo.site/v1/meal_times', {
             headers: {
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTM1MWZmNmIzYjBmOTYxY2IxZGQxNjciLCJpYXQiOjE2ODA3ODk1NjksImV4cCI6MTY4MDc5MzE2OSwidHlwZSI6ImFjY2VzcyJ9.HG9EDz1XRdcDX0XXsdGpgOySGd6QijmrqiJnnz6DU0k`
+                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTM1MWZmNmIzYjBmOTYxY2IxZGQxNjciLCJpYXQiOjE2ODA4NDA3MDksImV4cCI6MTY4MDg0NDMwOSwidHlwZSI6ImFjY2VzcyJ9.rPs9fEuBMEnZpUV_wM3xTaVnpK-I0sKLo117ptFCJE4`
             }
         }).then(result => {
             setMealData(result.data.results)
