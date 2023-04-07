@@ -39,6 +39,8 @@ const UsersProvider = (props) => {
     const [joinChefData, setJoinChefData] = useState({})
     const [isJoinChefData, setIsJoinChefData] = useState(false)
 
+    console.log("bookingId=======", bookingId)
+
     useEffect(() => {
         if (userId && currentPath === 'chef-details') {
             axios.get(baseUrl + '/users/' + userId).then(result => {
@@ -60,11 +62,14 @@ const UsersProvider = (props) => {
             axios.get(baseUrl + '/addon_category_master/all',).then(result => {
                 setUserData(result.data)
             })
-            axios.post(baseUrl + '/booking/calculate/' + bookingId).then((response) => {
-                if (response.status === 200) {
-                    Cookies.set('paymentCalculation', JSON.stringify(response.data));
-                }
-            })
+            if(bookingId){
+                axios.post(baseUrl + '/booking/calculate/' + bookingId).then((response) => {
+                    if (response.status === 200) {
+                        Cookies.set('paymentCalculation', JSON.stringify(response.data));
+                        console.log("===============",response.data)
+                    }
+                })
+            }
         } else if (isBookingStatus) {
             axios.post(baseUrl + '/booking/confirm/' + bookingId).then((response) => {
                 if (response.status === 200) {
@@ -77,6 +82,7 @@ const UsersProvider = (props) => {
             axios.post(baseUrl + '/booking/calculate/' + summaryBookingId).then((response) => {
                 if (response.status === 200) {
                     Cookies.set('paymentCalculation', JSON.stringify(response.data));
+                    console.log("paymentCalculation ===============",response.data)
                 }
             })
         } else if (isContactUsData) {
@@ -128,13 +134,15 @@ const UsersProvider = (props) => {
                 userData,
                 setUserId,
                 setEventId,
+                eventId,
                 setSupperClubDetailId,
                 setIsBookingStatus,
                 setContactUsData,
                 setIsContactUsData,
                 setJoinChefData,
                 setIsJoinChefData,
-                setIsSupperBookingStatus
+                setIsSupperBookingStatus,
+                supperClubDetailId
 
             }}
         >

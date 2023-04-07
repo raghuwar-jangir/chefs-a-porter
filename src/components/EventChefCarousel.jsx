@@ -202,7 +202,7 @@ const EventChefCarousel = (props) => {
                     !_.isEmpty(userData) &&
                     <>
                         <Typography className="dining-title">
-                            {userData.user.role} {userData.user.name} Creations
+                            {userData?.user?.role} {userData?.user?.name} Creations
                         </Typography>
                         <Swiper
                             slidesPerView={1}

@@ -170,18 +170,22 @@ const EventCard = () => {
                     </Box>
                     </Box>
                     <Typography className="details">
-                        <ReactReadMoreReadLess
-                            readMoreStyle={{textDecoration: "underline"}}
-                            readLessStyle={{textDecoration: "underline"}}
-                            charLimit={100}
-                            readMoreText={"Read more"}
-                            readLessText={"Read less"}
-                            readMoreClassName="read-more-less--more"
-                            readLessClassName="read-more-less--less"
-                        >
-                            {longText2}
-                            {/*{userData.desc}*/}
-                        </ReactReadMoreReadLess>
+                        {
+                            !_.isEmpty(userData?.desc) &&
+                            <ReactReadMoreReadLess
+                                readMoreStyle={{textDecoration: "underline"}}
+                                readLessStyle={{textDecoration: "underline"}}
+                                charLimit={100}
+                                readMoreText={"Read more"}
+                                readLessText={"Read less"}
+                                readMoreClassName="read-more-less--more"
+                                readLessClassName="read-more-less--less"
+                            >
+                                {/*{longText2}*/}
+                                {userData?.desc}
+                            </ReactReadMoreReadLess>
+                        }
+
                     </Typography>
                     <Box className='about-box'>
                         <Typography className="heading-2">About the Chef</Typography>
@@ -210,17 +214,21 @@ const EventCard = () => {
                             </Box>
                         </Box>
                         <Typography className="details-2">
-                            <ReactReadMoreReadLess
-                                readMoreStyle={{textDecoration: "underline"}}
-                                readLessStyle={{textDecoration: "underline"}}
-                                charLimit={100}
-                                readMoreText={"Read more"}
-                                readLessText={"Read less"}
-                                readMoreClassName="read-more-less--more-2"
-                                readLessClassName="read-more-less--less-2"
-                            >
-                                {userData?.user?.details?.intro}
-                            </ReactReadMoreReadLess>
+                            {
+                                !_.isEmpty(userData?.user?.details?.intro) &&
+                                <ReactReadMoreReadLess
+                                    readMoreStyle={{textDecoration: "underline"}}
+                                    readLessStyle={{textDecoration: "underline"}}
+                                    charLimit={100}
+                                    readMoreText={"Read more"}
+                                    readLessText={"Read less"}
+                                    readMoreClassName="read-more-less--more-2"
+                                    readLessClassName="read-more-less--less-2"
+                                >
+                                    {userData?.user?.details?.intro}
+                                </ReactReadMoreReadLess>
+                            }
+
                         </Typography>
                     </Box>
                 </MainBox>

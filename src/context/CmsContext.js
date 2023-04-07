@@ -45,12 +45,8 @@ const CmsProvider = (props) => {
         axios.get(baseUrl + '/footer').then(result => {
             setCallMobileNumber(result.data.footer.footer.mobile)
         })
-        axios.get('https://chefv2.hypervergedemo.site/v1/meal_times', {
-            headers: {
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTM1MWZmNmIzYjBmOTYxY2IxZGQxNjciLCJpYXQiOjE2ODA4NDA3MDksImV4cCI6MTY4MDg0NDMwOSwidHlwZSI6ImFjY2VzcyJ9.rPs9fEuBMEnZpUV_wM3xTaVnpK-I0sKLo117ptFCJE4`
-            }
-        }).then(result => {
-            setMealData(result.data.results)
+        axios.get('https://chefv2.hypervergedemo.site/v1/meal_times/all').then(result => {
+            setMealData(result.data)
         })
     }, [path, currentPath])
 

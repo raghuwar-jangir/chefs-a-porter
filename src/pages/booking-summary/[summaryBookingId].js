@@ -54,7 +54,7 @@ const BookingSummary = () => {
 
   const cookieValue = Cookies.get("paymentCalculation");
   const bookingCookieValue = Cookies.get("bookingConfirm");
-  const [paymentCalulationData, setPaymentCalulationData] = useState();
+  const [paymentCalulationData, setPaymentCalulationData] = useState(JSON?.parse(cookieValue));
   const [razorpayData, setRazorpayData] = useState();
   useEffect(() => {
     if (cookieValue) {
@@ -86,16 +86,15 @@ const BookingSummary = () => {
 
   const handlePayment = useCallback(() => {
 
-    const options = {
-      // key: razorpayData?.razorpay_key,
-      key:'rzp_test_OqWbWLVoLIKRZ7',
-      amount: paymentCalulationData?.total * 100,
-      currency: "INR",
-      name: "Chefs-à-Porter",
-      // order_id: razorpayData?.razorpay_order_id,
-      description: "Test Transaction",
-      image: "https://chefsaporter.com/assets/img/logo_black.svg",
-      theme: { color: "#C6A87D", fontFamily: "ProximaNovaA-Regular" },
+        const options = {
+            key: "rzp_test_MHRk336eUPGyWR",
+            amount: paymentCalulationData?.total * 100,
+            // amount: 400 * 100,
+            currency: "INR",
+            name: "Chefs-à-Porter",
+            description: "Test Transaction",
+            image: 'https://chefsaporter.com/assets/img/logo_black.svg',
+            theme: {color: '#C6A87D', fontFamily: 'ProximaNovaA-Regular'},
 
       handler: (res) => {
         console.log("res", res);
@@ -1680,8 +1679,8 @@ const BookingSummary = () => {
                                 <span className="price">{paymentCalulationData?.payment?.meal}</span>
                               </div>
                               <div className="table-box">
-                                <span>Delivery Charge</span>
-                                <span className="price">{paymentCalulationData?.payment?.delivery_charges}</span>
+                                <span>Service Charge</span>
+                                <span className="price">{paymentCalulationData?.payment?.service_charges}</span>
                               </div>
                               <div className="table-box">
                                 <span>Tax</span>
