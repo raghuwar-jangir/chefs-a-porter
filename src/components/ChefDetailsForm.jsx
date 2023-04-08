@@ -13,6 +13,7 @@ import Cookies from 'js-cookie';
 import {
     createMuiTheme, MuiThemeProvider, withStyles,
 } from "@material-ui/core/styles";
+import * as Yup from "yup";
 
 const defaultTheme = createMuiTheme();
 const theme = createMuiTheme({
@@ -55,6 +56,13 @@ const ChefDetailsForm = () => {
         navigate("/customer-details");
     };
 
+    const validationSchema = Yup.object().shape({
+        name: Yup.string()
+            .required('Name is required'),
+        email: Yup.string().email('Incorrect Email Id').required('Email is required'),
+    });
+
+
     const tipTitle = "Private Dining usually last upto 3 hrs but can extend upto 5 hrs based on number of courses";
 
     const BoxWrapper = styled(Box)(() => ({
@@ -76,6 +84,12 @@ const ChefDetailsForm = () => {
             color: "#FBFBFB",
             fontFamily: "Proxima Nova Alt",
             fontStyle: "normal",
+        },
+        ".error": {
+            fontSize: "20px",
+            lineHeight: "24px",
+            color: "#FBFBFB",
+            fontFamily: "Proxima Nova Alt",
         },
 
         ".common-field-box": {
@@ -278,174 +292,177 @@ const ChefDetailsForm = () => {
                     numberOfDinner: chefInfo?.numberOfDinner ? chefInfo?.numberOfDinner : 2,
                     numberOfCourses: chefInfo?.numberOfCourses ? chefInfo?.numberOfCourses : 3,
                 }}
-                validate={(values) => {
-                    const errors = {};
-                    if (!values.name) {
-                        errors.name = "Required";
-                    }
-                    if (!values.email) {
-                        errors.email = "Required";
-                    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-                        errors.email = "Invalid email address";
-                    }
-                    return errors;
-                }}
-                onSubmit={(values, {setSubmitting}) => {
-                    setSubmitting(false);
+                // validate={(values) => {
+                //     const errors = {};
+                //     if (!values.name) {
+                //         errors.name = "Required";
+                //     }
+                //     if (!values.email) {
+                //         errors.email = "Required";
+                //     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+                //         errors.email = "Invalid email address";
+                //     }
+                //     return errors;
+                // }}
+                validationSchema={validationSchema}
+                onSubmit={(values) => {
+                    // setSubmitting(false);
                     // const eventDetails = {
                     //     ...values,
                     // };
                     Cookies.set('eventData', JSON.stringify(values));
-                    setSubmitting(false);
+                    // setSubmitting(false);
                 }}
             >
-                {({isSubmitting, values, setFieldValue}) => (
-                    <Form>
-                    <Box className="common-field-box">
-                        <label htmlFor="name" className="field-title">
-                            Name
-                        </label>
-                        <Field
-                            type="text"
-                            name="name"
-                            className="form-control"
-                            placeholder="Enter your full name"
-                            autoComplete="off"
-                        />
-                        <ErrorMessage name="name"/>
-                    </Box>
-
-                    <Box className="common-field-box">
-                        <label htmlFor="email" className="field-title">
-                            Email
-                        </label>
-                        <Field
-                            type="email"
-                            name="email"
-                            className="form-control"
-                            placeholder="eg yourname@email.com"
-                            autoComplete="off"
-                        />
-                        <ErrorMessage name="email"/>
-                    </Box>
-
-                    <Box className="date-time-box">
+                {({isSubmitting, values, setFieldValue, handleSubmit, handleChange}) => (
+                    <Form onSubmit={handleSubmit}>
                         <Box className="common-field-box">
                             <label htmlFor="name" className="field-title">
-                                Experience Date
+                                Name
                             </label>
-                            <DatePickerInput
-                                className="form-control date-control"
-                                name="experienceDate"
-                                displayFormat="ddd, MMM DD YYYY"
-                                onChange={(dateString) => setFieldValue("experienceDate", dateString)}
-                                value={values.experienceDate}
+                            <Field
+                                type="text"
+                                name="name"
+                                className="form-control"
+                                placeholder="Enter your full name"
+                                autoComplete="off"
+                                value={values.name}
+                                onChange={handleChange}
                             />
+                            <ErrorMessage component="div" name="name"/>
                         </Box>
 
                         <Box className="common-field-box">
-                            <Box className="start-time-box">
-                                <label htmlFor="name" className="field-title">
-                                    Start Time
-                                </label>
-                                <MuiThemeProvider theme={defaultTheme}>
-                                    <Box>
-                                        <MuiThemeProvider theme={theme}>
-                                            <Tooltip title={tipTitle} arrow placement="top">
-                                                <Box>
-                                                    <img className="gInfo-logo" src={gInfo}/>
-                                                </Box>
-                                            </Tooltip>
-                                        </MuiThemeProvider>
-                                    </Box>
-                                </MuiThemeProvider>
-                            </Box>
+                            <label htmlFor="email" className="field-title">
+                                Email
+                            </label>
                             <Field
-                                type="time"
-                                name="time"
-                                className="form-control time-control"
-                                defaultValue={values.startTime}
+                                type="email"
+                                name="email"
+                                className="form-control"
+                                placeholder="eg yourname@email.com"
+                                autoComplete="off"
                             />
+                            <ErrorMessage component="div" name="email"/>
                         </Box>
-                    </Box>
 
-                    <Box className="sub-box-counter">
-                        <label htmlFor="numberOfDinner" className="min-2-3">
-                            Number of Diners <span>(min 2)</span>
-                        </label>
+                        <Box className="date-time-box">
+                            <Box className="common-field-box">
+                                <label htmlFor="name" className="field-title">
+                                    Experience Date
+                                </label>
+                                <DatePickerInput
+                                    className="form-control date-control"
+                                    name="experienceDate"
+                                    displayFormat="ddd, MMM DD YYYY"
+                                    onChange={(dateString) => setFieldValue("experienceDate", dateString)}
+                                    value={values.experienceDate}
+                                />
+                            </Box>
 
-                        <Box>
-                            <button
-                                type="button"
-                                className="left-btn"
-                                onClick={() => setFieldValue("numberOfDinner", Math.max(values.numberOfDinner - 1, 2))}
-                            >
-                                -
-                            </button>
-                            <span>{values.numberOfDinner}</span>
-                            <button
-                                type="button"
-                                className="right-btn"
-                                onClick={() => setFieldValue("numberOfDinner", Math.min(values.numberOfDinner + 1, 10))}
-                                disabled={values.numberOfCourses >= 10}
-                            >
-                                +
-                            </button>
+                            <Box className="common-field-box">
+                                <Box className="start-time-box">
+                                    <label htmlFor="name" className="field-title">
+                                        Start Time
+                                    </label>
+                                    <MuiThemeProvider theme={defaultTheme}>
+                                        <Box>
+                                            <MuiThemeProvider theme={theme}>
+                                                <Tooltip title={tipTitle} arrow placement="top">
+                                                    <Box>
+                                                        <img className="gInfo-logo" src={gInfo}/>
+                                                    </Box>
+                                                </Tooltip>
+                                            </MuiThemeProvider>
+                                        </Box>
+                                    </MuiThemeProvider>
+                                </Box>
+                                <Field
+                                    type="time"
+                                    name="time"
+                                    className="form-control time-control"
+                                    defaultValue={values.startTime}
+                                />
+                            </Box>
                         </Box>
-                    </Box>
+                        <Box className="sub-box-counter">
+                            <label htmlFor="numberOfDinner" className="min-2-3">
+                                Number of Diners <span>(min 2)</span>
+                            </label>
 
-                    <Box className="sub-box-counter">
-                        <label htmlFor="numberOfCourses" className="min-2-3">
-                            Number of Courses <span>(min 3)</span>
-                        </label>
-
-                        <Box>
-                            <button
-                                type="button"
-                                className="left-btn"
-                                onClick={() => setFieldValue("numberOfCourses", Math.max(values.numberOfCourses - 1, 3))}
-                            >
-                                -
-                            </button>
-                            <span>{values.numberOfCourses}</span>
-                            <button
-                                type="button"
-                                className="right-btn"
-                                onClick={() => setFieldValue("numberOfCourses", Math.min(values.numberOfCourses + 1, 10))}
-                                disabled={values.numberOfCourses >= 10}
-                            >
-                                +
-                            </button>
-                        </Box>
-                    </Box>
-
-                    <Box className="surprise-box">
-                        <Box className="form-check">
-                            <Box className="surprise-check-box">
-                                <Checkbox className="input-check" defaultChecked/>
-                                <Typography
-                                    className="form-check-label"
-                                    for="flexCheckChecked"
+                            <Box>
+                                <button
+                                    type="button"
+                                    className="left-btn"
+                                    onClick={() => setFieldValue("numberOfDinner", Math.max(values.numberOfDinner - 1, 2))}
                                 >
-                                    Surprise me
+                                    -
+                                </button>
+                                <span>{values.numberOfDinner}</span>
+                                <button
+                                    type="button"
+                                    className="right-btn"
+                                    onClick={() => setFieldValue("numberOfDinner", Math.min(values.numberOfDinner + 1, 10))}
+                                    disabled={values.numberOfCourses >= 10}
+                                >
+                                    +
+                                </button>
+                            </Box>
+                        </Box>
+
+                        <Box className="sub-box-counter">
+                            <label htmlFor="numberOfCourses" className="min-2-3">
+                                Number of Courses <span>(min 3)</span>
+                            </label>
+                            <Box>
+                                <button
+                                    type="button"
+                                    className="left-btn"
+                                    onClick={() => setFieldValue("numberOfCourses", Math.max(values.numberOfCourses - 1, 3))}
+                                >
+                                    -
+                                </button>
+                                <span>{values.numberOfCourses}</span>
+                                <button
+                                    type="button"
+                                    className="right-btn"
+                                    onClick={() => setFieldValue("numberOfCourses", Math.min(values.numberOfCourses + 1, 10))}
+                                    disabled={values.numberOfCourses >= 10}
+                                >
+                                    +
+                                </button>
+                            </Box>
+                        </Box>
+
+                        <Box className="surprise-box">
+                            <Box className="form-check">
+                                <Box className="surprise-check-box">
+                                    <Checkbox className="input-check" defaultChecked/>
+                                    <Typography
+                                        className="form-check-label"
+                                        for="flexCheckChecked"
+                                    >
+                                        Surprise me
+                                    </Typography>
+                                </Box>
+                                <Typography className="email-confirm">
+                                    An agnostic menu that explores a diverse culinary journey
+                                    with chef mako at the helm.
                                 </Typography>
                             </Box>
-                            <Typography className="email-confirm">
-                                An agnostic menu that explores a diverse culinary journey
-                                with chef mako at the helm.
-                            </Typography>
                         </Box>
-                    </Box>
 
-                    <button
-                        type="submit"
-                        className="experience-btn"
-                        onClick={handleClick}
-                        disabled={isSubmitting}
-                    >
-                        Book this experience
-                    </button>
-                </Form>)}
+                        <button
+                            type="submit"
+                            className="experience-btn"
+                            onClick={() => {
+                                handleClick()
+                            }}
+                            // disabled={isSubmitting}
+                        >
+                            Book this experience
+                        </button>
+                    </Form>)}
             </Formik>
         </BoxWrapper>
     </React.Fragment>);

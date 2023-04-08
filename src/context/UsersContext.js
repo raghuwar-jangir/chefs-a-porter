@@ -16,6 +16,7 @@ const UsersProvider = (props) => {
     const currentPath = path.pathname.split("/")[1];
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
     const [userData, setUserData] = useState();
+    const [addOnsData, setAddOnsData] = useState();
     const [userId, setUserId] = useState();
     const [eventId, setEventId] = useState();
     const [supperClubDetailId, setSupperClubDetailId] = useState();
@@ -36,13 +37,29 @@ const UsersProvider = (props) => {
     const [joinChefData, setJoinChefData] = useState({})
     const [isJoinChefData, setIsJoinChefData] = useState(false)
 
+    const [callMobileNumber, setCallMobileNumber] = useState();
+    const [mealData, setMealData] = useState();
+    const [mealTypeData, setMealTypeData] = useState();
+    const eventIdCookieValue = Cookies.get('eventIdValue');
+    const PaymentEventId = eventIdCookieValue?.replaceAll('"', '')
+    const superClubDetailIdCookieValue = Cookies.get('superClubDetailId');
+    const superClubDetailId = superClubDetailIdCookieValue?.replaceAll('"', '')
+    const eventDataCookieValue = Cookies?.get('eventData');
+    const [eventDetailsData, setEventDetailsData] = useState();
+
     console.log("bookingId=======", bookingId)
+    console.log("callMobileNumber=======", callMobileNumber)
+    console.log("mealData=======", mealData)
     useEffect(() => {
         if (cookieValueSupper) {
             setSupperClubBookingBookingConfirm(JSON.parse(cookieValueSupper));
         }
-    }, [cookieValueSupper])
+        if (eventDataCookieValue) {
+            setEventDetailsData(JSON.parse(eventDataCookieValue))
+        }
+    }, [cookieValueSupper, eventDataCookieValue])
     console.log("supperClubBookingBookingConfirm======>", supperClubBookingBookingConfirm);
+    console.log("eventDetailsData======>", eventDetailsData);
 
     useEffect(() => {
         if (userId && currentPath === 'chef-details') {
@@ -63,7 +80,7 @@ const UsersProvider = (props) => {
             })
         } else if (currentPath === 'addons' && bookingId) {
             axios.get(baseUrl + '/addon_category_master/all').then(result => {
-                setUserData(result.data)
+                setAddOnsData(result.data)
             })
             axios.post(baseUrl + '/booking/calculate/' + bookingId).then((response) => {
                 if (response.status === 200) {
@@ -104,7 +121,10 @@ const UsersProvider = (props) => {
             })
             setIsJoinChefData(false)
         } else if (currentPath === 'sc-booking-summary' && supperClubBookingId) {
-            axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId).then((response) => {
+            console.log("supperClubBookingId==========--", supperClubBookingId)
+            axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId, {
+                common_menu: eventId
+            }).then((response) => {
                 if (response.status === 200) {
                     Cookies.set('supperClubBookingData', JSON.stringify(response.data));
                 }
@@ -123,6 +143,28 @@ const UsersProvider = (props) => {
                     Cookies.set('supperClubBookingData', JSON.stringify(response.data));
                 }
             })
+        } else if (currentPath === 'personal-details1') {
+            axios.post(baseUrl + '/booking/calculatepayment/', {
+                id: superClubDetailId,
+                type: 'supper_club',
+                seats: 1,
+                seats_chefs_table: 3
+            }).then((response) => {
+                if (response.status === 200) {
+                    Cookies.set('PersonalDetailsPaymentCalculation', JSON.stringify(response.data));
+                }
+            })
+        } else if (currentPath === 'customer-details') {
+            axios.post(baseUrl + '/booking/calculatepayment/', {
+                id: PaymentEventId,
+                type: "privee",
+                diner: eventDetailsData?.numberOfDinner,
+                courses: eventDetailsData?.numberOfCourses,
+            }).then((response) => {
+                if (response.status === 200) {
+                    Cookies.set('customerDetailsPaymentCalculation', JSON.stringify(response.data));
+                }
+            })
         } else if (paymentVerification) {
             axios.post(baseUrl + '/booking/verifypayment/' + supperClubBookingId, {
                 razorpay_order_id: supperClubBookingBookingConfirm.razorpay_order_id,
@@ -132,6 +174,22 @@ const UsersProvider = (props) => {
                 if (response.status === 200) {
                     setPaymentVerification(response.data.id)
                 }
+            })
+        }
+        if (path.pathname === "/") {
+            axios.get(baseUrl + '/cms/footer').then(result => {
+                setCallMobileNumber(result.data.footer.footer.mobile)
+                Cookies.set('callMobileNumber', JSON.stringify(result.data.footer.footer.mobile));
+            })
+        }
+        if (path.pathname === '/' || currentPath === "privee" || currentPath === "privee-viewmore") {
+            axios.get('https://chefv2.hypervergedemo.site/v1/meal_times/all').then(result => {
+                setMealData(result.data)
+            })
+        }
+        if (currentPath === "personal-details1") {
+            axios.get('https://chefv2.hypervergedemo.site/v1/meal_types/all').then(result => {
+                setMealTypeData(result.data)
             })
         }
     }, [userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, isBookingStatus, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
@@ -153,7 +211,11 @@ const UsersProvider = (props) => {
                 setIsJoinChefData,
                 setIsSupperBookingStatus,
                 supperClubDetailId,
-                setPaymentVerification
+                setPaymentVerification,
+                callMobileNumber,
+                mealData,
+                mealTypeData,
+                addOnsData
             }}
         >
             {children}

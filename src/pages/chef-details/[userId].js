@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, {useContext, useState, useEffect} from "react";
 import {
     Box,
     Grid,
@@ -28,23 +28,23 @@ import chef2 from "../../assets/images/chef6.png";
 import sGallery from "../../assets/images/sc-gallery.png";
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
-import { Form, Formik } from "formik";
+import {Form, Formik} from "formik";
 import moment from "moment/moment";
 import * as _ from "lodash";
-import { DatePickerInput } from "rc-datepicker";
+import {DatePickerInput} from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
 import TemptedYet from "../../components/TemptedYet";
 import ImageCarousel from "../../components/ImageCarousel";
 import AvlExperienceCarousel from "../../components/AvlExperienceCarousel";
 import avlExp1 from "../../assets/images/avl-exp1.jpg";
 import avlExp2 from "../../assets/images/avl-exp2.jpg";
-import { isMobile } from "react-device-detect";
+import {isMobile} from "react-device-detect";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import DiningPage from "../../components/DiningPage";
 import ImagePopCarousel from "../../components/ImagePopCarousel";
 import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { navigate } from "gatsby";
+import {navigate} from "gatsby";
 import GalleryCarousel from "../../components/GalleryCarousel";
 import UsersContext from "../../context/UsersContext";
 import "../../assets/styles/fontStyle.css";
@@ -53,7 +53,7 @@ const ChefDetails = (props) => {
     // const getUserId = props?.params?.userId;
     const getUserId = "62b4582185ac160c4cbf118a";
 
-    const { setUserId, userData } = useContext(UsersContext);
+    const {setUserId, userData} = useContext(UsersContext);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -90,12 +90,10 @@ const ChefDetails = (props) => {
 
     // const longText = "From Bangalore to the Culinary Institute of America in New York. He has developed his skills and love for the culinary arts. From Bangalore to the Culinary ..."
 
-    const itemData = [
-        {
-            img: userData?.experinces[0]?.cover_picture,
-            title: "chef1",
-        },
-    ];
+    const itemData = {
+        img: userData?.experinces[0]?.cover_picture,
+        title: "chef1",
+    };
 
     const itemData2 = [
         {
@@ -727,7 +725,7 @@ const ChefDetails = (props) => {
                                     </Typography>
                                 </Box>
                                 <Box className="gallery-carousel">
-                                    <ImageCarousel />
+                                    <ImageCarousel/>
                                 </Box>
                                 <Box className="mobileView-chef">
                                     <Typography className="chef-details mbl-chef-name">
@@ -737,27 +735,27 @@ const ChefDetails = (props) => {
                                 <Box>
                                     <Box className="container-spacing">
                                         <Box className="container">
-                                            {itemData.map((item) => (
-                                                <img
-                                                    src={item.img}
-                                                    alt={item.title}
-                                                    loading="lazy"
-                                                    onClick={() => {
-                                                        handleImageOpen(item.title);
-                                                    }}
-                                                    className="main-img"
-                                                />
-                                            ))}
+                                            {/*{itemData.map((item) => (*/}
+                                            <img
+                                                src={itemData.img}
+                                                alt={itemData.title}
+                                                loading="lazy"
+                                                onClick={() => {
+                                                    handleImageOpen(itemData.title);
+                                                }}
+                                                className="main-img"
+                                            />
+                                            {/*))}*/}
                                             {showCarousel && (
                                                 <Box className="carousel-popup">
                                                     <button
                                                         className="close-button"
                                                         onClick={handleImageClose}
                                                     >
-                                                        <CloseIcon className="pop-close-icon" />
+                                                        <CloseIcon className="pop-close-icon"/>
                                                     </button>
                                                     <Box className="carousel">
-                                                        <ImagePopCarousel title={title} />
+                                                        <ImagePopCarousel title={title}/>
                                                     </Box>
                                                 </Box>
                                             )}
@@ -905,7 +903,7 @@ const ChefDetails = (props) => {
                                                 </Typography>
                                                 <Typography className="surpirse-details">
                                                     An agnostic menu that explores a Boxerse culinary
-                                                    <br />
+                                                    <br/>
                                                     journey with chef mako at the helm
                                                 </Typography>
                                             </Box>
@@ -918,11 +916,11 @@ const ChefDetails = (props) => {
                                     </Box>
                                 </Box>
                                 <SupperClubDetailsCarousel
-                                    changeDetails={{ fontSize: "16px" }}
-                                    changeFont={{ fontSize: "20px" }}
+                                    changeDetails={{fontSize: "16px"}}
+                                    changeFont={{fontSize: "20px"}}
                                     backgroundColor="#DCD7CB"
                                 />
-                                <GalleryCarousel title={"Gallery"} />
+                                <GalleryCarousel title={"Gallery"}/>
                                 <Box className="chef-btn book-now">
                                     <Link href="/our-chefs" className="view-all-gallery">
                                         View More Chef
@@ -953,7 +951,7 @@ const ChefDetails = (props) => {
                                             className="close"
                                             onClick={handleClose}
                                         >
-                                            <CloseIcon />
+                                            <CloseIcon/>
                                         </button>
                                     </Box>
                                     <Box className="container-fluid">
@@ -1061,7 +1059,7 @@ const ChefDetails = (props) => {
                                                         <button
                                                             className="btn btn-primary"
                                                             type="submit"
-                                                            style={{ width: "100% !important" }}
+                                                            style={{width: "100% !important"}}
                                                         >
                                                             Apply
                                                         </button>
@@ -1073,14 +1071,14 @@ const ChefDetails = (props) => {
                                 </Box>
                             </Box>
                         </Modal>
-                        <NeedHelp />
-                        <Footer />
+                        <NeedHelp/>
+                        <Footer/>
                         <TemptedYet
                             isTempted={true}
                             title={"Tempted yet?"}
                             buttonRText={"Book an Experience"}
                         />
-                        <FooterEnd />
+                        <FooterEnd/>
                     </>
                 )}
             </BoxWrapper>

@@ -91,7 +91,18 @@ const SupperClubDetail = (props) => {
             lat: userData?.chef?.details?.coordinates?.lat,
             lng: userData?.chef?.details?.coordinates?.lng,
         },
-        zoom: 11,
+        zoom: 20,
+    };
+    const renderMarkers = (map, maps) => {
+        let marker = new maps.Marker({
+            position: {
+                lat: userData?.chef?.details?.coordinates?.lat,
+                lng: userData?.chef?.details?.coordinates?.lng,
+            },
+            map,
+            // title: 'Hello World!'
+        });
+        return marker;
     };
     const theme = useTheme();
     const [activeStep, setActiveStep] = useState(0);
@@ -132,6 +143,7 @@ const SupperClubDetail = (props) => {
             title: "img5",
         },
     ];
+
     const BoxWrapper = styled(Box)(() => ({
         ".header-club": {
             padding: "20px",
@@ -1092,7 +1104,8 @@ const SupperClubDetail = (props) => {
                                                         <Box className="map-heading">
                                                             {userData?.chef?.details?.address2}
                                                         </Box>
-                                                        <Link className="map-link">Get Directions</Link>
+                                                        <a href={`https://www.google.com/maps/search/?api=1&query=${userData?.chef?.details?.coordinates?.lat},${userData?.chef?.details?.coordinates?.lng}`}
+                                                           className="map-link" target="_blank">Get Directions</a>
                                                         <Box
                                                             style={{
                                                                 height: "380px",
@@ -1103,11 +1116,14 @@ const SupperClubDetail = (props) => {
                                                                 bootstrapURLKeys={{key: ""}}
                                                                 defaultCenter={defaultProps.center}
                                                                 defaultZoom={defaultProps.zoom}
+                                                                onGoogleApiLoaded={({
+                                                                                        map,
+                                                                                        maps
+                                                                                    }) => renderMarkers(map, maps)}
                                                             >
                                                                 <AnyReactComponent
-                                                                    lat={59.955413}
-                                                                    lng={30.337844}
-                                                                    text="My Marker"
+                                                                    lat={userData?.chef?.details?.coordinates?.lat}
+                                                                    lng={userData?.chef?.details?.coordinates?.lng}
                                                                 />
                                                             </GoogleMapReact>
                                                         </Box>
@@ -1161,41 +1177,41 @@ const SupperClubDetail = (props) => {
                                                 Pick your preferred experience date
                                             </Typography>
                                         </Box>
-                                        {/*{*/}
-                                        {/*    userData?.new_dates.map((item) => {*/}
-                                        {/*        return (*/}
-                                        {/*            <Box className="date-time-box">*/}
-                                        {/*                <Box sx={{display: "flex", alignItems: "center"}}>*/}
-                                        {/*                    <Typography*/}
-                                        {/*                        className="main-date">{moment(item.date).format("D")}</Typography>*/}
-                                        {/*                    <Box>*/}
-                                        {/*                        <Typography*/}
-                                        {/*                            className="date-month">{moment(item.date).format("MMMM")}</Typography>*/}
-                                        {/*                        <Typography*/}
-                                        {/*                            className="date-day">{moment(item.date).format("dddd")}</Typography>*/}
-                                        {/*                    </Box>*/}
-                                        {/*                </Box>*/}
-                                        {/*                <Box className="time-btn-box">*/}
-                                        {/*                    <Box className="switch-field">*/}
-                                        {/*                        <input*/}
-                                        {/*                            type="radio"*/}
-                                        {/*                            id="radio-one"*/}
-                                        {/*                            name="switch-one"*/}
-                                        {/*                            value="yes"*/}
-                                        {/*                            // checked*/}
-                                        {/*                        />*/}
-                                        {/*                        <label for="radio-one">*/}
-                                        {/*                            <Typography className="time-text">*/}
-                                        {/*                                {moment(item?.from, 'HH:mm').format('h:mm A')} - {moment(item?.to, 'HH:mm').format('h:mm A')}*/}
-                                        {/*                            </Typography>*/}
-                                        {/*                            /!*<span style={{color: "#F8A039"}}>filling fast</span>*!/*/}
-                                        {/*                        </label>*/}
-                                        {/*                    </Box>*/}
-                                        {/*                </Box>*/}
-                                        {/*            </Box>*/}
-                                        {/*        )*/}
-                                        {/*    })*/}
-                                        {/*}*/}
+                                        {
+                                            userData?.new_dates.map((item) => {
+                                                return (
+                                                    <Box className="date-time-box">
+                                                        <Box sx={{display: "flex", alignItems: "center"}}>
+                                                            <Typography
+                                                                className="main-date">{moment(item.date).format("D")}</Typography>
+                                                            <Box>
+                                                                <Typography
+                                                                    className="date-month">{moment(item.date).format("MMMM")}</Typography>
+                                                                <Typography
+                                                                    className="date-day">{moment(item.date).format("dddd")}</Typography>
+                                                            </Box>
+                                                        </Box>
+                                                        <Box className="time-btn-box">
+                                                            <Box className="switch-field">
+                                                                <input
+                                                                    type="radio"
+                                                                    id="radio-one"
+                                                                    name="switch-one"
+                                                                    value="yes"
+                                                                    // checked
+                                                                />
+                                                                <label for="radio-one">
+                                                                    <Typography className="time-text">
+                                                                        {moment(item?.from, 'HH:mm').format('h:mm A')} - {moment(item?.to, 'HH:mm').format('h:mm A')}
+                                                                    </Typography>
+                                                                    {/*<span style={{color: "#F8A039"}}>filling fast</span>*/}
+                                                                </label>
+                                                            </Box>
+                                                        </Box>
+                                                    </Box>
+                                                )
+                                            })
+                                        }
                                         <Box className="date-time-box">
                                             <Box sx={{display: "flex", alignItems: "center"}}>
                                                 <Typography className="main-date">12</Typography>

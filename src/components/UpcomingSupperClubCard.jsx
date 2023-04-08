@@ -13,6 +13,7 @@ import {navigate} from "gatsby";
 import CmsContext from "../context/CmsContext";
 import * as _ from "lodash";
 import moment from "moment";
+import Cookies from "js-cookie";
 
 const UpcomingSupperClubCard = () => {
 
@@ -161,7 +162,10 @@ const UpcomingSupperClubCard = () => {
                 !_.isEmpty(data?.supper_club) &&
                 <MainBox>
                     {data.supper_club.upcoming_supper_club.supper_clubs.map((item, index) => (
-                        <Box key={index} onClick={() => navigate(`/supper-club-detail/${item?.id}`)}
+                        <Box key={index} onClick={() => {
+                            navigate(`/supper-club-detail/${item?.id}`);
+                            Cookies.set('superClubDetailId', JSON.stringify(item?.id));
+                        }}
                              style={{cursor: 'pointer'}}>
                             <Box sx={{position: 'relative'}}>
                                 <img className='test-img' src={item.pictures}/>

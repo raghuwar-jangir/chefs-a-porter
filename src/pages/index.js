@@ -58,6 +58,7 @@ import ClubSection from "../components/ClubSection";
 import DiningExperienceCarousel from "../components/DiningExperienceCarousel";
 import axios from "axios";
 import CmsContext from "../context/CmsContext";
+import UsersContext from "../context/UsersContext";
 import "../assets/styles/searchBar.css"
 import "../assets/styles/fontStyle.css"
 import Cookies from "js-cookie";
@@ -874,7 +875,8 @@ const BoxWrapper = styled(Box)({
 })
 
 const HomePage = () => {
-    const {data,mealData} = useContext(CmsContext);
+    const {data} = useContext(CmsContext);
+    const {mealData} = useContext(UsersContext);
 
     //FoodDrool
     const [imageData, setImageData] = useState([]);

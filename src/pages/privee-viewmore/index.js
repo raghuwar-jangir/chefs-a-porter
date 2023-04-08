@@ -424,8 +424,7 @@ const style = {
 }
 const PriveeViewMore = (props) => {
 
-    const {userData} = useContext(UsersContext);
-    const {mealData} = useContext(CmsContext);
+    const {userData,mealData} = useContext(UsersContext);
     const [priveeInfo, setPriveeInfo] = useState()
     const cookieValue = Cookies?.get('priveeData');
 
