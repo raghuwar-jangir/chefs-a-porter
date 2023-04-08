@@ -12,12 +12,6 @@ const defaultState = {
 const UsersContext = React.createContext(defaultState)
 
 const UsersProvider = (props) => {
-    // const pathInfo = {
-    //     'chef-details': 'users',
-    //     'event-details': 'menu',
-    //     'privee-viewmore': 'menu',
-    //     'supper-club-details': 'event',
-    // }
     const path = useLocation();
     const currentPath = path.pathname.split("/")[1];
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
@@ -33,7 +27,7 @@ const UsersProvider = (props) => {
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
     const [isSupperBookingStatus, setIsSupperBookingStatus] = useState(false);
     const [paymentVerification, setPaymentVerification] = useState(false);
-    const [supperClubBookingBookingConfirm , setSupperClubBookingBookingConfirm] = useState();
+    const [supperClubBookingBookingConfirm, setSupperClubBookingBookingConfirm] = useState();
     const cookieValueSupper = Cookies.get('supperClubBookingBookingConfirm');
 
     //for submitting forms
@@ -43,13 +37,12 @@ const UsersProvider = (props) => {
     const [isJoinChefData, setIsJoinChefData] = useState(false)
 
     console.log("bookingId=======", bookingId)
-
-    useEffect(()=>{
+    useEffect(() => {
         if (cookieValueSupper) {
             setSupperClubBookingBookingConfirm(JSON.parse(cookieValueSupper));
         }
-    },[cookieValueSupper])
-    console.log("supperClubBookingBookingConfirm======>",supperClubBookingBookingConfirm);
+    }, [cookieValueSupper])
+    console.log("supperClubBookingBookingConfirm======>", supperClubBookingBookingConfirm);
 
     useEffect(() => {
         if (userId && currentPath === 'chef-details') {
@@ -69,17 +62,15 @@ const UsersProvider = (props) => {
                 setUserData(result.data)
             })
         } else if (currentPath === 'addons' && bookingId) {
-            axios.get(baseUrl + '/addon_category_master/all',).then(result => {
+            axios.get(baseUrl + '/addon_category_master/all').then(result => {
                 setUserData(result.data)
             })
-            if(bookingId){
-                axios.post(baseUrl + '/booking/calculate/' + bookingId).then((response) => {
-                    if (response.status === 200) {
-                        Cookies.set('paymentCalculation', JSON.stringify(response.data));
-                        console.log("===============",response.data)
-                    }
-                })
-            }
+            axios.post(baseUrl + '/booking/calculate/' + bookingId).then((response) => {
+                if (response.status === 200) {
+                    Cookies.set('paymentCalculation', JSON.stringify(response.data));
+                    console.log("===============", response.data)
+                }
+            })
         } else if (isBookingStatus) {
             axios.post(baseUrl + '/booking/confirm/' + bookingId).then((response) => {
                 if (response.status === 200) {
@@ -92,7 +83,7 @@ const UsersProvider = (props) => {
             axios.post(baseUrl + '/booking/calculate/' + summaryBookingId).then((response) => {
                 if (response.status === 200) {
                     Cookies.set('paymentCalculation', JSON.stringify(response.data));
-                    console.log("paymentCalculation ===============",response.data)
+                    console.log("paymentCalculation ===============", response.data)
                 }
             })
         } else if (isContactUsData) {
@@ -132,21 +123,19 @@ const UsersProvider = (props) => {
                     Cookies.set('supperClubBookingPaymentCalculation', JSON.stringify(response.data));
                 }
             })
-        }
-        else if (paymentVerification) {
-            console.log("======setPaymentVerification");
-            axios.post(baseUrl + '/booking/verifypayment' + supperClubBookingId,{
+        } else if (paymentVerification) {
+            axios.post(baseUrl + '/booking/verifypayment/' + supperClubBookingId, {
                 razorpay_order_id: supperClubBookingBookingConfirm.razorpay_order_id,
                 razorpay_payment_id: supperClubBookingBookingConfirm.razorpay_payment_id,
                 razorpay_signature: supperClubBookingBookingConfirm.razorpay_signature
-            }).then((response)=> {
-                if(response.status === 200) {
+            }).then((response) => {
+                if (response.status === 200) {
                     setPaymentVerification(response.data.id)
                 }
             })
         }
     }, [userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, isBookingStatus, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
-    console.log("paymentVerification======>",paymentVerification);
+
     const {children} = props;
 
     return (
@@ -165,7 +154,6 @@ const UsersProvider = (props) => {
                 setIsSupperBookingStatus,
                 supperClubDetailId,
                 setPaymentVerification
-
             }}
         >
             {children}

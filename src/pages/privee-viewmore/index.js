@@ -451,7 +451,7 @@ const PriveeViewMore = (props) => {
         <React.Fragment>
             <BoxWrapper>
                 {
-                    !_.isEmpty(userData) &&
+                    !_.isEmpty(userData && mealData) &&
                     <>
                         <Navbar to={'/privee-viewmore'} isColor={true} isIcon={true} heading="Privee"/>
                         <Box className="home-banner dark">
@@ -700,7 +700,10 @@ const PriveeViewMore = (props) => {
                                                     // image={item.cover_picture}
                                                     image={item.user.picture}
                                                     title={item.title} description={`by ${item.user.name}`}
-                                                    onClick={() => navigate(`/event-details/${item?.id}`)}
+                                                    onClick={() => {
+                                                        navigate(`/event-details/${item?.id}`);
+                                                        Cookies.set('eventIdValue', JSON.stringify(item?.id));
+                                                    }}
                                                 />
                                             </Grid>
                                         )

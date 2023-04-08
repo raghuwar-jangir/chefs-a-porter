@@ -46,6 +46,8 @@ const validationSchema = Yup.object({
 
 const CustomerDetails = (props) => {
 
+    const eventIdCookieValue = Cookies.get('eventIdValue');
+    const eventId = eventIdCookieValue?.replaceAll('"', '')
     const {setOtpNumber, setVerifyOtp, setResendOtp, setIsSendOtpApiCall} = useContext(OtpContext);
     const CHARACTER_LIMIT = 40;
     const [newAddress, setNewAddress] = useState();
@@ -85,7 +87,7 @@ const CustomerDetails = (props) => {
         setCurrentModal(0);
     };
     const handleClose = () => {
-            setOpen(false);
+        setOpen(false);
     };
     //google map for address popup
     const AnyReactComponent = ({text}) => <div>{text}</div>;
@@ -222,7 +224,7 @@ const CustomerDetails = (props) => {
             lineHeight: "19px",
             color: "#FBFBFB",
             width: "100%",
-            outline:'none'
+            outline: 'none'
         },
 
         ".loc-ad": {
@@ -290,619 +292,573 @@ const CustomerDetails = (props) => {
   const BoxWrapper = styled(Box)(() => ({
     background: "#101418",
 
-    ".supper-gallery": {
-      marginTop: "40px",
-    },
-
-    ".supper-gallery .container-fluid": {
-      padding: "80px 120px",
-    },
-
-    ".book-trad": {
-      display: "flex",
-      placeItems: "center",
-      marginBottom: "40px",
-      paddingLeft: "0px !important",
-    },
-
-    ".addons-title": {
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-      fontWeight: "600",
-      fontSize: "32px",
-      lineHeight: "39px",
-      color: "#FBFBFB",
-      marginBottom: "0px",
-      marginLeft: "16px",
-    },
-
-    ".arrow-left": {
-      color: "#FBFBFB",
-      // fontSize: '20px',
-    },
-
-    ".cust-details": {
-      padding: "0px 15px",
-    },
-
-    ".per-dinner": {
-      background: "#101418",
-      padding: "40px 20px",
-      boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
-      position: "sticky",
-      top: "100px",
-    },
-
-    ".event-div": {
-      display: "flex",
-    },
-
-    ".per-dinner-img": {
-      width: "116px",
-      height: "116px",
-      objectFit: "cover",
-    },
-
-    ".rating-star": {
-      fontStyle: "Proxima Nova Alt",
-      display: "flex",
-      alignItems: "center",
-      fontSize: "20px",
-      lineHeight: "24px",
-      color: "#FBFBFB",
-    },
-
-    ".event-title": {
-      fontFamily: "Bon Vivant",
-      fontStyle: "normal",
-      fontWeight: "700",
-      fontSize: "20px",
-      lineHeight: "25px",
-      letterSpacing: "0.06em",
-      color: "#FBFBFB",
-    },
-
-    ".event-subtitle": {
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-      fontWeight: "400",
-      fontSize: "12px",
-      lineHeight: "15px",
-      letterSpacing: "0.06em",
-      color: "#FBFBFB",
-      marginBottom: "11px",
-    },
-
-    ".event-link": {
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-      fontWeight: "700",
-      fontSize: "16px",
-      lineHeight: "19px",
-      textDecoration: "none",
-      color: "#FBFBFB !important",
-    },
-
-    ".experience-breakup": {
-      border: "0.5px solid #DCD7CB",
-      padding: "16px 16px 0px",
-      marginTop: "30px",
-    },
-
-    ".ex-details": {
-      position: "relative",
-    },
-
-    ".ex-heading": {
-      fontFamily: "Bon Vivant",
-      fontStyle: "normal",
-      // fontWeight: '700',
-      fontSize: "20px",
-      lineHeight: "25px",
-      letterSpacing: "0.06em",
-      color: "#FBFBFB",
-      marginBottom: "10px",
-    },
-
-    ".ex-detail": {
-      fontFamily: "Proxima Nova Alt",
-      fontStyle: "normal",
-      fontWeight: "400",
-      fontSize: "14px",
-      lineHeight: "17px",
-      letterSpacing: "0.06em",
-      color: "#FBFBFB",
-      marginBottom: "0px",
-    },
-
-    ".ex-icon": {
-      position: "absolute",
-      right: "0px",
-      top: "0px",
-      height: "24px",
-      width: "24px",
-      color: "#FBFBFB",
-      " -webkit-text-stroke": "1px",
-    },
-
-    ".submit-req": {
-      background: "#C6A87D",
-      color: "#080B0E",
-      fontFamily: "ProximaNovaA-Regular",
-      fontSize: "20px",
-      lineHeight: "24px",
-      border: "0px",
-      marginBottom: "30px",
-      marginTop: "30px",
-      width: "100%",
-      cursor: "pointer",
-      padding: "18px 10px",
-    },
-
-    ".contact-text": {
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-      fontWeight: "300",
-      fontSize: "14px",
-      lineHeight: "17px",
-      textAlign: "center",
-      color: "rgba(251, 251, 251, 0.6)",
-    },
-
-    ".table": {
-      marginTop: "20px",
-      marginBottom: "0px",
-    },
-
-    ".table-box": {
-      width: "100%",
-      display: "flex",
-      justifyContent: "space-between",
-    },
-
-    ".table-details": {
-      fontFamily: "Proxima Nova Alt",
-      fontStyle: "normal",
-      fontWeight: "300",
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#FBFBFB",
-      padding: "0px 0px 16px",
-    },
-
-    ".grand-total": {
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-      fontWeight: "400",
-      fontSize: "20px",
-      lineHeight: "24px",
-      color: "#FBFBFB",
-      padding: "22px 0px",
-    },
-
-    ".border": {
-      borderTop: "1px solid rgba(255, 255, 255, 0.6)",
-      borderBottom: "1px solid rgba(255, 255, 255, 0.6)",
-    },
-
-    ".tax1": {
-      paddingTop: "20px",
-    },
-
-    ".header-club": {
-      display: "none",
-      padding: "15px",
-      backgroundColor: "#080B0E",
-    },
-
-    ".booking-box": {
-      border: "1px solid #FBFBFB",
-      padding: "40px 20px",
-    },
-
-    "form label": {
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-      fontWeight: "600",
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#FBFBFB",
-      marginBottom: "8px",
-      display: "block",
-    },
-
-    ".form-control": {
-      backgroundColor: "transparent",
-      border: "0px",
-      borderBottom: "0.25px solid #FBFBFB",
-      borderRadius: "0px",
-      paddingLeft: "0px",
-      paddingRight: "0px",
-      fontFamily: "Proxima Nova Alt",
-      fontStyle: "normal",
-      fontWeight: "300",
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#FBFBFB",
-      width: "100%",
-      outline:'none'
-    },
-
-    ".remove-bottom-border": {
-      borderBottom: "none",
-    },
-
-    ".mb-3": {
-      marginBottom: "40px",
-    },
-
-    ".add-details": {
-      marginTop: "50px",
-    },
-
-    ".ad-detail": {
-      fontFamily: "Bon Vivant",
-      fontStyle: "normal",
-      fontWeight: "700",
-      fontSize: "20px",
-      lineHeight: "25px",
-      letterSpacing: "0.06em",
-      color: "#FBFBFB",
-      marginBottom: "8px",
-    },
-
-    ".exp-title": {
-      fontFamily: "Proxima Nova",
-      fontStyle: "normal",
-      // fontWeight:'600',
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#FBFBFB",
-      marginBottom: "2px",
-    },
-
-    ".mb-40": {
-      marginBottom: "40px",
-    },
-
-    ".mt-40": {
-      marginTop: "40px",
-    },
-
-    ".save-patron": {
-      background: "#DCD7CB",
-      marginTop: "24px",
-      padding: "16px !important",
-      display: "flex",
-      placeItems: "flex-start",
-      alignItems: "center",
-      placeContent: "baseline",
-      marginBottom: "0px",
-    },
-
-    ".save-title": {
-      backgroundColor: "transparent",
-      border: "0px",
-      borderRadius: "0px",
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-      fontWeight: "300",
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#080B0E",
-      marginBottom: "8px",
-    },
-
-    ".save-subtitle": {
-      backgroundColor: "transparent",
-      border: "0px",
-      borderRadius: "0px",
-      fontFamily: "Proxima Nova Alt",
-      fontStyle: "normal",
-      fontWeight: "300",
-      fontSize: "14px",
-      lineHeight: "17px",
-      color: "#080B0E",
-      marginBottom: "8px",
-    },
-
-    ".bi-chevron-right": {
-      position: "relative",
-      height: "24px",
-      width: "24px",
-      "-webkit-text-stroke": "1px",
-    },
-
-    ".form-check-input": {
-      background: "#C6A87D",
-      borderColor: "#080B0E !important",
-      borderRadius: "0px",
-      color: "#080B0E !important",
-      width: "18px",
-      height: "18px",
-      marginRight: "11px",
-    },
-
-    ".form-check-input:hover": {
-      background: "#C6A87D",
-      borderColor: "#080B0E !important",
-      borderRadius: "0px",
-      color: "#080B0E !important",
-      width: "18px",
-      height: "18px",
-      marginRight: "11px",
-    },
-
-    ".MuiTabList-root": {
-      width: "140px",
-    },
-
-    ".error": {
-      fontFamily: "Proxima Nova Alt",
-      fontStyle: "normal",
-      fontWeight: "400",
-      fontSize: "14px",
-      lineHeight: "15px",
-      color: "#FBFBFB",
-      marginTop: "6px",
-    },
-
-    ".Joy-selected": {
-      border: "0.5px solid #C6A87D !important",
-      borderRadius: "0px",
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-      fontHeight: "400",
-      fontSize: "14px",
-      lineHeight: "15px",
-      color: "#080B0E !important",
-      background: "#C6A87D !important",
-      padding: "8px 0px",
-      width: "140px",
-      height: "38px",
-    },
-
-    ".MuiTab-variantPlain": {
-      border: "0.5px solid #FBFBFB",
-      borderRadius: "0px",
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-      fontHeight: "400",
-      fontSize: "14px",
-      lineHeight: "17px",
-      color: "#FBFBFB",
-      padding: "8px 0px",
-      width: "140px",
-      height: "38px",
-    },
-
-    ".MuiTab-variantPlain:hover": {
-      color: "#FBFBFB",
-    },
-
-    ".sp-occ": {
-      margin: "6px 0px 20px",
-    },
-
-    ".css-1lhe3ax-JoyTabPanel-root": {
-      padding: "1px 3px",
-    },
-
-    ".react-datepicker-component .react-datepicker-input input": {
-      paddingLeft: "5px",
-      color: "#080B0E",
-      fontSize: "16px",
-      lineHeight: "19px",
-    },
-
-    ".icon-rc-datepicker": {
-      color: "#C6A87D !important",
-      fontSize: "20px",
-    },
-
-    ".react-datepicker-component .react-datepicker-input": {
-      background: "transparent",
-      border: "0px",
-      borderRadius: "0px",
-    },
-
-    ".react-datepicker-component .react-datepicker-input:hover": {
-      background: "transparent",
-      border: "0px",
-      borderRadius: "0px",
-    },
-
-    ".react-datepicker-component .react-datepicker-input.has-value input": {
-      color: "#FBFBFB !important",
-    },
-
-    ".react-datepicker-component .react-datepicker-input.is-open": {
-      background: "transparent",
-      border: "0px",
-      borderRadius: "0px",
-    },
-
-    ".alternative": {
-      fontFamily: "Proxima Nova Alt",
-      fontStyle: "normal",
-      fontWeight: "300",
-      fontSize: "14px",
-      lineHeight: "17px",
-      color: "rgba(251, 251, 251, 0.6)",
-      marginTop: "6px",
-      marginBottom: "0px",
-    },
-
-    ".alternative span": {
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-      fontWeight: "400",
-      fontSize: "14px",
-      lineHeight: "17px",
-      color: "#C6A87D !important",
-      textDecoration: "underline",
-      cursor: "pointer",
-    },
-
-    "@media (min-width: 1px) and (max-width:425px)": {
-      ".supper-gallery .container-fluid": {
-        padding: "20px 10px",
-      },
-      ".header-club": {
-        padding: "0px 110px",
-        display: "flex",
-      },
-      ".addones-mobile-heading": {
-        padding: "8px 0px !important",
-        fontSize: "24px",
-        textAlign: "center",
-        color: "#FBFBFB !important",
-        fontFamily: "Bon Vivant",
-      },
-      ".addons-title": {
-        fontSize: "16px",
-        lineHeight: "30px",
-      },
-      "form label": {
-        fontSize: "15px",
-      },
-      ".per-dinner": {
-        padding: "20px 0px",
-      },
-      ".table-details": {
-        fontSize: "12px",
-        lineHeight: "15px",
-      },
-      ".grand-total": {
-        fontSize: "16px",
-        lineHeight: "20px",
-      },
-      ".ex-heading": {
-        fontSize: "16px",
-        lineHeight: "20px",
-        letterSpacing: "0.04em",
-      },
-      ".event-title": {
-        fontSize: "14px",
-        lineHeight: "18px",
-        letterSpacing: "0.04em",
-      },
-      ".event-link": {
-        fontSize: "14px",
-        lineHeight: "18px",
-      },
-      ".rating-star": {
-        fontSize: "14px",
-        lineHeight: "18px",
-      },
-      ".submit-req": {
-        fontSize: "16px",
-        lineHeight: "18px",
-      },
-      ".MuiTabList-root": {
-        width: "80px",
-      },
-      ".MuiTab-variantPlain": {
-        width: "80px",
-      },
-      ".Joy-selected": {
-        width: "80px",
-      },
-    },
-
-    "@media (min-width: 371px) and (max-width:400px)": {
-      ".header-club": {
-        padding: "0px 150px",
-      },
-      ".MuiTabList-root": {
-        width: "70px",
-      },
-      ".MuiTab-variantPlain": {
-        width: "70px",
-        fontSize: "12px",
-      },
-      ".Joy-selected": {
-        width: "70px",
-        fontSize: "12px",
-      },
-    },
-
-    "@media (min-width: 300px) and (max-width:350px)": {
-      ".MuiTabList-root": {
-        width: "55px",
-      },
-      ".MuiTab-variantPlain": {
-        width: "55px",
-        fontSize: "10px",
-      },
-      ".Joy-selected": {
-        width: "55px",
-        fontSize: "10px",
-      },
-    },
-
-    "@media (min-width: 425px) and (max-width:450px)": {
-      ".header-club": {
-        padding: "0px 170px",
-      },
-    },
-    "@media (min-width: 426px) and (max-width:768px)": {
-      ".supper-gallery .container-fluid": {
-        padding: "40px 80px",
-      },
-      ".header-club": {
-        display: "flex",
-      },
-    },
-
-    "@media (min-width: 320px) and (max-width:767px)": {
-      ".addones-mobile-heading": {
-        padding: "8px 0px !important",
-        fontSize: "24px",
-        textAlign: "center",
-        color: "#FBFBFB",
-        fontFamily: "Bon Vivant",
-      },
-    },
-
-    "@media(min-width:600px) and (max-width: 768px)": {
-      ".header-club": {
-        display: "flex",
-        background: "#DCD7CB",
-      },
-      ".bm-burger-bars": {
-        background: "#080B0E !important",
-      },
-      ".MuiTabList-root": {
-        width: "100px",
-      },
-      ".MuiTab-variantPlain": {
-        width: "100px",
-      },
-      ".Joy-selected": {
-        width: "100px",
-      },
-    },
-
-    "@media(min-width:1000px) and (max-width: 1024px)": {
-      ".MuiTabList-root": {
-        width: "90px",
-      },
-      ".MuiTab-variantPlain": {
-        width: "90px",
-      },
-      ".Joy-selected": {
-        width: "90px",
-      },
-    },
-    ".addones-mobile-heading": {
-      fontSize: "24px",
-      paddingLeft: "280px",
-      textAlign: "center",
-      color: "#080B0E",
-      fontFamily: "Bon Vivant",
-    },
-  }));
+        '.supper-gallery': {
+            marginTop: '40px',
+        },
+        '.supper-gallery .container-fluid': {
+            padding: '80px 120px'
+        },
+        '.book-trad': {
+            display: 'flex',
+            placeItems: 'center',
+            marginBottom: '40px',
+            paddingLeft: '0px !important',
+        },
+        '.addons-title': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '32px',
+            lineHeight: '39px',
+            color: '#FBFBFB',
+            marginBottom: '0px',
+            marginLeft: '16px',
+        },
+        '.arrow-left': {
+            color: '#FBFBFB',
+            cursor: 'pointer'
+            // fontSize: '20px',
+        },
+        '.cust-details': {
+            padding: '0px 15px'
+        },
+        '.per-dinner': {
+            background: '#101418',
+            padding: '40px 20px',
+            boxShadow: '0px 20px 24px rgb(0 0 0 / 6%)',
+        },
+        '.event-div': {
+            display: 'flex'
+        },
+        '.per-dinner-img': {
+            width: '116px',
+            height: '116px',
+            objectFit: 'cover',
+        },
+        '.rating-star': {
+            fontStyle: 'Proxima Nova Alt',
+            display: 'flex',
+            alignItems: 'center',
+            fontSize: '20px',
+            lineHeight: '24px',
+            color: '#FBFBFB'
+        },
+        '.event-title': {
+            fontFamily: 'Bon Vivant',
+            fontStyle: 'normal',
+            fontWeight: '700',
+            fontSize: '20px',
+            lineHeight: '25px',
+            letterSpacing: '0.06em',
+            color: '#FBFBFB',
+        },
+        '.event-subtitle': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '12px',
+            lineHeight: '15px',
+            letterSpacing: '0.06em',
+            color: '#FBFBFB',
+            marginBottom: '11px',
+        },
+        '.event-link': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '700',
+            fontSize: '16px',
+            lineHeight: '19px',
+            textDecoration: 'none',
+            color: '#FBFBFB !important',
+        },
+        '.experience-breakup': {
+            border: '0.5px solid #DCD7CB',
+            padding: '16px 16px 0px',
+            marginTop: '30px',
+        },
+        '.ex-details': {
+            position: 'relative',
+        },
+        '.ex-heading': {
+            fontFamily: 'Bon Vivant',
+            fontStyle: 'normal',
+            // fontWeight: '700',
+            fontSize: '20px',
+            lineHeight: '25px',
+            letterSpacing: '0.06em',
+            color: '#FBFBFB',
+            marginBottom: '10px'
+        },
+        '.ex-detail': {
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '14px',
+            lineHeight: '17px',
+            letterSpacing: '0.06em',
+            color: '#FBFBFB',
+            marginBottom: '0px',
+        },
+        '.ex-icon': {
+            position: 'absolute',
+            right: '0px',
+            top: '0px',
+            height: '24px',
+            width: '24px',
+            color: '#FBFBFB',
+            ' -webkit-text-stroke': '1px',
+        },
+        '.submit-req': {
+            background: '#C6A87D',
+            color: '#080B0E',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontSize: '20px',
+            lineHeight: '24px',
+            border: '0px',
+            marginBottom: '30px',
+            marginTop: '30px',
+            width: '100%',
+            cursor: 'pointer',
+            padding: '18px 10px'
+        },
+        '.contact-text': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '14px',
+            lineHeight: '17px',
+            textAlign: 'center',
+            color: 'rgba(251, 251, 251, 0.6)',
+        },
+        '.table': {
+            marginTop: '20px',
+            marginBottom: '0px'
+        },
+        '.table-box': {
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between'
+        },
+        '.table-details': {
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#FBFBFB',
+            padding: '0px 0px 16px',
+        },
+        '.grand-total': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '20px',
+            lineHeight: '24px',
+            color: '#FBFBFB',
+            padding: '22px 0px',
+        },
+        '.border': {
+            borderTop: '1px solid rgba(255, 255, 255, 0.6)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.6)',
+        },
+        '.tax1': {
+            paddingTop: '20px',
+        },
+        ".header-club": {
+            display: 'none',
+            padding: '15px',
+            backgroundColor: '#080B0E',
+        },
+        '.booking-box': {
+            border: '1px solid #FBFBFB',
+            padding: '40px 20px',
+        },
+        'form label': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#FBFBFB',
+            marginBottom: '8px',
+            display: 'block',
+        },
+        '.form-control': {
+            backgroundColor: 'transparent',
+            border: '0px',
+            borderBottom: '0.25px solid #FBFBFB',
+            borderRadius: '0px',
+            paddingLeft: '0px',
+            paddingRight: '0px',
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#FBFBFB',
+            width: '100%'
+        },
+        '.remove-bottom-border': {
+            borderBottom: 'none',
+        },
+        '.mb-3': {
+            marginBottom: '40px'
+        },
+        '.add-details': {
+            marginTop: '50px'
+        },
+        '.ad-detail': {
+            fontFamily: 'Bon Vivant',
+            fontStyle: 'normal',
+            fontWeight: '700',
+            fontSize: '20px',
+            lineHeight: '25px',
+            letterSpacing: '0.06em',
+            color: '#FBFBFB',
+            marginBottom: '8px'
+        },
+        '.exp-title': {
+            fontFamily: 'Proxima Nova',
+            fontStyle: 'normal',
+            // fontWeight:'600',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#FBFBFB',
+            marginBottom: '2px'
+        },
+        '.mb-40': {
+            marginBottom: '40px'
+        },
+        '.mt-40': {
+            marginTop: '40px'
+        },
+        // '.patron-check': {
+        //     padding: '0px 12px'
+        // },
+        '.save-patron': {
+            background: '#DCD7CB',
+            marginTop: '24px',
+            padding: '16px !important',
+            display: 'flex',
+            placeItems: 'flex-start',
+            alignItems: 'center',
+            placeContent: 'baseline',
+            marginBottom: '0px',
+        },
+        '.save-title': {
+            backgroundColor: 'transparent',
+            border: '0px',
+            borderRadius: '0px',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '16px',
+            lineHeight: '19px',
+            color: '#080B0E',
+            marginBottom: '8px'
+        },
+        '.save-subtitle': {
+            backgroundColor: 'transparent',
+            border: '0px',
+            borderRadius: '0px',
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '14px',
+            lineHeight: '17px',
+            color: '#080B0E',
+            marginBottom: '8px'
+        },
+        '.bi-chevron-right': {
+            position: 'relative',
+            height: '24px',
+            width: '24px',
+            '-webkit-text-stroke': '1px',
+        },
+        '.form-check-input': {
+            background: '#C6A87D',
+            borderColor: '#080B0E !important',
+            borderRadius: '0px',
+            color: '#080B0E !important',
+            width: '18px',
+            height: '18px',
+            marginRight: '11px',
+        },
+        '.form-check-input:hover': {
+            background: '#C6A87D',
+            borderColor: '#080B0E !important',
+            borderRadius: '0px',
+            color: '#080B0E !important',
+            width: '18px',
+            height: '18px',
+            marginRight: '11px',
+        },
+        // '.form-check-input': {
+        //     background: '#080B0E',
+        //     borderColor: '#080B0E',
+        //     borderRadius: '0px',
+        //     width: '18px',
+        //     height: '18px',
+        //     marginRight: '11px',
+        // },
+        // '.form-check-input:checked[type=checkbox]': {
+        //     background: '#080B0E',
+        //     borderColor: '#080B0E',
+        //     borderRadius: '0px',
+        //     backgroundImage: `url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='%23C6A87D' stroke-linecap='square' stroke-linejoin='square' stroke-width='3' d='m6 10 3 3 6-6'/></svg>")`,
+        //     width: '18px',
+        //     height: '18px',
+        //     marginRight: '11px',
+        // },
+        '.MuiTabList-root': {
+            width: '140px'
+        },
+        '.error': {
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '14px',
+            lineHeight: '15px',
+            color: '#FBFBFB',
+            marginTop: '6px',
+        },
+        '.Joy-selected': {
+            border: '0.5px solid #C6A87D !important',
+            borderRadius: '0px',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontHeight: '400',
+            fontSize: '14px',
+            lineHeight: '15px',
+            color: '#080B0E !important',
+            background: '#C6A87D !important',
+            padding: '8px 0px',
+            width: '140px',
+            height: '38px',
+        },
+        '.MuiTab-variantPlain': {
+            border: '0.5px solid #FBFBFB',
+            borderRadius: '0px',
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontHeight: '400',
+            fontSize: '14px',
+            lineHeight: '17px',
+            color: '#FBFBFB',
+            padding: '8px 0px',
+            width: '140px',
+            height: '38px',
+        },
+        '.MuiTab-variantPlain:hover': {
+            color: '#FBFBFB',
+        },
+        '.sp-occ': {
+            margin: '6px 0px 20px'
+        },
+        '.css-1lhe3ax-JoyTabPanel-root': {
+            padding: '1px 3px'
+        },
+        '.react-datepicker-component .react-datepicker-input input': {
+            paddingLeft: '5px',
+            color: '#080B0E',
+            fontSize: '16px',
+            lineHeight: '19px'
+        },
+        '.icon-rc-datepicker': {
+            color: '#C6A87D !important',
+            fontSize: '20px',
+        },
+        '.react-datepicker-component .react-datepicker-input': {
+            background: 'transparent',
+            border: '0px',
+            borderRadius: '0px',
+        },
+        '.react-datepicker-component .react-datepicker-input:hover': {
+            background: 'transparent',
+            border: '0px',
+            borderRadius: '0px'
+        },
+        '.react-datepicker-component .react-datepicker-input.has-value input': {
+            color: '#FBFBFB !important',
+        },
+        '.react-datepicker-component .react-datepicker-input.is-open': {
+            background: 'transparent',
+            border: '0px',
+            borderRadius: '0px',
+        },
+        '.alternative': {
+            fontFamily: 'Proxima Nova Alt',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '14px',
+            lineHeight: '17px',
+            color: 'rgba(251, 251, 251, 0.6)',
+            marginTop: '6px',
+            marginBottom: '0px',
+        },
+        '.alternative span': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '14px',
+            lineHeight: '17px',
+            color: '#C6A87D !important',
+            textDecoration: 'underline',
+            cursor: 'pointer'
+        },
+        "@media (min-width: 1px) and (max-width:425px)": {
+            '.supper-gallery .container-fluid': {
+                padding: '20px 10px'
+            },
+            ".header-club": {
+                padding: '0px 110px',
+                display: 'flex',
+            },
+            ".addones-mobile-heading": {
+                padding: '8px 0px !important',
+                fontSize: "24px",
+                textAlign: 'center',
+                color: '#FBFBFB !important',
+                fontFamily: 'Bon Vivant'
+            },
+            '.addons-title': {
+                fontSize: '16px',
+                lineHeight: '30px',
+            },
+            'form label': {
+                fontSize: '15px'
+            },
+            '.per-dinner': {
+                padding: '20px 0px'
+            },
+            '.table-details': {
+                fontSize: '12px',
+                lineHeight: '15px',
+            },
+            '.grand-total': {
+                fontSize: '16px',
+                lineHeight: '20px',
+            },
+            '.ex-heading': {
+                fontSize: '16px',
+                lineHeight: '20px',
+                letterSpacing: '0.04em',
+            },
+            '.event-title': {
+                fontSize: '14px',
+                lineHeight: '18px',
+                letterSpacing: '0.04em',
+            },
+            '.event-link': {
+                fontSize: '14px',
+                lineHeight: '18px',
+            },
+            '.rating-star': {
+                fontSize: '14px',
+                lineHeight: '18px',
+            },
+            '.submit-req': {
+                fontSize: '16px',
+                lineHeight: '18px',
+            },
+            '.MuiTabList-root': {
+                width: '80px'
+            },
+            '.MuiTab-variantPlain': {
+                width: '80px',
+            },
+            '.Joy-selected': {
+                width: '80px',
+            },
+        },
+        "@media (min-width: 371px) and (max-width:400px)": {
+            '.header-club': {
+                padding: '0px 150px'
+            },
+            '.MuiTabList-root': {
+                width: '70px'
+            },
+            '.MuiTab-variantPlain': {
+                width: '70px',
+                fontSize: '12px'
+            },
+            '.Joy-selected': {
+                width: '70px',
+                fontSize: '12px'
+            },
+        },
+        "@media (min-width: 300px) and (max-width:350px)": {
+            '.MuiTabList-root': {
+                width: '55px'
+            },
+            '.MuiTab-variantPlain': {
+                width: '55px',
+                fontSize: '10px'
+            },
+            '.Joy-selected': {
+                width: '55px',
+                fontSize: '10px'
+            },
+        },
+        "@media (min-width: 425px) and (max-width:450px)": {
+            '.header-club': {
+                padding: '0px 170px'
+            }
+        },
+        "@media (min-width: 426px) and (max-width:768px)": {
+            '.supper-gallery .container-fluid': {
+                padding: '40px 80px'
+            },
+            '.header-club': {
+                display: 'flex'
+            },
+        },
+        "@media (min-width: 320px) and (max-width:767px)": {
+            ".addones-mobile-heading": {
+                padding: '8px 0px !important',
+                fontSize: "24px",
+                textAlign: 'center',
+                color: '#FBFBFB',
+                fontFamily: 'Bon Vivant'
+            },
+        },
+        '@media(min-width:600px) and (max-width: 768px)': {
+            '.header-club': {
+                display: 'flex',
+                background: '#DCD7CB',
+            },
+            '.bm-burger-bars': {
+                background: '#080B0E !important',
+            },
+            '.MuiTabList-root': {
+                width: '100px'
+            },
+            '.MuiTab-variantPlain': {
+                width: '100px'
+            },
+            '.Joy-selected': {
+                width: '100px'
+            },
+        },
+        '@media(min-width:1000px) and (max-width: 1024px)': {
+            '.MuiTabList-root': {
+                width: '90px'
+            },
+            '.MuiTab-variantPlain': {
+                width: '90px'
+            },
+            '.Joy-selected': {
+                width: '90px'
+            },
+        },
+        ".addones-mobile-heading": {
+            fontSize: "24px",
+            paddingLeft: '280px',
+            textAlign: 'center',
+            color: "#080B0E",
+            fontFamily: 'Bon Vivant'
+        },
+    }))
 
     return (
         <React.Fragment>
@@ -912,7 +868,9 @@ const CustomerDetails = (props) => {
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">
                             <Box className="book-trad">
-                                <ArrowBackIcon className="arrow-left"/>
+                                <ArrowBackIcon className="arrow-left" onClick={() => {
+                                    navigate(`/event-details/${eventId}`)
+                                }}/>
                                 <Typography className="addons-title">Book a Traditional Oma Kase</Typography>
                             </Box>
                             <Box className="row customer-details addons-div">
@@ -980,7 +938,7 @@ const CustomerDetails = (props) => {
                                                                            className="form-control"
                                                                            id="validationCustom03"
                                                                            placeholder="Add Address"
-                                                                           // value={values.address}
+                                                                    // value={values.address}
                                                                            value={formAddress}
                                                                            onChange={handleChange}
                                                                            autoComplete="off"
@@ -1304,13 +1262,13 @@ const CustomerDetails = (props) => {
                     onClose={handleClose}
                     aria-labelledby="keep-mounted-modal-title"
                     aria-describedby="keep-mounted-modal-description"
-                    sx={{ overflowX: "scroll" }}
+                    sx={{overflowX: "scroll"}}
                 >
                     <Box sx={styleModel1}>
                         <Box className="modal-content">
                             <Box className="modal-header">
-                                <Box sx={{ display: "flex", alignItems: "center" }}>
-                                    <ArrowBackIcon className="arrow-left" />
+                                <Box sx={{display: "flex", alignItems: "center"}}>
+                                    <ArrowBackIcon className="arrow-left"/>
                                     <Typography id="exampleModalLabel" className="modal-title">
                                         Address
                                     </Typography>
@@ -1323,7 +1281,7 @@ const CustomerDetails = (props) => {
                                         className="btn-primary"
                                         onClick={handleClose}
                                     >
-                                        <CloseIcon />
+                                        <CloseIcon/>
                                     </button>
                                 </Box>
                             </Box>
@@ -1335,7 +1293,7 @@ const CustomerDetails = (props) => {
                                                 <Box className="map-box">
                                                     <MapLoader setNewAddress={setNewAddress} setOpen={setOpen}
                                                                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlUV7Gli9S0rwtq72UMXLf9HlrRWkvqc8&libraries=places"
-                                                               loadingElement={<div style={{ height: `100%` }} />}
+                                                               loadingElement={<div style={{height: `100%`}}/>}
                                                     />
                                                 </Box>
                                             </Box>

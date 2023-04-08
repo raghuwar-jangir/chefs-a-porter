@@ -58,6 +58,7 @@ const OtpProvider = (props) => {
         if (isSendOtpApiCall) {
             axios.post(baseUrl + `/util/sendotp`, {
                 mobile: otpNumber,
+                email: eventData.email,
             })
             setIsSendOtpApiCall(false)
         } else if (isVerifiedOtpApiCall) {
@@ -76,6 +77,7 @@ const OtpProvider = (props) => {
             setCountOfResendOtp(countOfResendOtp + 1)
             axios.post(baseUrl + '/util/resendotp', {
                 mobile: otpNumber,
+                email: eventData.email,
             })
             setResendOtp(null)
             setIsReSendOtpApiCall(false)

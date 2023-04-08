@@ -42,7 +42,7 @@ const ScBookingSummary = () => {
 
     const handleClick = () => {
         navigate(`/sc-booking-confirm/${supperClubBookingId}`);
-        setIsSupperBookingStatus(true)
+        setIsSupperBookingStatus(true);
     }
 
     const bookingSummaryValidationSchema = Yup.object().shape({

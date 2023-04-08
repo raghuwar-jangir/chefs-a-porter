@@ -1360,7 +1360,7 @@ const ScBookingConfirm = () => {
                                             <Box>
                                                 <button
                                                     type="submit"
-                                                    onClick={handlePayment}
+                                                    // onClick={handlePayment}
                                                     className="submit-req"
                                                 >
                                                     Reserve a seat
