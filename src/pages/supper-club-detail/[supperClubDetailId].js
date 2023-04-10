@@ -49,6 +49,7 @@ import moment from "moment/moment";
 import SupperClubDetailPopUpCarousel from "../../components/SupperClubDetailPopUpCarousel";
 import Cookies from "js-cookie";
 import SupperClubDetailsPastCarousel from "../../components/SupperClubDetailsPastCarousel";
+import FooterEnd from "../../components/FooterEndSection";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -1515,6 +1516,7 @@ const SupperClubDetail = (props) => {
                         </Box>
                     </>
                 }
+                <FooterEnd />
             </BoxWrapper>
         </React.Fragment>
     );

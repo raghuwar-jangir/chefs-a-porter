@@ -531,13 +531,37 @@ const PersonalDetails1 = () => {
             fontSize: '15px',
             paddingBottom: '9px'
         },
+        '.event-div-mobile': {
+            display: 'none',
+            paddingTop: '5px'
+        },
+        '.event-flex-div': {
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems:'flex-start'
+        },
         "@media (min-width: 1px) and (max-width:768px)": {
             '.partner': {
                 borderRight: '0px'
             },
             '.dinner-box': {
-                paddingLeft: '0px'
-            }
+                display: 'none'
+            },
+            '.event-div-mobile': {
+                display: 'block',
+            },
+            '.book-trad': {
+                display: 'none'
+            },
+            ".date-stack1": {
+                placeContent: "center",
+                display: 'flex',
+                placeItems: 'center',
+                margin: '0px',
+                width:'100%',
+                flexDirection: 'row'
+            },
+            padding: "5px 0px",
         }
     });
     const style = {
@@ -956,7 +980,7 @@ const PersonalDetails1 = () => {
     return (
         <React.Fragment>
             <MainBox>
-                <Navbar heading="Privee"/>
+                <Navbar heading="Privee" isIcon={true}/>
                 <div className="row supper-chef-details">
                     <div className="book-trad">
                         <ArrowBackIcon className="arrow-left"
@@ -966,6 +990,39 @@ const PersonalDetails1 = () => {
                         <div className="addons-title">Personal Details</div>
                     </div>
                 </div>
+                <Box className="event-div-mobile">
+                        <Stack
+                            className="date-stack date-stack1"
+                        >
+                            <Typography className="date-description">April 9</Typography>
+                            <span className="line">|</span>
+                            <Typography className="date-description">
+                                {" "}
+                                7:30 PM - 10 PM
+                            </Typography>
+                            <span className="line">|</span>
+                            <Typography className="date-description">
+                                Blue Cafe, Kamanahalli
+                            </Typography>
+                        </Stack>
+                    <Box style={{ padding:'10px'}}>
+                        <Typography className="event-title">
+                            The Big Fat Parsi Blowout
+                        </Typography>
+                        <div className="event-flex-div">
+                            <Typography className="event-subtitle">
+                                Curated by{" "}
+                                <a href="#" className="event-link">
+                                    Chef Mako
+                                </a>
+                            </Typography>
+                            <Typography className="rating-star">
+                                <img className="rating-people" src={people}/>
+                                <Typography className="rating-star">4 Seats</Typography>
+                            </Typography>
+                        </div>
+                    </Box>
+                </Box>
                 <div>
                     <Formik
                         initialValues={{
@@ -990,7 +1047,7 @@ const PersonalDetails1 = () => {
                                         xs={7}
                                         md={7}
                                         sm={12}
-                                        // xs={12}
+                                        xs={12}
                                         className="partner"
                                     >
                                         <Box className="row">
@@ -1209,7 +1266,7 @@ const PersonalDetails1 = () => {
                                         xs={5}
                                         md={5}
                                         sm={12}
-                                        // xs={12}
+                                        xs={12}
                                         className="cust-details dinner-box"
                                     >
                                         <Box className="per-dinner adsss">

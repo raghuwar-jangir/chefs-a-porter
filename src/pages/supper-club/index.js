@@ -85,10 +85,10 @@ const SupperClub = () => {
             opacity: "0.38",
         },
         ".upcoming": {
-            background: "#FBFBFB",
+            background: "#C2BAA6",
         },
         ".upcoming-container": {
-            padding: "60px 120px",
+            padding: "60px 120px"
         },
         ".child-upcoming": {
             display: "flex",
@@ -184,7 +184,7 @@ const SupperClub = () => {
         },
         ".table-img": {
             width: "100%",
-            height: "491px",
+            height: "100%",
             objectFit: "cover",
         },
         ".table-child-2": {
@@ -267,6 +267,7 @@ const SupperClub = () => {
             ".MuiTab-variantPlain": {
                 fontSize: "14px",
                 lineHeight: "17px",
+                width:'35%'
             },
             ".tab-sec": {
                 fontSize: "14px",
@@ -279,7 +280,7 @@ const SupperClub = () => {
                 width: "100%",
             },
             ".table-img": {
-                height: "230px",
+                height: "100%",
                 objectPosition: "left",
             },
             ".table-child-2": {
@@ -310,6 +311,13 @@ const SupperClub = () => {
             },
             ".template-title": {
                 color: "#080B0E !important",
+            },
+            '.table-box':{
+                display:'block'
+            },
+            ".table-child": {
+                width: "100%",
+                maxWidth: "100%",
             },
         },
     }));
@@ -348,7 +356,7 @@ const SupperClub = () => {
                             <Box>
                                 <Tabs
                                     defaultValue={0}
-                                    sx={{ "--Tabs-gap": "0px", backgroundColor: "#FBFBFB" }}
+                                    sx={{ "--Tabs-gap": "0px", backgroundColor: "#C2BAA6" }}
                                 >
                                     <TabList>
                                         <Tab className="tab-box" value={0}>
@@ -368,61 +376,169 @@ const SupperClub = () => {
                                         </Tab>
                                     </TabList>
                                     <TabPanel value={0} sx={{ p: 0 }}>
-                                        <UpcomingSupperClubCard />
+                                        <Tabs
+                                            defaultValue={0}
+                                            sx={{ "--Tabs-gap": "0px", backgroundColor: "transparent" }}
+                                        >
+                                            <TabList>
+                                                <Tab className="cooking-tab" value={0}>
+                                                    This Week
+                                                    <Typography className="tab-sec">2-5 nov</Typography>
+                                                </Tab>
+                                                <Tab className="cooking-tab" value={1}>
+                                                    Next Week
+                                                    <Typography className="tab-sec">7-6 nov</Typography>
+                                                </Tab>
+                                                <Tab className="cooking-tab" value={2}>
+                                                    Next Month
+                                                    <Typography className="tab-sec">December</Typography>
+                                                </Tab>
+                                            </TabList>
+                                            <TabPanel value={0} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                            <TabPanel value={1} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                            <TabPanel value={2} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                            <TabPanel value={3} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                        </Tabs>
                                     </TabPanel>
                                     <TabPanel value={1} sx={{ p: 0 }}>
-                                        <UpcomingSupperClubCard />
+                                        <Tabs
+                                            defaultValue={0}
+                                            sx={{ "--Tabs-gap": "0px", backgroundColor: "transparent" }}
+                                        >
+                                            <TabList>
+                                                <Tab className="cooking-tab" value={0}>
+                                                    This Week
+                                                    <Typography className="tab-sec">2-5 nov</Typography>
+                                                </Tab>
+                                                <Tab className="cooking-tab" value={1}>
+                                                    Next Week
+                                                    <Typography className="tab-sec">7-6 nov</Typography>
+                                                </Tab>
+                                                <Tab className="cooking-tab" value={2}>
+                                                    Next Month
+                                                    <Typography className="tab-sec">December</Typography>
+                                                </Tab>
+                                            </TabList>
+                                            <TabPanel value={0} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                            <TabPanel value={1} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                            <TabPanel value={2} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                            <TabPanel value={3} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                        </Tabs>
                                     </TabPanel>
                                     <TabPanel value={2} sx={{ p: 0 }}>
-                                        <UpcomingSupperClubCard />
+                                        <Tabs
+                                            defaultValue={0}
+                                            sx={{ "--Tabs-gap": "0px", backgroundColor: "transparent" }}
+                                        >
+                                            <TabList>
+                                                <Tab className="cooking-tab" value={0}>
+                                                    This Week
+                                                    <Typography className="tab-sec">2-5 nov</Typography>
+                                                </Tab>
+                                                <Tab className="cooking-tab" value={1}>
+                                                    Next Week
+                                                    <Typography className="tab-sec">7-6 nov</Typography>
+                                                </Tab>
+                                                <Tab className="cooking-tab" value={2}>
+                                                    Next Month
+                                                    <Typography className="tab-sec">December</Typography>
+                                                </Tab>
+                                            </TabList>
+                                            <TabPanel value={0} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                            <TabPanel value={1} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                            <TabPanel value={2} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                            <TabPanel value={3} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                        </Tabs>
                                     </TabPanel>
                                     <TabPanel value={3} sx={{ p: 0 }}>
-                                        <UpcomingSupperClubCard />
+                                        <Tabs
+                                            defaultValue={0}
+                                            sx={{ "--Tabs-gap": "0px", backgroundColor: "transparent" }}
+                                        >
+                                            <TabList>
+                                                <Tab className="cooking-tab" value={0}>
+                                                    This Week
+                                                    <Typography className="tab-sec">2-5 nov</Typography>
+                                                </Tab>
+                                                <Tab className="cooking-tab" value={1}>
+                                                    Next Week
+                                                    <Typography className="tab-sec">7-6 nov</Typography>
+                                                </Tab>
+                                                <Tab className="cooking-tab" value={2}>
+                                                    Next Month
+                                                    <Typography className="tab-sec">December</Typography>
+                                                </Tab>
+                                            </TabList>
+                                            <TabPanel value={0} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                            <TabPanel value={1} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                            <TabPanel value={2} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                            <TabPanel value={3} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                        </Tabs>
                                     </TabPanel>
                                     <TabPanel value={4} sx={{ p: 0 }}>
-                                        <UpcomingSupperClubCard />
-                                    </TabPanel>
-                                </Tabs>
-                            </Box>
-                        </Box>
-                    </Box>
-                    <Box className="what-we-cooking">
-                        <Box className="cooking-box">
-                            <Box className="child-upcoming">
-                                <Typography className="upcoming-supper-header">
-                                    {data.supper_club.cooking.title}
-                                </Typography>
-                            </Box>
-                            <Box>
-                                <Tabs
-                                    defaultValue={0}
-                                    sx={{ "--Tabs-gap": "0px", backgroundColor: "transparent" }}
-                                >
-                                    <TabList>
-                                        <Tab className="cooking-tab" value={0}>
-                                            This Week
-                                            <Typography className="tab-sec">2-5 nov</Typography>
-                                        </Tab>
-                                        <Tab className="cooking-tab" value={1}>
-                                            Next Week
-                                            <Typography className="tab-sec">7-6 nov</Typography>
-                                        </Tab>
-                                        <Tab className="cooking-tab" value={2}>
-                                            Next Month
-                                            <Typography className="tab-sec">December</Typography>
-                                        </Tab>
-                                    </TabList>
-                                    <TabPanel value={0} sx={{ p: 0 }}>
-                                        <UpcomingSupperClubCard />
-                                    </TabPanel>
-                                    <TabPanel value={1} sx={{ p: 0 }}>
-                                        <UpcomingSupperClubCard />
-                                    </TabPanel>
-                                    <TabPanel value={2} sx={{ p: 0 }}>
-                                        <UpcomingSupperClubCard />
-                                    </TabPanel>
-                                    <TabPanel value={3} sx={{ p: 0 }}>
-                                        <UpcomingSupperClubCard />
+                                        <Tabs
+                                            defaultValue={0}
+                                            sx={{ "--Tabs-gap": "0px", backgroundColor: "transparent" }}
+                                        >
+                                            <TabList>
+                                                <Tab className="cooking-tab" value={0}>
+                                                    This Week
+                                                    <Typography className="tab-sec">2-5 nov</Typography>
+                                                </Tab>
+                                                <Tab className="cooking-tab" value={1}>
+                                                    Next Week
+                                                    <Typography className="tab-sec">7-6 nov</Typography>
+                                                </Tab>
+                                                <Tab className="cooking-tab" value={2}>
+                                                    Next Month
+                                                    <Typography className="tab-sec">December</Typography>
+                                                </Tab>
+                                            </TabList>
+                                            <TabPanel value={0} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                            <TabPanel value={1} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                            <TabPanel value={2} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                            <TabPanel value={3} sx={{ p: 0 }}>
+                                                <UpcomingSupperClubCard />
+                                            </TabPanel>
+                                        </Tabs>
                                     </TabPanel>
                                 </Tabs>
                             </Box>

@@ -154,7 +154,10 @@ const UpcomingSupperClubCard = () => {
         },
         '.link': {
             textDecoration: 'none'
-        }
+        },
+        "@media(min-width:1px) and (max-width: 425px)": {
+            display: 'block',
+        },
     })
     return (
         <React.Fragment>

@@ -301,6 +301,18 @@ const BookingSummary = (props) => {
             cursor: "pointer",
             padding: "18px 10px",
         },
+        ".voucher": {
+            background: "#C6A87D",
+            color: "#080B0E",
+            fontFamily: "ProximaNovaA-Regular",
+            fontSize: "15px",
+            lineHeight: "20px",
+            fontWeight: 600,
+            border: "0px",
+            width: "30%",
+            cursor: "pointer",
+            padding: "10px",
+        },
         ".contact-text": {
             fontFamily: "Proxima Nova",
             fontStyle: "normal",
@@ -517,6 +529,11 @@ const BookingSummary = (props) => {
             flexWrap: "wrap",
             paddingTop: "16px",
         },
+        ".form-group1": {
+            display: "flex",
+            flexWrap: "wrap",
+            padding: "10px 0px",
+        },
         ".country-code": {
             borderBottom: "0.25px solid #FBFBFB",
             display: "inline-flex",
@@ -621,6 +638,7 @@ const BookingSummary = (props) => {
             color: "#C6A87D !important",
         },
 
+
         "@media (min-width: 1px) and (max-width:425px)": {
             ".supper-gallery .container-fluid": {
                 padding: "0px",
@@ -681,6 +699,7 @@ const BookingSummary = (props) => {
             '.dinner-box': {
                 display: 'none'
             }
+
         },
         "@media (min-width: 371px) and (max-width:400px)": {
             ".header-club": {
@@ -1113,8 +1132,7 @@ const BookingSummary = (props) => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar to={"/booking-summary"} isColor={true} heading="Privee"/>
-
+                <Navbar to={"/booking-summary"} isIcon={true} isColor={true} heading="Privee"/>
                 {
                     !_.isEmpty(summaryBookingId && bsPaymentData) &&
                     <Box className="supper-gallery cust-details">
@@ -1433,6 +1451,16 @@ const BookingSummary = (props) => {
                                                                         </Box>
                                                                     </Box>
                                                                 }
+                                                                <Box className="form-group1">
+                                                                    <Field
+                                                                        type="text"
+                                                                        name="voucher"
+                                                                        placeholder="Enter Your Voucher Coupon"
+                                                                        class="form-control"
+                                                                        autoComplete="off"
+                                                                    />
+                                                                    <button className="voucher">Apply Voucher</button>
+                                                                </Box>
                                                             </Box>
                                                             <Box className="row viewbreak">
                                                                 {

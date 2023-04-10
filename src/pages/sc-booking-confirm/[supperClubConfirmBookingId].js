@@ -608,6 +608,27 @@ const ScBookingConfirm = (props) => {
             },
             '.dinner-box': {
                 paddingLeft: '0px'
+            },
+            ".date-stack1": {
+                placeContent: "center",
+                display: 'flex',
+                placeItems: 'center',
+                margin:'0px',
+                width:'100%',
+                flexDirection: 'row',
+            },
+        },
+        "@media (min-width: 1px) and (max-width:425px)": {
+            padding:'0px',
+            '.dinner-box': {
+                display:'none'
+            },
+            '.partner':{
+                maxWidth:'100%',
+                width:'100%'
+            },
+            '.book-trad':{
+                display:'none'
             }
         }
     });
@@ -1147,7 +1168,30 @@ const ScBookingConfirm = (props) => {
                 </div>
                 {
                     !_.isEmpty(supperClubConfirmPaymentData) &&
-
+                    <Box>
+                        <Stack
+                            className="date-stack date-stack1"
+                        >
+                            {!_.isEmpty(supperClubConfirmPaymentData) &&
+                                <Typography className="date-description">
+                                    {moment(supperClubConfirmPaymentData?.event?.dates[0]).format("MMMM D")}
+                                </Typography>
+                            }
+                            <span className="line">|</span>
+                            <Typography className="date-description">
+                                {" "}
+                                {/*7:30 PM - 10 PM*/}
+                                {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
+                            </Typography>
+                            <span className="line">|</span>
+                            <Typography className="date-description">
+                                {supperClubConfirmPaymentData?.event?.venue}
+                            </Typography>
+                        </Stack>
+                    </Box>
+                }
+                {
+                    !_.isEmpty(supperClubConfirmPaymentData) &&
                 <Formik
                     initialValues={{
                         contactNumber: superClubBookingDetails?.contactNumber,
@@ -1167,7 +1211,7 @@ const ScBookingConfirm = (props) => {
                                     xs={7}
                                     md={7}
                                     sm={12}
-                                    // xs={12}
+                                    xs={12}
                                     className="partner"
                                 >
                                     <Box className="booking-box">

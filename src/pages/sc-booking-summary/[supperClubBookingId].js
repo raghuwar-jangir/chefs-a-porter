@@ -554,6 +554,27 @@ const ScBookingSummary = () => {
             },
             '.dinner-box': {
                 paddingLeft: '0px'
+            },
+            ".date-stack1": {
+                placeContent: "center",
+                display: 'flex',
+                placeItems: 'center',
+                margin:'0px',
+                width:'100%',
+                flexDirection: 'row',
+            },
+        },
+        "@media (min-width: 1px) and (max-width:425px)": {
+            padding:'0px',
+            '.dinner-box': {
+               display:'none'
+            },
+            '.partner':{
+                maxWidth:'100%',
+                width:'100%'
+            },
+            '.book-trad':{
+                display:'none'
             }
         }
     })
@@ -689,6 +710,30 @@ const ScBookingSummary = () => {
                 </div>
                 {
                     !_.isEmpty(supperClubPaymentData) &&
+                <Box>
+                    <Stack
+                        className="date-stack date-stack1"
+                    >
+                        {!_.isEmpty(supperClubPaymentData) &&
+                            <Typography className="date-description">
+                                {moment(supperClubPaymentData?.event?.dates[0]).format("MMMM D")}
+                            </Typography>
+                        }
+                        <span className="line">|</span>
+                        <Typography className="date-description">
+                            {" "}
+                            {/*7:30 PM - 10 PM*/}
+                            {moment(supperClubPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
+                        </Typography>
+                        <span className="line">|</span>
+                        <Typography className="date-description">
+                            {supperClubPaymentData?.event?.venue}
+                        </Typography>
+                    </Stack>
+                </Box>
+                }
+                {
+                    !_.isEmpty(supperClubPaymentData) &&
                     <Formik
                         initialValues={{
                             contactNumber: superClubBookingDetails?.contactNumber,
@@ -708,7 +753,7 @@ const ScBookingSummary = () => {
                                         xs={7}
                                         md={7}
                                         sm={12}
-                                        // xs={12}
+                                        xs={12}
                                         className="partner"
                                     >
                                         <Box className="booking-box">
@@ -828,7 +873,7 @@ const ScBookingSummary = () => {
                                         xs={5}
                                         md={5}
                                         sm={12}
-                                        // xs={12}
+                                        xs={12}
                                         className="cust-details dinner-box"
                                     >
                                         <Box className="per-dinner adsss">
