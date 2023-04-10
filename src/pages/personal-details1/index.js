@@ -22,10 +22,12 @@ import * as _ from "lodash";
 import Cookies from "js-cookie";
 import SupperClubOtpVerificationModal from "../../components/SupperClubOtpVerificationModal";
 import OtpContext from "../../context/OtpContext";
+import UsersContext from "../../context/UsersContext";
 
 
 const PersonalDetails1 = () => {
     const {setOtpNumber, setVerifyOtp, setResendOtp, setIsSendOtpApiCall} = useContext(OtpContext);
+    const {mealTypeData} = useContext(UsersContext);
     const [contactPopUp, setContactPopUp] = useState(false);
     const ContactOpen = () => setContactPopUp(true);
     const ContactClose = () => setContactPopUp(false);
@@ -42,15 +44,20 @@ const PersonalDetails1 = () => {
     const CHARACTER_LIMIT = 40;
     const [superClubBookingDetails, setSuperClubBookingDetails] = useState()
     const cookieValue2 = Cookies.get('supperClubBookingPersonalDetail');
-
+    const superClubDetailIdCookieValue = Cookies.get('superClubDetailId');
+    const superClubDetailId = superClubDetailIdCookieValue?.replaceAll('"', '')
+    const cookieValue3 = Cookies.get('PersonalDetailsPaymentCalculation');
+    const [personalDetailsPaymentCalculation, setPersonalDetailsPaymentCalculation] = useState()
 
     useEffect(() => {
         if (cookieValue2) {
             setSuperClubBookingDetails(JSON.parse(cookieValue2));
         }
-    }, [cookieValue2])
+        if (cookieValue3) {
+            setPersonalDetailsPaymentCalculation(JSON.parse(cookieValue3));
+        }
+    }, [cookieValue2, cookieValue3])
 
-    console.log("======== s data", superClubBookingDetails)
     const handleOpenOtp = (contactNumber, values) => {
         if (!_.isEmpty(contactNumber)) {
             setOpenOtp(true);
@@ -92,6 +99,7 @@ const PersonalDetails1 = () => {
         },
         ".arrow-left": {
             color: "#080B0E",
+            cursor: 'pointer'
             // fontSize: '20px',
         },
         '.MuiFormHelperText-root': {
@@ -246,6 +254,7 @@ const PersonalDetails1 = () => {
         },
         ".border": {
             borderTop: "1px solid #080B0E",
+            paddingTop: '10px'
         },
         ".tax1": {
             paddingTop: "20px",
@@ -950,7 +959,10 @@ marginBottom: '20px',
                 <Navbar heading="Privee"/>
                 <div className="row supper-chef-details">
                     <div className="book-trad">
-                        <ArrowBackIcon className="arrow-left"/>
+                        <ArrowBackIcon className="arrow-left"
+                                       onClick={() => {
+                                           navigate(`/supper-club-detail/${superClubDetailId}`)
+                                       }}/>
                         <div className="addons-title">Personal Details</div>
                     </div>
                 </div>
@@ -960,7 +972,7 @@ marginBottom: '20px',
                             name: superClubBookingDetails?.name,
                             email: superClubBookingDetails?.email,
                             contactNumber: superClubBookingDetails?.contactNumber,
-                            city: superClubBookingDetails?.city ? superClubBookingDetails?.city : "Mumbai",
+                            foodPreference: 'Vegan',
                             allergyMessage: superClubBookingDetails?.allergyMessage,
                             AdditionalMessage: superClubBookingDetails?.AdditionalMessage ? superClubBookingDetails?.AdditionalMessage : ''
                         }}
@@ -1020,79 +1032,87 @@ marginBottom: '20px',
                                                 <ErrorMessage name="contactNumber"/>
                                             </Box>
                                             <Box className="your-food">
-                                                <div className="your-box">
-                                                    <label className="form-label" htmlFor="pincode">Your Food
-                                                        Preference</label>
-                                                    <div className="view-text">View Menu</div>
-                                                </div>
-                                                <Select
-                                                    labelId="demo-simple-select-label"
-                                                    id="demo-simple-select"
-                                                    name="city"
-                                                    value={values.city}
-                                                    onChange={handleChange}
-                                                    defaultValue={values.city}
-                                                    className="form-control-drop"
-                                                    sx={{
-                                                        fontSize: "20px",
-                                                        ".MuiOutlinedInput-notchedOutline": {border: 0},
-                                                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                                                            border: "none",
-                                                        },
-                                                        ".MuiSelect-select": {
-                                                            padding: "0px 5px",
-                                                            fontFamily: 'Proxima Nova Alt',
-                                                            fontStyle: 'normal',
-                                                            fontWeight: 300,
-                                                            fontSize: '16px',
-                                                            lineHeight: '19px',
-                                                            color: '#222222',
-                                                            height: '20px !important',
-                                                            minHeight: '0px !important'
-                                                        },
-                                                    }}
-                                                    MenuProps={{
-                                                        PaperProps: {
-                                                            sx: {
-                                                                backgroundColor: "#DCD7CB !important",
-                                                                li: {
-                                                                    fontFamily: "ProximaNovaA-Regular",
-                                                                    borderBottom: "1px solid black",
-                                                                    fontSize: "20px",
-                                                                    fontWeight: "100",
-                                                                    padding: "6px 0px",
-                                                                    justifyContent: "start",
-                                                                },
-                                                                ul: {
-                                                                    display: "flex",
-                                                                    flexDirection: "column",
-                                                                    padding: "16px",
-                                                                },
-                                                                "li:hover": {
-                                                                    color: "#C6A87D!important",
-                                                                    backgroundColor: "unset !important",
-                                                                },
-                                                                "li:last-child": {
-                                                                    borderBottom: "none",
-                                                                },
-                                                                "&& .Mui-selected": {
-                                                                    backgroundColor: "unset !important",
-
+                                                {
+                                                    !_.isEmpty(mealTypeData) &&
+                                                    <>
+                                                        <div className="your-box">
+                                                            <label className="form-label" htmlFor="pincode">Your Food
+                                                                Preference</label>
+                                                            <div className="view-text">View Menu</div>
+                                                        </div>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="foodPreference"
+                                                            value={values.foodPreference}
+                                                            onChange={handleChange}
+                                                            defaultValue={values.foodPreference}
+                                                            className="form-control-drop"
+                                                            sx={{
+                                                                fontSize: "20px",
+                                                                ".MuiOutlinedInput-notchedOutline": {border: 0},
+                                                                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                                                                    border: "none",
                                                                 },
                                                                 ".MuiSelect-select": {
-                                                                    padding: "5px !important",
-                                                                    fontSize: "17px",
+                                                                    padding: "0px 5px",
+                                                                    fontFamily: 'Proxima Nova Alt',
+                                                                    fontStyle: 'normal',
+                                                                    fontWeight: 300,
+                                                                    fontSize: '16px',
+                                                                    lineHeight: '19px',
+                                                                    color: '#222222',
+                                                                    height: '20px !important',
+                                                                    minHeight: '0px !important'
                                                                 },
-                                                            },
-                                                        },
-                                                    }}
-                                                >
-                                                    <MenuItem value="Mumbai">Mumbai</MenuItem>
-                                                    <MenuItem value="Delhi">Delhi</MenuItem>
-                                                    <MenuItem value="Goa">Goa</MenuItem>
-                                                    <MenuItem value="Banglore">Banglore</MenuItem>
-                                                    <MenuItem value="Hydrabad">Hydrabad</MenuItem>
-                                                </Select>
+                                                            }}
+                                                            MenuProps={{
+                                                                PaperProps: {
+                                                                    sx: {
+                                                                        backgroundColor: "#DCD7CB !important",
+                                                                        li: {
+                                                                            fontFamily: "ProximaNovaA-Regular",
+                                                                            borderBottom: "1px solid black",
+                                                                            fontSize: "20px",
+                                                                            fontWeight: "100",
+                                                                            padding: "6px 0px",
+                                                                            justifyContent: "start",
+                                                                        },
+                                                                        ul: {
+                                                                            display: "flex",
+                                                                            flexDirection: "column",
+                                                                            padding: "16px",
+                                                                        },
+                                                                        "li:hover": {
+                                                                            color: "#C6A87D!important",
+                                                                            backgroundColor: "unset !important",
+                                                                        },
+                                                                        "li:last-child": {
+                                                                            borderBottom: "none",
+                                                                        },
+                                                                        "&& .Mui-selected": {
+                                                                            backgroundColor: "unset !important",
+
+                                                                        },
+                                                                        ".MuiSelect-select": {
+                                                                            padding: "5px !important",
+                                                                            fontSize: "17px",
+                                                                        },
+                                                                    },
+                                                                },
+                                                            }}
+                                                        >
+                                                            {
+                                                                mealTypeData?.map((item) => {
+                                                                    return (
+                                                                        <MenuItem
+                                                                            value={item.name}>{item.name}</MenuItem>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </Select>
+                                                    </>
+                                                }
                                             </Box>
                                             <Box className='form-field'>
                                                 <div style={{display: 'flex'}}>
@@ -1234,30 +1254,26 @@ marginBottom: '20px',
                                                     </Typography>
                                                     <ExpandMoreIcon className="ex-icon"/>
                                                 </Box>
-                                                <Box className="table table-borderless">
-                                                    <Box className="table-box">
-                                                        <Typography className="table-details">Food</Typography>
-                                                        <Typography className="table-details">₹ 2,500</Typography>
+                                                {
+                                                    !_.isEmpty(personalDetailsPaymentCalculation) &&
+                                                    <Box className="table table-borderless">
+                                                        {
+                                                            Object.keys(personalDetailsPaymentCalculation).map((key, index) => {
+                                                                return (
+                                                                    <>
+                                                                        <Box key={index} key={index}
+                                                                             className={index === Object.keys(personalDetailsPaymentCalculation).length - 1 ? " table-box border" : "table-box"}>
+                                                                            <Typography
+                                                                                className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
+                                                                            <Typography
+                                                                                className="table-details">{personalDetailsPaymentCalculation[key]}</Typography>
+                                                                        </Box>
+                                                                    </>
+                                                                )
+                                                            })
+                                                        }
                                                     </Box>
-                                                    <Box className="table-box">
-                                                        <Typography className="table-details">
-                                                            Service Charge
-                                                        </Typography>
-                                                        <Typography className="table-details">₹ 2,500</Typography>
-                                                    </Box>
-                                                    <Box className="table-box">
-                                                        <Typography className="table-details">Tax</Typography>
-                                                        <Typography className="table-details">₹ 2,500</Typography>
-                                                    </Box>
-                                                    <Box className="table-box border">
-                                                        <Typography className=" grand-total table-details">
-                                                            Grand Total
-                                                        </Typography>
-                                                        <Typography className="table-details grand-total">
-                                                            ₹ 2,5000
-                                                        </Typography>
-                                                    </Box>
-                                                </Box>
+                                                }
                                             </Box>
                                             <Box className="row viewbreak">
                                                 <Box>
@@ -1288,7 +1304,7 @@ marginBottom: '20px',
                     <Box sx={style}>
                         <Formik
                             initialValues={{
-                                city: 'Mumbai',
+                                foodPreference: 'Vegan',
                             }}
                             validationSchema={validationSchema}
                         >
@@ -1357,7 +1373,7 @@ marginBottom: '20px',
                                                                         <Field className="form-control" type="text"
                                                                                id="name" name="name"
                                                                                placeholder="email id"/>
-                                                                        {/* <ErrorMessage name="name" /> */}
+                                                                        <ErrorMessage name="email"/>
                                                                     </Box>
                                                                     <Box className='form-field'>
                                                                         <label className="form-label"
@@ -1379,81 +1395,90 @@ marginBottom: '20px',
                                                                         {/* <ErrorMessage name="flatNumber" /> */}
                                                                     </Box>
                                                                     <Box className="your-food">
-                                                                        <div className="your-box">
-                                                                            <label className="form-label"
-                                                                                   htmlFor="pincode">Your Food
-                                                                                Preference</label>
-                                                                        </div>
-                                                                        <Select
-                                                                            labelId="demo-simple-select-label"
-                                                                            id="demo-simple-select"
-                                                                            name="city"
-                                                                            value={values.city}
-                                                                            onChange={handleChange}
-                                                                            defaultValue={values.city}
-                                                                            className="form-control-drop"
-                                                                            sx={{
-                                                                                fontSize: "20px",
-                                                                                ".MuiOutlinedInput-notchedOutline": {border: 0},
-                                                                                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                                                                                    border: "none",
-                                                                                },
-                                                                                ".MuiSelect-select": {
-                                                                                    padding: "0px 5px",
-                                                                                    fontFamily: 'Proxima Nova Alt',
-                                                                                    fontStyle: 'normal',
-                                                                                    fontWeight: 300,
-                                                                                    fontSize: '16px',
-                                                                                    lineHeight: '19px',
-                                                                                    color: '#222222',
-                                                                                    height: '20px !important',
-                                                                                    minHeight: '0px !important'
-                                                                                },
-                                                                            }}
-                                                                            MenuProps={{
-                                                                                PaperProps: {
-                                                                                    sx: {
-                                                                                        backgroundColor: "#DCD7CB !important",
-                                                                                        li: {
-                                                                                            fontFamily: "ProximaNovaA-Regular",
-                                                                                            borderBottom: "1px solid black",
-                                                                                            fontSize: "20px",
-                                                                                            fontWeight: "100",
-                                                                                            padding: "6px 0px",
-                                                                                            justifyContent: "start",
-                                                                                        },
-                                                                                        ul: {
-                                                                                            display: "flex",
-                                                                                            flexDirection: "column",
-                                                                                            padding: "16px",
-                                                                                        },
-                                                                                        "li:hover": {
-                                                                                            color: "#C6A87D!important",
-                                                                                            backgroundColor: "unset !important",
-                                                                                        },
-                                                                                        "li:last-child": {
-                                                                                            borderBottom: "none",
-                                                                                        },
-                                                                                        "&& .Mui-selected": {
-                                                                                            backgroundColor: "unset !important",
-
+                                                                        {
+                                                                            !_.isEmpty(mealTypeData) &&
+                                                                            <>
+                                                                                <div className="your-box">
+                                                                                    <label className="form-label"
+                                                                                           htmlFor="pincode">Your Food
+                                                                                        Preference</label>
+                                                                                    <div className="view-text">View
+                                                                                        Menu
+                                                                                    </div>
+                                                                                </div>
+                                                                                <Select
+                                                                                    labelId="demo-simple-select-label"
+                                                                                    id="demo-simple-select"
+                                                                                    name="foodPreference"
+                                                                                    value={values.foodPreference}
+                                                                                    onChange={handleChange}
+                                                                                    defaultValue={values.foodPreference}
+                                                                                    className="form-control-drop"
+                                                                                    sx={{
+                                                                                        fontSize: "20px",
+                                                                                        ".MuiOutlinedInput-notchedOutline": {border: 0},
+                                                                                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                                                                                            border: "none",
                                                                                         },
                                                                                         ".MuiSelect-select": {
-                                                                                            padding: "5px !important",
-                                                                                            fontSize: "17px",
+                                                                                            padding: "0px 5px",
+                                                                                            fontFamily: 'Proxima Nova Alt',
+                                                                                            fontStyle: 'normal',
+                                                                                            fontWeight: 300,
+                                                                                            fontSize: '16px',
+                                                                                            lineHeight: '19px',
+                                                                                            color: '#222222',
+                                                                                            height: '20px !important',
+                                                                                            minHeight: '0px !important'
                                                                                         },
-                                                                                    },
-                                                                                },
-                                                                            }}
-                                                                        >
-                                                                            <MenuItem value="Mumbai">Mumbai</MenuItem>
-                                                                            <MenuItem value="Delhi">Delhi</MenuItem>
-                                                                            <MenuItem value="Goa">Goa</MenuItem>
-                                                                            <MenuItem
-                                                                                value="Banglore">Banglore</MenuItem>
-                                                                            <MenuItem
-                                                                                value="Hydrabad">Hydrabad</MenuItem>
-                                                                        </Select>
+                                                                                    }}
+                                                                                    MenuProps={{
+                                                                                        PaperProps: {
+                                                                                            sx: {
+                                                                                                backgroundColor: "#DCD7CB !important",
+                                                                                                li: {
+                                                                                                    fontFamily: "ProximaNovaA-Regular",
+                                                                                                    borderBottom: "1px solid black",
+                                                                                                    fontSize: "20px",
+                                                                                                    fontWeight: "100",
+                                                                                                    padding: "6px 0px",
+                                                                                                    justifyContent: "start",
+                                                                                                },
+                                                                                                ul: {
+                                                                                                    display: "flex",
+                                                                                                    flexDirection: "column",
+                                                                                                    padding: "16px",
+                                                                                                },
+                                                                                                "li:hover": {
+                                                                                                    color: "#C6A87D!important",
+                                                                                                    backgroundColor: "unset !important",
+                                                                                                },
+                                                                                                "li:last-child": {
+                                                                                                    borderBottom: "none",
+                                                                                                },
+                                                                                                "&& .Mui-selected": {
+                                                                                                    backgroundColor: "unset !important",
+
+                                                                                                },
+                                                                                                ".MuiSelect-select": {
+                                                                                                    padding: "5px !important",
+                                                                                                    fontSize: "17px",
+                                                                                                },
+                                                                                            },
+                                                                                        },
+                                                                                    }}
+                                                                                >
+                                                                                    {
+                                                                                        mealTypeData?.map((item) => {
+                                                                                            return (
+                                                                                                <MenuItem
+                                                                                                    value={item.name}>{item.name}</MenuItem>
+                                                                                            )
+                                                                                        })
+                                                                                    }
+                                                                                </Select>
+                                                                            </>
+                                                                        }
                                                                     </Box>
                                                                     <button onClick={afterClick}
                                                                             className="modal-add">Add

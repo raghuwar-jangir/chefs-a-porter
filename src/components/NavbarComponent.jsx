@@ -21,6 +21,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ShareIcon from '@mui/icons-material/Share';
 import CmsContext from "../context/CmsContext"
+import Cookies from "js-cookie";
 
 
 const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubLink}) => {
@@ -28,7 +29,8 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
     const props = {
         heading
     }
-    const {callMobileNumber} = useContext(CmsContext);
+    const callMobileNumberCookieValue = Cookies?.get('callMobileNumber');
+    const callMobileNumber = callMobileNumberCookieValue?.replaceAll('"', '')
 
     //calling button
     const handlePhoneCall = () => {

@@ -59,6 +59,9 @@ const CustomerDetails = (props) => {
     const [contactNumber, setContactNumber] = useState('');
     const [customerInfo, setCustomerInfo] = useState('')
     const cookieValue = Cookies?.get('customerData');
+    const customerDetailsPaymentCalculationCookieValue = Cookies?.get('customerDetailsPaymentCalculation');
+    const [customerDetailsPaymentCalculation, setCustomerDetailsPaymentCalculation] = useState();
+
 
     {
         !_.isEmpty(cookieValue) &&
@@ -66,7 +69,10 @@ const CustomerDetails = (props) => {
             if (cookieValue) {
                 setCustomerInfo(JSON.parse(cookieValue));
             }
-        }, [cookieValue])
+            if (customerDetailsPaymentCalculationCookieValue) {
+                setCustomerDetailsPaymentCalculation(JSON.parse(customerDetailsPaymentCalculationCookieValue));
+            }
+        }, [cookieValue, customerDetailsPaymentCalculationCookieValue])
     }
 
     console.log("customerInfo======", customerInfo)
@@ -322,10 +328,15 @@ const CustomerDetails = (props) => {
         '.cust-details': {
             padding: '0px 15px'
         },
+        '.position': {
+            position: 'relative'
+        },
         '.per-dinner': {
             background: '#101418',
             padding: '40px 20px',
             boxShadow: '0px 20px 24px rgb(0 0 0 / 6%)',
+            position: 'sticky',
+            top: '50px'
         },
         '.event-div': {
             display: 'flex'
@@ -460,6 +471,7 @@ const CustomerDetails = (props) => {
         '.border': {
             borderTop: '1px solid rgba(255, 255, 255, 0.6)',
             borderBottom: '1px solid rgba(255, 255, 255, 0.6)',
+            paddingTop: '16px'
         },
         '.tax1': {
             paddingTop: '20px',
@@ -877,8 +889,13 @@ const CustomerDetails = (props) => {
                                 <Formik
                                     initialValues={{
                                         contactNumber: customerInfo?.contactNumber,
-                                        address: customerInfo?.address,
+                                        address: customerInfo?.address ? customerInfo?.address : '',
                                         message: customerInfo?.message ? customerInfo?.message : '',
+                                        experienceName: '',
+                                        date: '',
+                                        date1: '',
+                                        date2: '',
+                                        date3: ''
                                     }}
                                     validationSchema={validationSchema}
                                     onSubmit={(values) => {
@@ -963,6 +980,9 @@ const CustomerDetails = (props) => {
                                                                                    color: '#FBFBFB',
                                                                                    padding: '0px'
                                                                                },
+                                                                               '.css-1x51dt5-MuiInputBase-input-MuiInput-input': {
+                                                                                   padding: '0px !important'
+                                                                               }
 
                                                                            }}
                                                                 />
@@ -1085,15 +1105,15 @@ const CustomerDetails = (props) => {
                                                                     <label className="mt-40">Experience Date
                                                                         (Optional)</label>
                                                                     <DatePickerInput
-                                                                        name="date"
-                                                                        value={values.date}
+                                                                        name="date1"
+                                                                        value={values.date1}
                                                                         displayFormat="DD/MMMM/YYYY"
                                                                         returnFormat="DD/MMMM/YYYY"
                                                                         autoComplete="off"
                                                                         className="form-control"
                                                                         placeholder="-DD/MM/YYYY-"
-                                                                        onChange={(dateString) => setFieldValue('date', dateString)}
-                                                                        defaultValue={values.date}/>
+                                                                        onChange={(dateString) => setFieldValue('date1', dateString)}
+                                                                        defaultValue={values.date1}/>
                                                                     <Typography className="sp-occ ex-detail">We will
                                                                         send you exclusive offers on this
                                                                         day</Typography>
@@ -1104,15 +1124,15 @@ const CustomerDetails = (props) => {
                                                                     <label className="mt-40">Experience Date
                                                                         (Optional)</label>
                                                                     <DatePickerInput
-                                                                        name="date"
-                                                                        value={values.date}
+                                                                        name="date2"
+                                                                        value={values.date2}
                                                                         displayFormat="DD/MMMM/YYYY"
                                                                         returnFormat="DD/MMMM/YYYY"
                                                                         autoComplete="off"
                                                                         className="form-control"
                                                                         placeholder="-DD/MM/YYYY-"
-                                                                        onChange={(dateString) => setFieldValue('date', dateString)}
-                                                                        defaultValue={values.date}/>
+                                                                        onChange={(dateString) => setFieldValue('date2', dateString)}
+                                                                        defaultValue={values.date2}/>
                                                                     <Typography className="sp-occ ex-detail">We will
                                                                         send you exclusive offers on this
                                                                         day</Typography>
@@ -1120,17 +1140,44 @@ const CustomerDetails = (props) => {
                                                             </TabPanel>
                                                             <TabPanel value={3} sx={{p: 2}}>
                                                                 <Grid xs={12} className="mb-3">
+                                                                    <TextField type="tel" name="experienceName"
+                                                                               className="form-control label"
+                                                                               id="validationCustom03"
+                                                                               placeholder="Add Experience"
+                                                                               value={values.experienceName}
+                                                                               onChange={handleChange}
+                                                                               autoComplete="off"
+                                                                               variant="standard"
+                                                                               sx={{
+                                                                                   '& .MuiInputBase-input': {
+                                                                                       background: 'transparent',
+                                                                                       height: '31px',
+                                                                                       borderRadius: '0px',
+                                                                                       fontFamily: 'Proxima Nova',
+                                                                                       fontStyle: 'normal',
+                                                                                       fontWeight: '400',
+                                                                                       fontSize: '16px',
+                                                                                       lineHeight: '19px',
+                                                                                       color: '#FBFBFB',
+                                                                                       paddingTop: '30px'
+                                                                                   },
+                                                                                   '.css-v4u5dn-MuiInputBase-root-MuiInput-root:after': {
+                                                                                       borderBottom: 'unset !important'
+                                                                                   }
+                                                                               }}
+                                                                    />
                                                                     <label className="mt-40">Experience Date
                                                                         (Optional)</label>
                                                                     <DatePickerInput
-                                                                        name="date"
-                                                                        value={values.date}
+                                                                        name="date3"
+                                                                        value={values.date3}
                                                                         displayFormat="DD/MMMM/YYYY"
                                                                         returnFormat="DD/MMMM/YYYY"
                                                                         autoComplete="off"
                                                                         className="form-control"
                                                                         placeholder="-DD/MM/YYYY-"
-                                                                        onChange={(dateString) => setFieldValue('date', dateString)}/>
+                                                                        onChange={(dateString) => setFieldValue('date3', dateString)}
+                                                                        defaultValue={values.date3}/>
                                                                     <Typography className="sp-occ ex-detail">We will
                                                                         send you exclusive offers on this
                                                                         day</Typography>
@@ -1155,7 +1202,7 @@ const CustomerDetails = (props) => {
                                                     </Box>
                                                 </Grid>
                                                 <Grid xl={5} lg={5} xs={5} md={5} sm={12} xs={12}
-                                                      className="cust-details">
+                                                      className="cust-details position">
                                                     <Box className="per-dinner adsss">
                                                         <Box className="event-div">
                                                             <img src={sGallery} alt="" className="per-dinner-img"/>
@@ -1187,51 +1234,34 @@ const CustomerDetails = (props) => {
                                                                 </Typography>
                                                                 <ExpandMoreIcon className="ex-icon"/>
                                                             </Box>
-                                                            <Box className="table table-borderless">
-                                                                <Box className="table-box">
-                                                                    <Typography
-                                                                        className="table-details">Food</Typography>
-                                                                    <Typography className="table-details">₹
-                                                                        2,500</Typography>
+                                                            {
+                                                                !_.isEmpty(customerDetailsPaymentCalculation) &&
+                                                                <Box className="table table-borderless">
+                                                                    {
+                                                                        Object.keys(customerDetailsPaymentCalculation).map((key, index) => {
+                                                                            return (
+                                                                                <>
+                                                                                    <Box key={index} key={index}
+                                                                                         className={index === Object.keys(customerDetailsPaymentCalculation).length - 1 ? " table-box border" : "table-box"}>
+                                                                                        <Typography
+                                                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
+                                                                                        <Typography
+                                                                                            className="table-details">{customerDetailsPaymentCalculation[key]}</Typography>
+                                                                                    </Box>
+                                                                                </>
+                                                                            )
+                                                                        })
+                                                                    }
+                                                                    <Box className="tax tax1 table-box">
+                                                                        <Typography className="table-details">+Incl Of
+                                                                            GST</Typography>
+                                                                    </Box>
+                                                                    <Box className="tax">
+                                                                        <Typography className="table-details">++1.95% +
+                                                                            GST</Typography>
+                                                                    </Box>
                                                                 </Box>
-                                                                <Box className="table-box">
-                                                                    <Typography className="table-details">Service
-                                                                        Charge</Typography>
-                                                                    <Typography className="table-details">₹
-                                                                        2,500</Typography>
-                                                                </Box>
-                                                                <Box className="table-box">
-                                                                    <Typography className="table-details"
-                                                                    >Tax</Typography>
-                                                                    <Typography className="table-details">₹
-                                                                        2,500</Typography>
-                                                                </Box>
-                                                                <Box className="table-box">
-                                                                    <Typography className="table-details"
-                                                                    >Venue</Typography>
-                                                                    <Typography className="table-details">₹
-                                                                        2,500</Typography>
-                                                                </Box>
-                                                                <Box className="table-box">
-                                                                    <Box className="table-details">Additional Courses
-                                                                        +2</Box>
-                                                                    <Box className="table-details">₹ 2,500</Box>
-                                                                </Box>
-                                                                <Box className="table-box border">
-                                                                    <Typography className=" grand-total table-details">Grand
-                                                                        Total</Typography>
-                                                                    <Typography className="table-details grand-total">₹
-                                                                        2,5000</Typography>
-                                                                </Box>
-                                                                <Box className="tax tax1 table-box">
-                                                                    <Typography className="table-details">+Incl Of
-                                                                        GST</Typography>
-                                                                </Box>
-                                                                <Box className="tax">
-                                                                    <Typography className="table-details">++1.95% +
-                                                                        GST</Typography>
-                                                                </Box>
-                                                            </Box>
+                                                            }
                                                         </Box>
                                                         <Box className="row viewbreak">
                                                             <Box className="col-lg-12">

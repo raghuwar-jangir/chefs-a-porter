@@ -35,19 +35,13 @@ const CmsProvider = (props) => {
     const emptyUrl = currentPath.startsWith(null) ? currentPath : currentPath + "/";
 
     const [data, setData] = useState();
-    const [callMobileNumber, setCallMobileNumber] = useState();
-    const [mealData, setMealData] = useState();
 
     useEffect(() => {
-        axios.get(baseUrl + `/${pathInfo[!currentPath ? emptyUrl : currentPath]}/`).then(result => {
-            setData(result.data)
-        })
-        axios.get(baseUrl + '/footer').then(result => {
-            setCallMobileNumber(result.data.footer.footer.mobile)
-        })
-        axios.get('https://chefv2.hypervergedemo.site/v1/meal_times/all').then(result => {
-            setMealData(result.data)
-        })
+        if (pathInfo[currentPath] || path.pathname === '/') {
+            axios.get(baseUrl + `/${pathInfo[!currentPath ? emptyUrl : currentPath]}/`).then(result => {
+                setData(result.data)
+            })
+        }
     }, [path, currentPath])
 
     const {children} = props
@@ -55,8 +49,6 @@ const CmsProvider = (props) => {
         <CmsContext.Provider
             value={{
                 data,
-                callMobileNumber,
-                mealData
             }}
         >
             {children}

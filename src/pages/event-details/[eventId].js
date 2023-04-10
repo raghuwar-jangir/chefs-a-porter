@@ -42,8 +42,6 @@ import Cookies from "js-cookie";
 
 const EventDetails = (props) => {
     const {eventId} = props;
-    console.log("=================---------",eventId)
-
     const {setEventId, userData} = useContext(UsersContext);
     const [showCarousel, setShowCarousel] = useState(false);
     const [title, setTitle] = useState("");
@@ -80,12 +78,10 @@ const EventDetails = (props) => {
             Event
         </Link>,
     ];
-    const itemData = [
-        {
-            img: userData?.cover_picture,
-            title: "chef1",
-        },
-    ];
+    const itemData = {
+        img: userData?.cover_picture,
+        title: "chef1",
+    };
 
     const itemData2 = [
         {
@@ -652,17 +648,17 @@ const EventDetails = (props) => {
                                         xs={12}
                                     >
                                         <Box className="container">
-                                            {itemData.map((item) => (
-                                                <img
-                                                    src={item.img}
-                                                    alt={item.title}
-                                                    className="main-img"
-                                                    loading="lazy"
-                                                    onClick={() => {
-                                                        handleImageOpen(item.title);
-                                                    }}
-                                                />
-                                            ))}
+                                            {/*{itemData.map((item) => (*/}
+                                            <img
+                                                src={itemData.img}
+                                                alt={itemData.title}
+                                                className="main-img"
+                                                loading="lazy"
+                                                onClick={() => {
+                                                    handleImageOpen(itemData.title);
+                                                }}
+                                            />
+                                            {/*))}*/}
                                             {showCarousel && (
                                                 <Box className="carousel-popup">
                                                     <button

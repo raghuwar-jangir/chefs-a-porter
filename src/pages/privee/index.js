@@ -31,6 +31,7 @@ import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import {SwiperSlide} from "swiper/react";
 import "../../assets/styles/fontStyle.css"
 import Cookies from 'js-cookie';
+import UsersContext from "../../context/UsersContext";
 
 const MainBoxContent = styled(Box)({
     position: 'relative',
@@ -585,7 +586,9 @@ const MainContentBox = styled(Box)({
 })
 const PriveePage = (props) => {
 
-    const {data,mealData} = useContext(CmsContext);
+    const {data} = useContext(CmsContext);
+    const {mealData} = useContext(UsersContext);
+
 
     console.log("mealData=====",mealData)
     const [search, setSearch] = useState(false);

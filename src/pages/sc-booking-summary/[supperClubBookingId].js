@@ -99,6 +99,7 @@ const ScBookingSummary = () => {
         },
         ".arrow-left": {
             color: "#080B0E",
+            cursor: 'pointer'
             // fontSize: '20px',
         },
         ".dinner-box": {
@@ -679,7 +680,10 @@ const ScBookingSummary = () => {
                 <Navbar heading="Privee" isColor={true}/>
                 <div className="row supper-chef-details">
                     <div className="book-trad">
-                        <ArrowBackIcon className="arrow-left"/>
+                        <ArrowBackIcon className="arrow-left" onClick={() => {
+                            navigate(`/personal-details1`)
+                        }
+                        }/>
                         <div className="addons-title">Booking Summary</div>
                     </div>
                 </div>

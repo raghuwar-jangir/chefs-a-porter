@@ -45,10 +45,11 @@ import moment from "moment/moment";
 import useRazorpay from "react-razorpay";
 import { useCallback } from "react";
 
-const ScBookingConfirm = () => {
+const ScBookingConfirm = (props) => {
     // const handleClick = () => {
     //     navigate("/sc-booking-confirm");
     // };
+    const {supperClubConfirmBookingId} = props;
     const [inputValue, setInputValue] = useState("Chefsaporter/privatediner/AefDFC..");
     const [supperClubBookingData, setSupperClubBookingData] = useState()
     const cookieValue = Cookies.get('supperClubBookingData');
@@ -150,6 +151,7 @@ const ScBookingConfirm = () => {
         },
         ".arrow-left": {
             color: "#080B0E",
+            cursor: 'pointer'
             // fontSize: '20px',
         },
         ".dinner-box": {
@@ -1133,7 +1135,10 @@ const ScBookingConfirm = () => {
                 <div className="row supper-chef-details">
                     <div className="book-trad">
                         <ArrowBackIcon
-                            onClick={handleBookingSuccessOpen}
+                            // onClick={handleBookingSuccessOpen}
+                            onClick={() => {
+                                navigate(`/sc-booking-summary/${supperClubConfirmBookingId}`)
+                            }}
                             className="arrow-left"
                         />
                         <div className="addons-title">Booking Summary</div>
@@ -1170,11 +1175,13 @@ const ScBookingConfirm = () => {
                                         </Box>
                                         <Box class="chef-edit">
                                             <Typography className="chef-edit-title">
-                                                Curated by <span className="chef-edit-sub">{supperClubBookingData?.event?.chef?.name}</span>
+                                                Curated by <span
+                                                className="chef-edit-sub">{supperClubBookingData?.event?.chef?.name}</span>
                                             </Typography>
                                             <Typography className="chef-seats">
                                                 <img className="chef-people" src={people}/>
-                                                <Typography className="chef-people-no">{supperClubBookingData?.event?.seats}</Typography>
+                                                <Typography
+                                                    className="chef-people-no">{supperClubBookingData?.event?.seats}</Typography>
                                             </Typography>
                                         </Box>
                                         <hr className="hr"/>
@@ -1302,7 +1309,8 @@ const ScBookingConfirm = () => {
                                             </Stack>
                                         </Box>
                                         <Box className="event-div">
-                                            <img src={supperClubBookingData?.event?.pictures[0]} alt="" className="per-dinner-img"/>
+                                            <img src={supperClubBookingData?.event?.pictures[0]} alt=""
+                                                 className="per-dinner-img"/>
                                             <Box sx={{marginLeft: "12px"}}>
                                                 <Typography className="event-title">
                                                     {supperClubBookingData?.event?.title}
@@ -1315,7 +1323,8 @@ const ScBookingConfirm = () => {
                                                 </Typography>
                                                 <Typography className="rating-star">
                                                     <img className="rating-people" src={people}/>
-                                                    <Typography className="rating-star">{supperClubBookingData?.event?.seats}</Typography>
+                                                    <Typography
+                                                        className="rating-star">{supperClubBookingData?.event?.seats}</Typography>
                                                 </Typography>
                                             </Box>
                                         </Box>
