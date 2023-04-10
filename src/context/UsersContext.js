@@ -30,10 +30,11 @@ const UsersProvider = (props) => {
   );
   const [isSupperBookingStatus, setIsSupperBookingStatus] = useState(false);
   const [paymentVerification, setPaymentVerification] = useState(false);
+  console.log("paymentVerification======>",paymentVerification);
   const [supperClubBookingBookingConfirm, setSupperClubBookingBookingConfirm] =
     useState();
   const cookieValueSupper = Cookies.get("supperClubBookingBookingConfirm");
-  console.log("paymentVerification======>", paymentVerification);
+  // console.log("paymentVerification======>", paymentVerification);
   console.log(
     "supperClubBookingBookingConfirm======>",
     supperClubBookingBookingConfirm
@@ -206,7 +207,7 @@ const UsersProvider = (props) => {
         });
     } else if (paymentVerification) {
       axios
-        .post(baseUrl + "/booking/verifypayment/" + supperClubBookingId, {
+        .post(baseUrl + "booking/verifypayment/" + supperClubBookingId, {
           razorpay_order_id: supperClubBookingBookingConfirm.razorpay_order_id,
           razorpay_payment_id:
             supperClubBookingBookingConfirm.razorpay_payment_id,
@@ -215,9 +216,13 @@ const UsersProvider = (props) => {
         })
         .then((response) => {
           if (response.status === 200) {
-            setPaymentVerification(response.data.id);
+            Cookies.set(
+              "paymentVerificationData",
+              JSON.stringify(response.data)
+            );
           }
         });
+        setPaymentVerification(false);
     }
     if (path.pathname === "/") {
       axios.get(baseUrl + "/cms/footer").then((result) => {

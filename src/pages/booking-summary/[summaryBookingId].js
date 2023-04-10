@@ -102,6 +102,7 @@ const BookingSummary = (props) => {
       theme: { color: "#C6A87D", fontFamily: "ProximaNovaA-Regular" },
 
       handler: (res) => {
+        console.log("res====>",res);
         setPaymentVerification(true);
         handleBookingSuccessOpen(true);
       },
