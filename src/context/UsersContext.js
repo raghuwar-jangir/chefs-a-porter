@@ -46,7 +46,11 @@ const UsersProvider = (props) => {
     const superClubDetailId = superClubDetailIdCookieValue?.replaceAll('"', '')
     const eventDataCookieValue = Cookies?.get('eventData');
     const [eventDetailsData, setEventDetailsData] = useState();
-
+    const [adPaymentData, setAdPaymentData] = useState()
+    const [bsPaymentData, setBsPaymentData] = useState()
+    const [supperClubPaymentData, setSupperClubPaymentData] = useState()
+    const [supperClubConfirmPaymentData, setSupperClubConfirmPaymentData] = useState()
+    console.log("adPaymentData======", adPaymentData)
     console.log("bookingId=======", bookingId)
     console.log("callMobileNumber=======", callMobileNumber)
     console.log("mealData=======", mealData)
@@ -84,8 +88,9 @@ const UsersProvider = (props) => {
             })
             axios.post(baseUrl + '/booking/calculate/' + bookingId).then((response) => {
                 if (response.status === 200) {
-                    Cookies.set('paymentCalculation', JSON.stringify(response.data));
-                    console.log("===============", response.data)
+                    console.log("adsPaymentInfo=========", response.data)
+                    setAdPaymentData(response.data)
+                    Cookies.set('adsPaymentInfo', JSON.stringify(response.data));
                 }
             })
         } else if (isBookingStatus) {
@@ -99,7 +104,8 @@ const UsersProvider = (props) => {
         } else if (currentPath === 'booking-summary') {
             axios.post(baseUrl + '/booking/calculate/' + summaryBookingId).then((response) => {
                 if (response.status === 200) {
-                    Cookies.set('paymentCalculation', JSON.stringify(response.data));
+                    setBsPaymentData(response.data)
+                    Cookies.set('bSPaymentInfo', JSON.stringify(response.data));
                     console.log("paymentCalculation ===============", response.data)
                 }
             })
@@ -126,6 +132,7 @@ const UsersProvider = (props) => {
                 common_menu: eventId
             }).then((response) => {
                 if (response.status === 200) {
+                    setSupperClubPaymentData(response.data);
                     Cookies.set('supperClubBookingData', JSON.stringify(response.data));
                 }
             })
@@ -140,6 +147,7 @@ const UsersProvider = (props) => {
         } else if (currentPath === 'sc-booking-confirm' && supperClubBookingId) {
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId).then((response) => {
                 if (response.status === 200) {
+                    setSupperClubConfirmPaymentData(response.data)
                     Cookies.set('supperClubBookingData', JSON.stringify(response.data));
                 }
             })
@@ -162,7 +170,7 @@ const UsersProvider = (props) => {
                 courses: eventDetailsData?.numberOfCourses,
             }).then((response) => {
                 if (response.status === 200) {
-                    Cookies.set('customerDetailsPaymentCalculation', JSON.stringify(response.data));
+                    Cookies.set('CPaymentInfo', JSON.stringify(response.data));
                 }
             })
         } else if (paymentVerification) {
@@ -215,7 +223,12 @@ const UsersProvider = (props) => {
                 callMobileNumber,
                 mealData,
                 mealTypeData,
-                addOnsData
+                addOnsData,
+                adPaymentData,
+                bsPaymentData,
+                supperClubPaymentData,
+                supperClubConfirmPaymentData
+
             }}
         >
             {children}

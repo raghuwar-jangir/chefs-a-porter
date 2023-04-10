@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState,useContext} from "react";
 import {
     styled,
     Box,
@@ -44,11 +44,13 @@ import Cookies from "js-cookie";
 import moment from "moment/moment";
 // import useRazorpay from "react-razorpay";
 // import { useCallback } from "react";
+import UsersContext from "../../context/UsersContext";
 
 const ScBookingConfirm = (props) => {
     // const handleClick = () => {
     //     navigate("/sc-booking-confirm");
     // };
+    const {supperClubConfirmPaymentData} = useContext(UsersContext)
     const {supperClubConfirmBookingId} = props;
     const [inputValue, setInputValue] = useState("Chefsaporter/privatediner/AefDFC..");
     const [supperClubBookingData, setSupperClubBookingData] = useState()
@@ -1143,6 +1145,9 @@ const ScBookingConfirm = (props) => {
                         <div className="addons-title">Booking Summary</div>
                     </div>
                 </div>
+                {
+                    !_.isEmpty(supperClubConfirmPaymentData) &&
+
                 <Formik
                     initialValues={{
                         contactNumber: superClubBookingDetails?.contactNumber,
@@ -1168,19 +1173,19 @@ const ScBookingConfirm = (props) => {
                                     <Box className="booking-box">
                                         <Box className="chef-box">
                                             <Typography className="booking-summary-title">
-                                                {supperClubBookingData?.event?.title}
+                                                {supperClubConfirmPaymentData?.event?.title}
                                             </Typography>
                                             <CreateIcon className="pencil-icon"/>
                                         </Box>
                                         <Box class="chef-edit">
                                             <Typography className="chef-edit-title">
                                                 Curated by <span
-                                                className="chef-edit-sub">{supperClubBookingData?.event?.chef?.name}</span>
+                                                className="chef-edit-sub">{supperClubConfirmPaymentData?.event?.chef?.name}</span>
                                             </Typography>
                                             <Typography className="chef-seats">
                                                 <img className="chef-people" src={people}/>
                                                 <Typography
-                                                    className="chef-people-no">{supperClubBookingData?.event?.seats}</Typography>
+                                                    className="chef-people-no">{supperClubConfirmPaymentData?.event?.seats}</Typography>
                                             </Typography>
                                         </Box>
                                         <hr className="hr"/>
@@ -1188,13 +1193,13 @@ const ScBookingConfirm = (props) => {
                                             <Box className="chef-profile-detail">
                                                 <img className="chef-profile-icon" src={dateGold}/>
                                                 <Typography className="chef-profile-date">
-                                                    {moment(supperClubBookingData?.event?.dates[0]).format("MMMM D")} | {moment(supperClubBookingData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubBookingData?.event?.timetill, 'HH:mm').format('h:mm A')}
+                                                    {moment(supperClubConfirmPaymentData?.event?.dates[0]).format("MMMM D")} | {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
                                                 </Typography>
                                             </Box>
                                             <Box className="chef-profile-detail">
                                                 <img className="chef-profile-icon" src={location}/>
                                                 <Typography className="chef-profile-date">
-                                                    {supperClubBookingData?.event?.venue}
+                                                    {supperClubConfirmPaymentData?.event?.venue}
                                                 </Typography>
                                             </Box>
                                             <Box className="chef-profile-detail">
@@ -1290,40 +1295,40 @@ const ScBookingConfirm = (props) => {
                                             <Stack
                                                 className="date-stack"
                                             >
-                                                {!_.isEmpty(supperClubBookingData) &&
+                                                {!_.isEmpty(supperClubConfirmPaymentData) &&
                                                     <Typography className="date-description">
-                                                        {moment(supperClubBookingData?.event?.dates[0]).format("MMMM D")}
+                                                        {moment(supperClubConfirmPaymentData?.event?.dates[0]).format("MMMM D")}
                                                     </Typography>
                                                 }
                                                 <span className="line">|</span>
                                                 <Typography className="date-description">
                                                     {" "}
                                                     {/*7:30 PM - 10 PM*/}
-                                                    {moment(supperClubBookingData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubBookingData?.event?.timetill, 'HH:mm').format('h:mm A')}
+                                                    {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
                                                 </Typography>
                                                 <span className="line">|</span>
                                                 <Typography className="date-description">
-                                                    {supperClubBookingData?.event?.venue}
+                                                    {supperClubConfirmPaymentData?.event?.venue}
                                                 </Typography>
                                             </Stack>
                                         </Box>
                                         <Box className="event-div">
-                                            <img src={supperClubBookingData?.event?.pictures[0]} alt=""
+                                            <img src={supperClubConfirmPaymentData?.event?.pictures[0]} alt=""
                                                  className="per-dinner-img"/>
                                             <Box sx={{marginLeft: "12px"}}>
                                                 <Typography className="event-title">
-                                                    {supperClubBookingData?.event?.title}
+                                                    {supperClubConfirmPaymentData?.event?.title}
                                                 </Typography>
                                                 <Typography className="event-subtitle">
                                                     Curated by{" "}
                                                     <a href="#" className="event-link">
-                                                        {supperClubBookingData?.event?.chef?.name}
+                                                        {supperClubConfirmPaymentData?.event?.chef?.name}
                                                     </a>
                                                 </Typography>
                                                 <Typography className="rating-star">
                                                     <img className="rating-people" src={people}/>
                                                     <Typography
-                                                        className="rating-star">{supperClubBookingData?.event?.seats}</Typography>
+                                                        className="rating-star">{supperClubConfirmPaymentData?.event?.seats}</Typography>
                                                 </Typography>
                                             </Box>
                                         </Box>
@@ -1338,17 +1343,17 @@ const ScBookingConfirm = (props) => {
                                                 <ExpandMoreIcon className="ex-icon"/>
                                             </Box>
                                             {
-                                                !_.isEmpty(supperClubBookingData) &&
+                                                !_.isEmpty(supperClubConfirmPaymentData) &&
                                                 <Box className="table table-borderless">
                                                     {
-                                                        Object.keys(supperClubBookingData?.payment).map((key) => {
+                                                        Object.keys(supperClubConfirmPaymentData?.payment).map((key) => {
                                                             return (
                                                                 <Box className="table-box">
                                                                     <Typography
                                                                         className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
                                                                     <Typography
                                                                         className="table-details">₹
-                                                                        {supperClubBookingData?.payment[key]}</Typography>
+                                                                        {supperClubConfirmPaymentData?.payment[key]}</Typography>
                                                                 </Box>
                                                             )
                                                         })
@@ -1359,7 +1364,7 @@ const ScBookingConfirm = (props) => {
                                                             Total</Typography>
                                                         <Typography
                                                             className="table-details grand-total">₹
-                                                            {supperClubBookingData?.total}</Typography>
+                                                            {supperClubConfirmPaymentData?.total}</Typography>
                                                     </Box>
                                                 </Box>
                                             }
@@ -1385,6 +1390,7 @@ const ScBookingConfirm = (props) => {
                         </Form>
                     )}
                 </Formik>
+                }
                 <Modal
                     keepMounted
                     open={open}

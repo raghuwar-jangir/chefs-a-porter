@@ -27,7 +27,6 @@ const Treaty = (props) => {
             color: '#080B0E',
             padding: "0px",
             marginBottom: '13px',
-
         },
         ".details": {
             fontSize: "21px",

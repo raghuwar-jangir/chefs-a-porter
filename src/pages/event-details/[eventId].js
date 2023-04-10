@@ -428,12 +428,12 @@ const EventDetails = (props) => {
             ".invite-btn": {
                 width: "114px",
             },
-            ".template": {
-                background: "#080B0E",
-            },
-            ".template-title": {
-                color: "#FBFBFB !important",
-            },
+            // ".template": {
+            //     background: "#080B0E",
+            // },
+            // ".template-title": {
+            //     color: "#FBFBFB !important",
+            // },
         },
         "@media (min-width: 1px) and (max-width:320px)": {
             ".invite-btn": {
@@ -572,7 +572,7 @@ const EventDetails = (props) => {
             <MainBox>
                 {!_.isEmpty(userData && eventId) &&
                     <>
-                        <Navbar to={"/event-details"} isColor={true}/>
+                        <Navbar to={"/event-details"} heading="Privee" isIcon={true} isColor={true}/>
                         <Box className="main-box">
                             {isMobile ? (
                                 <Box className="header-club">
@@ -906,7 +906,7 @@ const EventDetails = (props) => {
                                 </Box>
                             </Box>
                         </Modal>
-                        <NeedHelpEvent isColor={true}/>
+                        <NeedHelpEvent/>
                         <TemptedYet
                             title={"Tempted yet?"}
                             buttonText="Book this Experience"

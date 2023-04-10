@@ -24,18 +24,23 @@ const Addons = (props) => {
     const summaryCookieValue = Cookies.get('BookingId');
     const summaryBookingId = summaryCookieValue?.replaceAll('"', '')
     const {bookingId} = props;
-    const {setIsBookingStatus, addOnsData} = useContext(UsersContext);
+    const {setIsBookingStatus, addOnsData,adPaymentData} = useContext(UsersContext);
     const handleClick = () => {
         navigate(`/booking-summary/${summaryBookingId}`);
         setIsBookingStatus(true)
     }
-    const [paymentCalculationData, setPaymentCaclulationData] = useState()
-    const cookieValue = Cookies.get('paymentCalculation');
-    useEffect(() => {
-        if (cookieValue) {
-            setPaymentCaclulationData(JSON.parse(cookieValue));
-        }
-    }, [cookieValue])
+    // const cookieValue = Cookies?.get('adsPaymentInfo');
+    // const [paymentCalculationData, setPaymentCalculationData] = useState()
+    //
+    // useEffect(() => {
+    //     if (!_.isEmpty(cookieValue)) {
+    //         setPaymentCalculationData(JSON.parse(cookieValue));
+    //     }
+    // }, [cookieValue])
+    //
+    // console.log("paymentCalculationData===========", paymentCalculationData)
+    // console.log("paymentCalculationData cookieValue===========", cookieValue)
+
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',
         '.supper-gallery': {
@@ -286,6 +291,18 @@ const Addons = (props) => {
                 fontSize: '16px',
                 lineHeight: '18px',
             },
+            '.book-trad': {
+                display: 'none',
+                // placeItems: 'center',
+                // marginBottom: '40px',
+                // paddingLeft: '0px !important',
+            },
+            '.addons-div': {
+                padding: '0px'
+            },
+            '.dinner-box':{
+                display:'none'
+            }
         },
         "@media (min-width: 371px) and (max-width:400px)": {
             '.header-club': {
@@ -402,16 +419,16 @@ const Addons = (props) => {
                                                         <ExpandMoreIcon className="ex-icon"/>
                                                     </Box>
                                                     {
-                                                        !_.isEmpty(paymentCalculationData) &&
+                                                        !_.isEmpty(adPaymentData) &&
                                                         <Box className="table table-borderless">
                                                             {
-                                                                Object.keys(paymentCalculationData?.payment).map((key) => {
+                                                                Object.keys(adPaymentData?.payment).map((key) => {
                                                                     return (
                                                                         <Box className="table-box">
                                                                             <Typography
                                                                                 className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
                                                                             <Typography className="table-details">₹
-                                                                                {paymentCalculationData?.payment[key]}</Typography>
+                                                                                {adPaymentData?.payment[key]}</Typography>
                                                                         </Box>
                                                                     )
                                                                 })
@@ -420,7 +437,7 @@ const Addons = (props) => {
                                                                 <Typography className=" grand-total table-details">Grand
                                                                     Total</Typography>
                                                                 <Typography className="table-details grand-total">₹
-                                                                    {paymentCalculationData?.total}</Typography>
+                                                                    {adPaymentData?.total}</Typography>
                                                             </Box>
                                                             <Box className="tax tax1 table-box">
                                                                 <Typography className="table-details">+Incl Of

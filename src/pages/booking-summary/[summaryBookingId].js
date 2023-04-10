@@ -1,4 +1,4 @@
-import React, {useEffect, useState,useContext} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import * as Yup from "yup";
 import {Form, Formik, Field, ErrorMessage} from "formik";
 import {
@@ -43,10 +43,11 @@ import Cookies from "js-cookie";
 import * as _ from "lodash";
 import {navigate} from "gatsby";
 import UsersContext from "../../context/UsersContext";
+import moment from "moment/moment";
 
 const BookingSummary = (props) => {
     const {summaryBookingId} = props;
-    const {setPaymentVerification} = useContext(UsersContext);
+    const {setPaymentVerification, bsPaymentData} = useContext(UsersContext);
     const validationSchema = Yup.object().shape({
         number: Yup.string().required("Number is required"),
         name: Yup.string().required("Name is required"),
@@ -55,19 +56,21 @@ const BookingSummary = (props) => {
         pincode: Yup.string().required("Pincode is required"),
         number1: Yup.string().required("Number is required"),
     });
-    const cookieValue = Cookies.get('paymentCalculation');
+    const cookieValue = Cookies.get('bSPaymentInfo');
     const bookingCookieValue = Cookies.get("bookingConfirm");
-    const [paymentCalulationData, setPaymentCalulationData] = useState('');
+    const [paymentCalulationData, setPaymentCalculationData] = useState('');
     const [razorpayData, setRazorpayData] = useState();
     useEffect(() => {
         if (cookieValue) {
-            setPaymentCalulationData(JSON.parse(cookieValue));
+            setPaymentCalculationData(JSON.parse(cookieValue));
         }
         if (bookingCookieValue) {
             setRazorpayData(JSON.parse(bookingCookieValue));
         }
-    }, [cookieValue,bookingCookieValue])
-    console.log("paymentCalulationData=====", paymentCalulationData)
+    }, [cookieValue, bookingCookieValue])
+
+
+    console.log("paymentCalulationData=========", paymentCalulationData)
 
 
     const initialValues = {
@@ -135,6 +138,7 @@ const BookingSummary = (props) => {
     }
 
     console.log("customerInfo======", customerInfo)
+    console.log("eventData======", eventData)
 
     const BoxWrapper = styled(Box)(() => ({
         background: "#080B0E",
@@ -619,7 +623,7 @@ const BookingSummary = (props) => {
 
         "@media (min-width: 1px) and (max-width:425px)": {
             ".supper-gallery .container-fluid": {
-                padding: "20px 10px",
+                padding: "0px",
             },
             ".header-club": {
                 padding: "0px 110px",
@@ -671,6 +675,12 @@ const BookingSummary = (props) => {
                 fontSize: "16px",
                 lineHeight: "18px",
             },
+            ".book-trad": {
+                display: "none",
+            },
+            '.dinner-box': {
+                display: 'none'
+            }
         },
         "@media (min-width: 371px) and (max-width:400px)": {
             ".header-club": {
@@ -1099,13 +1109,14 @@ const BookingSummary = (props) => {
         },
     };
 
+    console.log("bsPaymentData=======", bsPaymentData)
     return (
         <React.Fragment>
             <BoxWrapper>
                 <Navbar to={"/booking-summary"} isColor={true} heading="Privee"/>
 
                 {
-                    !_.isEmpty(summaryBookingId) &&
+                    !_.isEmpty(summaryBookingId && bsPaymentData) &&
                     <Box className="supper-gallery cust-details">
                         <Box className="container-fluid">
                             <Box className="row supper-chef-details">
@@ -1134,6 +1145,7 @@ const BookingSummary = (props) => {
                                                         xs={7}
                                                         md={7}
                                                         sm={12}
+                                                        xs={12}
                                                         className="partner"
                                                     >
                                                         <Box className="booking-box">
@@ -1146,9 +1158,10 @@ const BookingSummary = (props) => {
                                                         </Box>
                                                         <Box className="booking-box">
                                                             <Box class="chef-edit">
-                                                                <img className="chef-edit-img" src={chefImg}/>
+                                                                <img className="chef-edit-img"
+                                                                     src={bsPaymentData?.common_menu?.user?.picture}/>
                                                                 <Typography className="chef-edit-title">
-                                                                    Chef Mako Ravindran
+                                                                    {bsPaymentData?.common_menu?.user?.name}
                                                                 </Typography>
                                                                 <CreateIcon className="pencil-icon"/>
                                                             </Box>
@@ -1159,7 +1172,8 @@ const BookingSummary = (props) => {
                                                                         src={dateGold}
                                                                     />
                                                                     <Typography className="chef-profile-date">
-                                                                        April 9 | 7:30 PM - 10 PM
+                                                                        {/*April 9 | 7:30 PM - 10 PM*/}
+                                                                        {moment(eventData?.experienceDate).format("MMMM D")} | {moment(eventData?.startTime, 'HH:mm').format('h:mm A')}
                                                                     </Typography>
                                                                 </Box>
                                                                 <Box className="chef-profile-detail">
@@ -1168,7 +1182,8 @@ const BookingSummary = (props) => {
                                                                         src={location}
                                                                     />
                                                                     <Typography className="chef-profile-date">
-                                                                        Silver bar, Downtown
+                                                                        {/*Silver bar, Downtown*/}
+                                                                        {bsPaymentData?.city}
                                                                     </Typography>
                                                                 </Box>
                                                                 <Box className="chef-profile-detail">
@@ -1177,7 +1192,8 @@ const BookingSummary = (props) => {
                                                                         src={people}
                                                                     />
                                                                     <Typography className="chef-profile-date">
-                                                                        6 Diners
+                                                                        {/*6 Diners*/}
+                                                                        {eventData?.numberOfDinner} Diners
                                                                     </Typography>
                                                                 </Box>
                                                             </Box>
@@ -1347,12 +1363,13 @@ const BookingSummary = (props) => {
                                                                 />
                                                                 <Box sx={{marginLeft: "12px"}}>
                                                                     <Typography className="event-title">
-                                                                        The Big Fat Parsi Blowout
+                                                                        {/*The Big Fat Parsi Blowout*/}
+                                                                        {bsPaymentData?.common_menu?.title}
                                                                     </Typography>
                                                                     <Typography className="event-subtitle">
                                                                         Curated by{" "}
                                                                         <a href="#" className="event-link">
-                                                                            Chef Mako
+                                                                            {bsPaymentData?.common_menu?.user?.name}
                                                                         </a>
                                                                     </Typography>
                                                                     <Typography className="rating-star">
@@ -1382,16 +1399,16 @@ const BookingSummary = (props) => {
                                                                     <ExpandMoreIcon className="ex-icon"/>
                                                                 </Box>
                                                                 {
-                                                                    !_.isEmpty(paymentCalulationData) &&
+                                                                    !_.isEmpty(bsPaymentData) &&
                                                                     <Box className="table table-borderless">
                                                                         {
-                                                                            Object.keys(paymentCalulationData?.payment).map((key) => {
+                                                                            Object.keys(bsPaymentData?.payment).map((key) => {
                                                                                 return (
                                                                                     <Box className="table-box">
                                                                                         <Typography
                                                                                             className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
                                                                                         <Typography
-                                                                                            className="table-details">₹{paymentCalulationData?.payment[key]}</Typography>
+                                                                                            className="table-details">₹{bsPaymentData?.payment[key]}</Typography>
                                                                                     </Box>
                                                                                 )
                                                                             })
@@ -1402,7 +1419,7 @@ const BookingSummary = (props) => {
                                                                                 Total</Typography>
                                                                             <Typography
                                                                                 className="table-details grand-total">₹
-                                                                                {paymentCalulationData?.total}</Typography>
+                                                                                {bsPaymentData?.total}</Typography>
                                                                         </Box>
                                                                         <Box className="tax tax1 table-box">
                                                                             <Typography className="table-details">+Incl
@@ -1418,17 +1435,20 @@ const BookingSummary = (props) => {
                                                                 }
                                                             </Box>
                                                             <Box className="row viewbreak">
-                                                                <Box className="col-lg-12">
-                                                                    <button
-                                                                        type="submit"
-                                                                        className="submit-req"
-                                                                        onClick={handlePayment}
-                                                                    >
-                                                                        Proceed to pay
-                                                                        ₹{paymentCalulationData?.payment?.total}
-                                                                        {/*Proceed to pay ₹25,000*/}
-                                                                    </button>
-                                                                </Box>
+                                                                {
+                                                                    !_.isEmpty(bsPaymentData) &&
+                                                                    <Box className="col-lg-12">
+                                                                        <button
+                                                                            type="submit"
+                                                                            className="submit-req"
+                                                                            onClick={handlePayment}
+                                                                        >
+                                                                            Proceed to pay
+                                                                            ₹{bsPaymentData?.payment?.total}
+                                                                            {/*Proceed to pay ₹25,000*/}
+                                                                        </button>
+                                                                    </Box>
+                                                                }
                                                                 <Typography className="contact-text">
                                                                     Estimate figure, further changes may amend the
                                                                     total
@@ -1588,25 +1608,25 @@ const BookingSummary = (props) => {
                                     className="close"
                                     onClick={handleBookingSuccessClose}
                                 >
-                                    <CloseIcon sx={{ fontSize: "25px" }} />
+                                    <CloseIcon sx={{fontSize: "25px"}}/>
                                 </button>
                             </div>
                             <div className="modal-body">
                                 <div className="container-fluid">
                                     <div className="booking-details">
-                                        <img src={output} alt="" className="output" />
+                                        <img src={output} alt="" className="output"/>
                                         <h3>Booking Successful</h3>
                                         <span>Booking ID {razorpayData?.order_number}</span>
                                         <p>
-                                            We look forward to serving you a conscious <br />
+                                            We look forward to serving you a conscious <br/>
                                             dining experience!
                                         </p>
                                         <a href="javascript:void(0);">
-                                            <img src={download} alt="" />
+                                            <img src={download} alt=""/>
                                             Download Invoice
                                         </a>
                                         <button className="add-cal">
-                                            <img src={dateGold} alt="" />
+                                            <img src={dateGold} alt=""/>
                                             Add to calender
                                         </button>
                                     </div>
@@ -1627,40 +1647,40 @@ const BookingSummary = (props) => {
                                                     </div>
                                                     <div className="col-lg-12">
                                                         <div className="chef-edit">
-                                                            <img src={chefImg} alt="" />
+                                                            <img src={chefImg} alt=""/>
                                                             <h5>Chef Mako Ravindran</h5>
                                                         </div>
                                                         <div className="chef-profile">
                                                             <div>
-                                                                <img src={dateGold} alt="" />
+                                                                <img src={dateGold} alt=""/>
                                                                 <span>April 9 | 7:30 PM - 10 PM</span>
                                                             </div>
                                                             <div>
-                                                                <img src={location} alt="" />
+                                                                <img src={location} alt=""/>
                                                                 <span>Silver bar, Downtown</span>
                                                             </div>
                                                             <div>
-                                                                <img src={people} alt="" />
+                                                                <img src={people} alt=""/>
                                                                 <span>6 Diners</span>
                                                             </div>
                                                         </div>
-                                                        <hr className="hr" />
+                                                        <hr className="hr"/>
                                                     </div>
                                                     <div className="col-lg-12">
                                                         <div className="chef-profile done-div">
                                                             <div>
-                                                                <img src={done} alt="" />
+                                                                <img src={done} alt=""/>
                                                                 <span>
                                   An email confirmation has been sent to
-                                                                    {eventData?.email} <br />
+                                                                    {eventData?.email} <br/>
                                   and SMS sent to {customerInfo?.contactNumber}
                                 </span>
                                                             </div>
                                                             <div>
-                                                                <img src={support} alt="" />
+                                                                <img src={support} alt=""/>
                                                                 <span>
                                   Our team and Chef will get in touch with you
-                                  to discuss menu <br />
+                                  to discuss menu <br/>
                                   (allergen+protein info), venue, set up and
                                   pricing
                                 </span>
@@ -1682,24 +1702,28 @@ const BookingSummary = (props) => {
                                                     <div className="experience-breakup">
                                                         <div className="ex-details">
                                                             <h5>Payment Summary</h5>
-                                                            <KeyboardArrowDownIcon className="i" />
+                                                            <KeyboardArrowDownIcon className="i"/>
                                                         </div>
                                                         <div className="table table-borderless">
                                                             <div className="table-box">
                                                                 <span>Meal</span>
-                                                                <span className="price">{paymentCalulationData?.payment?.meal}</span>
+                                                                <span
+                                                                    className="price">{paymentCalulationData?.payment?.meal}</span>
                                                             </div>
                                                             <div className="table-box">
                                                                 <span>Service Charge</span>
-                                                                <span className="price">{paymentCalulationData?.payment?.service_charges}</span>
+                                                                <span
+                                                                    className="price">{paymentCalulationData?.payment?.service_charges}</span>
                                                             </div>
                                                             <div className="table-box">
                                                                 <span>Tax</span>
-                                                                <span className="price">{paymentCalulationData?.payment?.taxes}</span>
+                                                                <span
+                                                                    className="price">{paymentCalulationData?.payment?.taxes}</span>
                                                             </div>
                                                             <div className="table-box border">
                                                                 <span className="grand-total">Grand Total</span>
-                                                                <span className="grand-total"> {paymentCalulationData?.payment?.total}</span>
+                                                                <span
+                                                                    className="grand-total"> {paymentCalulationData?.payment?.total}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1707,10 +1731,12 @@ const BookingSummary = (props) => {
                                                         <div className="table table-borderless">
                                                             <div className="table-box">
                                                                 <span>State Bank of India</span>
-                                                                <span className="price">{paymentCalulationData?.payment?.total}</span>
+                                                                <span
+                                                                    className="price">{paymentCalulationData?.payment?.total}</span>
                                                             </div>
                                                             <div className="table-box">
-                                                                <span className="tax">{razorpayData?.booking_date}</span>
+                                                                <span
+                                                                    className="tax">{razorpayData?.booking_date}</span>
                                                             </div>
                                                             <div className="table-box">
                                 <span className="tax">

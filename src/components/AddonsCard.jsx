@@ -81,7 +81,10 @@ const MainContentBox = styled(Box)({
             textAlign: 'right',
             letterSpacing: '0.02em',
             color: '#C6A87D',
-        }
+        },
+        '.addons-img': {
+            height: 'auto',
+        },
     }
 
 })

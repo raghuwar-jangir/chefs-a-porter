@@ -38,6 +38,10 @@ const OtpProvider = (props) => {
     const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
 
+    const eventIdCookieValue = Cookies.get('eventIdValue');
+    const PaymentEventId = eventIdCookieValue?.replaceAll('"', '')
+
+    console.log("PaymentEventId=======",PaymentEventId)
     useEffect(() => {
         if (cookieValue1) {
             setPriveeData(JSON.parse(cookieValue1));
@@ -94,13 +98,13 @@ const OtpProvider = (props) => {
                 booking_time: eventData.startTime,
                 otp: verifyOtp,
                 // menu_selection: "host",
-                common_menu: eventId,
+                common_menu: PaymentEventId,
                 message:"Addition info"
             }).then((response) => {
                 if (response.status === 200) {
                     // Cookies.remove('eventData');
                     // Cookies.remove('priveeData');
-                    console.log("reponse=====", response.data)
+                    console.log("BookingId=====", response.data.id)
                     Cookies.set('BookingId', JSON.stringify(response.data.id));
                     Cookies.set('summaryBookingId', JSON.stringify(response.data.id));
                 }

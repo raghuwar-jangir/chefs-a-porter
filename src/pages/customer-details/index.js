@@ -59,21 +59,18 @@ const CustomerDetails = (props) => {
     const [contactNumber, setContactNumber] = useState('');
     const [customerInfo, setCustomerInfo] = useState('')
     const cookieValue = Cookies?.get('customerData');
-    const customerDetailsPaymentCalculationCookieValue = Cookies?.get('customerDetailsPaymentCalculation');
+    const cDsPaymentCookieVal = Cookies?.get('CPaymentInfo');
     const [customerDetailsPaymentCalculation, setCustomerDetailsPaymentCalculation] = useState();
 
 
-    {
-        !_.isEmpty(cookieValue) &&
         useEffect(() => {
             if (cookieValue) {
                 setCustomerInfo(JSON.parse(cookieValue));
             }
-            if (customerDetailsPaymentCalculationCookieValue) {
-                setCustomerDetailsPaymentCalculation(JSON.parse(customerDetailsPaymentCalculationCookieValue));
+            if (cDsPaymentCookieVal) {
+                setCustomerDetailsPaymentCalculation(JSON.parse(cDsPaymentCookieVal));
             }
-        }, [cookieValue, customerDetailsPaymentCalculationCookieValue])
-    }
+        }, [cookieValue, cDsPaymentCookieVal])
 
     console.log("customerInfo======", customerInfo)
     const handleOpenOtp = (contactNumber, values) => {
@@ -774,43 +771,52 @@ const CustomerDetails = (props) => {
                 lineHeight: '18px',
             },
             '.MuiTabList-root': {
-                width: '80px'
+                width: '100%',
+                display: 'flow-root',
             },
             '.MuiTab-variantPlain': {
-                width: '80px',
+                width: '100%',
+                margin: '10px 0px'
             },
             '.Joy-selected': {
-                width: '80px',
+                width: '100%',
             },
+            '.booking-box': {
+                border: 'unset',
+                padding: '0px',
+            },
+            '.book-trad': {
+                display: 'none',
+            }
         },
         "@media (min-width: 371px) and (max-width:400px)": {
             '.header-club': {
                 padding: '0px 150px'
             },
-            '.MuiTabList-root': {
-                width: '70px'
-            },
-            '.MuiTab-variantPlain': {
-                width: '70px',
-                fontSize: '12px'
-            },
-            '.Joy-selected': {
-                width: '70px',
-                fontSize: '12px'
-            },
+            // '.MuiTabList-root': {
+            //     width: '70px'
+            // },
+            // '.MuiTab-variantPlain': {
+            //     width: '70px',
+            //     fontSize: '12px'
+            // },
+            // '.Joy-selected': {
+            //     width: '70px',
+            //     fontSize: '12px'
+            // },
         },
         "@media (min-width: 300px) and (max-width:350px)": {
-            '.MuiTabList-root': {
-                width: '55px'
-            },
-            '.MuiTab-variantPlain': {
-                width: '55px',
-                fontSize: '10px'
-            },
-            '.Joy-selected': {
-                width: '55px',
-                fontSize: '10px'
-            },
+            // '.MuiTabList-root': {
+            //     width: '55px'
+            // },
+            // '.MuiTab-variantPlain': {
+            //     width: '55px',
+            //     fontSize: '10px'
+            // },
+            // '.Joy-selected': {
+            //     width: '55px',
+            //     fontSize: '10px'
+            // },
         },
         "@media (min-width: 425px) and (max-width:450px)": {
             '.header-club': {
@@ -1241,7 +1247,7 @@ const CustomerDetails = (props) => {
                                                                         Object.keys(customerDetailsPaymentCalculation).map((key, index) => {
                                                                             return (
                                                                                 <>
-                                                                                    <Box key={index} key={index}
+                                                                                    <Box key={index}
                                                                                          className={index === Object.keys(customerDetailsPaymentCalculation).length - 1 ? " table-box border" : "table-box"}>
                                                                                         <Typography
                                                                                             className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>

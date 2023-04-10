@@ -95,7 +95,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                 width: "399px",
             },
         },
-        '@media(min-width: 426px) and (max-width: 768px)': {
+        '@media(min-width: 426px) and (max-width: 767px)': {
             title: {
                 textAlign: 'left'
             },
