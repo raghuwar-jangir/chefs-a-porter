@@ -50,8 +50,8 @@ const CustomerDetails = (props) => {
     const eventId = eventIdCookieValue?.replaceAll('"', '')
     const {setOtpNumber, setVerifyOtp, setResendOtp, setIsSendOtpApiCall} = useContext(OtpContext);
     const CHARACTER_LIMIT = 40;
-    const [newAddress, setNewAddress] = useState();
-    const formAddress = _.values(newAddress)
+    const [isNewAddress, setNewAddress] = useState();
+    const formAddress = _.values(isNewAddress);
     const MapLoader = withScriptjs(MapComponent);
     const [open, setOpen] = useState(false);
     const [currentModal, setCurrentModal] = useState(0);
@@ -889,13 +889,9 @@ const CustomerDetails = (props) => {
                                 <Formik
                                     initialValues={{
                                         contactNumber: customerInfo?.contactNumber,
-                                        address: customerInfo?.address ? customerInfo?.address : '',
+                                        // address: customerInfo?.address,
                                         message: customerInfo?.message ? customerInfo?.message : '',
-                                        experienceName: '',
-                                        date: '',
-                                        date1: '',
-                                        date2: '',
-                                        date3: ''
+                                        address: formAddress
                                     }}
                                     validationSchema={validationSchema}
                                     onSubmit={(values) => {
@@ -955,8 +951,8 @@ const CustomerDetails = (props) => {
                                                                            className="form-control"
                                                                            id="validationCustom03"
                                                                            placeholder="Add Address"
-                                                                    // value={values.address}
-                                                                           value={formAddress}
+                                                                    value={values.address}
+                                                                        //    value={formAddress}
                                                                            onChange={handleChange}
                                                                            autoComplete="off"
                                                                            variant="standard"
