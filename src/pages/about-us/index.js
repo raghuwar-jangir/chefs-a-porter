@@ -44,8 +44,6 @@ const logoImg = [
 const AboutCardComponent = (props) => {
 
     const {data} = useContext(CmsContext);
-
-
     const isSSR = typeof window === "undefined"
 
     const [imageData, setImageData] = useState([]);

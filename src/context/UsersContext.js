@@ -28,8 +28,8 @@ const UsersProvider = (props) => {
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
     const [isSupperBookingStatus, setIsSupperBookingStatus] = useState(false);
     const [paymentVerification, setPaymentVerification] = useState(false);
-    const [supperClubBookingBookingConfirm, setSupperClubBookingBookingConfirm] = useState();
-    const cookieValueSupper = Cookies.get('supperClubBookingBookingConfirm');
+    // const [supperClubBookingBookingConfirm, setSupperClubBookingBookingConfirm] = useState();
+    // const cookieValueSupper = Cookies?.get('supperClubBookingBookingConfirm');
 
     //for submitting forms
     const [contactUsData, setContactUsData] = useState({})
@@ -50,19 +50,19 @@ const UsersProvider = (props) => {
     const [bsPaymentData, setBsPaymentData] = useState()
     const [supperClubPaymentData, setSupperClubPaymentData] = useState()
     const [supperClubConfirmPaymentData, setSupperClubConfirmPaymentData] = useState()
+
     console.log("adPaymentData======", adPaymentData)
     console.log("bookingId=======", bookingId)
     console.log("callMobileNumber=======", callMobileNumber)
     console.log("mealData=======", mealData)
     useEffect(() => {
-        if (cookieValueSupper) {
-            setSupperClubBookingBookingConfirm(JSON.parse(cookieValueSupper));
-        }
+        // if (cookieValueSupper) {
+        //     setSupperClubBookingBookingConfirm(JSON.parse(cookieValueSupper));
+        // }
         if (eventDataCookieValue) {
             setEventDetailsData(JSON.parse(eventDataCookieValue))
         }
-    }, [cookieValueSupper, eventDataCookieValue])
-    console.log("supperClubBookingBookingConfirm======>", supperClubBookingBookingConfirm);
+    }, [eventDataCookieValue])
     console.log("eventDetailsData======>", eventDetailsData);
 
     useEffect(() => {
@@ -97,6 +97,10 @@ const UsersProvider = (props) => {
             axios.post(baseUrl + '/booking/confirm/' + bookingId).then((response) => {
                 if (response.status === 200) {
                     Cookies.set('bookingConfirm', JSON.stringify(response.data));
+                    Cookies.set(
+                        "razorpayOrderId",
+                        JSON.stringify(response.data.razorpay_order_id)
+                    );
                     console.log("bookingConfirm response======", response.data)
                 }
                 setIsBookingStatus(false)
@@ -173,17 +177,26 @@ const UsersProvider = (props) => {
                     Cookies.set('CPaymentInfo', JSON.stringify(response.data));
                 }
             })
-        } else if (paymentVerification) {
-            axios.post(baseUrl + '/booking/verifypayment/' + supperClubBookingId, {
-                razorpay_order_id: supperClubBookingBookingConfirm.razorpay_order_id,
-                razorpay_payment_id: supperClubBookingBookingConfirm.razorpay_payment_id,
-                razorpay_signature: supperClubBookingBookingConfirm.razorpay_signature
-            }).then((response) => {
-                if (response.status === 200) {
-                    setPaymentVerification(response.data.id)
-                }
-            })
         }
+        // else if (paymentVerification) {
+        //     axios
+        //         .post(baseUrl + "booking/verifypayment/" + supperClubBookingId, {
+        //             razorpay_order_id: supperClubBookingBookingConfirm.razorpay_order_id,
+        //             razorpay_payment_id:
+        //             supperClubBookingBookingConfirm.razorpay_payment_id,
+        //             razorpay_signature:
+        //             supperClubBookingBookingConfirm.razorpay_signature,
+        //         })
+        //         .then((response) => {
+        //             if (response.status === 200) {
+        //                 Cookies.set(
+        //                     "paymentVerificationData",
+        //                     JSON.stringify(response.data)
+        //                 );
+        //             }
+        //         });
+        //     setPaymentVerification(false);
+        // }
         if (path.pathname === "/") {
             axios.get(baseUrl + '/cms/footer').then(result => {
                 setCallMobileNumber(result.data.footer.footer.mobile)
@@ -228,7 +241,6 @@ const UsersProvider = (props) => {
                 bsPaymentData,
                 supperClubPaymentData,
                 supperClubConfirmPaymentData
-
             }}
         >
             {children}

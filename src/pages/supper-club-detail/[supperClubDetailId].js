@@ -50,6 +50,7 @@ import SupperClubDetailPopUpCarousel from "../../components/SupperClubDetailPopU
 import Cookies from "js-cookie";
 import SupperClubDetailsPastCarousel from "../../components/SupperClubDetailsPastCarousel";
 import FooterEnd from "../../components/FooterEndSection";
+import ExperienceDrop from "../../components/ExperienceDrop";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -67,6 +68,7 @@ const SupperClubDetail = (props) => {
     // const getSupperClubDetailId = props?.params?.supperClubDetailId;
 
     const groupedDates = _.groupBy(userData?.new_dates, (item) => item.date);
+    const showDates = Object.values(groupedDates);
 
     console.log("groupedDates====", groupedDates)
 
@@ -86,6 +88,9 @@ const SupperClubDetail = (props) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [show, setShow] = useState(false);
+    const handleToggle = (index) => setShow(true);
+    const toggleClose = () => setShow(false);
     const AnyReactComponent = ({text}) => <div>{text}</div>;
     const defaultProps = {
         center: {
@@ -284,6 +289,11 @@ const SupperClubDetail = (props) => {
             justifyContent: "space-between",
             alignItems: "center",
             padding: "10px 0px",
+            flexWrap: "wrap",
+        },
+        ".experience-drop": {
+            width: "100%",
+            marginTop: "10px",
         },
         ".invite-btn": {
             border: "1px solid #000",
@@ -1178,187 +1188,78 @@ const SupperClubDetail = (props) => {
                                                 Pick your preferred experience date
                                             </Typography>
                                         </Box>
-                                        {
-                                            userData?.new_dates.map((item) => {
-                                                return (
-                                                    <Box className="date-time-box">
-                                                        <Box sx={{display: "flex", alignItems: "center"}}>
-                                                            <Typography
-                                                                className="main-date">{moment(item.date).format("D")}</Typography>
-                                                            <Box>
-                                                                <Typography
-                                                                    className="date-month">{moment(item.date).format("MMMM")}</Typography>
-                                                                <Typography
-                                                                    className="date-day">{moment(item.date).format("dddd")}</Typography>
-                                                            </Box>
-                                                        </Box>
-                                                        <Box className="time-btn-box">
-                                                            <Box className="switch-field">
-                                                                <input
-                                                                    type="radio"
-                                                                    id="radio-one"
-                                                                    name="switch-one"
-                                                                    value="yes"
-                                                                    // checked
-                                                                />
-                                                                <label for="radio-one">
-                                                                    <Typography className="time-text">
-                                                                        {moment(item?.from, 'HH:mm').format('h:mm A')} - {moment(item?.to, 'HH:mm').format('h:mm A')}
-                                                                    </Typography>
-                                                                    {/*<span style={{color: "#F8A039"}}>filling fast</span>*/}
-                                                                </label>
-                                                            </Box>
+                                        {showDates?.map((item, index) => {
+                                            return (
+                                                <Box className="date-time-box">
+                                                    <Box sx={{display: "flex", alignItems: "center"}}>
+                                                        <Typography className="main-date">
+                                                            {moment(item[0].date).format("D")}
+                                                        </Typography>
+                                                        <Box>
+                                                            <Typography className="date-month">
+                                                                {moment(item[0].date).format("MMMM")}
+                                                            </Typography>
+                                                            <Typography className="date-day">
+                                                                {moment(item[0].date).format("dddd")}
+                                                            </Typography>
                                                         </Box>
                                                     </Box>
-                                                )
-                                            })
-                                        }
-                                        <Box className="date-time-box">
-                                            <Box sx={{display: "flex", alignItems: "center"}}>
-                                                <Typography className="main-date">12</Typography>
-                                                <Box>
-                                                    <Typography className="date-month">November</Typography>
-                                                    <Typography className="date-day">Wednesday</Typography>
+                                                    <Box className="time-btn-box">
+                                                        <Box className="switch-field">
+                                                            <input
+                                                                type="radio"
+                                                                id={`radio-${index}`}
+                                                                name={`switch-${index}`}
+                                                                value="yes"
+                                                            />
+                                                            <label
+                                                                htmlFor={`radio-${index}`}
+                                                                onClick={() => handleToggle(index, item)}
+                                                            >
+                                                                <Typography className="time-text" key={index}>
+                                                                    {moment(item[0]?.from, "HH:mm").format(
+                                                                        "h:mm A"
+                                                                    )}{" "}
+                                                                    -{" "}
+                                                                    {moment(item[0]?.to, "HH:mm").format(
+                                                                        "h:mm A"
+                                                                    )}
+                                                                </Typography>
+                                                            </label>
+                                                            <input
+                                                                type="radio"
+                                                                id={`radio-${index}`}
+                                                                name={`switch-${index}`}
+                                                                value="yes"
+                                                            />
+                                                            {!_.isEmpty(item[1]?.from) &&
+                                                                !_.isEmpty(item[1]?.to) && (
+                                                                    <label htmlFor={`radio-${index}`}
+                                                                           onClick={() => handleToggle(index, item)}>
+                                                                        <Typography className="time-text" key={index}>
+                                                                            {moment(item[1]?.from, "HH:mm").format(
+                                                                                "h:mm A"
+                                                                            )}{" "}
+                                                                            -{" "}
+                                                                            {moment(item[1]?.to, "HH:mm").format(
+                                                                                "h:mm A"
+                                                                            )}
+                                                                        </Typography>
+                                                                    </label>
+                                                                )}
+                                                        </Box>
+                                                    </Box>
+                                                    <Box
+                                                        className="experience-drop"
+                                                        style={{width: "100%"}}
+                                                    >
+                                                        {show && (
+                                                            <ExperienceDrop toggleClose={toggleClose}/>
+                                                        )}
+                                                    </Box>
                                                 </Box>
-                                            </Box>
-                                            <Box className="time-btn-box">
-                                                <Box className="switch-field">
-                                                    <input
-                                                        type="radio"
-                                                        id="radio-one"
-                                                        name="switch-one"
-                                                        value="yes"
-                                                        checked
-                                                    />
-                                                    <label for="radio-one">
-                                                        <Typography className="time-text">
-                                                            12:00 - 1:00pm
-                                                        </Typography>
-                                                        <span style={{color: "#F8A039"}}>filling fast</span>
-                                                    </label>
-                                                    <input
-                                                        type="radio"
-                                                        id="radio-two"
-                                                        name="switch-one"
-                                                        value="no"
-                                                    />
-                                                    <label for="radio-two">
-                                                        <Typography className="time-text">
-                                                            7:30 - 9:00pm
-                                                        </Typography>
-                                                    </label>
-                                                </Box>
-                                            </Box>
-                                        </Box>
-                                        <Box className="date-time-box">
-                                            <Box sx={{display: "flex", alignItems: "center"}}>
-                                                <Typography className="main-date">13</Typography>
-                                                <Box>
-                                                    <Typography className="date-month">November</Typography>
-                                                    <Typography className="date-day">Thursday</Typography>
-                                                </Box>
-                                            </Box>
-                                            <Box className="time-btn-box">
-                                                <Box className="switch-field">
-                                                    <input
-                                                        type="radio"
-                                                        id="radio-three"
-                                                        name="switch-two"
-                                                        value="yes"
-                                                        disabled
-                                                    />
-                                                    <label for="radio-three">
-                                                        <Typography className="time-text">
-                                                            12:00 - 1:00pm
-                                                        </Typography>
-                                                        <span>sold out</span>
-                                                    </label>
-                                                    <input
-                                                        type="radio"
-                                                        id="radio-four"
-                                                        name="switch-two"
-                                                        value="no"
-                                                    />
-                                                    <label for="radio-four">
-                                                        <Typography className="time-text">
-                                                            7:30 - 9:00pm
-                                                        </Typography>
-                                                    </label>
-                                                </Box>
-                                            </Box>
-                                        </Box>
-                                        <Box className="date-time-box">
-                                            <Box sx={{display: "flex", alignItems: "center"}}>
-                                                <Typography className="main-date">14</Typography>
-                                                <Box>
-                                                    <Typography className="date-month">November</Typography>
-                                                    <Typography className="date-day">Friday</Typography>
-                                                </Box>
-                                            </Box>
-                                            <Box className="time-btn-box">
-                                                <Box className="switch-field">
-                                                    <input
-                                                        type="radio"
-                                                        id="radio-five"
-                                                        name="switch-three"
-                                                        value="no"
-                                                    />
-                                                    <label for="radio-five">
-                                                        <Typography className="time-text">
-                                                            12:00 - 1:00pm
-                                                        </Typography>
-                                                    </label>
-                                                    <input
-                                                        type="radio"
-                                                        id="radio-six"
-                                                        name="switch-three"
-                                                        value="no"
-                                                    />
-                                                    <label for="radio-six">
-                                                        <Typography className="time-text">
-                                                            7:30 - 9:00pm
-                                                        </Typography>
-                                                    </label>
-                                                </Box>
-                                            </Box>
-                                        </Box>
-                                        <Box className="date-time-box">
-                                            <Box sx={{display: "flex", alignItems: "center"}}>
-                                                <Typography className="main-date">15</Typography>
-                                                <Box>
-                                                    <Typography className="date-month">November</Typography>
-                                                    <Typography className="date-day">Saturday</Typography>
-                                                </Box>
-                                            </Box>
-                                            <Box className="time-btn-box">
-                                                <Box className="switch-field">
-                                                    <input
-                                                        type="radio"
-                                                        id="radio-seven"
-                                                        name="switch-four"
-                                                        value="no"
-                                                    />
-                                                    <label for="radio-seven">
-                                                        <Typography className="time-text">
-                                                            12:00 - 1:00pm
-                                                        </Typography>
-                                                    </label>
-                                                    <input
-                                                        type="radio"
-                                                        id="radio-8"
-                                                        name="switch-four"
-                                                        value="no"
-                                                        checked
-                                                    />
-                                                    <label for="radio-8">
-                                                        <Typography className="time-text">
-                                                            7:30 - 9:00pm
-                                                        </Typography>
-                                                        <span style={{color: "#F8A039"}}>filling fast</span>
-                                                    </label>
-                                                </Box>
-                                            </Box>
-                                        </Box>
+                                            );
+                                        })}
                                         <Button
                                             type="submit"
                                             className="submit-request"
@@ -1516,7 +1417,7 @@ const SupperClubDetail = (props) => {
                         </Box>
                     </>
                 }
-                <FooterEnd />
+                <FooterEnd/>
             </BoxWrapper>
         </React.Fragment>
     );

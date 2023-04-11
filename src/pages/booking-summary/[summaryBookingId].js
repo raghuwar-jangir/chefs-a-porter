@@ -45,6 +45,7 @@ import {navigate} from "gatsby";
 import UsersContext from "../../context/UsersContext";
 import moment from "moment/moment";
 
+
 const BookingSummary = (props) => {
     const {summaryBookingId} = props;
     const {setPaymentVerification, bsPaymentData} = useContext(UsersContext);
@@ -59,7 +60,10 @@ const BookingSummary = (props) => {
     const cookieValue = Cookies.get('bSPaymentInfo');
     const bookingCookieValue = Cookies.get("bookingConfirm");
     const [paymentCalulationData, setPaymentCalculationData] = useState('');
+    const oderIDCookieValue = Cookies?.get("razorpayOrderId");
     const [razorpayData, setRazorpayData] = useState();
+    const razorpayOrderId = oderIDCookieValue?.replaceAll('"', "");
+
     useEffect(() => {
         if (cookieValue) {
             setPaymentCalculationData(JSON.parse(cookieValue));
@@ -71,6 +75,7 @@ const BookingSummary = (props) => {
 
 
     console.log("paymentCalulationData=========", paymentCalulationData)
+    console.log("razorpayOrderId=========", razorpayOrderId)
 
 
     const initialValues = {
@@ -93,33 +98,29 @@ const BookingSummary = (props) => {
     const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
 
     const handlePayment = useCallback(() => {
-
         const options = {
-            // key: "rzp_test_MHRk336eUPGyWR",
             key: "rzp_test_OqWbWLVoLIKRZ7",
-            // amount: paymentCalulationData?.total * 100,
-            amount: 350 * 100,
-            // amount: 400 * 100,
+            // key: "rzp_live_hc4Bwj2TcN8epo",
             currency: "INR",
             name: "Chefs-à-Porter",
-            order_id: razorpayData?.razorpay_order_id,
+            order_id: razorpayOrderId,
             description: "Test Transaction",
-            image: 'https://chefsaporter.com/assets/img/logo_black.svg',
-            theme: {color: '#C6A87D', fontFamily: 'ProximaNovaA-Regular'},
+            image: "https://chefsaporter.com/assets/img/logo_black.svg",
+            theme: { color: "#C6A87D", fontFamily: "ProximaNovaA-Regular" },
 
             handler: (res) => {
-                console.log("res", res);
+                console.log("res====>",res);
                 setPaymentVerification(true);
                 handleBookingSuccessOpen(true);
             },
         };
-
         const rzpay = new Razorpay(options);
         rzpay.open();
         rzpay.on("payment.failed", function (response) {
             console.log("fails", response);
         });
     }, [Razorpay]);
+
 
     const [customerInfo, setCustomerInfo] = useState('')
     const customerInfoCookieValue = Cookies?.get('customerData');
@@ -1736,22 +1737,22 @@ const BookingSummary = (props) => {
                                                             <div className="table-box">
                                                                 <span>Meal</span>
                                                                 <span
-                                                                    className="price">{paymentCalulationData?.payment?.meal}</span>
+                                                                    className="price">{bsPaymentData?.payment?.meal}</span>
                                                             </div>
                                                             <div className="table-box">
                                                                 <span>Service Charge</span>
                                                                 <span
-                                                                    className="price">{paymentCalulationData?.payment?.service_charges}</span>
+                                                                    className="price">{bsPaymentData?.payment?.service_charges}</span>
                                                             </div>
                                                             <div className="table-box">
                                                                 <span>Tax</span>
                                                                 <span
-                                                                    className="price">{paymentCalulationData?.payment?.taxes}</span>
+                                                                    className="price">{bsPaymentData?.payment?.taxes}</span>
                                                             </div>
                                                             <div className="table-box border">
                                                                 <span className="grand-total">Grand Total</span>
                                                                 <span
-                                                                    className="grand-total"> {paymentCalulationData?.payment?.total}</span>
+                                                                    className="grand-total"> {bsPaymentData?.payment?.total}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1760,7 +1761,7 @@ const BookingSummary = (props) => {
                                                             <div className="table-box">
                                                                 <span>State Bank of India</span>
                                                                 <span
-                                                                    className="price">{paymentCalulationData?.payment?.total}</span>
+                                                                    className="price">{bsPaymentData?.payment?.total}</span>
                                                             </div>
                                                             <div className="table-box">
                                                                 <span
