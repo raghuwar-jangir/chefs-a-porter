@@ -44,32 +44,38 @@ import * as _ from "lodash";
 import { navigate } from "gatsby";
 import UsersContext from "../../context/UsersContext";
 
-const BookingSummary = (props) => {
-  const { summaryBookingId } = props;
-  const { setPaymentVerification } = useContext(UsersContext);
-  const validationSchema = Yup.object().shape({
-    number: Yup.string().required("Number is required"),
-    name: Yup.string().required("Name is required"),
-    flatNumber: Yup.string().required("Flat number is required"),
-    address: Yup.string().required("Address is required"),
-    pincode: Yup.string().required("Pincode is required"),
-    number1: Yup.string().required("Number is required"),
-  });
-  const cookieValue = Cookies?.get("paymentCalculation");
-  const bookingCookieValue = Cookies?.get("bookingConfirm");
-  const oderIDCookieValue = Cookies?.get("razorpayOrderId");
-  const [paymentCalulationData, setPaymentCalulationData] = useState();
-  const [razorpayData, setRazorpayData] = useState();
-  const razorpayOrderId = oderIDCookieValue?.replaceAll('"', "");
 
-  useEffect(() => {
-    if (cookieValue) {
-      setPaymentCalulationData(JSON.parse(cookieValue));
-    }
-    if (bookingCookieValue) {
-      setRazorpayData(JSON.parse(bookingCookieValue));
-    }
-  }, [cookieValue, bookingCookieValue]);
+const BookingSummary = (props) => {
+    const {summaryBookingId} = props;
+    const {setPaymentVerification, bsPaymentData} = useContext(UsersContext);
+    const validationSchema = Yup.object().shape({
+        number: Yup.string().required("Number is required"),
+        name: Yup.string().required("Name is required"),
+        flatNumber: Yup.string().required("Flat number is required"),
+        address: Yup.string().required("Address is required"),
+        pincode: Yup.string().required("Pincode is required"),
+        number1: Yup.string().required("Number is required"),
+    });
+    const cookieValue = Cookies.get('bSPaymentInfo');
+    const bookingCookieValue = Cookies.get("bookingConfirm");
+    const [paymentCalulationData, setPaymentCalculationData] = useState('');
+    const oderIDCookieValue = Cookies?.get("razorpayOrderId");
+    const [razorpayData, setRazorpayData] = useState();
+    const razorpayOrderId = oderIDCookieValue?.replaceAll('"', "");
+
+    useEffect(() => {
+        if (cookieValue) {
+            setPaymentCalculationData(JSON.parse(cookieValue));
+        }
+        if (bookingCookieValue) {
+            setRazorpayData(JSON.parse(bookingCookieValue));
+        }
+    }, [cookieValue, bookingCookieValue])
+
+
+    console.log("paymentCalulationData=========", paymentCalulationData)
+    console.log("razorpayOrderId=========", razorpayOrderId)
+
 
   const initialValues = {
     number: "9876543210",
@@ -90,45 +96,49 @@ const BookingSummary = (props) => {
   const handleBookingSuccessOpen = () => setBookingSuccessOpen(true);
   const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
 
-  const handlePayment = useCallback(() => {
-    const options = {
-      key: "rzp_test_OqWbWLVoLIKRZ7",
-      // key: "rzp_live_hc4Bwj2TcN8epo",
-      currency: "INR",
-      name: "Chefs-à-Porter",
-      order_id: razorpayOrderId,
-      description: "Test Transaction",
-      image: "https://chefsaporter.com/assets/img/logo_black.svg",
-      theme: { color: "#C6A87D", fontFamily: "ProximaNovaA-Regular" },
+    const handlePayment = useCallback(() => {
+        const options = {
+            key: "rzp_test_OqWbWLVoLIKRZ7",
+            // key: "rzp_live_hc4Bwj2TcN8epo",
+            currency: "INR",
+            name: "Chefs-à-Porter",
+            order_id: razorpayOrderId,
+            description: "Test Transaction",
+            image: "https://chefsaporter.com/assets/img/logo_black.svg",
+            theme: { color: "#C6A87D", fontFamily: "ProximaNovaA-Regular" },
 
-      handler: (res) => {
-        console.log("res====>",res);
-        setPaymentVerification(true);
-        handleBookingSuccessOpen(true);
-      },
-    };
-    const rzpay = new Razorpay(options);
-    rzpay.open();
-    rzpay.on("payment.failed", function (response) {
-      console.log("fails", response);
-    });
-  }, [Razorpay]);
+            handler: (res) => {
+                console.log("res====>",res);
+                setPaymentVerification(true);
+                handleBookingSuccessOpen(true);
+            },
+        };
+        const rzpay = new Razorpay(options);
+        rzpay.open();
+        rzpay.on("payment.failed", function (response) {
+            console.log("fails", response);
+        });
+    }, [Razorpay]);
 
-  const [customerInfo, setCustomerInfo] = useState("");
-  const customerInfoCookieValue = Cookies?.get("customerData");
-  const eventDataCookieValue = Cookies.get("eventData");
-  const [eventData, setEventData] = useState();
-  {
-    !_.isEmpty(customerInfoCookieValue) &&
-      useEffect(() => {
-        if (customerInfoCookieValue) {
-          setCustomerInfo(JSON.parse(customerInfoCookieValue));
-        }
-        if (eventDataCookieValue) {
-          setEventData(JSON.parse(eventDataCookieValue));
-        }
-      }, [customerInfoCookieValue, eventDataCookieValue]);
-  }
+
+    const [customerInfo, setCustomerInfo] = useState('')
+    const customerInfoCookieValue = Cookies?.get('customerData');
+    const eventDataCookieValue = Cookies.get('eventData');
+    const [eventData, setEventData] = useState()
+    {
+        !_.isEmpty(customerInfoCookieValue) &&
+        useEffect(() => {
+            if (customerInfoCookieValue) {
+                setCustomerInfo(JSON.parse(customerInfoCookieValue));
+            }
+            if (eventDataCookieValue) {
+                setEventData(JSON.parse(eventDataCookieValue));
+            }
+        }, [customerInfoCookieValue, eventDataCookieValue])
+    }
+
+    console.log("customerInfo======", customerInfo)
+    console.log("eventData======", eventData)
 
   const BoxWrapper = styled(Box)(() => ({
     background: "#080B0E",
@@ -1674,71 +1684,61 @@ const BookingSummary = (props) => {
                                   (allergen+protein info), venue, set up and
                                   pricing
                                 </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </Grid>
-                      <Grid
-                        item
-                        xl={6}
-                        lg={6}
-                        xs={6}
-                        md={6}
-                        sm={12}
-                        className="grid-box"
-                      >
-                        <div className="per-dinner">
-                          <div className="experience-breakup">
-                            <div className="ex-details">
-                              <h5>Payment Summary</h5>
-                              <KeyboardArrowDownIcon className="i" />
-                            </div>
-                            <div className="table table-borderless">
-                              <div className="table-box">
-                                <span>Meal</span>
-                                <span className="price">
-                                  {paymentCalulationData?.payment?.meal}
-                                </span>
-                              </div>
-                              <div className="table-box">
-                                <span>Service Charge</span>
-                                <span className="price">
-                                  {
-                                    paymentCalulationData?.payment
-                                      ?.service_charges
-                                  }
-                                </span>
-                              </div>
-                              <div className="table-box">
-                                <span>Tax</span>
-                                <span className="price">
-                                  {paymentCalulationData?.payment?.taxes}
-                                </span>
-                              </div>
-                              <div className="table-box border">
-                                <span className="grand-total">Grand Total</span>
-                                <span className="grand-total">
-                                  {" "}
-                                  {paymentCalulationData?.payment?.total}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="experience-breakup">
-                            <div className="table table-borderless">
-                              <div className="table-box">
-                                <span>State Bank of India</span>
-                                <span className="price">
-                                  {paymentCalulationData?.payment?.total}
-                                </span>
-                              </div>
-                              <div className="table-box">
-                                <span className="tax">
-                                  {razorpayData?.booking_date}
-                                </span>
-                              </div>
-                              <div className="table-box">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </Grid>
+                                            <Grid
+                                                item
+                                                xl={6}
+                                                lg={6}
+                                                xs={6}
+                                                md={6}
+                                                sm={12}
+                                                className="grid-box"
+                                            >
+                                                <div className="per-dinner">
+                                                    <div className="experience-breakup">
+                                                        <div className="ex-details">
+                                                            <h5>Payment Summary</h5>
+                                                            <KeyboardArrowDownIcon className="i"/>
+                                                        </div>
+                                                        <div className="table table-borderless">
+                                                            <div className="table-box">
+                                                                <span>Meal</span>
+                                                                <span
+                                                                    className="price">{bsPaymentData?.payment?.meal}</span>
+                                                            </div>
+                                                            <div className="table-box">
+                                                                <span>Service Charge</span>
+                                                                <span
+                                                                    className="price">{bsPaymentData?.payment?.service_charges}</span>
+                                                            </div>
+                                                            <div className="table-box">
+                                                                <span>Tax</span>
+                                                                <span
+                                                                    className="price">{bsPaymentData?.payment?.taxes}</span>
+                                                            </div>
+                                                            <div className="table-box border">
+                                                                <span className="grand-total">Grand Total</span>
+                                                                <span
+                                                                    className="grand-total"> {bsPaymentData?.payment?.total}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="experience-breakup">
+                                                        <div className="table table-borderless">
+                                                            <div className="table-box">
+                                                                <span>State Bank of India</span>
+                                                                <span
+                                                                    className="price">{bsPaymentData?.payment?.total}</span>
+                                                            </div>
+                                                            <div className="table-box">
+                                                                <span
+                                                                    className="tax">{razorpayData?.booking_date}</span>
+                                                            </div>
+                                                            <div className="table-box">
                                 <span className="tax">
                                   Transaction ID 12434454689
                                 </span>

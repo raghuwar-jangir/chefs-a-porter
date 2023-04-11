@@ -889,7 +889,8 @@ const CustomerDetails = (props) => {
                                 <Formik
                                     initialValues={{
                                         contactNumber: customerInfo?.contactNumber,
-                                        // address: customerInfo?.address,
+                                        // address: customerInfo?.address ? customerInfo?.address : '',
+                                        address: formAddress,
                                         message: customerInfo?.message ? customerInfo?.message : '',
                                         address: formAddress
                                     }}
@@ -952,7 +953,7 @@ const CustomerDetails = (props) => {
                                                                            id="validationCustom03"
                                                                            placeholder="Add Address"
                                                                     value={values.address}
-                                                                        //    value={formAddress}
+                                                                    //        value={formAddress}
                                                                            onChange={handleChange}
                                                                            autoComplete="off"
                                                                            variant="standard"

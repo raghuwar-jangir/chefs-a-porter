@@ -27,12 +27,12 @@ const BoxWrapper = styled(Box)({
     },
     '.r-seat-text':{
         fontFamily: 'ProximaNovaA-Regular',
-fontStyle: 'normal',
-fontWeight: 400,
-fontSize: '14px',
-lineHeight: '17px',
-color: '#080B0E',
-marginBottom: '8px'
+        fontStyle: 'normal',
+        fontWeight: 400,
+        fontSize: '14px',
+        lineHeight: '17px',
+        color: '#080B0E',
+        marginBottom: '8px'
     },
     '.r-seat-rate':{
         fontFamily: 'ProximaNovaA-Regular',
@@ -98,17 +98,17 @@ marginBottom: '8px'
     },
 });
 const ExperienceDrop = ({toggleClose}) => {
-  const [numberOfDenner, setNumberOfDenner] = useState(1);
-  const [numberOfSeat, setNumberOfSeat] = useState(1);
-  const [seat, setSeat] = useState(1);
-  const disabledStyle = {
-    opacity: 0.5,
-  };
-  const handleForDecrement = () => {
-    if (seat > 0) {
-        setSeat(seat - 1);
-    }
-  };
+    const [numberOfDenner, setNumberOfDenner] = useState(1);
+    const [numberOfSeat, setNumberOfSeat] = useState(1);
+    const [seat, setSeat] = useState(1);
+    const disabledStyle = {
+        opacity: 0.5,
+    };
+    const handleForDecrement = () => {
+        if (seat > 0) {
+            setSeat(seat - 1);
+        }
+    };
 
   const handleForIncrement = () => {
     if (seat < 4) {
@@ -178,56 +178,56 @@ const ExperienceDrop = ({toggleClose}) => {
               <span className="r-seat-rate">
                 <b className="r-seat-money">₹ 4,500</b>/ diner
               </span>
-            </div>
-            <div>
-              <div className="input-div">
-                <RemoveIcon
-                  className="left-btn"
-                  onClick={handleSeatDecrement}
-                  style={numberOfSeat === 0 ? disabledStyle : {}}
-                  disabled={numberOfSeat === 0}
-                />
-                <Typography className="number-ans">{numberOfSeat}</Typography>
-                <AddIcon
-                  className="right-btn"
-                  onClick={handleSeatIncreament}
-                  style={numberOfSeat === 1 ? disabledStyle : {}}
-                  disabled={numberOfSeat === 1}
-                />
-              </div>
-              <span className="s-left">seats full</span>
-            </div>
-          </Box>
-          <hr className="seat-hr" />
-          <Box>
-                                    <Box className='regular-seat'>
-                                        <div className="r-seat">
-                                            <div className="r-seat-text">No of Seats</div>
-                                            <span className="r-seat-rate"><b className='r-seat-money'>₹ 2,500</b>/ diner</span>
-                                        </div>
-                                        <div>
-                                            <div className="input-div">
-                                                <RemoveIcon
-                                                    className="left-btn"
-                                                    onClick={handleForDecrement}
-                                                    style={seat === 0 ? disabledStyle : {}}
-                                                    disabled={seat === 0}
-                                                />
-                                                <Typography className="number-ans">{seat}</Typography>
-                                                <AddIcon
-                                                    style={seat === 4 ? disabledStyle : {}}
-                                                    className="right-btn"
-                                                    onClick={handleForIncrement}
-                                                    disabled={seat === 4}
-                                                />
-                                            </div>
-                                            <span className="s-left">4 seats left</span>
-                                        </div>
-                                    </Box>
-                                </Box>
-        </Box>{" "}
-      </BoxWrapper>{" "}
-    </React.Fragment>
-  );
+                        </div>
+                        <div>
+                            <div className="input-div">
+                                <RemoveIcon
+                                    className="left-btn"
+                                    onClick={handleSeatDecrement}
+                                    style={numberOfSeat === 0 ? disabledStyle : {}}
+                                    disabled={numberOfSeat === 0}
+                                />
+                                <Typography className="number-ans">{numberOfSeat}</Typography>
+                                <AddIcon
+                                    className="right-btn"
+                                    onClick={handleSeatIncreament}
+                                    style={numberOfSeat === 1 ? disabledStyle : {}}
+                                    disabled={numberOfSeat === 1}
+                                />
+                            </div>
+                            <span className="s-left">seats full</span>
+                        </div>
+                    </Box>
+                    <hr className="seat-hr" />
+                    <Box>
+                        <Box className='regular-seat'>
+                            <div className="r-seat">
+                                <div className="r-seat-text">No of Seats</div>
+                                <span className="r-seat-rate"><b className='r-seat-money'>₹ 2,500</b>/ diner</span>
+                            </div>
+                            <div>
+                                <div className="input-div">
+                                    <RemoveIcon
+                                        className="left-btn"
+                                        onClick={handleForDecrement}
+                                        style={seat === 0 ? disabledStyle : {}}
+                                        disabled={seat === 0}
+                                    />
+                                    <Typography className="number-ans">{seat}</Typography>
+                                    <AddIcon
+                                        style={seat === 4 ? disabledStyle : {}}
+                                        className="right-btn"
+                                        onClick={handleForIncrement}
+                                        disabled={seat === 4}
+                                    />
+                                </div>
+                                <span className="s-left">4 seats left</span>
+                            </div>
+                        </Box>
+                    </Box>
+                </Box>{" "}
+            </BoxWrapper>{" "}
+        </React.Fragment>
+    );
 };
 export default ExperienceDrop;
