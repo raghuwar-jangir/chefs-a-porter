@@ -128,33 +128,6 @@ const ScBookingConfirm = (props) => {
     const handleBookingSuccessOpen = () => setBookingSuccessOpen(true);
     const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
 
-    // const Razorpay = useRazorpay();
-    //
-    // const handlePayment = useCallback(() => {
-    //     const options = {
-    //         // key: razorpayData?.razorpay_key,
-    //         key:'rzp_test_OqWbWLVoLIKRZ7',
-    //         amount: 100 * 100,
-    //         currency: "INR",
-    //         name: "Chefs-à-Porter",
-    //         // order_id: razorpayData?.razorpay_order_id,
-    //         description: "Test Transaction",
-    //         image: "https://chefsaporter.com/assets/img/logo_black.svg",
-    //         theme: { color: "#C6A87D", fontFamily: "ProximaNovaA-Regular" },
-    //
-    //         handler: (res) => {
-    //             console.log("res", res);
-    //             handleBookingSuccessOpen(true);
-    //         },
-    //     };
-    //
-    //     const rzpay = new Razorpay(options);
-    //     rzpay.open();
-    //     rzpay.on("payment.failed", function (response) {
-    //         console.log("fails", response);
-    //     });
-    // }, [Razorpay]);
-
     const MainBox = styled(Box)({
         padding: "80px 120px",
         marginTop: "40px",
@@ -188,7 +161,7 @@ const ScBookingConfirm = (props) => {
         },
         ".per-dinner": {
             background: "#FBFBFB",
-            padding: "0px 20px 40px",
+            padding: "20px 20px 40px",
             boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
             position: "sticky",
             top: "100px",
@@ -1204,37 +1177,37 @@ const ScBookingConfirm = (props) => {
                         <ArrowBackIcon
                             // onClick={handleBookingSuccessOpen}
                             onClick={() => {
-                                navigate(`/sc-booking-summary/${supperClubConfirmBookingId}`)
+                                navigate(`/ticketed-booking-summary/${supperClubConfirmBookingId}`)
                             }}
                             className="arrow-left"
                         />
-                        <div className="addons-title">Booking Summary</div>
+                        <div className="addons-title">Booking Confirm</div>
                     </div>
                 </div>
-                {
-                    !_.isEmpty(supperClubConfirmPaymentData) &&
-                    <Box>
-                        <Stack
-                            className="date-stack date-stack1"
-                        >
-                            {!_.isEmpty(supperClubConfirmPaymentData) &&
-                                <Typography className="date-description">
-                                    {moment(supperClubConfirmPaymentData?.event?.dates[0]).format("MMMM D")}
-                                </Typography>
-                            }
-                            <span className="line">|</span>
-                            <Typography className="date-description">
-                                {" "}
-                                {/*7:30 PM - 10 PM*/}
-                                {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
-                            </Typography>
-                            <span className="line">|</span>
-                            <Typography className="date-description">
-                                {supperClubConfirmPaymentData?.event?.venue}
-                            </Typography>
-                        </Stack>
-                    </Box>
-                }
+                {/*{*/}
+                {/*    !_.isEmpty(supperClubConfirmPaymentData) &&*/}
+                {/*    <Box>*/}
+                {/*        <Stack*/}
+                {/*            className="date-stack date-stack1"*/}
+                {/*        >*/}
+                {/*            {!_.isEmpty(supperClubConfirmPaymentData) &&*/}
+                {/*                <Typography className="date-description">*/}
+                {/*                    {moment(supperClubConfirmPaymentData?.event?.dates[0]).format("MMMM D")}*/}
+                {/*                </Typography>*/}
+                {/*            }*/}
+                {/*            <span className="line">|</span>*/}
+                {/*            <Typography className="date-description">*/}
+                {/*                {" "}*/}
+                {/*                /!*7:30 PM - 10 PM*!/*/}
+                {/*                {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}*/}
+                {/*            </Typography>*/}
+                {/*            <span className="line">|</span>*/}
+                {/*            <Typography className="date-description">*/}
+                {/*                {supperClubConfirmPaymentData?.event?.venue}*/}
+                {/*            </Typography>*/}
+                {/*        </Stack>*/}
+                {/*    </Box>*/}
+                {/*}*/}
                 {
                     !_.isEmpty(supperClubConfirmPaymentData) &&
                     <Formik
@@ -1380,27 +1353,27 @@ const ScBookingConfirm = (props) => {
                                         className="cust-details dinner-box"
                                     >
                                         <Box className="per-dinner adsss">
-                                            <Box>
-                                                <Stack
-                                                    className="date-stack"
-                                                >
-                                                    {!_.isEmpty(supperClubConfirmPaymentData) &&
-                                                        <Typography className="date-description">
-                                                            {moment(supperClubConfirmPaymentData?.event?.dates[0]).format("MMMM D")}
-                                                        </Typography>
-                                                    }
-                                                    <span className="line">|</span>
-                                                    <Typography className="date-description">
-                                                        {" "}
-                                                        {/*7:30 PM - 10 PM*/}
-                                                        {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
-                                                    </Typography>
-                                                    <span className="line">|</span>
-                                                    <Typography className="date-description">
-                                                        {supperClubConfirmPaymentData?.event?.venue}
-                                                    </Typography>
-                                                </Stack>
-                                            </Box>
+                                            {/*<Box>*/}
+                                            {/*    <Stack*/}
+                                            {/*        className="date-stack"*/}
+                                            {/*    >*/}
+                                            {/*        {!_.isEmpty(supperClubConfirmPaymentData) &&*/}
+                                            {/*            <Typography className="date-description">*/}
+                                            {/*                {moment(supperClubConfirmPaymentData?.event?.dates[0]).format("MMMM D")}*/}
+                                            {/*            </Typography>*/}
+                                            {/*        }*/}
+                                            {/*        <span className="line">|</span>*/}
+                                            {/*        <Typography className="date-description">*/}
+                                            {/*            {" "}*/}
+                                            {/*            /!*7:30 PM - 10 PM*!/*/}
+                                            {/*            {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}*/}
+                                            {/*        </Typography>*/}
+                                            {/*        <span className="line">|</span>*/}
+                                            {/*        <Typography className="date-description">*/}
+                                            {/*            {supperClubConfirmPaymentData?.event?.venue}*/}
+                                            {/*        </Typography>*/}
+                                            {/*    </Stack>*/}
+                                            {/*</Box>*/}
                                             <Box className="event-div">
                                                 <img src={supperClubConfirmPaymentData?.event?.pictures[0]} alt=""
                                                      className="per-dinner-img"/>
@@ -1439,7 +1412,7 @@ const ScBookingConfirm = (props) => {
                                                                 return (
                                                                     <Box className="table-box">
                                                                         <Typography
-                                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
+                                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1).split("_").join(" ")}</Typography>
                                                                         <Typography
                                                                             className="table-details">₹
                                                                             {supperClubConfirmPaymentData?.payment[key]}</Typography>

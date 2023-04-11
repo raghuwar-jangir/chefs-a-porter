@@ -354,14 +354,14 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                                         className={`browser-hamburger-menu`}
                                         activeClassName={'browser-hamburger-menu active'}
                                         activeStyle={{color: '#C6A87D'}}
-                                        to={to ? to : '/privee'}>
-                                        Privee
+                                        to={to ? to : '/private'}>
+                                        Private
                                     </Link>
                                     <Link
                                         className={`browser-hamburger-menu`}
                                         activeClassName={'browser-hamburger-menu active'}
-                                        to='/supper-club'>
-                                        Supper Clubs
+                                        to='/ticketed'>
+                                       Ticketed
                                     </Link>
                                     <Link
                                         className={`browser-hamburger-menu`}
@@ -461,7 +461,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                                     </ListItem>
                                     <ListItem button>
                                         <Link
-                                            className="hamburger-title" to='/privee'> Privee </Link>
+                                            className="hamburger-title" to='/private'> Private </Link>
                                     </ListItem>
                                     <ListItem button>
                                         <Link

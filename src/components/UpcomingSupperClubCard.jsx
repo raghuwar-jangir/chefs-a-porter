@@ -18,10 +18,6 @@ import Cookies from "js-cookie";
 const UpcomingSupperClubCard = () => {
 
     const {data} = useContext(CmsContext);
-
-    // const handleClick = () => {
-    //     navigate('/supper-club-detail');
-    // }
     const cardDetails = [
         {
             potImg: img1,
@@ -166,7 +162,7 @@ const UpcomingSupperClubCard = () => {
                 <MainBox>
                     {data.supper_club.upcoming_supper_club.supper_clubs.map((item, index) => (
                         <Box key={index} onClick={() => {
-                            navigate(`/supper-club-detail/${item?.id}`);
+                            navigate(`/ticketed-detail/${item?.id}`);
                             Cookies.set('superClubDetailId', JSON.stringify(item?.id));
                         }}
                              style={{cursor: 'pointer'}}>

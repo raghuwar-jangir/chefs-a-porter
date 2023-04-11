@@ -41,7 +41,7 @@ const ScBookingSummary = () => {
     }, [cookieValue, cookieValue2])
 
     const handleClick = () => {
-        navigate(`/sc-booking-confirm/${supperClubBookingId}`);
+        navigate(`/ticketed-booking-confirm/${supperClubBookingId}`);
         setIsSupperBookingStatus(true);
     }
 
@@ -110,7 +110,7 @@ const ScBookingSummary = () => {
         },
         ".per-dinner": {
             background: "#FBFBFB",
-            padding: "0px 20px 40px",
+            padding: "20px 20px 40px",
             boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
             position: "sticky",
             top: "100px",
@@ -705,36 +705,36 @@ const ScBookingSummary = () => {
                 <div className="row supper-chef-details">
                     <div className="book-trad">
                         <ArrowBackIcon className="arrow-left" onClick={() => {
-                            navigate(`/personal-details1`)
+                            navigate(`/personal-details`)
                         }
                         }/>
                         <div className="addons-title">Booking Summary</div>
                     </div>
                 </div>
-                {
-                    !_.isEmpty(supperClubPaymentData) &&
-                <Box>
-                    <Stack
-                        className="date-stack date-stack1"
-                    >
-                        {!_.isEmpty(supperClubPaymentData) &&
-                            <Typography className="date-description">
-                                {moment(supperClubPaymentData?.event?.dates[0]).format("MMMM D")}
-                            </Typography>
-                        }
-                        <span className="line">|</span>
-                        <Typography className="date-description">
-                            {" "}
-                            {/*7:30 PM - 10 PM*/}
-                            {moment(supperClubPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
-                        </Typography>
-                        <span className="line">|</span>
-                        <Typography className="date-description">
-                            {supperClubPaymentData?.event?.venue}
-                        </Typography>
-                    </Stack>
-                </Box>
-                }
+                {/*{*/}
+                {/*    !_.isEmpty(supperClubPaymentData) &&*/}
+                {/*<Box>*/}
+                {/*    <Stack*/}
+                {/*        className="date-stack date-stack1"*/}
+                {/*    >*/}
+                {/*        {!_.isEmpty(supperClubPaymentData) &&*/}
+                {/*            <Typography className="date-description">*/}
+                {/*                {moment(supperClubPaymentData?.event?.dates[0]).format("MMMM D")}*/}
+                {/*            </Typography>*/}
+                {/*        }*/}
+                {/*        <span className="line">|</span>*/}
+                {/*        <Typography className="date-description">*/}
+                {/*            {" "}*/}
+                {/*            /!*7:30 PM - 10 PM*!/*/}
+                {/*            {moment(supperClubPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}*/}
+                {/*        </Typography>*/}
+                {/*        <span className="line">|</span>*/}
+                {/*        <Typography className="date-description">*/}
+                {/*            {supperClubPaymentData?.event?.venue}*/}
+                {/*        </Typography>*/}
+                {/*    </Stack>*/}
+                {/*</Box>*/}
+                {/*}*/}
                 {
                     !_.isEmpty(supperClubPaymentData) &&
                     <Formik
@@ -880,27 +880,27 @@ const ScBookingSummary = () => {
                                         className="cust-details dinner-box"
                                     >
                                         <Box className="per-dinner adsss">
-                                            <Box>
-                                                <Stack
-                                                    className="date-stack"
-                                                >
-                                                    {!_.isEmpty(supperClubPaymentData) &&
-                                                        <Typography className="date-description">
-                                                            {moment(supperClubPaymentData?.event?.dates[0]).format("MMMM D")}
-                                                        </Typography>
-                                                    }
-                                                    <span className="line">|</span>
-                                                    <Typography className="date-description">
-                                                        {" "}
-                                                        {/*7:30 PM - 10 PM*/}
-                                                        {moment(supperClubPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
-                                                    </Typography>
-                                                    <span className="line">|</span>
-                                                    <Typography className="date-description">
-                                                        {supperClubPaymentData?.event?.venue}
-                                                    </Typography>
-                                                </Stack>
-                                            </Box>
+                                            {/*<Box>*/}
+                                            {/*    <Stack*/}
+                                            {/*        className="date-stack"*/}
+                                            {/*    >*/}
+                                            {/*        {!_.isEmpty(supperClubPaymentData) &&*/}
+                                            {/*            <Typography className="date-description">*/}
+                                            {/*                {moment(supperClubPaymentData?.event?.dates[0]).format("MMMM D")}*/}
+                                            {/*            </Typography>*/}
+                                            {/*        }*/}
+                                            {/*        <span className="line">|</span>*/}
+                                            {/*        <Typography className="date-description">*/}
+                                            {/*            {" "}*/}
+                                            {/*            /!*7:30 PM - 10 PM*!/*/}
+                                            {/*            {moment(supperClubPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}*/}
+                                            {/*        </Typography>*/}
+                                            {/*        <span className="line">|</span>*/}
+                                            {/*        <Typography className="date-description">*/}
+                                            {/*            {supperClubPaymentData?.event?.venue}*/}
+                                            {/*        </Typography>*/}
+                                            {/*    </Stack>*/}
+                                            {/*</Box>*/}
                                             <Box className="event-div">
                                                 <img src={supperClubPaymentData?.event?.pictures[0]} alt=""
                                                      className="per-dinner-img"/>
@@ -939,7 +939,7 @@ const ScBookingSummary = () => {
                                                                 return (
                                                                     <Box className="table-box">
                                                                         <Typography
-                                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
+                                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1).split("_").join(" ")}</Typography>
                                                                         <Typography
                                                                             className="table-details">₹
                                                                             {supperClubPaymentData?.payment[key]}</Typography>

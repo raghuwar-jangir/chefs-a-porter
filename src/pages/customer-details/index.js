@@ -1232,7 +1232,7 @@ const CustomerDetails = (props) => {
                                                         </Box>
                                                         <Box className="experience-breakup">
                                                             <Box className="ex-details">
-                                                                <Typography className="ex-heading">Experience
+                                                                <Typography className="ex-heading">
                                                                     Breakup</Typography>
                                                                 <Typography className="ex-detail">This is an estimate,
                                                                     final price
@@ -1251,7 +1251,7 @@ const CustomerDetails = (props) => {
                                                                                     <Box key={index}
                                                                                          className={index === Object.keys(customerDetailsPaymentCalculation).length - 1 ? " table-box border" : "table-box"}>
                                                                                         <Typography
-                                                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
+                                                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1).split("_").join(" ")}</Typography>
                                                                                         <Typography
                                                                                             className="table-details">{customerDetailsPaymentCalculation[key]}</Typography>
                                                                                     </Box>
@@ -1259,17 +1259,16 @@ const CustomerDetails = (props) => {
                                                                             )
                                                                         })
                                                                     }
-                                                                    <Box className="tax tax1 table-box">
-                                                                        <Typography className="table-details">Servers charges are added based on number of diners</Typography>
+                                                                    <Box className="tax tax1">
+                                                                        <Typography
+                                                                            className="table-details">GST @ 5%</Typography>
+                                                                        <Typography
+                                                                            className="table-details">Service Tax @ 10%</Typography>
                                                                     </Box>
-                                                                    {/*<Box className="tax tax1 table-box">*/}
-                                                                    {/*    <Typography className="table-details">+Incl Of*/}
-                                                                    {/*        GST</Typography>*/}
-                                                                    {/*</Box>*/}
-                                                                    {/*<Box className="tax">*/}
-                                                                    {/*    <Typography className="table-details">++1.95% +*/}
-                                                                    {/*        GST</Typography>*/}
-                                                                    {/*</Box>*/}
+                                                                    <Box className="tax tax1">
+                                                                        <Typography className="table-details">*Includes the menu, tableware, table set-up and white-glove service.</Typography>
+                                                                        <Typography className="table-details">**Service staff is calculated based on number of diners.</Typography>
+                                                                    </Box>
                                                                 </Box>
                                                             }
                                                         </Box>

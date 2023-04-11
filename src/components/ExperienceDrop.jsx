@@ -199,32 +199,32 @@ const ExperienceDrop = ({toggleClose}) => {
                         </div>
                     </Box>
                     <hr className="seat-hr" />
-                    <Box>
-                        <Box className='regular-seat'>
-                            <div className="r-seat">
-                                <div className="r-seat-text">No of Seats</div>
-                                <span className="r-seat-rate"><b className='r-seat-money'>₹ 2,500</b>/ diner</span>
-                            </div>
-                            <div>
-                                <div className="input-div">
-                                    <RemoveIcon
-                                        className="left-btn"
-                                        onClick={handleForDecrement}
-                                        style={seat === 0 ? disabledStyle : {}}
-                                        disabled={seat === 0}
-                                    />
-                                    <Typography className="number-ans">{seat}</Typography>
-                                    <AddIcon
-                                        style={seat === 4 ? disabledStyle : {}}
-                                        className="right-btn"
-                                        onClick={handleForIncrement}
-                                        disabled={seat === 4}
-                                    />
-                                </div>
-                                <span className="s-left">4 seats left</span>
-                            </div>
-                        </Box>
-                    </Box>
+                    {/*<Box>*/}
+                    {/*    <Box className='regular-seat'>*/}
+                    {/*        <div className="r-seat">*/}
+                    {/*            <div className="r-seat-text">No of Seats</div>*/}
+                    {/*            <span className="r-seat-rate"><b className='r-seat-money'>₹ 2,500</b>/ diner</span>*/}
+                    {/*        </div>*/}
+                    {/*        <div>*/}
+                    {/*            <div className="input-div">*/}
+                    {/*                <RemoveIcon*/}
+                    {/*                    className="left-btn"*/}
+                    {/*                    onClick={handleForDecrement}*/}
+                    {/*                    style={seat === 0 ? disabledStyle : {}}*/}
+                    {/*                    disabled={seat === 0}*/}
+                    {/*                />*/}
+                    {/*                <Typography className="number-ans">{seat}</Typography>*/}
+                    {/*                <AddIcon*/}
+                    {/*                    style={seat === 4 ? disabledStyle : {}}*/}
+                    {/*                    className="right-btn"*/}
+                    {/*                    onClick={handleForIncrement}*/}
+                    {/*                    disabled={seat === 4}*/}
+                    {/*                />*/}
+                    {/*            </div>*/}
+                    {/*            <span className="s-left">4 seats left</span>*/}
+                    {/*        </div>*/}
+                    {/*    </Box>*/}
+                    {/*</Box>*/}
                 </Box>{" "}
             </BoxWrapper>{" "}
         </React.Fragment>

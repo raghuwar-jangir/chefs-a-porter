@@ -80,11 +80,11 @@ const UsersProvider = (props) => {
             axios.get(baseUrl + `/menu/` + eventId).then(result => {
                 setUserData(result.data)
             })
-        } else if (supperClubDetailId && currentPath === 'supper-club-detail') {
+        } else if (supperClubDetailId && currentPath === 'ticketed-detail') {
             axios.get(baseUrl + '/event/' + supperClubDetailId).then(result => {
                 setUserData(result.data)
             })
-        } else if (currentPath === 'privee-viewmore') {
+        } else if (currentPath === 'private-viewmore') {
             axios.get(baseUrl + '/menu').then(result => {
                 setUserData(result.data)
             })
@@ -146,7 +146,7 @@ const UsersProvider = (props) => {
                 cover_letter: joinChefData.coverLetterMessage,
             })
             setIsJoinChefData(false)
-        } else if (currentPath === 'sc-booking-summary' && supperClubBookingId) {
+        } else if (currentPath === 'ticketed-booking-summary' && supperClubBookingId) {
             console.log("supperClubBookingId==========--", supperClubBookingId)
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId, {
                 common_menu: eventId
@@ -175,14 +175,14 @@ const UsersProvider = (props) => {
                     Cookies.set('supperClubBookingData', JSON.stringify(response.data));
                 }
             })
-        } else if (isSupperClubCoupon !== true && currentPath === 'sc-booking-confirm' && supperClubBookingId) {
+        } else if (isSupperClubCoupon !== true && currentPath === 'ticketed-booking-confirm' && supperClubBookingId) {
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId).then((response) => {
                 if (response.status === 200) {
                     setSupperClubConfirmPaymentData(response.data)
                     Cookies.set('supperClubBookingData', JSON.stringify(response.data));
                 }
             })
-        } else if (currentPath === 'personal-details1') {
+        } else if (currentPath === 'personal-details') {
             axios.post(baseUrl + '/booking/calculatepayment/', {
                 id: superClubDetailId,
                 type: 'supper_club',
@@ -231,12 +231,12 @@ const UsersProvider = (props) => {
                 Cookies.set('callMobileNumber', JSON.stringify(result.data.footer.footer.mobile));
             })
         }
-        if (path.pathname === '/' || currentPath === "privee" || currentPath === "privee-viewmore") {
+        if (path.pathname === '/' || currentPath === "private" || currentPath === "private-viewmore") {
             axios.get('https://chefv2.hypervergedemo.site/v1/meal_times/all').then(result => {
                 setMealData(result.data)
             })
         }
-        if (currentPath === "personal-details1") {
+        if (currentPath === "personal-details") {
             axios.get('https://chefv2.hypervergedemo.site/v1/meal_types/all').then(result => {
                 setMealTypeData(result.data)
             })

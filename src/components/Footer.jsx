@@ -185,13 +185,13 @@ const Footer = () => {
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <Link href="/privee" className="listItem-subheading">Privee</Link>
+                                        <Link href="/private" className="listItem-subheading">Private</Link>
                                     </List>
                                     <List>
                                         <ListItemIcon className="listItem">
                                             <img src={footerArrow}/>
                                         </ListItemIcon>
-                                        <Link href="/supper-club" className="listItem-subheading">Supper Clubs</Link>
+                                        <Link href="/ticketed" className="listItem-subheading">Ticketed</Link>
                                     </List>
                                 </Box>
                             </Grid>

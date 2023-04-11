@@ -1412,13 +1412,13 @@ const BookingSummary = (props) => {
                                                             <Box className="experience-breakup">
                                                                 <Box className="ex-details">
                                                                     <Typography className="ex-heading">
-                                                                        Experience Breakup
+                                                                         Breakup
                                                                     </Typography>
-                                                                    <Typography className="ex-detail">
-                                                                        This is an estimate, final price will be{" "}
-                                                                        <br/>
-                                                                        communicated on call
-                                                                    </Typography>
+                                                                    {/*<Typography className="ex-detail">*/}
+                                                                    {/*    This is an estimate, final price will be{" "}*/}
+                                                                    {/*    <br/>*/}
+                                                                    {/*    communicated on call*/}
+                                                                    {/*</Typography>*/}
                                                                     <ExpandMoreIcon className="ex-icon"/>
                                                                 </Box>
                                                                 {
@@ -1429,7 +1429,7 @@ const BookingSummary = (props) => {
                                                                                 return (
                                                                                     <Box className="table-box">
                                                                                         <Typography
-                                                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
+                                                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1).split("_").join(" ")}</Typography>
                                                                                         <Typography
                                                                                             className="table-details">₹{bsPaymentData?.payment[key]}</Typography>
                                                                                     </Box>
@@ -1444,19 +1444,10 @@ const BookingSummary = (props) => {
                                                                                 className="table-details grand-total">₹
                                                                                 {bsPaymentData?.total}</Typography>
                                                                         </Box>
-                                                                        <Box className="tax tax1 table-box">
-                                                                            <Typography className="table-details">Servers charges are added based on number of diners</Typography>
+                                                                        <Box className="tax tax1">
+                                                                            <Typography className="table-details">*Includes the menu, tableware, table set-up and white-glove service.</Typography>
+                                                                            <Typography className="table-details">**Service staff is calculated based on number of diners.</Typography>
                                                                         </Box>
-                                                                        {/*<Box className="tax tax1 table-box">*/}
-                                                                        {/*    <Typography className="table-details">+Incl*/}
-                                                                        {/*        Of*/}
-                                                                        {/*        GST</Typography>*/}
-                                                                        {/*</Box>*/}
-                                                                        {/*<Box className="tax">*/}
-                                                                        {/*    <Typography className="table-details">++1.95%*/}
-                                                                        {/*        +*/}
-                                                                        {/*        GST</Typography>*/}
-                                                                        {/*</Box>*/}
                                                                     </Box>
                                                                 }
                                                                 <Box className="form-group1">
@@ -1715,10 +1706,7 @@ const BookingSummary = (props) => {
                                                             <div>
                                                                 <img src={support} alt=""/>
                                                                 <span>
-                                  Our team and Chef will get in touch with you
-                                  to discuss menu <br/>
-                                  (allergen+protein info), venue, set up and
-                                  pricing
+                                 Our team will get in touch to discuss further about your experience.
                                 </span>
                                                             </div>
                                                         </div>
