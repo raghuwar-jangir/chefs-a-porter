@@ -86,10 +86,24 @@ const SupperClubDetail = (props) => {
     };
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const [show, setShow] = useState(false);
-    const handleToggle = (index) => setShow(true);
-    const toggleClose = () => setShow(false);
+    const handleClose = () => setOpen(false)
+    const [showArray, setShowArray] = useState(Array(showDates.length).fill(false));
+    console.log("show======>",showArray);
+    const handleToggle = (index) => {
+      setShowArray(prevState => {
+        const newState = [...prevState];
+        newState[index] = !newState[index];
+        return newState;
+      });
+    }
+    
+    const toggleClose = (index) => {
+      setShowArray(prevState => {
+        const newState = [...prevState];
+        newState[index] = false;
+        return newState;
+      });
+    }
     const AnyReactComponent = ({text}) => <div>{text}</div>;
     const defaultProps = {
         center: {
@@ -1213,9 +1227,9 @@ const SupperClubDetail = (props) => {
                                                             />
                                                             <label
                                                                 htmlFor={`radio-${index}`}
-                                                                onClick={() => handleToggle(index, item)}
+                                                                onClick={() => handleToggle(index)}
                                                             >
-                                                                <Typography className="time-text" key={index}>
+                                                                <Typography className="time-text" >
                                                                     {moment(item[0]?.from, "HH:mm").format(
                                                                         "h:mm A"
                                                                     )}{" "}
@@ -1234,8 +1248,8 @@ const SupperClubDetail = (props) => {
                                                             {!_.isEmpty(item[1]?.from) &&
                                                                 !_.isEmpty(item[1]?.to) && (
                                                                     <label htmlFor={`radio-${index}`}
-                                                                           onClick={() => handleToggle(index, item)}>
-                                                                        <Typography className="time-text" key={index}>
+                                                                    onClick={() => handleToggle(index)}>
+                                                                        <Typography className="time-text">
                                                                             {moment(item[1]?.from, "HH:mm").format(
                                                                                 "h:mm A"
                                                                             )}{" "}
@@ -1252,9 +1266,9 @@ const SupperClubDetail = (props) => {
                                                         className="experience-drop"
                                                         style={{width: "100%"}}
                                                     >
-                                                        {show && (
-                                                            <ExperienceDrop toggleClose={toggleClose}/>
-                                                        )}
+                                                        {showArray[index] && (
+            <ExperienceDrop toggleClose={() => toggleClose(index)}/>
+          )}
                                                     </Box>
                                                 </Box>
                                             );
