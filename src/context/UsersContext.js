@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import {useLocation} from "@reach/router";
 import Cookies from "js-cookie";
+import * as _ from "lodash";
 
 const defaultState = {
     data: {},
@@ -28,6 +29,7 @@ const UsersProvider = (props) => {
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
     const [isSupperBookingStatus, setIsSupperBookingStatus] = useState(false);
     const [paymentVerification, setPaymentVerification] = useState(false);
+    const [supperClubRazorpay, setSupperClubRazorpay] = useState();
     // const [supperClubBookingBookingConfirm, setSupperClubBookingBookingConfirm] = useState();
     // const cookieValueSupper = Cookies?.get('supperClubBookingBookingConfirm');
 
@@ -157,8 +159,10 @@ const UsersProvider = (props) => {
         } else if (isSupperBookingStatus) {
             axios.post(baseUrl + '/booking/confirm/' + supperClubBookingId).then((response) => {
                 if (response.status === 200) {
-                    Cookies.set('supperClubBookingBookingConfirm', JSON.stringify(response.data));
-                    console.log("supperClubBookingBookingConfirm response======", response.data)
+                    setSupperClubRazorpay(response.data)
+                    Cookies.set('scbDetails', response.data);
+                    Cookies.set('ScbData',  JSON.stringify(response?.data?.razorpay_order_id));
+                    console.log("supperClubBookingBookingConfirm response======", response.data.razorpay_order_id)
                 }
                 setIsSupperBookingStatus(false)
             })
@@ -220,6 +224,7 @@ const UsersProvider = (props) => {
         //         });
         //     setPaymentVerification(false);
         // }
+
         if (path.pathname === "/") {
             axios.get(baseUrl + '/cms/footer').then(result => {
                 setCallMobileNumber(result.data.footer.footer.mobile)
@@ -266,7 +271,8 @@ const UsersProvider = (props) => {
                 supperClubConfirmPaymentData,
                 setVoucher,
                 setIsCoupon,
-                setIsSupperClubCoupon
+                setIsSupperClubCoupon,
+                supperClubRazorpay
             }}
         >
             {children}

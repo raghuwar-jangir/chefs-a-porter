@@ -104,6 +104,7 @@ const BookingSummary = (props) => {
             key: "rzp_test_OqWbWLVoLIKRZ7",
             // key: "rzp_live_hc4Bwj2TcN8epo",
             // amount:340 * 100,
+            // amount:2240 * 100,
             currency: "INR",
             name: "Chefs-à-Porter",
             order_id: razorpayOrderId,
@@ -1444,7 +1445,7 @@ const BookingSummary = (props) => {
                                                                                 {bsPaymentData?.total}</Typography>
                                                                         </Box>
                                                                         <Box className="tax tax1 table-box">
-                                                                            <Typography className="table-details">Service charges are added based on number of diners</Typography>
+                                                                            <Typography className="table-details">Servers charges are added based on number of diners</Typography>
                                                                         </Box>
                                                                         {/*<Box className="tax tax1 table-box">*/}
                                                                         {/*    <Typography className="table-details">+Incl*/}

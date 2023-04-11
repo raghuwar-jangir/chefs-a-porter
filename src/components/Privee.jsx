@@ -103,7 +103,7 @@ const Privee = (props) => {
         },
         "@media (min-width: 1px) and (max-width:767px)": {
             '.grid': {
-                gridTemplate: 'repeat(1, 1fr) / repeat(2, 2fr)',
+                gridTemplate: 'repeat(1, 1fr) / repeat(1, 1fr)',
                 gap: '15px',
                 marginTop: '40px',
                 paddingTop: '40px',
