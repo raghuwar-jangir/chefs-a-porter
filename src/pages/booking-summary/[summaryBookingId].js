@@ -47,7 +47,7 @@ import UsersContext from "../../context/UsersContext";
 
 const BookingSummary = (props) => {
     const {summaryBookingId} = props;
-    const {setPaymentVerification, bsPaymentData} = useContext(UsersContext);
+    const {setPaymentVerification, bsPaymentData, setVoucher,setIsCoupon} = useContext(UsersContext);
     const validationSchema = Yup.object().shape({
         number: Yup.string().required("Number is required"),
         name: Yup.string().required("Name is required"),
@@ -62,6 +62,8 @@ const BookingSummary = (props) => {
     const oderIDCookieValue = Cookies?.get("razorpayOrderId");
     const [razorpayData, setRazorpayData] = useState();
     const razorpayOrderId = oderIDCookieValue?.replaceAll('"', "");
+
+    console.log("razorpayData==============",razorpayData)
 
     useEffect(() => {
         if (cookieValue) {
@@ -100,15 +102,17 @@ const BookingSummary = (props) => {
         const options = {
             key: "rzp_test_OqWbWLVoLIKRZ7",
             // key: "rzp_live_hc4Bwj2TcN8epo",
+            // amount:340 * 100,
+            // amount:2240 * 100,
             currency: "INR",
             name: "Chefs-à-Porter",
             order_id: razorpayOrderId,
             description: "Test Transaction",
             image: "https://chefsaporter.com/assets/img/logo_black.svg",
-            theme: { color: "#C6A87D", fontFamily: "ProximaNovaA-Regular" },
+            theme: {color: "#C6A87D", fontFamily: "ProximaNovaA-Regular"},
 
             handler: (res) => {
-                console.log("res====>",res);
+                console.log("res====>", res);
                 setPaymentVerification(true);
                 handleBookingSuccessOpen(true);
             },
@@ -1103,368 +1107,374 @@ const BookingSummary = (props) => {
     },
   };
 
-  return (
-    <React.Fragment>
-      <BoxWrapper>
-        <Navbar to={"/booking-summary"} isColor={true} heading="Privee" />
-
-        {!_.isEmpty(summaryBookingId) && (
-          <Box className="supper-gallery cust-details">
-            <Box className="container-fluid">
-              <Box className="row supper-chef-details">
-                <Box className="book-trad">
-                  <ArrowBackIcon
-                    className="arrow-left"
-                    onClick={() => navigate(`/addons/${summaryBookingId}`)}
-                  />
-                  <Typography className="addons-title">
-                    Booking Summary
-                  </Typography>
-                </Box>
-                <Formik
-                  initialValues={{
-                    number: customerInfo?.contactNumber,
-                    email: eventData?.email,
-                  }}
-                  validationSchema={validationSchema}
-                  onSubmit={handleSubmit}
-                >
-                  {({ values, handleChange, handleSubmit, setFieldValue }) => (
-                    <Form>
-                      <Box className="row customer-details addons-div">
-                        <Grid container>
-                          <Grid
-                            xl={7}
-                            lg={7}
-                            xs={7}
-                            md={7}
-                            sm={12}
-                            className="partner"
-                          >
-                            <Box className="booking-box">
-                              <Typography className="booking-summary-title">
-                                Booking Summary
-                              </Typography>
-                              <Typography className="booking-summary-sub-title">
-                                Confirm Details before proceeding to pay
-                              </Typography>
-                            </Box>
-                            <Box className="booking-box">
-                              <Box class="chef-edit">
-                                <img className="chef-edit-img" src={chefImg} />
-                                <Typography className="chef-edit-title">
-                                  Chef Mako Ravindran
-                                </Typography>
-                                <CreateIcon className="pencil-icon" />
-                              </Box>
-                              <Box class="chef-profile">
-                                <Box className="chef-profile-detail">
-                                  <img
-                                    className="chef-profile-icon"
-                                    src={dateGold}
-                                  />
-                                  <Typography className="chef-profile-date">
-                                    April 9 | 7:30 PM - 10 PM
-                                  </Typography>
-                                </Box>
-                                <Box className="chef-profile-detail">
-                                  <img
-                                    className="chef-profile-icon"
-                                    src={location}
-                                  />
-                                  <Typography className="chef-profile-date">
-                                    Silver bar, Downtown
-                                  </Typography>
-                                </Box>
-                                <Box className="chef-profile-detail">
-                                  <img
-                                    className="chef-profile-icon"
-                                    src={people}
-                                  />
-                                  <Typography className="chef-profile-date">
-                                    6 Diners
-                                  </Typography>
-                                </Box>
-                              </Box>
-                            </Box>
-                            <Box className="booking-box">
-                              <Box class="exp-info-imp">
-                                <Typography className="exp-info-heading">
-                                  Important Experience Info
-                                </Typography>
-                                <KeyboardArrowDownIcon className="drop-down" />
-                                <ul className="exp-ul">
-                                  <li className="exp-li">Service Includes</li>
-                                  <li className="exp-li">Service Excludes</li>
-                                  <li className="exp-li">
-                                    Table set upincludes
-                                  </li>
-                                  <li className="exp-li">
-                                    Confirm Details before proceeding to pay
-                                  </li>
-                                  <li className="exp-li">Decor not included</li>
-                                </ul>
-                                <hr className="hr" />
-                              </Box>
-                            </Box>
-                            <Box className="contact">
-                              <Box className="form-check">
-                                <Checkbox
-                                  className="input-check"
-                                  defaultChecked
-                                />
-                                <label
-                                  className="form-check-label"
-                                  for="flexCheckDefault"
-                                >
-                                  Enter GSTIN for tax benefits (Optional)
-                                </label>
-                                <KeyboardArrowRightIcon
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#exampleModal"
-                                  onClick={handleOpen}
-                                  className="forward-arrow"
-                                />
-                              </Box>
-                              <hr className="hr" />
-                            </Box>
-                            <Box className="booking-box">
-                              <Typography className="email-text">
-                                An Email Confirmation will be sent to
-                              </Typography>
-                            </Box>
-                            <Box class="booking-box">
-                              <Box class="contact">
-                                <label
-                                  className="contact-number"
-                                  for="contact-number"
-                                >
-                                  Mobile
-                                </label>
-                                <Box className="form-group">
-                                  <span className="country-code">
-                                    +91{" "}
-                                    <KeyboardArrowDownIcon className="drop-down-2" />
-                                  </span>
-                                  <Field
-                                    placeholder="10 digit number"
-                                    className="form-control"
-                                    type="text"
-                                    id="number"
-                                    name="number1"
-                                    autoComplete="off"
-                                    onChange={handleChange}
-                                    value={values.number}
-                                    InputProps={{
-                                      disableUnderline: true,
-                                    }}
-                                  />
-                                  <ErrorMessage
-                                    className="error"
-                                    name="number1"
-                                  />
-                                </Box>
-                                {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
-                              </Box>
-                            </Box>
-                            <Box className="booking-box">
-                              <Box className="contact">
-                                <label className="contact-number" for="">
-                                  Email{" "}
-                                </label>
-                                <Box className="form-group">
-                                  <Field
-                                    type="email"
-                                    name="email"
-                                    id=""
-                                    placeholder="Kachwallasana@gmail.com"
-                                    class="form-control"
-                                    autoComplete="off"
-                                  />
-                                  <ErrorMessage
-                                    className="error"
-                                    name="email1"
-                                  />
-                                </Box>
-                              </Box>
-                            </Box>
-                            <Box className="booking-box">
-                              <Box className="chef-profile">
-                                <Box className="chef-profile-box">
-                                  <img
-                                    className="chef-profile-logo"
-                                    src={done}
-                                  />
-                                  <Typography className="chef-profile-dis">
-                                    An email confirmation has been sent to{" "}
-                                    {eventData?.email} <br />
-                                    and SMS sent to +91{" "}
-                                    {customerInfo?.contactNumber}
-                                  </Typography>
-                                </Box>
-                                <Box className="chef-profile-box">
-                                  <img
-                                    className="chef-profile-logo"
-                                    src={support}
-                                  />
-                                  <Typography className="chef-profile-dis">
-                                    Our team and Chef will get in touch with you
-                                    to discuss menu <br />
-                                    (allergen+protein info), venue, set up and
-                                    pricing
-                                  </Typography>
-                                </Box>
-                              </Box>
-                            </Box>
-                            <Box className="booking-box">
-                              <Box className="exp-info-imp">
-                                <Typography className="exp-info-heading">
-                                  Cancellation Policy
-                                </Typography>
-                                <KeyboardArrowDownIcon className="drop-down" />
-                                <Box className="contact">
-                                  <Box className="form-check">
-                                    <Checkbox
-                                      className="input-check"
-                                      defaultChecked
-                                    />
-                                    <label
-                                      className="form-check-label"
-                                      for="flexCheckDefault"
-                                    >
-                                      I agree to cancellation and refund policy
-                                    </label>
-                                  </Box>
-                                </Box>
-                                <Typography className="policy-link">
-                                  View Cancellation Policy
-                                </Typography>
-                              </Box>
-                            </Box>
-                          </Grid>
-                          <Grid
-                            xl={5}
-                            lg={5}
-                            xs={5}
-                            md={5}
-                            sm={12}
-                            xs={12}
-                            className="cust-details dinner-box"
-                          >
-                            <Box className="per-dinner adsss">
-                              <Box className="event-div">
-                                <img
-                                  src={sGallery}
-                                  alt=""
-                                  className="per-dinner-img"
-                                />
-                                <Box sx={{ marginLeft: "12px" }}>
-                                  <Typography className="event-title">
-                                    The Big Fat Parsi Blowout
-                                  </Typography>
-                                  <Typography className="event-subtitle">
-                                    Curated by{" "}
-                                    <a href="#" className="event-link">
-                                      Chef Mako
-                                    </a>
-                                  </Typography>
-                                  <Typography className="rating-star">
-                                    <StarIcon
-                                      sx={{
-                                        color: "#C6A87D",
-                                        height: "24px",
-                                        width: "24px",
-                                      }}
-                                    />{" "}
-                                    <Typography className="rating-star">
-                                      4.7
+    console.log("bsPaymentData=======", bsPaymentData)
+    return (
+        <React.Fragment>
+            <BoxWrapper>
+                <Navbar to={"/booking-summary"} isIcon={true} isColor={true} heading="Privee"/>
+                {
+                    !_.isEmpty(summaryBookingId && bsPaymentData) &&
+                    <Box className="supper-gallery cust-details">
+                        <Box className="container-fluid">
+                            <Box className="row supper-chef-details">
+                                <Box className="book-trad">
+                                    <ArrowBackIcon className="arrow-left"
+                                                   onClick={() => navigate(`/addons/${summaryBookingId}`)}/>
+                                    <Typography className="addons-title">
+                                        Booking Summary
                                     </Typography>
-                                  </Typography>
                                 </Box>
-                              </Box>
-                              <Box className="experience-breakup">
-                                <Box className="ex-details">
-                                  <Typography className="ex-heading">
-                                    Experience Breakup
-                                  </Typography>
-                                  <Typography className="ex-detail">
-                                    This is an estimate, final price will be{" "}
-                                    <br />
-                                    communicated on call
-                                  </Typography>
-                                  <ExpandMoreIcon className="ex-icon" />
-                                </Box>
-                                {!_.isEmpty(paymentCalulationData) && (
-                                  <Box className="table table-borderless">
-                                    {Object.keys(
-                                      paymentCalulationData?.payment
-                                    ).map((key) => {
-                                      return (
-                                        <Box className="table-box">
-                                          <Typography className="table-details">
-                                            {key.charAt(0).toUpperCase() +
-                                              key.slice(1)}
-                                          </Typography>
-                                          <Typography className="table-details">
-                                            ₹
-                                            {
-                                              paymentCalulationData?.payment[
-                                                key
-                                              ]
-                                            }
-                                          </Typography>
-                                        </Box>
-                                      );
-                                    })}
-                                    <Box className="table-box border">
-                                      <Typography className=" grand-total table-details">
-                                        Grand Total
-                                      </Typography>
-                                      <Typography className="table-details grand-total">
-                                        ₹{paymentCalulationData?.total}
-                                      </Typography>
-                                    </Box>
-                                    <Box className="tax tax1 table-box">
-                                      <Typography className="table-details">
-                                        +Incl Of GST
-                                      </Typography>
-                                    </Box>
-                                    <Box className="tax">
-                                      <Typography className="table-details">
-                                        ++1.95% + GST
-                                      </Typography>
-                                    </Box>
-                                  </Box>
-                                )}
-                              </Box>
-                              <Box className="row viewbreak">
-                                <Box className="col-lg-12">
-                                  <button
-                                    type="submit"
-                                    className="submit-req"
-                                    onClick={handlePayment}
-                                  >
-                                    Proceed to pay ₹
-                                    {paymentCalulationData?.payment?.total}
-                                    {/*Proceed to pay ₹25,000*/}
-                                  </button>
-                                </Box>
-                                <Typography className="contact-text">
-                                  Estimate figure, further changes may amend the
-                                  total
-                                </Typography>
-                              </Box>
+                                <Formik
+                                    initialValues={{
+                                        number: customerInfo?.contactNumber,
+                                        email: eventData?.email
+                                    }}
+                                    validationSchema={validationSchema}
+                                    onSubmit={handleSubmit}
+                                >
+                                    {({values, handleChange, handleSubmit, setFieldValue}) => (
+                                        <Form>
+                                            <Box className="row customer-details addons-div">
+                                                <Grid container>
+                                                    <Grid
+                                                        xl={7}
+                                                        lg={7}
+                                                        xs={7}
+                                                        md={7}
+                                                        sm={12}
+                                                        xs={12}
+                                                        className="partner"
+                                                    >
+                                                        <Box className="booking-box">
+                                                            <Typography className="booking-summary-title">
+                                                                Booking Summary
+                                                            </Typography>
+                                                            <Typography className="booking-summary-sub-title">
+                                                                Confirm Details before proceeding to pay
+                                                            </Typography>
+                                                        </Box>
+                                                        <Box className="booking-box">
+                                                            <Box class="chef-edit">
+                                                                <img className="chef-edit-img"
+                                                                     src={bsPaymentData?.common_menu?.user?.picture}/>
+                                                                <Typography className="chef-edit-title">
+                                                                    {bsPaymentData?.common_menu?.user?.name}
+                                                                </Typography>
+                                                                <CreateIcon className="pencil-icon"/>
+                                                            </Box>
+                                                            <Box class="chef-profile">
+                                                                <Box className="chef-profile-detail">
+                                                                    <img
+                                                                        className="chef-profile-icon"
+                                                                        src={dateGold}
+                                                                    />
+                                                                    <Typography className="chef-profile-date">
+                                                                        {/*April 9 | 7:30 PM - 10 PM*/}
+                                                                        {moment(eventData?.experienceDate).format("MMMM D")} | {moment(eventData?.startTime, 'HH:mm').format('h:mm A')}
+                                                                    </Typography>
+                                                                </Box>
+                                                                <Box className="chef-profile-detail">
+                                                                    <img
+                                                                        className="chef-profile-icon"
+                                                                        src={location}
+                                                                    />
+                                                                    <Typography className="chef-profile-date">
+                                                                        {/*Silver bar, Downtown*/}
+                                                                        {bsPaymentData?.city}
+                                                                    </Typography>
+                                                                </Box>
+                                                                <Box className="chef-profile-detail">
+                                                                    <img
+                                                                        className="chef-profile-icon"
+                                                                        src={people}
+                                                                    />
+                                                                    <Typography className="chef-profile-date">
+                                                                        {/*6 Diners*/}
+                                                                        {eventData?.numberOfDinner} Diners
+                                                                    </Typography>
+                                                                </Box>
+                                                            </Box>
+                                                        </Box>
+                                                        <Box className="booking-box">
+                                                            <Box class="exp-info-imp">
+                                                                <Typography className="exp-info-heading">
+                                                                    Important Experience Info
+                                                                </Typography>
+                                                                <KeyboardArrowDownIcon className="drop-down"/>
+                                                                <ul className="exp-ul">
+                                                                    <li className="exp-li">Service Includes</li>
+                                                                    <li className="exp-li">Service Excludes</li>
+                                                                    <li className="exp-li">Table set upincludes</li>
+                                                                    <li className="exp-li">
+                                                                        Confirm Details before proceeding to pay
+                                                                    </li>
+                                                                    <li className="exp-li">Decor not included</li>
+                                                                </ul>
+                                                                <hr className="hr"/>
+                                                            </Box>
+                                                        </Box>
+                                                        <Box className="contact">
+                                                            <Box className="form-check">
+                                                                <Checkbox
+                                                                    className="input-check"
+                                                                    defaultChecked
+                                                                />
+                                                                <label
+                                                                    className="form-check-label"
+                                                                    for="flexCheckDefault"
+                                                                >
+                                                                    Enter GSTIN for tax benefits (Optional)
+                                                                </label>
+                                                                <KeyboardArrowRightIcon
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#exampleModal"
+                                                                    onClick={handleOpen}
+                                                                    className="forward-arrow"
+                                                                />
+                                                            </Box>
+                                                            <hr className="hr"/>
+                                                        </Box>
+                                                        <Box className="booking-box">
+                                                            <Typography className="email-text">
+                                                                An Email Confirmation will be sent to
+                                                            </Typography>
+                                                        </Box>
+                                                        <Box class="booking-box">
+                                                            <Box class="contact">
+                                                                <label
+                                                                    className="contact-number"
+                                                                    for="contact-number"
+                                                                >
+                                                                    Mobile
+                                                                </label>
+                                                                <Box className="form-group">
+                                <span className="country-code">
+                                  +91{" "}
+                                    <KeyboardArrowDownIcon className="drop-down-2"/>
+                                </span>
+                                                                    <Field
+                                                                        placeholder="10 digit number"
+                                                                        className="form-control"
+                                                                        type="text"
+                                                                        id="number"
+                                                                        name="number1"
+                                                                        autoComplete="off"
+                                                                        onChange={handleChange}
+                                                                        value={values.number}
+                                                                        InputProps={{
+                                                                            disableUnderline: true,
+                                                                        }}
+                                                                    />
+                                                                    <ErrorMessage
+                                                                        className="error"
+                                                                        name="number1"
+                                                                    />
+                                                                </Box>
+                                                                {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
+                                                            </Box>
+                                                        </Box>
+                                                        <Box className="booking-box">
+                                                            <Box className="contact">
+                                                                <label className="contact-number" for="">
+                                                                    Email{" "}
+                                                                </label>
+                                                                <Box className="form-group">
+                                                                    <Field
+                                                                        type="email"
+                                                                        name="email"
+                                                                        id=""
+                                                                        placeholder="Kachwallasana@gmail.com"
+                                                                        class="form-control"
+                                                                        autoComplete="off"
+                                                                    />
+                                                                    <ErrorMessage className="error" name="email1"/>
+                                                                </Box>
+                                                            </Box>
+                                                        </Box>
+                                                        <Box className="booking-box">
+                                                            <Box className="chef-profile">
+                                                                <Box className="chef-profile-box">
+                                                                    <img className="chef-profile-logo" src={done}/>
+                                                                    <Typography className="chef-profile-dis">
+                                                                        An email confirmation has been sent
+                                                                        to {eventData?.email} <br/>
+                                                                        and SMS sent to
+                                                                        +91 {customerInfo?.contactNumber}
+                                                                    </Typography>
+                                                                </Box>
+                                                                <Box className="chef-profile-box">
+                                                                    <img
+                                                                        className="chef-profile-logo"
+                                                                        src={support}
+                                                                    />
+                                                                    <Typography className="chef-profile-dis">
+                                                                        Our team and Chef will get in touch with you
+                                                                        to discuss menu <br/>
+                                                                        (allergen+protein info), venue, set up and
+                                                                        pricing
+                                                                    </Typography>
+                                                                </Box>
+                                                            </Box>
+                                                        </Box>
+                                                        <Box className="booking-box">
+                                                            <Box className="exp-info-imp">
+                                                                <Typography className="exp-info-heading">
+                                                                    Cancellation Policy
+                                                                </Typography>
+                                                                <KeyboardArrowDownIcon className="drop-down"/>
+                                                                <Box className="contact">
+                                                                    <Box className="form-check">
+                                                                        <Checkbox
+                                                                            className="input-check"
+                                                                            defaultChecked
+                                                                        />
+                                                                        <label
+                                                                            className="form-check-label"
+                                                                            for="flexCheckDefault"
+                                                                        >
+                                                                            I agree to cancellation and refund policy
+                                                                        </label>
+                                                                    </Box>
+                                                                </Box>
+                                                                <Typography className="policy-link">
+                                                                    View Cancellation Policy
+                                                                </Typography>
+                                                            </Box>
+                                                        </Box>
+                                                    </Grid>
+                                                    <Grid
+                                                        xl={5}
+                                                        lg={5}
+                                                        xs={5}
+                                                        md={5}
+                                                        sm={12}
+                                                        xs={12}
+                                                        className="cust-details dinner-box"
+                                                    >
+                                                        <Box className="per-dinner adsss">
+                                                            <Box className="event-div">
+                                                                <img
+                                                                    src={sGallery}
+                                                                    alt=""
+                                                                    className="per-dinner-img"
+                                                                />
+                                                                <Box sx={{marginLeft: "12px"}}>
+                                                                    <Typography className="event-title">
+                                                                        {/*The Big Fat Parsi Blowout*/}
+                                                                        {bsPaymentData?.common_menu?.title}
+                                                                    </Typography>
+                                                                    <Typography className="event-subtitle">
+                                                                        Curated by{" "}
+                                                                        <a href="#" className="event-link">
+                                                                            {bsPaymentData?.common_menu?.user?.name}
+                                                                        </a>
+                                                                    </Typography>
+                                                                    <Typography className="rating-star">
+                                                                        <StarIcon
+                                                                            sx={{
+                                                                                color: "#C6A87D",
+                                                                                height: "24px",
+                                                                                width: "24px",
+                                                                            }}
+                                                                        />{" "}
+                                                                        <Typography className="rating-star">
+                                                                            4.7
+                                                                        </Typography>
+                                                                    </Typography>
+                                                                </Box>
+                                                            </Box>
+                                                            <Box className="experience-breakup">
+                                                                <Box className="ex-details">
+                                                                    <Typography className="ex-heading">
+                                                                        Experience Breakup
+                                                                    </Typography>
+                                                                    <Typography className="ex-detail">
+                                                                        This is an estimate, final price will be{" "}
+                                                                        <br/>
+                                                                        communicated on call
+                                                                    </Typography>
+                                                                    <ExpandMoreIcon className="ex-icon"/>
+                                                                </Box>
+                                                                {
+                                                                    !_.isEmpty(bsPaymentData) &&
+                                                                    <Box className="table table-borderless">
+                                                                        {
+                                                                            Object.keys(bsPaymentData?.payment).map((key) => {
+                                                                                return (
+                                                                                    <Box className="table-box">
+                                                                                        <Typography
+                                                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
+                                                                                        <Typography
+                                                                                            className="table-details">₹{bsPaymentData?.payment[key]}</Typography>
+                                                                                    </Box>
+                                                                                )
+                                                                            })
+                                                                        }
+                                                                        <Box className="table-box border">
+                                                                            <Typography
+                                                                                className=" grand-total table-details">Grand
+                                                                                Total</Typography>
+                                                                            <Typography
+                                                                                className="table-details grand-total">₹
+                                                                                {bsPaymentData?.total}</Typography>
+                                                                        </Box>
+                                                                        <Box className="tax tax1 table-box">
+                                                                            <Typography className="table-details">Servers charges are added based on number of diners</Typography>
+                                                                        </Box>
+                                                                        {/*<Box className="tax tax1 table-box">*/}
+                                                                        {/*    <Typography className="table-details">+Incl*/}
+                                                                        {/*        Of*/}
+                                                                        {/*        GST</Typography>*/}
+                                                                        {/*</Box>*/}
+                                                                        {/*<Box className="tax">*/}
+                                                                        {/*    <Typography className="table-details">++1.95%*/}
+                                                                        {/*        +*/}
+                                                                        {/*        GST</Typography>*/}
+                                                                        {/*</Box>*/}
+                                                                    </Box>
+                                                                }
+                                                                <Box className="form-group1">
+                                                                    <Field
+                                                                        type="text"
+                                                                        name="voucher"
+                                                                        placeholder="Enter Your Voucher Coupon"
+                                                                        class="form-control"
+                                                                        autoComplete="off"
+                                                                    />
+                                                                    <button className="voucher" type={"submit"} onClick={()=>{setIsCoupon(true)}}>Apply Voucher</button>
+                                                                </Box>
+                                                            </Box>
+                                                            <Box className="row viewbreak">
+                                                                {
+                                                                    !_.isEmpty(bsPaymentData) &&
+                                                                    <Box className="col-lg-12">
+                                                                        <button
+                                                                            type="submit"
+                                                                            className="submit-req"
+                                                                            onClick={handlePayment}
+                                                                        >
+                                                                            Proceed to pay
+                                                                            ₹{bsPaymentData?.payment?.total}
+                                                                            {/*Proceed to pay ₹25,000*/}
+                                                                        </button>
+                                                                    </Box>
+                                                                }
+                                                                <Typography className="contact-text">
+                                                                    Estimate figure, further changes may amend the
+                                                                    total
+                                                                </Typography>
+                                                            </Box>
+                                                        </Box>
+                                                    </Grid>
+                                                </Grid>
+                                            </Box>
+                                        </Form>
+                                    )}
+                                </Formik>
                             </Box>
-                          </Grid>
-                        </Grid>
-                      </Box>
-                    </Form>
-                  )}
-                </Formik>
-              </Box>
-            </Box>
-          </Box>
-        )}
+                        </Box>
+                    </Box>
+                }
 
         <Modal
           keepMounted

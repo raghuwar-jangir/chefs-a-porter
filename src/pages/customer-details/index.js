@@ -1250,13 +1250,16 @@ const CustomerDetails = (props) => {
                                                                         })
                                                                     }
                                                                     <Box className="tax tax1 table-box">
-                                                                        <Typography className="table-details">+Incl Of
-                                                                            GST</Typography>
+                                                                        <Typography className="table-details">Servers charges are added based on number of diners</Typography>
                                                                     </Box>
-                                                                    <Box className="tax">
-                                                                        <Typography className="table-details">++1.95% +
-                                                                            GST</Typography>
-                                                                    </Box>
+                                                                    {/*<Box className="tax tax1 table-box">*/}
+                                                                    {/*    <Typography className="table-details">+Incl Of*/}
+                                                                    {/*        GST</Typography>*/}
+                                                                    {/*</Box>*/}
+                                                                    {/*<Box className="tax">*/}
+                                                                    {/*    <Typography className="table-details">++1.95% +*/}
+                                                                    {/*        GST</Typography>*/}
+                                                                    {/*</Box>*/}
                                                                 </Box>
                                                             }
                                                         </Box>

@@ -26,7 +26,7 @@ const Addons = (props) => {
     const {setIsBookingStatus, addOnsData} = useContext(UsersContext);
     const handleClick = () => {
         navigate(`/booking-summary/${summaryBookingId}`);
-        setIsBookingStatus(true)
+        setIsBookingStatus(true);
     }
     const [paymentCalculationData, setPaymentCaclulationData] = useState()
     const cookieValue = Cookies.get('paymentCalculation');
@@ -422,13 +422,16 @@ const Addons = (props) => {
                                                                     {paymentCalculationData?.total}</Typography>
                                                             </Box>
                                                             <Box className="tax tax1 table-box">
-                                                                <Typography className="table-details">+Incl Of
-                                                                    GST</Typography>
+                                                                <Typography className="table-details">Servers charges are added based on number of diners</Typography>
                                                             </Box>
-                                                            <Box className="tax">
-                                                                <Typography className="table-details">++1.95% +
-                                                                    GST</Typography>
-                                                            </Box>
+                                                            {/*<Box className="tax tax1 table-box">*/}
+                                                            {/*    <Typography className="table-details">+Incl Of*/}
+                                                            {/*        GST</Typography>*/}
+                                                            {/*</Box>*/}
+                                                            {/*<Box className="tax">*/}
+                                                            {/*    <Typography className="table-details">++1.95% +*/}
+                                                            {/*        GST</Typography>*/}
+                                                            {/*</Box>*/}
                                                         </Box>
                                                     }
 

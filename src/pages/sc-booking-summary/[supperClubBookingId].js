@@ -548,6 +548,9 @@ const ScBookingSummary = () => {
             lineHeight: '20px',
             color: '#080B0E'
         },
+        '.date-stack1':{
+            display:'none'
+        },
         "@media (min-width: 1px) and (max-width:768px)": {
             '.partner': {
                 borderRight: '0px'

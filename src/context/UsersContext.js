@@ -28,6 +28,7 @@ const UsersProvider = (props) => {
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
     const [isSupperBookingStatus, setIsSupperBookingStatus] = useState(false);
     const [paymentVerification, setPaymentVerification] = useState(false);
+    const [supperClubRazorpay, setSupperClubRazorpay] = useState();
     // const [supperClubBookingBookingConfirm, setSupperClubBookingBookingConfirm] = useState();
     // const cookieValueSupper = Cookies?.get('supperClubBookingBookingConfirm');
 
@@ -47,10 +48,14 @@ const UsersProvider = (props) => {
     const eventDataCookieValue = Cookies?.get('eventData');
     const [eventDetailsData, setEventDetailsData] = useState();
     const [adPaymentData, setAdPaymentData] = useState()
-    const [bsPaymentData, setBsPaymentData] = useState()
+    const [bsPaymentData, setBsPaymentData] = useState();
     const [supperClubPaymentData, setSupperClubPaymentData] = useState()
-    const [supperClubConfirmPaymentData, setSupperClubConfirmPaymentData] = useState()
-    const [supperClubRazorpay, setSupperClubRazorpay] = useState();
+    const [supperClubConfirmPaymentData, setSupperClubConfirmPaymentData] = useState();
+    const [isCoupon, setIsCoupon] = useState(false);
+    const [isSupperClubCoupon, setIsSupperClubCoupon] = useState(false);
+    const [voucher, setVoucher] = useState('');
+
+    console.log("isCoupon=======", isCoupon)
     console.log("adPaymentData======", adPaymentData)
     console.log("bookingId=======", bookingId)
     console.log("callMobileNumber=======", callMobileNumber)
@@ -105,7 +110,17 @@ const UsersProvider = (props) => {
                 }
                 setIsBookingStatus(false)
             })
-        } else if (currentPath === 'booking-summary') {
+        } else if (isCoupon) {
+            axios.post(baseUrl + '/booking/calculate/' + summaryBookingId, {
+                voucher: 'SHIVAM'
+            }).then((response) => {
+                if (response.status === 200) {
+                    setBsPaymentData(response.data)
+                    Cookies.set('bSPaymentInfo', JSON.stringify(response.data));
+                    console.log("paymentCalculation ===============", response.data)
+                }
+            })
+        } else if (isCoupon !== true && currentPath === 'booking-summary') {
             axios.post(baseUrl + '/booking/calculate/' + summaryBookingId).then((response) => {
                 if (response.status === 200) {
                     setBsPaymentData(response.data)
@@ -150,7 +165,16 @@ const UsersProvider = (props) => {
                 }
                 setIsSupperBookingStatus(false)
             })
-        } else if (currentPath === 'sc-booking-confirm' && supperClubBookingId) {
+        } else if (isSupperClubCoupon && supperClubBookingId) {
+            axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId, {
+                voucher: 'SHIVAM'
+            }).then((response) => {
+                if (response.status === 200) {
+                    setSupperClubConfirmPaymentData(response.data)
+                    Cookies.set('supperClubBookingData', JSON.stringify(response.data));
+                }
+            })
+        } else if (isSupperClubCoupon !== true && currentPath === 'sc-booking-confirm' && supperClubBookingId) {
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId).then((response) => {
                 if (response.status === 200) {
                     setSupperClubConfirmPaymentData(response.data)
@@ -199,6 +223,7 @@ const UsersProvider = (props) => {
         //         });
         //     setPaymentVerification(false);
         // }
+
         if (path.pathname === "/") {
             axios.get(baseUrl + '/cms/footer').then(result => {
                 setCallMobileNumber(result.data.footer.footer.mobile)
@@ -215,7 +240,7 @@ const UsersProvider = (props) => {
                 setMealTypeData(result.data)
             })
         }
-    }, [userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, isBookingStatus, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
+    }, [isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, isBookingStatus, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
 
   const { children } = props;
 
@@ -243,6 +268,9 @@ const UsersProvider = (props) => {
                 bsPaymentData,
                 supperClubPaymentData,
                 supperClubConfirmPaymentData,
+                setVoucher,
+                setIsCoupon,
+                setIsSupperClubCoupon,
                 supperClubRazorpay
             }}
         >
