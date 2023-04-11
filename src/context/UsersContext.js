@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "@reach/router";
 import Cookies from "js-cookie";
+import * as _ from "lodash";
 
 const defaultState = {
   data: {},
@@ -49,7 +50,7 @@ const UsersProvider = (props) => {
     const [bsPaymentData, setBsPaymentData] = useState()
     const [supperClubPaymentData, setSupperClubPaymentData] = useState()
     const [supperClubConfirmPaymentData, setSupperClubConfirmPaymentData] = useState()
-
+    const [supperClubRazorpay, setSupperClubRazorpay] = useState();
     console.log("adPaymentData======", adPaymentData)
     console.log("bookingId=======", bookingId)
     console.log("callMobileNumber=======", callMobileNumber)
@@ -142,8 +143,10 @@ const UsersProvider = (props) => {
         } else if (isSupperBookingStatus) {
             axios.post(baseUrl + '/booking/confirm/' + supperClubBookingId).then((response) => {
                 if (response.status === 200) {
-                    Cookies.set('supperClubBookingBookingConfirm', JSON.stringify(response.data));
-                    console.log("supperClubBookingBookingConfirm response======", response.data)
+                    setSupperClubRazorpay(response.data)
+                    Cookies.set('scbDetails', response.data);
+                    Cookies.set('ScbData',  JSON.stringify(response?.data?.razorpay_order_id));
+                    console.log("supperClubBookingBookingConfirm response======", response.data.razorpay_order_id)
                 }
                 setIsSupperBookingStatus(false)
             })
@@ -239,7 +242,8 @@ const UsersProvider = (props) => {
                 adPaymentData,
                 bsPaymentData,
                 supperClubPaymentData,
-                supperClubConfirmPaymentData
+                supperClubConfirmPaymentData,
+                supperClubRazorpay
             }}
         >
             {children}
