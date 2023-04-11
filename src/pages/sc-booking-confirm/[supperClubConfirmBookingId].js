@@ -50,7 +50,7 @@ const ScBookingConfirm = (props) => {
     // const handleClick = () => {
     //     navigate("/sc-booking-confirm");
     // };
-    const {supperClubConfirmPaymentData} = useContext(UsersContext)
+    const {supperClubConfirmPaymentData,setIsSupperClubCoupon} = useContext(UsersContext)
     const {supperClubConfirmBookingId} = props;
     const [inputValue, setInputValue] = useState("Chefsaporter/privatediner/AefDFC..");
     const [supperClubBookingData, setSupperClubBookingData] = useState()
@@ -500,6 +500,23 @@ const ScBookingConfirm = (props) => {
             flexWrap: "wrap",
             paddingTop: "16px",
         },
+        ".form-group1": {
+            display: "flex",
+            flexWrap: "wrap",
+            padding: "10px 0px",
+        },
+        ".voucher": {
+            background: "#080B0E",
+            color: "#FBFBFB",
+            fontFamily: "ProximaNovaA-Regular",
+            fontSize: "15px",
+            lineHeight: "20px",
+            fontWeight: 600,
+            border: "0px",
+            width: "30%",
+            cursor: "pointer",
+            padding: "10px",
+        },
         ".country-code": {
             borderBottom: "0.25px solid #080B0E",
             display: "inline-flex",
@@ -601,6 +618,9 @@ const ScBookingConfirm = (props) => {
             fontSize: "14px",
             lineHeight: "20px",
             color: "#080B0E",
+        },
+        '.date-stack1':{
+            display:'none'
         },
         "@media (min-width: 1px) and (max-width:768px)": {
             '.partner': {
@@ -1409,6 +1429,16 @@ const ScBookingConfirm = (props) => {
                                                         <Typography
                                                             className="table-details grand-total">₹
                                                             {supperClubConfirmPaymentData?.total}</Typography>
+                                                    </Box>
+                                                    <Box className="form-group1">
+                                                        <input
+                                                            type="text"
+                                                            name="voucher"
+                                                            placeholder="Enter Your Voucher Coupon"
+                                                            className="form-control"
+                                                            autoComplete="off"
+                                                        />
+                                                        <button className="voucher" type={"submit"} onClick={()=>{setIsSupperClubCoupon(true)}}>Apply Voucher</button>
                                                     </Box>
                                                 </Box>
                                             }

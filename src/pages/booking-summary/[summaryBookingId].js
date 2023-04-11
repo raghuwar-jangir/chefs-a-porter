@@ -48,7 +48,7 @@ import moment from "moment/moment";
 
 const BookingSummary = (props) => {
     const {summaryBookingId} = props;
-    const {setPaymentVerification, bsPaymentData} = useContext(UsersContext);
+    const {setPaymentVerification, bsPaymentData, setVoucher,setIsCoupon} = useContext(UsersContext);
     const validationSchema = Yup.object().shape({
         number: Yup.string().required("Number is required"),
         name: Yup.string().required("Name is required"),
@@ -63,6 +63,8 @@ const BookingSummary = (props) => {
     const oderIDCookieValue = Cookies?.get("razorpayOrderId");
     const [razorpayData, setRazorpayData] = useState();
     const razorpayOrderId = oderIDCookieValue?.replaceAll('"', "");
+
+    console.log("razorpayData==============",razorpayData)
 
     useEffect(() => {
         if (cookieValue) {
@@ -101,15 +103,16 @@ const BookingSummary = (props) => {
         const options = {
             key: "rzp_test_OqWbWLVoLIKRZ7",
             // key: "rzp_live_hc4Bwj2TcN8epo",
+            // amount:340 * 100,
             currency: "INR",
             name: "Chefs-à-Porter",
             order_id: razorpayOrderId,
             description: "Test Transaction",
             image: "https://chefsaporter.com/assets/img/logo_black.svg",
-            theme: { color: "#C6A87D", fontFamily: "ProximaNovaA-Regular" },
+            theme: {color: "#C6A87D", fontFamily: "ProximaNovaA-Regular"},
 
             handler: (res) => {
-                console.log("res====>",res);
+                console.log("res====>", res);
                 setPaymentVerification(true);
                 handleBookingSuccessOpen(true);
             },
@@ -1441,15 +1444,18 @@ const BookingSummary = (props) => {
                                                                                 {bsPaymentData?.total}</Typography>
                                                                         </Box>
                                                                         <Box className="tax tax1 table-box">
-                                                                            <Typography className="table-details">+Incl
-                                                                                Of
-                                                                                GST</Typography>
+                                                                            <Typography className="table-details">Service charges are added based on number of diners</Typography>
                                                                         </Box>
-                                                                        <Box className="tax">
-                                                                            <Typography className="table-details">++1.95%
-                                                                                +
-                                                                                GST</Typography>
-                                                                        </Box>
+                                                                        {/*<Box className="tax tax1 table-box">*/}
+                                                                        {/*    <Typography className="table-details">+Incl*/}
+                                                                        {/*        Of*/}
+                                                                        {/*        GST</Typography>*/}
+                                                                        {/*</Box>*/}
+                                                                        {/*<Box className="tax">*/}
+                                                                        {/*    <Typography className="table-details">++1.95%*/}
+                                                                        {/*        +*/}
+                                                                        {/*        GST</Typography>*/}
+                                                                        {/*</Box>*/}
                                                                     </Box>
                                                                 }
                                                                 <Box className="form-group1">
@@ -1460,7 +1466,7 @@ const BookingSummary = (props) => {
                                                                         class="form-control"
                                                                         autoComplete="off"
                                                                     />
-                                                                    <button className="voucher">Apply Voucher</button>
+                                                                    <button className="voucher" type={"submit"} onClick={()=>{setIsCoupon(true)}}>Apply Voucher</button>
                                                                 </Box>
                                                             </Box>
                                                             <Box className="row viewbreak">
