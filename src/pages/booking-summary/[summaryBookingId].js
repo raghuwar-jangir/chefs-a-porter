@@ -1445,6 +1445,10 @@ const BookingSummary = (props) => {
                                                                                 {bsPaymentData?.total}</Typography>
                                                                         </Box>
                                                                         <Box className="tax tax1">
+                                                                            <Typography
+                                                                                className="table-details">GST @ 5%</Typography>
+                                                                            <Typography
+                                                                                className="table-details">Service Tax @ 10%</Typography>
                                                                             <Typography className="table-details">*Includes the menu, tableware, table set-up and white-glove service.</Typography>
                                                                             <Typography className="table-details">**Service staff is calculated based on number of diners.</Typography>
                                                                         </Box>
