@@ -572,7 +572,7 @@ const EventDetails = (props) => {
             <MainBox>
                 {!_.isEmpty(userData && eventId) &&
                     <>
-                        <Navbar to={"/event-details"} heading="Privee" isIcon={true} isColor={true}/>
+                        <Navbar to={"/event-details"} heading="Private" isIcon={true} isColor={true}/>
                         <Box className="main-box">
                             {isMobile ? (
                                 <Box className="header-club">

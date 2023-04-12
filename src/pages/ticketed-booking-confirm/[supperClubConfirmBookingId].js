@@ -1171,7 +1171,7 @@ const ScBookingConfirm = (props) => {
     return (
         <React.Fragment>
             <MainBox>
-                <Navbar heading="Privee" isColor={true}/>
+                <Navbar heading="Ticketed" isColor={true}/>
                 <div className="row supper-chef-details">
                     <div className="book-trad">
                         <ArrowBackIcon
@@ -1267,7 +1267,7 @@ const ScBookingConfirm = (props) => {
                                                 <Box className="chef-profile-detail">
                                                     <img className="chef-profile-icon" src={people}/>
                                                     <Typography className="chef-profile-date">
-                                                        6 Diners
+                                                        {supperClubConfirmPaymentData?.diner_count} Diners
                                                     </Typography>
                                                 </Box>
                                             </Box>
@@ -1452,7 +1452,7 @@ const ScBookingConfirm = (props) => {
                                                     </button>
                                                 </Box>
                                                 <Typography className="contact-text">
-                                                    Our team will contact you regarding your protein and allergeen
+                                                    Our team will contact you regarding your protein and allergen
                                                     Information after booking is confirmed
                                                 </Typography>
                                             </Box>

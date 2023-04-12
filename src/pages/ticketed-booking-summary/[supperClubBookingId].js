@@ -548,8 +548,8 @@ const ScBookingSummary = () => {
             lineHeight: '20px',
             color: '#080B0E'
         },
-        '.date-stack1':{
-            display:'none'
+        '.date-stack1': {
+            display: 'none'
         },
         "@media (min-width: 1px) and (max-width:768px)": {
             '.partner': {
@@ -562,22 +562,22 @@ const ScBookingSummary = () => {
                 placeContent: "center",
                 display: 'flex',
                 placeItems: 'center',
-                margin:'0px',
-                width:'100%',
+                margin: '0px',
+                width: '100%',
                 flexDirection: 'row',
             },
         },
         "@media (min-width: 1px) and (max-width:425px)": {
-            padding:'0px',
+            padding: '0px',
             '.dinner-box': {
-               display:'none'
+                display: 'none'
             },
-            '.partner':{
-                maxWidth:'100%',
-                width:'100%'
+            '.partner': {
+                maxWidth: '100%',
+                width: '100%'
             },
-            '.book-trad':{
-                display:'none'
+            '.book-trad': {
+                display: 'none'
             }
         }
     })
@@ -701,7 +701,7 @@ const ScBookingSummary = () => {
     return (
         <React.Fragment>
             <MainBox>
-                <Navbar heading="Privee" isColor={true}/>
+                <Navbar heading="Ticketed" isColor={true}/>
                 <div className="row supper-chef-details">
                     <div className="book-trad">
                         <ArrowBackIcon className="arrow-left" onClick={() => {
@@ -794,7 +794,7 @@ const ScBookingSummary = () => {
                                                 <Box className="chef-profile-detail">
                                                     <img className="chef-profile-icon" src={people}/>
                                                     <Typography className="chef-profile-date">
-                                                        6 Diners
+                                                        {supperClubPaymentData?.diner_count} Diners
                                                     </Typography>
                                                 </Box>
                                             </Box>
@@ -965,7 +965,7 @@ const ScBookingSummary = () => {
                                                     </button>
                                                 </Box>
                                                 <Typography className="contact-text">
-                                                    Our team will contact you regarding your protein and allergeen
+                                                    Our team will contact you regarding your protein and allergen
                                                     Information after booking is confirmed
                                                 </Typography>
                                             </Box>

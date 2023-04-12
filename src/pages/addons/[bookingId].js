@@ -355,7 +355,7 @@ const Addons = (props) => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar to={'/addons'} isColor={true} isIcon={true} heading="Privee"/>
+                <Navbar to={'/addons'} isColor={true} isIcon={true} heading="Private"/>
                 {
                     !_.isEmpty(addOnsData && bookingId) &&
                     <Box className="supper-gallery cust-details">

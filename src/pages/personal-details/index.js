@@ -125,7 +125,7 @@ const PersonalDetails1 = () => {
         },
         ".per-dinner": {
             background: "#FBFBFB",
-            padding: "0px 20px 40px",
+            padding: "20px 20px 40px",
             boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
             position: "sticky",
             top: "100px",
@@ -561,6 +561,13 @@ const PersonalDetails1 = () => {
                 width:'100%',
                 flexDirection: 'row'
             },
+            '.who-join': {
+                backgroundColor: '#101418',
+                padding: '15px'
+            },
+            '.guest-details':{
+                padding:'8px 0px'
+            },
             padding: "5px 0px",
         }
     });
@@ -980,7 +987,7 @@ const PersonalDetails1 = () => {
     return (
         <React.Fragment>
             <MainBox>
-                <Navbar heading="Privee" isIcon={true}/>
+                <Navbar heading="Ticketed" isIcon={true}/>
                 <div className="row supper-chef-details">
                     <div className="book-trad">
                         <ArrowBackIcon className="arrow-left"
@@ -991,20 +998,20 @@ const PersonalDetails1 = () => {
                     </div>
                 </div>
                 <Box className="event-div-mobile">
-                        <Stack
-                            className="date-stack date-stack1"
-                        >
-                            <Typography className="date-description">April 9</Typography>
-                            <span className="line">|</span>
-                            <Typography className="date-description">
-                                {" "}
-                                7:30 PM - 10 PM
-                            </Typography>
-                            <span className="line">|</span>
-                            <Typography className="date-description">
-                                Blue Cafe, Kamanahalli
-                            </Typography>
-                        </Stack>
+                        {/*<Stack*/}
+                        {/*    className="date-stack date-stack1"*/}
+                        {/*>*/}
+                        {/*    <Typography className="date-description">April 9</Typography>*/}
+                        {/*    <span className="line">|</span>*/}
+                        {/*    <Typography className="date-description">*/}
+                        {/*        {" "}*/}
+                        {/*        7:30 PM - 10 PM*/}
+                        {/*    </Typography>*/}
+                        {/*    <span className="line">|</span>*/}
+                        {/*    <Typography className="date-description">*/}
+                        {/*        Blue Cafe, Kamanahalli*/}
+                        {/*    </Typography>*/}
+                        {/*</Stack>*/}
                     <Box style={{ padding:'10px'}}>
                         <Typography className="event-title">
                             The Big Fat Parsi Blowout
@@ -1270,22 +1277,22 @@ const PersonalDetails1 = () => {
                                         className="cust-details dinner-box"
                                     >
                                         <Box className="per-dinner adsss">
-                                            <Box>
-                                                <Stack
-                                                    className="date-stack"
-                                                >
-                                                    <Typography className="date-description">April 9</Typography>
-                                                    <span className="line">|</span>
-                                                    <Typography className="date-description">
-                                                        {" "}
-                                                        7:30 PM - 10 PM
-                                                    </Typography>
-                                                    <span className="line">|</span>
-                                                    <Typography className="date-description">
-                                                        Blue Cafe, Kamanahalli
-                                                    </Typography>
-                                                </Stack>
-                                            </Box>
+                                            {/*<Box>*/}
+                                            {/*    <Stack*/}
+                                            {/*        className="date-stack"*/}
+                                            {/*    >*/}
+                                            {/*        <Typography className="date-description">April 9</Typography>*/}
+                                            {/*        <span className="line">|</span>*/}
+                                            {/*        <Typography className="date-description">*/}
+                                            {/*            {" "}*/}
+                                            {/*            7:30 PM - 10 PM*/}
+                                            {/*        </Typography>*/}
+                                            {/*        <span className="line">|</span>*/}
+                                            {/*        <Typography className="date-description">*/}
+                                            {/*            Blue Cafe, Kamanahalli*/}
+                                            {/*        </Typography>*/}
+                                            {/*    </Stack>*/}
+                                            {/*</Box>*/}
                                             <Box className="event-div">
                                                 <img src={sGallery} alt="" className="per-dinner-img"/>
                                                 <Box sx={{marginLeft: "12px"}}>

@@ -98,43 +98,32 @@ const BoxWrapper = styled(Box)({
     },
 });
 const ExperienceDrop = ({toggleClose}) => {
-    const [numberOfDenner, setNumberOfDenner] = useState(1);
-    const [numberOfSeat, setNumberOfSeat] = useState(1);
-    const [seat, setSeat] = useState(1);
+    const [numberOfSeats, setNumberOfSeats] = useState(1);
+    const [numberOfTabels, setNumberOfTabels] = useState(1);
     const disabledStyle = {
         opacity: 0.5,
     };
-    const handleForDecrement = () => {
-        if (seat > 0) {
-            setSeat(seat - 1);
-        }
-    };
 
-    const handleForIncrement = () => {
-        if (seat < 4) {
-            setSeat(seat + 1);
-        }
-    };
     const handleDecrement = () => {
-        if (numberOfDenner > 0) {
-            setNumberOfDenner(numberOfDenner - 1);
+        if (numberOfSeats > 0) {
+            setNumberOfSeats(numberOfSeats - 1);
         }
     };
 
     const handleIncrement = () => {
-        if (numberOfDenner < 4) {
-            setNumberOfDenner(numberOfDenner + 1);
+        if (numberOfSeats < 4) {
+            setNumberOfSeats(numberOfSeats + 1);
         }
     };
 
     const handleSeatIncreament = () => {
-        if (numberOfSeat < 1) {
-            setNumberOfSeat(numberOfSeat + 1);
+        if (numberOfTabels < 1) {
+            setNumberOfTabels(numberOfTabels + 1);
         }
     };
     const handleSeatDecrement = () => {
-        if (numberOfSeat > 0) {
-            setNumberOfSeat(numberOfSeat - 1);
+        if (numberOfTabels > 0) {
+            setNumberOfTabels(numberOfTabels - 1);
         }
     };
     return (
@@ -157,15 +146,15 @@ const ExperienceDrop = ({toggleClose}) => {
                                 <RemoveIcon
                                     className="left-btn"
                                     onClick={handleDecrement}
-                                    style={numberOfDenner === 0 ? disabledStyle : {}}
-                                    disabled={numberOfDenner === 0}
+                                    style={numberOfSeats === 0 ? disabledStyle : {}}
+                                    disabled={numberOfSeats === 0}
                                 />
-                                <Typography className="number-ans">{numberOfDenner}</Typography>
+                                <Typography className="number-ans">{numberOfSeats}</Typography>
                                 <AddIcon
-                                    style={numberOfDenner === 4 ? disabledStyle : {}}
+                                    style={numberOfSeats === 4 ? disabledStyle : {}}
                                     className="right-btn"
                                     onClick={handleIncrement}
-                                    disabled={numberOfDenner === 4}
+                                    disabled={numberOfSeats === 4}
                                 />
                             </div>
                             <span className="s-left">4 seats left</span>
@@ -184,47 +173,20 @@ const ExperienceDrop = ({toggleClose}) => {
                                 <RemoveIcon
                                     className="left-btn"
                                     onClick={handleSeatDecrement}
-                                    style={numberOfSeat === 0 ? disabledStyle : {}}
-                                    disabled={numberOfSeat === 0}
+                                    style={numberOfTabels === 0 ? disabledStyle : {}}
+                                    disabled={numberOfTabels === 0}
                                 />
-                                <Typography className="number-ans">{numberOfSeat}</Typography>
+                                <Typography className="number-ans">{numberOfTabels}</Typography>
                                 <AddIcon
                                     className="right-btn"
                                     onClick={handleSeatIncreament}
-                                    style={numberOfSeat === 1 ? disabledStyle : {}}
-                                    disabled={numberOfSeat === 1}
+                                    style={numberOfTabels === 1 ? disabledStyle : {}}
+                                    disabled={numberOfTabels === 1}
                                 />
                             </div>
                             <span className="s-left">seats full</span>
                         </div>
                     </Box>
-                    <hr className="seat-hr" />
-                    {/*<Box>*/}
-                    {/*    <Box className='regular-seat'>*/}
-                    {/*        <div className="r-seat">*/}
-                    {/*            <div className="r-seat-text">No of Seats</div>*/}
-                    {/*            <span className="r-seat-rate"><b className='r-seat-money'>₹ 2,500</b>/ diner</span>*/}
-                    {/*        </div>*/}
-                    {/*        <div>*/}
-                    {/*            <div className="input-div">*/}
-                    {/*                <RemoveIcon*/}
-                    {/*                    className="left-btn"*/}
-                    {/*                    onClick={handleForDecrement}*/}
-                    {/*                    style={seat === 0 ? disabledStyle : {}}*/}
-                    {/*                    disabled={seat === 0}*/}
-                    {/*                />*/}
-                    {/*                <Typography className="number-ans">{seat}</Typography>*/}
-                    {/*                <AddIcon*/}
-                    {/*                    style={seat === 4 ? disabledStyle : {}}*/}
-                    {/*                    className="right-btn"*/}
-                    {/*                    onClick={handleForIncrement}*/}
-                    {/*                    disabled={seat === 4}*/}
-                    {/*                />*/}
-                    {/*            </div>*/}
-                    {/*            <span className="s-left">4 seats left</span>*/}
-                    {/*        </div>*/}
-                    {/*    </Box>*/}
-                    {/*</Box>*/}
                 </Box>{" "}
             </BoxWrapper>{" "}
         </React.Fragment>

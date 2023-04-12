@@ -1137,7 +1137,7 @@ const BookingSummary = (props) => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar to={"/booking-summary"} isIcon={true} isColor={true} heading="Privee"/>
+                <Navbar to={"/booking-summary"} isIcon={true} isColor={true} heading="Private"/>
                 {
                     !_.isEmpty(summaryBookingId && bsPaymentData) &&
                     <Box className="supper-gallery cust-details">
