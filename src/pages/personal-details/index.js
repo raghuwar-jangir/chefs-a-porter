@@ -250,11 +250,17 @@ const PersonalDetails1 = () => {
             fontSize: "20px",
             lineHeight: "24px",
             color: "#101418",
-            padding: "22px 0px",
+            padding: "16px 0px",
+        },
+        '.table-details-pt': {
+            paddingTop: '16px'
         },
         ".border": {
             borderTop: "1px solid #080B0E",
-            paddingTop: '10px'
+        },
+        ".border-tb": {
+            borderBottom: "1px solid #080B0E",
+            borderTop: "1px solid #080B0E",
         },
         ".tax1": {
             paddingTop: "20px",
@@ -1321,21 +1327,26 @@ const PersonalDetails1 = () => {
                                                 {
                                                     !_.isEmpty(personalDetailsPaymentCalculation) &&
                                                     <Box className="table table-borderless">
-                                                        {
-                                                            Object.keys(personalDetailsPaymentCalculation).map((key, index) => {
-                                                                return (
-                                                                    <>
-                                                                        <Box key={index} key={index}
-                                                                             className={index === Object.keys(personalDetailsPaymentCalculation).length - 1 ? " table-box border" : "table-box"}>
-                                                                            <Typography
-                                                                                className="table-details">{key.charAt(0).toUpperCase() + key.slice(1).split("_").join(" ")}</Typography>
-                                                                            <Typography
-                                                                                className="table-details">{personalDetailsPaymentCalculation[key]}</Typography>
-                                                                        </Box>
-                                                                    </>
-                                                                )
-                                                            })
-                                                        }
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details">Ticket Price</Typography>
+                                                            <Typography className="table-details">{personalDetailsPaymentCalculation?.ticket_price}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box border-tb ">
+                                                            <Typography className="table-details table-details-pt">Sub Total</Typography>
+                                                            <Typography className="table-details table-details-pt">{personalDetailsPaymentCalculation?.sub_total}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details table-details-pt">GST @5%</Typography>
+                                                            <Typography className="table-details table-details-pt">{personalDetailsPaymentCalculation?.GST}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details">Service Charge @10%</Typography>
+                                                            <Typography className="table-details">{personalDetailsPaymentCalculation?.service_charges}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box border">
+                                                            <Typography className="grand-total">Grand Total</Typography>
+                                                            <Typography className="grand-total">{personalDetailsPaymentCalculation?.total}</Typography>
+                                                        </Box>
                                                     </Box>
                                                 }
                                             </Box>

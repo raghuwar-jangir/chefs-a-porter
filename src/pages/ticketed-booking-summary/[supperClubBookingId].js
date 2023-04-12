@@ -240,9 +240,16 @@ const ScBookingSummary = () => {
             fontSize: "20px",
             lineHeight: "24px",
             color: "#101418",
-            padding: "22px 0px",
+            padding: "16px 0px",
+        },
+        '.table-details-pt': {
+            paddingTop: '16px'
         },
         ".border": {
+            borderTop: "1px solid #080B0E",
+        },
+        ".border-tb": {
+            borderBottom: "1px solid #080B0E",
             borderTop: "1px solid #080B0E",
         },
         ".tax1": {
@@ -931,29 +938,38 @@ const ScBookingSummary = () => {
                                                     </Typography>
                                                     <ExpandMoreIcon className="ex-icon"/>
                                                 </Box>
+
                                                 {
                                                     !_.isEmpty(supperClubPaymentData) &&
                                                     <Box className="table table-borderless">
-                                                        {
-                                                            Object.keys(supperClubPaymentData?.payment).map((key) => {
-                                                                return (
-                                                                    <Box className="table-box">
-                                                                        <Typography
-                                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1).split("_").join(" ")}</Typography>
-                                                                        <Typography
-                                                                            className="table-details">₹
-                                                                            {supperClubPaymentData?.payment[key]}</Typography>
-                                                                    </Box>
-                                                                )
-                                                            })
-                                                        }
-                                                        <Box className="table-box border">
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details">Ticket
+                                                                Price</Typography>
                                                             <Typography
-                                                                className=" grand-total table-details">Grand
+                                                                className="table-details">{supperClubPaymentData?.payment?.ticket_price}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box border-tb ">
+                                                            <Typography className="table-details table-details-pt">Sub
                                                                 Total</Typography>
                                                             <Typography
-                                                                className="table-details grand-total">₹
-                                                                {supperClubPaymentData?.total}</Typography>
+                                                                className="table-details table-details-pt">{supperClubPaymentData?.payment?.sub_total}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details table-details-pt">GST
+                                                                @5%</Typography>
+                                                            <Typography
+                                                                className="table-details table-details-pt">{supperClubPaymentData?.payment?.GST}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details">Service Charge
+                                                                @10%</Typography>
+                                                            <Typography
+                                                                className="table-details">{supperClubPaymentData?.payment?.service_charges}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box border">
+                                                            <Typography className="grand-total">Grand Total</Typography>
+                                                            <Typography
+                                                                className="grand-total">{supperClubPaymentData?.payment?.total}</Typography>
                                                         </Box>
                                                     </Box>
                                                 }

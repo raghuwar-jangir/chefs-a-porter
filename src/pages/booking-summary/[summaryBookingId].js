@@ -44,11 +44,24 @@ import * as _ from "lodash";
 import {navigate} from "gatsby";
 import UsersContext from "../../context/UsersContext";
 import moment from "moment/moment";
+import axios from "axios";
 
 
 const BookingSummary = (props) => {
     const {summaryBookingId} = props;
-    const {setPaymentVerification, bsPaymentData, setVoucher,setIsCoupon} = useContext(UsersContext);
+    const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
+    const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
+
+    console.log("supperClubBookingId=====================", summaryBookingId)
+    const {
+        setPaymentVerification,
+        bsPaymentData,
+        voucher,
+        setVoucher,
+        setIsCoupon,
+        setIsConfirm,
+        isConfirm
+    } = useContext(UsersContext);
     const validationSchema = Yup.object().shape({
         number: Yup.string().required("Number is required"),
         name: Yup.string().required("Name is required"),
@@ -61,10 +74,14 @@ const BookingSummary = (props) => {
     const bookingCookieValue = Cookies.get("bookingConfirm");
     const [paymentCalulationData, setPaymentCalculationData] = useState('');
     const oderIDCookieValue = Cookies?.get("razorpayOrderId");
-    const [razorpayData, setRazorpayData] = useState();
     const razorpayOrderId = oderIDCookieValue?.replaceAll('"', "");
+    const [razorpayData, setRazorpayData] = useState();
+    console.log("razorpayData==============", razorpayData)
 
-    console.log("razorpayData==============",razorpayData)
+    const key = Cookies?.get("razorpayKey");
+    const rKey = key?.replaceAll('"', "");
+    const oderId = Cookies?.get("razorpayOrderId");
+    const rOrderId = oderId?.replaceAll('"', "");
 
     useEffect(() => {
         if (cookieValue) {
@@ -73,7 +90,7 @@ const BookingSummary = (props) => {
         if (bookingCookieValue) {
             setRazorpayData(JSON.parse(bookingCookieValue));
         }
-    }, [cookieValue, bookingCookieValue])
+    }, [cookieValue, bookingCookieValue,setIsConfirm])
 
 
     console.log("paymentCalulationData=========", paymentCalulationData)
@@ -100,6 +117,7 @@ const BookingSummary = (props) => {
     const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
 
     const handlePayment = useCallback(() => {
+        setIsConfirm(true)
         const options = {
             key: "rzp_test_OqWbWLVoLIKRZ7",
             // key: "rzp_live_hc4Bwj2TcN8epo",
@@ -107,14 +125,30 @@ const BookingSummary = (props) => {
             // amount:2240 * 100,
             currency: "INR",
             name: "Chefs-à-Porter",
-            order_id: razorpayOrderId,
+            order_id: rOrderId,
             description: "Test Transaction",
             image: "https://chefsaporter.com/assets/img/logo_black.svg",
             theme: {color: "#C6A87D", fontFamily: "ProximaNovaA-Regular"},
 
-            handler: (res) => {
-                console.log("res====>", res);
-                setPaymentVerification(true);
+            handler: (response) => {
+                console.log("response============", response);
+                if (response) {
+                    setIsConfirm(false);
+                    axios.post('https://chefv2.hypervergedemo.site/v1/booking/verifypayment/' + summaryBookingId, {
+                        razorpay_order_id: rOrderId,
+                        razorpay_payment_id: rKey,
+                        razorpay_signature: response.razorpay_signature,
+                    })
+                        .then((response) => {
+                            if (response.status === 200) {
+                                Cookies.set(
+                                    "paymentVerificationData",
+                                    JSON.stringify(response.data)
+                                );
+                            }
+                        });
+                }
+                // setPaymentVerification(true);
                 handleBookingSuccessOpen(true);
             },
         };
@@ -346,22 +380,26 @@ const BookingSummary = (props) => {
             color: "#FBFBFB",
             padding: "0px 0px 16px",
         },
-        ".grand-total": {
-            fontFamily: "ProximaNovaA-Regular",
-            fontStyle: "normal",
-            fontWeight: "400",
-            fontSize: "20px",
-            lineHeight: "24px",
-            color: "#FBFBFB",
-            padding: "22px 0px",
+        '.table-details-pt': {
+            paddingTop: '16px'
         },
-        ".border": {
-            borderTop: "1px solid rgba(255, 255, 255, 0.6)",
-            borderBottom: "1px solid rgba(255, 255, 255, 0.6)",
+        '.grand-total': {
+            fontFamily: 'ProximaNovaA-Regular',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '20px',
+            lineHeight: '24px',
+            color: '#FBFBFB',
+            padding: '16px 0px'
         },
-        ".tax1": {
-            paddingTop: "20px",
+        '.border': {
+            borderTop: '1px solid rgba(255, 255, 255, 0.6)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.6)',
+            // paddingTop: '16px'
         },
+        // ".tax1": {
+        //     paddingTop: "20px",
+        // },
         ".header-club": {
             display: "none",
             padding: "15px",
@@ -537,7 +575,7 @@ const BookingSummary = (props) => {
         ".form-group1": {
             display: "flex",
             flexWrap: "wrap",
-            padding: "10px 0px",
+            padding: "16px 0px",
         },
         ".country-code": {
             borderBottom: "0.25px solid #FBFBFB",
@@ -1412,7 +1450,7 @@ const BookingSummary = (props) => {
                                                             <Box className="experience-breakup">
                                                                 <Box className="ex-details">
                                                                     <Typography className="ex-heading">
-                                                                         Breakup
+                                                                        Breakup
                                                                     </Typography>
                                                                     {/*<Typography className="ex-detail">*/}
                                                                     {/*    This is an estimate, final price will be{" "}*/}
@@ -1424,46 +1462,94 @@ const BookingSummary = (props) => {
                                                                 {
                                                                     !_.isEmpty(bsPaymentData) &&
                                                                     <Box className="table table-borderless">
+                                                                        <Box className="table-box">
+                                                                            <Typography
+                                                                                className="table-details">Experience*</Typography>
+                                                                            <Typography
+                                                                                className="table-details">{bsPaymentData?.payment?.experience}</Typography>
+                                                                        </Box>
+                                                                        <Box className="table-box">
+                                                                            <Typography
+                                                                                className="table-details">Service
+                                                                                Staff**</Typography>
+                                                                            <Typography
+                                                                                className="table-details">{bsPaymentData?.payment?.service_staff}</Typography>
+                                                                        </Box>
+                                                                        <Box
+                                                                            className="table-box border table-details-pt">
+                                                                            <Typography
+                                                                                className="table-details">Sub
+                                                                                total</Typography>
+                                                                            <Typography
+                                                                                className="table-details">{bsPaymentData?.payment?.sub_total}</Typography>
+                                                                        </Box>
+                                                                        <Box className="table-box table-details-pt">
+                                                                            <Typography className="table-details">GST
+                                                                                @5%</Typography>
+                                                                            <Typography
+                                                                                className="table-details">{bsPaymentData?.payment?.GST}</Typography>
+                                                                        </Box>
+                                                                        <Box className="table-box">
+                                                                            <Typography className="table-details">Service
+                                                                                Charges @10%</Typography>
+                                                                            <Typography
+                                                                                className="table-details">{bsPaymentData?.payment?.service_charges}</Typography>
+                                                                        </Box>
                                                                         {
-                                                                            Object.keys(bsPaymentData?.payment).map((key) => {
-                                                                                return (
+                                                                            bsPaymentData?.payment?.discount && bsPaymentData?.payment?.voucher ? (
+                                                                                <>
                                                                                     <Box className="table-box">
                                                                                         <Typography
-                                                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1).split("_").join(" ")}</Typography>
+                                                                                            className="table-details">Discount</Typography>
                                                                                         <Typography
-                                                                                            className="table-details">₹{bsPaymentData?.payment[key]}</Typography>
+                                                                                            className="table-details">{bsPaymentData?.payment?.discount}</Typography>
                                                                                     </Box>
-                                                                                )
-                                                                            })
+                                                                                    <Box className="table-box">
+                                                                                        <Typography
+                                                                                            className="table-details">Voucher</Typography>
+                                                                                        <Typography
+                                                                                            className="table-details">{bsPaymentData?.payment?.voucher}</Typography>
+                                                                                    </Box>
+                                                                                </>
+                                                                            ) : ('')
                                                                         }
                                                                         <Box className="table-box border">
                                                                             <Typography
-                                                                                className=" grand-total table-details">Grand
+                                                                                className="grand-total">Grand
                                                                                 Total</Typography>
                                                                             <Typography
-                                                                                className="table-details grand-total">₹
-                                                                                {bsPaymentData?.total}</Typography>
+                                                                                className="grand-total">{bsPaymentData?.payment?.total}</Typography>
+                                                                        </Box>
+                                                                        <Box className="form-group1">
+                                                                            <input
+                                                                                type="text"
+                                                                                name="voucher"
+                                                                                value={voucher}
+                                                                                onChange={(event) => {
+                                                                                    const capitalizedValue = event.target.value.toUpperCase();
+                                                                                    setVoucher(capitalizedValue)
+                                                                                }}
+                                                                                placeholder="Enter Your Voucher Coupon"
+                                                                                className="form-control"
+                                                                                autoComplete="off"
+                                                                                autoFocus
+                                                                            />
+                                                                            <button className="voucher" type={"submit"}
+                                                                                    onClick={() => {
+                                                                                        setIsCoupon(true)
+                                                                                    }}>Apply Voucher
+                                                                            </button>
                                                                         </Box>
                                                                         <Box className="tax tax1">
-                                                                            <Typography
-                                                                                className="table-details">GST @ 5%</Typography>
-                                                                            <Typography
-                                                                                className="table-details">Service Tax @ 10%</Typography>
-                                                                            <Typography className="table-details">*Includes the menu, tableware, table set-up and white-glove service.</Typography>
-                                                                            <Typography className="table-details">**Service staff is calculated based on number of diners.</Typography>
+                                                                            <Typography className="table-details">*Includes
+                                                                                the menu, tableware, table set-up and
+                                                                                white-glove service.</Typography>
+                                                                            <Typography className="table-details">**Service
+                                                                                staff is calculated based on number of
+                                                                                diners.</Typography>
                                                                         </Box>
                                                                     </Box>
                                                                 }
-                                                                <Box className="form-group1">
-                                                                    <Field
-                                                                        type="text"
-                                                                        name="voucher"
-                                                                        placeholder="Enter Your Voucher Coupon"
-                                                                        class="form-control"
-                                                                        autoComplete="off"
-                                                                    />
-                                                                    <button className="voucher" type={"submit"} onClick={()=>{setIsCoupon(true)}}>Apply Voucher</button>
-                                                                </Box>
                                                             </Box>
                                                             <Box className="row viewbreak">
                                                                 {

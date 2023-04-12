@@ -29,6 +29,7 @@ const Addons = (props) => {
         navigate(`/booking-summary/${summaryBookingId}`);
         setIsBookingStatus(true);
     }
+    console.log("adPaymentData======",adPaymentData)
     // const cookieValue = Cookies?.get('adsPaymentInfo');
     // const [paymentCalculationData, setPaymentCalculationData] = useState()
     //
@@ -215,6 +216,9 @@ const Addons = (props) => {
             color: '#FBFBFB',
             padding: '0px 0px 16px',
         },
+        '.table-details-pt': {
+            paddingTop: '16px'
+        },
         '.grand-total': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
@@ -222,11 +226,12 @@ const Addons = (props) => {
             fontSize: '20px',
             lineHeight: '24px',
             color: '#FBFBFB',
-            padding: '22px 0px',
+            padding:'16px 0px'
         },
         '.border': {
             borderTop: '1px solid rgba(255, 255, 255, 0.6)',
             borderBottom: '1px solid rgba(255, 255, 255, 0.6)',
+            // paddingTop: '16px'
         },
         '.tax1': {
             paddingTop: '20px',
@@ -411,53 +416,60 @@ const Addons = (props) => {
                                                     <Box className="ex-details">
                                                         <Typography className="ex-heading">
                                                             Breakup</Typography>
-                                                        <Typography className="ex-detail">This is an estimate, final
-                                                            price
-                                                            will be <br/>communicated on
-                                                            call
-                                                        </Typography>
+                                                        {/*<Typography className="ex-detail">This is an estimate, final*/}
+                                                        {/*    price*/}
+                                                        {/*    will be <br/>communicated on*/}
+                                                        {/*    call*/}
+                                                        {/*</Typography>*/}
                                                         <ExpandMoreIcon className="ex-icon"/>
                                                     </Box>
                                                     {
                                                         !_.isEmpty(adPaymentData) &&
                                                         <Box className="table table-borderless">
-                                                            {
-                                                                Object.keys(adPaymentData?.payment).map((key) => {
-                                                                    return (
-                                                                        <Box className="table-box">
-                                                                            <Typography
-                                                                                className="table-details">{key.charAt(0).toUpperCase() + key.slice(1).split("_").join(" ")}</Typography>
-                                                                            <Typography className="table-details">₹
-                                                                                {adPaymentData?.payment[key]}</Typography>
-                                                                        </Box>
-                                                                    )
-                                                                })
-                                                            }
+                                                            <Box className="table-box">
+                                                                <Typography
+                                                                    className="table-details">Experience*</Typography>
+                                                                <Typography
+                                                                    className="table-details">{adPaymentData?.payment?.experience}</Typography>
+                                                            </Box>
+                                                            <Box className="table-box">
+                                                                <Typography
+                                                                    className="table-details">Service
+                                                                    Staff**</Typography>
+                                                                <Typography
+                                                                    className="table-details">{adPaymentData?.payment?.service_staff}</Typography>
+                                                            </Box>
+                                                            <Box className="table-box border table-details-pt">
+                                                                <Typography
+                                                                    className="table-details">Sub
+                                                                    total</Typography>
+                                                                <Typography
+                                                                    className="table-details">{adPaymentData?.payment?.sub_total}</Typography>
+                                                            </Box>
+                                                            <Box className="table-box table-details-pt">
+                                                                <Typography className="table-details">GST @5%</Typography>
+                                                                <Typography className="table-details">{adPaymentData?.payment?.GST}</Typography>
+                                                            </Box>
+                                                            <Box className="table-box">
+                                                                <Typography className="table-details">Service Charges @10%</Typography>
+                                                                <Typography className="table-details">{adPaymentData?.payment?.service_charges}</Typography>
+                                                            </Box>
                                                             <Box className="table-box border">
-                                                                <Typography className=" grand-total table-details">Grand
-                                                                    Total</Typography>
-                                                                <Typography className="table-details grand-total">₹
-                                                                    {adPaymentData?.total}</Typography>
+                                                                <Typography
+                                                                    className="grand-total">Grand Total</Typography>
+                                                                <Typography
+                                                                    className="grand-total">{adPaymentData?.payment?.total}</Typography>
                                                             </Box>
                                                             <Box className="tax tax1">
-                                                                    <Typography
-                                                                        className="table-details">GST @ 5%</Typography>
-                                                                    <Typography
-                                                                        className="table-details">Service Tax @ 10%</Typography>
-                                                                <Typography className="table-details">*Includes the menu, tableware, table set-up and white-glove service.</Typography>
-                                                                <Typography className="table-details">**Service staff is calculated based on number of diners.</Typography>
+                                                                <Typography className="table-details">*Includes
+                                                                    the menu, tableware, table set-up and
+                                                                    white-glove service.</Typography>
+                                                                <Typography className="table-details">**Service
+                                                                    staff is calculated based on number of
+                                                                    diners.</Typography>
                                                             </Box>
-                                                            {/*<Box className="tax tax1 table-box">*/}
-                                                            {/*    <Typography className="table-details">+Incl Of*/}
-                                                            {/*        GST</Typography>*/}
-                                                            {/*</Box>*/}
-                                                            {/*<Box className="tax">*/}
-                                                            {/*    <Typography className="table-details">++1.95% +*/}
-                                                            {/*        GST</Typography>*/}
-                                                            {/*</Box>*/}
                                                         </Box>
                                                     }
-
                                                 </Box>
                                                 <Box className="row viewbreak">
                                                     <Box className="col-lg-12">

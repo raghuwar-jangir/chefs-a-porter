@@ -1,4 +1,4 @@
-import React, {useEffect, useState,useContext} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import {
     styled,
     Box,
@@ -43,15 +43,19 @@ import * as _ from "lodash";
 import Cookies from "js-cookie";
 import moment from "moment/moment";
 import useRazorpay from "react-razorpay";
-import { useCallback } from "react";
+import {useCallback} from "react";
 import UsersContext from "../../context/UsersContext";
+import axios from "axios";
 
 
 const ScBookingConfirm = (props) => {
-    // const handleClick = () => {
-    //     navigate("/sc-booking-confirm");
-    // };
-    const {supperClubConfirmPaymentData,setIsSupperClubCoupon,supperClubRazorpay} = useContext(UsersContext)
+    const {
+        supperClubConfirmPaymentData,
+        setIsSupperClubCoupon,
+        supperClubRazorpay,
+        voucher,
+        setVoucher,
+    } = useContext(UsersContext)
     const {supperClubConfirmBookingId} = props;
     const [inputValue, setInputValue] = useState("Chefsaporter/privatediner/AefDFC..");
     const [supperClubBookingData, setSupperClubBookingData] = useState()
@@ -77,10 +81,25 @@ const ScBookingConfirm = (props) => {
             order_id: razorpayOderId,
             description: "Test Transaction",
             image: "https://chefsaporter.com/assets/img/logo_black.svg",
-            theme: { color: "#C6A87D", fontFamily: "ProximaNovaA-Regular" },
+            theme: {color: "#C6A87D", fontFamily: "ProximaNovaA-Regular"},
 
-            handler: (res) => {
-                console.log("res", res);
+            handler: (response) => {
+                console.log("superr club response================", response);
+                if (response) {
+                    axios.post('https://chefv2.hypervergedemo.site/v1/booking/verifypayment/' + supperClubConfirmBookingId, {
+                        razorpay_order_id: response.razorpay_payment_id,
+                        razorpay_payment_id: response.razorpay_payment_id,
+                        razorpay_signature: response.razorpay_signature,
+                    })
+                        .then((response) => {
+                            if (response.status === 200) {
+                                Cookies.set(
+                                    "SCpaymentVerificationData",
+                                    JSON.stringify(response.data)
+                                );
+                            }
+                        });
+                }
                 handleBookingSuccessOpen(true);
             },
         };
@@ -291,9 +310,16 @@ const ScBookingConfirm = (props) => {
             fontSize: "20px",
             lineHeight: "24px",
             color: "#101418",
-            padding: "22px 0px",
+            padding: "16px 0px",
+        },
+        '.table-details-pt': {
+            paddingTop: '16px'
         },
         ".border": {
+            borderTop: "1px solid #080B0E",
+        },
+        ".border-tb": {
+            borderBottom: "1px solid #080B0E",
             borderTop: "1px solid #080B0E",
         },
         ".tax1": {
@@ -617,8 +643,8 @@ const ScBookingConfirm = (props) => {
             lineHeight: "20px",
             color: "#080B0E",
         },
-        '.date-stack1':{
-            display:'none'
+        '.date-stack1': {
+            display: 'none'
         },
         "@media (min-width: 1px) and (max-width:768px)": {
             '.partner': {
@@ -631,22 +657,22 @@ const ScBookingConfirm = (props) => {
                 placeContent: "center",
                 display: 'flex',
                 placeItems: 'center',
-                margin:'0px',
-                width:'100%',
+                margin: '0px',
+                width: '100%',
                 flexDirection: 'row',
             },
         },
         "@media (min-width: 1px) and (max-width:425px)": {
-            padding:'0px',
+            padding: '0px',
             '.dinner-box': {
-                display:'none'
+                display: 'none'
             },
-            '.partner':{
-                maxWidth:'100%',
-                width:'100%'
+            '.partner': {
+                maxWidth: '100%',
+                width: '100%'
             },
-            '.book-trad':{
-                display:'none'
+            '.book-trad': {
+                display: 'none'
             }
         }
     });
@@ -1177,7 +1203,8 @@ const ScBookingConfirm = (props) => {
                         <ArrowBackIcon
                             // onClick={handleBookingSuccessOpen}
                             onClick={() => {
-                                navigate(`/ticketed-booking-summary/${supperClubConfirmBookingId}`)
+                                navigate(`/ticketed-booking-summary/${supperClubConfirmBookingId}`);
+                                setIsSupperClubCoupon(false);
                             }}
                             className="arrow-left"
                         />
@@ -1214,10 +1241,11 @@ const ScBookingConfirm = (props) => {
                         initialValues={{
                             contactNumber: superClubBookingDetails?.contactNumber,
                             email: superClubBookingDetails?.email,
+                            // voucher:''
                         }}
                         validationSchema={bookingSummaryValidationSchema}
                         onSubmit={(values) => {
-                            console.log("sc booking confrim value==========", values)
+                            console.log("sc==========", values)
                         }}
                     >
                         {({values, handleChange, handleSubmit, setFieldValue}) => (
@@ -1407,36 +1435,71 @@ const ScBookingConfirm = (props) => {
                                                 {
                                                     !_.isEmpty(supperClubConfirmPaymentData) &&
                                                     <Box className="table table-borderless">
-                                                        {
-                                                            Object.keys(supperClubConfirmPaymentData?.payment).map((key) => {
-                                                                return (
-                                                                    <Box className="table-box">
-                                                                        <Typography
-                                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1).split("_").join(" ")}</Typography>
-                                                                        <Typography
-                                                                            className="table-details">₹
-                                                                            {supperClubConfirmPaymentData?.payment[key]}</Typography>
-                                                                    </Box>
-                                                                )
-                                                            })
-                                                        }
-                                                        <Box className="table-box border">
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details">Ticket
+                                                                Price</Typography>
                                                             <Typography
-                                                                className=" grand-total table-details">Grand
+                                                                className="table-details">{supperClubConfirmPaymentData?.payment?.ticket_price}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box border-tb ">
+                                                            <Typography className="table-details table-details-pt">Sub
                                                                 Total</Typography>
                                                             <Typography
-                                                                className="table-details grand-total">₹
-                                                                {supperClubConfirmPaymentData?.total}</Typography>
+                                                                className="table-details table-details-pt">{supperClubConfirmPaymentData?.payment?.sub_total}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details table-details-pt">GST
+                                                                @5%</Typography>
+                                                            <Typography
+                                                                className="table-details table-details-pt">{supperClubConfirmPaymentData?.payment?.GST}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details">Service Charge
+                                                                @10%</Typography>
+                                                            <Typography
+                                                                className="table-details">{supperClubConfirmPaymentData?.payment?.service_charges}</Typography>
+                                                        </Box>
+                                                        {
+                                                            supperClubConfirmPaymentData?.payment?.discount && supperClubConfirmPaymentData?.payment?.voucher ? (
+                                                                <>
+                                                                    <Box className="table-box">
+                                                                        <Typography
+                                                                            className="table-details">Discount</Typography>
+                                                                        <Typography
+                                                                            className="table-details">{supperClubConfirmPaymentData?.payment?.discount}</Typography>
+                                                                    </Box>
+                                                                    <Box className="table-box">
+                                                                        <Typography
+                                                                            className="table-details">Voucher</Typography>
+                                                                        <Typography
+                                                                            className="table-details">{supperClubConfirmPaymentData?.payment?.voucher}</Typography>
+                                                                    </Box>
+                                                                </>
+                                                            ) : ('')
+                                                        }
+                                                        <Box className="table-box border">
+                                                            <Typography className="grand-total">Grand Total</Typography>
+                                                            <Typography
+                                                                className="grand-total">{supperClubConfirmPaymentData?.payment?.total}</Typography>
                                                         </Box>
                                                         <Box className="form-group1">
                                                             <input
                                                                 type="text"
                                                                 name="voucher"
+                                                                value={voucher}
+                                                                onChange={(event) => {
+                                                                    const capitalizedValue = event.target.value.toUpperCase();
+                                                                    setVoucher(capitalizedValue)
+                                                                }}
                                                                 placeholder="Enter Your Voucher Coupon"
                                                                 className="form-control"
                                                                 autoComplete="off"
+                                                                autoFocus
                                                             />
-                                                            <button className="voucher" type={"submit"} onClick={()=>{setIsSupperClubCoupon(true)}}>Apply Voucher</button>
+                                                            <button className="voucher" type="submit" onClick={() => {
+                                                                setIsSupperClubCoupon(true)
+                                                            }}>Apply Voucher
+                                                            </button>
                                                         </Box>
                                                     </Box>
                                                 }
@@ -1656,7 +1719,8 @@ const ScBookingConfirm = (props) => {
                                                     </div>
                                                     <div className="col-lg-12">
                                                         <div className="chef-edit">
-                                                            <img src={supperClubConfirmPaymentData?.event?.pictures} alt=""/>
+                                                            <img src={supperClubConfirmPaymentData?.event?.pictures}
+                                                                 alt=""/>
                                                             <h5>{supperClubConfirmPaymentData?.event?.chef?.name}</h5>
                                                         </div>
                                                         <div className="chef-profile">
@@ -1745,7 +1809,8 @@ const ScBookingConfirm = (props) => {
                                                     <div className="experience-breakup">
                                                         <div className="ex-details">
                                                             <h5>Paid Amount</h5>
-                                                            <span className="i">₹ {supperClubConfirmPaymentData?.total}</span>
+                                                            <span
+                                                                className="i">₹ {supperClubConfirmPaymentData?.total}</span>
                                                         </div>
                                                         <div className="table table-borderless">
                                                             <div className="table-box">
