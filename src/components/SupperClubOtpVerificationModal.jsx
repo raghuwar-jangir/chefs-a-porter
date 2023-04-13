@@ -57,7 +57,7 @@ const SupperClubOtpVerificationModal = (props) => {
             setVerifyOtp(otp);
             setIsVerifiedOtpApiCall(true);
             setIsBookingAPiCall(true);
-            navigate(`/sc-booking-summary/${supperClubBookingId}`);
+            navigate(`/ticketed-booking-summary/${supperClubBookingId}`);
         }
     }
 
@@ -287,7 +287,7 @@ const SupperClubOtpVerificationModal = (props) => {
                                         )}
                                         <div className="btn-val">
                                             <button className="btn validate" type="submit"
-                                                    onClick={handleClick}>Verfiy
+                                                    onClick={handleClick}>Verify
                                             </button>
                                         </div>
                                     </form>

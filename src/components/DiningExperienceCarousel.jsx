@@ -79,7 +79,7 @@ const DiningExperienceCarousel = (props) => {
                     <>
                         <Box>
                             <Typography className="peek-heading">{data.home.private_dining.title}</Typography>
-                            <Typography className="peek-name">@Privée</Typography>
+                            <Typography className="peek-name">@Private</Typography>
                         </Box>
                         <Box className='slider-box'>
                             <Swiper

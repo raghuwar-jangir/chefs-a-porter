@@ -41,7 +41,7 @@ const ScBookingSummary = () => {
     }, [cookieValue, cookieValue2])
 
     const handleClick = () => {
-        navigate(`/sc-booking-confirm/${supperClubBookingId}`);
+        navigate(`/ticketed-booking-confirm/${supperClubBookingId}`);
         setIsSupperBookingStatus(true);
     }
 
@@ -110,7 +110,7 @@ const ScBookingSummary = () => {
         },
         ".per-dinner": {
             background: "#FBFBFB",
-            padding: "0px 20px 40px",
+            padding: "20px 20px 40px",
             boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
             position: "sticky",
             top: "100px",
@@ -240,9 +240,16 @@ const ScBookingSummary = () => {
             fontSize: "20px",
             lineHeight: "24px",
             color: "#101418",
-            padding: "22px 0px",
+            padding: "16px 0px",
+        },
+        '.table-details-pt': {
+            paddingTop: '16px'
         },
         ".border": {
+            borderTop: "1px solid #080B0E",
+        },
+        ".border-tb": {
+            borderBottom: "1px solid #080B0E",
             borderTop: "1px solid #080B0E",
         },
         ".tax1": {
@@ -548,8 +555,8 @@ const ScBookingSummary = () => {
             lineHeight: '20px',
             color: '#080B0E'
         },
-        '.date-stack1':{
-            display:'none'
+        '.date-stack1': {
+            display: 'none'
         },
         "@media (min-width: 1px) and (max-width:768px)": {
             '.partner': {
@@ -557,6 +564,27 @@ const ScBookingSummary = () => {
             },
             '.dinner-box': {
                 paddingLeft: '0px'
+            },
+            ".date-stack1": {
+                placeContent: "center",
+                display: 'flex',
+                placeItems: 'center',
+                margin: '0px',
+                width: '100%',
+                flexDirection: 'row',
+            },
+        },
+        "@media (min-width: 1px) and (max-width:425px)": {
+            padding: '0px',
+            '.dinner-box': {
+                display: 'none'
+            },
+            '.partner': {
+                maxWidth: '100%',
+                width: '100%'
+            },
+            '.book-trad': {
+                display: 'none'
             }
         }
     })
@@ -680,253 +708,290 @@ const ScBookingSummary = () => {
     return (
         <React.Fragment>
             <MainBox>
-                <Navbar heading="Privee" isColor={true}/>
+                <Navbar heading="Ticketed" isColor={true}/>
                 <div className="row supper-chef-details">
                     <div className="book-trad">
                         <ArrowBackIcon className="arrow-left" onClick={() => {
-                            navigate(`/personal-details1`)
+                            navigate(`/personal-details`)
                         }
                         }/>
                         <div className="addons-title">Booking Summary</div>
                     </div>
                 </div>
-                <Formik
-                    initialValues={{
-                        contactNumber: superClubBookingDetails?.contactNumber,
-                        email: superClubBookingDetails?.email,
-                    }}
-                    validationSchema={bookingSummaryValidationSchema}
-                    onSubmit={(values) => {
-                        // console.log("sc booking confrim value==========", values)
-                    }}
-                >
-                    {({values, handleChange, handleSubmit, setFieldValue}) => (
-                        <Form onSubmit={handleSubmit}>
-                            <Grid container>
-                                <Grid
-                                    xl={7}
-                                    lg={7}
-                                    xs={7}
-                                    md={7}
-                                    sm={12}
-                                    // xs={12}
-                                    className="partner"
-                                >
-                                    <Box className="booking-box">
-                                        <Box className="chef-box">
-                                            <Typography className="booking-summary-title">
-                                                {supperClubBookingData?.event?.title}
-                                            </Typography>
-                                            <CreateIcon className="pencil-icon"/>
-                                        </Box>
-                                        <Box class="chef-edit">
-                                            <Typography className="chef-edit-title">
-                                                Curated by <span
-                                                className="chef-edit-sub">{supperClubBookingData?.event?.chef?.name}</span>
-                                            </Typography>
-                                            <Typography className="chef-seats">
-                                                <img className="chef-people" src={people}/>
-                                                <Typography
-                                                    className="chef-people-no">{supperClubBookingData?.event?.seats}</Typography>
-                                            </Typography>
-                                        </Box>
-                                        <hr className="hr"/>
-                                        <Box class="chef-profile">
-                                            <Box className="chef-profile-detail">
-                                                <img className="chef-profile-icon" src={dateGold}/>
-                                                <Typography className="chef-profile-date">
-                                                    {moment(supperClubBookingData?.event?.dates[0]).format("MMMM D")} | {moment(supperClubBookingData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubBookingData?.event?.timetill, 'HH:mm').format('h:mm A')}
+                {/*{*/}
+                {/*    !_.isEmpty(supperClubPaymentData) &&*/}
+                {/*<Box>*/}
+                {/*    <Stack*/}
+                {/*        className="date-stack date-stack1"*/}
+                {/*    >*/}
+                {/*        {!_.isEmpty(supperClubPaymentData) &&*/}
+                {/*            <Typography className="date-description">*/}
+                {/*                {moment(supperClubPaymentData?.event?.dates[0]).format("MMMM D")}*/}
+                {/*            </Typography>*/}
+                {/*        }*/}
+                {/*        <span className="line">|</span>*/}
+                {/*        <Typography className="date-description">*/}
+                {/*            {" "}*/}
+                {/*            /!*7:30 PM - 10 PM*!/*/}
+                {/*            {moment(supperClubPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}*/}
+                {/*        </Typography>*/}
+                {/*        <span className="line">|</span>*/}
+                {/*        <Typography className="date-description">*/}
+                {/*            {supperClubPaymentData?.event?.venue}*/}
+                {/*        </Typography>*/}
+                {/*    </Stack>*/}
+                {/*</Box>*/}
+                {/*}*/}
+                {
+                    !_.isEmpty(supperClubPaymentData) &&
+                    <Formik
+                        initialValues={{
+                            contactNumber: superClubBookingDetails?.contactNumber,
+                            email: superClubBookingDetails?.email,
+                        }}
+                        validationSchema={bookingSummaryValidationSchema}
+                        onSubmit={(values) => {
+                            // console.log("sc booking confrim value==========", values)
+                        }}
+                    >
+                        {({values, handleChange, handleSubmit, setFieldValue}) => (
+                            <Form onSubmit={handleSubmit}>
+                                <Grid container>
+                                    <Grid
+                                        xl={7}
+                                        lg={7}
+                                        xs={7}
+                                        md={7}
+                                        sm={12}
+                                        xs={12}
+                                        className="partner"
+                                    >
+                                        <Box className="booking-box">
+                                            <Box className="chef-box">
+                                                <Typography className="booking-summary-title">
+                                                    {supperClubPaymentData?.event?.title}
+                                                </Typography>
+                                                <CreateIcon className="pencil-icon"/>
+                                            </Box>
+                                            <Box class="chef-edit">
+                                                <Typography className="chef-edit-title">
+                                                    Curated by <span
+                                                    className="chef-edit-sub">{supperClubPaymentData?.event?.chef?.name}</span>
+                                                </Typography>
+                                                <Typography className="chef-seats">
+                                                    <img className="chef-people" src={people}/>
+                                                    <Typography
+                                                        className="chef-people-no">{supperClubPaymentData?.event?.seats}</Typography>
                                                 </Typography>
                                             </Box>
-                                            <Box className="chef-profile-detail">
-                                                <img className="chef-profile-icon" src={location}/>
-                                                <Typography className="chef-profile-date">
-                                                    {supperClubBookingData?.event?.venue}
-                                                </Typography>
-                                            </Box>
-                                            <Box className="chef-profile-detail">
-                                                <img className="chef-profile-icon" src={people}/>
-                                                <Typography className="chef-profile-date">
-                                                    6 Diners
-                                                </Typography>
+                                            <hr className="hr"/>
+                                            <Box class="chef-profile">
+                                                <Box className="chef-profile-detail">
+                                                    <img className="chef-profile-icon" src={dateGold}/>
+                                                    <Typography className="chef-profile-date">
+                                                        {moment(supperClubPaymentData?.event?.dates[0]).format("MMMM D")} | {moment(supperClubPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="chef-profile-detail">
+                                                    <img className="chef-profile-icon" src={location}/>
+                                                    <Typography className="chef-profile-date">
+                                                        {supperClubPaymentData?.event?.venue}
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="chef-profile-detail">
+                                                    <img className="chef-profile-icon" src={people}/>
+                                                    <Typography className="chef-profile-date">
+                                                        {supperClubPaymentData?.diner_count} Diners
+                                                    </Typography>
+                                                </Box>
                                             </Box>
                                         </Box>
-                                    </Box>
-                                    <Box className="booking-box">
-                                        <div className="email">An Email Confirmation will be sent to</div>
-                                    </Box>
-                                    <Box className="booking-box">
-                                        <Box className="contact">
-                                            <label className="contact-number" for="">
-                                                Email{" "}
-                                            </label>
-                                            <Box className="form-group">
-                                                <input
-                                                    type="email"
-                                                    name="email"
-                                                    value={values.email}
-                                                    onChange={handleChange}
-                                                    placeholder="Kachwallasana@gmail.com"
-                                                    class="form-control"
-                                                    autoComplete="off"
-                                                />
-                                            </Box>
-                                            <ErrorMessage name="email"/>
+                                        <Box className="booking-box">
+                                            <div className="email">An Email Confirmation will be sent to</div>
                                         </Box>
-                                    </Box>
-                                    <Box class="booking-box">
-                                        <Box class="contact">
-                                            <label className="contact-number" for="contact-number">
-                                                Mobile
-                                            </label>
-                                            <Box className="form-group">
+                                        <Box className="booking-box">
+                                            <Box className="contact">
+                                                <label className="contact-number" for="">
+                                                    Email{" "}
+                                                </label>
+                                                <Box className="form-group">
+                                                    <input
+                                                        type="email"
+                                                        name="email"
+                                                        value={values.email}
+                                                        onChange={handleChange}
+                                                        placeholder="Kachwallasana@gmail.com"
+                                                        class="form-control"
+                                                        autoComplete="off"
+                                                    />
+                                                </Box>
+                                                <ErrorMessage name="email"/>
+                                            </Box>
+                                        </Box>
+                                        <Box class="booking-box">
+                                            <Box class="contact">
+                                                <label className="contact-number" for="contact-number">
+                                                    Mobile
+                                                </label>
+                                                <Box className="form-group">
                                               <span className="country-code">
                                                 +91{" "}
                                                   <KeyboardArrowDownIcon className="drop-down-2"/>
                                               </span>
-                                                <input
-                                                    placeholder="10 digit number"
-                                                    className="form-control"
-                                                    type="text"
-                                                    id="number"
-                                                    name="contactNumber"
-                                                    value={values.contactNumber}
-                                                    onChange={handleChange}
-                                                    autoComplete="off"
-                                                />
+                                                    <input
+                                                        placeholder="10 digit number"
+                                                        className="form-control"
+                                                        type="text"
+                                                        id="number"
+                                                        name="contactNumber"
+                                                        value={values.contactNumber}
+                                                        onChange={handleChange}
+                                                        autoComplete="off"
+                                                    />
+                                                </Box>
+                                                <ErrorMessage name="contactNumber"/>
+                                                {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
                                             </Box>
-                                            <ErrorMessage name="contactNumber"/>
-                                            {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
                                         </Box>
-                                    </Box>
-                                    <Box className="gst-block">
-                                        <Box className="form-check">
-                                            <Checkbox className="input-check" defaultChecked/>
-                                            <label
-                                                className="form-check-label"
-                                                for="flexCheckDefault"
-                                            >
-                                                Enter GSTIN for tax benefits (Optional)
-                                            </label>
-                                            <KeyboardArrowRightIcon data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal"
-                                                                    onClick={handleOpen} className="forward-arrow"/>
+                                        <Box className="gst-block">
+                                            <Box className="form-check">
+                                                <Checkbox className="input-check" defaultChecked/>
+                                                <label
+                                                    className="form-check-label"
+                                                    for="flexCheckDefault"
+                                                >
+                                                    Enter GSTIN for tax benefits (Optional)
+                                                </label>
+                                                <KeyboardArrowRightIcon data-bs-toggle="modal"
+                                                                        data-bs-target="#exampleModal"
+                                                                        onClick={handleOpen} className="forward-arrow"/>
+                                            </Box>
                                         </Box>
-                                    </Box>
-                                    <div className="gift-div">
-                                        <div className="gift-child">
-                                            <img className="gift-img" src={giftCard}/>
-                                            <div className="gift-text">If you have a coupon/ gift card, please enter
-                                                details in the
-                                                next step
+                                        <div className="gift-div">
+                                            <div className="gift-child">
+                                                <img className="gift-img" src={giftCard}/>
+                                                <div className="gift-text">If you have a coupon/ gift card, please enter
+                                                    details in the
+                                                    next step
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </Grid>
-                                <Grid
-                                    xl={5}
-                                    lg={5}
-                                    xs={5}
-                                    md={5}
-                                    sm={12}
-                                    // xs={12}
-                                    className="cust-details dinner-box"
-                                >
-                                    <Box className="per-dinner adsss">
-                                        <Box>
-                                            <Stack
-                                                className="date-stack"
-                                            >
-                                                {!_.isEmpty(supperClubBookingData) &&
-                                                    <Typography className="date-description">
-                                                        {moment(supperClubBookingData?.event?.dates[0]).format("MMMM D")}
+                                    </Grid>
+                                    <Grid
+                                        xl={5}
+                                        lg={5}
+                                        xs={5}
+                                        md={5}
+                                        sm={12}
+                                        xs={12}
+                                        className="cust-details dinner-box"
+                                    >
+                                        <Box className="per-dinner adsss">
+                                            {/*<Box>*/}
+                                            {/*    <Stack*/}
+                                            {/*        className="date-stack"*/}
+                                            {/*    >*/}
+                                            {/*        {!_.isEmpty(supperClubPaymentData) &&*/}
+                                            {/*            <Typography className="date-description">*/}
+                                            {/*                {moment(supperClubPaymentData?.event?.dates[0]).format("MMMM D")}*/}
+                                            {/*            </Typography>*/}
+                                            {/*        }*/}
+                                            {/*        <span className="line">|</span>*/}
+                                            {/*        <Typography className="date-description">*/}
+                                            {/*            {" "}*/}
+                                            {/*            /!*7:30 PM - 10 PM*!/*/}
+                                            {/*            {moment(supperClubPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}*/}
+                                            {/*        </Typography>*/}
+                                            {/*        <span className="line">|</span>*/}
+                                            {/*        <Typography className="date-description">*/}
+                                            {/*            {supperClubPaymentData?.event?.venue}*/}
+                                            {/*        </Typography>*/}
+                                            {/*    </Stack>*/}
+                                            {/*</Box>*/}
+                                            <Box className="event-div">
+                                                <img src={supperClubPaymentData?.event?.pictures[0]} alt=""
+                                                     className="per-dinner-img"/>
+                                                <Box sx={{marginLeft: "12px"}}>
+                                                    <Typography className="event-title">
+                                                        {supperClubPaymentData?.event?.title}
                                                     </Typography>
-                                                }
-                                                <span className="line">|</span>
-                                                <Typography className="date-description">
-                                                    {" "}
-                                                    {/*7:30 PM - 10 PM*/}
-                                                    {moment(supperClubBookingData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubBookingData?.event?.timetill, 'HH:mm').format('h:mm A')}
-                                                </Typography>
-                                                <span className="line">|</span>
-                                                <Typography className="date-description">
-                                                    {supperClubBookingData?.event?.venue}
-                                                </Typography>
-                                            </Stack>
-                                        </Box>
-                                        <Box className="event-div">
-                                            <img src={supperClubBookingData?.event?.pictures[0]} alt=""
-                                                 className="per-dinner-img"/>
-                                            <Box sx={{marginLeft: "12px"}}>
-                                                <Typography className="event-title">
-                                                    {supperClubBookingData?.event?.title}
-                                                </Typography>
-                                                <Typography className="event-subtitle">
-                                                    Curated by{" "}
-                                                    <a href="#" className="event-link">
-                                                        {supperClubBookingData?.event?.chef?.name}
-                                                    </a>
-                                                </Typography>
-                                                <Typography className="rating-star">
-                                                    <img className="rating-people" src={people}/>
-                                                    <Typography
-                                                        className="rating-star">{supperClubBookingData?.event?.seats}</Typography>
-                                                </Typography>
-                                            </Box>
-                                        </Box>
-                                        <Box className="experience-breakup">
-                                            <div className="confirm-details">Confirm Details before proceeding to pay
-                                            </div>
-                                            <Box className="ex-details">
-                                                <Typography className="ex-heading">
-                                                    Price Breakdown
-                                                </Typography>
-                                                <ExpandMoreIcon className="ex-icon"/>
-                                            </Box>
-                                            {
-                                                !_.isEmpty(supperClubBookingData) &&
-                                                <Box className="table table-borderless">
-                                                    {
-                                                        Object.keys(supperClubBookingData?.payment).map((key) => {
-                                                            return (
-                                                                <Box className="table-box">
-                                                                    <Typography
-                                                                        className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
-                                                                    <Typography
-                                                                        className="table-details">₹
-                                                                        {supperClubBookingData?.payment[key]}</Typography>
-                                                                </Box>
-                                                            )
-                                                        })
-                                                    }
-                                                    <Box className="table-box border">
+                                                    <Typography className="event-subtitle">
+                                                        Curated by{" "}
+                                                        <a href="#" className="event-link">
+                                                            {supperClubPaymentData?.event?.chef?.name}
+                                                        </a>
+                                                    </Typography>
+                                                    <Typography className="rating-star">
+                                                        <img className="rating-people" src={people}/>
                                                         <Typography
-                                                            className=" grand-total table-details">Grand
-                                                            Total</Typography>
-                                                        <Typography
-                                                            className="table-details grand-total">₹
-                                                            {supperClubBookingData?.total}</Typography>
-                                                    </Box>
+                                                            className="rating-star">{supperClubPaymentData?.event?.seats}</Typography>
+                                                    </Typography>
                                                 </Box>
-                                            }
-                                        </Box>
-                                        <Box className="row viewbreak">
-                                            <Box>
-                                                <button type="submit" onClick={handleClick} className="submit-req">
-                                                    Reserve a seat
-                                                </button>
                                             </Box>
-                                            <Typography className="contact-text">
-                                                Our team will contact you regarding your protein and allergeen
-                                                Information after booking is confirmed
-                                            </Typography>
+                                            <Box className="experience-breakup">
+                                                <div className="confirm-details">Confirm Details before proceeding to
+                                                    pay
+                                                </div>
+                                                <Box className="ex-details">
+                                                    <Typography className="ex-heading">
+                                                        Price Breakdown
+                                                    </Typography>
+                                                    <ExpandMoreIcon className="ex-icon"/>
+                                                </Box>
+
+                                                {
+                                                    !_.isEmpty(supperClubPaymentData) &&
+                                                    <Box className="table table-borderless">
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details">Ticket
+                                                                Price</Typography>
+                                                            <Typography
+                                                                className="table-details">{supperClubPaymentData?.payment?.ticket_price}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box border-tb ">
+                                                            <Typography className="table-details table-details-pt">Sub
+                                                                Total</Typography>
+                                                            <Typography
+                                                                className="table-details table-details-pt">{supperClubPaymentData?.payment?.sub_total}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details table-details-pt">GST
+                                                                @5%</Typography>
+                                                            <Typography
+                                                                className="table-details table-details-pt">{supperClubPaymentData?.payment?.GST}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details">Service Charge
+                                                                @10%</Typography>
+                                                            <Typography
+                                                                className="table-details">{supperClubPaymentData?.payment?.service_charges}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box border">
+                                                            <Typography className="grand-total">Grand Total</Typography>
+                                                            <Typography
+                                                                className="grand-total">{supperClubPaymentData?.payment?.total}</Typography>
+                                                        </Box>
+                                                    </Box>
+                                                }
+                                            </Box>
+                                            <Box className="row viewbreak">
+                                                <Box>
+                                                    <button type="submit" onClick={handleClick} className="submit-req">
+                                                        Reserve a seat
+                                                    </button>
+                                                </Box>
+                                                <Typography className="contact-text">
+                                                    Our team will contact you regarding your protein and allergen
+                                                    Information after booking is confirmed
+                                                </Typography>
+                                            </Box>
                                         </Box>
-                                    </Box>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
-                        </Form>
-                    )}
-                </Formik>
+                            </Form>
+                        )}
+                    </Formik>
+                }
                 <Modal
                     keepMounted
                     open={open}

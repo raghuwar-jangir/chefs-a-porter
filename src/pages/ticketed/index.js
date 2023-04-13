@@ -318,7 +318,7 @@ const SupperClub = () => {
         <React.Fragment>
             {!_.isEmpty(data?.supper_club) && (
                 <MainBox>
-                    <NavbarComponent heading="Supper Club" />
+                    <NavbarComponent heading="Ticketed" />
                     <Box className="home-banner">
                         <Box className="container-fluid">
                             <Box className="justify-content-center">
@@ -364,7 +364,7 @@ const SupperClub = () => {
                                             Banglore
                                         </Tab>
                                         <Tab className="tab-box" value={4}>
-                                            Hydrabad
+                                            Hyderabad
                                         </Tab>
                                     </TabList>
                                     <TabPanel value={0} sx={{ p: 0 }}>
@@ -569,7 +569,7 @@ const SupperClub = () => {
                         chefHeading="Behind the Scenes"
                         detailsBox={true}
                         isPadding={true}
-                        slidesPerView={true}
+                        // slidesPerView={true}
                         isBackground={true}
                     />
                     <DiningExperienceCarousel

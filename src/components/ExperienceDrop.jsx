@@ -103,68 +103,68 @@ const ExperienceDrop = ({toggleClose}) => {
     const disabledStyle = {
         opacity: 0.5,
     };
-   
-  const handleDecrement = () => {
-    if (numberOfSeats > 0) {
-      setNumberOfSeats(numberOfSeats - 1);
-    }
-  };
 
-  const handleIncrement = () => {
-    if (numberOfSeats < 4) {
-      setNumberOfSeats(numberOfSeats + 1);
-    }
-  };
+    const handleDecrement = () => {
+        if (numberOfSeats > 0) {
+            setNumberOfSeats(numberOfSeats - 1);
+        }
+    };
 
-  const handleSeatIncreament = () => {
-    if (numberOfTabels < 1) {
-      setNumberOfTabels(numberOfTabels + 1);
-    }
-  };
-  const handleSeatDecrement = () => {
-    if (numberOfTabels > 0) {
-      setNumberOfTabels(numberOfTabels - 1);
-    }
-  };
-  return (
-    <React.Fragment>
-      <BoxWrapper>
-        <Box>
-          <Box className="choose-seat">
-            <div className="choose-seat-text">Choose Seating option</div>
-            <KeyboardArrowDownIcon className="seat-down" onClick={toggleClose}/>
-          </Box>
-          <Box className="regular-seat">
-            <div className="r-seat">
-              <div className="r-seat-text">Regular Seating</div>
-              <span className="r-seat-rate">
+    const handleIncrement = () => {
+        if (numberOfSeats < 4) {
+            setNumberOfSeats(numberOfSeats + 1);
+        }
+    };
+
+    const handleSeatIncreament = () => {
+        if (numberOfTabels < 1) {
+            setNumberOfTabels(numberOfTabels + 1);
+        }
+    };
+    const handleSeatDecrement = () => {
+        if (numberOfTabels > 0) {
+            setNumberOfTabels(numberOfTabels - 1);
+        }
+    };
+    return (
+        <React.Fragment>
+            <BoxWrapper>
+                <Box>
+                    <Box className="choose-seat">
+                        <div className="choose-seat-text">Choose Seating option</div>
+                        <KeyboardArrowDownIcon className="seat-down" onClick={toggleClose}/>
+                    </Box>
+                    <Box className="regular-seat">
+                        <div className="r-seat">
+                            <div className="r-seat-text">Regular Seating</div>
+                            <span className="r-seat-rate">
                 <b className="r-seat-money">₹ 2,500</b>/ diner
               </span>
-            </div>
-            <div>
-              <div className="input-div">
-                <RemoveIcon
-                  className="left-btn"
-                  onClick={handleDecrement}
-                  style={numberOfSeats === 0 ? disabledStyle : {}}
-                  disabled={numberOfSeats === 0}
-                />
-                <Typography className="number-ans">{numberOfSeats}</Typography>
-                <AddIcon
-                  style={numberOfSeats === 4 ? disabledStyle : {}}
-                  className="right-btn"
-                  onClick={handleIncrement}
-                  disabled={numberOfSeats === 4}
-                />
-              </div>
-              <span className="s-left">4 seats left</span>
-            </div>
-          </Box>
-          <hr className="seat-hr" />
-          <Box className="regular-seat">
-            <div className="r-seat">
-              <div className="r-seat-text">Chefs Table</div>
-              <span className="r-seat-rate">
+                        </div>
+                        <div>
+                            <div className="input-div">
+                                <RemoveIcon
+                                    className="left-btn"
+                                    onClick={handleDecrement}
+                                    style={numberOfSeats === 0 ? disabledStyle : {}}
+                                    disabled={numberOfSeats === 0}
+                                />
+                                <Typography className="number-ans">{numberOfSeats}</Typography>
+                                <AddIcon
+                                    style={numberOfSeats === 4 ? disabledStyle : {}}
+                                    className="right-btn"
+                                    onClick={handleIncrement}
+                                    disabled={numberOfSeats === 4}
+                                />
+                            </div>
+                            <span className="s-left">4 seats left</span>
+                        </div>
+                    </Box>
+                    <hr className="seat-hr" />
+                    <Box className="regular-seat">
+                        <div className="r-seat">
+                            <div className="r-seat-text">Chefs Table</div>
+                            <span className="r-seat-rate">
                 <b className="r-seat-money">₹ 4,500</b>/ diner
               </span>
                         </div>

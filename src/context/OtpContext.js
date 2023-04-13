@@ -109,7 +109,7 @@ const OtpProvider = (props) => {
                     Cookies.set('summaryBookingId', JSON.stringify(response.data.id));
                 }
             })
-        } else if (isSupperClubStatus && currentPath === 'personal-details1') {
+        } else if (isSupperClubStatus && currentPath === 'personal-details') {
             axios.post(baseUrl + '/booking', {
                 name: superClubBookingDetails?.name,
                 email: superClubBookingDetails?.email,

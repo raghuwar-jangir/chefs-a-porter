@@ -15,7 +15,7 @@ import CmsContext from "../context/CmsContext";
 const BehindScenesCarousel = (props) => {
 
     const {
-        slidesPerView,
+        // slidesPerView,
         isBackground,
         chefHeading,
         supperHeadingMain,
@@ -101,7 +101,7 @@ const BehindScenesCarousel = (props) => {
         '.supper-details-box': {
             backgroundColor: `${detailsBox ? '#DCD7CB' : ''}`,
         },
-        "@media (min-width: 1px) and (max-width:767px)": {
+        "@media (min-width: 321px) and (max-width:767px)": {
             padding:'40px 16px',
             '.supper-heading':{
                 padding:'0px !important'
@@ -114,19 +114,47 @@ const BehindScenesCarousel = (props) => {
                 fontSize:'12px !important',
                 lineHeight:'15px !important'
             }
+        },
+        "@media (min-width: 1px) and (max-width:320px)": {
+            padding:'40px 16px',
+            '.supper-heading':{
+                padding:'0px !important'
+            },
+            '.chef-name':{
+                fontSize:'13px !important',
+                lineHeight:'15px !important'
+            },
+            '.chef-details':{
+                fontSize:'12px !important',
+                lineHeight:'15px !important'
+            }
         }
     }))
     return (
         <BoxWrapper>
             <Typography className="supper-heading">{chefHeading}</Typography>
             <Swiper
-                slidesPerView={`${slidesPerView ? 4 : 3}`}
+                slidesPerView={4}
                 slidesPerGroupSkip={1}
                 spaceBetween={20}
                 loop={true}
                 // pagination={{
                 //     clickable: true,
                 // }}
+                breakpoints={{
+                   320:{
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    767:{
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    1024:{
+                        slidesPerView: 4,
+                        spaceBetween: 20,
+                    }
+                }}
                 className="supper-swiper"
             >
                 <Box className="chef-swiper">

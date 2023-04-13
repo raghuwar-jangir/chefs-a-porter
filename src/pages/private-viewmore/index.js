@@ -452,7 +452,7 @@ const PriveeViewMore = (props) => {
                 {
                     !_.isEmpty(userData && mealData) &&
                     <>
-                        <Navbar to={'/privee-viewmore'} isColor={true} isIcon={true} heading="Privee"/>
+                        <Navbar to={'/private-viewmore'} isColor={true} isIcon={true} heading="Private"/>
                         <Box className="home-banner dark">
                             <Box className="row justify-content-center">
                                 <Box className="privee-container">

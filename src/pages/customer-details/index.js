@@ -61,19 +61,16 @@ const CustomerDetails = (props) => {
     const cookieValue = Cookies?.get('customerData');
     const customerDetailsPaymentCalculationCookieValue = Cookies?.get('customerDetailsPaymentCalculation');
     const [customerDetailsPaymentCalculation, setCustomerDetailsPaymentCalculation] = useState();
+    console.log("==================", customerDetailsPaymentCalculation)
 
-
-    {
-        !_.isEmpty(cookieValue) &&
-        useEffect(() => {
-            if (cookieValue) {
-                setCustomerInfo(JSON.parse(cookieValue));
-            }
-            if (customerDetailsPaymentCalculationCookieValue) {
-                setCustomerDetailsPaymentCalculation(JSON.parse(customerDetailsPaymentCalculationCookieValue));
-            }
-        }, [cookieValue, customerDetailsPaymentCalculationCookieValue])
-    }
+    useEffect(() => {
+        if (cookieValue) {
+            setCustomerInfo(JSON.parse(cookieValue));
+        }
+        if (cDsPaymentCookieVal) {
+            setCustomerDetailsPaymentCalculation(JSON.parse(cDsPaymentCookieVal));
+        }
+    }, [cookieValue, cDsPaymentCookieVal])
 
     console.log("customerInfo======", customerInfo)
     const handleOpenOtp = (contactNumber, values) => {
@@ -459,6 +456,9 @@ const CustomerDetails = (props) => {
             color: '#FBFBFB',
             padding: '0px 0px 16px',
         },
+        '.table-details-pt': {
+            paddingTop: '16px'
+        },
         '.grand-total': {
             fontFamily: 'ProximaNovaA-Regular',
             fontStyle: 'normal',
@@ -466,12 +466,12 @@ const CustomerDetails = (props) => {
             fontSize: '20px',
             lineHeight: '24px',
             color: '#FBFBFB',
-            padding: '22px 0px',
+            padding:'16px 0px'
         },
         '.border': {
             borderTop: '1px solid rgba(255, 255, 255, 0.6)',
             borderBottom: '1px solid rgba(255, 255, 255, 0.6)',
-            paddingTop: '16px'
+            // paddingTop: '16px'
         },
         '.tax1': {
             paddingTop: '20px',
@@ -875,7 +875,7 @@ const CustomerDetails = (props) => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar to={'/customer-details'} isColor={true} isIcon={true} heading="Privee"/>
+                <Navbar to={'/customer-details'} isColor={true} isIcon={true} heading="Private"/>
                 <Box className="supper-gallery cust-details">
                     <Box className="container-fluid">
                         <Box className="row supper-chef-details">
@@ -952,7 +952,7 @@ const CustomerDetails = (props) => {
                                                                            className="form-control"
                                                                            id="validationCustom03"
                                                                            placeholder="Add Address"
-                                                                    value={values.address}
+                                                                           value={values.address}
                                                                     //        value={formAddress}
                                                                            onChange={handleChange}
                                                                            autoComplete="off"
@@ -1222,44 +1222,60 @@ const CustomerDetails = (props) => {
                                                         </Box>
                                                         <Box className="experience-breakup">
                                                             <Box className="ex-details">
-                                                                <Typography className="ex-heading">Experience
+                                                                <Typography className="ex-heading">
                                                                     Breakup</Typography>
-                                                                <Typography className="ex-detail">This is an estimate,
-                                                                    final price
-                                                                    will be <br/>communicated on
-                                                                    call
-                                                                </Typography>
+                                                                {/*<Typography className="ex-detail">This is an estimate,*/}
+                                                                {/*    final price*/}
+                                                                {/*    will be <br/>communicated on*/}
+                                                                {/*    call*/}
+                                                                {/*</Typography>*/}
                                                                 <ExpandMoreIcon className="ex-icon"/>
                                                             </Box>
                                                             {
                                                                 !_.isEmpty(customerDetailsPaymentCalculation) &&
                                                                 <Box className="table table-borderless">
-                                                                    {
-                                                                        Object.keys(customerDetailsPaymentCalculation).map((key, index) => {
-                                                                            return (
-                                                                                <>
-                                                                                    <Box key={index} key={index}
-                                                                                         className={index === Object.keys(customerDetailsPaymentCalculation).length - 1 ? " table-box border" : "table-box"}>
-                                                                                        <Typography
-                                                                                            className="table-details">{key.charAt(0).toUpperCase() + key.slice(1)}</Typography>
-                                                                                        <Typography
-                                                                                            className="table-details">{customerDetailsPaymentCalculation[key]}</Typography>
-                                                                                    </Box>
-                                                                                </>
-                                                                            )
-                                                                        })
-                                                                    }
-                                                                    <Box className="tax tax1 table-box">
-                                                                        <Typography className="table-details">Servers charges are added based on number of diners</Typography>
+                                                                    <Box className="table-box">
+                                                                        <Typography
+                                                                            className="table-details">Experience*</Typography>
+                                                                        <Typography
+                                                                            className="table-details">{customerDetailsPaymentCalculation.experience}</Typography>
                                                                     </Box>
-                                                                    {/*<Box className="tax tax1 table-box">*/}
-                                                                    {/*    <Typography className="table-details">+Incl Of*/}
-                                                                    {/*        GST</Typography>*/}
-                                                                    {/*</Box>*/}
-                                                                    {/*<Box className="tax">*/}
-                                                                    {/*    <Typography className="table-details">++1.95% +*/}
-                                                                    {/*        GST</Typography>*/}
-                                                                    {/*</Box>*/}
+                                                                    <Box className="table-box">
+                                                                        <Typography
+                                                                            className="table-details">Service
+                                                                            Staff**</Typography>
+                                                                        <Typography
+                                                                            className="table-details">{customerDetailsPaymentCalculation.service_staff}</Typography>
+                                                                    </Box>
+                                                                    <Box className="table-box border table-details-pt">
+                                                                        <Typography
+                                                                            className="table-details">Sub
+                                                                            total</Typography>
+                                                                        <Typography
+                                                                            className="table-details">{customerDetailsPaymentCalculation.sub_total}</Typography>
+                                                                    </Box>
+                                                                    <Box className="table-box table-details-pt">
+                                                                        <Typography className="table-details">GST @5%</Typography>
+                                                                        <Typography className="table-details">{customerDetailsPaymentCalculation.GST}</Typography>
+                                                                    </Box>
+                                                                    <Box className="table-box">
+                                                                        <Typography className="table-details">Service Charges @10%</Typography>
+                                                                        <Typography className="table-details">{customerDetailsPaymentCalculation.service_charges}</Typography>
+                                                                    </Box>
+                                                                    <Box className="table-box border">
+                                                                        <Typography
+                                                                            className="grand-total">Grand Total</Typography>
+                                                                        <Typography
+                                                                            className="grand-total">{customerDetailsPaymentCalculation.total}</Typography>
+                                                                    </Box>
+                                                                    <Box className="tax tax1">
+                                                                        <Typography className="table-details">*Includes
+                                                                            the menu, tableware, table set-up and
+                                                                            white-glove service.</Typography>
+                                                                        <Typography className="table-details">**Service
+                                                                            staff is calculated based on number of
+                                                                            diners.</Typography>
+                                                                    </Box>
                                                                 </Box>
                                                             }
                                                         </Box>

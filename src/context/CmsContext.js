@@ -21,8 +21,8 @@ const CmsProvider = (props) => {
         '/': 'home',
         'join-chef': 'join_us',
         'our-chefs': 'our_chefs',
-        'privee': 'privee',
-        'supper-club': 'supper_club',
+        'private': 'privee',
+        'ticketed': 'supper_club',
         'corporate-booking': 'corporate_booking'
     }
 

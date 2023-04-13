@@ -670,7 +670,7 @@ const ChefDetails = (props) => {
                     <>
                         <Navbar
                             to={"/chef-details"}
-                            heading="Privee"
+                            heading="Private"
                             isColor={true}
                             isIcon={true}
                         />

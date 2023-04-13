@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import {Box, MenuItem, Select, styled, Grid, TextField, Typography} from "@mui/material";
+import {Box, MenuItem, Select, styled, Grid, TextField, Typography,InputLabel,OutlinedInput} from "@mui/material";
 import {MobileView} from "react-device-detect";
 import PriveeDining from "../../components/PriveeDining";
 import PriveeLogo from '../../assets/images/priveeLogo.png';
@@ -613,13 +613,13 @@ const PriveePage = (props) => {
     }
 
     const handleClick = () => {
-        navigate('/privee-viewmore')
+        navigate('/private-viewmore')
     }
 
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar isColor={true} heading="Privee"/>
+                <Navbar isColor={true} heading="Private"/>
                 {
                     !_.isEmpty(data?.privee && mealData) &&
                     <>
@@ -685,7 +685,7 @@ const PriveePage = (props) => {
                                             initialValues={{
                                                 city: 'Mumbai',
                                                 date: new Date(),
-                                                experience: 'Experiences',
+                                                experience: '',
                                                 numberOfDiner: ''
                                             }}
                                             onSubmit={(values) => {
@@ -779,12 +779,19 @@ const PriveePage = (props) => {
                                                     </Box>
                                                     <Box className="form-group">
                                                         <Select
-                                                            labelId="demo-simple-select-label"
-                                                            id="demo-simple-select"
                                                             name="experience"
+                                                            label="Time"
                                                             value={values.experience}
                                                             onChange={handleChange}
                                                             defaultValue={values.experience}
+                                                            placeholder="Time"
+                                                            displayEmpty
+                                                            renderValue={(selected) => {
+                                                                if (!selected) {
+                                                                    return <b>Time</b>;
+                                                                }
+                                                                return selected;
+                                                            }}
                                                             className="selectpicker my-select dropdown-toggle form-control"
                                                             sx={{
                                                                 fontFamily: 'Proxima Nova Alt',
@@ -835,7 +842,6 @@ const PriveePage = (props) => {
                                                                 },
                                                             }}
                                                         >
-                                                            <MenuItem value="Experiences">Experiences</MenuItem>
                                                             {
                                                                 mealData.map((item)=>{
                                                                     return <MenuItem value={item.name}>{item.name}</MenuItem>

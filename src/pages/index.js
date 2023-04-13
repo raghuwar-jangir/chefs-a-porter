@@ -907,7 +907,7 @@ const HomePage = () => {
 
     const finalImageData = finalImgData.map((item, i) => Object.assign({}, item, ColsOfObjects[i]));
     const handleClick = () => {
-        navigate('/privee-viewmore')
+        navigate('/private-viewmore')
     }
 
     return (
@@ -1188,7 +1188,7 @@ const HomePage = () => {
                                             className="supper-card-title">{data.home.booking_types.supper_club.title}</Typography>
                                         <Typography
                                             className='supper-card-details'>{data.home.booking_types.supper_club.description}</Typography>
-                                        <Typography><Link href="/supper-club"
+                                        <Typography><Link href="/tickted"
                                                           className="supper-card-link">{data.home.booking_types.supper_club.button_text}</Link></Typography>
                                     </Box>
                                     <Box className="privee-video">
@@ -1345,7 +1345,7 @@ const HomePage = () => {
                                 ))}
                             </Box>
                             <DiningExperienceCarousel title='Peek into our Private Dining Experiences'
-                                                      subTitle='@Privée'/>
+                                                      subTitle='@Private'/>
                             <TemptedYet title={data.home.home_footer.moblie_title}
                                         buttonText={data.home.home_footer.mobile_button}/>
                             <NeedHelp title={data.home.home_footer.desktop_title}

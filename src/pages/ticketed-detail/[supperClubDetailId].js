@@ -75,7 +75,7 @@ const SupperClubDetail = (props) => {
         setSupperClubDetailId(getSupperClubDetailId);
     }, [getSupperClubDetailId]);
     const handleClick = () => {
-        navigate("/personal-details1");
+        navigate("/personal-details");
     };
     const [showCarousel, setShowCarousel] = useState(false);
     const handleImageClick = () => {
@@ -996,10 +996,10 @@ const SupperClubDetail = (props) => {
                                 <Typography className="sub-box-text">
                                     Curated by{" "}
                                     <span><b className="sub-box-link">{userData?.chef?.name}</b></span>
-                                    <Typography className="dot"></Typography>
-                                    <Typography
-                                        className="sub-box-text-2">{userData?.seats - userData?.booking_count} Slots
-                                        Left!</Typography>
+                                    {/*<Typography className="dot"></Typography>*/}
+                                    {/*<Typography*/}
+                                    {/*    className="sub-box-text-2">{userData?.seats - userData?.booking_count} Slots*/}
+                                    {/*    Left!</Typography>*/}
                                 </Typography>
                             </Box>
                             <Grid className="supper-main-container" container spacing={{md: 2}}>
@@ -1175,31 +1175,33 @@ const SupperClubDetail = (props) => {
                                                 ₹ {userData?.price} <sub className="sub-text">Per Diner</sub>
                                             </Typography>
                                         </Box>
-                                        <Box>
-                                            <Stack className="date-stack">
-                                                {!_.isEmpty(userData?.dates) &&
-                                                    <Typography className="date-description">
-                                                        {moment(userData?.dates[0]).format("MMMM D")}
-                                                    </Typography>
-                                                }
-                                                <span className="line">|</span>
-                                                <Typography className="date-description">
-                                                    {" "}
-                                                    {moment(userData?.timefrom, 'HH:mm').format('h:mm A')} - {moment(userData?.timetill, 'HH:mm').format('h:mm A')}
-                                                </Typography>
-                                                <span className="line">|</span>
-                                                <Typography className="date-description">
-                                                    {userData?.venue}
-                                                </Typography>
-                                            </Stack>
-                                        </Box>
+                                        {/*<Box>*/}
+                                        {/*    <Stack className="date-stack">*/}
+                                        {/*        {!_.isEmpty(userData?.dates) &&*/}
+                                        {/*            <Typography className="date-description">*/}
+                                        {/*                {moment(userData?.dates[0]).format("MMMM D")}*/}
+                                        {/*            </Typography>*/}
+                                        {/*        }*/}
+                                        {/*        <span className="line">|</span>*/}
+                                        {/*        <Typography className="date-description">*/}
+                                        {/*            {" "}*/}
+                                        {/*            {moment(userData?.timefrom, 'HH:mm').format('h:mm A')} - {moment(userData?.timetill, 'HH:mm').format('h:mm A')}*/}
+                                        {/*        </Typography>*/}
+                                        {/*        <span className="line">|</span>*/}
+                                        {/*        <Typography className="date-description">*/}
+                                        {/*            {userData?.venue}*/}
+                                        {/*        </Typography>*/}
+                                        {/*    </Stack>*/}
+                                        {/*</Box>*/}
                                         <Box className="experience-date-box">
                                             <Typography className="experience-date-text">
-                                                Experience Date
                                             </Typography>
-                                            <Typography className="experience-date-sub-text">
-                                                Pick your preferred experience date
+                                            <Typography className="experience-date-text">
+                                                Choose Your Date
                                             </Typography>
+                                            {/*<Typography className="experience-date-sub-text">*/}
+                                            {/*    Pick your preferred experience date*/}
+                                            {/*</Typography>*/}
                                         </Box>
                                         {showDates?.map((item, index) => {
                                             return (
