@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Box, Typography, styled } from "@mui/material";
-import { Formik, Form, ErrorMessage, Field } from "formik";
+import React, {useState} from "react";
+import {Box, Typography, styled} from "@mui/material";
+import {Formik, Form, ErrorMessage, Field} from "formik";
 import * as Yup from "yup";
 import {
     withGoogleMap,
@@ -66,9 +66,9 @@ const BoxWrapper = styled(Box)({
     },
 });
 
-const MapComponent = ({ setNewAddress, setOpen }) => {
+const MapComponent = ({setNewAddress, setOpen}) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [coords, setCoords] = useState({ lat: 40.756795, lng: -73.954298 });
+    const [coords, setCoords] = useState({lat: 40.756795, lng: -73.954298});
     const [address, setAddress] = useState("");
     const [showCarousel, setShowCarousel] = useState(false);
     const [showCarousel2, setShowCarousel2] = useState(false);
@@ -113,7 +113,7 @@ const MapComponent = ({ setNewAddress, setOpen }) => {
                 {isOpen && (
                     <InfoWindow
                         onCloseClick={handleToggleClose}
-                        options={{ maxWidth: 100 }}
+                        options={{maxWidth: 100}}
                     >
                         <span>This is InfoWindow message!</span>
                     </InfoWindow>
@@ -163,7 +163,7 @@ const MapComponent = ({ setNewAddress, setOpen }) => {
                                                 <Box className="container-fluid">
                                                     <Box className="row">
                                                         <Box className="col-lg-12">
-                                                            <Box sx={{ position: "relative" }}>
+                                                            <Box sx={{position: "relative"}}>
                                                                 <Typography className="address-title">
                                                                     {address}
                                                                 </Typography>
@@ -207,9 +207,10 @@ const MapComponent = ({ setNewAddress, setOpen }) => {
                                             onSubmit={(values) => {
                                                 setNewAddress(values);
                                                 console.log("value====>", values);
+                                                localStorage.setItem('userAddress', JSON.stringify(values));
                                             }}
                                         >
-                                            {({ values, handleChange, handleSubmit }) => (
+                                            {({values, handleChange, handleSubmit}) => (
                                                 <Form onSubmit={handleSubmit}>
                                                     <Box
                                                         sx={{
@@ -232,7 +233,7 @@ const MapComponent = ({ setNewAddress, setOpen }) => {
                                                             autoComplete="off"
                                                             variant="standard"
                                                         />
-                                                        <ErrorMessage name="houseNo" />
+                                                        <ErrorMessage name="houseNo"/>
                                                     </Box>
 
                                                     <Box
@@ -256,7 +257,7 @@ const MapComponent = ({ setNewAddress, setOpen }) => {
                                                             autoComplete="off"
                                                             variant="standard"
                                                         />
-                                                        <ErrorMessage name="location" />
+                                                        <ErrorMessage name="location"/>
                                                     </Box>
 
                                                     <Box
@@ -278,7 +279,7 @@ const MapComponent = ({ setNewAddress, setOpen }) => {
                                                             autoComplete="off"
                                                             variant="standard"
                                                         />
-                                                        <ErrorMessage name="landmark" />
+                                                        <ErrorMessage name="landmark"/>
                                                     </Box>
 
                                                     <Box
@@ -302,7 +303,7 @@ const MapComponent = ({ setNewAddress, setOpen }) => {
                                                             autoComplete="off"
                                                             variant="standard"
                                                         />
-                                                        <ErrorMessage name="society" />
+                                                        <ErrorMessage name="society"/>
                                                     </Box>
                                                     <button
                                                         type="submit"
@@ -327,8 +328,8 @@ const MapComponent = ({ setNewAddress, setOpen }) => {
                                             ? "suggestion-item--active"
                                             : "suggestion-item";
                                         const style = suggestion.active
-                                            ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                                            : { backgroundColor: "#ffffff", cursor: "pointer" };
+                                            ? {backgroundColor: "#fafafa", cursor: "pointer"}
+                                            : {backgroundColor: "#ffffff", cursor: "pointer"};
                                         return (
                                             <div
                                                 {...getSuggestionItemProps(suggestion, {
@@ -348,9 +349,9 @@ const MapComponent = ({ setNewAddress, setOpen }) => {
 
                     <GoogleMapExample
                         containerElement={
-                            <div style={{ height: `380px`, width: "100%" }} />
+                            <div style={{height: `380px`, width: "100%"}}/>
                         }
-                        mapElement={<div style={{ height: `100%` }} />}
+                        mapElement={<div style={{height: `100%`}}/>}
                     />
                 </div>
             </BoxWrapper>

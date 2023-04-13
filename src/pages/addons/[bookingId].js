@@ -24,12 +24,11 @@ const Addons = (props) => {
     const summaryCookieValue = Cookies.get('BookingId');
     const summaryBookingId = summaryCookieValue?.replaceAll('"', '')
     const {bookingId} = props;
-    const {setIsBookingStatus, addOnsData,adPaymentData} = useContext(UsersContext);
+    const {addOnsData,adPaymentData,setPriveePayment} = useContext(UsersContext);
     const handleClick = () => {
         navigate(`/booking-summary/${summaryBookingId}`);
-        setIsBookingStatus(true);
+        setPriveePayment(true)
     }
-    console.log("adPaymentData======",adPaymentData)
     // const cookieValue = Cookies?.get('adsPaymentInfo');
     // const [paymentCalculationData, setPaymentCalculationData] = useState()
     //

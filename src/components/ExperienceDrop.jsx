@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Box, styled, Typography } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import UsersContext from "../context/UsersContext";
 
 const BoxWrapper = styled(Box)({
     '.choose-seat':{
@@ -98,6 +99,7 @@ const BoxWrapper = styled(Box)({
     },
 });
 const ExperienceDrop = ({toggleClose}) => {
+    const { userData } = useContext(UsersContext);
     const [numberOfSeats, setNumberOfSeats] = useState(1);
     const [numberOfTabels, setNumberOfTabels] = useState(1);
     const disabledStyle = {
@@ -111,13 +113,13 @@ const ExperienceDrop = ({toggleClose}) => {
     };
 
     const handleIncrement = () => {
-        if (numberOfSeats < 4) {
+        if (numberOfSeats < userData?.seats) {
             setNumberOfSeats(numberOfSeats + 1);
         }
     };
 
     const handleSeatIncreament = () => {
-        if (numberOfTabels < 1) {
+        if (numberOfTabels < userData?.seats_chefs_table) {
             setNumberOfTabels(numberOfTabels + 1);
         }
     };
@@ -138,7 +140,7 @@ const ExperienceDrop = ({toggleClose}) => {
                         <div className="r-seat">
                             <div className="r-seat-text">Regular Seating</div>
                             <span className="r-seat-rate">
-                <b className="r-seat-money">₹ 2,500</b>/ diner
+                <b className="r-seat-money">₹ {userData?.price}</b>/ diner
               </span>
                         </div>
                         <div>
@@ -151,13 +153,13 @@ const ExperienceDrop = ({toggleClose}) => {
                                 />
                                 <Typography className="number-ans">{numberOfSeats}</Typography>
                                 <AddIcon
-                                    style={numberOfSeats === 4 ? disabledStyle : {}}
+                                    style={numberOfSeats === userData?.seats ? disabledStyle : {}}
                                     className="right-btn"
                                     onClick={handleIncrement}
-                                    disabled={numberOfSeats === 4}
+                                    disabled={numberOfSeats === userData?.seats}
                                 />
                             </div>
-                            <span className="s-left">4 seats left</span>
+                            <span className="s-left">{userData?.seats}</span>
                         </div>
                     </Box>
                     <hr className="seat-hr" />
@@ -165,7 +167,7 @@ const ExperienceDrop = ({toggleClose}) => {
                         <div className="r-seat">
                             <div className="r-seat-text">Chefs Table</div>
                             <span className="r-seat-rate">
-                <b className="r-seat-money">₹ 4,500</b>/ diner
+                <b className="r-seat-money">₹ {userData?.price_chefs_table}</b>/ diner
               </span>
                         </div>
                         <div>
@@ -180,11 +182,11 @@ const ExperienceDrop = ({toggleClose}) => {
                                 <AddIcon
                                     className="right-btn"
                                     onClick={handleSeatIncreament}
-                                    style={numberOfTabels === 1 ? disabledStyle : {}}
-                                    disabled={numberOfTabels === 1}
+                                    style={numberOfTabels === userData?.seats_chefs_table ? disabledStyle : {}}
+                                    disabled={numberOfTabels === userData?.seats_chefs_table}
                                 />
                             </div>
-                            <span className="s-left">seats full</span>
+                            <span className="s-left">{userData?.seats_chefs_table}</span>
                         </div>
                     </Box>
                 </Box>{" "}

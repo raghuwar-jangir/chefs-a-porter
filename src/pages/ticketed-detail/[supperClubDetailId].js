@@ -11,18 +11,18 @@ import {
     TextField,
     TextareaAutosize,
 } from "@mui/material";
-import {DatePickerInput} from "rc-datepicker";
+import { DatePickerInput } from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
 import CloseIcon from "@mui/icons-material/Close";
-import {Formik, Form} from "formik";
-import React, {useState, useRef, useContext, useEffect} from "react";
-import {useTheme} from "@mui/material/styles";
+import { Formik, Form } from "formik";
+import React, { useState, useRef, useContext, useEffect } from "react";
+import { useTheme } from "@mui/material/styles";
 import RestorentImg from "../../assets/images/sc-gallery.png";
 import RestorentImgMobile from "../../assets/images/RestorentImgMobile.png";
 import CardChefComponent from "../../components/CardChefComponent";
 import ChefCarousel from "../../components/ChefCarousel";
 import SwipeableViews from "react-swipeable-views";
-import {autoPlay} from "react-swipeable-views-utils";
+import { autoPlay } from "react-swipeable-views-utils";
 import Footer from "../../components/Footer";
 import NeedHelp from "../../components/NeedHelp";
 import Tabs from "@mui/joy/Tabs";
@@ -30,7 +30,7 @@ import TabList from "@mui/joy/TabList";
 import Tab from "@mui/joy/Tab";
 import TabPanel from "@mui/joy/TabPanel";
 import GoogleMapReact from "google-map-react";
-import {Link} from "gatsby";
+import { Link } from "gatsby";
 import pLogo from "../../assets/images/valet.png";
 import Navbar from "../../components/NavbarComponent";
 import SuperClubPopUpCarousel from "../../components/SuperClubPopUpCarousel";
@@ -42,7 +42,7 @@ import EventChefCarousel from "../../components/EventChefCarousel";
 import ChefMakoCarousel from "../../components/ChefMakoCarousel";
 import MenuCarousel from "../../components/MenuCarousel";
 import DiningPage from "../../components/DiningPage";
-import {navigate} from "gatsby";
+import { navigate } from "gatsby";
 import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
 import moment from "moment/moment";
@@ -62,15 +62,14 @@ const images = [
     RestorentImgMobile,
 ];
 const SupperClubDetail = (props) => {
-
-    const {setSupperClubDetailId, userData} = useContext(UsersContext);
-    const getSupperClubDetailId = '62fe25e2d75a11bcf635e206';
+    const { setSupperClubDetailId, userData } = useContext(UsersContext);
+    const getSupperClubDetailId = "62fe25e2d75a11bcf635e206";
     // const getSupperClubDetailId = props?.params?.supperClubDetailId;
 
     const groupedDates = _.groupBy(userData?.new_dates, (item) => item.date);
     const showDates = Object.values(groupedDates);
 
-    console.log("groupedDates====", groupedDates)
+    console.log("groupedDates====", groupedDates);
 
     useEffect(() => {
         setSupperClubDetailId(getSupperClubDetailId);
@@ -88,10 +87,26 @@ const SupperClubDetail = (props) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const [show, setShow] = useState(false);
-    const handleToggle = (index) => setShow(true);
-    const toggleClose = () => setShow(false);
-    const AnyReactComponent = ({text}) => <div>{text}</div>;
+    const [showArray, setShowArray] = useState(
+        Array(showDates.length).fill(false)
+    );
+    console.log("show======>", showArray);
+    const handleToggle = (index) => {
+        setShowArray((prevState) => {
+            const newState = [...prevState];
+            newState[index] = !newState[index];
+            return newState;
+        });
+    };
+
+    const toggleClose = (index) => {
+        setShowArray((prevState) => {
+            const newState = [...prevState];
+            newState[index] = false;
+            return newState;
+        });
+    };
+    const AnyReactComponent = ({ text }) => <div>{text}</div>;
     const defaultProps = {
         center: {
             lat: userData?.chef?.details?.coordinates?.lat,
@@ -106,7 +121,6 @@ const SupperClubDetail = (props) => {
                 lng: userData?.chef?.details?.coordinates?.lng,
             },
             map,
-            // title: 'Hello World!'
         });
         return marker;
     };
@@ -734,8 +748,8 @@ const SupperClubDetail = (props) => {
             ".exp-invite-btn": {
                 width: "25%",
                 padding: "10px",
-                background: '#101418',
-                color: '#FBFBFB'
+                background: "#101418",
+                color: "#FBFBFB",
             },
             ".parent-container ": {
                 flex: "0 0 auto",
@@ -754,12 +768,11 @@ const SupperClubDetail = (props) => {
                 maxWidth: "100%",
             },
             ".sub-box-2": {
-                display: 'none'
+                display: "none",
             },
             ".time-btn-box": {
                 width: "100%",
                 flexShrink: "0",
-                // width: '100%',
                 maxWidth: "100%",
             },
             ".date-time-box": {
@@ -861,10 +874,8 @@ const SupperClubDetail = (props) => {
             backgroundColor: "#DCD7CB !important",
             boxShadow: "0px 8px 12px rgb(0 0 0 / 16%)",
             padding: "40px 30px 20px",
-            // position: 'relative',
             display: "flex",
             flexDirection: "column",
-            // width: '100%',
             pointerEvents: "auto",
             backgroundClip: "paddingBox",
             outline: "0",
@@ -971,25 +982,26 @@ const SupperClubDetail = (props) => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                {!_.isEmpty(userData) &&
+                {!_.isEmpty(userData) && (
                     <>
-                        <Navbar isImage={true}/>
+                        <Navbar isImage={true} />
                         <Box className="main-box">
                             <Box className="sub-box">
                                 <Typography className="sub-box-heading">
-                                    {/*The Big Fat Parsi Blowout*/}
                                     {userData?.title}
                                 </Typography>
                                 <Typography className="sub-box-text">
                                     Curated by{" "}
-                                    <span><b className="sub-box-link">{userData?.chef?.name}</b></span>
-                                    {/*<Typography className="dot"></Typography>*/}
-                                    {/*<Typography*/}
-                                    {/*    className="sub-box-text-2">{userData?.seats - userData?.booking_count} Slots*/}
-                                    {/*    Left!</Typography>*/}
+                                    <span>
+                    <b className="sub-box-link">{userData?.chef?.name}</b>
+                  </span>
                                 </Typography>
                             </Box>
-                            <Grid className="supper-main-container" container spacing={{md: 2}}>
+                            <Grid
+                                className="supper-main-container"
+                                container
+                                spacing={{ md: 2 }}
+                            >
                                 <Grid
                                     className="parent-container"
                                     item
@@ -1016,10 +1028,10 @@ const SupperClubDetail = (props) => {
                                                     className="close-button"
                                                     onClick={handleImageClose}
                                                 >
-                                                    <CloseIcon className="pop-close-icon"/>
+                                                    <CloseIcon className="pop-close-icon" />
                                                 </button>
                                                 <Box className="carousel">
-                                                    <SupperClubDetailPopUpCarousel title={title}/>
+                                                    <SupperClubDetailPopUpCarousel title={title} />
                                                 </Box>
                                             </Box>
                                         )}
@@ -1058,7 +1070,7 @@ const SupperClubDetail = (props) => {
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid className="grid-box-2" container spacing={{md: 2}}>
+                            <Grid className="grid-box-2" container spacing={{ md: 2 }}>
                                 <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
                                     <Box
                                         sx={{
@@ -1069,7 +1081,7 @@ const SupperClubDetail = (props) => {
                                     >
                                         <Tabs
                                             defaultValue={0}
-                                            sx={{"--Tabs-gap": "0px", backgroundColor: "#FBFBFB"}}
+                                            sx={{ "--Tabs-gap": "0px", backgroundColor: "#FBFBFB" }}
                                         >
                                             <TabList>
                                                 <Tab className="tab-box" value={0}>
@@ -1082,12 +1094,12 @@ const SupperClubDetail = (props) => {
                                                     Venue
                                                 </Tab>
                                             </TabList>
-                                            <TabPanel value={0} sx={{p: 0}}>
-                                                <CardChefComponent bgColor="#FBFBFB"/>
+                                            <TabPanel value={0} sx={{ p: 0 }}>
+                                                <CardChefComponent bgColor="#FBFBFB" />
                                                 <Box className="chef-carousel">
-                                                    <ChefMakoCarousel title="What's Cooking?"/>
-                                                    <SupperClubDetailsPastCarousel chefHeading="Past Supper Clubs"/>
-                                                    <SupperClubDetailsCarousel/>
+                                                    <ChefMakoCarousel title="What's Cooking?" />
+                                                    <SupperClubDetailsPastCarousel chefHeading="Past Supper Clubs" />
+                                                    <SupperClubDetailsCarousel />
                                                 </Box>
                                                 <Box className="last-contain">
                                                     <Box>
@@ -1101,10 +1113,10 @@ const SupperClubDetail = (props) => {
                                                     <Button className="exp-invite-btn">Invite</Button>
                                                 </Box>
                                             </TabPanel>
-                                            <TabPanel value={1} sx={{p: 0}}>
-                                                <MenuCarousel/>
+                                            <TabPanel value={1} sx={{ p: 0 }}>
+                                                <MenuCarousel />
                                             </TabPanel>
-                                            <TabPanel value={2} sx={{p: 0}}>
+                                            <TabPanel value={2} sx={{ p: 0 }}>
                                                 <Box className="map-container">
                                                     <Box
                                                         style={{
@@ -1115,8 +1127,13 @@ const SupperClubDetail = (props) => {
                                                         <Box className="map-heading">
                                                             {userData?.chef?.details?.address2}
                                                         </Box>
-                                                        <a href={`https://www.google.com/maps/search/?api=1&query=${userData?.chef?.details?.coordinates?.lat},${userData?.chef?.details?.coordinates?.lng}`}
-                                                           className="map-link" target="_blank">Get Directions</a>
+                                                        <a
+                                                            href={`https://www.google.com/maps/search/?api=1&query=${userData?.chef?.details?.coordinates?.lat},${userData?.chef?.details?.coordinates?.lng}`}
+                                                            className="map-link"
+                                                            target="_blank"
+                                                        >
+                                                            Get Directions
+                                                        </a>
                                                         <Box
                                                             style={{
                                                                 height: "380px",
@@ -1124,24 +1141,27 @@ const SupperClubDetail = (props) => {
                                                             }}
                                                         >
                                                             <GoogleMapReact
-                                                                bootstrapURLKeys={{key: ""}}
+                                                                bootstrapURLKeys={{ key: "" }}
                                                                 defaultCenter={defaultProps.center}
                                                                 defaultZoom={defaultProps.zoom}
-                                                                onGoogleApiLoaded={({
-                                                                                        map,
-                                                                                        maps
-                                                                                    }) => renderMarkers(map, maps)}
+                                                                onGoogleApiLoaded={({ map, maps }) =>
+                                                                    renderMarkers(map, maps)
+                                                                }
                                                             >
                                                                 <AnyReactComponent
-                                                                    lat={userData?.chef?.details?.coordinates?.lat}
-                                                                    lng={userData?.chef?.details?.coordinates?.lng}
+                                                                    lat={
+                                                                        userData?.chef?.details?.coordinates?.lat
+                                                                    }
+                                                                    lng={
+                                                                        userData?.chef?.details?.coordinates?.lng
+                                                                    }
                                                                 />
                                                             </GoogleMapReact>
                                                         </Box>
                                                     </Box>
                                                 </Box>
                                                 <Box class="valet">
-                                                    <img className="logo" src={pLogo}/>
+                                                    <img className="logo" src={pLogo} />
                                                     <Typography className="down-heading">
                                                         Valet Available
                                                     </Typography>
@@ -1150,7 +1170,14 @@ const SupperClubDetail = (props) => {
                                         </Tabs>
                                     </Box>
                                 </Grid>
-                                <Grid className="grid-child-box" item md={5} sm={6} xs={12} xl={5}>
+                                <Grid
+                                    className="grid-child-box"
+                                    item
+                                    md={5}
+                                    sm={6}
+                                    xs={12}
+                                    xl={5}
+                                >
                                     <Box className="sub-box-2">
                                         <Box
                                             sx={{
@@ -1159,41 +1186,20 @@ const SupperClubDetail = (props) => {
                                             }}
                                         >
                                             <Typography className="sub-text-price">
-                                                ₹ {userData?.price} <sub className="sub-text">Per Diner</sub>
+                                                ₹ {userData?.price}{" "}
+                                                <sub className="sub-text">Per Diner</sub>
                                             </Typography>
                                         </Box>
-                                        {/*<Box>*/}
-                                        {/*    <Stack className="date-stack">*/}
-                                        {/*        {!_.isEmpty(userData?.dates) &&*/}
-                                        {/*            <Typography className="date-description">*/}
-                                        {/*                {moment(userData?.dates[0]).format("MMMM D")}*/}
-                                        {/*            </Typography>*/}
-                                        {/*        }*/}
-                                        {/*        <span className="line">|</span>*/}
-                                        {/*        <Typography className="date-description">*/}
-                                        {/*            {" "}*/}
-                                        {/*            {moment(userData?.timefrom, 'HH:mm').format('h:mm A')} - {moment(userData?.timetill, 'HH:mm').format('h:mm A')}*/}
-                                        {/*        </Typography>*/}
-                                        {/*        <span className="line">|</span>*/}
-                                        {/*        <Typography className="date-description">*/}
-                                        {/*            {userData?.venue}*/}
-                                        {/*        </Typography>*/}
-                                        {/*    </Stack>*/}
-                                        {/*</Box>*/}
                                         <Box className="experience-date-box">
-                                            <Typography className="experience-date-text">
-                                            </Typography>
+                                            <Typography className="experience-date-text"></Typography>
                                             <Typography className="experience-date-text">
                                                 Choose Your Date
                                             </Typography>
-                                            {/*<Typography className="experience-date-sub-text">*/}
-                                            {/*    Pick your preferred experience date*/}
-                                            {/*</Typography>*/}
                                         </Box>
                                         {showDates?.map((item, index) => {
                                             return (
                                                 <Box className="date-time-box">
-                                                    <Box sx={{display: "flex", alignItems: "center"}}>
+                                                    <Box sx={{ display: "flex", alignItems: "center" }}>
                                                         <Typography className="main-date">
                                                             {moment(item[0].date).format("D")}
                                                         </Typography>
@@ -1216,9 +1222,9 @@ const SupperClubDetail = (props) => {
                                                             />
                                                             <label
                                                                 htmlFor={`radio-${index}`}
-                                                                onClick={() => handleToggle(index, item)}
+                                                                onClick={() => handleToggle(index)}
                                                             >
-                                                                <Typography className="time-text" key={index}>
+                                                                <Typography className="time-text">
                                                                     {moment(item[0]?.from, "HH:mm").format(
                                                                         "h:mm A"
                                                                     )}{" "}
@@ -1236,9 +1242,11 @@ const SupperClubDetail = (props) => {
                                                             />
                                                             {!_.isEmpty(item[1]?.from) &&
                                                                 !_.isEmpty(item[1]?.to) && (
-                                                                    <label htmlFor={`radio-${index}`}
-                                                                           onClick={() => handleToggle(index, item)}>
-                                                                        <Typography className="time-text" key={index}>
+                                                                    <label
+                                                                        htmlFor={`radio-${index}`}
+                                                                        onClick={() => handleToggle(index)}
+                                                                    >
+                                                                        <Typography className="time-text">
                                                                             {moment(item[1]?.from, "HH:mm").format(
                                                                                 "h:mm A"
                                                                             )}{" "}
@@ -1253,10 +1261,12 @@ const SupperClubDetail = (props) => {
                                                     </Box>
                                                     <Box
                                                         className="experience-drop"
-                                                        style={{width: "100%"}}
+                                                        style={{ width: "100%" }}
                                                     >
-                                                        {show && (
-                                                            <ExperienceDrop toggleClose={toggleClose}/>
+                                                        {showArray[index] && (
+                                                            <ExperienceDrop
+                                                                toggleClose={() => toggleClose(index)}
+                                                            />
                                                         )}
                                                     </Box>
                                                 </Box>
@@ -1301,27 +1311,35 @@ const SupperClubDetail = (props) => {
                                             className="close"
                                             onClick={handleClose}
                                         >
-                                            <CloseIcon/>
+                                            <CloseIcon />
                                         </button>
                                     </Box>
                                     <Box className="container-fluid">
                                         <Formik
                                             initialValues={{
                                                 day: new Date(),
-                                                time: new Date().getHours() + ":" + new Date().getMinutes(),
+                                                time:
+                                                    new Date().getHours() + ":" + new Date().getMinutes(),
                                                 contactNumber: "",
                                                 queryMessage: "",
                                             }}
                                             onSubmit={(values) => {
                                                 const experienceData = {
                                                     ...values,
-                                                    day: moment(_.get(values, "day")).format("ddd,DD MMM "),
+                                                    day: moment(_.get(values, "day")).format(
+                                                        "ddd,DD MMM "
+                                                    ),
                                                 };
                                                 console.log("value===>", values);
                                                 console.log("experienceData===>", experienceData);
                                             }}
                                         >
-                                            {({values, handleChange, handleSubmit, setFieldValue}) => (
+                                            {({
+                                                  values,
+                                                  handleChange,
+                                                  handleSubmit,
+                                                  setFieldValue,
+                                              }) => (
                                                 <Form onSubmit={handleSubmit}>
                                                     <Box className="row">
                                                         <Box className="mb-3">
@@ -1401,7 +1419,7 @@ const SupperClubDetail = (props) => {
                                                         <button
                                                             className="btn btn-primary"
                                                             type="submit"
-                                                            style={{width: "100% !important"}}
+                                                            style={{ width: "100% !important" }}
                                                         >
                                                             Apply
                                                         </button>
@@ -1413,13 +1431,13 @@ const SupperClubDetail = (props) => {
                                 </Box>
                             </Box>
                         </Modal>
-                        <NeedHelp/>
+                        <NeedHelp />
                         <Box className="footer-box">
-                            <Footer/>
+                            <Footer />
                         </Box>
                     </>
-                }
-                <FooterEnd/>
+                )}
+                <FooterEnd />
             </BoxWrapper>
         </React.Fragment>
     );

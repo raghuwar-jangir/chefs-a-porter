@@ -61,7 +61,6 @@ const CustomerDetails = (props) => {
     const cookieValue = Cookies?.get('customerData');
     const cDsPaymentCookieVal = Cookies?.get('CPaymentInfo');
     const [customerDetailsPaymentCalculation, setCustomerDetailsPaymentCalculation] = useState();
-    console.log("==================", customerDetailsPaymentCalculation)
 
     useEffect(() => {
         if (cookieValue) {
@@ -72,7 +71,6 @@ const CustomerDetails = (props) => {
         }
     }, [cookieValue, cDsPaymentCookieVal])
 
-    console.log("customerInfo======", customerInfo)
     const handleOpenOtp = (contactNumber, values) => {
         if (!_.isEmpty(contactNumber)) {
             setOpenOtp(true);
