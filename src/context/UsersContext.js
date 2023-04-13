@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import { useLocation } from "@reach/router";
 import Cookies from "js-cookie";
 import * as _ from "lodash";
+import useRazorpay from "react-razorpay";
 
 const defaultState = {
   data: {},
@@ -12,6 +13,9 @@ const defaultState = {
 const UsersContext = React.createContext(defaultState);
 
 const UsersProvider = (props) => {
+
+    const priveeRazorpay = useRazorpay();
+    const Razorpay = useRazorpay();
     const path = useLocation();
     const currentPath = path.pathname.split("/")[1];
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
@@ -23,7 +27,6 @@ const UsersProvider = (props) => {
     const cookieValue = Cookies?.get('BookingId');
     const bookingId = cookieValue?.replaceAll('"', '');
     const summaryBookingId = cookieValue?.replaceAll('"', '');
-    const [isBookingStatus, setIsBookingStatus] = useState(false);
     const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
     const [isSupperBookingStatus, setIsSupperBookingStatus] = useState(false);
@@ -55,12 +58,17 @@ const UsersProvider = (props) => {
     const [isCoupon, setIsCoupon] = useState(false);
     const [isSupperClubCoupon, setIsSupperClubCoupon] = useState(false);
     const [voucher, setVoucher] = useState('');
+    const [bookingSuccessOpen, setBookingSuccessOpen] = useState(false);
+    const [priveePayment, setPriveePayment] = useState(false)
+    const [supperClubPayment, setSupperClubPayment] = useState(false)
 
     console.log("isCoupon=======", isCoupon)
     console.log("adPaymentData======", adPaymentData)
     console.log("bookingId=======", bookingId)
     console.log("callMobileNumber=======", callMobileNumber)
     console.log("mealData=======", mealData)
+    console.log("eventDetailsData============", eventDetailsData)
+
     useEffect(() => {
         // if (cookieValueSupper) {
         //     setSupperClubBookingBookingConfirm(JSON.parse(cookieValueSupper));
@@ -94,61 +102,69 @@ const UsersProvider = (props) => {
             })
             axios.post(baseUrl + '/booking/calculate/' + bookingId).then((response) => {
                 if (response.status === 200) {
-                    console.log("adsPaymentInfo=========", response.data)
                     setAdPaymentData(response.data)
                     Cookies.set('adsPaymentInfo', JSON.stringify(response.data));
                 }
             })
-        } else if (isBookingStatus) {
-            axios.post(baseUrl + '/booking/confirm/' + bookingId).then((response) => {
-                if (response.status === 200) {
-                    Cookies.set('bookingConfirm', JSON.stringify(response.data));
-                    Cookies.set(
-                        "razorpayOrderId",
-                        JSON.stringify(response.data.razorpay_order_id)
-                    );
-                    Cookies.set(
-                        "rzKey",
-                        JSON.stringify(response.data.key)
-                    );
-                    console.log("bookingConfirm response======", response.data)
-                }
-                setIsBookingStatus(false)
-            })
         } else if (isConfirm) {
+            console.log("bookingId========",bookingId)
             axios.post(baseUrl + '/booking/confirm/' + bookingId).then((response) => {
                 if (response.status === 200) {
-                    Cookies.set('bookingConfirm', JSON.stringify(response.data));
-                    Cookies.set(
-                        "razorpayOrderId",
-                        JSON.stringify(response.data.razorpay_order_id)
-                    );
-                    Cookies.set(
-                        "razorpayKey",
-                        JSON.stringify(response.data.razorpay_key)
-                    );
-                    console.log("bookingConfirm response======", response.data)
+                    const options = {
+                        key: response?.data?.razorpay_key,
+                        currency: "INR",
+                        name: "Chefs-à-Porter",
+                        order_id: response?.data?.razorpay_order_id,
+                        description: "Test Transaction",
+                        image: "https://chefsaporter.com/assets/img/logo_black.svg",
+                        theme: {color: "#C6A87D", fontFamily: "ProximaNovaA-Regular"},
+                        handler: (response) => {
+                            if (response) {
+                                setIsConfirm(false);
+                                axios.post('https://chefv2.hypervergedemo.site/v1/booking/verifypayment/' + summaryBookingId, {
+                                    razorpay_order_id: response.razorpay_order_id,
+                                    razorpay_payment_id: response.razorpay_payment_id,
+                                    razorpay_signature: response.razorpay_signature,
+                                })
+                                    .then((response) => {
+                                        setBookingSuccessOpen(true)
+                                        if (response.status === 200) {
+                                            Cookies.set(
+                                                "paymentVerificationData",
+                                                JSON.stringify(response.data)
+                                            );
+                                        }
+                                    });
+                            }
+                        },
+                    };
+                    const rzpay = new priveeRazorpay(options);
+                    rzpay.open();
+                } else {
+                    rzpay.on("payment.failed", function (response) {
+                        console.log("fails", response);
+                    });
                 }
-                setIsBookingStatus(false)
+                setIsConfirm(false);
+                // localStorage.removeItem('priveePaymentInfo');
             })
         } else if (isCoupon) {
             axios.post(baseUrl + '/booking/calculate/' + summaryBookingId, {
                 voucher: voucher
             }).then((response) => {
                 if (response.status === 200) {
-                    setBsPaymentData(response.data)
-                    Cookies.set('bSPaymentInfo', JSON.stringify(response.data));
-                    console.log("paymentCalculation ===============", response.data)
+                    setBsPaymentData(response.data);
+                    localStorage.setItem('priveePaymentInfo', JSON.stringify(response.data));
                 }
             })
-        } else if (isCoupon !== true && currentPath === 'booking-summary') {
+        } else if (isCoupon !== true && priveePayment) {
             axios.post(baseUrl + '/booking/calculate/' + summaryBookingId).then((response) => {
                 if (response.status === 200) {
                     setBsPaymentData(response.data)
-                    Cookies.set('bSPaymentInfo', JSON.stringify(response.data));
-                    console.log("paymentCalculation ===============", response.data)
+                    localStorage.setItem('priveePaymentInfo', JSON.stringify(response.data));
                 }
             })
+            setPriveePayment(false)
         } else if (isContactUsData) {
             axios.post(baseUrl + '/contact_us', {
                 name: contactUsData.name,
@@ -167,41 +183,72 @@ const UsersProvider = (props) => {
             })
             setIsJoinChefData(false)
         } else if (currentPath === 'ticketed-booking-summary' && supperClubBookingId) {
-            console.log("supperClubBookingId==========--", supperClubBookingId)
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId, {
-                common_menu: eventId
+                common_menu: eventId,
             }).then((response) => {
                 if (response.status === 200) {
                     setSupperClubPaymentData(response.data);
-                    Cookies.set('supperClubBookingData', JSON.stringify(response.data));
                 }
             })
         } else if (isSupperBookingStatus) {
-            axios.post(baseUrl + '/booking/confirm/' + supperClubBookingId).then((response) => {
+            console.log("supperClubBookingId===========",supperClubBookingId)
+            axios.post(baseUrl + '/booking/confirm/'+ supperClubBookingId).then((response) => {
                 if (response.status === 200) {
-                    setSupperClubRazorpay(response.data)
-                    Cookies.set('scbDetails', response.data);
-                    Cookies.set('ScbData', JSON.stringify(response?.data?.razorpay_order_id));
-                    console.log("supperClubBookingBookingConfirm response======", response.data.razorpay_order_id)
+                    const options = {
+                        key: response?.data?.razorpay_key,
+                        currency: "INR",
+                        name: "Chefs-à-Porter",
+                        order_id: response?.data?.razorpay_order_id,
+                        description: "Test Transaction",
+                        image: "https://chefsaporter.com/assets/img/logo_black.svg",
+                        theme: {color: "#C6A87D", fontFamily: "ProximaNovaA-Regular"},
+                        handler: (response) => {
+                            if (response) {
+                                setIsSupperBookingStatus(false);
+                                axios.post('https://chefv2.hypervergedemo.site/v1/booking/verifypayment/' + supperClubBookingId, {
+                                    razorpay_order_id: response.razorpay_order_id,
+                                    razorpay_payment_id: response.razorpay_payment_id,
+                                    razorpay_signature: response.razorpay_signature,
+                                })
+                                    .then((response) => {
+                                        if (response.status === 200) {
+                                            setBookingSuccessOpen(true)
+                                            Cookies.set(
+                                                "paymentVerificationData",
+                                                JSON.stringify(response.data)
+                                            );
+                                        }
+                                    });
+                            }
+                        },
+                    };
+                    const rzpay = new Razorpay(options);
+                    rzpay.open();
+                } else {
+                    rzpay.on("payment.failed", function (response) {
+                        console.log("fails", response);
+                    });
                 }
                 setIsSupperBookingStatus(false)
+                // localStorage.removeItem('sprClubPaymentInfo');
             })
-        } else if (isSupperClubCoupon && supperClubBookingId && voucher) {
+        } else if (isSupperClubCoupon) {
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId, {
                 voucher: voucher
             }).then((response) => {
                 if (response.status === 200) {
                     setSupperClubConfirmPaymentData(response.data)
-                    Cookies.set('supperClubBookingData', JSON.stringify(response.data));
+                    localStorage.setItem('sprClubPaymentInfo', JSON.stringify(response.data));
                 }
             })
-        } else if (isSupperClubCoupon !== true && currentPath === 'ticketed-booking-confirm' && supperClubBookingId) {
+        } else if (isSupperClubCoupon !== true && supperClubPayment) {
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId).then((response) => {
                 if (response.status === 200) {
-                    setSupperClubConfirmPaymentData(response.data)
-                    Cookies.set('supperClubBookingData', JSON.stringify(response.data));
+                    setSupperClubConfirmPaymentData(response.data);
+                    localStorage.setItem('sprClubPaymentInfo', JSON.stringify(response.data));
                 }
             })
+            setSupperClubPayment(false);
         } else if (currentPath === 'personal-details') {
             axios.post(baseUrl + '/booking/calculatepayment/', {
                 id: superClubDetailId,
@@ -217,34 +264,16 @@ const UsersProvider = (props) => {
             axios.post(baseUrl + '/booking/calculatepayment/', {
                 id: PaymentEventId,
                 type: "privee",
-                diner: eventDetailsData?.numberOfDinner,
-                courses: eventDetailsData?.numberOfCourses,
+                // diner: eventDetailsData?.numberOfDinner,
+                // courses: eventDetailsData?.numberOfCourses,
+                diner: 1,
+                courses: 6,
             }).then((response) => {
                 if (response.status === 200) {
                     Cookies.set('CPaymentInfo', JSON.stringify(response.data));
                 }
             })
         }
-        // else if (paymentVerification) {
-        //     axios
-        //         .post(baseUrl + "booking/verifypayment/" + supperClubBookingId, {
-        //             razorpay_order_id: supperClubBookingBookingConfirm.razorpay_order_id,
-        //             razorpay_payment_id:
-        //             supperClubBookingBookingConfirm.razorpay_payment_id,
-        //             razorpay_signature:
-        //             supperClubBookingBookingConfirm.razorpay_signature,
-        //         })
-        //         .then((response) => {
-        //             if (response.status === 200) {
-        //                 Cookies.set(
-        //                     "paymentVerificationData",
-        //                     JSON.stringify(response.data)
-        //                 );
-        //             }
-        //         });
-        //     setPaymentVerification(false);
-        // }
-
         if (path.pathname === "/") {
             axios.get(baseUrl + '/cms/footer').then(result => {
                 setCallMobileNumber(result.data.footer.footer.mobile)
@@ -261,7 +290,7 @@ const UsersProvider = (props) => {
                 setMealTypeData(result.data)
             })
         }
-    }, [isConfirm,isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, isBookingStatus, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
+    }, [isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
 
   const { children } = props;
 
@@ -273,7 +302,6 @@ const UsersProvider = (props) => {
                 setEventId,
                 eventId,
                 setSupperClubDetailId,
-                setIsBookingStatus,
                 setContactUsData,
                 setIsContactUsData,
                 setJoinChefData,
@@ -295,7 +323,11 @@ const UsersProvider = (props) => {
                 setIsSupperClubCoupon,
                 supperClubRazorpay,
                 setIsConfirm,
-                isConfirm
+                isConfirm,
+                bookingSuccessOpen,
+                setBookingSuccessOpen,
+                setPriveePayment,
+                setSupperClubPayment
             }}
         >
             {children}

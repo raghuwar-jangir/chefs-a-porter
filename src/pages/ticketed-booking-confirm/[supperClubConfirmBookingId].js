@@ -53,7 +53,10 @@ const ScBookingConfirm = (props) => {
         supperClubConfirmPaymentData,
         setIsSupperClubCoupon,
         supperClubRazorpay,
+        setBookingSuccessOpen,
+        bookingSuccessOpen,
         voucher,
+        setIsConfirm,
         setVoucher,
     } = useContext(UsersContext)
     const {supperClubConfirmBookingId} = props;
@@ -61,8 +64,9 @@ const ScBookingConfirm = (props) => {
     const [supperClubBookingData, setSupperClubBookingData] = useState()
     const [superClubBookingDetails, setSuperClubBookingDetails] = useState()
     const cookieValue2 = Cookies.get('supperClubBookingPersonalDetail');
-    const cookieValue = Cookies?.get('ScbData');
-    const razorpayOderId = cookieValue?.replaceAll('"', '');
+    const SuperClubPaymentData = JSON.parse(localStorage.getItem('sprClubPaymentInfo'));
+    console.log("supperClubConfirmPaymentData==========", supperClubConfirmPaymentData)
+    console.log("SuperClubPaymentData==========", SuperClubPaymentData)
 
     console.log("supperClubConfirmPaymentData=====>",supperClubConfirmPaymentData);
     useEffect(() => {
@@ -71,46 +75,9 @@ const ScBookingConfirm = (props) => {
         }
     }, [cookieValue2])
 
-    const Razorpay = useRazorpay();
-
-    const handlePayment = useCallback(() => {
-        const options = {
-            key: "rzp_test_OqWbWLVoLIKRZ7",
-            // amount: 100 * 100,
-            currency: "INR",
-            name: "Chefs-à-Porter",
-            order_id: razorpayOderId,
-            description: "Test Transaction",
-            image: "https://chefsaporter.com/assets/img/logo_black.svg",
-            theme: {color: "#C6A87D", fontFamily: "ProximaNovaA-Regular"},
-
-            handler: (response) => {
-                console.log("superr club response================", response);
-                if (response) {
-                    axios.post('https://chefv2.hypervergedemo.site/v1/booking/verifypayment/' + supperClubConfirmBookingId, {
-                        razorpay_order_id: response.razorpay_payment_id,
-                        razorpay_payment_id: response.razorpay_payment_id,
-                        razorpay_signature: response.razorpay_signature,
-                    })
-                        .then((response) => {
-                            if (response.status === 200) {
-                                Cookies.set(
-                                    "SCpaymentVerificationData",
-                                    JSON.stringify(response.data)
-                                );
-                            }
-                        });
-                }
-                handleBookingSuccessOpen(true);
-            },
-        };
-
-        const rzpay = new Razorpay(options);
-        rzpay.open();
-        rzpay.on("payment.failed", function (response) {
-            console.log("fails", response);
-        });
-    }, [Razorpay]);
+    const handlePayment = () => {
+        setIsConfirm(true);
+    }
 
     const handleCopyClick = () => {
         navigator.clipboard.writeText(inputValue);
@@ -144,7 +111,6 @@ const ScBookingConfirm = (props) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const [bookingSuccessOpen, setBookingSuccessOpen] = useState(false);
     const handleBookingSuccessOpen = () => setBookingSuccessOpen(true);
     const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
 
@@ -1212,32 +1178,7 @@ const ScBookingConfirm = (props) => {
                         <div className="addons-title">Booking Confirm</div>
                     </div>
                 </div>
-                {/*{*/}
-                {/*    !_.isEmpty(supperClubConfirmPaymentData) &&*/}
-                {/*    <Box>*/}
-                {/*        <Stack*/}
-                {/*            className="date-stack date-stack1"*/}
-                {/*        >*/}
-                {/*            {!_.isEmpty(supperClubConfirmPaymentData) &&*/}
-                {/*                <Typography className="date-description">*/}
-                {/*                    {moment(supperClubConfirmPaymentData?.event?.dates[0]).format("MMMM D")}*/}
-                {/*                </Typography>*/}
-                {/*            }*/}
-                {/*            <span className="line">|</span>*/}
-                {/*            <Typography className="date-description">*/}
-                {/*                {" "}*/}
-                {/*                /!*7:30 PM - 10 PM*!/*/}
-                {/*                {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}*/}
-                {/*            </Typography>*/}
-                {/*            <span className="line">|</span>*/}
-                {/*            <Typography className="date-description">*/}
-                {/*                {supperClubConfirmPaymentData?.event?.venue}*/}
-                {/*            </Typography>*/}
-                {/*        </Stack>*/}
-                {/*    </Box>*/}
-                {/*}*/}
-                {
-                    !_.isEmpty(supperClubConfirmPaymentData) &&
+                {supperClubConfirmPaymentData ? (
                     <Formik
                         initialValues={{
                             contactNumber: superClubBookingDetails?.contactNumber,
@@ -1382,27 +1323,6 @@ const ScBookingConfirm = (props) => {
                                         className="cust-details dinner-box"
                                     >
                                         <Box className="per-dinner adsss">
-                                            {/*<Box>*/}
-                                            {/*    <Stack*/}
-                                            {/*        className="date-stack"*/}
-                                            {/*    >*/}
-                                            {/*        {!_.isEmpty(supperClubConfirmPaymentData) &&*/}
-                                            {/*            <Typography className="date-description">*/}
-                                            {/*                {moment(supperClubConfirmPaymentData?.event?.dates[0]).format("MMMM D")}*/}
-                                            {/*            </Typography>*/}
-                                            {/*        }*/}
-                                            {/*        <span className="line">|</span>*/}
-                                            {/*        <Typography className="date-description">*/}
-                                            {/*            {" "}*/}
-                                            {/*            /!*7:30 PM - 10 PM*!/*/}
-                                            {/*            {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}*/}
-                                            {/*        </Typography>*/}
-                                            {/*        <span className="line">|</span>*/}
-                                            {/*        <Typography className="date-description">*/}
-                                            {/*            {supperClubConfirmPaymentData?.event?.venue}*/}
-                                            {/*        </Typography>*/}
-                                            {/*    </Stack>*/}
-                                            {/*</Box>*/}
                                             <Box className="event-div">
                                                 <img src={supperClubConfirmPaymentData?.event?.pictures[0]} alt=""
                                                      className="per-dinner-img"/>
@@ -1526,7 +1446,275 @@ const ScBookingConfirm = (props) => {
                             </Form>
                         )}
                     </Formik>
-                }
+                ) : (
+                    <Formik
+                        initialValues={{
+                            contactNumber: superClubBookingDetails?.contactNumber,
+                            email: superClubBookingDetails?.email,
+                            // voucher:''
+                        }}
+                        validationSchema={bookingSummaryValidationSchema}
+                        onSubmit={(values) => {
+                            console.log("sc==========", values)
+                        }}
+                    >
+                        {({values, handleChange, handleSubmit, setFieldValue}) => (
+                            <Form onSubmit={handleSubmit}>
+                                <Grid container>
+                                    <Grid
+                                        xl={7}
+                                        lg={7}
+                                        xs={7}
+                                        md={7}
+                                        sm={12}
+                                        xs={12}
+                                        className="partner"
+                                    >
+                                        <Box className="booking-box">
+                                            <Box className="chef-box">
+                                                <Typography className="booking-summary-title">
+                                                    {SuperClubPaymentData?.event?.title}
+                                                </Typography>
+                                                <CreateIcon className="pencil-icon"/>
+                                            </Box>
+                                            <Box class="chef-edit">
+                                                <Typography className="chef-edit-title">
+                                                    Curated by <span
+                                                    className="chef-edit-sub">{SuperClubPaymentData?.event?.chef?.name}</span>
+                                                </Typography>
+                                                <Typography className="chef-seats">
+                                                    <img className="chef-people" src={people}/>
+                                                    <Typography
+                                                        className="chef-people-no">{SuperClubPaymentData?.event?.seats}</Typography>
+                                                </Typography>
+                                            </Box>
+                                            <hr className="hr"/>
+                                            <Box class="chef-profile">
+                                                <Box className="chef-profile-detail">
+                                                    <img className="chef-profile-icon" src={dateGold}/>
+                                                    <Typography className="chef-profile-date">
+                                                        {moment(SuperClubPaymentData?.event?.dates[0]).format("MMMM D")} | {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="chef-profile-detail">
+                                                    <img className="chef-profile-icon" src={location}/>
+                                                    <Typography className="chef-profile-date">
+                                                        {SuperClubPaymentData?.event?.venue}
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="chef-profile-detail">
+                                                    <img className="chef-profile-icon" src={people}/>
+                                                    <Typography className="chef-profile-date">
+                                                        {SuperClubPaymentData?.diner_count} Diners
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                        </Box>
+                                        <Box className="booking-box">
+                                            <div className="email">An Email Confirmation will be sent to</div>
+                                        </Box>
+                                        <Box className="booking-box">
+                                            <Box className="contact">
+                                                <label className="contact-number" for="">
+                                                    Email{" "}
+                                                </label>
+                                                <Box className="form-group">
+                                                    <input
+                                                        type="email"
+                                                        name="email"
+                                                        value={values.email}
+                                                        onChange={handleChange}
+                                                        placeholder="Kachwallasana@gmail.com"
+                                                        className="form-control"
+                                                        autoComplete="off"
+                                                    />
+                                                </Box>
+                                                <ErrorMessage name="email"/>
+                                            </Box>
+                                        </Box>
+                                        <Box class="booking-box">
+                                            <Box class="contact">
+                                                <label className="contact-number" for="contact-number">
+                                                    Mobile
+                                                </label>
+                                                <Box className="form-group">
+                  <span className="country-code">
+                    +91 <KeyboardArrowDownIcon className="drop-down-2"/>
+                  </span>
+                                                    <input
+                                                        placeholder="10 digit number"
+                                                        className="form-control"
+                                                        type="text"
+                                                        id="number"
+                                                        name="contactNumber"
+                                                        value={values.contactNumber}
+                                                        onChange={handleChange}
+                                                        autoComplete="off"
+                                                    />
+                                                </Box>
+                                                <ErrorMessage name="contactNumber"/>
+                                                {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
+                                            </Box>
+                                        </Box>
+                                        <Box className="gst-block">
+                                            <Box className="form-check">
+                                                <Checkbox className="input-check" defaultChecked/>
+                                                <label className="form-check-label" for="flexCheckDefault">
+                                                    Enter GSTIN for tax benefits (Optional)
+                                                </label>
+                                                <KeyboardArrowRightIcon
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal"
+                                                    onClick={handleOpen}
+                                                    className="forward-arrow"
+                                                />
+                                            </Box>
+                                        </Box>
+                                        <div className="gift-div">
+                                            <div className="gift-child">
+                                                <img className="gift-img" src={giftCard}/>
+                                                <div className="gift-text">
+                                                    If you have a coupon/ gift card, please enter details in the
+                                                    next step
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Grid>
+
+                                    <Grid
+                                        xl={5}
+                                        lg={5}
+                                        xs={5}
+                                        md={5}
+                                        sm={12}
+                                        // xs={12}
+                                        className="cust-details dinner-box"
+                                    >
+                                        <Box className="per-dinner adsss">
+                                            <Box className="event-div">
+                                                <img src={SuperClubPaymentData?.event?.pictures[0]} alt=""
+                                                     className="per-dinner-img"/>
+                                                <Box sx={{marginLeft: "12px"}}>
+                                                    <Typography className="event-title">
+                                                        {SuperClubPaymentData?.event?.title}
+                                                    </Typography>
+                                                    <Typography className="event-subtitle">
+                                                        Curated by{" "}
+                                                        <a href="#" className="event-link">
+                                                            {SuperClubPaymentData?.event?.chef?.name}
+                                                        </a>
+                                                    </Typography>
+                                                    <Typography className="rating-star">
+                                                        <img className="rating-people" src={people}/>
+                                                        <Typography
+                                                            className="rating-star">{SuperClubPaymentData?.event?.seats}</Typography>
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                            <Box className="experience-breakup">
+                                                <div className="confirm-details">
+                                                    Confirm Details before proceeding to pay
+                                                </div>
+                                                <Box className="ex-details">
+                                                    <Typography className="ex-heading">
+                                                        Price Breakdown
+                                                    </Typography>
+                                                    <ExpandMoreIcon className="ex-icon"/>
+                                                </Box>
+                                                {
+                                                    !_.isEmpty(SuperClubPaymentData) &&
+                                                    <Box className="table table-borderless">
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details">Ticket
+                                                                Price</Typography>
+                                                            <Typography
+                                                                className="table-details">{SuperClubPaymentData?.payment?.ticket_price}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box border-tb ">
+                                                            <Typography className="table-details table-details-pt">Sub
+                                                                Total</Typography>
+                                                            <Typography
+                                                                className="table-details table-details-pt">{SuperClubPaymentData?.payment?.sub_total}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details table-details-pt">GST
+                                                                @5%</Typography>
+                                                            <Typography
+                                                                className="table-details table-details-pt">{SuperClubPaymentData?.payment?.GST}</Typography>
+                                                        </Box>
+                                                        <Box className="table-box">
+                                                            <Typography className="table-details">Service Charge
+                                                                @10%</Typography>
+                                                            <Typography
+                                                                className="table-details">{SuperClubPaymentData?.payment?.service_charges}</Typography>
+                                                        </Box>
+                                                        {
+                                                            SuperClubPaymentData?.payment?.discount && SuperClubPaymentData?.payment?.voucher ? (
+                                                                <>
+                                                                    <Box className="table-box">
+                                                                        <Typography
+                                                                            className="table-details">Discount</Typography>
+                                                                        <Typography
+                                                                            className="table-details">{SuperClubPaymentData?.payment?.discount}</Typography>
+                                                                    </Box>
+                                                                    <Box className="table-box">
+                                                                        <Typography
+                                                                            className="table-details">Voucher</Typography>
+                                                                        <Typography
+                                                                            className="table-details">{SuperClubPaymentData?.payment?.voucher}</Typography>
+                                                                    </Box>
+                                                                </>
+                                                            ) : ('')
+                                                        }
+                                                        <Box className="table-box border">
+                                                            <Typography className="grand-total">Grand Total</Typography>
+                                                            <Typography
+                                                                className="grand-total">{SuperClubPaymentData?.payment?.total}</Typography>
+                                                        </Box>
+                                                        <Box className="form-group1">
+                                                            <input
+                                                                type="text"
+                                                                name="voucher"
+                                                                value={voucher}
+                                                                onChange={(event) => {
+                                                                    const capitalizedValue = event.target.value.toUpperCase();
+                                                                    setVoucher(capitalizedValue)
+                                                                }}
+                                                                placeholder="Enter Your Voucher Coupon"
+                                                                className="form-control"
+                                                                autoComplete="off"
+                                                                autoFocus
+                                                            />
+                                                            <button className="voucher" type="submit" onClick={() => {
+                                                                setIsSupperClubCoupon(true)
+                                                            }}>Apply Voucher
+                                                            </button>
+                                                        </Box>
+                                                    </Box>
+                                                }
+                                            </Box>
+                                            <Box className="row viewbreak">
+                                                <Box>
+                                                    <button
+                                                        type="submit"
+                                                        onClick={handlePayment}
+                                                        className="submit-req"
+                                                    >
+                                                        Reserve a seat
+                                                    </button>
+                                                </Box>
+                                                <Typography className="contact-text">
+                                                    Our team will contact you regarding your protein and allergen
+                                                    Information after booking is confirmed
+                                                </Typography>
+                                            </Box>
+                                        </Box>
+                                    </Grid>
+                                </Grid>
+                            </Form>
+                        )}
+                    </Formik>
+                )}
                 <Modal
                     keepMounted
                     open={open}

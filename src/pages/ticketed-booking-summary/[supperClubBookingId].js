@@ -23,7 +23,12 @@ import moment from "moment";
 
 
 const ScBookingSummary = () => {
-    const {setIsSupperBookingStatus} = useContext(UsersContext)
+    const {
+        setIsSupperBookingStatus,
+        bookingSuccessOpen,
+        supperClubPaymentData,
+        setSupperClubPayment
+    } = useContext(UsersContext)
     const [supperClubBookingData, setSupperClubBookingData] = useState()
     const cookieValue = Cookies?.get('supperClubBookingData');
     const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
@@ -31,6 +36,8 @@ const ScBookingSummary = () => {
     const [superClubBookingDetails, setSuperClubBookingDetails] = useState()
     const cookieValue2 = Cookies.get('supperClubBookingPersonalDetail');
 
+    console.log("supperClubPaymentData===========", supperClubPaymentData)
+    console.log("supperClubBookingId===========", supperClubBookingId)
     useEffect(() => {
         if (cookieValue) {
             setSupperClubBookingData(JSON.parse(cookieValue));
@@ -42,7 +49,8 @@ const ScBookingSummary = () => {
 
     const handleClick = () => {
         navigate(`/ticketed-booking-confirm/${supperClubBookingId}`);
-        setIsSupperBookingStatus(true);
+        setIsSupperBookingStatus(true)
+        setSupperClubPayment(true);
     }
 
     const bookingSummaryValidationSchema = Yup.object().shape({
@@ -718,30 +726,6 @@ const ScBookingSummary = () => {
                         <div className="addons-title">Booking Summary</div>
                     </div>
                 </div>
-                {/*{*/}
-                {/*    !_.isEmpty(supperClubPaymentData) &&*/}
-                {/*<Box>*/}
-                {/*    <Stack*/}
-                {/*        className="date-stack date-stack1"*/}
-                {/*    >*/}
-                {/*        {!_.isEmpty(supperClubPaymentData) &&*/}
-                {/*            <Typography className="date-description">*/}
-                {/*                {moment(supperClubPaymentData?.event?.dates[0]).format("MMMM D")}*/}
-                {/*            </Typography>*/}
-                {/*        }*/}
-                {/*        <span className="line">|</span>*/}
-                {/*        <Typography className="date-description">*/}
-                {/*            {" "}*/}
-                {/*            /!*7:30 PM - 10 PM*!/*/}
-                {/*            {moment(supperClubPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}*/}
-                {/*        </Typography>*/}
-                {/*        <span className="line">|</span>*/}
-                {/*        <Typography className="date-description">*/}
-                {/*            {supperClubPaymentData?.event?.venue}*/}
-                {/*        </Typography>*/}
-                {/*    </Stack>*/}
-                {/*</Box>*/}
-                {/*}*/}
                 {
                     !_.isEmpty(supperClubPaymentData) &&
                     <Formik
