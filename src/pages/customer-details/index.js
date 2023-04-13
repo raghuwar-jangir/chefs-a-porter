@@ -1,46 +1,46 @@
 import React, {useState, useContext, useEffect, useCallback, useRef} from "react";
 import {
-  Box,
-  Grid,
-  styled,
-  TextField,
-  Checkbox,
-  Typography,
+    Box,
+    Grid,
+    styled,
+    TextField,
+    Checkbox,
+    Typography,
 } from "@mui/material";
-import { render } from "react-dom";
-import { withScriptjs } from "react-google-maps";
 import Navbar from "../../components/NavbarComponent";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Formik, Form, ErrorMessage, Field } from "formik";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import {Formik, Form, ErrorMessage, Field} from "formik";
 import sGallery from "../../assets/images/sc-gallery.png";
 import StarIcon from "@mui/icons-material/Star";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { isMobile } from "react-device-detect";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import {isMobile} from "react-device-detect";
 import * as Yup from "yup";
 import InputAdornment from "@mui/material/InputAdornment";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Tabs from "@mui/joy/Tabs";
 import TabList from "@mui/joy/TabList";
 import Tab from "@mui/joy/Tab";
 import TabPanel from "@mui/joy/TabPanel";
-import { DatePickerInput } from "rc-datepicker";
+import {DatePickerInput} from "rc-datepicker";
 import "../../assets/styles/fontStyle.css";
 import "../../assets/styles/searchBar.css";
 import CloseIcon from "@mui/icons-material/Close";
 import Modal from "@mui/material/Modal";
+import GoogleMapReact from "google-map-react";
 import location from "../../assets/images/location.png";
-import { navigate } from "gatsby";
+import {navigate} from "gatsby";
 import OTPInput from "react-otp-input";
 import OtpContext from "../../context/OtpContext";
 import * as _ from 'lodash'
 import OtpVerificationModal from "../../components/OtpVerificationModal";
 import Cookies from "js-cookie";
+import {withScriptjs} from "react-google-maps";
 import MapComponent from "../../components/MapComponent";
 
 
 const validationSchema = Yup.object({
-  contactNumber: Yup.number().required("please enter the number"),
-  message: Yup.string().required("Please enter text"),
+    contactNumber: Yup.number().required('please enter the number'),
+    message: Yup.string().required('Please enter text')
 });
 
 
@@ -59,7 +59,7 @@ const CustomerDetails = (props) => {
     const [contactNumber, setContactNumber] = useState('');
     const [customerInfo, setCustomerInfo] = useState('')
     const cookieValue = Cookies?.get('customerData');
-    const customerDetailsPaymentCalculationCookieValue = Cookies?.get('customerDetailsPaymentCalculation');
+    const cDsPaymentCookieVal = Cookies?.get('CPaymentInfo');
     const [customerDetailsPaymentCalculation, setCustomerDetailsPaymentCalculation] = useState();
     console.log("==================", customerDetailsPaymentCalculation)
 
@@ -292,8 +292,8 @@ const CustomerDetails = (props) => {
         },
     };
 
-  const BoxWrapper = styled(Box)(() => ({
-    background: "#101418",
+    const BoxWrapper = styled(Box)(() => ({
+        background: '#101418',
 
         '.supper-gallery': {
             marginTop: '40px',
@@ -774,43 +774,52 @@ const CustomerDetails = (props) => {
                 lineHeight: '18px',
             },
             '.MuiTabList-root': {
-                width: '80px'
+                width: '100%',
+                display: 'flow-root',
             },
             '.MuiTab-variantPlain': {
-                width: '80px',
+                width: '100%',
+                margin: '10px 0px'
             },
             '.Joy-selected': {
-                width: '80px',
+                width: '100%',
             },
+            '.booking-box': {
+                border: 'unset',
+                padding: '0px',
+            },
+            '.book-trad': {
+                display: 'none',
+            }
         },
         "@media (min-width: 371px) and (max-width:400px)": {
             '.header-club': {
                 padding: '0px 150px'
             },
-            '.MuiTabList-root': {
-                width: '70px'
-            },
-            '.MuiTab-variantPlain': {
-                width: '70px',
-                fontSize: '12px'
-            },
-            '.Joy-selected': {
-                width: '70px',
-                fontSize: '12px'
-            },
+            // '.MuiTabList-root': {
+            //     width: '70px'
+            // },
+            // '.MuiTab-variantPlain': {
+            //     width: '70px',
+            //     fontSize: '12px'
+            // },
+            // '.Joy-selected': {
+            //     width: '70px',
+            //     fontSize: '12px'
+            // },
         },
         "@media (min-width: 300px) and (max-width:350px)": {
-            '.MuiTabList-root': {
-                width: '55px'
-            },
-            '.MuiTab-variantPlain': {
-                width: '55px',
-                fontSize: '10px'
-            },
-            '.Joy-selected': {
-                width: '55px',
-                fontSize: '10px'
-            },
+            // '.MuiTabList-root': {
+            //     width: '55px'
+            // },
+            // '.MuiTab-variantPlain': {
+            //     width: '55px',
+            //     fontSize: '10px'
+            // },
+            // '.Joy-selected': {
+            //     width: '55px',
+            //     fontSize: '10px'
+            // },
         },
         "@media (min-width: 425px) and (max-width:450px)": {
             '.header-club': {
@@ -892,7 +901,11 @@ const CustomerDetails = (props) => {
                                         // address: customerInfo?.address ? customerInfo?.address : '',
                                         address: formAddress,
                                         message: customerInfo?.message ? customerInfo?.message : '',
-                                        address: formAddress
+                                        experienceName: '',
+                                        date: '',
+                                        date1: '',
+                                        date2: '',
+                                        date3: ''
                                     }}
                                     validationSchema={validationSchema}
                                     onSubmit={(values) => {
