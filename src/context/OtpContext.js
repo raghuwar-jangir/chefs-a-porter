@@ -38,6 +38,7 @@ const OtpProvider = (props) => {
     const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
 
+    console.log("eventData=========",eventData)
     const eventIdCookieValue = Cookies.get('eventIdValue');
     const PaymentEventId = eventIdCookieValue?.replaceAll('"', '')
     const sEventIdCookieValue = Cookies.get('superClubDetailId');
