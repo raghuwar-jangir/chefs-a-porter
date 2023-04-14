@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {Box, Typography, styled} from "@mui/material";
+import React, {useContext, useState} from "react";
+import {Box, Typography, styled, MenuItem, Select} from "@mui/material";
 import {Formik, Form, ErrorMessage, Field} from "formik";
 import * as Yup from "yup";
 import {
@@ -13,12 +13,16 @@ import PlacesAutocomplete, {
     geocodeByAddress,
     getLatLng,
 } from "react-places-autocomplete";
+import CmsContext from "../context/CmsContext";
 
 const validationSchema = Yup.object({
     houseNo: Yup.string().required("House No is required"),
     location: Yup.string().required("Location is required"),
     landmark: Yup.string().required("Landmark is required"),
     society: Yup.string().required("Society/Locality is required"),
+    pincode: Yup.string()
+        .matches(/^[1-9][0-9]{5}$/, "Pincode must be a valid Indian pincode")
+        .required("Pincode is required"),
 });
 
 const BoxWrapper = styled(Box)({
@@ -68,12 +72,11 @@ const BoxWrapper = styled(Box)({
 
 const MapComponent = ({setNewAddress, setOpen}) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [coords, setCoords] = useState({lat: 40.756795, lng: -73.954298});
+    const [coords, setCoords] = useState();
     const [address, setAddress] = useState("");
     const [showCarousel, setShowCarousel] = useState(false);
     const [showCarousel2, setShowCarousel2] = useState(false);
     const [value, setValue] = useState();
-
     const handleImageClick = () => {
         if (address) {
             setShowCarousel(true);
@@ -93,9 +96,12 @@ const MapComponent = ({setNewAddress, setOpen}) => {
     };
 
     const handleSelect = (selectedAddress) => {
+        console.log("getLatLng=====",getLatLng)
         geocodeByAddress(selectedAddress)
             .then((results) => getLatLng(results[0]))
-            .then((latLng) => setCoords(latLng))
+            .then((latLng) => {
+                setCoords(latLng);
+            })
             .catch((error) => console.error("Error", error));
     };
 
@@ -108,8 +114,13 @@ const MapComponent = ({setNewAddress, setOpen}) => {
     };
 
     const GoogleMapExample = withGoogleMap(() => (
+
         <GoogleMap defaultCenter={coords} defaultZoom={13}>
-            <Marker position={coords} onClick={() => handleToggleOpen()}>
+            <Marker position={coords} onClick={() => {
+                handleToggleOpen()
+
+            }}>
+
                 {isOpen && (
                     <InfoWindow
                         onCloseClick={handleToggleClose}
@@ -202,6 +213,8 @@ const MapComponent = ({setNewAddress, setOpen}) => {
                                                 location: "",
                                                 landmark: "",
                                                 society: "",
+                                                pincode: "",
+                                                type: ""
                                             }}
                                             validationSchema={validationSchema}
                                             onSubmit={(values) => {
@@ -227,7 +240,7 @@ const MapComponent = ({setNewAddress, setOpen}) => {
                                                             name="houseNo"
                                                             id="houseNo"
                                                             className="form-control"
-                                                            placeholder="Enter Location"
+                                                            placeholder="Enter House/Flat Floor No"
                                                             value={values.houseNo}
                                                             onChange={handleChange}
                                                             autoComplete="off"
@@ -251,7 +264,7 @@ const MapComponent = ({setNewAddress, setOpen}) => {
                                                             name="location"
                                                             id="location"
                                                             className="form-control"
-                                                            placeholder="Enter Location"
+                                                            placeholder="Enter Experience Location"
                                                             value={values.location}
                                                             onChange={handleChange}
                                                             autoComplete="off"
@@ -273,7 +286,7 @@ const MapComponent = ({setNewAddress, setOpen}) => {
                                                             name="landmark"
                                                             id="landmark"
                                                             className="form-control"
-                                                            placeholder="Enter Location"
+                                                            placeholder="Enter Landmark"
                                                             value={values.landmark}
                                                             onChange={handleChange}
                                                             autoComplete="off"
@@ -297,13 +310,115 @@ const MapComponent = ({setNewAddress, setOpen}) => {
                                                             name="society"
                                                             id="society"
                                                             className="form-control"
-                                                            placeholder="Enter Location"
+                                                            placeholder="Enter Society Locality"
                                                             value={values.society}
                                                             onChange={handleChange}
                                                             autoComplete="off"
                                                             variant="standard"
                                                         />
                                                         <ErrorMessage name="society"/>
+                                                    </Box>
+                                                    <Box
+                                                        sx={{
+                                                            marginBottom: "30px",
+                                                            color: "white",
+                                                            fontSize: "14px",
+                                                        }}
+                                                    >
+                                                        <Typography className="label">
+                                                            PinCode
+                                                        </Typography>
+                                                        <Field
+                                                            type="text"
+                                                            name="pincode"
+                                                            id="pincode"
+                                                            className="form-control"
+                                                            placeholder="Enter PinCode"
+                                                            value={values.pincode}
+                                                            onChange={handleChange}
+                                                            autoComplete="off"
+                                                            variant="standard"
+                                                        />
+                                                        <ErrorMessage name="pincode"/>
+                                                    </Box>
+                                                    <Box
+                                                        sx={{
+                                                            marginBottom: "30px",
+                                                            color: "white",
+                                                            fontSize: "14px",
+                                                        }}
+                                                    >
+                                                        <Typography className="label">
+                                                            Location Type
+                                                        </Typography>
+                                                        <Select
+                                                            name="type"
+                                                            label="type"
+                                                            value={values.type}
+                                                            onChange={handleChange}
+                                                            defaultValue={values.type}
+                                                            placeholder="Time"
+                                                            displayEmpty
+                                                            renderValue={(selected) => {
+                                                                if (!selected) {
+                                                                    return <b>-Select Location Type-</b>;
+                                                                }
+                                                                return selected;
+                                                            }}
+                                                            className="selectpicker my-select dropdown-toggle form-control"
+                                                            sx={{
+                                                                fontFamily: 'Proxima Nova Alt',
+                                                                fontSize: '20px',
+                                                                '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                    border: 'none',
+                                                                },
+                                                                '.MuiSelect-select': {
+                                                                    padding: '0px 5px',
+                                                                    fontSize: '20px',
+                                                                    fontFamily: 'Proxima Nova Alt',
+                                                                    fontWeight: '400'
+                                                                }
+                                                            }}
+                                                            MenuProps={{
+                                                                PaperProps: {
+                                                                    sx: {
+                                                                        backgroundColor: '#DCD7CB !important',
+                                                                        li: {
+                                                                            fontFamily: 'ProximaNovaA-Regular',
+                                                                            borderBottom: "1px solid black",
+                                                                            fontSize: '20px',
+                                                                            fontWeight: '100',
+                                                                            padding: '6px 0px',
+                                                                            justifyContent: 'start'
+                                                                        },
+                                                                        ul: {
+                                                                            display: 'flex',
+                                                                            flexDirection: 'column',
+                                                                            padding: '16px',
+                                                                        },
+                                                                        'li:hover': {
+                                                                            color: '#C6A87D!important',
+                                                                            backgroundColor: 'unset !important'
+                                                                        },
+                                                                        'li:last-child': {
+                                                                            borderBottom: 'none'
+                                                                        },
+                                                                        "&& .Mui-selected": {
+                                                                            backgroundColor: "unset !important"
+                                                                        },
+                                                                        '.MuiSelect-select': {
+                                                                            padding: '5px !important',
+                                                                            fontSize: '17px',
+                                                                        },
+                                                                    },
+                                                                },
+                                                            }}
+                                                        >
+                                                            <MenuItem value="home">home</MenuItem>
+                                                            <MenuItem value="office">office</MenuItem>
+                                                            <MenuItem value="other">other</MenuItem>
+                                                        </Select>
                                                     </Box>
                                                     <button
                                                         type="submit"

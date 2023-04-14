@@ -17,7 +17,7 @@ const OtpProvider = (props) => {
     const path = useLocation();
     const currentPath = path.pathname.split("/")[1];
     const {data} = useContext(CmsContext);
-    const {eventId,supperClubDetailId} = useContext(UsersContext);
+    const {eventId, supperClubDetailId} = useContext(UsersContext);
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
     const [otpNumber, setOtpNumber] = useState('');
     const [verifyOtp, setVerifyOtp] = useState('');
@@ -44,8 +44,8 @@ const OtpProvider = (props) => {
     const sPaymentEventId = sEventIdCookieValue?.replaceAll('"', '')
     const [customerInfo, setCustomerInfo] = useState('')
     const customerInfoCookieValue = Cookies?.get('customerData');
-    const userAddress = JSON.parse(localStorage.getItem('userAddress'));
-    console.log("userAddress=====",userAddress)
+    const [userAddress, setUserAddress] = useState()
+    console.log("userAddress=====", userAddress);
     useEffect(() => {
         if (cookieValue1) {
             setPriveeData(JSON.parse(cookieValue1));
@@ -59,7 +59,8 @@ const OtpProvider = (props) => {
         if (customerInfoCookieValue) {
             setCustomerInfo(JSON.parse(customerInfoCookieValue));
         }
-    }, [cookieValue1, cookieValue, cookieValue2,customerInfoCookieValue])
+        setUserAddress(JSON.parse(localStorage.getItem('userAddress')))
+    }, [cookieValue1, cookieValue, cookieValue2, customerInfoCookieValue])
 
     useEffect(() => {
         if (isSendOtpApiCall) {
@@ -103,7 +104,18 @@ const OtpProvider = (props) => {
                 otp: verifyOtp,
                 // menu_selection: "host",
                 common_menu: PaymentEventId,
-                message:customerInfo?.message,
+                message: customerInfo?.message,
+                common_address: {
+                    address1: userAddress?.landmark + userAddress?.society,
+                    address2: userAddress?.location,
+                    landmark: userAddress?.landmark,
+                    pincode: userAddress?.pincode,
+                    type: userAddress?.type,
+                    // coordinates: {
+                    //     "lat": 12.955625021230164,
+                    //     "lng": 77.65579622862903
+                    // }
+                },
             }).then((response) => {
                 if (response.status === 200) {
                     // Cookies.remove('eventData');
@@ -128,10 +140,10 @@ const OtpProvider = (props) => {
                 city: "Banglore",
                 booking_date: priveeData?.date,
                 common_menu: supperClubDetailId,
-                message:"Addition info",
+                message: "Addition info",
                 otp: verifyOtp,
-                seats:3,
-                seats_chefs_table:5
+                seats: 3,
+                seats_chefs_table: 5
             }).then((response) => {
                 if (response.status === 200) {
                     Cookies.set('supperClubBookingId', JSON.stringify(response.data.id));
@@ -139,7 +151,7 @@ const OtpProvider = (props) => {
                 }
             })
         }
-    }, [otpNumber, verifyOtp, resendOtp, isStatus,isSupperClubStatus])
+    }, [otpNumber, verifyOtp, resendOtp, isStatus, isSupperClubStatus])
     const {children} = props
     return (
         <OtpContext.Provider

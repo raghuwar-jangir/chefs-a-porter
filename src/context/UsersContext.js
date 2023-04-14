@@ -16,7 +16,7 @@ const UsersContext = React.createContext(defaultState)
 const UsersProvider = (props) => {
 
     const priveeRazorpay = useRazorpay();
-    const Razorpay = useRazorpay();
+    const SupperClubRazorpay = useRazorpay();
     const path = useLocation();
     const currentPath = path.pathname.split("/")[1];
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
@@ -108,7 +108,7 @@ const UsersProvider = (props) => {
                 }
             })
         } else if (isConfirm) {
-            console.log("bookingId========",bookingId)
+            console.log("bookingId========", bookingId)
             axios.post(baseUrl + '/booking/confirm/' + bookingId).then((response) => {
                 if (response.status === 200) {
                     const options = {
@@ -155,9 +155,12 @@ const UsersProvider = (props) => {
             }).then((response) => {
                 if (response.status === 200) {
                     setBsPaymentData(response.data);
-                    localStorage.setItem('priveePaymentInfo', JSON.stringify(response.data));
+                    // localStorage.setItem('priveePaymentInfo', JSON.stringify(response.data));
+                    Cookies.set("priveePaymentInfo", JSON.stringify(response.data));
+                    setIsCoupon(false);
                 }
             })
+
         } else if (isCoupon !== true && priveePayment) {
             axios.post(baseUrl + '/booking/calculate/' + summaryBookingId).then((response) => {
                 if (response.status === 200) {
@@ -182,7 +185,6 @@ const UsersProvider = (props) => {
                 resume: joinChefData.resume,
                 cover_letter: joinChefData.coverLetterMessage,
             })
-            setIsJoinChefData(false)
         } else if (currentPath === 'ticketed-booking-summary' && supperClubBookingId) {
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId, {
                 common_menu: eventId,
@@ -192,8 +194,8 @@ const UsersProvider = (props) => {
                 }
             })
         } else if (isSupperBookingStatus) {
-            console.log("supperClubBookingId===========",supperClubBookingId)
-            axios.post(baseUrl + '/booking/confirm/'+ supperClubBookingId).then((response) => {
+            console.log("supperClubBookingId===========", supperClubBookingId)
+            axios.post(baseUrl + '/booking/confirm/' + supperClubBookingId).then((response) => {
                 if (response.status === 200) {
                     const options = {
                         key: response?.data?.razorpay_key,
@@ -223,7 +225,7 @@ const UsersProvider = (props) => {
                             }
                         },
                     };
-                    const rzpay = new Razorpay(options);
+                    const rzpay = new SupperClubRazorpay(options);
                     rzpay.open();
                 } else {
                     rzpay.on("payment.failed", function (response) {
@@ -240,6 +242,7 @@ const UsersProvider = (props) => {
                 if (response.status === 200) {
                     setSupperClubConfirmPaymentData(response.data)
                     localStorage.setItem('sprClubPaymentInfo', JSON.stringify(response.data));
+                    setIsSupperClubCoupon(false)
                 }
             })
         } else if (isSupperClubCoupon !== true && supperClubPayment) {
@@ -267,7 +270,7 @@ const UsersProvider = (props) => {
                 type: "privee",
                 // diner: eventDetailsData?.numberOfDinner,
                 // courses: eventDetailsData?.numberOfCourses,
-                diner: 1,
+                diner: 2,
                 courses: 6,
             }).then((response) => {
                 if (response.status === 200) {
