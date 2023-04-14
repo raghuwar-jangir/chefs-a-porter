@@ -1327,8 +1327,8 @@ const BookingSummary = (props) => {
                                                                     <Box className="chef-profile-box">
                                                                         <img className="chef-profile-logo" src={done}/>
                                                                         <Typography className="chef-profile-dis">
-                                                                            An email confirmation has been sent
-                                                                            to {eventData?.email} <br/>
+                                                                            An email confirmation has been sent to <br/>
+                                                                            {eventData?.email} <br/>
                                                                             and SMS sent to
                                                                             +91 {customerInfo?.contactNumber}
                                                                         </Typography>
@@ -2131,21 +2131,22 @@ const BookingSummary = (props) => {
                                                     </div>
                                                     <div className="col-lg-12">
                                                         <div className="chef-edit">
-                                                            <img src={chefImg} alt=""/>
-                                                            <h5>Chef Mako Ravindran</h5>
+                                                            <img src={bsPaymentData?.common_menu?.user?.picture}
+                                                                 alt=""/>
+                                                            <h5>{bsPaymentData?.common_menu?.user?.name}</h5>
                                                         </div>
                                                         <div className="chef-profile">
                                                             <div>
                                                                 <img src={dateGold} alt=""/>
-                                                                <span>April 9 | 7:30 PM - 10 PM</span>
+                                                                <span>{moment(eventData?.experienceDate).format("MMMM D")} | {moment(eventData?.startTime, 'HH:mm').format('h:mm A')}</span>
                                                             </div>
                                                             <div>
                                                                 <img src={location} alt=""/>
-                                                                <span>Silver bar, Downtown</span>
+                                                                <span>{bsPaymentData?.city}</span>
                                                             </div>
                                                             <div>
                                                                 <img src={people} alt=""/>
-                                                                <span>6 Diners</span>
+                                                                <span>{eventData?.numberOfDinner} Diners</span>
                                                             </div>
                                                         </div>
                                                         <hr className="hr"/>
@@ -2183,35 +2184,44 @@ const BookingSummary = (props) => {
                                                     <div className="experience-breakup">
                                                         <div className="ex-details">
                                                             <h5>Payment Summary</h5>
-                                                            <KeyboardArrowDownIcon className="i"/>
                                                         </div>
                                                         <div className="table table-borderless">
                                                             <div className="table-box">
-                                                                <span>Meal</span>
+                                                                <span>Experience*</span>
                                                                 <span
-                                                                    className="price">{bsPaymentData?.payment?.meal}</span>
+                                                                    className="price">{bsPaymentData?.payment?.experience}</span>
                                                             </div>
                                                             <div className="table-box">
-                                                                <span>Service Charge</span>
+                                                                <span>Service Staff**</span>
+                                                                <span
+                                                                    className="price">{bsPaymentData?.payment?.service_staff}</span>
+                                                            </div>
+                                                            <div className="table-box">
+                                                                <span>Sub total</span>
+                                                                <span className="price">{bsPaymentData?.payment?.sub_total}</span>
+                                                            </div>
+                                                            <div className="table-box ">
+                                                                <span className="price">GST @5%</span>
+                                                                <span
+                                                                    className="price">{bsPaymentData?.payment?.GST}</span>
+                                                            </div>
+                                                            <div className="table-box">
+                                                                <span
+                                                                    className="price">Service Charges @10%</span>
                                                                 <span
                                                                     className="price">{bsPaymentData?.payment?.service_charges}</span>
-                                                            </div>
-                                                            <div className="table-box">
-                                                                <span>Tax</span>
-                                                                <span
-                                                                    className="price">{bsPaymentData?.payment?.taxes}</span>
                                                             </div>
                                                             <div className="table-box border">
                                                                 <span className="grand-total">Grand Total</span>
                                                                 <span
-                                                                    className="grand-total"> {bsPaymentData?.payment?.total}</span>
+                                                                    className="grand-total">{bsPaymentData?.payment?.total}</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div className="experience-breakup">
                                                         <div className="table table-borderless">
                                                             <div className="table-box">
-                                                                <span>State Bank of India</span>
+                                                                <span>Razorpay Payment</span>
                                                                 <span
                                                                     className="price">{bsPaymentData?.payment?.total}</span>
                                                             </div>

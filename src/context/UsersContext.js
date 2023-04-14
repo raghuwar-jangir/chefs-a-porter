@@ -277,19 +277,16 @@ const UsersProvider = (props) => {
                     Cookies.set('CPaymentInfo', JSON.stringify(response.data));
                 }
             })
-        }
-        if (path.pathname === "/") {
+        } else if (path.pathname === "/") {
             axios.get(baseUrl + '/cms/footer').then(result => {
                 setCallMobileNumber(result.data.footer.footer.mobile)
                 Cookies.set('callMobileNumber', JSON.stringify(result.data.footer.footer.mobile));
             })
-        }
-        if (path.pathname === '/' || currentPath === "private" || currentPath === "private-viewmore") {
+        } else if (path.pathname === '/' || currentPath === "private" || currentPath === "private-viewmore") {
             axios.get('https://chefv2.hypervergedemo.site/v1/meal_times/all').then(result => {
                 setMealData(result.data)
             })
-        }
-        if (currentPath === "personal-details") {
+        } else if (currentPath === "personal-details") {
             axios.get('https://chefv2.hypervergedemo.site/v1/meal_types/all').then(result => {
                 setMealTypeData(result.data)
             })
