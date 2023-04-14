@@ -101,7 +101,8 @@ const UsersProvider = (props) => {
             axios.get(baseUrl + '/addon_category_master/all').then(result => {
                 setAddOnsData(result.data)
             })
-            axios.post(baseUrl + '/booking/calculate/' + bookingId).then((response) => {
+            axios.post(baseUrl + '/booking/calculate/' + bookingId,{
+            }).then((response) => {
                 if (response.status === 200) {
                     setAdPaymentData(response.data)
                     Cookies.set('adsPaymentInfo', JSON.stringify(response.data));
@@ -266,11 +267,11 @@ const UsersProvider = (props) => {
             })
         } else if (currentPath === 'customer-details') {
             axios.post(baseUrl + '/booking/calculatepayment/', {
-                id: PaymentEventId,
+                id: '640b22b691e7236a1d0a264e',
                 type: "privee",
                 // diner: eventDetailsData?.numberOfDinner,
                 // courses: eventDetailsData?.numberOfCourses,
-                diner: 2,
+                diner: 10,
                 courses: 6,
             }).then((response) => {
                 if (response.status === 200) {
