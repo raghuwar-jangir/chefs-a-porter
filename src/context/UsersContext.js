@@ -36,7 +36,6 @@ const UsersProvider = (props) => {
     const [isConfirm, setIsConfirm] = useState(false);
     // const [supperClubBookingBookingConfirm, setSupperClubBookingBookingConfirm] = useState();
     // const cookieValueSupper = Cookies?.get('supperClubBookingBookingConfirm');
-
     //for submitting forms
     const [contactUsData, setContactUsData] = useState({})
     const [isContactUsData, setIsContactUsData] = useState(false)
@@ -62,7 +61,9 @@ const UsersProvider = (props) => {
     const [bookingSuccessOpen, setBookingSuccessOpen] = useState(false);
     const [priveePayment, setPriveePayment] = useState(false)
     const [supperClubPayment, setSupperClubPayment] = useState(false)
-
+    const [chefFormData, setChefFormData] = useState({})
+    const [isChefData, setIsChefData] = useState(false)
+    console.log("chefFormData=======>", chefFormData);
     console.log("isCoupon=======", isCoupon)
     console.log("adPaymentData======", adPaymentData)
     console.log("bookingId=======", bookingId)
@@ -294,8 +295,19 @@ const UsersProvider = (props) => {
             axios.get('https://chefv2.hypervergedemo.site/v1/meal_types/all').then(result => {
                 setMealTypeData(result.data)
             })
+        } else if (isChefData) {
+            axios.post(baseUrl + 'booking/creatediners/'  + supperClubBookingId, {
+                name: chefFormData.name,
+                email: chefFormData.email,
+                mobile: chefFormData.contact,
+                meal_type: chefFormData.foodPreference,
+            }).then((response) => {
+                if (response.status === 200) {
+                    setIsChefData(false);
+                }
+            })
         }
-    }, [isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
+    }, [isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification, isChefData, chefFormData])
 
     const {children} = props;
 
@@ -332,7 +344,10 @@ const UsersProvider = (props) => {
                 bookingSuccessOpen,
                 setBookingSuccessOpen,
                 setPriveePayment,
-                setSupperClubPayment
+                setSupperClubPayment,
+                setChefFormData,
+                setIsChefData
+                
             }}
         >
             {children}

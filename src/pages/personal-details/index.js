@@ -37,7 +37,7 @@ import UsersContext from "../../context/UsersContext";
 
 const PersonalDetails1 = () => {
   const { setOtpNumber, setIsSendOtpApiCall } = useContext(OtpContext);
-  const { mealTypeData, setDinersFormData, isSetDinersData } =
+  const { mealTypeData, setChefFormData, setIsChefData } =
     useContext(UsersContext);
   const [contactPopUp, setContactPopUp] = useState(false);
   const ContactOpen = () => setContactPopUp(true);
@@ -80,9 +80,9 @@ const PersonalDetails1 = () => {
   };
   const handleCloseOtp = () => setOpenOtp(false);
   const onSubmit = (values, { resetForm }) => {
-    isSetDinersData(true)
     setTodos([...todos, values]);
-    setDinersFormData(values);
+    setChefFormData(values);
+    setIsChefData(true);
     resetForm();
   };
   const handleDeleteTodo = (index) => {
