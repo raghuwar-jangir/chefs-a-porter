@@ -1078,8 +1078,9 @@ const HomePage = () => {
                                                                     }}
                                                                 >
                                                                     {
-                                                                        mealData?.map((item)=>{
-                                                                            return <MenuItem value={item.name}>{item.name}</MenuItem>
+                                                                        mealData?.map((item) => {
+                                                                            return <MenuItem
+                                                                                value={item.name}>{item.name}</MenuItem>
                                                                         })
                                                                     }
                                                                     {/*<MenuItem value="Lunch">Lunch</MenuItem>*/}
@@ -1146,7 +1147,6 @@ const HomePage = () => {
                                                                     <MenuItem value="1">1</MenuItem>
                                                                     <MenuItem value="2">2</MenuItem>
                                                                     <MenuItem value="3">3</MenuItem>
-
                                                                 </Select>
                                                             </Box>
                                                             <Box className="form-group">
@@ -1176,7 +1176,7 @@ const HomePage = () => {
                                             className="privee-card-title">{data.home.booking_types.privee.title}</Typography>
                                         <Typography
                                             className='privee-card-details'>{data.home.booking_types.privee.description}</Typography>
-                                        <Typography><Link href="/privee"
+                                        <Typography><Link href="/private"
                                                           className="privee-card-link">{data.home.booking_types.privee.button_text}</Link></Typography>
                                     </Box>
                                 </Box>
@@ -1188,7 +1188,7 @@ const HomePage = () => {
                                             className="supper-card-title">{data.home.booking_types.supper_club.title}</Typography>
                                         <Typography
                                             className='supper-card-details'>{data.home.booking_types.supper_club.description}</Typography>
-                                        <Typography><Link href="/tickted"
+                                        <Typography><Link href="/ticketed"
                                                           className="supper-card-link">{data.home.booking_types.supper_club.button_text}</Link></Typography>
                                     </Box>
                                     <Box className="privee-video">

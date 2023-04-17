@@ -101,17 +101,16 @@ const UsersProvider = (props) => {
             axios.get(baseUrl + '/addon_category_master/all').then(result => {
                 setAddOnsData(result.data)
             })
-            axios.post(baseUrl + '/booking/calculate/' + bookingId,{
-            }).then((response) => {
+            axios.post(baseUrl + '/booking/calculate/' + bookingId, {}).then((response) => {
                 if (response.status === 200) {
                     setAdPaymentData(response.data)
                     Cookies.set('adsPaymentInfo', JSON.stringify(response.data));
                 }
             })
         } else if (isConfirm) {
-            console.log("bookingId========", bookingId)
             axios.post(baseUrl + '/booking/confirm/' + bookingId).then((response) => {
                 if (response.status === 200) {
+                    localStorage.setItem('privateBookingOrderNumber', JSON.stringify(response.data.order_number));
                     const options = {
                         key: response?.data?.razorpay_key,
                         currency: "INR",
@@ -122,6 +121,7 @@ const UsersProvider = (props) => {
                         theme: {color: "#C6A87D", fontFamily: "ProximaNovaA-Regular"},
                         handler: (response) => {
                             if (response) {
+                                localStorage.setItem('privatePaymentNumber', JSON.stringify(response.razorpay_payment_id));
                                 setIsConfirm(false);
                                 axios.post('https://chefv2.hypervergedemo.site/v1/booking/verifypayment/' + summaryBookingId, {
                                     razorpay_order_id: response.razorpay_order_id,
@@ -198,6 +198,7 @@ const UsersProvider = (props) => {
             console.log("supperClubBookingId===========", supperClubBookingId)
             axios.post(baseUrl + '/booking/confirm/' + supperClubBookingId).then((response) => {
                 if (response.status === 200) {
+                    localStorage.setItem('scBookingOrderNumber', JSON.stringify(response.data.order_number));
                     const options = {
                         key: response?.data?.razorpay_key,
                         currency: "INR",
@@ -208,6 +209,7 @@ const UsersProvider = (props) => {
                         theme: {color: "#C6A87D", fontFamily: "ProximaNovaA-Regular"},
                         handler: (response) => {
                             if (response) {
+                                localStorage.setItem('scPaymentNumber', JSON.stringify(response.razorpay_payment_id));
                                 setIsSupperBookingStatus(false);
                                 axios.post('https://chefv2.hypervergedemo.site/v1/booking/verifypayment/' + supperClubBookingId, {
                                     razorpay_order_id: response.razorpay_order_id,
