@@ -1465,7 +1465,6 @@ const PersonalDetails1 = () => {
                             onSubmit={(values, {resetForm}) => {
                                 setIsChefData(true)
                                 setChefFormData(values);
-                                setAddUserData(values);
                                 setTodos([...todos, values]);
                                 resetForm();
                             }}
