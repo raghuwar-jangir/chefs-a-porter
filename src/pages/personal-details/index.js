@@ -79,12 +79,6 @@ const PersonalDetails1 = () => {
     Cookies.set("supperClubBookingPersonalDetail", JSON.stringify(values));
   };
   const handleCloseOtp = () => setOpenOtp(false);
-  const onSubmit = (values, { resetForm }) => {
-    setTodos([...todos, values]);
-    setChefFormData(values);
-    setIsChefData(true);
-    resetForm();
-  };
   const handleDeleteTodo = (index) => {
     setTodos(todos.filter((todo, todoIndex) => todoIndex !== index));
   };
@@ -1458,7 +1452,13 @@ const PersonalDetails1 = () => {
                 foodPreference: "Vegan",
               }}
               validationSchema={validationSchemaTodo}
-              onSubmit={onSubmit}
+              onSubmit= {(values, { resetForm }) => {
+                setTodos([...todos, values]);
+                console.log("values=======>",values);
+                setChefFormData(values);
+                setIsChefData(true);
+                resetForm();
+              }}
             >
               {({ values, handleChange }) => (
                 <Form>
