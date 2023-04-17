@@ -444,6 +444,7 @@ const PriveeViewMore = (props) => {
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
     const menuitemValue = _.range(1, 26);
+
     // const handleClick = () => {
     //     navigate('/event-details');
     // }
@@ -678,7 +679,6 @@ const PriveeViewMore = (props) => {
                                                                     {menuitemValue.map((item,index)=>(
                                                                         <MenuItem value={index+1}>{item}</MenuItem>
                                                                     ))}
-
                                                                 </Select>
                                                             </Box>
                                                         </Box>

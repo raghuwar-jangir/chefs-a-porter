@@ -79,14 +79,6 @@ const BookingSummary = (props) => {
     const [razorpayData, setRazorpayData] = useState();
     console.log("razorpayData==============", razorpayData)
 
-    const key = Cookies?.get("razorpayKey");
-    const rKey = key?.replaceAll('"', "");
-    const oderId = Cookies?.get("rpId");
-    const rOrderId = oderId?.replaceAll('"', "");
-
-    console.log("rKey============", rKey)
-    console.log("rOrderId============", rOrderId)
-
     useEffect(() => {
         if (cookieValue) {
             setPaymentCalculationData(JSON.parse(cookieValue));
@@ -126,9 +118,7 @@ const BookingSummary = (props) => {
     const [eventData, setEventData] = useState()
     const PriveePaymentCoockie = Cookies.get('priveePaymentInfo');
     const [priveePaymentData, setPriveePaymentData] = useState()
-
-    console.log("priveePaymentData=======", priveePaymentData)
-    console.log("bsPaymentData=======", bsPaymentData)
+    const [priveePaymentNo, setpriveePaymentNo] = useState()
     {
         !_.isEmpty(customerInfoCookieValue) &&
         useEffect(() => {
@@ -138,13 +128,10 @@ const BookingSummary = (props) => {
             if (eventDataCookieValue) {
                 setEventData(JSON.parse(eventDataCookieValue));
             }
-            setPriveePaymentData(JSON.parse(localStorage.getItem('priveePaymentInfo')))
+            setPriveePaymentData(JSON.parse(localStorage.getItem('priveePaymentInfo')));
+            setpriveePaymentNo(JSON.parse(localStorage.getItem('privatePaymentNumber')));
         }, [customerInfoCookieValue, eventDataCookieValue])
     }
-
-    console.log("customerInfo======", customerInfo)
-    console.log("PriveePaymentCoockie======", PriveePaymentCoockie)
-    console.log("eventData======", eventData)
 
     const BoxWrapper = styled(Box)(() => ({
         background: "#080B0E",
@@ -1114,8 +1101,15 @@ const BookingSummary = (props) => {
         ".border": {
             borderTop: "1px solid rgba(255, 255, 255, 0.6)",
         },
+        ".border-tb": {
+            borderTop: "1px solid rgba(255, 255, 255, 0.6)",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.6)",
+        },
+        '.pt-16':{
+            paddingTop:'16px'
+        },
         ".grand-total": {
-            padding: "16px 0px !important",
+            padding: "10px 0px !important",
         },
         ".tax": {
             textAlign: "left !important",
@@ -2196,11 +2190,11 @@ const BookingSummary = (props) => {
                                                                 <span
                                                                     className="price">{bsPaymentData?.payment?.service_staff}</span>
                                                             </div>
-                                                            <div className="table-box">
+                                                            <div className="table-box border-tb pt-16">
                                                                 <span>Sub total</span>
                                                                 <span className="price">{bsPaymentData?.payment?.sub_total}</span>
                                                             </div>
-                                                            <div className="table-box ">
+                                                            <div className="table-box pt-16">
                                                                 <span className="price">GST @5%</span>
                                                                 <span
                                                                     className="price">{bsPaymentData?.payment?.GST}</span>
@@ -2227,11 +2221,11 @@ const BookingSummary = (props) => {
                                                             </div>
                                                             <div className="table-box">
                                                                 <span
-                                                                    className="tax">{razorpayData?.booking_date}</span>
+                                                                    className="tax">{moment(eventData?.experienceDate).format("MMMM D")} | {moment(eventData?.startTime, 'HH:mm').format('h:mm A')}</span>
                                                             </div>
                                                             <div className="table-box">
                                 <span className="tax">
-                                  Transaction ID 12434454689
+                                  Transaction ID {priveePaymentNo}
                                 </span>
                                                             </div>
                                                         </div>

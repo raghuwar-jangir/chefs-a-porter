@@ -64,9 +64,9 @@ const ScBookingConfirm = (props) => {
     const [supperClubBookingData, setSupperClubBookingData] = useState()
     const [superClubBookingDetails, setSuperClubBookingDetails] = useState()
     const cookieValue2 = Cookies.get('supperClubBookingPersonalDetail');
-    console.log("supperClubConfirmPaymentData==========", supperClubConfirmPaymentData)
-    const [superClubPaymentData, setsuperClubPaymentData] = useState(undefined)
-    console.log("superClubPaymentData==========", superClubPaymentData)
+    const [superClubPaymentData, setsuperClubPaymentData] = useState();
+    const [scBookingOrderNo, setScBookingOrderNo] = useState();
+    const [scPaymentId, setScPaymentId] = useState();
 
     console.log("supperClubConfirmPaymentData=====>",supperClubConfirmPaymentData);
     useEffect(() => {
@@ -74,7 +74,13 @@ const ScBookingConfirm = (props) => {
             setSuperClubBookingDetails(JSON.parse(cookieValue2));
         }
         setsuperClubPaymentData(JSON.parse(localStorage.getItem('sprClubPaymentInfo')));
+        setScBookingOrderNo(JSON.parse(localStorage.getItem('scBookingOrderNumber')));
+        setScPaymentId(JSON.parse(localStorage.getItem('scPaymentNumber')));
     }, [cookieValue2])
+
+    console.log("scBookingOrderNo================", scBookingOrderNo)
+    console.log("scPaymentId================", scPaymentId)
+    console.log("supperClubConfirmPaymentData================", supperClubConfirmPaymentData)
 
     const handlePayment = () => {
         setIsSupperBookingStatus(true)
@@ -1877,7 +1883,7 @@ const ScBookingConfirm = (props) => {
                                     <div className="booking-details">
                                         <img src={output} alt="" className="output"/>
                                         <h3>Booking Successful</h3>
-                                        <span>Booking ID - 3454353</span>
+                                        <span>Booking ID - {scBookingOrderNo}</span>
                                         <p>
                                             We look forward to serving you a conscious <br/>
                                             dining experience!
@@ -1924,7 +1930,7 @@ const ScBookingConfirm = (props) => {
                                                             </div>
                                                             <div>
                                                                 <img src={people} alt=""/>
-                                                                <span>6 Diners</span>
+                                                                <span>{supperClubConfirmPaymentData?.diner_count} Diners</span>
                                                             </div>
                                                         </div>
                                                         <hr className="hr"/>
@@ -2004,16 +2010,16 @@ const ScBookingConfirm = (props) => {
                                                         </div>
                                                         <div className="table table-borderless">
                                                             <div className="table-box">
-                                                                <span>State Bank of India</span>
+                                                                <span>Razorpay Payment</span>
                                                             </div>
                                                             <div className="table-box">
                                 <span className="table-box-span">
-                                  04 Nov 11:14 AM
+                                {moment(supperClubConfirmPaymentData?.event?.dates[0]).format("MMMM D")} | {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
                                 </span>
                                                             </div>
                                                             <div className="table-box">
                                 <span className="table-box-span">
-                                  Transaction ID 12434454689
+                                  Transaction ID {scPaymentId}
                                 </span>
                                                             </div>
                                                             <div className="table-box border">

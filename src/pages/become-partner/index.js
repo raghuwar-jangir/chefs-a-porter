@@ -56,16 +56,24 @@ const BecomePartner = () => {
         instagramLink: Yup.string().required('Please enter link'),
     });
 
-    //for getting file upload name
-    // window.pressed = function () {
-    //     var a = document.getElementById('aa');
-    //     if (a.value == "") {
-    //         fileLabel.innerHTML = "Choose a File";
-    //     } else {
-    //         var theSplit = a.value.split('\\');
-    //         fileLabel.innerHTML = theSplit[theSplit.length - 1];
-    //     }
-    // };
+    // for getting file upload name
+
+    // if (typeof window !== 'undefined') {
+        // code that uses the window object
+
+    // const windowGlobal = typeof window !== 'undefined' && window;
+
+        // window.pressed = function () {
+        //     var a = document.getElementById('aa');
+        //     if (a.value == "") {
+        //         fileLabel.innerHTML = "Choose a File";
+        //     } else {
+        //         var theSplit = a.value.split('\\');
+        //         fileLabel.innerHTML = theSplit[theSplit.length - 1];
+        //     }
+        // };
+    // }
+
 
     const CHARACTER_LIMIT = 500;
 
@@ -342,13 +350,6 @@ const BecomePartner = () => {
         <React.Fragment>
             <BoxWrapper>
                 <Navbar heading="Become a partner" isIcon={true}/>
-                {/*{isMobile ? (*/}
-                {/*    <Box className="mobile-header">*/}
-                {/*        <ArrowBackIcon/>*/}
-                {/*        <Typography><a href="/" className="mobile-heading" style={{textAlign: 'center !important'}}>Become*/}
-                {/*            a partner</a></Typography>*/}
-                {/*    </Box>*/}
-                {/*) : (<Navbar/>)}*/}
                 <Box className="joinaschef">
                     <Box className="banner">
                         <Box className="become-partner-header">
@@ -718,7 +719,9 @@ const BecomePartner = () => {
                                                                title="Choose a video please" id="aa"
                                                                name="workSampleFile"
                                                                value={values.workSampleFile}
-                                                               onChange={handleChange}/>
+                                                               onChange={handleChange
+                                                                   // ,pressed
+                                                        }/>
                                                         <Box className="upload-files">
                                                             <img src={uploadCloud}
                                                                  style={{width: '24px', height: '24px'}}

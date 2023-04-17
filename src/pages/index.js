@@ -902,6 +902,9 @@ const HomePage = () => {
     const ColsOfObjects = cols.map(item => {
         return {cols: item};
     });
+    const ITEM_HEIGHT = 48;
+    const ITEM_PADDING_TOP = 8;
+    const menuitemValue = _.range(1, 26);
 
     const finalImgData = imgData.map((item, i) => Object.assign({}, item, rowOfObjects[i]));
 
@@ -909,9 +912,6 @@ const HomePage = () => {
     const handleClick = () => {
         navigate('/private-viewmore')
     }
-    const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const menuitemValue = _.range(1, 26);
 
     return (
         <React.Fragment>
@@ -1081,8 +1081,9 @@ const menuitemValue = _.range(1, 26);
                                                                     }}
                                                                 >
                                                                     {
-                                                                        mealData?.map((item)=>{
-                                                                            return <MenuItem value={item.name}>{item.name}</MenuItem>
+                                                                        mealData?.map((item) => {
+                                                                            return <MenuItem
+                                                                                value={item.name}>{item.name}</MenuItem>
                                                                         })
                                                                     }
                                                                     {/*<MenuItem value="Lunch">Lunch</MenuItem>*/}
@@ -1147,10 +1148,9 @@ const menuitemValue = _.range(1, 26);
                                                                         },
                                                                     }}
                                                                 >
-                                                                   {menuitemValue.map((item,index)=>(
+                                                                    {menuitemValue.map((item,index)=>(
                                                                         <MenuItem value={index+1}>{item}</MenuItem>
                                                                     ))}
-
                                                                 </Select>
                                                             </Box>
                                                             <Box className="form-group">
@@ -1180,7 +1180,7 @@ const menuitemValue = _.range(1, 26);
                                             className="privee-card-title">{data.home.booking_types.privee.title}</Typography>
                                         <Typography
                                             className='privee-card-details'>{data.home.booking_types.privee.description}</Typography>
-                                        <Typography><Link href="/privee"
+                                        <Typography><Link href="/private"
                                                           className="privee-card-link">{data.home.booking_types.privee.button_text}</Link></Typography>
                                     </Box>
                                 </Box>
@@ -1192,7 +1192,7 @@ const menuitemValue = _.range(1, 26);
                                             className="supper-card-title">{data.home.booking_types.supper_club.title}</Typography>
                                         <Typography
                                             className='supper-card-details'>{data.home.booking_types.supper_club.description}</Typography>
-                                        <Typography><Link href="/tickted"
+                                        <Typography><Link href="/ticketed"
                                                           className="supper-card-link">{data.home.booking_types.supper_club.button_text}</Link></Typography>
                                     </Box>
                                     <Box className="privee-video">

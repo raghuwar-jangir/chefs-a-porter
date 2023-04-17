@@ -96,6 +96,8 @@ const OtpProvider = (props) => {
                 email: eventData.email,
                 mobile: otpNumber,
                 type: "chef_table",
+                // meal: priveeData.experience,
+                // diner_count: priveeData.numberOfDiner,
                 meal: priveeData.time,
                 diner_count: priveeData.diners,
                 courses: eventData.numberOfCourses,

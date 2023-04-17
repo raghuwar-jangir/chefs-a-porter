@@ -63,13 +63,6 @@ const UsersProvider = (props) => {
     const [supperClubPayment, setSupperClubPayment] = useState(false)
     const [chefFormData, setChefFormData] = useState({})
     const [isChefData, setIsChefData] = useState(false)
-    console.log("chefFormData=======>", chefFormData);
-    console.log("isCoupon=======", isCoupon)
-    console.log("adPaymentData======", adPaymentData)
-    console.log("bookingId=======", bookingId)
-    console.log("callMobileNumber=======", callMobileNumber)
-    console.log("mealData=======", mealData)
-    console.log("eventDetailsData============", eventDetailsData)
 
     useEffect(() => {
         // if (cookieValueSupper) {
@@ -102,17 +95,16 @@ const UsersProvider = (props) => {
             axios.get(baseUrl + '/addon_category_master/all').then(result => {
                 setAddOnsData(result.data)
             })
-            axios.post(baseUrl + '/booking/calculate/' + bookingId,{
-            }).then((response) => {
+            axios.post(baseUrl + '/booking/calculate/' + bookingId, {}).then((response) => {
                 if (response.status === 200) {
                     setAdPaymentData(response.data)
                     Cookies.set('adsPaymentInfo', JSON.stringify(response.data));
                 }
             })
         } else if (isConfirm) {
-            console.log("bookingId========", bookingId)
             axios.post(baseUrl + '/booking/confirm/' + bookingId).then((response) => {
                 if (response.status === 200) {
+                    localStorage.setItem('privateBookingOrderNumber', JSON.stringify(response.data.order_number));
                     const options = {
                         key: response?.data?.razorpay_key,
                         currency: "INR",
@@ -123,6 +115,7 @@ const UsersProvider = (props) => {
                         theme: {color: "#C6A87D", fontFamily: "ProximaNovaA-Regular"},
                         handler: (response) => {
                             if (response) {
+                                localStorage.setItem('privatePaymentNumber', JSON.stringify(response.razorpay_payment_id));
                                 setIsConfirm(false);
                                 axios.post('https://chefv2.hypervergedemo.site/v1/booking/verifypayment/' + summaryBookingId, {
                                     razorpay_order_id: response.razorpay_order_id,
@@ -187,6 +180,18 @@ const UsersProvider = (props) => {
                 resume: joinChefData.resume,
                 cover_letter: joinChefData.coverLetterMessage,
             })
+        } else if (isChefData) {
+            axios.post(baseUrl + '/booking/creatediners/' + supperClubBookingId, {
+                diners: [
+                    {
+                        name: chefFormData?.name,
+                        mobile: chefFormData?.contact,
+                        meal_type: chefFormData?.foodPreference,
+                        email: chefFormData?.email,
+                    }
+                ]
+            })
+            setIsChefData(false);
         } else if (currentPath === 'ticketed-booking-summary' && supperClubBookingId) {
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId, {
                 common_menu: eventId,
@@ -199,6 +204,7 @@ const UsersProvider = (props) => {
             console.log("supperClubBookingId===========", supperClubBookingId)
             axios.post(baseUrl + '/booking/confirm/' + supperClubBookingId).then((response) => {
                 if (response.status === 200) {
+                    localStorage.setItem('scBookingOrderNumber', JSON.stringify(response.data.order_number));
                     const options = {
                         key: response?.data?.razorpay_key,
                         currency: "INR",
@@ -209,6 +215,7 @@ const UsersProvider = (props) => {
                         theme: {color: "#C6A87D", fontFamily: "ProximaNovaA-Regular"},
                         handler: (response) => {
                             if (response) {
+                                localStorage.setItem('scPaymentNumber', JSON.stringify(response.razorpay_payment_id));
                                 setIsSupperBookingStatus(false);
                                 axios.post('https://chefv2.hypervergedemo.site/v1/booking/verifypayment/' + supperClubBookingId, {
                                     razorpay_order_id: response.razorpay_order_id,
@@ -295,19 +302,8 @@ const UsersProvider = (props) => {
             axios.get('https://chefv2.hypervergedemo.site/v1/meal_types/all').then(result => {
                 setMealTypeData(result.data)
             })
-        } else if (isChefData) {
-            axios.post(baseUrl + 'booking/creatediners/'  + supperClubBookingId, {
-                name: chefFormData.name,
-                email: chefFormData.email,
-                mobile: chefFormData.contact,
-                meal_type: chefFormData.foodPreference,
-            }).then((response) => {
-                if (response.status === 200) {
-                    setIsChefData(false);
-                }
-            })
         }
-    }, [isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification, isChefData, chefFormData])
+    }, [isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
 
     const {children} = props;
 
@@ -346,8 +342,7 @@ const UsersProvider = (props) => {
                 setPriveePayment,
                 setSupperClubPayment,
                 setChefFormData,
-                setIsChefData
-                
+                setIsChefData,
             }}
         >
             {children}

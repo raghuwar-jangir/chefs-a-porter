@@ -860,9 +860,12 @@ const PriveePage = (props) => {
                                                              onClick={decrementCount}>-
                                                      </button>
                                                 </span>
-                                                            <TextField type="text" name="diners" id="Qty"
+                                                            <TextField type="text"
+                                                                       id="Qty"
+                                                                       // name="numberOfDiner"
+                                                                       name="diners"
                                                                        onChange={handleChange}
-                                                                    //    value={values.diners}
+                                                                       // value={values.diners}
                                                                        value={count}
                                                                        className="input-number"
 

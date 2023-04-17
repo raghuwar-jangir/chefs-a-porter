@@ -384,7 +384,9 @@ const ContactUs = () => {
                                                         <Grid xs={12} className="col-lg-12">
                                                             <button className="btn btn-primary" type="submit"
                                                                     onClick={() => {
-                                                                        handleClick(values)
+                                                                        if (!_.isEmpty(values.name && values.email && values.contactNumber && values.name && values.coverLetterMessage)) {
+                                                                            handleClick(values)
+                                                                        }
                                                                     }}>Apply
                                                             </button>
                                                         </Grid>
