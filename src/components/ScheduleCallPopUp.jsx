@@ -160,6 +160,7 @@ const ScheduleCallPopUp = (props) => {
                             <CloseIcon/>
                         </button>
                     </Box>
+
                     <Box className="container-fluid">
                         <Formik
                             initialValues={{
