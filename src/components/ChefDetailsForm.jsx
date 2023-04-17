@@ -280,7 +280,7 @@ const ChefDetailsForm = () => {
     return (<React.Fragment>
         <BoxWrapper>
             <Typography className="sub-text-price">
-             Starting at ₹2,500 <sub className="sub-text">Per Diner</sub>
+                Starting at ₹2,500 <sub className="sub-text">Per Diner</sub>
             </Typography>
 
             <Formik
@@ -456,7 +456,9 @@ const ChefDetailsForm = () => {
                             type="submit"
                             className="experience-btn"
                             onClick={() => {
-                                handleClick()
+                                if (!_.isEmpty(values.name && values.email)) {
+                                    handleClick()
+                                }
                             }}
                             // disabled={isSubmitting}
                         >
