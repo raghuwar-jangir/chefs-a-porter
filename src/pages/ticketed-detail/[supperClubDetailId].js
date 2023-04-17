@@ -88,8 +88,11 @@ const SupperClubDetail = (props) => {
   const handleToggle = (index) => {
     setShowArray((prevState) => {
       const newState = [...prevState];
+      newState[index] = !newState[index];
       newState.forEach((state, i) => {
-        newState[i] = i === index ? !state : false;
+        if (i !== index) {
+          newState[i] = false;
+        }
       });
       return newState;
     });
@@ -1368,9 +1371,6 @@ const SupperClubDetail = (props) => {
                                   style={{ width: "100%" }}
                                 >
                                   {showArray[index] && (
-                                    // <ExperienceDrop
-                                    //     toggleClose={() => toggleClose(index)}
-                                    // />
                                     <Form>
                                       <Box>
                                         <Box className="choose-seat">

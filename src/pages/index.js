@@ -909,6 +909,9 @@ const HomePage = () => {
     const handleClick = () => {
         navigate('/private-viewmore')
     }
+    const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const menuitemValue = _.range(1, 26);
 
     return (
         <React.Fragment>
@@ -928,7 +931,7 @@ const HomePage = () => {
                                                     city: 'Mumbai',
                                                     date: new Date(),
                                                     time: 'Lunch',
-                                                    diners: '1'
+                                                    diners: 1
                                                 }}
                                                 onSubmit={(values) => {
                                                     console.log(values.date)
@@ -1119,6 +1122,7 @@ const HomePage = () => {
                                                                             sx: {
                                                                                 background: "#080B0E",
                                                                                 color: '#FBFBFB',
+                                                                                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
                                                                                 li: {
                                                                                     fontSize: '20px',
                                                                                     fontFamily: 'ProximaNovaA-Regular',
@@ -1143,9 +1147,9 @@ const HomePage = () => {
                                                                         },
                                                                     }}
                                                                 >
-                                                                    <MenuItem value="1">1</MenuItem>
-                                                                    <MenuItem value="2">2</MenuItem>
-                                                                    <MenuItem value="3">3</MenuItem>
+                                                                   {menuitemValue.map((item,index)=>(
+                                                                        <MenuItem value={index+1}>{item}</MenuItem>
+                                                                    ))}
 
                                                                 </Select>
                                                             </Box>
