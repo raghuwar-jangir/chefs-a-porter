@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import {
     Box,
     Grid,
@@ -21,8 +21,20 @@ import {Formik, Form, ErrorMessage} from "formik";
 import "../../assets/styles/fontStyle.css"
 import * as Yup from 'yup';
 import {isMobile} from "react-device-detect";
+import UsersContext from "../../context/UsersContext";
+import * as _ from "lodash";
 
 const BecomePartner = () => {
+
+    const {
+        setIsBecomePartner,
+        setBecomePartnerData
+    } = useContext(UsersContext)
+
+    const handleClick = (values) => {
+        setBecomePartnerData(values);
+        setIsBecomePartner(true)
+    }
 
     //Adding Multiple inputBox
     const [inputList, setInputList] = useState([]);
@@ -59,20 +71,19 @@ const BecomePartner = () => {
     // for getting file upload name
 
     // if (typeof window !== 'undefined') {
-        // code that uses the window object
+    // code that uses the window object
 
     // const windowGlobal = typeof window !== 'undefined' && window;
 
-        // window.pressed = function () {
-        //     var a = document.getElementById('aa');
-        //     if (a.value == "") {
-        //         fileLabel.innerHTML = "Choose a File";
-        //     } else {
-        //         var theSplit = a.value.split('\\');
-        //         fileLabel.innerHTML = theSplit[theSplit.length - 1];
-        //     }
-        // };
-    // }
+    // window.pressed = function () {
+    //     var a = document.getElementById('aa');
+    //     if (a.value == "") {
+    //         fileLabel.innerHTML = "Choose a File";
+    //     } else {
+    //         var theSplit = a.value.split('\\');
+    //         fileLabel.innerHTML = theSplit[theSplit.length - 1];
+    //     }
+    // };
 
 
     const CHARACTER_LIMIT = 500;
@@ -516,6 +527,13 @@ const BecomePartner = () => {
                                                         value={values.city}
                                                         defaultValue={values.city}
                                                         onChange={handleChange}
+                                                        displayEmpty
+                                                        renderValue={(selected) => {
+                                                            if (!selected) {
+                                                                return <b>Select City</b>;
+                                                            }
+                                                            return selected;
+                                                        }}
                                                         className="selectpicker my-select dropdown-toggle form-control"
                                                         sx={{
                                                             '.MuiOutlinedInput-notchedOutline': {border: 0},
@@ -556,7 +574,6 @@ const BecomePartner = () => {
                                                             },
                                                         }}
                                                     >
-                                                        <MenuItem value="-select-">-select-</MenuItem>
                                                         <MenuItem value="Venue">Venue</MenuItem>
                                                         <MenuItem value="Produce">Produce</MenuItem>
                                                         <MenuItem value="Service Staff">Service Staff</MenuItem>
@@ -721,7 +738,7 @@ const BecomePartner = () => {
                                                                value={values.workSampleFile}
                                                                onChange={handleChange
                                                                    // ,pressed
-                                                        }/>
+                                                               }/>
                                                         <Box className="upload-files">
                                                             <img src={uploadCloud}
                                                                  style={{width: '24px', height: '24px'}}
@@ -733,7 +750,12 @@ const BecomePartner = () => {
                                                     </Box>
                                                 </Grid>
                                                 <Grid xs={12} className="col-lg-12">
-                                                    <button className="btn btn-primary" type="submit">Submit</button>
+                                                    <button className="btn btn-primary" type="submit" onClick={() => {
+                                                        if (!_.isEmpty(values.partner && values.name && values.contactNumber && values.email && values.contactNumber && values.contactNumber && values.city && values.brandName && values.instagramLink && values.otherLinks && values.brandMessage && values.chefsMessage)) {
+                                                            handleClick(values)
+                                                        }
+                                                    }}>Submit
+                                                    </button>
                                                     <p className="agree">By continuing you agree to the Terms of USe,
                                                         Privacy
                                                         Policy and Community Standards of Chefs à Porter </p>

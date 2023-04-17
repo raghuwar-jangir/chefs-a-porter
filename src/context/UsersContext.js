@@ -64,7 +64,14 @@ const UsersProvider = (props) => {
     const [supperClubPayment, setSupperClubPayment] = useState(false)
     const [chefFormData, setChefFormData] = useState({})
     const [isChefData, setIsChefData] = useState(false)
+    const [isBecomePartner, setIsBecomePartner] = useState(false)
+    const [becomePartnerData, setBecomePartnerData] = useState({})
 
+    const [isScheduleCall, setIsScheduleCall] = useState(false)
+    const [scheduleCallData, setScheduleCallData] = useState()
+
+    console.log("schuduleCallData=======",scheduleCallData)
+    console.log("isSchuduleCall=======",isScheduleCall)
     useEffect(() => {
         // if (cookieValueSupper) {
         //     setSupperClubBookingBookingConfirm(JSON.parse(cookieValueSupper));
@@ -74,6 +81,7 @@ const UsersProvider = (props) => {
         }
     }, [eventDataCookieValue])
     console.log("eventDetailsData======>", eventDetailsData);
+    console.log("becomePartnerData======>", becomePartnerData);
 
     useEffect(() => {
         if (userId && currentPath === 'chef-details') {
@@ -173,6 +181,29 @@ const UsersProvider = (props) => {
                 cover_letter: contactUsData.coverLetterMessage,
             })
             setIsContactUsData(false)
+        } else if (isBecomePartner) {
+            axios.post(baseUrl + '/partner', {
+                partner_as: "id",
+                name: becomePartnerData.name,
+                email: becomePartnerData.email,
+                mobile: becomePartnerData.contactNumber,
+                city: becomePartnerData.city,
+                brand_name: becomePartnerData.brandName,
+                instagram_profile_link: becomePartnerData.instagramLink,
+                other_link: [becomePartnerData.otherLinks],
+                about_your_brand: becomePartnerData.brandMessage,
+                why: becomePartnerData.chefsMessage,
+                work_samples: becomePartnerData.workSampleFile,
+                // work_samples: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi"
+            })
+            setIsBecomePartner(false)
+        } else if (isScheduleCall) {
+            axios.post(baseUrl + '/call_schedule', {
+                date_time: scheduleCallData.day,
+                mobile: scheduleCallData.contactNumber,
+                query: scheduleCallData.queryMessage
+            })
+            setIsScheduleCall(false)
         } else if (isJoinChefData) {
             axios.post(baseUrl + '/users/requestjoin', {
                 name: joinChefData.name,
@@ -304,7 +335,7 @@ const UsersProvider = (props) => {
                 setMealTypeData(result.data)
             })
         }
-    }, [isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
+    }, [isScheduleCall, isBecomePartner, isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
 
     const {children} = props;
 
@@ -344,6 +375,10 @@ const UsersProvider = (props) => {
                 setSupperClubPayment,
                 setChefFormData,
                 setIsChefData,
+                setIsBecomePartner,
+                setBecomePartnerData,
+                setIsScheduleCall,
+                setScheduleCallData,
             }}
         >
             {children}
