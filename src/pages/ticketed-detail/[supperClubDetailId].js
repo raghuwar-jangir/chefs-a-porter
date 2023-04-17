@@ -88,8 +88,11 @@ const SupperClubDetail = (props) => {
     const handleToggle = (index) => {
         setShowArray((prevState) => {
             const newState = [...prevState];
+            newState[index] = !newState[index];
             newState.forEach((state, i) => {
-                newState[i] = i === index ? !state : false;
+                if (i !== index) {
+                    newState[i] = false;
+                }
             });
             return newState;
         });

@@ -441,6 +441,9 @@ const PriveeViewMore = (props) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const ITEM_HEIGHT = 48;
+    const ITEM_PADDING_TOP = 8;
+    const menuitemValue = _.range(1, 26);
 
     // const handleClick = () => {
     //     navigate('/event-details');
@@ -464,8 +467,8 @@ const PriveeViewMore = (props) => {
                                                 initialValues={{
                                                     city: priveeInfo?.city,
                                                     on: moment(priveeInfo?.date).format('ddd,DD MMM') ? moment(priveeInfo?.date).format('ddd,DD MMM') : new Date(),
-                                                    time: 'Dinner',
-                                                    diners: 1
+                                                    time: priveeInfo?.time,
+                                                    diners: priveeInfo?.diners
                                                 }}
                                                 onSubmit={(values) => {
                                                     console.log(values.date)
@@ -649,6 +652,7 @@ const PriveeViewMore = (props) => {
                                                                             sx: {
                                                                                 background: "#080B0E",
                                                                                 color: '#FBFBFB',
+                                                                                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
                                                                                 li: {
                                                                                     fontSize: '20px',
                                                                                     fontWeight: '100',
@@ -672,10 +676,9 @@ const PriveeViewMore = (props) => {
                                                                         },
                                                                     }}
                                                                 >
-                                                                    <MenuItem value="1">1</MenuItem>
-                                                                    <MenuItem value="2">2</MenuItem>
-                                                                    <MenuItem value="3">3</MenuItem>
-
+                                                                    {menuitemValue.map((item,index)=>(
+                                                                        <MenuItem value={index+1}>{item}</MenuItem>
+                                                                    ))}
                                                                 </Select>
                                                             </Box>
                                                         </Box>

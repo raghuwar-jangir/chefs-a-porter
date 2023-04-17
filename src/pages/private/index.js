@@ -596,7 +596,7 @@ const PriveePage = (props) => {
         setSearch(true);
     }
     let [count, setCount] = useState(1);
-    let Qty = 10;
+    let Qty = 25;
 
     function incrementCount() {
         if (count < Qty) {
@@ -685,15 +685,15 @@ const PriveePage = (props) => {
                                             initialValues={{
                                                 city: 'Mumbai',
                                                 date: new Date(),
-                                                experience: '',
-                                                numberOfDiner: ''
+                                                time: '',
+                                                diners: 1
                                             }}
                                             onSubmit={(values) => {
                                                 console.log(values.date)
                                                 const PriveeDetails = {
                                                     ...values,
                                                     date: moment(_.get(values, 'date')).toISOString(),
-                                                    numberOfDiner: count,
+                                                    diners: count,
                                                 }
                                                 console.log("PriveeDetails===>", PriveeDetails)
                                                 Cookies.set('priveeData', JSON.stringify(PriveeDetails));
@@ -779,11 +779,11 @@ const PriveePage = (props) => {
                                                     </Box>
                                                     <Box className="form-group">
                                                         <Select
-                                                            name="experience"
+                                                            name="time"
                                                             label="Time"
-                                                            value={values.experience}
+                                                            value={values.time}
                                                             onChange={handleChange}
-                                                            defaultValue={values.experience}
+                                                            defaultValue={values.time}
                                                             placeholder="Time"
                                                             displayEmpty
                                                             renderValue={(selected) => {
@@ -860,10 +860,12 @@ const PriveePage = (props) => {
                                                              onClick={decrementCount}>-
                                                      </button>
                                                 </span>
-                                                            <TextField type="text" name="numberOfDiner" id="Qty"
-                                                                       name="numberOfDiner"
+                                                            <TextField type="text"
+                                                                       id="Qty"
+                                                                       // name="numberOfDiner"
+                                                                       name="diners"
                                                                        onChange={handleChange}
-                                                                       value={values.numberOfDiner}
+                                                                       // value={values.diners}
                                                                        value={count}
                                                                        className="input-number"
                                                                 // value={count}
@@ -907,7 +909,7 @@ const PriveePage = (props) => {
                                                             <span className="input-group-btn plus">
                                                 <button type="button"
                                                         className="btn btn-default btn-number"
-                                                        disabled={count == 10 ? true : false}
+                                                        disabled={count == Qty ? true : false}
                                                         data-type="plus"
                                                         onClick={incrementCount}>+
                                                 </button>
