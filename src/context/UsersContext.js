@@ -62,13 +62,8 @@ const UsersProvider = (props) => {
     const [bookingSuccessOpen, setBookingSuccessOpen] = useState(false);
     const [priveePayment, setPriveePayment] = useState(false)
     const [supperClubPayment, setSupperClubPayment] = useState(false)
-
-    console.log("isCoupon=======", isCoupon)
-    console.log("adPaymentData======", adPaymentData)
-    console.log("bookingId=======", bookingId)
-    console.log("callMobileNumber=======", callMobileNumber)
-    console.log("mealData=======", mealData)
-    console.log("eventDetailsData============", eventDetailsData)
+    const [chefFormData, setChefFormData] = useState({})
+    const [isChefData, setIsChefData] = useState(false)
 
     useEffect(() => {
         // if (cookieValueSupper) {
@@ -186,6 +181,18 @@ const UsersProvider = (props) => {
                 resume: joinChefData.resume,
                 cover_letter: joinChefData.coverLetterMessage,
             })
+        } else if (isChefData) {
+            axios.post(baseUrl + '/booking/creatediners/' + supperClubBookingId, {
+                diners: [
+                    {
+                        name: chefFormData?.name,
+                        mobile: chefFormData?.contact,
+                        meal_type: chefFormData?.foodPreference,
+                        email: chefFormData?.email,
+                    }
+                ]
+            })
+            setIsChefData(false);
         } else if (currentPath === 'ticketed-booking-summary' && supperClubBookingId) {
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId, {
                 common_menu: eventId,
@@ -297,7 +304,7 @@ const UsersProvider = (props) => {
                 setMealTypeData(result.data)
             })
         }
-    }, [isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
+    }, [isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
 
     const {children} = props;
 
@@ -334,7 +341,9 @@ const UsersProvider = (props) => {
                 bookingSuccessOpen,
                 setBookingSuccessOpen,
                 setPriveePayment,
-                setSupperClubPayment
+                setSupperClubPayment,
+                setChefFormData,
+                setIsChefData,
             }}
         >
             {children}

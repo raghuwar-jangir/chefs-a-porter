@@ -10,8 +10,8 @@ import {
     TextField,
     Link,
 } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
-import { Formik, Form, ErrorMessage, Field } from "formik";
+import React, {useContext, useEffect, useState} from "react";
+import {Formik, Form, ErrorMessage, Field} from "formik";
 import * as Yup from "yup";
 import Navbar from "../../components/NavbarComponent";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -26,7 +26,7 @@ import SupperClubTreatyComponent from "../../components/SupperClubTreatyComponen
 import AddIcon from "@mui/icons-material/Add";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import contact from "../../assets/images/contact-form.png";
-import { navigate } from "gatsby";
+import {navigate} from "gatsby";
 import InputAdornment from "@mui/material/InputAdornment";
 import OtpComponent from "../../components/OtpComponent";
 import * as _ from "lodash";
@@ -36,8 +36,8 @@ import OtpContext from "../../context/OtpContext";
 import UsersContext from "../../context/UsersContext";
 
 const PersonalDetails1 = () => {
-    const { setOtpNumber, setIsSendOtpApiCall } = useContext(OtpContext);
-    const { mealTypeData } = useContext(UsersContext);
+    const {setOtpNumber, setIsSendOtpApiCall} = useContext(OtpContext);
+    const {mealTypeData, setChefFormData, setIsChefData} = useContext(UsersContext);
     const [contactPopUp, setContactPopUp] = useState(false);
     const ContactOpen = () => setContactPopUp(true);
     const ContactClose = () => setContactPopUp(false);
@@ -79,7 +79,9 @@ const PersonalDetails1 = () => {
         Cookies.set("supperClubBookingPersonalDetail", JSON.stringify(values));
     };
     const handleCloseOtp = () => setOpenOtp(false);
-    const onSubmit = (values, { resetForm }) => {
+    const onSubmit = (values, {resetForm}) => {
+        console.log("values================", values)
+        setChefFormData(values);
         setTodos([...todos, values]);
         resetForm();
     };
@@ -488,6 +490,7 @@ const PersonalDetails1 = () => {
             marginLeft: "auto",
             marginTop: "20px",
             background: "transparent",
+            cursor: 'pointer'
         },
         ".add-guest:hover": {
             color: "#C6A87D",
@@ -806,6 +809,7 @@ const PersonalDetails1 = () => {
             fontSize: "16px",
             lineHeight: "19px",
             color: "#FBFBFB",
+            cursor: 'pointer'
         },
         ".view-break": {
             marginTop: "40px",
@@ -845,6 +849,7 @@ const PersonalDetails1 = () => {
             fontWeight: 600,
             fontSize: "16px",
             lineHeight: "19px",
+            cursor: 'pointer'
         },
         ".contact": {
             position: "absolute",
@@ -1009,7 +1014,7 @@ const PersonalDetails1 = () => {
     return (
         <React.Fragment>
             <MainBox>
-                <Navbar heading="Ticketed" isIcon={true} />
+                <Navbar heading="Ticketed" isIcon={true}/>
                 <div className="row supper-chef-details">
                     <div className="book-trad">
                         <ArrowBackIcon
@@ -1022,7 +1027,7 @@ const PersonalDetails1 = () => {
                     </div>
                 </div>
                 <Box className="event-div-mobile">
-                    <Box style={{ padding: "10px" }}>
+                    <Box style={{padding: "10px"}}>
                         <Typography className="event-title">
                             The Big Fat Parsi Blowout
                         </Typography>
@@ -1034,7 +1039,7 @@ const PersonalDetails1 = () => {
                                 </a>
                             </Typography>
                             <Typography className="rating-star">
-                                <img className="rating-people" src={people} />
+                                <img className="rating-people" src={people}/>
                                 <Typography className="rating-star">4 Seats</Typography>
                             </Typography>
                         </div>
@@ -1053,9 +1058,10 @@ const PersonalDetails1 = () => {
                                 : "",
                         }}
                         validationSchema={validationSchema}
-                        onSubmit={(values) => {}}
+                        onSubmit={(values) => {
+                        }}
                     >
-                        {({ values, handleChange, handleSubmit, setFieldValue }) => (
+                        {({values, handleChange, handleSubmit, setFieldValue}) => (
                             <Form onSubmit={handleSubmit}>
                                 <Grid container>
                                     <Grid
@@ -1082,7 +1088,7 @@ const PersonalDetails1 = () => {
                                                     autoComplete="off"
                                                     placeholder="Enter your full name"
                                                 />
-                                                <ErrorMessage name="name" />
+                                                <ErrorMessage name="name"/>
                                             </Box>
                                             <Box className="form-field">
                                                 <label className="form-label" htmlFor="name">
@@ -1098,7 +1104,7 @@ const PersonalDetails1 = () => {
                                                     onChange={handleChange}
                                                     value={values.email}
                                                 />
-                                                <ErrorMessage name="email" />
+                                                <ErrorMessage name="email"/>
                                             </Box>
                                             <Box className="form-field">
                                                 <label
@@ -1124,12 +1130,12 @@ const PersonalDetails1 = () => {
                                                         startAdornment: (
                                                             <InputAdornment position="start">
                                                                 +91
-                                                                <KeyboardArrowDownIcon className="contact-down" />
+                                                                <KeyboardArrowDownIcon className="contact-down"/>
                                                             </InputAdornment>
                                                         ),
                                                     }}
                                                 />
-                                                <ErrorMessage name="contactNumber" />
+                                                <ErrorMessage name="contactNumber"/>
                                             </Box>
                                             <Box className="your-food">
                                                 {!_.isEmpty(mealTypeData) && (
@@ -1216,12 +1222,12 @@ const PersonalDetails1 = () => {
                                                 )}
                                             </Box>
                                             <Box className="form-field">
-                                                <div style={{ display: "flex" }}>
+                                                <div style={{display: "flex"}}>
                                                     <label className="form-label" htmlFor="comment">
                                                         Are you allergic to something
                                                     </label>
                                                     <InfoIcon
-                                                        sx={{ fontSize: "20px", paddingLeft: "5px" }}
+                                                        sx={{fontSize: "20px", paddingLeft: "5px"}}
                                                     />
                                                 </div>
                                                 <textarea
@@ -1250,7 +1256,7 @@ const PersonalDetails1 = () => {
                                                         <div>
                                                             {todos.map((todo, index) => (
                                                                 <div key={index} className="guest-details">
-                                                                    <img className="user-logo" src={gUser} />
+                                                                    <img className="user-logo" src={gUser}/>
                                                                     <div className="user-name">{todo.name}</div>
                                                                     <span className="line">|</span>
                                                                     <div className="guest-mail">{todo.email}</div>
@@ -1279,7 +1285,7 @@ const PersonalDetails1 = () => {
                                                 </Box>
                                             </Box>
                                             <Box className="form-field">
-                                                <div style={{ display: "flex" }}>
+                                                <div style={{display: "flex"}}>
                                                     <label className="form-label" htmlFor="comment-box">
                                                         Additional Requests
                                                     </label>
@@ -1341,8 +1347,8 @@ const PersonalDetails1 = () => {
                                     >
                                         <Box className="per-dinner adsss">
                                             <Box className="event-div">
-                                                <img src={sGallery} alt="" className="per-dinner-img" />
-                                                <Box sx={{ marginLeft: "12px" }}>
+                                                <img src={sGallery} alt="" className="per-dinner-img"/>
+                                                <Box sx={{marginLeft: "12px"}}>
                                                     <Typography className="event-title">
                                                         The Big Fat Parsi Blowout
                                                     </Typography>
@@ -1353,7 +1359,7 @@ const PersonalDetails1 = () => {
                                                         </a>
                                                     </Typography>
                                                     <Typography className="rating-star">
-                                                        <img className="rating-people" src={people} />
+                                                        <img className="rating-people" src={people}/>
                                                         <Typography className="rating-star">
                                                             4 Seats
                                                         </Typography>
@@ -1365,7 +1371,7 @@ const PersonalDetails1 = () => {
                                                     <Typography className="ex-heading">
                                                         Payment Summary
                                                     </Typography>
-                                                    <ExpandMoreIcon className="ex-icon" />
+                                                    <ExpandMoreIcon className="ex-icon"/>
                                                 </Box>
                                                 {!_.isEmpty(personalDetailsPaymentCalculation) && (
                                                     <Box className="table table-borderless">
@@ -1456,15 +1462,21 @@ const PersonalDetails1 = () => {
                                 foodPreference: "Vegan",
                             }}
                             validationSchema={validationSchemaTodo}
-                            onSubmit={onSubmit}
+                            onSubmit={(values, {resetForm}) => {
+                                setIsChefData(true)
+                                setChefFormData(values);
+                                setAddUserData(values);
+                                setTodos([...todos, values]);
+                                resetForm();
+                            }}
                         >
-                            {({ values, handleChange }) => (
-                                <Form>
+                            {({values, handleChange, handleSubmit}) => (
+                                <Form onSubmit={handleSubmit}>
                                     <div className="modal-div">
                                         <div className="modal-dialog">
                                             <div className="modal-content">
                                                 <div className="modal-header">
-                                                    <ArrowBackIcon className="form-arrow" />
+                                                    <ArrowBackIcon className="form-arrow"/>
                                                     <div className="modal-title" id="exampleModalLabel">
                                                         Add Guests
                                                     </div>
@@ -1475,7 +1487,7 @@ const PersonalDetails1 = () => {
                                                         className="close"
                                                         onClick={handleClose}
                                                     >
-                                                        <CloseIcon className="close-icon" />
+                                                        <CloseIcon className="close-icon"/>
                                                     </button>
                                                 </div>
                                                 <div className="modal-body">
@@ -1483,12 +1495,12 @@ const PersonalDetails1 = () => {
                                                         <div className="initial-box">
                                                             <div>
                                                                 <div className="modal-people">
-                                                                    <img src={people} />
+                                                                    <img src={people}/>
                                                                     1/3 Guest details entered
                                                                 </div>
                                                                 <div className="modal-people-details">
                                                                     Chefs à Porter will contact your guests to
-                                                                    collect allergen details directly. <br /> This
+                                                                    collect allergen details directly. <br/> This
                                                                     experience is not suitable for children
                                                                 </div>
                                                                 {/* <button className="add-btn"><AddIcon className="add-icon"/>Add Guest</button> */}
@@ -1536,7 +1548,7 @@ const PersonalDetails1 = () => {
                                                                             placeholder="Guest Name"
                                                                             autoComplete="off"
                                                                         />
-                                                                        <ErrorMessage name="name" />
+                                                                        <ErrorMessage name="name"/>
                                                                     </Box>
                                                                     <Box className="form-field">
                                                                         <label
@@ -1553,7 +1565,7 @@ const PersonalDetails1 = () => {
                                                                             placeholder="email id"
                                                                             autoComplete="off"
                                                                         />
-                                                                        <ErrorMessage name="email" />
+                                                                        <ErrorMessage name="email"/>
                                                                     </Box>
                                                                     <Box className="form-field">
                                                                         <label
@@ -1581,12 +1593,13 @@ const PersonalDetails1 = () => {
                                                                                 startAdornment: (
                                                                                     <InputAdornment position="start">
                                                                                         +91{" "}
-                                                                                        <KeyboardArrowDownIcon className="contact-down" />
+                                                                                        <KeyboardArrowDownIcon
+                                                                                            className="contact-down"/>
                                                                                     </InputAdornment>
                                                                                 ),
                                                                             }}
                                                                         />
-                                                                        <ErrorMessage name="contact" />
+                                                                        <ErrorMessage name="contact"/>
                                                                     </Box>
                                                                     <Box className="your-food">
                                                                         {!_.isEmpty(mealTypeData) && (
@@ -1613,7 +1626,7 @@ const PersonalDetails1 = () => {
                                                                                     sx={{
                                                                                         fontSize: "20px",
                                                                                         ".MuiOutlinedInput-notchedOutline":
-                                                                                            { border: 0 },
+                                                                                            {border: 0},
                                                                                         "&.Mui-focused .MuiOutlinedInput-notchedOutline":
                                                                                             {
                                                                                                 border: "none",
@@ -1733,7 +1746,7 @@ const PersonalDetails1 = () => {
                                         className="close"
                                         onClick={ContactClose}
                                     >
-                                        <CloseIcon />
+                                        <CloseIcon/>
                                     </button>
                                 </Box>
                                 <Box className="access-box">
@@ -1758,15 +1771,18 @@ const PersonalDetails1 = () => {
                     </Box>
                 </Modal>
 
-                {openOtp && (
-                    <SupperClubOtpVerificationModal
-                        openOtp={openOtp}
-                        handleCloseOtp={handleCloseOtp}
-                        contactNumber={contactNumber}
-                    />
-                )}
+                {
+                    openOtp && (
+                        <SupperClubOtpVerificationModal
+                            openOtp={openOtp}
+                            handleCloseOtp={handleCloseOtp}
+                            contactNumber={contactNumber}
+                        />
+                    )
+                }
             </MainBox>
         </React.Fragment>
-    );
+    )
+        ;
 };
 export default PersonalDetails1;

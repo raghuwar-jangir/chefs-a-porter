@@ -46,7 +46,7 @@ import { navigate } from "gatsby";
 import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
 import moment from "moment/moment";
-import SupperClubDetailPopUpCarousel from "../../components/SupperClubDetailPopUpCarousel";
+import SupperClubDetailPopUpCarousel from "../../components/SupperClubDetailPopupCarousel"
 import Cookies from "js-cookie";
 import SupperClubDetailsPastCarousel from "../../components/SupperClubDetailsPastCarousel";
 import FooterEnd from "../../components/FooterEndSection";
