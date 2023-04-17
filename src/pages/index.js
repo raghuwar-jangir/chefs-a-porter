@@ -1014,7 +1014,7 @@ const HomePage = () => {
                                                                 <DatePickerInput
                                                                     name="date"
                                                                     value={values.date}
-                                                                    displayFormat="ddd,DD MMM"
+                                                                    displayFormat="ddd, DD MMM"
                                                                     returnFormat="ddd,DD MMM"
                                                                     className="form-control"
                                                                     onChange={(dateString) => setFieldValue('date', dateString)}

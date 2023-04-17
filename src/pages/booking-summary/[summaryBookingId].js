@@ -117,7 +117,6 @@ const BookingSummary = (props) => {
     const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
     const handlePayment = () => {
         setIsConfirm(true);
-        // handleBookingSuccessOpen(true);
     }
 
 
@@ -125,7 +124,8 @@ const BookingSummary = (props) => {
     const customerInfoCookieValue = Cookies?.get('customerData');
     const eventDataCookieValue = Cookies.get('eventData');
     const [eventData, setEventData] = useState()
-    const priveePaymentData = JSON.parse(localStorage.getItem('priveePaymentInfo'));
+    const PriveePaymentCoockie = Cookies.get('priveePaymentInfo');
+    const [priveePaymentData, setPriveePaymentData] = useState()
 
     console.log("priveePaymentData=======", priveePaymentData)
     console.log("bsPaymentData=======", bsPaymentData)
@@ -138,10 +138,12 @@ const BookingSummary = (props) => {
             if (eventDataCookieValue) {
                 setEventData(JSON.parse(eventDataCookieValue));
             }
+            setPriveePaymentData(JSON.parse(localStorage.getItem('priveePaymentInfo')))
         }, [customerInfoCookieValue, eventDataCookieValue])
     }
 
     console.log("customerInfo======", customerInfo)
+    console.log("PriveePaymentCoockie======", PriveePaymentCoockie)
     console.log("eventData======", eventData)
 
     const BoxWrapper = styled(Box)(() => ({
@@ -1140,20 +1142,20 @@ const BookingSummary = (props) => {
         <React.Fragment>
             <BoxWrapper>
                 <Navbar to={"/booking-summary"} isIcon={true} isColor={true} heading="Private"/>
-                    <Box className="supper-gallery cust-details">
-                        <Box className="container-fluid">
-                            <Box className="row supper-chef-details">
-                                <Box className="book-trad">
-                                    <ArrowBackIcon className="arrow-left"
-                                                   onClick={() => navigate(`/addons/${summaryBookingId}`)}/>
-                                    <Typography className="addons-title">
-                                        Booking Summary
-                                    </Typography>
-                                </Box>
+                <Box className="supper-gallery cust-details">
+                    <Box className="container-fluid">
+                        <Box className="row supper-chef-details">
+                            <Box className="book-trad">
+                                <ArrowBackIcon className="arrow-left"
+                                               onClick={() => navigate(`/addons/${summaryBookingId}`)}/>
+                                <Typography className="addons-title">
+                                    Booking Summary
+                                </Typography>
+                            </Box>
 
-                                {
-                                    bsPaymentData ? (
-                                        <Formik
+                            {
+                                bsPaymentData ? (
+                                    <Formik
                                         initialValues={{
                                             number: customerInfo?.contactNumber,
                                             email: eventData?.email
@@ -1325,8 +1327,8 @@ const BookingSummary = (props) => {
                                                                     <Box className="chef-profile-box">
                                                                         <img className="chef-profile-logo" src={done}/>
                                                                         <Typography className="chef-profile-dis">
-                                                                            An email confirmation has been sent
-                                                                            to {eventData?.email} <br/>
+                                                                            An email confirmation has been sent to <br/>
+                                                                            {eventData?.email} <br/>
                                                                             and SMS sent to
                                                                             +91 {customerInfo?.contactNumber}
                                                                         </Typography>
@@ -1361,7 +1363,8 @@ const BookingSummary = (props) => {
                                                                                 className="form-check-label"
                                                                                 for="flexCheckDefault"
                                                                             >
-                                                                                I agree to cancellation and refund policy
+                                                                                I agree to cancellation and refund
+                                                                                policy
                                                                             </label>
                                                                         </Box>
                                                                     </Box>
@@ -1499,7 +1502,8 @@ const BookingSummary = (props) => {
                                                                                     autoComplete="off"
                                                                                     autoFocus
                                                                                 />
-                                                                                <button className="voucher" type={"submit"}
+                                                                                <button className="voucher"
+                                                                                        type={"submit"}
                                                                                         onClick={() => {
                                                                                             setIsCoupon(true)
                                                                                         }}>Apply Voucher
@@ -1507,10 +1511,12 @@ const BookingSummary = (props) => {
                                                                             </Box>
                                                                             <Box className="tax tax1">
                                                                                 <Typography className="table-details">*Includes
-                                                                                    the menu, tableware, table set-up and
+                                                                                    the menu, tableware, table set-up
+                                                                                    and
                                                                                     white-glove service.</Typography>
                                                                                 <Typography className="table-details">**Service
-                                                                                    staff is calculated based on number of
+                                                                                    staff is calculated based on number
+                                                                                    of
                                                                                     diners.</Typography>
                                                                             </Box>
                                                                         </Box>
@@ -1543,402 +1549,406 @@ const BookingSummary = (props) => {
                                             </Form>
                                         )}
                                     </Formik>) : (
-                                        <Formik
-                                            initialValues={{
-                                                number: customerInfo?.contactNumber,
-                                                email: eventData?.email
-                                            }}
-                                            validationSchema={validationSchema}
-                                            onSubmit={handleSubmit}
-                                        >
-                                            {({values, handleChange, handleSubmit, setFieldValue}) => (
-                                                <Form>
-                                                    <Box className="row customer-details addons-div">
-                                                        <Grid container>
-                                                            <Grid
-                                                                xl={7}
-                                                                lg={7}
-                                                                xs={7}
-                                                                md={7}
-                                                                sm={12}
-                                                                xs={12}
-                                                                className="partner"
-                                                            >
-                                                                <Box className="booking-box">
-                                                                    <Typography className="booking-summary-title">
-                                                                        Booking Summary
+                                    <Formik
+                                        initialValues={{
+                                            number: customerInfo?.contactNumber,
+                                            email: eventData?.email
+                                        }}
+                                        validationSchema={validationSchema}
+                                        onSubmit={handleSubmit}
+                                    >
+                                        {({values, handleChange, handleSubmit, setFieldValue}) => (
+                                            <Form>
+                                                <Box className="row customer-details addons-div">
+                                                    <Grid container>
+                                                        <Grid
+                                                            xl={7}
+                                                            lg={7}
+                                                            xs={7}
+                                                            md={7}
+                                                            sm={12}
+                                                            xs={12}
+                                                            className="partner"
+                                                        >
+                                                            <Box className="booking-box">
+                                                                <Typography className="booking-summary-title">
+                                                                    Booking Summary
+                                                                </Typography>
+                                                                <Typography className="booking-summary-sub-title">
+                                                                    Confirm Details before proceeding to pay
+                                                                </Typography>
+                                                            </Box>
+                                                            <Box className="booking-box">
+                                                                <Box class="chef-edit">
+                                                                    <img className="chef-edit-img"
+                                                                         src={priveePaymentData?.common_menu?.user?.picture}/>
+                                                                    <Typography className="chef-edit-title">
+                                                                        {priveePaymentData?.common_menu?.user?.name}
                                                                     </Typography>
-                                                                    <Typography className="booking-summary-sub-title">
-                                                                        Confirm Details before proceeding to pay
+                                                                    <CreateIcon className="pencil-icon"/>
+                                                                </Box>
+                                                                <Box class="chef-profile">
+                                                                    <Box className="chef-profile-detail">
+                                                                        <img
+                                                                            className="chef-profile-icon"
+                                                                            src={dateGold}
+                                                                        />
+                                                                        <Typography className="chef-profile-date">
+                                                                            {/*April 9 | 7:30 PM - 10 PM*/}
+                                                                            {moment(eventData?.experienceDate).format("MMMM D")} | {moment(eventData?.startTime, 'HH:mm').format('h:mm A')}
+                                                                        </Typography>
+                                                                    </Box>
+                                                                    <Box className="chef-profile-detail">
+                                                                        <img
+                                                                            className="chef-profile-icon"
+                                                                            src={location}
+                                                                        />
+                                                                        <Typography className="chef-profile-date">
+                                                                            {/*Silver bar, Downtown*/}
+                                                                            {priveePaymentData?.city}
+                                                                        </Typography>
+                                                                    </Box>
+                                                                    <Box className="chef-profile-detail">
+                                                                        <img
+                                                                            className="chef-profile-icon"
+                                                                            src={people}
+                                                                        />
+                                                                        <Typography className="chef-profile-date">
+                                                                            {/*6 Diners*/}
+                                                                            {eventData?.numberOfDinner} Diners
+                                                                        </Typography>
+                                                                    </Box>
+                                                                </Box>
+                                                            </Box>
+                                                            <Box className="booking-box">
+                                                                <Box class="exp-info-imp">
+                                                                    <Typography className="exp-info-heading">
+                                                                        Important Experience Info
                                                                     </Typography>
-                                                                </Box>
-                                                                <Box className="booking-box">
-                                                                    <Box class="chef-edit">
-                                                                        <img className="chef-edit-img"
-                                                                             src={priveePaymentData?.common_menu?.user?.picture}/>
-                                                                        <Typography className="chef-edit-title">
-                                                                            {priveePaymentData?.common_menu?.user?.name}
-                                                                        </Typography>
-                                                                        <CreateIcon className="pencil-icon"/>
-                                                                    </Box>
-                                                                    <Box class="chef-profile">
-                                                                        <Box className="chef-profile-detail">
-                                                                            <img
-                                                                                className="chef-profile-icon"
-                                                                                src={dateGold}
-                                                                            />
-                                                                            <Typography className="chef-profile-date">
-                                                                                {/*April 9 | 7:30 PM - 10 PM*/}
-                                                                                {moment(eventData?.experienceDate).format("MMMM D")} | {moment(eventData?.startTime, 'HH:mm').format('h:mm A')}
-                                                                            </Typography>
-                                                                        </Box>
-                                                                        <Box className="chef-profile-detail">
-                                                                            <img
-                                                                                className="chef-profile-icon"
-                                                                                src={location}
-                                                                            />
-                                                                            <Typography className="chef-profile-date">
-                                                                                {/*Silver bar, Downtown*/}
-                                                                                {priveePaymentData?.city}
-                                                                            </Typography>
-                                                                        </Box>
-                                                                        <Box className="chef-profile-detail">
-                                                                            <img
-                                                                                className="chef-profile-icon"
-                                                                                src={people}
-                                                                            />
-                                                                            <Typography className="chef-profile-date">
-                                                                                {/*6 Diners*/}
-                                                                                {eventData?.numberOfDinner} Diners
-                                                                            </Typography>
-                                                                        </Box>
-                                                                    </Box>
-                                                                </Box>
-                                                                <Box className="booking-box">
-                                                                    <Box class="exp-info-imp">
-                                                                        <Typography className="exp-info-heading">
-                                                                            Important Experience Info
-                                                                        </Typography>
-                                                                        <KeyboardArrowDownIcon className="drop-down"/>
-                                                                        <ul className="exp-ul">
-                                                                            <li className="exp-li">Service Includes</li>
-                                                                            <li className="exp-li">Service Excludes</li>
-                                                                            <li className="exp-li">Table set upincludes</li>
-                                                                            <li className="exp-li">
-                                                                                Confirm Details before proceeding to pay
-                                                                            </li>
-                                                                            <li className="exp-li">Decor not included</li>
-                                                                        </ul>
-                                                                        <hr className="hr"/>
-                                                                    </Box>
-                                                                </Box>
-                                                                <Box className="contact">
-                                                                    <Box className="form-check">
-                                                                        <Checkbox
-                                                                            className="input-check"
-                                                                            defaultChecked
-                                                                        />
-                                                                        <label
-                                                                            className="form-check-label"
-                                                                            for="flexCheckDefault"
-                                                                        >
-                                                                            Enter GSTIN for tax benefits (Optional)
-                                                                        </label>
-                                                                        <KeyboardArrowRightIcon
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#exampleModal"
-                                                                            onClick={handleOpen}
-                                                                            className="forward-arrow"
-                                                                        />
-                                                                    </Box>
+                                                                    <KeyboardArrowDownIcon className="drop-down"/>
+                                                                    <ul className="exp-ul">
+                                                                        <li className="exp-li">Service Includes</li>
+                                                                        <li className="exp-li">Service Excludes</li>
+                                                                        <li className="exp-li">Table set upincludes</li>
+                                                                        <li className="exp-li">
+                                                                            Confirm Details before proceeding to pay
+                                                                        </li>
+                                                                        <li className="exp-li">Decor not included</li>
+                                                                    </ul>
                                                                     <hr className="hr"/>
                                                                 </Box>
-                                                                <Box className="booking-box">
-                                                                    <Typography className="email-text">
-                                                                        An Email Confirmation will be sent to
-                                                                    </Typography>
+                                                            </Box>
+                                                            <Box className="contact">
+                                                                <Box className="form-check">
+                                                                    <Checkbox
+                                                                        className="input-check"
+                                                                        defaultChecked
+                                                                    />
+                                                                    <label
+                                                                        className="form-check-label"
+                                                                        for="flexCheckDefault"
+                                                                    >
+                                                                        Enter GSTIN for tax benefits (Optional)
+                                                                    </label>
+                                                                    <KeyboardArrowRightIcon
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#exampleModal"
+                                                                        onClick={handleOpen}
+                                                                        className="forward-arrow"
+                                                                    />
                                                                 </Box>
-                                                                <Box class="booking-box">
-                                                                    <Box class="contact">
-                                                                        <label
-                                                                            className="contact-number"
-                                                                            for="contact-number"
-                                                                        >
-                                                                            Mobile
-                                                                        </label>
-                                                                        <Box className="form-group">
+                                                                <hr className="hr"/>
+                                                            </Box>
+                                                            <Box className="booking-box">
+                                                                <Typography className="email-text">
+                                                                    An Email Confirmation will be sent to
+                                                                </Typography>
+                                                            </Box>
+                                                            <Box class="booking-box">
+                                                                <Box class="contact">
+                                                                    <label
+                                                                        className="contact-number"
+                                                                        for="contact-number"
+                                                                    >
+                                                                        Mobile
+                                                                    </label>
+                                                                    <Box className="form-group">
                                 <span className="country-code">
                                   +91{" "}
                                     <KeyboardArrowDownIcon className="drop-down-2"/>
                                 </span>
-                                                                            <Field
-                                                                                placeholder="10 digit number"
-                                                                                className="form-control"
-                                                                                type="text"
-                                                                                id="number"
-                                                                                name="number1"
-                                                                                autoComplete="off"
-                                                                                onChange={handleChange}
-                                                                                value={values.number}
-                                                                                InputProps={{
-                                                                                    disableUnderline: true,
-                                                                                }}
-                                                                            />
-                                                                            <ErrorMessage
-                                                                                className="error"
-                                                                                name="number1"
-                                                                            />
-                                                                        </Box>
-                                                                        {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
-                                                                    </Box>
-                                                                </Box>
-                                                                <Box className="booking-box">
-                                                                    <Box className="contact">
-                                                                        <label className="contact-number" for="">
-                                                                            Email{" "}
-                                                                        </label>
-                                                                        <Box className="form-group">
-                                                                            <Field
-                                                                                type="email"
-                                                                                name="email"
-                                                                                id=""
-                                                                                placeholder="Kachwallasana@gmail.com"
-                                                                                class="form-control"
-                                                                                autoComplete="off"
-                                                                            />
-                                                                            <ErrorMessage className="error" name="email1"/>
-                                                                        </Box>
-                                                                    </Box>
-                                                                </Box>
-                                                                <Box className="booking-box">
-                                                                    <Box className="chef-profile">
-                                                                        <Box className="chef-profile-box">
-                                                                            <img className="chef-profile-logo" src={done}/>
-                                                                            <Typography className="chef-profile-dis">
-                                                                                An email confirmation has been sent
-                                                                                to {eventData?.email} <br/>
-                                                                                and SMS sent to
-                                                                                +91 {customerInfo?.contactNumber}
-                                                                            </Typography>
-                                                                        </Box>
-                                                                        <Box className="chef-profile-box">
-                                                                            <img
-                                                                                className="chef-profile-logo"
-                                                                                src={support}
-                                                                            />
-                                                                            <Typography className="chef-profile-dis">
-                                                                                Our team and Chef will get in touch with you
-                                                                                to discuss menu <br/>
-                                                                                (allergen+protein info), venue, set up and
-                                                                                pricing
-                                                                            </Typography>
-                                                                        </Box>
-                                                                    </Box>
-                                                                </Box>
-                                                                <Box className="booking-box">
-                                                                    <Box className="exp-info-imp">
-                                                                        <Typography className="exp-info-heading">
-                                                                            Cancellation Policy
-                                                                        </Typography>
-                                                                        <KeyboardArrowDownIcon className="drop-down"/>
-                                                                        <Box className="contact">
-                                                                            <Box className="form-check">
-                                                                                <Checkbox
-                                                                                    className="input-check"
-                                                                                    defaultChecked
-                                                                                />
-                                                                                <label
-                                                                                    className="form-check-label"
-                                                                                    for="flexCheckDefault"
-                                                                                >
-                                                                                    I agree to cancellation and refund policy
-                                                                                </label>
-                                                                            </Box>
-                                                                        </Box>
-                                                                        <Typography className="policy-link">
-                                                                            View Cancellation Policy
-                                                                        </Typography>
-                                                                    </Box>
-                                                                </Box>
-                                                            </Grid>
-                                                            <Grid
-                                                                xl={5}
-                                                                lg={5}
-                                                                xs={5}
-                                                                md={5}
-                                                                sm={12}
-                                                                xs={12}
-                                                                className="cust-details dinner-box"
-                                                            >
-                                                                <Box className="per-dinner adsss">
-                                                                    <Box className="event-div">
-                                                                        <img
-                                                                            src={sGallery}
-                                                                            alt=""
-                                                                            className="per-dinner-img"
+                                                                        <Field
+                                                                            placeholder="10 digit number"
+                                                                            className="form-control"
+                                                                            type="text"
+                                                                            id="number"
+                                                                            name="number1"
+                                                                            autoComplete="off"
+                                                                            onChange={handleChange}
+                                                                            value={values.number}
+                                                                            InputProps={{
+                                                                                disableUnderline: true,
+                                                                            }}
                                                                         />
-                                                                        <Box sx={{marginLeft: "12px"}}>
-                                                                            <Typography className="event-title">
-                                                                                {/*The Big Fat Parsi Blowout*/}
-                                                                                {priveePaymentData?.common_menu?.title}
-                                                                            </Typography>
-                                                                            <Typography className="event-subtitle">
-                                                                                Curated by{" "}
-                                                                                <a href="#" className="event-link">
-                                                                                    {priveePaymentData?.common_menu?.user?.name}
-                                                                                </a>
-                                                                            </Typography>
+                                                                        <ErrorMessage
+                                                                            className="error"
+                                                                            name="number1"
+                                                                        />
+                                                                    </Box>
+                                                                    {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
+                                                                </Box>
+                                                            </Box>
+                                                            <Box className="booking-box">
+                                                                <Box className="contact">
+                                                                    <label className="contact-number" for="">
+                                                                        Email{" "}
+                                                                    </label>
+                                                                    <Box className="form-group">
+                                                                        <Field
+                                                                            type="email"
+                                                                            name="email"
+                                                                            id=""
+                                                                            placeholder="Kachwallasana@gmail.com"
+                                                                            class="form-control"
+                                                                            autoComplete="off"
+                                                                        />
+                                                                        <ErrorMessage className="error" name="email1"/>
+                                                                    </Box>
+                                                                </Box>
+                                                            </Box>
+                                                            <Box className="booking-box">
+                                                                <Box className="chef-profile">
+                                                                    <Box className="chef-profile-box">
+                                                                        <img className="chef-profile-logo" src={done}/>
+                                                                        <Typography className="chef-profile-dis">
+                                                                            An email confirmation has been sent
+                                                                            to {eventData?.email} <br/>
+                                                                            and SMS sent to
+                                                                            +91 {customerInfo?.contactNumber}
+                                                                        </Typography>
+                                                                    </Box>
+                                                                    <Box className="chef-profile-box">
+                                                                        <img
+                                                                            className="chef-profile-logo"
+                                                                            src={support}
+                                                                        />
+                                                                        <Typography className="chef-profile-dis">
+                                                                            Our team and Chef will get in touch with you
+                                                                            to discuss menu <br/>
+                                                                            (allergen+protein info), venue, set up and
+                                                                            pricing
+                                                                        </Typography>
+                                                                    </Box>
+                                                                </Box>
+                                                            </Box>
+                                                            <Box className="booking-box">
+                                                                <Box className="exp-info-imp">
+                                                                    <Typography className="exp-info-heading">
+                                                                        Cancellation Policy
+                                                                    </Typography>
+                                                                    <KeyboardArrowDownIcon className="drop-down"/>
+                                                                    <Box className="contact">
+                                                                        <Box className="form-check">
+                                                                            <Checkbox
+                                                                                className="input-check"
+                                                                                defaultChecked
+                                                                            />
+                                                                            <label
+                                                                                className="form-check-label"
+                                                                                for="flexCheckDefault"
+                                                                            >
+                                                                                I agree to cancellation and refund
+                                                                                policy
+                                                                            </label>
+                                                                        </Box>
+                                                                    </Box>
+                                                                    <Typography className="policy-link">
+                                                                        View Cancellation Policy
+                                                                    </Typography>
+                                                                </Box>
+                                                            </Box>
+                                                        </Grid>
+                                                        <Grid
+                                                            xl={5}
+                                                            lg={5}
+                                                            xs={5}
+                                                            md={5}
+                                                            sm={12}
+                                                            xs={12}
+                                                            className="cust-details dinner-box"
+                                                        >
+                                                            <Box className="per-dinner adsss">
+                                                                <Box className="event-div">
+                                                                    <img
+                                                                        src={sGallery}
+                                                                        alt=""
+                                                                        className="per-dinner-img"
+                                                                    />
+                                                                    <Box sx={{marginLeft: "12px"}}>
+                                                                        <Typography className="event-title">
+                                                                            {/*The Big Fat Parsi Blowout*/}
+                                                                            {priveePaymentData?.common_menu?.title}
+                                                                        </Typography>
+                                                                        <Typography className="event-subtitle">
+                                                                            Curated by{" "}
+                                                                            <a href="#" className="event-link">
+                                                                                {priveePaymentData?.common_menu?.user?.name}
+                                                                            </a>
+                                                                        </Typography>
+                                                                        <Typography className="rating-star">
+                                                                            <StarIcon
+                                                                                sx={{
+                                                                                    color: "#C6A87D",
+                                                                                    height: "24px",
+                                                                                    width: "24px",
+                                                                                }}
+                                                                            />{" "}
                                                                             <Typography className="rating-star">
-                                                                                <StarIcon
-                                                                                    sx={{
-                                                                                        color: "#C6A87D",
-                                                                                        height: "24px",
-                                                                                        width: "24px",
-                                                                                    }}
-                                                                                />{" "}
-                                                                                <Typography className="rating-star">
-                                                                                    4.7
-                                                                                </Typography>
+                                                                                4.7
                                                                             </Typography>
-                                                                        </Box>
+                                                                        </Typography>
                                                                     </Box>
-                                                                    <Box className="experience-breakup">
-                                                                        <Box className="ex-details">
-                                                                            <Typography className="ex-heading">
-                                                                                Breakup
-                                                                            </Typography>
-                                                                            {/*<Typography className="ex-detail">*/}
-                                                                            {/*    This is an estimate, final price will be{" "}*/}
-                                                                            {/*    <br/>*/}
-                                                                            {/*    communicated on call*/}
-                                                                            {/*</Typography>*/}
-                                                                            <ExpandMoreIcon className="ex-icon"/>
-                                                                        </Box>
-                                                                        {
-                                                                            !_.isEmpty(priveePaymentData) &&
-                                                                            <Box className="table table-borderless">
-                                                                                <Box className="table-box">
-                                                                                    <Typography
-                                                                                        className="table-details">Experience*</Typography>
-                                                                                    <Typography
-                                                                                        className="table-details">{priveePaymentData?.payment?.experience}</Typography>
-                                                                                </Box>
-                                                                                <Box className="table-box">
-                                                                                    <Typography
-                                                                                        className="table-details">Service
-                                                                                        Staff**</Typography>
-                                                                                    <Typography
-                                                                                        className="table-details">{priveePaymentData?.payment?.service_staff}</Typography>
-                                                                                </Box>
-                                                                                <Box
-                                                                                    className="table-box border table-details-pt">
-                                                                                    <Typography
-                                                                                        className="table-details">Sub
-                                                                                        total</Typography>
-                                                                                    <Typography
-                                                                                        className="table-details">{priveePaymentData?.payment?.sub_total}</Typography>
-                                                                                </Box>
-                                                                                <Box className="table-box table-details-pt">
-                                                                                    <Typography className="table-details">GST
-                                                                                        @5%</Typography>
-                                                                                    <Typography
-                                                                                        className="table-details">{priveePaymentData?.payment?.GST}</Typography>
-                                                                                </Box>
-                                                                                <Box className="table-box">
-                                                                                    <Typography className="table-details">Service
-                                                                                        Charges @10%</Typography>
-                                                                                    <Typography
-                                                                                        className="table-details">{priveePaymentData?.payment?.service_charges}</Typography>
-                                                                                </Box>
-                                                                                {
-                                                                                    priveePaymentData?.payment?.discount && priveePaymentData?.payment?.voucher ? (
-                                                                                        <>
-                                                                                            <Box className="table-box">
-                                                                                                <Typography
-                                                                                                    className="table-details">Discount</Typography>
-                                                                                                <Typography
-                                                                                                    className="table-details">{priveePaymentData?.payment?.discount}</Typography>
-                                                                                            </Box>
-                                                                                            <Box className="table-box">
-                                                                                                <Typography
-                                                                                                    className="table-details">Voucher</Typography>
-                                                                                                <Typography
-                                                                                                    className="table-details">{priveePaymentData?.payment?.voucher}</Typography>
-                                                                                            </Box>
-                                                                                        </>
-                                                                                    ) : ('')
-                                                                                }
-                                                                                <Box className="table-box border">
-                                                                                    <Typography
-                                                                                        className="grand-total">Grand
-                                                                                        Total</Typography>
-                                                                                    <Typography
-                                                                                        className="grand-total">{priveePaymentData?.payment?.total}</Typography>
-                                                                                </Box>
-                                                                                <Box className="form-group1">
-                                                                                    <input
-                                                                                        type="text"
-                                                                                        name="voucher"
-                                                                                        value={voucher}
-                                                                                        onChange={(event) => {
-                                                                                            const capitalizedValue = event.target.value.toUpperCase();
-                                                                                            setVoucher(capitalizedValue)
-                                                                                        }}
-                                                                                        placeholder="Enter Your Voucher Coupon"
-                                                                                        className="form-control"
-                                                                                        autoComplete="off"
-                                                                                        autoFocus
-                                                                                    />
-                                                                                    <button className="voucher" type={"submit"}
-                                                                                            onClick={() => {
-                                                                                                setIsCoupon(true)
-                                                                                            }}>Apply Voucher
-                                                                                    </button>
-                                                                                </Box>
-                                                                                <Box className="tax tax1">
-                                                                                    <Typography className="table-details">*Includes
-                                                                                        the menu, tableware, table set-up and
-                                                                                        white-glove service.</Typography>
-                                                                                    <Typography className="table-details">**Service
-                                                                                        staff is calculated based on number of
-                                                                                        diners.</Typography>
-                                                                                </Box>
+                                                                </Box>
+                                                                <Box className="experience-breakup">
+                                                                    <Box className="ex-details">
+                                                                        <Typography className="ex-heading">
+                                                                            Breakup
+                                                                        </Typography>
+                                                                        {/*<Typography className="ex-detail">*/}
+                                                                        {/*    This is an estimate, final price will be{" "}*/}
+                                                                        {/*    <br/>*/}
+                                                                        {/*    communicated on call*/}
+                                                                        {/*</Typography>*/}
+                                                                        <ExpandMoreIcon className="ex-icon"/>
+                                                                    </Box>
+                                                                    {
+                                                                        !_.isEmpty(priveePaymentData) &&
+                                                                        <Box className="table table-borderless">
+                                                                            <Box className="table-box">
+                                                                                <Typography
+                                                                                    className="table-details">Experience*</Typography>
+                                                                                <Typography
+                                                                                    className="table-details">{priveePaymentData?.payment?.experience}</Typography>
                                                                             </Box>
-                                                                        }
-                                                                    </Box>
-                                                                    <Box className="row viewbreak">
-                                                                        {
-                                                                            !_.isEmpty(priveePaymentData) &&
-                                                                            <Box className="col-lg-12">
-                                                                                <button
-                                                                                    type="submit"
-                                                                                    className="submit-req"
-                                                                                    onClick={handlePayment}
-                                                                                >
-                                                                                    Proceed to pay
-                                                                                    ₹{priveePaymentData?.payment?.total}
-                                                                                    {/*Proceed to pay ₹25,000*/}
+                                                                            <Box className="table-box">
+                                                                                <Typography
+                                                                                    className="table-details">Service
+                                                                                    Staff**</Typography>
+                                                                                <Typography
+                                                                                    className="table-details">{priveePaymentData?.payment?.service_staff}</Typography>
+                                                                            </Box>
+                                                                            <Box
+                                                                                className="table-box border table-details-pt">
+                                                                                <Typography
+                                                                                    className="table-details">Sub
+                                                                                    total</Typography>
+                                                                                <Typography
+                                                                                    className="table-details">{priveePaymentData?.payment?.sub_total}</Typography>
+                                                                            </Box>
+                                                                            <Box className="table-box table-details-pt">
+                                                                                <Typography className="table-details">GST
+                                                                                    @5%</Typography>
+                                                                                <Typography
+                                                                                    className="table-details">{priveePaymentData?.payment?.GST}</Typography>
+                                                                            </Box>
+                                                                            <Box className="table-box">
+                                                                                <Typography className="table-details">Service
+                                                                                    Charges @10%</Typography>
+                                                                                <Typography
+                                                                                    className="table-details">{priveePaymentData?.payment?.service_charges}</Typography>
+                                                                            </Box>
+                                                                            {
+                                                                                priveePaymentData?.payment?.discount && priveePaymentData?.payment?.voucher ? (
+                                                                                    <>
+                                                                                        <Box className="table-box">
+                                                                                            <Typography
+                                                                                                className="table-details">Discount</Typography>
+                                                                                            <Typography
+                                                                                                className="table-details">{priveePaymentData?.payment?.discount}</Typography>
+                                                                                        </Box>
+                                                                                        <Box className="table-box">
+                                                                                            <Typography
+                                                                                                className="table-details">Voucher</Typography>
+                                                                                            <Typography
+                                                                                                className="table-details">{priveePaymentData?.payment?.voucher}</Typography>
+                                                                                        </Box>
+                                                                                    </>
+                                                                                ) : ('')
+                                                                            }
+                                                                            <Box className="table-box border">
+                                                                                <Typography
+                                                                                    className="grand-total">Grand
+                                                                                    Total</Typography>
+                                                                                <Typography
+                                                                                    className="grand-total">{priveePaymentData?.payment?.total}</Typography>
+                                                                            </Box>
+                                                                            <Box className="form-group1">
+                                                                                <input
+                                                                                    type="text"
+                                                                                    name="voucher"
+                                                                                    value={voucher}
+                                                                                    onChange={(event) => {
+                                                                                        const capitalizedValue = event.target.value.toUpperCase();
+                                                                                        setVoucher(capitalizedValue)
+                                                                                    }}
+                                                                                    placeholder="Enter Your Voucher Coupon"
+                                                                                    className="form-control"
+                                                                                    autoComplete="off"
+                                                                                    autoFocus
+                                                                                />
+                                                                                <button className="voucher"
+                                                                                        type={"submit"}
+                                                                                        onClick={() => {
+                                                                                            setIsCoupon(true)
+                                                                                        }}>Apply Voucher
                                                                                 </button>
                                                                             </Box>
-                                                                        }
-                                                                        <Typography className="contact-text">
-                                                                            Estimate figure, further changes may amend the
-                                                                            total
-                                                                        </Typography>
-                                                                    </Box>
+                                                                            <Box className="tax tax1">
+                                                                                <Typography className="table-details">*Includes
+                                                                                    the menu, tableware, table set-up
+                                                                                    and
+                                                                                    white-glove service.</Typography>
+                                                                                <Typography className="table-details">**Service
+                                                                                    staff is calculated based on number
+                                                                                    of
+                                                                                    diners.</Typography>
+                                                                            </Box>
+                                                                        </Box>
+                                                                    }
                                                                 </Box>
-                                                            </Grid>
+                                                                <Box className="row viewbreak">
+                                                                    {
+                                                                        !_.isEmpty(priveePaymentData) &&
+                                                                        <Box className="col-lg-12">
+                                                                            <button
+                                                                                type="submit"
+                                                                                className="submit-req"
+                                                                                onClick={handlePayment}
+                                                                            >
+                                                                                Proceed to pay
+                                                                                ₹{priveePaymentData?.payment?.total}
+                                                                                {/*Proceed to pay ₹25,000*/}
+                                                                            </button>
+                                                                        </Box>
+                                                                    }
+                                                                    <Typography className="contact-text">
+                                                                        Estimate figure, further changes may amend the
+                                                                        total
+                                                                    </Typography>
+                                                                </Box>
+                                                            </Box>
                                                         </Grid>
-                                                    </Box>
-                                                </Form>
-                                            )}
-                                        </Formik>
-                                    )
-                                }
+                                                    </Grid>
+                                                </Box>
+                                            </Form>
+                                        )}
+                                    </Formik>
+                                )
+                            }
 
-                            </Box>
                         </Box>
                     </Box>
+                </Box>
 
                 <Modal
                     keepMounted
@@ -2121,21 +2131,22 @@ const BookingSummary = (props) => {
                                                     </div>
                                                     <div className="col-lg-12">
                                                         <div className="chef-edit">
-                                                            <img src={chefImg} alt=""/>
-                                                            <h5>Chef Mako Ravindran</h5>
+                                                            <img src={bsPaymentData?.common_menu?.user?.picture}
+                                                                 alt=""/>
+                                                            <h5>{bsPaymentData?.common_menu?.user?.name}</h5>
                                                         </div>
                                                         <div className="chef-profile">
                                                             <div>
                                                                 <img src={dateGold} alt=""/>
-                                                                <span>April 9 | 7:30 PM - 10 PM</span>
+                                                                <span>{moment(eventData?.experienceDate).format("MMMM D")} | {moment(eventData?.startTime, 'HH:mm').format('h:mm A')}</span>
                                                             </div>
                                                             <div>
                                                                 <img src={location} alt=""/>
-                                                                <span>Silver bar, Downtown</span>
+                                                                <span>{bsPaymentData?.city}</span>
                                                             </div>
                                                             <div>
                                                                 <img src={people} alt=""/>
-                                                                <span>6 Diners</span>
+                                                                <span>{eventData?.numberOfDinner} Diners</span>
                                                             </div>
                                                         </div>
                                                         <hr className="hr"/>
@@ -2173,35 +2184,44 @@ const BookingSummary = (props) => {
                                                     <div className="experience-breakup">
                                                         <div className="ex-details">
                                                             <h5>Payment Summary</h5>
-                                                            <KeyboardArrowDownIcon className="i"/>
                                                         </div>
                                                         <div className="table table-borderless">
                                                             <div className="table-box">
-                                                                <span>Meal</span>
+                                                                <span>Experience*</span>
                                                                 <span
-                                                                    className="price">{bsPaymentData?.payment?.meal}</span>
+                                                                    className="price">{bsPaymentData?.payment?.experience}</span>
                                                             </div>
                                                             <div className="table-box">
-                                                                <span>Service Charge</span>
+                                                                <span>Service Staff**</span>
+                                                                <span
+                                                                    className="price">{bsPaymentData?.payment?.service_staff}</span>
+                                                            </div>
+                                                            <div className="table-box">
+                                                                <span>Sub total</span>
+                                                                <span className="price">{bsPaymentData?.payment?.sub_total}</span>
+                                                            </div>
+                                                            <div className="table-box ">
+                                                                <span className="price">GST @5%</span>
+                                                                <span
+                                                                    className="price">{bsPaymentData?.payment?.GST}</span>
+                                                            </div>
+                                                            <div className="table-box">
+                                                                <span
+                                                                    className="price">Service Charges @10%</span>
                                                                 <span
                                                                     className="price">{bsPaymentData?.payment?.service_charges}</span>
-                                                            </div>
-                                                            <div className="table-box">
-                                                                <span>Tax</span>
-                                                                <span
-                                                                    className="price">{bsPaymentData?.payment?.taxes}</span>
                                                             </div>
                                                             <div className="table-box border">
                                                                 <span className="grand-total">Grand Total</span>
                                                                 <span
-                                                                    className="grand-total"> {bsPaymentData?.payment?.total}</span>
+                                                                    className="grand-total">{bsPaymentData?.payment?.total}</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div className="experience-breakup">
                                                         <div className="table table-borderless">
                                                             <div className="table-box">
-                                                                <span>State Bank of India</span>
+                                                                <span>Razorpay Payment</span>
                                                                 <span
                                                                     className="price">{bsPaymentData?.payment?.total}</span>
                                                             </div>

@@ -14,6 +14,7 @@ import '../assets/styles/fontStyle.css'
 import CmsContext from "../context/CmsContext";
 import * as _ from "lodash";
 import moment from "moment";
+import {navigate} from "gatsby";
 
 const MainParent = styled(Box)({
     padding: '35px 120px 80px',
@@ -237,7 +238,7 @@ const FoodCarousel = (isButtonShow) => {
                             className="mySwiper">
                         {data.home.upcoming_supper_clubs.supper_clubs.map((item) => {
                             return (
-                                <SwiperSlide style={{cursor: 'pointer'}}>
+                                <SwiperSlide style={{cursor: 'pointer'}}   onClick={() => navigate(`/ticketed-detail/${item?.id}`)}>
                                     <img className='test-img' src={item.pictures}/>
                                     {
                                         item.status &&

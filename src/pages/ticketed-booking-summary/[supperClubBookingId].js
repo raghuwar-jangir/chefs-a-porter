@@ -49,7 +49,6 @@ const ScBookingSummary = () => {
 
     const handleClick = () => {
         navigate(`/ticketed-booking-confirm/${supperClubBookingId}`);
-        setIsSupperBookingStatus(true)
         setSupperClubPayment(true);
     }
 

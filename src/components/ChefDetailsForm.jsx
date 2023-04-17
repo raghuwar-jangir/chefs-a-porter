@@ -280,7 +280,7 @@ const ChefDetailsForm = () => {
     return (<React.Fragment>
         <BoxWrapper>
             <Typography className="sub-text-price">
-                ₹ 2,500 <sub className="sub-text">Per Diner</sub>
+             Starting at ₹2,500 <sub className="sub-text">Per Diner</sub>
             </Typography>
 
             <Formik
