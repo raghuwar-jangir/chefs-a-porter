@@ -685,7 +685,7 @@ const PriveePage = (props) => {
                                             initialValues={{
                                                 city: 'Mumbai',
                                                 date: new Date(),
-                                                time: '',
+                                                time: 'Lunch',
                                                 diners: 1
                                             }}
                                             onSubmit={(values) => {

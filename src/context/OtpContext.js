@@ -37,8 +37,13 @@ const OtpProvider = (props) => {
     const cookieValue2 = Cookies.get('supperClubBookingPersonalDetail');
     const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
+    const forDinersValue = Cookies?.get('eventDinners')
+    const numberOfDinner = parseInt(forDinersValue?.replaceAll('"', ''));
+    const forCoursesValue = Cookies?.get('eventCourses')
+    const numberOfCourses = parseInt(forCoursesValue?.replaceAll('"', ''));
 
     console.log("eventData=========",eventData)
+    console.log("isStatus=========",isStatus)
     const eventIdCookieValue = Cookies.get('eventIdValue');
     const PaymentEventId = eventIdCookieValue?.replaceAll('"', '')
     const sEventIdCookieValue = Cookies.get('superClubDetailId');
@@ -90,7 +95,7 @@ const OtpProvider = (props) => {
             })
             setResendOtp(null)
             setIsReSendOtpApiCall(false)
-        } else if (isStatus && currentPath === 'customer-details') {
+        } else if (isStatus) {
             axios.post(baseUrl + '/booking', {
                 name: eventData.name,
                 email: eventData.email,
@@ -99,8 +104,8 @@ const OtpProvider = (props) => {
                 // meal: priveeData.experience,
                 // diner_count: priveeData.numberOfDiner,
                 meal: priveeData.time,
-                diner_count: eventData.numberOfDinner,
-                courses: eventData.numberOfCourses,
+                diner_count: numberOfDinner,
+                courses: numberOfCourses,
                 city: priveeData.city,
                 booking_date: priveeData.date,
                 booking_time: eventData.startTime,
