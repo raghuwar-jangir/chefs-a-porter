@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useContext, useState, useEffect, useRef, useMemo, useCallback} from 'react';
 import {Box, Typography} from '@mui/material';
 import {styled} from '@mui/system';
 import StarIcon from '@mui/icons-material/Star';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 import '../assets/styles/searchBar.css'
 import "../assets/styles/fontStyle.css"
+import UsersContext from "../context/UsersContext";
+import {FormGroup, FormControlLabel, Checkbox} from '@mui/material';
+import {Grid, ImageListItem,} from "@mui/material";
+import * as _ from 'lodash'
+import Cookies from "js-cookie";
 
 const MainContentBox = styled(Box)({
     position: 'relative',
@@ -13,6 +18,11 @@ const MainContentBox = styled(Box)({
         width: 'auto',
         height: 'auto',
         backgroundColor: '#101418',
+    },
+    '.partner': {
+        border: '0px',
+        background: '#DCD7CB',
+        margin: '40px 20px',
     },
     '.addons-img': {
         height: '240px',
@@ -53,6 +63,15 @@ const MainContentBox = styled(Box)({
         height: '16px',
         paddingRight: '5px'
     },
+    '.addons-box': {
+        display: 'flex',
+        alignitems: 'center',
+        justifyContent: 'space-between'
+    },
+    '.checkBox': {
+        height: '16px',
+        width: '16px'
+    },
     "@media (min-width: 1px) and (max-width:425px)": {
         '.addons-parent': {
             padding: '6px',
@@ -90,24 +109,82 @@ const MainContentBox = styled(Box)({
 })
 
 const AddonsCard = (props) => {
+
+    const {
+        addOnsData,
+        setAddonsId,
+        addonsId,
+        setIsUpdateBooking
+    } = useContext(UsersContext);
+
+    // const [checkedItems, setCheckedItems] = useState([]);
+    // const selectedIds = checkedItems.map((item) => item.id);
+    // const previousDataRef = useRef(null); // Create a ref to store previous data
+    //
+    // useEffect(() => {
+    //     previousDataRef.current = selectedIds;
+    // }, [selectedIds]);
+
+    // const previousData = previousDataRef.current;
+
+    const handleCheckboxChange = useCallback((event) => {
+        const {id, checked} = event.target;
+        if (checked) {
+            setAddonsId([...addonsId, {id}]);
+        } else {
+            console.log('addonsId===',addonsId)
+            setAddonsId(addonsId.filter((item) => item.id !== id));
+        }
+        setIsUpdateBooking(true)
+    }, [addonsId]);
+
+    // console.log("response   previousData=========",previousData)
+    // console.log("response selectedIds=========",selectedIds)
+    //
+    // useEffect(() => {
+    //     if (!_.isEmpty(selectedIds) && JSON.stringify(previousData) !== JSON.stringify(selectedIds)) {
+    //         // setAddonsId(selectedIds)
+    //     }
+    // }, [previousData, selectedIds])
+    const selectedAddonsId = addonsId.map((item) => item.id);
+
     return (
         <React.Fragment>
             <MainContentBox>
-                <img src={props.image} alt="saffImage" style={{verticalAlign: 'top'}} width={'100%'}
-                     className='addons-img'/>
-                <Box className='addons-parent'>
-                    <Typography className='title'>
-                        {props.title}
-                    </Typography>
+                <Grid container className="addon-grid" rowSpacing={2}
+                      columnSpacing={2}>
                     {
-                        props.isLabelShow &&
-                        <Box className='sub-box'>
-                            <Box className='top-box'>
-                                <ElectricBoltIcon className="trending-icon"/> Trending
-                            </Box>
-                        </Box>
+                        addOnsData.map((item, index) => {
+                            console.log("item=======",item)
+                            return (
+                                <Grid item xl={4} md={4} sm={6} xs={6} key={index}>
+                                    <img src={item.image} alt="saffImage" style={{verticalAlign: 'top'}} width={'100%'}
+                                         className='addons-img'/>
+                                    <Box className='addons-parent'>
+                                        <div className="addons-box">
+                                            <Typography className='title'>
+                                                {item.name}
+                                            </Typography>
+                                            <input type={"checkbox"}
+                                                   checked={selectedAddonsId.includes(item.id)}
+                                                   value={item.id}
+                                                   id={item.id}
+                                                   className="checkBox" onChange={handleCheckboxChange}/>
+                                        </div>
+                                        {
+                                            props.isLabelShow &&
+                                            <Box className='sub-box'>
+                                                <Box className='top-box'>
+                                                    <ElectricBoltIcon className="trending-icon"/> Trending
+                                                </Box>
+                                            </Box>
+                                        }
+                                    </Box>
+                                </Grid>
+                            )
+                        })
                     }
-                </Box>
+                </Grid>
             </MainContentBox>
         </React.Fragment>
     )

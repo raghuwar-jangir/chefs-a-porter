@@ -14,7 +14,6 @@ const defaultState = {
 const UsersContext = React.createContext(defaultState)
 
 const UsersProvider = (props) => {
-
     const priveeRazorpay = useRazorpay();
     const SupperClubRazorpay = useRazorpay();
     const path = useLocation();
@@ -71,14 +70,16 @@ const UsersProvider = (props) => {
     const numberOfCourses = parseInt(forCoursesValue?.replaceAll('"', ''));
     const [isBecomePartner, setIsBecomePartner] = useState(false)
     const [becomePartnerData, setBecomePartnerData] = useState({})
+    const [isUpdateBooking, setIsUpdateBooking] = useState(false)
+    const [addonsId, setAddonsId] = useState([])
 
     const [isScheduleCall, setIsScheduleCall] = useState(false)
     const [scheduleCallData, setScheduleCallData] = useState();
     const [partnerId,setPartnerId]=useState();
 
-    console.log("schuduleCallData=======", scheduleCallData)
-    console.log("isSchuduleCall=======", isScheduleCall)
-    console.log("partnerId=======", partnerId)
+    console.log("addonsId=======", addonsId)
+    const selectedAddonsId = !_.isEmpty(addonsId) ? addonsId.map((item) => item.id) : [];
+    console.log("selectedAddonsId=======", selectedAddonsId)
     useEffect(() => {
         // if (cookieValueSupper) {
         //     setSupperClubBookingBookingConfirm(JSON.parse(cookieValueSupper));
@@ -352,7 +353,18 @@ const UsersProvider = (props) => {
                 setMealTypeData(result.data)
             })
         }
-    }, [isScheduleCall, isBecomePartner, isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
+      if (isUpdateBooking){
+            axios.patch(baseUrl + '/booking/'+bookingId, {
+                // addons:['6416f9978da15a0ecef5693a', '64241e3919915278d887421a']
+                addons:selectedAddonsId
+            }).then((response) => {
+                if (response.status === 200) {
+                    console.log("response==========",response.data);
+                    setIsUpdateBooking(false);
+                }
+            })
+        }
+    }, [isUpdateBooking,isScheduleCall, isBecomePartner, isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
 
     const {children} = props;
 
@@ -397,7 +409,10 @@ const UsersProvider = (props) => {
                 setIsScheduleCall,
                 setScheduleCallData,
                 partnerMenuData,
-                setPartnerId
+                setPartnerId,
+                setIsUpdateBooking,
+                setAddonsId,
+                addonsId
             }}
         >
             {children}

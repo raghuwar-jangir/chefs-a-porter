@@ -114,7 +114,7 @@ const OtpProvider = (props) => {
                 common_menu: PaymentEventId,
                 message: customerInfo?.message,
                 common_address: {
-                    address1: userAddress?.landmark + userAddress?.society,
+                    address1: userAddress?.society,
                     address2: userAddress?.location,
                     landmark: userAddress?.landmark,
                     pincode: userAddress?.pincode,
