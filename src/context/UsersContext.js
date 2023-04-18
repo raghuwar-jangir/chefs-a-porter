@@ -70,6 +70,10 @@ const UsersProvider = (props) => {
     const numberOfCourses = parseInt(forCoursesValue?.replaceAll('"', ''));
     const [isBecomePartner, setIsBecomePartner] = useState(false)
     const [becomePartnerData, setBecomePartnerData] = useState({})
+    const supperClubExperienceSeats = Cookies?.get('supperClubExperienceSeats');
+    const experienceNumberOfSeats = parseInt(supperClubExperienceSeats?.replaceAll('"', ''));
+    const supperClubExperienceTables = Cookies?.get('supperClubExperienceTables');
+    const experienceNumberOfTables = parseInt(supperClubExperienceTables?.replaceAll('"', ''));
 
     const [isScheduleCall, setIsScheduleCall] = useState(false)
     const [scheduleCallData, setScheduleCallData] = useState();
@@ -304,8 +308,8 @@ const UsersProvider = (props) => {
             axios.post(baseUrl + '/booking/calculatepayment/', {
                 id: superClubDetailId,
                 type: 'supper_club',
-                seats: 1,
-                seats_chefs_table: 3
+                seats: experienceNumberOfSeats,
+                seats_chefs_table: experienceNumberOfTables
             }).then((response) => {
                 if (response.status === 200) {
                     Cookies.set('PersonalDetailsPaymentCalculation', JSON.stringify(response.data));

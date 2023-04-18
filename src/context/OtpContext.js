@@ -41,9 +41,15 @@ const OtpProvider = (props) => {
     const numberOfDinner = parseInt(forDinersValue?.replaceAll('"', ''));
     const forCoursesValue = Cookies?.get('eventCourses')
     const numberOfCourses = parseInt(forCoursesValue?.replaceAll('"', ''));
-
-    console.log("eventData=========",eventData)
-    console.log("isStatus=========",isStatus)
+    const supperClubExperienceSeats = Cookies?.get('supperClubExperienceSeats');
+    const experienceNumberOfSeats = parseInt(supperClubExperienceSeats?.replaceAll('"', ''));
+    const supperClubExperienceTables = Cookies?.get('supperClubExperienceTables');
+    const experienceNumberOfTables = parseInt(supperClubExperienceTables?.replaceAll('"', ''));
+    const supperClubExperienceDates = Cookies?.get('supperClubExperienceDates');
+    const experienceNumberOfDates = supperClubExperienceDates?.replaceAll('"', '');
+    const supperClubExperienceTime = Cookies?.get('supperClubExperienceTime');
+    const experienceNumberOfTime = supperClubExperienceTime?.replaceAll('"', '');
+    console.log("experienceNumberOfTime=======>",experienceNumberOfTime);
     const eventIdCookieValue = Cookies.get('eventIdValue');
     const PaymentEventId = eventIdCookieValue?.replaceAll('"', '')
     const sEventIdCookieValue = Cookies.get('superClubDetailId');
@@ -141,17 +147,18 @@ const OtpProvider = (props) => {
                 // event: supperClubBookingId,
                 // event: "642d5567086e9b0e5f84e65c",
                 event: sPaymentEventId,
-                meal: priveeData?.time,
+                meal: experienceNumberOfTime,
                 diner_count: priveeData?.diners,
                 courses: eventData?.numberOfCourses,
                 // city: superClubBookingDetails.foodPreference,
                 city: "Banglore",
+                // booking_date: experienceNumberOfDates,
                 booking_date: priveeData?.date,
                 common_menu: supperClubDetailId,
                 message: "Addition info",
                 otp: verifyOtp,
-                seats: 3,
-                seats_chefs_table: 5
+                seats: experienceNumberOfSeats,
+                seats_chefs_table: experienceNumberOfTables
             }).then((response) => {
                 if (response.status === 200) {
                     Cookies.set('supperClubBookingId', JSON.stringify(response.data.id));
