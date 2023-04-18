@@ -63,6 +63,10 @@ const UsersProvider = (props) => {
     const [supperClubPayment, setSupperClubPayment] = useState(false)
     const [chefFormData, setChefFormData] = useState({})
     const [isChefData, setIsChefData] = useState(false)
+    const forDinersValue = Cookies?.get('eventDinners')
+    const numberOfDinner = parseInt(forDinersValue?.replaceAll('"', ''));
+    const forCoursesValue = Cookies?.get('eventCourses')
+    const numberOfCourses = parseInt(forCoursesValue?.replaceAll('"', ''));
 
     useEffect(() => {
         // if (cookieValueSupper) {
@@ -277,10 +281,10 @@ const UsersProvider = (props) => {
             axios.post(baseUrl + '/booking/calculatepayment/', {
                 id: '640b22b691e7236a1d0a264e',
                 type: "privee",
-                // diner: eventDetailsData?.numberOfDinner,
-                // courses: eventDetailsData?.numberOfCourses,
-                diner: 10,
-                courses: 6,
+                diner: numberOfDinner,
+                courses: numberOfCourses,
+                // diner: 10,
+                // courses: 6,
             }).then((response) => {
                 if (response.status === 200) {
                     Cookies.set('CPaymentInfo', JSON.stringify(response.data));
