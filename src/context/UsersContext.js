@@ -46,6 +46,7 @@ const UsersProvider = (props) => {
     const [callMobileNumber, setCallMobileNumber] = useState();
     const [mealData, setMealData] = useState();
     const [mealTypeData, setMealTypeData] = useState();
+    const [partnerMenuData, setPartnerMenuData] = useState();
     const eventIdCookieValue = Cookies.get('eventIdValue');
     const PaymentEventId = eventIdCookieValue?.replaceAll('"', '')
     const superClubDetailIdCookieValue = Cookies.get('superClubDetailId');
@@ -64,14 +65,20 @@ const UsersProvider = (props) => {
     const [supperClubPayment, setSupperClubPayment] = useState(false)
     const [chefFormData, setChefFormData] = useState({})
     const [isChefData, setIsChefData] = useState(false)
+    const forDinersValue = Cookies?.get('eventDinners')
+    const numberOfDinner = parseInt(forDinersValue?.replaceAll('"', ''));
+    const forCoursesValue = Cookies?.get('eventCourses')
+    const numberOfCourses = parseInt(forCoursesValue?.replaceAll('"', ''));
     const [isBecomePartner, setIsBecomePartner] = useState(false)
     const [becomePartnerData, setBecomePartnerData] = useState({})
 
     const [isScheduleCall, setIsScheduleCall] = useState(false)
-    const [scheduleCallData, setScheduleCallData] = useState()
+    const [scheduleCallData, setScheduleCallData] = useState();
+    const [partnerId,setPartnerId]=useState();
 
-    console.log("schuduleCallData=======",scheduleCallData)
-    console.log("isSchuduleCall=======",isScheduleCall)
+    console.log("schuduleCallData=======", scheduleCallData)
+    console.log("isSchuduleCall=======", isScheduleCall)
+    console.log("partnerId=======", partnerId)
     useEffect(() => {
         // if (cookieValueSupper) {
         //     setSupperClubBookingBookingConfirm(JSON.parse(cookieValueSupper));
@@ -309,13 +316,23 @@ const UsersProvider = (props) => {
             axios.post(baseUrl + '/booking/calculatepayment/', {
                 id: '640b22b691e7236a1d0a264e',
                 type: "privee",
-                diner: eventDetailsData?.numberOfDinner,
-                courses: eventDetailsData?.numberOfCourses,
+                diner: numberOfDinner,
+                courses: numberOfCourses,
                 // diner: 10,
                 // courses: 6,
             }).then((response) => {
                 if (response.status === 200) {
                     Cookies.set('CPaymentInfo', JSON.stringify(response.data));
+                }
+            })
+        } else if (currentPath === 'become-partner') {
+            axios.get(baseUrl + '/partner_master/all',{
+                headers: {
+                    'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTM1MWZmNmIzYjBmOTYxY2IxZGQxNjciLCJpYXQiOjE2ODE4MDAzNTIsImV4cCI6MTY4MTgwMzk1MiwidHlwZSI6ImFjY2VzcyJ9.hoOeT8frCQ_QH-83fPF-HxDKW1_vCTu0Vn55hWwloP0`
+                }
+            }).then((response) => {
+                if (response.status === 200) {
+                    setPartnerMenuData(response.data)
                 }
             })
         }
@@ -379,6 +396,8 @@ const UsersProvider = (props) => {
                 setBecomePartnerData,
                 setIsScheduleCall,
                 setScheduleCallData,
+                partnerMenuData,
+                setPartnerId
             }}
         >
             {children}

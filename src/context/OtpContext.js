@@ -99,7 +99,7 @@ const OtpProvider = (props) => {
                 // meal: priveeData.experience,
                 // diner_count: priveeData.numberOfDiner,
                 meal: priveeData.time,
-                diner_count: priveeData.diners,
+                diner_count: eventData.numberOfDinner,
                 courses: eventData.numberOfCourses,
                 city: priveeData.city,
                 booking_date: priveeData.date,

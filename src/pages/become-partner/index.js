@@ -28,9 +28,11 @@ const BecomePartner = () => {
 
     const {
         setIsBecomePartner,
-        setBecomePartnerData
+        setBecomePartnerData,
+        partnerMenuData,
+        setPartnerId
     } = useContext(UsersContext)
-
+    console.log("partnerMenuData=======", partnerMenuData)
     const handleClick = (values) => {
         setBecomePartnerData(values);
         setIsBecomePartner(true)
@@ -356,7 +358,9 @@ const BecomePartner = () => {
             },
         },
     }))
-
+    const handleForm =(val,setFieldValue)=>{
+        setFieldValue('partner', val?.target.value.name);
+    }
     return (
         <React.Fragment>
             <BoxWrapper>
@@ -372,11 +376,11 @@ const BecomePartner = () => {
                     <Box className="container-fluid">
                         <Formik
                             initialValues={{
-                                partner: 'Decor',
+                                partner: '',
                                 name: '',
                                 email: '',
                                 contactNumber: '',
-                                city: '-select-',
+                                city: '',
                                 brandName: '',
                                 instagramLink: '',
                                 otherLinks: '',
@@ -389,7 +393,7 @@ const BecomePartner = () => {
                                 console.log("value===>", values)
                             }}
                         >
-                            {({values, handleChange, handleSubmit}) => (
+                            {({values, handleChange, handleSubmit, setFieldValue}) => (
                                 <Form onSubmit={handleSubmit}>
                                     <Box className="row white-bg justify-content-center">
                                         <Box className="">
@@ -412,60 +416,77 @@ const BecomePartner = () => {
                                                 <Grid xs={12} className="mb-3">
                                                     <label htmlFor="validationCustom01">Partner with us as<span
                                                         className="red">*</span></label>
-                                                    <Select
-                                                        labelId="demo-simple-select-standard-label"
-                                                        id="demo-simple-select-standard"
-                                                        name="partner"
-                                                        value={values.partner}
-                                                        onChange={handleChange}
-                                                        defaultValue={values.partner}
-                                                        className="selectpicker my-select dropdown-toggle form-control"
-                                                        sx={{
-                                                            '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                border: 'none',
-                                                            },
-                                                            '.css-qiwgdb.MuiSelect-select': {
-                                                                padding: '0px'
-                                                            }
-                                                        }}
-                                                        MenuProps={{
-                                                            PaperProps: {
-                                                                sx: {
-                                                                    backgroundColor: '#DCD7CB !important',
-                                                                    li: {
-                                                                        fontFamily: 'ProximaNovaA-Regular',
-                                                                        borderBottom: "1px solid black",
-                                                                        fontWeight: '100',
-                                                                        padding: '6px 0px',
-                                                                        justifyContent: 'start'
+                                                    {!_.isEmpty(partnerMenuData) && (
+                                                        <>
+                                                            <Select
+                                                                labelId="demo-simple-select-standard-label"
+                                                                id="demo-simple-select-standard"
+                                                                name="partner"
+                                                                value={values.partner}
+                                                                onChange={(val) => {
+                                                                    console.log("val?.target.value=======", val?.target.value)
+                                                                    setFieldValue('partner', val?.target.value.name);
+                                                                }}
+                                                                label={values.partner}
+                                                                defaultValue={values.partner}
+                                                                placeholder="Select"
+                                                                displayEmpty
+                                                                renderValue={(selected) => {
+                                                                    if (!selected) {
+                                                                        return <b>Select</b>;
+                                                                    }
+                                                                    return selected;
+                                                                }}
+                                                                className="selectpicker my-select dropdown-toggle form-control"
+                                                                sx={{
+                                                                    '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                        border: 'none',
                                                                     },
-                                                                    ul: {
-                                                                        display: 'flex',
-                                                                        flexDirection: 'column',
-                                                                        padding: '16px',
+                                                                    '.css-qiwgdb.MuiSelect-select': {
+                                                                        padding: '0px'
+                                                                    }
+                                                                }}
+                                                                MenuProps={{
+                                                                    PaperProps: {
+                                                                        sx: {
+                                                                            backgroundColor: '#DCD7CB !important',
+                                                                            li: {
+                                                                                fontFamily: 'ProximaNovaA-Regular',
+                                                                                borderBottom: "1px solid black",
+                                                                                fontWeight: '100',
+                                                                                padding: '6px 0px',
+                                                                                justifyContent: 'start'
+                                                                            },
+                                                                            ul: {
+                                                                                display: 'flex',
+                                                                                flexDirection: 'column',
+                                                                                padding: '16px',
+                                                                            },
+                                                                            'li:hover': {
+                                                                                color: '#C6A87D!important',
+                                                                                backgroundColor: 'unset !important'
+                                                                            },
+                                                                            'li:last-child': {
+                                                                                borderBottom: 'none'
+                                                                            },
+                                                                            "&& .Mui-selected": {
+                                                                                backgroundColor: "unset !important"
+                                                                            },
+                                                                        },
                                                                     },
-                                                                    'li:hover': {
-                                                                        color: '#C6A87D!important',
-                                                                        backgroundColor: 'unset !important'
-                                                                    },
-                                                                    'li:last-child': {
-                                                                        borderBottom: 'none'
-                                                                    },
-                                                                    "&& .Mui-selected": {
-                                                                        backgroundColor: "unset !important"
-                                                                    },
-                                                                },
-                                                            },
-                                                        }}
-                                                    >
-                                                        <MenuItem value="Decor">Decor</MenuItem>
-                                                        <MenuItem value="Venue">Venue</MenuItem>
-                                                        <MenuItem value="Produce">Produce</MenuItem>
-                                                        <MenuItem value="Service Staff">Service Staff</MenuItem>
-                                                        <MenuItem value="Sommelier">Sommelier</MenuItem>
-                                                        <MenuItem value="Bartender">Bartender</MenuItem>
-                                                    </Select>
+                                                                }}
+                                                            >
+                                                                {partnerMenuData?.map((item) => {
+                                                                    return (
+                                                                        <MenuItem labelId={item.id} value={item} id={item.id}>
+                                                                            {item.name}
+                                                                        </MenuItem>
+                                                                    );
+                                                                })}
+                                                            </Select>
+                                                        </>
+                                                    )}
                                                     <ErrorMessage name='partner' component="div" className="error"/>
                                                 </Grid>
                                                 <Grid xs={12} className="mb-3">
