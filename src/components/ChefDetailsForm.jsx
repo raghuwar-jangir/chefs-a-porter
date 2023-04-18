@@ -1,7 +1,7 @@
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import {Box, styled, Typography} from "@mui/material";
 import {DatePickerInput} from "rc-datepicker";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import gInfo from "../assets/images/info.png";
 import drop from "../assets/images/drop.png";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -14,6 +14,7 @@ import {
     createMuiTheme, MuiThemeProvider, withStyles,
 } from "@material-ui/core/styles";
 import * as Yup from "yup";
+import UsersContext from "../context/UsersContext";
 
 const defaultTheme = createMuiTheme();
 const theme = createMuiTheme({
@@ -43,7 +44,7 @@ const ChefDetailsForm = () => {
 
     const [chefInfo, setChefInfo] = useState('')
     const cookieValue = Cookies?.get('eventData');
-
+    const {userData} = useContext(UsersContext);
     {
         !_.isEmpty(cookieValue) &&
         useEffect(() => {
@@ -290,7 +291,7 @@ const ChefDetailsForm = () => {
                     experienceDate: chefInfo?.experienceDate ? chefInfo?.experienceDate : new Date(),
                     startTime: chefInfo?.startTime ? chefInfo?.startTime : new Date().getHours() + ":" + new Date().getMinutes(),
                     numberOfDinner: chefInfo?.numberOfDinner ? chefInfo?.numberOfDinner : 2,
-                    numberOfCourses: chefInfo?.numberOfCourses ? chefInfo?.numberOfCourses : 3,
+                    numberOfCourses: chefInfo?.numberOfCourses ? chefInfo?.numberOfCourses : 6,
                 }}
                 // validate={(values) => {
                 //     const errors = {};
@@ -402,7 +403,12 @@ const ChefDetailsForm = () => {
                                 <button
                                     type="button"
                                     className="right-btn"
-                                    onClick={() => setFieldValue("numberOfDinner", Math.min(values.numberOfDinner + 1, 10))}
+                                    onClick={() => {
+                                        if (values.numberOfDinner >= 2 && values.numberOfDinner <= 6) {
+                                            setFieldValue("numberOfCourses", 6);
+                                        }
+                                        setFieldValue("numberOfDinner", Math.min(values.numberOfDinner + 1, 10))
+                                    }}
                                     disabled={values.numberOfCourses >= 10}
                                 >
                                     +
@@ -418,16 +424,31 @@ const ChefDetailsForm = () => {
                                 <button
                                     type="button"
                                     className="left-btn"
-                                    onClick={() => setFieldValue("numberOfCourses", Math.max(values.numberOfCourses - 1, 3))}
+                                    onClick={() => {
+                                        if (values.numberOfDinner >= 2 && values.numberOfDinner <= 6) {
+                                            setFieldValue("numberOfCourses", 3);
+                                        } else {
+                                            setFieldValue("numberOfCourses", Math.max(values.numberOfCourses - 1, 3));
+                                        }
+                                    }}
+                                    disabled={values.numberOfDinner > 6 || values.numberOfCourses <= 6}
                                 >
                                     -
                                 </button>
-                                <span>{values.numberOfCourses}</span>
+                                <span>{values.numberOfDinner > 6 ? userData?.min_course : values.numberOfCourses}</span>
                                 <button
                                     type="button"
                                     className="right-btn"
-                                    onClick={() => setFieldValue("numberOfCourses", Math.min(values.numberOfCourses + 1, 10))}
-                                    disabled={values.numberOfCourses >= 10}
+                                    onClick={() => {
+                                        if (values.numberOfDinner >= 2 && values.numberOfDinner <= 6) {
+                                            setFieldValue("numberOfCourses", 6);
+                                        } else if (values.numberOfDinner > 6) {
+                                            setFieldValue("numberOfCourses", userData?.min_course);
+                                        } else {
+                                            setFieldValue("numberOfCourses", Math.min(values.numberOfCourses + 1, userData?.min_course));
+                                        }
+                                    }}
+                                    disabled={values.numberOfDinner > 6 || values.numberOfCourses >= userData?.min_course}
                                 >
                                     +
                                 </button>
