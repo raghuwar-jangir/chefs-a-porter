@@ -45,6 +45,7 @@ const UsersProvider = (props) => {
     const [callMobileNumber, setCallMobileNumber] = useState();
     const [mealData, setMealData] = useState();
     const [mealTypeData, setMealTypeData] = useState();
+    const [partnerMenuData, setPartnerMenuData] = useState();
     const eventIdCookieValue = Cookies.get('eventIdValue');
     const PaymentEventId = eventIdCookieValue?.replaceAll('"', '')
     const superClubDetailIdCookieValue = Cookies.get('superClubDetailId');
@@ -67,7 +68,16 @@ const UsersProvider = (props) => {
     const numberOfDinner = parseInt(forDinersValue?.replaceAll('"', ''));
     const forCoursesValue = Cookies?.get('eventCourses')
     const numberOfCourses = parseInt(forCoursesValue?.replaceAll('"', ''));
+    const [isBecomePartner, setIsBecomePartner] = useState(false)
+    const [becomePartnerData, setBecomePartnerData] = useState({})
 
+    const [isScheduleCall, setIsScheduleCall] = useState(false)
+    const [scheduleCallData, setScheduleCallData] = useState();
+    const [partnerId,setPartnerId]=useState();
+
+    console.log("schuduleCallData=======", scheduleCallData)
+    console.log("isSchuduleCall=======", isScheduleCall)
+    console.log("partnerId=======", partnerId)
     useEffect(() => {
         // if (cookieValueSupper) {
         //     setSupperClubBookingBookingConfirm(JSON.parse(cookieValueSupper));
@@ -77,6 +87,7 @@ const UsersProvider = (props) => {
         }
     }, [eventDataCookieValue])
     console.log("eventDetailsData======>", eventDetailsData);
+    console.log("becomePartnerData======>", becomePartnerData);
 
     useEffect(() => {
         if (userId && currentPath === 'chef-details') {
@@ -176,6 +187,29 @@ const UsersProvider = (props) => {
                 cover_letter: contactUsData.coverLetterMessage,
             })
             setIsContactUsData(false)
+        } else if (isBecomePartner) {
+            axios.post(baseUrl + '/partner', {
+                partner_as: "id",
+                name: becomePartnerData.name,
+                email: becomePartnerData.email,
+                mobile: becomePartnerData.contactNumber,
+                city: becomePartnerData.city,
+                brand_name: becomePartnerData.brandName,
+                instagram_profile_link: becomePartnerData.instagramLink,
+                other_link: [becomePartnerData.otherLinks],
+                about_your_brand: becomePartnerData.brandMessage,
+                why: becomePartnerData.chefsMessage,
+                work_samples: becomePartnerData.workSampleFile,
+                // work_samples: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi"
+            })
+            setIsBecomePartner(false)
+        } else if (isScheduleCall) {
+            axios.post(baseUrl + '/call_schedule', {
+                date_time: scheduleCallData.day,
+                mobile: scheduleCallData.contactNumber,
+                query: scheduleCallData.queryMessage
+            })
+            setIsScheduleCall(false)
         } else if (isJoinChefData) {
             axios.post(baseUrl + '/users/requestjoin', {
                 name: joinChefData.name,
@@ -290,6 +324,16 @@ const UsersProvider = (props) => {
                     Cookies.set('CPaymentInfo', JSON.stringify(response.data));
                 }
             })
+        } else if (currentPath === 'become-partner') {
+            axios.get(baseUrl + '/partner_master/all',{
+                headers: {
+                    'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTM1MWZmNmIzYjBmOTYxY2IxZGQxNjciLCJpYXQiOjE2ODE4MDAzNTIsImV4cCI6MTY4MTgwMzk1MiwidHlwZSI6ImFjY2VzcyJ9.hoOeT8frCQ_QH-83fPF-HxDKW1_vCTu0Vn55hWwloP0`
+                }
+            }).then((response) => {
+                if (response.status === 200) {
+                    setPartnerMenuData(response.data)
+                }
+            })
         }
         if (path.pathname === "/") {
             axios.get(baseUrl + '/cms/footer').then(result => {
@@ -307,7 +351,7 @@ const UsersProvider = (props) => {
                 setMealTypeData(result.data)
             })
         }
-    }, [isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
+    }, [isScheduleCall, isBecomePartner, isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
 
     const {children} = props;
 
@@ -347,6 +391,12 @@ const UsersProvider = (props) => {
                 setSupperClubPayment,
                 setChefFormData,
                 setIsChefData,
+                setIsBecomePartner,
+                setBecomePartnerData,
+                setIsScheduleCall,
+                setScheduleCallData,
+                partnerMenuData,
+                setPartnerId
             }}
         >
             {children}

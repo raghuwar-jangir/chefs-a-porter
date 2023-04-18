@@ -22,6 +22,8 @@ import Cookies from "js-cookie";
 const Addons = (props) => {
     const summaryCookieValue = Cookies.get('BookingId');
     const summaryBookingId = summaryCookieValue?.replaceAll('"', '')
+
+    console.log("summaryBookingId========",summaryBookingId)
     const {bookingId} = props;
     const {addOnsData,adPaymentData,setPriveePayment} = useContext(UsersContext);
     const handleClick = () => {

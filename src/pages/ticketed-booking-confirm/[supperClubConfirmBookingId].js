@@ -67,6 +67,11 @@ const ScBookingConfirm = (props) => {
     const [superClubPaymentData, setsuperClubPaymentData] = useState();
     const [scBookingOrderNo, setScBookingOrderNo] = useState();
     const [scPaymentId, setScPaymentId] = useState();
+    const [showDiv, setShowDiv] = useState(false);
+
+    const handleDivShow = () => {
+        setShowDiv(!showDiv);
+    };
 
     console.log("supperClubConfirmPaymentData=====>",supperClubConfirmPaymentData);
     useEffect(() => {
@@ -880,6 +885,9 @@ const ScBookingConfirm = (props) => {
             filter: "brightness(0)",
             verticalAlign: "text-top",
         },
+        '.cursor-pointer': {
+            cursor: 'pointer',
+        },
         ".output": {
             width: "56px",
             height: "56px",
@@ -905,6 +913,13 @@ const ScBookingConfirm = (props) => {
             placeItems: "center",
             position: "relative",
             marginBottom: "20px",
+        },
+        ".border-tb": {
+            borderTop: "1px solid #080B0E",
+            borderBottom: "1px solid #080B0E",
+        },
+        '.pt-16': {
+            paddingTop: '16px'
         },
         ".chef-edit img": {
             width: "48px",
@@ -1014,7 +1029,7 @@ const ScBookingConfirm = (props) => {
             justifyContent: "space-between",
         },
         ".border": {
-            borderTop: "1px solid rgba(255, 255, 255, 0.6)",
+            borderTop: "1px solid #080B0E",
         },
         ".grand-total": {
             textDecoration: "underline",
@@ -2013,20 +2028,44 @@ const ScBookingConfirm = (props) => {
                                                                 <span>Razorpay Payment</span>
                                                             </div>
                                                             <div className="table-box">
-                                <span className="table-box-span">
-                                {moment(supperClubConfirmPaymentData?.event?.dates[0]).format("MMMM D")} | {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
-                                </span>
+                                                    <span className="table-box-span">
+                                                    {moment(supperClubConfirmPaymentData?.event?.dates[0]).format("MMMM D")} | {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
+                                                    </span>
                                                             </div>
                                                             <div className="table-box">
-                                <span className="table-box-span">
-                                  Transaction ID {scPaymentId}
-                                </span>
+                                                    <span className="table-box-span">
+                                                      Transaction ID {scPaymentId}
+                                                    </span>
                                                             </div>
-                                                            <div className="table-box border">
-                                <span className="grand-total">
-                                  View Payment Summary
-                                </span>
+                                                            <div className="table-box">
+                                                                <span className="grand-total cursor-pointer"
+                                                                      onClick={handleDivShow}>
+                                                                  View Payment Summary
+                                                                </span>
                                                             </div>
+                                                            {showDiv && <div>
+                                                                <div className="table-box">
+                                                                    <span>Ticket Price</span>
+                                                                    <span>{superClubPaymentData?.payment?.ticket_price}</span>
+                                                                </div>
+                                                                <div className="table-box border-tb pt-16">
+                                                                    <span>Sub Total</span>
+                                                                    <span>{superClubPaymentData?.payment?.sub_total}</span>
+                                                                </div>
+                                                                <div className="table-box pt-16">
+                                                                    <span>GST @5%</span>
+                                                                    <span>{superClubPaymentData?.payment?.GST}</span>
+                                                                </div>
+                                                                <div className="table-box">
+                                                                    <span>Service Charges @10%</span>
+                                                                    <span>{superClubPaymentData?.payment?.service_charges}</span>
+                                                                </div>
+                                                                <div className="table-box border pt-16">
+                                                                    <span className="price">Grand Total</span>
+                                                                    <span
+                                                                        className="price">{superClubPaymentData?.payment?.total}</span>
+                                                                </div>
+                                                            </div>}
                                                         </div>
                                                     </div>
                                                     <div className="flow">
