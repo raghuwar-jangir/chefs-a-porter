@@ -4,6 +4,7 @@ import {useLocation} from "@reach/router";
 import Cookies from "js-cookie";
 import * as _ from "lodash";
 import useRazorpay from "react-razorpay";
+import SuccessFullPopUp from "../components/SuccessFullPopUp"
 
 const defaultState = {
     data: {},
@@ -33,6 +34,7 @@ const UsersProvider = (props) => {
     const [paymentVerification, setPaymentVerification] = useState(false);
     const [supperClubRazorpay, setSupperClubRazorpay] = useState();
     const [isConfirm, setIsConfirm] = useState(false);
+    const [payementEventId, setPaymentEventId] = useState();
     // const [supperClubBookingBookingConfirm, setSupperClubBookingBookingConfirm] = useState();
     // const cookieValueSupper = Cookies?.get('supperClubBookingBookingConfirm');
 
@@ -44,6 +46,7 @@ const UsersProvider = (props) => {
 
     const [callMobileNumber, setCallMobileNumber] = useState();
     const [mealData, setMealData] = useState();
+    const [commonCityData, setCommonCityData] = useState();
     const [mealTypeData, setMealTypeData] = useState();
     const [partnerMenuData, setPartnerMenuData] = useState();
     const [partnerCityData, setPartnerCityData] = useState();
@@ -83,6 +86,9 @@ const UsersProvider = (props) => {
     const [scheduleCallData, setScheduleCallData] = useState();
     const [partnerId, setPartnerId] = useState();
     const [partnerCityId, setPartnerCityId] = useState();
+    const [successOpen, setSuccessOpen] = useState(false);
+
+    console.log("successOpen=======", successOpen)
 
     console.log("becomePartnerData=======", becomePartnerData)
     console.log("partnerId=======", partnerId)
@@ -95,9 +101,8 @@ const UsersProvider = (props) => {
         if (eventDataCookieValue) {
             setEventDetailsData(JSON.parse(eventDataCookieValue))
         }
+        setPaymentEventId((JSON.parse(localStorage.getItem('eventId'))));
     }, [eventDataCookieValue])
-    console.log("eventDetailsData======>", eventDetailsData);
-    console.log("becomePartnerData======>", becomePartnerData);
 
     useEffect(() => {
         if (userId && currentPath === 'chef-details') {
@@ -221,6 +226,10 @@ const UsersProvider = (props) => {
                 date_time: scheduleCallData.day,
                 mobile: scheduleCallData.contactNumber,
                 query: scheduleCallData.queryMessage
+            }).then((response) => {
+                if (response.status === 200) {
+                    setSuccessOpen(true);
+                }
             })
             setIsScheduleCall(false)
         } else if (isJoinChefData) {
@@ -326,12 +335,10 @@ const UsersProvider = (props) => {
             })
         } else if (currentPath === 'customer-details') {
             axios.post(baseUrl + '/booking/calculatepayment/', {
-                id: '640b22b691e7236a1d0a264e',
+                id: payementEventId,
                 type: "privee",
                 diner: numberOfDinner,
                 courses: numberOfCourses,
-                // diner: 10,
-                // courses: 6,
             }).then((response) => {
                 if (response.status === 200) {
                     Cookies.set('CPaymentInfo', JSON.stringify(response.data));
@@ -366,6 +373,9 @@ const UsersProvider = (props) => {
         if (path.pathname === '/' || currentPath === "private" || currentPath === "private-viewmore") {
             axios.get('https://chefv2.hypervergedemo.site/v1/meal_times/all').then(result => {
                 setMealData(result.data)
+            })
+            axios.get('https://chefv2.hypervergedemo.site/v1/city/all').then(result => {
+                setCommonCityData(result.data)
             })
         }
         if (currentPath === "personal-details") {
@@ -434,7 +444,10 @@ const UsersProvider = (props) => {
                 setAddonsId,
                 addonsId,
                 partnerCityData,
-                setPartnerCityId
+                setPartnerCityId,
+                commonCityData,
+                successOpen,
+                setSuccessOpen
             }}
         >
             {children}

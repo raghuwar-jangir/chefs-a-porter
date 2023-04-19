@@ -424,7 +424,7 @@ const style = {
 }
 const PriveeViewMore = (props) => {
 
-    const {userData,mealData} = useContext(UsersContext);
+        const {userData,mealData,commonCityData} = useContext(UsersContext);
     const [priveeInfo, setPriveeInfo] = useState()
     const cookieValue = Cookies?.get('priveeData');
 
@@ -467,7 +467,7 @@ const PriveeViewMore = (props) => {
                                                 initialValues={{
                                                     city: priveeInfo?.city,
                                                     on: moment(priveeInfo?.date).format('ddd,DD MMM') ? moment(priveeInfo?.date).format('ddd,DD MMM') : new Date(),
-                                                    time: priveeInfo?.time,
+                                                    time: priveeInfo?.time ? priveeInfo?.time :'Lunch' ,
                                                     diners: priveeInfo?.diners
                                                 }}
                                                 onSubmit={(values) => {
@@ -483,66 +483,75 @@ const PriveeViewMore = (props) => {
                                                 {({values, handleChange, handleSubmit, setFieldValue}) => (
                                                     <Form onSubmit={handleSubmit}>
                                                         <Box className="form-row">
-                                                            <Box className="form-group">
-                                                                <label className="label">Where</label>
-                                                                <Select
-                                                                    labelId="demo-simple-select-label"
-                                                                    id="demo-simple-select"
-                                                                    name="city"
-                                                                    value={values.city}
-                                                                    onChange={handleChange}
-                                                                    defaultValue={values.city}
-                                                                    className="selectpicker my-select dropdown-toggle form-control"
-                                                                    sx={{
-                                                                        fontSize: '20px',
-                                                                        '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                            border: 'none',
-                                                                        },
-                                                                        '.MuiSelect-icon': {
-                                                                            color: '#FBFBFB'
-                                                                        },
-                                                                        '.MuiSelect-select': {
-                                                                            padding: '0px 5px',
+                                                            {
+                                                                !_.isEmpty(commonCityData) &&  <Box className="form-group">
+                                                                    <label className="label">Where</label>
+                                                                    <Select
+                                                                        labelId="demo-simple-select-label"
+                                                                        id="demo-simple-select"
+                                                                        name="city"
+                                                                        value={values.city}
+                                                                        onChange={handleChange}
+                                                                        defaultValue={values.city}
+                                                                        className="selectpicker my-select dropdown-toggle form-control"
+                                                                        sx={{
                                                                             fontSize: '20px',
-                                                                            fontWeight: '100'
-                                                                        }
-                                                                    }}
-                                                                    MenuProps={{
-                                                                        PaperProps: {
-                                                                            sx: {
-                                                                                background: "#080B0E",
-                                                                                color: '#FBFBFB',
-                                                                                li: {
-                                                                                    fontSize: '20px',
-                                                                                    fontWeight: '100',
-                                                                                    padding: '6px 16px'
-                                                                                },
-                                                                                ul: {
-                                                                                    display: 'flex',
-                                                                                    flexDirection: 'column'
-                                                                                },
-                                                                                'li:last-child': {
-                                                                                    borderBottom: 'none'
-                                                                                },
-                                                                                'li:hover': {
-                                                                                    color: '#C6A87D!important',
-                                                                                    backgroundColor: '#DCD7CB !important'
-                                                                                },
-                                                                                "&& .Mui-selected": {
-                                                                                    backgroundColor: "#0000FF !important"
-                                                                                }
+                                                                            '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                                border: 'none',
                                                                             },
-                                                                        },
-                                                                    }}
-                                                                >
-                                                                    <MenuItem value="Mumbai">Mumbai</MenuItem>
-                                                                    <MenuItem value="Delhi">Delhi</MenuItem>
-                                                                    <MenuItem value="Goa">Goa</MenuItem>
-                                                                    <MenuItem value="Banglore">Banglore</MenuItem>
-                                                                    <MenuItem value="Hydrabad">Hydrabad</MenuItem>
-                                                                </Select>
-                                                            </Box>
+                                                                            '.MuiSelect-icon': {
+                                                                                color: '#FBFBFB'
+                                                                            },
+                                                                            '.MuiSelect-select': {
+                                                                                padding: '0px 5px',
+                                                                                fontSize: '20px',
+                                                                                fontWeight: '100'
+                                                                            }
+                                                                        }}
+                                                                        MenuProps={{
+                                                                            PaperProps: {
+                                                                                sx: {
+                                                                                    background: "#080B0E",
+                                                                                    color: '#FBFBFB',
+                                                                                    li: {
+                                                                                        fontSize: '20px',
+                                                                                        fontWeight: '100',
+                                                                                        padding: '6px 16px'
+                                                                                    },
+                                                                                    ul: {
+                                                                                        display: 'flex',
+                                                                                        flexDirection: 'column'
+                                                                                    },
+                                                                                    'li:last-child': {
+                                                                                        borderBottom: 'none'
+                                                                                    },
+                                                                                    'li:hover': {
+                                                                                        color: '#C6A87D!important',
+                                                                                        backgroundColor: '#DCD7CB !important'
+                                                                                    },
+                                                                                    "&& .Mui-selected": {
+                                                                                        backgroundColor: "#0000FF !important"
+                                                                                    }
+                                                                                },
+                                                                            },
+                                                                        }}
+                                                                    >
+                                                                        {
+                                                                            commonCityData?.map((item) => {
+                                                                                return <MenuItem
+                                                                                    value={item.name}>{item.name}</MenuItem>
+                                                                            })
+                                                                        }
+                                                                        {/*<MenuItem value="Mumbai">Mumbai</MenuItem>*/}
+                                                                        {/*<MenuItem value="Delhi">Delhi</MenuItem>*/}
+                                                                        {/*<MenuItem value="Goa">Goa</MenuItem>*/}
+                                                                        {/*<MenuItem value="Banglore">Banglore</MenuItem>*/}
+                                                                        {/*<MenuItem value="Hydrabad">Hydrabad</MenuItem>*/}
+                                                                    </Select>
+                                                                </Box>
+                                                            }
+
                                                             <Box className="form-group">
                                                                 <label className="label">On</label>
                                                                 <DatePickerInput

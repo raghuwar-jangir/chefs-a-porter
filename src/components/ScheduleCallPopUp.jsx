@@ -8,6 +8,7 @@ import {DatePickerInput} from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
 import React, {useContext} from "react";
 import UsersContext from "../context/UsersContext";
+import SuccessFullPopUp from "../components/SuccessFullPopUp"
 
 
 const ScheduleCallPopUp = (props) => {
@@ -15,7 +16,9 @@ const ScheduleCallPopUp = (props) => {
         open,
         handleClose,
     } = props;
-    const {setIsScheduleCall, setScheduleCallData} = useContext(UsersContext);
+    const {setIsScheduleCall, setScheduleCallData, successOpen} = useContext(UsersContext);
+
+    console.log("successOpen======", successOpen)
     // const handleClick = (values) => {
     //     setScheduleCallData(values);
     //     setIsScheduleCall(true);
@@ -261,6 +264,9 @@ const ScheduleCallPopUp = (props) => {
                     </Box>
                 </Box>
             </Box>
+            {/*{*/}
+            {/*    successOpen && <SuccessFullPopUp successOpen={successOpen}/>*/}
+            {/*}*/}
         </Modal>
     )
 }

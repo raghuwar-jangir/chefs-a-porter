@@ -13,6 +13,7 @@ import Cookies from "js-cookie";
 
 const MainContentBox = styled(Box)({
     position: 'relative',
+    cursor: 'pointer',
     '.addons-parent': {
         padding: '12px 8px',
         width: 'auto',
@@ -70,7 +71,8 @@ const MainContentBox = styled(Box)({
     },
     '.checkBox': {
         height: '16px',
-        width: '16px'
+        width: '16px',
+        cursor:'pointer'
     },
     "@media (min-width: 1px) and (max-width:425px)": {
         '.addons-parent': {
@@ -117,35 +119,16 @@ const AddonsCard = (props) => {
         setIsUpdateBooking
     } = useContext(UsersContext);
 
-    // const [checkedItems, setCheckedItems] = useState([]);
-    // const selectedIds = checkedItems.map((item) => item.id);
-    // const previousDataRef = useRef(null); // Create a ref to store previous data
-    //
-    // useEffect(() => {
-    //     previousDataRef.current = selectedIds;
-    // }, [selectedIds]);
-
-    // const previousData = previousDataRef.current;
-
     const handleCheckboxChange = useCallback((event) => {
         const {id, checked} = event.target;
         if (checked) {
             setAddonsId([...addonsId, {id}]);
         } else {
-            console.log('addonsId===',addonsId)
             setAddonsId(addonsId.filter((item) => item.id !== id));
         }
         setIsUpdateBooking(true)
     }, [addonsId]);
 
-    // console.log("response   previousData=========",previousData)
-    // console.log("response selectedIds=========",selectedIds)
-    //
-    // useEffect(() => {
-    //     if (!_.isEmpty(selectedIds) && JSON.stringify(previousData) !== JSON.stringify(selectedIds)) {
-    //         // setAddonsId(selectedIds)
-    //     }
-    // }, [previousData, selectedIds])
     const selectedAddonsId = addonsId.map((item) => item.id);
 
     return (
@@ -155,7 +138,6 @@ const AddonsCard = (props) => {
                       columnSpacing={2}>
                     {
                         addOnsData.map((item, index) => {
-                            console.log("item=======",item)
                             return (
                                 <Grid item xl={4} md={4} sm={6} xs={6} key={index}>
                                     <img src={item.image} alt="saffImage" style={{verticalAlign: 'top'}} width={'100%'}

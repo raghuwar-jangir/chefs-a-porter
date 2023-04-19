@@ -1,14 +1,16 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import Modal from "@mui/material/Modal";
 import {Box} from "@mui/material";
-import "../../assets/styles/fontStyle.css";
+import "../assets/styles/fontStyle.css";
+import UsersContext from "../context/UsersContext";
 
 
-const DonePopUp = () => {
+const SuccessFullPopUp = (props) => {
 
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const {successOpen,setSuccessOpen} = useContext(UsersContext);
+    // const [successOpen, setSuccessOpen] = useState(false);
+    // const handleOpen = () => setSuccessOpen(true);
+    const handleClose = () => setSuccessOpen(false);
 
     const style = {
         position: 'absolute',
@@ -67,6 +69,20 @@ const DonePopUp = () => {
             cursor: 'pointer',
             width: '100%',
         },
+        ".email-link": {
+            background: "#FBFBFB",
+            fontSize: "16px !important",
+            lineHeight: "19px !important",
+            borderRadius: "0px !important",
+            color: "#080B0E !important",
+            textTransform: "capitalize !important",
+            fontFamily: 'ProximaNovaA-Regular',
+            textDecoration: 'none',
+        },
+        ".email-link:hover": {
+            color: "#C6A87D !important",
+            background: "#FBFBFB !important",
+        },
         '.no': {
             background: '#101418 !important',
             color: '#FBFBFB !important',
@@ -97,10 +113,9 @@ const DonePopUp = () => {
 
     return (
         <React.Fragment>
-            <button onClick={handleOpen}>Done PopUp</button>
             <Modal
                 keepMounted
-                open={open}
+                open={successOpen}
                 onClose={handleClose}
                 aria-labelledby="keep-mounted-modal-title"
                 aria-describedby="keep-mounted-modal-description"
@@ -118,7 +133,9 @@ const DonePopUp = () => {
                                     <h5>Would you like to recieve your invite on Whatsapp?</h5>
                                     <div>
                                         <button type="button" className="btn no">No</button>
-                                        <button type="button" className="btn">Yes</button>
+                                        <button type="button" className="btn"><a
+                                            href="https://chat.whatsapp.com/DOEPvVVFkaQLKDScEeTYOq" target="_blank"
+                                            className="email-link">Yes</a></button>
                                     </div>
                                 </div>
                             </div>
@@ -129,4 +146,4 @@ const DonePopUp = () => {
         </React.Fragment>
     )
 }
-export default DonePopUp;
+export default SuccessFullPopUp;

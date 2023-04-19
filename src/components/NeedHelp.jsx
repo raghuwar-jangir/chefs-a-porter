@@ -1,4 +1,4 @@
-import {Box, Button, TextareaAutosize, styled, TextField, Typography} from "@mui/material";
+import {Box, Button, TextareaAutosize, styled, TextField, Typography, Link} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import React, {useContext} from "react";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -62,7 +62,21 @@ const NeedHelp = (props) => {
             marginLeft: '24px !important ',
             marginRight: '150px !important'
         },
+        ".email-link": {
+            background: "#FBFBFB",
+            fontSize: "16px !important",
+            lineHeight: "19px !important",
+            borderRadius: "0px !important",
+            color: "#080B0E !important",
+            textTransform: "capitalize !important",
+            fontFamily: 'ProximaNovaA-Regular',
+            textDecoration: 'none',
+        },
         ".btn-2:hover": {
+            color: "#C6A87D !important",
+            background: "#FBFBFB !important",
+        },
+        ".email-link:hover": {
             color: "#C6A87D !important",
             background: "#FBFBFB !important",
         },
@@ -137,8 +151,7 @@ const NeedHelp = (props) => {
                     <React.Fragment>
                         <Box md={6} sm={6} xs={12} xl={7}>
                             <Typography className="main-heading">{title ? title : 'Need Help?'}</Typography>
-                            <Typography
-                                className="details">{description ? description : 'We respond within 24 business hours.'}</Typography>
+                            <Typography className="details">{description ? description : 'We respond within 24 business hours.'}</Typography>
                         </Box>
                         <Box md={6} sm={6} xs={12} xl={7}>
                             <Button
@@ -147,7 +160,8 @@ const NeedHelp = (props) => {
                                 onClick={handleOpen}>{button_call ? button_call : 'Schedule a Call'}</Button>
                             <Button
                                 type="submit"
-                                className="btn-2">{button_email ? button_email : 'Email us'}</Button>
+                                className="btn-2"><a href="mailto:rsvp@chefsaporter.com" className="email-link">{button_email ? button_email : 'Email us'}</a></Button>
+
                         </Box>
                         {
                             open && <ScheduleCallPopUp open={open}

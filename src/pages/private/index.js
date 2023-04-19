@@ -587,7 +587,7 @@ const MainContentBox = styled(Box)({
 const PriveePage = (props) => {
 
     const {data} = useContext(CmsContext);
-    const {mealData} = useContext(UsersContext);
+    const {mealData,commonCityData} = useContext(UsersContext);
 
 
     console.log("mealData=====",mealData)
@@ -685,7 +685,7 @@ const PriveePage = (props) => {
                                             initialValues={{
                                                 city: 'Mumbai',
                                                 date: new Date(),
-                                                time: 'Lunch',
+                                                time: '',
                                                 diners: 1
                                             }}
                                             onSubmit={(values) => {
@@ -701,71 +701,80 @@ const PriveePage = (props) => {
                                         >
                                             {({values, handleChange, handleSubmit, setFieldValue}) => (
                                                 <Form onSubmit={handleSubmit}>
-                                                    <Box className="form-group">
-                                                        <Select
-                                                            labelId="demo-simple-select-label"
-                                                            id="demo-simple-select"
-                                                            name="city"
-                                                            value={values.city}
-                                                            onChange={handleChange}
-                                                            defaultValue={values.city}
-                                                            className="selectpicker my-select dropdown-toggle form-control"
-                                                            sx={{
-                                                                fontFamily: 'Proxima Nova Alt',
-                                                                fontSize: '20px',
-                                                                '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                    border: 'none',
-                                                                },
-                                                                '.MuiSelect-select': {
-                                                                    padding: '0px 5px',
-                                                                    fontSize: '20px',
+                                                    {
+                                                        !_.isEmpty(commonCityData) &&    <Box className="form-group">
+                                                            <Select
+                                                                labelId="demo-simple-select-label"
+                                                                id="demo-simple-select"
+                                                                name="city"
+                                                                value={values.city}
+                                                                onChange={handleChange}
+                                                                defaultValue={values.city}
+                                                                className="selectpicker my-select dropdown-toggle form-control"
+                                                                sx={{
                                                                     fontFamily: 'Proxima Nova Alt',
-                                                                    fontWeight: '400'
-                                                                }
-                                                            }}
-                                                            MenuProps={{
-                                                                PaperProps: {
-                                                                    sx: {
-                                                                        backgroundColor: '#DCD7CB !important',
-                                                                        li: {
-                                                                            fontFamily: 'ProximaNovaA-Regular',
-                                                                            borderBottom: "1px solid black",
-                                                                            fontSize: '20px',
-                                                                            fontWeight: '100',
-                                                                            padding: '6px 0px',
-                                                                            justifyContent: 'start'
-                                                                        },
-                                                                        ul: {
-                                                                            display: 'flex',
-                                                                            flexDirection: 'column',
-                                                                            padding: '16px',
-                                                                        },
-                                                                        'li:hover': {
-                                                                            color: '#C6A87D!important',
-                                                                            backgroundColor: 'unset !important'
-                                                                        },
-                                                                        'li:last-child': {
-                                                                            borderBottom: 'none'
-                                                                        },
-                                                                        "&& .Mui-selected": {
-                                                                            backgroundColor: "unset !important"
-                                                                        },
-                                                                        '.MuiSelect-select': {
-                                                                            padding: '5px !important',
-                                                                            fontSize: '17px',
+                                                                    fontSize: '20px',
+                                                                    '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                        border: 'none',
+                                                                    },
+                                                                    '.MuiSelect-select': {
+                                                                        padding: '0px 5px',
+                                                                        fontSize: '20px',
+                                                                        fontFamily: 'Proxima Nova Alt',
+                                                                        fontWeight: '400'
+                                                                    }
+                                                                }}
+                                                                MenuProps={{
+                                                                    PaperProps: {
+                                                                        sx: {
+                                                                            backgroundColor: '#DCD7CB !important',
+                                                                            li: {
+                                                                                fontFamily: 'ProximaNovaA-Regular',
+                                                                                borderBottom: "1px solid black",
+                                                                                fontSize: '20px',
+                                                                                fontWeight: '100',
+                                                                                padding: '6px 0px',
+                                                                                justifyContent: 'start'
+                                                                            },
+                                                                            ul: {
+                                                                                display: 'flex',
+                                                                                flexDirection: 'column',
+                                                                                padding: '16px',
+                                                                            },
+                                                                            'li:hover': {
+                                                                                color: '#C6A87D!important',
+                                                                                backgroundColor: 'unset !important'
+                                                                            },
+                                                                            'li:last-child': {
+                                                                                borderBottom: 'none'
+                                                                            },
+                                                                            "&& .Mui-selected": {
+                                                                                backgroundColor: "unset !important"
+                                                                            },
+                                                                            '.MuiSelect-select': {
+                                                                                padding: '5px !important',
+                                                                                fontSize: '17px',
+                                                                            },
                                                                         },
                                                                     },
-                                                                },
-                                                            }}
-                                                        >
-                                                            <MenuItem value="Mumbai">Mumbai</MenuItem>
-                                                            <MenuItem value="Delhi">Delhi</MenuItem>
-                                                            <MenuItem value="Goa">Goa</MenuItem>
-                                                            <MenuItem value="Banglore">Banglore</MenuItem>
-                                                            <MenuItem value="Hydrabad">Hydrabad</MenuItem>
-                                                        </Select>
-                                                    </Box>
+                                                                }}
+                                                            >
+                                                                {
+                                                                    commonCityData?.map((item) => {
+                                                                        return <MenuItem
+                                                                            value={item.name}>{item.name}</MenuItem>
+                                                                    })
+                                                                }
+                                                                {/*<MenuItem value="Mumbai">Mumbai</MenuItem>*/}
+                                                                {/*<MenuItem value="Delhi">Delhi</MenuItem>*/}
+                                                                {/*<MenuItem value="Goa">Goa</MenuItem>*/}
+                                                                {/*<MenuItem value="Banglore">Banglore</MenuItem>*/}
+                                                                {/*<MenuItem value="Hydrabad">Hydrabad</MenuItem>*/}
+                                                            </Select>
+                                                        </Box>
+                                                    }
+
                                                     <Box className="form-group">
                                                         <DatePickerInput
                                                             name="date"

@@ -876,7 +876,7 @@ const BoxWrapper = styled(Box)({
 
 const HomePage = () => {
     const {data} = useContext(CmsContext);
-    const {mealData} = useContext(UsersContext);
+    const {mealData,commonCityData} = useContext(UsersContext);
 
     //FoodDrool
     const [imageData, setImageData] = useState([]);
@@ -948,68 +948,77 @@ const HomePage = () => {
                                                         <Box className="form-row">
                                                             <Box className="form-group">
                                                                 <label className="label">Where</label>
-                                                                <Select
-                                                                    labelId="demo-simple-select-label"
-                                                                    id="demo-simple-select"
-                                                                    name="city"
-                                                                    value={values.city}
-                                                                    onChange={handleChange}
-                                                                    defaultValue={values.city}
-                                                                    className="selectpicker my-select dropdown-toggle form-control"
-                                                                    sx={{
-                                                                        fontFamily: 'ProximaNovaA-Regular',
-                                                                        fontSize: '20px',
-                                                                        '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                            border: 'none',
-                                                                        },
-                                                                        '.MuiSelect-icon': {
-                                                                            color: '#FBFBFB'
-                                                                        },
-                                                                        '.MuiSelect-select': {
-                                                                            padding: '0px 5px',
-                                                                            fontSize: '20px',
-                                                                            fontWeight: '400',
-                                                                            display: 'flex',
+                                                                {
+                                                                    !_.isEmpty(commonCityData) && <Select
+                                                                        labelId="demo-simple-select-label"
+                                                                        id="demo-simple-select"
+                                                                        name="city"
+                                                                        value={values.city}
+                                                                        onChange={handleChange}
+                                                                        defaultValue={values.city}
+                                                                        className="selectpicker my-select dropdown-toggle form-control"
+                                                                        sx={{
                                                                             fontFamily: 'ProximaNovaA-Regular',
-                                                                            flexDirection: 'column'
-                                                                        }
-                                                                    }}
-                                                                    MenuProps={{
-                                                                        PaperProps: {
-                                                                            sx: {
-                                                                                background: "#080B0E",
-                                                                                color: '#FBFBFB',
-                                                                                li: {
-                                                                                    fontSize: '20px',
-                                                                                    fontWeight: '400',
-                                                                                    fontFamily: 'ProximaNovaA-Regular',
-                                                                                    padding: '6px 16px'
-                                                                                },
-                                                                                ul: {
-                                                                                    display: 'flex',
-                                                                                    flexDirection: 'column'
-                                                                                },
-                                                                                'li:last-child': {
-                                                                                    borderBottom: 'none'
-                                                                                },
-                                                                                'li:hover': {
-                                                                                    color: '#C6A87D!important',
-                                                                                    backgroundColor: '#DCD7CB !important'
-                                                                                },
-                                                                                "&& .Mui-selected": {
-                                                                                    backgroundColor: "#0000FF !important"
-                                                                                }
+                                                                            fontSize: '20px',
+                                                                            '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                                border: 'none',
                                                                             },
-                                                                        },
-                                                                    }}
-                                                                >
-                                                                    <MenuItem value="Mumbai">Mumbai</MenuItem>
-                                                                    <MenuItem value="Delhi">Delhi</MenuItem>
-                                                                    <MenuItem value="Goa">Goa</MenuItem>
-                                                                    <MenuItem value="Banglore">Banglore</MenuItem>
-                                                                    <MenuItem value="Hydrabad">Hydrabad</MenuItem>
-                                                                </Select>
+                                                                            '.MuiSelect-icon': {
+                                                                                color: '#FBFBFB'
+                                                                            },
+                                                                            '.MuiSelect-select': {
+                                                                                padding: '0px 5px',
+                                                                                fontSize: '20px',
+                                                                                fontWeight: '400',
+                                                                                display: 'flex',
+                                                                                fontFamily: 'ProximaNovaA-Regular',
+                                                                                flexDirection: 'column'
+                                                                            }
+                                                                        }}
+                                                                        MenuProps={{
+                                                                            PaperProps: {
+                                                                                sx: {
+                                                                                    background: "#080B0E",
+                                                                                    color: '#FBFBFB',
+                                                                                    li: {
+                                                                                        fontSize: '20px',
+                                                                                        fontWeight: '400',
+                                                                                        fontFamily: 'ProximaNovaA-Regular',
+                                                                                        padding: '6px 16px'
+                                                                                    },
+                                                                                    ul: {
+                                                                                        display: 'flex',
+                                                                                        flexDirection: 'column'
+                                                                                    },
+                                                                                    'li:last-child': {
+                                                                                        borderBottom: 'none'
+                                                                                    },
+                                                                                    'li:hover': {
+                                                                                        color: '#C6A87D!important',
+                                                                                        backgroundColor: '#DCD7CB !important'
+                                                                                    },
+                                                                                    "&& .Mui-selected": {
+                                                                                        backgroundColor: "#0000FF !important"
+                                                                                    }
+                                                                                },
+                                                                            },
+                                                                        }}
+                                                                    >
+                                                                        {
+                                                                            commonCityData?.map((item) => {
+                                                                                return <MenuItem
+                                                                                    value={item.name}>{item.name}</MenuItem>
+                                                                            })
+                                                                        }
+                                                                        {/*<MenuItem value="Mumbai">Mumbai</MenuItem>*/}
+                                                                        {/*<MenuItem value="Delhi">Delhi</MenuItem>*/}
+                                                                        {/*<MenuItem value="Goa">Goa</MenuItem>*/}
+                                                                        {/*<MenuItem value="Banglore">Banglore</MenuItem>*/}
+                                                                        {/*<MenuItem value="Hydrabad">Hydrabad</MenuItem>*/}
+                                                                    </Select>
+                                                                }
+
                                                             </Box>
                                                             <Box className="form-group">
                                                                 <label className="label"
