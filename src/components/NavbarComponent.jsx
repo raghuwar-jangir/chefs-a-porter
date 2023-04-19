@@ -354,7 +354,9 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                                         className={`browser-hamburger-menu`}
                                         activeClassName={'browser-hamburger-menu active'}
                                         activeStyle={{color: '#C6A87D'}}
-                                        to={to ? to : '/private'}>
+                                        to='/private'
+                                        // to={to ? to : '/private'}
+                                    >
                                         Private
                                     </Link>
                                     <Link
