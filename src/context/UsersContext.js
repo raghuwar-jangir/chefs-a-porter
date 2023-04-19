@@ -46,6 +46,7 @@ const UsersProvider = (props) => {
     const [mealData, setMealData] = useState();
     const [mealTypeData, setMealTypeData] = useState();
     const [partnerMenuData, setPartnerMenuData] = useState();
+    const [partnerCityData, setPartnerCityData] = useState();
     const eventIdCookieValue = Cookies.get('eventIdValue');
     const PaymentEventId = eventIdCookieValue?.replaceAll('"', '')
     const superClubDetailIdCookieValue = Cookies.get('superClubDetailId');
@@ -72,6 +73,7 @@ const UsersProvider = (props) => {
     const [becomePartnerData, setBecomePartnerData] = useState({})
     const [isUpdateBooking, setIsUpdateBooking] = useState(false)
     const [addonsId, setAddonsId] = useState([])
+    const selectedAddonsId = !_.isEmpty(addonsId) ? addonsId.map((item) => item.id) : [];
     const supperClubExperienceSeats = Cookies?.get('supperClubExperienceSeats');
     const experienceNumberOfSeats = parseInt(supperClubExperienceSeats?.replaceAll('"', ''));
     const supperClubExperienceTables = Cookies?.get('supperClubExperienceTables');
@@ -79,11 +81,13 @@ const UsersProvider = (props) => {
 
     const [isScheduleCall, setIsScheduleCall] = useState(false)
     const [scheduleCallData, setScheduleCallData] = useState();
-    const [partnerId,setPartnerId]=useState();
+    const [partnerId, setPartnerId] = useState();
+    const [partnerCityId, setPartnerCityId] = useState();
 
-    console.log("addonsId=======", addonsId)
-    const selectedAddonsId = !_.isEmpty(addonsId) ? addonsId.map((item) => item.id) : [];
-    console.log("selectedAddonsId=======", selectedAddonsId)
+    console.log("becomePartnerData=======", becomePartnerData)
+    console.log("partnerId=======", partnerId)
+    console.log("partnerCityId=======", partnerCityId)
+
     useEffect(() => {
         // if (cookieValueSupper) {
         //     setSupperClubBookingBookingConfirm(JSON.parse(cookieValueSupper));
@@ -193,22 +197,25 @@ const UsersProvider = (props) => {
                 cover_letter: contactUsData.coverLetterMessage,
             })
             setIsContactUsData(false)
-        } else if (isBecomePartner) {
+        } else if (isBecomePartner && becomePartnerData) {
             axios.post(baseUrl + '/partner', {
-                partner_as: "id",
+                partner_as: partnerId,
                 name: becomePartnerData.name,
                 email: becomePartnerData.email,
                 mobile: becomePartnerData.contactNumber,
-                city: becomePartnerData.city,
+                city: partnerCityId,
                 brand_name: becomePartnerData.brandName,
                 instagram_profile_link: becomePartnerData.instagramLink,
                 other_link: [becomePartnerData.otherLinks],
                 about_your_brand: becomePartnerData.brandMessage,
                 why: becomePartnerData.chefsMessage,
-                work_samples: becomePartnerData.workSampleFile,
-                // work_samples: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi"
+                // work_samples: becomePartnerData.workSampleFile,
+                work_samples: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi"
             })
             setIsBecomePartner(false)
+            // setBecomePartnerData(null)
+            // setPartnerCityId(null)
+            // setPartnerId(null)
         } else if (isScheduleCall) {
             axios.post(baseUrl + '/call_schedule', {
                 date_time: scheduleCallData.day,
@@ -331,13 +338,22 @@ const UsersProvider = (props) => {
                 }
             })
         } else if (currentPath === 'become-partner') {
-            axios.get(baseUrl + '/partner_master/all',{
+            axios.get(baseUrl + '/partner_master/all', {
                 headers: {
                     'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTM1MWZmNmIzYjBmOTYxY2IxZGQxNjciLCJpYXQiOjE2ODE4MDAzNTIsImV4cCI6MTY4MTgwMzk1MiwidHlwZSI6ImFjY2VzcyJ9.hoOeT8frCQ_QH-83fPF-HxDKW1_vCTu0Vn55hWwloP0`
                 }
             }).then((response) => {
                 if (response.status === 200) {
                     setPartnerMenuData(response.data)
+                }
+            })
+            axios.get(baseUrl + '/city/all', {
+                headers: {
+                    'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTM1MWZmNmIzYjBmOTYxY2IxZGQxNjciLCJpYXQiOjE2ODE4MDAzNTIsImV4cCI6MTY4MTgwMzk1MiwidHlwZSI6ImFjY2VzcyJ9.hoOeT8frCQ_QH-83fPF-HxDKW1_vCTu0Vn55hWwloP0`
+                }
+            }).then((response) => {
+                if (response.status === 200) {
+                    setPartnerCityData(response.data)
                 }
             })
         }
@@ -357,18 +373,18 @@ const UsersProvider = (props) => {
                 setMealTypeData(result.data)
             })
         }
-      if (isUpdateBooking){
-            axios.patch(baseUrl + '/booking/'+bookingId, {
+        if (isUpdateBooking) {
+            axios.patch(baseUrl + '/booking/' + bookingId, {
                 // addons:['6416f9978da15a0ecef5693a', '64241e3919915278d887421a']
-                addons:selectedAddonsId
+                addons: selectedAddonsId
             }).then((response) => {
                 if (response.status === 200) {
-                    console.log("response==========",response.data);
+                    console.log("response==========", response.data);
                     setIsUpdateBooking(false);
                 }
             })
         }
-    }, [isUpdateBooking,isScheduleCall, isBecomePartner, isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
+    }, [isUpdateBooking, isScheduleCall, isBecomePartner, isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
 
     const {children} = props;
 
@@ -416,7 +432,9 @@ const UsersProvider = (props) => {
                 setPartnerId,
                 setIsUpdateBooking,
                 setAddonsId,
-                addonsId
+                addonsId,
+                partnerCityData,
+                setPartnerCityId
             }}
         >
             {children}
