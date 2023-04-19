@@ -25,7 +25,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import SupperClubTreatyComponent from "../../components/SupperClubTreatyComponent";
 import AddIcon from "@mui/icons-material/Add";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import contact from "../../assets/images/contact-form.png";
 import {navigate} from "gatsby";
 import InputAdornment from "@mui/material/InputAdornment";
 import OtpComponent from "../../components/OtpComponent";
@@ -34,20 +33,18 @@ import Cookies from "js-cookie";
 import SupperClubOtpVerificationModal from "../../components/SupperClubOtpVerificationModal";
 import OtpContext from "../../context/OtpContext";
 import UsersContext from "../../context/UsersContext";
+import TodoForm from "../../components/TodoForm";
 
 const PersonalDetails1 = () => {
     const {setOtpNumber, setIsSendOtpApiCall} = useContext(OtpContext);
-    const {mealTypeData, setChefFormData, setIsChefData} = useContext(UsersContext);
+    const {mealTypeData} = useContext(UsersContext);
     const [contactPopUp, setContactPopUp] = useState(false);
     const ContactOpen = () => setContactPopUp(true);
     const ContactClose = () => setContactPopUp(false);
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [open, setOpen] = useState(false);  
     const [openOtp, setOpenOtp] = useState(false);
     const [superClubBookingDetails, setSuperClubBookingDetails] = useState();
     const [todos, setTodos] = useState([]);
-    console.log("todos========>", todos);
     const [contactNumber, setContactNumber] = useState("");
     const [showData, setShowData] = useState();
     const CHARACTER_LIMIT = 40;
@@ -79,15 +76,7 @@ const PersonalDetails1 = () => {
         Cookies.set("supperClubBookingPersonalDetail", JSON.stringify(values));
     };
     const handleCloseOtp = () => setOpenOtp(false);
-    const onSubmit = (values, {resetForm}) => {
-        console.log("values================", values)
-        setChefFormData(values);
-        setTodos([...todos, values]);
-        resetForm();
-    };
-    const handleDeleteTodo = (index) => {
-        setTodos(todos.filter((todo, todoIndex) => todoIndex !== index));
-    };
+   
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
@@ -98,16 +87,7 @@ const PersonalDetails1 = () => {
     contact: Yup.number().required("contactNumber is required"),
   });
 
-  const validationSchemaTodo = Yup.object().shape({
-    name: Yup.string().required("Name is required"),
-    email: Yup.string()
-      .email("Incorrect Email Id")
-      .required("please enter email"),
-    contact: Yup.number()
-      .typeError("That doesn't look like a phone number")
-      .min(10)
-      .required("contactNumber is required"),
-  });
+  
   const MainBox = styled(Box)({
     padding: "80px 120px",
     marginTop: "40px",
@@ -1056,13 +1036,17 @@ const PersonalDetails1 = () => {
                             AdditionalMessage: superClubBookingDetails?.AdditionalMessage
                                 ? superClubBookingDetails?.AdditionalMessage
                                 : "",
+                                
                         }}
+                        enableReinitialize= {false}
                         validationSchema={validationSchema}
                         onSubmit={(values) => {
+                            console.log("values======>");
                         }}
                     >
                         {({values, handleChange, handleSubmit, setFieldValue}) => (
                             <Form onSubmit={handleSubmit}>
+                                {console.log("values======>",values)}
                                 <Grid container>
                                     <Grid
                                         xl={7}
@@ -1070,7 +1054,6 @@ const PersonalDetails1 = () => {
                                         xs={7}
                                         md={7}
                                         sm={12}
-                                        xs={12}
                                         className="partner"
                                     >
                                         <Box className="row">
@@ -1262,19 +1245,22 @@ const PersonalDetails1 = () => {
                                                                     <div className="guest-mail">{todo.email}</div>
                                                                     <CloseIcon
                                                                         className="guest-close"
-                                                                        onClick={() => handleDeleteTodo(index)}
+                                                                        onClick={() => setTodos(todos.filter((todo, todoIndex) => todoIndex !== index))}
                                                                     />
                                                                 </div>
                                                             ))}
                                                         </div>
                                                     )}
                                                     <div className="guest-number">
+                                                    {showData && (
                                                         <div className="guest-remain">
-                                                            2 Guests Remaining
+                                                            {todos[0]?.totalSeats - todos.length} Guests Remaining
                                                         </div>
+                                                         )}
                                                         <button
                                                             type="button"
-                                                            onClick={handleOpen}
+                                                            name="button"
+                                                            onClick={()=>setOpen(true)}
                                                             className="add-guest"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#exampleModal"
@@ -1446,287 +1432,19 @@ const PersonalDetails1 = () => {
                         )}
                     </Formik>
                 </div>
-                <Modal
+                {/* <Modal
                     keepMounted
                     open={open}
-                    onClose={handleClose}
+                    onClose={()=>{setOpen(false)}}
                     aria-labelledby="keep-mounted-modal-title"
                     aria-describedby="keep-mounted-modal-description"
-                >
+                > */}
+                {open && (
                     <Box sx={style}>
-                        <Formik
-                            initialValues={{
-                                name: "",
-                                email: "",
-                                contact: "",
-                                foodPreference: "Vegan",
-                            }}
-                            validationSchema={validationSchemaTodo}
-                            onSubmit={(values, {resetForm}) => {
-                                setIsChefData(true)
-                                setChefFormData(values);
-                                setTodos([...todos, values]);
-                                resetForm();
-                            }}
-                        >
-                            {({values, handleChange, handleSubmit}) => (
-                                <Form onSubmit={handleSubmit}>
-                                    <div className="modal-div">
-                                        <div className="modal-dialog">
-                                            <div className="modal-content">
-                                                <div className="modal-header">
-                                                    <ArrowBackIcon className="form-arrow"/>
-                                                    <div className="modal-title" id="exampleModalLabel">
-                                                        Add Guests
-                                                    </div>
-                                                    <button
-                                                        type="button"
-                                                        data-bs-dismiss="modal"
-                                                        aria-label="Close"
-                                                        className="close"
-                                                        onClick={handleClose}
-                                                    >
-                                                        <CloseIcon className="close-icon"/>
-                                                    </button>
-                                                </div>
-                                                <div className="modal-body">
-                                                    <div className="modal-child">
-                                                        <div className="initial-box">
-                                                            <div>
-                                                                <div className="modal-people">
-                                                                    <img src={people}/>
-                                                                    1/3 Guest details entered
-                                                                </div>
-                                                                <div className="modal-people-details">
-                                                                    Chefs à Porter will contact your guests to
-                                                                    collect allergen details directly. <br/> This
-                                                                    experience is not suitable for children
-                                                                </div>
-                                                                {/* <button className="add-btn"><AddIcon className="add-icon"/>Add Guest</button> */}
-                                                                {todos.map((todo, index) => (
-                                                                    <div
-                                                                        key={index}
-                                                                        className="guest-required-details"
-                                                                    >
-                                    <span className="guest-no">
-                                      # {index + 1}
-                                    </span>
-                                    <span className="guest-name">
-                                      {todo.name}
-                                    </span>
-                                                                        <span className="divider">|</span>
-                                                                        <div className="guest-gmail">
-                                                                            {todo.email}
-                                                                        </div>
-                                                                        <CloseIcon
-                                                                            className="guest-close"
-                                                                            onClick={() => handleDeleteTodo(index)}
-                                                                        />
-                                                                    </div>
-                                                                ))}
-                                                            </div>
-                                                        </div>
-                                                        <div className="second-box">
-                                                            <div className="recipient">
-                                                                <div className="guest-1">
-                                                                    Guest # {todos.length + 1}
-                                                                </div>
-                                                                <Box className="row">
-                                                                    <Box className="form-field">
-                                                                        <label
-                                                                            className="form-label"
-                                                                            htmlFor="name"
-                                                                        >
-                                                                            Your Name
-                                                                        </label>
-                                                                        <Field
-                                                                            className="form-control"
-                                                                            type="text"
-                                                                            id="name"
-                                                                            name="name"
-                                                                            placeholder="Guest Name"
-                                                                            autoComplete="off"
-                                                                        />
-                                                                        <ErrorMessage name="name"/>
-                                                                    </Box>
-                                                                    <Box className="form-field">
-                                                                        <label
-                                                                            className="form-label"
-                                                                            htmlFor="email"
-                                                                        >
-                                                                            Email Address
-                                                                        </label>
-                                                                        <Field
-                                                                            className="form-control"
-                                                                            type="text"
-                                                                            id="email"
-                                                                            name="email"
-                                                                            placeholder="email id"
-                                                                            autoComplete="off"
-                                                                        />
-                                                                        <ErrorMessage name="email"/>
-                                                                    </Box>
-                                                                    <Box className="form-field">
-                                                                        <label
-                                                                            className="form-label"
-                                                                            htmlFor="contact"
-                                                                        >
-                                                                            Contact Number
-                                                                        </label>
-                                                                        <img
-                                                                            className="contact"
-                                                                            onClick={ContactOpen}
-                                                                            src={contact}
-                                                                        />
-                                                                        <Field
-                                                                            variant="standard"
-                                                                            className="form-control"
-                                                                            type="contact"
-                                                                            id="contact"
-                                                                            name="contact"
-                                                                            placeholder="10 digit number"
-                                                                            autoComplete="off"
-                                                                            InputProps={{
-                                                                                disableUnderline: true,
-                                                                                padding: "0px",
-                                                                                startAdornment: (
-                                                                                    <InputAdornment position="start">
-                                                                                        +91{" "}
-                                                                                        <KeyboardArrowDownIcon
-                                                                                            className="contact-down"/>
-                                                                                    </InputAdornment>
-                                                                                ),
-                                                                            }}
-                                                                        />
-                                                                        <ErrorMessage name="contact"/>
-                                                                    </Box>
-                                                                    <Box className="your-food">
-                                                                        {!_.isEmpty(mealTypeData) && (
-                                                                            <>
-                                                                                <div className="your-box">
-                                                                                    <label
-                                                                                        className="form-label"
-                                                                                        htmlFor="select"
-                                                                                    >
-                                                                                        Your Food Preference
-                                                                                    </label>
-                                                                                    <div className="view-text">
-                                                                                        View Menu
-                                                                                    </div>
-                                                                                </div>
-                                                                                <Select
-                                                                                    labelId="demo-simple-select-label"
-                                                                                    id="demo-simple-select"
-                                                                                    name="foodPreference"
-                                                                                    value={values.foodPreference}
-                                                                                    onChange={handleChange}
-                                                                                    defaultValue={values.foodPreference}
-                                                                                    className="form-control-drop"
-                                                                                    sx={{
-                                                                                        fontSize: "20px",
-                                                                                        ".MuiOutlinedInput-notchedOutline":
-                                                                                            {border: 0},
-                                                                                        "&.Mui-focused .MuiOutlinedInput-notchedOutline":
-                                                                                            {
-                                                                                                border: "none",
-                                                                                            },
-                                                                                        ".MuiSelect-select": {
-                                                                                            padding: "0px 5px",
-                                                                                            fontFamily: "Proxima Nova Alt",
-                                                                                            fontStyle: "normal",
-                                                                                            fontWeight: 300,
-                                                                                            fontSize: "16px",
-                                                                                            lineHeight: "19px",
-                                                                                            color: "#222222",
-                                                                                            height: "20px !important",
-                                                                                            minHeight: "0px !important",
-                                                                                        },
-                                                                                    }}
-                                                                                    MenuProps={{
-                                                                                        PaperProps: {
-                                                                                            sx: {
-                                                                                                backgroundColor:
-                                                                                                    "#DCD7CB !important",
-                                                                                                li: {
-                                                                                                    fontFamily:
-                                                                                                        "ProximaNovaA-Regular",
-                                                                                                    borderBottom:
-                                                                                                        "1px solid black",
-                                                                                                    fontSize: "20px",
-                                                                                                    fontWeight: "100",
-                                                                                                    padding: "6px 0px",
-                                                                                                    justifyContent: "start",
-                                                                                                },
-                                                                                                ul: {
-                                                                                                    display: "flex",
-                                                                                                    flexDirection: "column",
-                                                                                                    padding: "16px",
-                                                                                                },
-                                                                                                "li:hover": {
-                                                                                                    color: "#C6A87D!important",
-                                                                                                    backgroundColor:
-                                                                                                        "unset !important",
-                                                                                                },
-                                                                                                "li:last-child": {
-                                                                                                    borderBottom: "none",
-                                                                                                },
-                                                                                                "&& .Mui-selected": {
-                                                                                                    backgroundColor:
-                                                                                                        "unset !important",
-                                                                                                },
-                                                                                                ".MuiSelect-select": {
-                                                                                                    padding: "5px !important",
-                                                                                                    fontSize: "17px",
-                                                                                                },
-                                                                                            },
-                                                                                        },
-                                                                                    }}
-                                                                                >
-                                                                                    {mealTypeData?.map((item) => {
-                                                                                        return (
-                                                                                            <MenuItem value={item.name}>
-                                                                                                {item.name}
-                                                                                            </MenuItem>
-                                                                                        );
-                                                                                    })}
-                                                                                </Select>
-                                                                            </>
-                                                                        )}
-                                                                    </Box>
-                                                                    <button type="submit" className="modal-add">
-                                                                        Add
-                                                                    </button>
-                                                                </Box>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="view-break">
-                                                    <div className="view-text-box">
-                                                        <div className="rate-text">
-                                                            ₹ 2,500
-                                                            <span className="per-text">Per dinner</span>
-                                                        </div>
-                                                        <button
-                                                            type="submit"
-                                                            onClick={() => {
-                                                                setShowData(true);
-                                                                setOpen(false);
-                                                            }}
-                                                            className="done-btn"
-                                                        >
-                                                            Done
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Form>
-                            )}
-                        </Formik>
+                        <TodoForm setTodos={setTodos} todos={todos} setOpen={setOpen} setShowData={setShowData} setContactPopUp={setContactPopUp}/>
                     </Box>
-                </Modal>
+                    )}
+                {/* </Modal> */}
                 <Modal
                     keepMounted
                     open={contactPopUp}
