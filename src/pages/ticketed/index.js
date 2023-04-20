@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Box, styled } from "@mui/system";
 import { Typography } from "@mui/material";
 import supperVideo from "../../assets/video/supper.mp4";
@@ -22,7 +22,8 @@ import CmsContext from "../../context/CmsContext";
 import * as _ from "lodash";
 import SupperClubQuestion from "../../components/SupperClubQuestions";
 import SupperClubRatingCarousel from "../../components/SupperClubRatingCarousel";
-import TemptedYet from '../../components/TemptedYet';
+import TemptedYet from "../../components/TemptedYet";
+import Cookies from "js-cookie";
 
 const SupperClub = () => {
     const { data } = useContext(CmsContext);
@@ -88,7 +89,7 @@ const SupperClub = () => {
             background: "#C2BAA6",
         },
         ".upcoming-container": {
-            padding: "60px 120px"
+            padding: "60px 120px",
         },
         ".child-upcoming": {
             display: "flex",
@@ -184,7 +185,7 @@ const SupperClub = () => {
         },
         ".table-img": {
             width: "100%",
-            height: "100%",
+            height: "491px",
             objectFit: "cover",
         },
         ".table-child-2": {
@@ -267,7 +268,6 @@ const SupperClub = () => {
             ".MuiTab-variantPlain": {
                 fontSize: "14px",
                 lineHeight: "17px",
-                width:'35%'
             },
             ".tab-sec": {
                 fontSize: "14px",
@@ -280,7 +280,7 @@ const SupperClub = () => {
                 width: "100%",
             },
             ".table-img": {
-                height: "100%",
+                height: "230px",
                 objectPosition: "left",
             },
             ".table-child-2": {
@@ -312,16 +312,21 @@ const SupperClub = () => {
             ".template-title": {
                 color: "#080B0E !important",
             },
-            '.table-box':{
-                display:'block'
-            },
-            ".table-child": {
-                width: "100%",
-                maxWidth: "100%",
-            },
         },
     }));
-
+    const [tabValue, setTabValue] = useState(0);
+    const handleTabChange = (event, newValue) => {
+        setTabValue(newValue);
+        const tabValue = tabData[newValue];
+        Cookies.set("tabData", JSON.stringify(tabValue.label));
+    };
+    const tabData = [
+        { id: 0, label: "Mumbai", value: "Mumbai" },
+        { id: 1, label: "Delhi", value: "Delhi" },
+        { id: 2, label: "Goa", value: "Goa" },
+        { id: 3, label: "Banglore", value: "Banglore" },
+        { id: 4, label: "Hyderabad", value: "Hyderabad" },
+    ];
     return (
         <React.Fragment>
             {!_.isEmpty(data?.supper_club) && (
@@ -355,30 +360,26 @@ const SupperClub = () => {
                             </Box>
                             <Box>
                                 <Tabs
+                                    value={tabValue}
                                     defaultValue={0}
                                     sx={{ "--Tabs-gap": "0px", backgroundColor: "#C2BAA6" }}
+                                    onChange={handleTabChange}
                                 >
                                     <TabList>
-                                        <Tab className="tab-box" value={0}>
-                                            Mumbai
-                                        </Tab>
-                                        <Tab className="tab-box" value={1}>
-                                            Delhi
-                                        </Tab>
-                                        <Tab className="tab-box" value={2}>
-                                            Goa
-                                        </Tab>
-                                        <Tab className="tab-box" value={3}>
-                                            Banglore
-                                        </Tab>
-                                        <Tab className="tab-box" value={4}>
-                                            Hyderabad
-                                        </Tab>
+                                        {tabData.map((tab) => (
+                                            <Tab key={tab.id} className="tab-box" value={tab.id}>
+                                                {" "}
+                                                {tab.label}
+                                            </Tab>
+                                        ))}
                                     </TabList>
                                     <TabPanel value={0} sx={{ p: 0 }}>
                                         <Tabs
                                             defaultValue={0}
-                                            sx={{ "--Tabs-gap": "0px", backgroundColor: "transparent" }}
+                                            sx={{
+                                                "--Tabs-gap": "0px",
+                                                backgroundColor: "transparent",
+                                            }}
                                         >
                                             <TabList>
                                                 <Tab className="cooking-tab" value={0}>
@@ -411,7 +412,10 @@ const SupperClub = () => {
                                     <TabPanel value={1} sx={{ p: 0 }}>
                                         <Tabs
                                             defaultValue={0}
-                                            sx={{ "--Tabs-gap": "0px", backgroundColor: "transparent" }}
+                                            sx={{
+                                                "--Tabs-gap": "0px",
+                                                backgroundColor: "transparent",
+                                            }}
                                         >
                                             <TabList>
                                                 <Tab className="cooking-tab" value={0}>
@@ -444,7 +448,10 @@ const SupperClub = () => {
                                     <TabPanel value={2} sx={{ p: 0 }}>
                                         <Tabs
                                             defaultValue={0}
-                                            sx={{ "--Tabs-gap": "0px", backgroundColor: "transparent" }}
+                                            sx={{
+                                                "--Tabs-gap": "0px",
+                                                backgroundColor: "transparent",
+                                            }}
                                         >
                                             <TabList>
                                                 <Tab className="cooking-tab" value={0}>
@@ -477,7 +484,10 @@ const SupperClub = () => {
                                     <TabPanel value={3} sx={{ p: 0 }}>
                                         <Tabs
                                             defaultValue={0}
-                                            sx={{ "--Tabs-gap": "0px", backgroundColor: "transparent" }}
+                                            sx={{
+                                                "--Tabs-gap": "0px",
+                                                backgroundColor: "transparent",
+                                            }}
                                         >
                                             <TabList>
                                                 <Tab className="cooking-tab" value={0}>
@@ -510,7 +520,10 @@ const SupperClub = () => {
                                     <TabPanel value={4} sx={{ p: 0 }}>
                                         <Tabs
                                             defaultValue={0}
-                                            sx={{ "--Tabs-gap": "0px", backgroundColor: "transparent" }}
+                                            sx={{
+                                                "--Tabs-gap": "0px",
+                                                backgroundColor: "transparent",
+                                            }}
                                         >
                                             <TabList>
                                                 <Tab className="cooking-tab" value={0}>
@@ -585,9 +598,11 @@ const SupperClub = () => {
                         subTitle="@Chefsaporter"
                     />
                     <SupperClubQuestion isLightTheme={true} />
-                    <TemptedYet  title={"Tempted yet?"}
-                                 buttonText="Book this Experience"
-                                 isTempted={true}/>
+                    <TemptedYet
+                        title={"Tempted yet?"}
+                        buttonText="Book this Experience"
+                        isTempted={true}
+                    />
                     <NeedHelp
                         title={data.supper_club.home_footer.desktop_title}
                         description={data.supper_club.home_footer.desktop_description}

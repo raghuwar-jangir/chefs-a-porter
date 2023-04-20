@@ -52,7 +52,6 @@ const BookingSummary = (props) => {
     const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
 
-    console.log("supperClubBookingId=====================", summaryBookingId)
     const {
         bsPaymentData,
         voucher,
@@ -77,7 +76,6 @@ const BookingSummary = (props) => {
     const oderIDCookieValue = Cookies?.get("razorpayOrderId");
     const razorpayOrderId = oderIDCookieValue?.replaceAll('"', "");
     const [razorpayData, setRazorpayData] = useState();
-    console.log("razorpayData==============", razorpayData)
 
     useEffect(() => {
         if (cookieValue) {
@@ -96,7 +94,6 @@ const BookingSummary = (props) => {
         pincode: "400022",
     };
     const handleSubmit = (values, {setSubmitting}) => {
-        console.log(values);
         setSubmitting(false);
     };
     const [open, setOpen] = useState(false);

@@ -29,7 +29,6 @@ const SupperClubOtpVerificationModal = (props) => {
     const cookieValue = Cookies.get('eventData');
     const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
-    console.log("supperClubBookingId===========", supperClubBookingId)
 
     useEffect(() => {
         if (cookieValue) {
@@ -52,7 +51,6 @@ const SupperClubOtpVerificationModal = (props) => {
         };
     }, [seconds]);
 
-    console.log("supperClubBookingId===========",supperClubBookingId)
     const handleClick = () => {
         if (!_.isEmpty(otp)) {
             setVerifyOtp(otp);
@@ -247,7 +245,6 @@ const SupperClubOtpVerificationModal = (props) => {
                                             <OTPInput
                                                 value={otp}
                                                 onChange={(number) => {
-                                                    console.log('number', number)
                                                     setOtp(number)
                                                 }}
                                                 numInputs={6}

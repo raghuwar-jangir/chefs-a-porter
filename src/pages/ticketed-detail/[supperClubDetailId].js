@@ -70,22 +70,22 @@ const SupperClubDetail = (props) => {
 
     const groupedDates = _.groupBy(userData?.new_dates, (item) => item.date);
     const showDates = Object.values(groupedDates);
-    console.log("showDates=======>", showDates);
-    useEffect(() => {
-        setSupperClubDetailId(getSupperClubDetailId);
-    }, [getSupperClubDetailId]);
-    const handleClick = () => {
-        navigate("/personal-details");
-    };
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedTime, setSelectedTime] = useState(null);
+    const [selectedTimeNext, setSelectedTimeNext] = useState(null);
     const [showCarousel, setShowCarousel] = useState(false);
     const [showArray, setShowArray] = useState(
         Array(showDates.length).fill(false)
     );
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [selectedTime, setSelectedTime] = useState(null);
-    const [selectedTimeNext, setSelectedTimeNext] = useState(null);
-    console.log("selectedTimeNext=======>", selectedTimeNext);
-    console.log("selectedTime=======>", selectedTime);
+
+    useEffect(() => {
+        setSupperClubDetailId(getSupperClubDetailId);
+    }, [getSupperClubDetailId]);
+
+    const handleClick = () => {
+        navigate("/personal-details");
+    };
+
     const handleToggle = (index) => {
         setShowArray((prevState) => {
             const newState = [...prevState];
@@ -984,8 +984,8 @@ const SupperClubDetail = (props) => {
                                 <Typography className="sub-box-text">
                                     Curated by{" "}
                                     <span>
-                    <b className="sub-box-link">{userData?.chef?.name}</b>
-                  </span>
+                  <b className="sub-box-link">{userData?.chef?.name}</b>
+                </span>
                                 </Typography>
                             </Box>
                             <Grid
@@ -1177,7 +1177,6 @@ const SupperClubDetail = (props) => {
                                             numberOfTables: 1,
                                         }}
                                         onSubmit={(values) => {
-                                            console.log("values======>", values);
                                             Cookies.set(
                                                 "supperClubExperienceTime",
                                                 JSON.stringify(selectedTime)
@@ -1185,7 +1184,7 @@ const SupperClubDetail = (props) => {
                                             Cookies.set(
                                                 "supperClubExperienceDates",
                                                 JSON.stringify(
-                                                    moment(selectedDate).format("DD MMMM dddd")
+                                                    moment(selectedDate).toISOString()
                                                 )
                                             );
                                             Cookies.set(
@@ -1208,7 +1207,7 @@ const SupperClubDetail = (props) => {
                                                         }}
                                                     >
                                                         <Typography className="sub-text-price">
-                                                            ₹ {userData?.price}{" "}
+                                                            ₹{userData?.price}{" "}
                                                             <sub className="sub-text">Per Diner</sub>
                                                         </Typography>
                                                     </Box>
@@ -1314,11 +1313,11 @@ const SupperClubDetail = (props) => {
                                                                                             Regular Seating
                                                                                         </div>
                                                                                         <span className="r-seat-rate">
-                                              <b className="r-seat-money">
-                                                ₹ {userData?.price}
-                                              </b>
-                                              / diner
-                                            </span>
+                                            <b className="r-seat-money">
+                                              ₹ {userData?.price}
+                                            </b>
+                                            / diner
+                                          </span>
                                                                                     </div>
                                                                                     <div>
                                                                                         <div className="input-div">
@@ -1370,8 +1369,8 @@ const SupperClubDetail = (props) => {
                                                                                             />
                                                                                         </div>
                                                                                         <span className="s-left">
-                                              {userData?.seats} seats left
-                                            </span>
+                                            {userData?.seats} seats left
+                                          </span>
                                                                                     </div>
                                                                                 </Box>
                                                                                 <hr className="seat-hr"/>
@@ -1381,11 +1380,11 @@ const SupperClubDetail = (props) => {
                                                                                             Chefs Table
                                                                                         </div>
                                                                                         <span className="r-seat-rate">
-                                              <b className="r-seat-money">
-                                                ₹ {userData?.price_chefs_table}
-                                              </b>
-                                              / diner
-                                            </span>
+                                            <b className="r-seat-money">
+                                              ₹ {userData?.price_chefs_table}
+                                            </b>
+                                            / diner
+                                          </span>
                                                                                     </div>
                                                                                     <div>
                                                                                         <div className="input-div">
@@ -1437,9 +1436,9 @@ const SupperClubDetail = (props) => {
                                                                                             />
                                                                                         </div>
                                                                                         <span className="s-left">
-                                              {userData?.seats_chefs_table}{" "}
+                                            {userData?.seats_chefs_table}{" "}
                                                                                             seats left
-                                            </span>
+                                          </span>
                                                                                     </div>
                                                                                 </Box>
                                                                             </Box>{" "}

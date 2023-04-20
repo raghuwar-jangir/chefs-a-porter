@@ -47,7 +47,6 @@ const PersonalDetails1 = () => {
     const [openOtp, setOpenOtp] = useState(false);
     const [superClubBookingDetails, setSuperClubBookingDetails] = useState();
     const [todos, setTodos] = useState([]);
-    console.log("todos========>", todos);
     const [contactNumber, setContactNumber] = useState("");
     const [showData, setShowData] = useState();
     const CHARACTER_LIMIT = 40;
@@ -80,7 +79,6 @@ const PersonalDetails1 = () => {
     };
     const handleCloseOtp = () => setOpenOtp(false);
     const onSubmit = (values, {resetForm}) => {
-        console.log("values================", values)
         setChefFormData(values);
         setTodos([...todos, values]);
         resetForm();

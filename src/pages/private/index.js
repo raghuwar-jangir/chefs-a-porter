@@ -589,8 +589,6 @@ const PriveePage = (props) => {
     const {data} = useContext(CmsContext);
     const {mealData,commonCityData} = useContext(UsersContext);
 
-
-    console.log("mealData=====",mealData)
     const [search, setSearch] = useState(false);
     const handleChange = () => {
         setSearch(true);
@@ -689,13 +687,11 @@ const PriveePage = (props) => {
                                                 diners: 1
                                             }}
                                             onSubmit={(values) => {
-                                                console.log(values.date)
                                                 const PriveeDetails = {
                                                     ...values,
                                                     date: moment(_.get(values, 'date')).toISOString(),
                                                     diners: count,
                                                 }
-                                                console.log("PriveeDetails===>", PriveeDetails)
                                                 Cookies.set('priveeData', JSON.stringify(PriveeDetails));
                                             }}
                                         >

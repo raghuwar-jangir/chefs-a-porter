@@ -7,9 +7,7 @@ import UsersContext from "../context/UsersContext";
 
 const SuccessFullPopUp = (props) => {
 
-    const {successOpen,setSuccessOpen} = useContext(UsersContext);
-    // const [successOpen, setSuccessOpen] = useState(false);
-    // const handleOpen = () => setSuccessOpen(true);
+    const {successOpen, setSuccessOpen} = useContext(UsersContext);
     const handleClose = () => setSuccessOpen(false);
 
     const style = {
@@ -70,7 +68,6 @@ const SuccessFullPopUp = (props) => {
             width: '100%',
         },
         ".email-link": {
-            background: "#FBFBFB",
             fontSize: "16px !important",
             lineHeight: "19px !important",
             borderRadius: "0px !important",
@@ -80,8 +77,8 @@ const SuccessFullPopUp = (props) => {
             textDecoration: 'none',
         },
         ".email-link:hover": {
-            color: "#C6A87D !important",
-            background: "#FBFBFB !important",
+            color: "#FBFBFB !important",
+            // background: "#FBFBFB !important",
         },
         '.no': {
             background: '#101418 !important',
@@ -127,12 +124,12 @@ const SuccessFullPopUp = (props) => {
                                 <div className="done-popup">
                                     <h5>Your request has been recived</h5>
                                     <p>Our team will contact you within 24hrs</p>
-                                    <button className="btn">Okay</button>
+                                    <button className="btn" onClick={handleClose}>Okay</button>
                                 </div>
                                 <div className="done-popup1">
                                     <h5>Would you like to recieve your invite on Whatsapp?</h5>
                                     <div>
-                                        <button type="button" className="btn no">No</button>
+                                        <button type="button" className="btn no" onClick={handleClose}>No</button>
                                         <button type="button" className="btn"><a
                                             href="https://chat.whatsapp.com/DOEPvVVFkaQLKDScEeTYOq" target="_blank"
                                             className="email-link">Yes</a></button>

@@ -325,8 +325,6 @@ const BecomePatronForm = () => {
                                     dateOfBirth: moment(JSON.stringify(_.get(values, 'dateOfBirth'))).format('DD/MM/YYYY'),
                                     anniversaryDate: moment(JSON.stringify(_.get(values, 'anniversaryDate'))).format('DD/MM/YYYY')
                                 }
-                                console.log("value===>", values)
-                                console.log("PatronData===>", PatronData)
                             }}
                         >
                             {({values, handleChange, handleSubmit, setFieldValue}) => (

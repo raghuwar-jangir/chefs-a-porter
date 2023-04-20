@@ -36,8 +36,6 @@ const ScBookingSummary = () => {
     const [superClubBookingDetails, setSuperClubBookingDetails] = useState()
     const cookieValue2 = Cookies.get('supperClubBookingPersonalDetail');
 
-    console.log("supperClubPaymentData===========", supperClubPaymentData)
-    console.log("supperClubBookingId===========4534345345", supperClubBookingId)
     useEffect(() => {
         if (cookieValue) {
             setSupperClubBookingData(JSON.parse(cookieValue));
@@ -81,7 +79,6 @@ const ScBookingSummary = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const handleSubmit = (values, {setSubmitting}) => {
-        console.log(values);
         setSubmitting(false);
     }
     const MainBox = styled(Box)({
@@ -734,7 +731,6 @@ const ScBookingSummary = () => {
                         }}
                         validationSchema={bookingSummaryValidationSchema}
                         onSubmit={(values) => {
-                            // console.log("sc booking confrim value==========", values)
                         }}
                     >
                         {({values, handleChange, handleSubmit, setFieldValue}) => (

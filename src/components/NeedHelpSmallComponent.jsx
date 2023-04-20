@@ -292,13 +292,10 @@ const NeedHelpSmallComponent = ({isColor}) => {
                                         queryMessage: '',
                                     }}
                                     onSubmit={(values) => {
-                                        console.log(values.date)
                                         const experienceData = {
                                             ...values,
                                             day: moment(_.get(values, 'day')).format("ddd,DD MMM "),
                                         }
-                                        console.log("value===>", values)
-                                        console.log("experienceData===>", experienceData)
                                     }}
                                 >
                                     {({values, handleChange, handleSubmit, setFieldValue}) => (

@@ -24,25 +24,12 @@ const Addons = (props) => {
     const summaryCookieValue = Cookies.get('BookingId');
     const summaryBookingId = summaryCookieValue?.replaceAll('"', '')
 
-    console.log("summaryBookingId========", summaryBookingId)
     const {bookingId} = props;
     const {addOnsData, adPaymentData, setPriveePayment} = useContext(UsersContext);
     const handleClick = () => {
         navigate(`/booking-summary/${summaryBookingId}`);
         setPriveePayment(true)
     }
-
-    // const cookieValue = Cookies?.get('adsPaymentInfo');
-    // const [paymentCalculationData, setPaymentCalculationData] = useState()
-    //
-    // useEffect(() => {
-    //     if (!_.isEmpty(cookieValue)) {
-    //         setPaymentCalculationData(JSON.parse(cookieValue));
-    //     }
-    // }, [cookieValue])
-    //
-    // console.log("paymentCalculationData===========", paymentCalculationData)
-    // console.log("paymentCalculationData cookieValue===========", cookieValue)
 
     const BoxWrapper = styled(Box)(() => ({
         background: '#101418',

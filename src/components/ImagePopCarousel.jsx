@@ -51,7 +51,7 @@ const ImagePopCarousel = ({ title }) => {
             title: "chef2",
         },
     ];
-    console.log("tittle", title);
+
     return (
         <React.Fragment>
             <MainBox>

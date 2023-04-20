@@ -16,9 +16,8 @@ const ScheduleCallPopUp = (props) => {
         open,
         handleClose,
     } = props;
-    const {setIsScheduleCall, setScheduleCallData, successOpen} = useContext(UsersContext);
+    const {setIsScheduleCall, setScheduleCallData, successOpen,setSuccessOpen} = useContext(UsersContext);
 
-    console.log("successOpen======", successOpen)
     // const handleClick = (values) => {
     //     setScheduleCallData(values);
     //     setIsScheduleCall(true);

@@ -909,7 +909,6 @@ const CustomerDetails = (props) => {
                                     }}
                                     validationSchema={validationSchema}
                                     onSubmit={(values) => {
-                                        // console.log("value===>", values.contactNumber)
                                     }}
                                 >
                                     {({values, handleChange, handleSubmit, setFieldValue}) => (

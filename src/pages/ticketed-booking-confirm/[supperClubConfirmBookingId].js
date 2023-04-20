@@ -82,10 +82,6 @@ const ScBookingConfirm = (props) => {
         setScPaymentId(JSON.parse(localStorage.getItem('scPaymentNumber')));
     }, [cookieValue2])
 
-    console.log("scBookingOrderNo================", scBookingOrderNo)
-    console.log("scPaymentId================", scPaymentId)
-    console.log("supperClubConfirmPaymentData================", supperClubConfirmPaymentData)
-
     const handlePayment = () => {
         setIsSupperBookingStatus(true)
     }
@@ -1208,7 +1204,6 @@ const ScBookingConfirm = (props) => {
                         }}
                         validationSchema={bookingSummaryValidationSchema}
                         onSubmit={(values) => {
-                            console.log("sc==========", values)
                         }}
                     >
                         {({values, handleChange, handleSubmit, setFieldValue}) => (
@@ -1476,7 +1471,6 @@ const ScBookingConfirm = (props) => {
                         }}
                         validationSchema={bookingSummaryValidationSchema}
                         onSubmit={(values) => {
-                            console.log("sc==========", values)
                         }}
                     >
                         {({values, handleChange, handleSubmit, setFieldValue}) => (
@@ -1775,8 +1769,6 @@ const ScBookingConfirm = (props) => {
                                             ...values,
                                             day: moment(_.get(values, "day")).format("ddd,DD MMM "),
                                         };
-                                        console.log("value===>", values);
-                                        console.log("experienceData===>", experienceData);
                                     }}
                                 >
                                     {({values, handleChange, handleSubmit, setFieldValue}) => (
@@ -2020,7 +2012,7 @@ const ScBookingConfirm = (props) => {
                                                         <div className="ex-details">
                                                             <h5>Paid Amount</h5>
                                                             <span
-                                                                className="i">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubConfirmPaymentData?.total)}</span>
+                                                                className="i">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(superClubPaymentData?.payment?.total)}</span>
                                                         </div>
                                                         <div className="table table-borderless">
                                                             <div className="table-box">

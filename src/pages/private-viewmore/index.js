@@ -471,13 +471,10 @@ const PriveeViewMore = (props) => {
                                                     diners: priveeInfo?.diners
                                                 }}
                                                 onSubmit={(values) => {
-                                                    console.log(values.date)
                                                     const experienceData = {
                                                         ...values,
                                                         on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
                                                     }
-                                                    console.log("value===>", values)
-                                                    console.log("experienceData===>", experienceData)
                                                 }}
                                             >
                                                 {({values, handleChange, handleSubmit, setFieldValue}) => (
@@ -753,13 +750,10 @@ const PriveeViewMore = (props) => {
                                                 queryMessage: '',
                                             }}
                                             onSubmit={(values) => {
-                                                console.log(values.date)
                                                 const experienceData = {
                                                     ...values,
                                                     day: moment(_.get(values, 'day')).format("ddd,DD MMM "),
                                                 }
-                                                console.log("value===>", values)
-                                                console.log("experienceData===>", experienceData)
                                             }}
                                         >
                                             {({values, handleChange, handleSubmit, setFieldValue}) => (

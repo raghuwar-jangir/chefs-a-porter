@@ -48,7 +48,6 @@ const EventDetails = (props) => {
     const getEventId = "640b22b691e7236a1d0a264e";
     // const getEventId = props?.params?.eventId;
 
-    // console.log("userData.price_per_course==========",userData.price_per_course)
     useEffect(() => {
         setEventId(getEventId);
 

@@ -19,7 +19,6 @@ const UsersProvider = (props) => {
     const SupperClubRazorpay = useRazorpay();
     const path = useLocation();
     const currentPath = path.pathname.split("/")[1];
-    console.log("currentPath============",currentPath)
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
     const [userData, setUserData] = useState();
     const [addOnsData, setAddOnsData] = useState();
@@ -89,12 +88,7 @@ const UsersProvider = (props) => {
     const [partnerId, setPartnerId] = useState();
     const [partnerCityId, setPartnerCityId] = useState();
     const [successOpen, setSuccessOpen] = useState(false);
-
-    console.log("successOpen=======", successOpen)
-
-    console.log("becomePartnerData=======", becomePartnerData)
-    console.log("partnerId=======", partnerId)
-    console.log("partnerCityId=======", partnerCityId)
+    const [scheduleCallOpen, setScheduleCallOpen] = useState(false);
 
     useEffect(() => {
         // if (cookieValueSupper) {
@@ -230,9 +224,8 @@ const UsersProvider = (props) => {
                 mobile: scheduleCallData.contactNumber,
                 query: scheduleCallData.queryMessage
             }).then((response) => {
-                if (response.status === 200) {
-                    setSuccessOpen(true);
-                }
+                setScheduleCallOpen(false);
+                setSuccessOpen(true);
             })
             setIsScheduleCall(false)
         } else if (isJoinChefData) {
@@ -256,8 +249,6 @@ const UsersProvider = (props) => {
             })
             setIsChefData(false);
         } else if (currentPath === 'ticketed-booking-summary' && supperClubBookingId) {
-            console.log("===========")
-            console.log("supperClubBookingId=========1111",supperClubBookingId)
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId, {
                 common_menu: eventId,
             }).then((response) => {
@@ -266,7 +257,6 @@ const UsersProvider = (props) => {
                 }
             })
         } else if (isSupperBookingStatus) {
-            console.log("supperClubBookingId===========", supperClubBookingId)
             axios.post(baseUrl + '/booking/confirm/' + supperClubBookingId).then((response) => {
                 if (response.status === 200) {
                     localStorage.setItem('scBookingOrderNumber', JSON.stringify(response.data.order_number));
@@ -391,16 +381,14 @@ const UsersProvider = (props) => {
         }
         if (isUpdateBooking) {
             axios.patch(baseUrl + '/booking/' + bookingId, {
-                // addons:['6416f9978da15a0ecef5693a', '64241e3919915278d887421a']
                 addons: selectedAddonsId
             }).then((response) => {
                 if (response.status === 200) {
-                    console.log("response==========", response.data);
                     setIsUpdateBooking(false);
                 }
             })
         }
-    }, [isUpdateBooking, isScheduleCall, isBecomePartner, isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
+    }, [isUpdateBooking, isScheduleCall, isBecomePartner, isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification, successOpen])
 
     const {children} = props;
 
@@ -454,7 +442,8 @@ const UsersProvider = (props) => {
                 commonCityData,
                 successOpen,
                 setSuccessOpen,
-                customerDetailsPaymentCalculation
+                customerDetailsPaymentCalculation,
+                scheduleCallOpen, setScheduleCallOpen
             }}
         >
             {children}

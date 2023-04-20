@@ -32,6 +32,7 @@ const OtpProvider = (props) => {
     const [eventData, setEventData] = useState()
     const [priveeData, setPriveeData] = useState()
     const [superClubBookingDetails, setsuperClubBookingDetails] = useState()
+    console.log("superClubBookingDetails=========",superClubBookingDetails)
     const cookieValue = Cookies.get('eventData');
     const cookieValue1 = Cookies.get('priveeData');
     const cookieValue2 = Cookies.get('supperClubBookingPersonalDetail');
@@ -56,7 +57,8 @@ const OtpProvider = (props) => {
     const [customerInfo, setCustomerInfo] = useState('')
     const customerInfoCookieValue = Cookies?.get('customerData');
     const [userAddress, setUserAddress] = useState()
-    console.log("userAddress=====", userAddress);
+    const selectedTab = Cookies.get('tabData');
+    const cityName = selectedTab?.replaceAll('"', '');
     useEffect(() => {
         if (cookieValue1) {
             setPriveeData(JSON.parse(cookieValue1));
@@ -146,18 +148,17 @@ const OtpProvider = (props) => {
                 email: superClubBookingDetails?.email,
                 mobile: otpNumber,
                 type: "chef_event",
-                // event: supperClubBookingId,
                 // event: "642d5567086e9b0e5f84e65c",
                 event: sPaymentEventId,
                 meal: experienceNumberOfTime,
-                diner_count: priveeData?.diners,
-                courses: eventData?.numberOfCourses,
+                diner_count: experienceNumberOfSeats,
+                // courses: eventData?.numberOfCourses,
                 // city: superClubBookingDetails.foodPreference,
-                city: "Banglore",
-                // booking_date: experienceNumberOfDates,
-                booking_date: priveeData?.date,
+                city: cityName ? cityName : 'Mumbai',
+                booking_date: experienceNumberOfDates,
+                // booking_date: priveeData?.date,
                 common_menu: supperClubDetailId,
-                message: "Addition info",
+                message: superClubBookingDetails?.AdditionalMessage,
                 otp: verifyOtp,
                 seats: experienceNumberOfSeats,
                 seats_chefs_table: experienceNumberOfTables

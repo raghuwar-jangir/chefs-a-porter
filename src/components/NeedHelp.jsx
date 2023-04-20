@@ -12,14 +12,16 @@ import '../assets/styles/fontStyle.css'
 import CmsContext from "../context/CmsContext";
 import OtpVerificationModal from "./OtpVerificationModal";
 import ScheduleCallPopUp from "./ScheduleCallPopUp";
+import UsersContext from "../context/UsersContext";
+import SuccessFullPopUp from "../components/SuccessFullPopUp"
 
 const NeedHelp = (props) => {
 
     const {isColor, title, description, button_email, button_call} = props;
-
+    const {successOpen,setSuccessOpen,scheduleCallOpen, setScheduleCallOpen} = useContext(UsersContext);
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleOpen = () => setScheduleCallOpen(true);
+    const handleClose = () => setScheduleCallOpen(false);
 
     const BoxWarraper = styled(Box)(() => ({
         padding: '40px 120px',
@@ -164,9 +166,12 @@ const NeedHelp = (props) => {
 
                         </Box>
                         {
-                            open && <ScheduleCallPopUp open={open}
+                            scheduleCallOpen && <ScheduleCallPopUp open={scheduleCallOpen}
                                                        handleClose={handleClose}
                             />
+                        }
+                        {
+                            successOpen && <SuccessFullPopUp/>
                         }
                     </React.Fragment>
                 }

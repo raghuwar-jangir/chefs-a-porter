@@ -394,15 +394,12 @@ const GetInTouch = () => {
                                         NumberOfDinners2: '',
                                     }}
                                     onSubmit={(values) => {
-                                        console.log(values.date)
                                         const experienceData = {
                                             ...values,
                                             experienceDate: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
                                             numberOfDiner1: course1,
                                             numberOfDiner2: course2,
                                         }
-                                        console.log("value===>", values)
-                                        console.log("experienceData===>", experienceData)
                                     }}
                                 >
                                     {({values, handleChange, handleSubmit, setFieldValue}) => (
