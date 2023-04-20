@@ -51,8 +51,8 @@ import "../../assets/styles/fontStyle.css";
 import ScheduleCallPopUp from "../../components/ScheduleCallPopUp";
 
 const ChefDetails = (props) => {
-    // const getUserId = props?.params?.userId;
-    const getUserId = "62b4582185ac160c4cbf118a";
+    const getUserId = props?.params?.userId;
+    // const getUserId = "62b4582185ac160c4cbf118a";
 
     const {setUserId, userData} = useContext(UsersContext);
     const [showCarousel, setShowCarousel] = useState(false);

@@ -32,7 +32,6 @@ const OtpProvider = (props) => {
     const [eventData, setEventData] = useState()
     const [priveeData, setPriveeData] = useState()
     const [superClubBookingDetails, setsuperClubBookingDetails] = useState()
-    console.log("superClubBookingDetails=========",superClubBookingDetails)
     const cookieValue = Cookies.get('eventData');
     const cookieValue1 = Cookies.get('priveeData');
     const cookieValue2 = Cookies.get('supperClubBookingPersonalDetail');

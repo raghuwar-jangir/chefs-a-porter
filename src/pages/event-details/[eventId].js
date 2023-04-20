@@ -45,8 +45,8 @@ const EventDetails = (props) => {
     const {setEventId, userData} = useContext(UsersContext);
     const [showCarousel, setShowCarousel] = useState(false);
     const [title, setTitle] = useState("");
-    const getEventId = "640b22b691e7236a1d0a264e";
-    // const getEventId = props?.params?.eventId;
+    // const getEventId = "640b22b691e7236a1d0a264e";
+    const getEventId = props?.params?.eventId;
 
     useEffect(() => {
         setEventId(getEventId);
@@ -70,7 +70,7 @@ const EventDetails = (props) => {
     };
     const breadcrumbs = [
         <Typography sx={bread} key="1" color="#FBFBFB">
-            Privée
+            Private
         </Typography>,
         <Link underline="none" key="2" color="#C6A87D" href="">
             Event

@@ -374,6 +374,11 @@ const UsersProvider = (props) => {
                 setCommonCityData(result.data)
             })
         }
+        if(currentPath === "ticketed"){
+            axios.get('https://chefv2.hypervergedemo.site/v1/city/all').then(result => {
+                setCommonCityData(result.data)
+            })
+        }
         if (currentPath === "personal-details") {
             axios.get('https://chefv2.hypervergedemo.site/v1/meal_types/all').then(result => {
                 setMealTypeData(result.data)

@@ -681,7 +681,7 @@ const PriveePage = (props) => {
                                             className="exp-heading">Book an Experience</Typography>
                                         <Formik
                                             initialValues={{
-                                                city: 'Mumbai',
+                                                city: commonCityData[0].name,
                                                 date: new Date(),
                                                 time: '',
                                                 diners: 1

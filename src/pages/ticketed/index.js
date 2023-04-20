@@ -19,6 +19,7 @@ import Footer from "../../components/Footer";
 import FooterEnd from "../../components/FooterEndSection";
 import BehindScenesCarousel from "../../components/BehindScenesCarousel";
 import CmsContext from "../../context/CmsContext";
+import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
 import SupperClubQuestion from "../../components/SupperClubQuestions";
 import SupperClubRatingCarousel from "../../components/SupperClubRatingCarousel";
@@ -27,6 +28,7 @@ import Cookies from "js-cookie";
 
 const SupperClub = () => {
     const { data } = useContext(CmsContext);
+    const { commonCityData } = useContext(UsersContext);
 
     const MainBox = styled(Box)(() => ({
         ".home-banner": {
@@ -320,13 +322,36 @@ const SupperClub = () => {
         const tabValue = tabData[newValue];
         Cookies.set("tabData", JSON.stringify(tabValue.label));
     };
-    const tabData = [
-        { id: 0, label: "Mumbai", value: "Mumbai" },
-        { id: 1, label: "Delhi", value: "Delhi" },
-        { id: 2, label: "Goa", value: "Goa" },
-        { id: 3, label: "Banglore", value: "Banglore" },
-        { id: 4, label: "Hyderabad", value: "Hyderabad" },
-    ];
+    const tabData = commonCityData?.map((obj, index) => {
+        return { id: index, label: obj.name, value: obj.name };
+    });
+
+    const today = new Date();
+    const startOfWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay() + 1);
+    const endOfWeek = new Date(startOfWeek.getFullYear(), startOfWeek.getMonth(), startOfWeek.getDate() + 6);
+    const nextWeek = new Date(startOfWeek.getFullYear(), startOfWeek.getMonth(), startOfWeek.getDate() + 7);
+    const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+
+    // Format the dates in a readable format
+    const formatWeek = (startDate, endDate) => {
+        const startDay = startDate.getDate();
+        const endDay = endDate.getDate();
+        const month = startDate.toLocaleString('default', { month: 'short' });
+        return `${startDay} - ${endDay} ${month}`;
+    };
+    const formatMonth = (date) => {
+        const options = { month: "long" };
+        return date.toLocaleDateString("en-US", options);
+    };
+
+
+    // const tabData = [
+    //     { id: 0, label: "Mumbai", value: "Mumbai" },
+    //     { id: 1, label: "Delhi", value: "Delhi" },
+    //     { id: 2, label: "Goa", value: "Goa" },
+    //     { id: 3, label: "Bangalore", value: "Bangalore" },
+    //     { id: 4, label: "Hyderabad", value: "Hyderabad" },
+    // ];
     return (
         <React.Fragment>
             {!_.isEmpty(data?.supper_club) && (
@@ -384,15 +409,15 @@ const SupperClub = () => {
                                             <TabList>
                                                 <Tab className="cooking-tab" value={0}>
                                                     This Week
-                                                    <Typography className="tab-sec">2-5 nov</Typography>
+                                                    <Typography className="tab-sec">{formatWeek(startOfWeek, endOfWeek)}</Typography>
                                                 </Tab>
                                                 <Tab className="cooking-tab" value={1}>
                                                     Next Week
-                                                    <Typography className="tab-sec">7-6 nov</Typography>
+                                                    <Typography className="tab-sec">{formatWeek(nextWeek, new Date(nextWeek.getFullYear(), nextWeek.getMonth(), nextWeek.getDate() + 6))}</Typography>
                                                 </Tab>
                                                 <Tab className="cooking-tab" value={2}>
                                                     Next Month
-                                                    <Typography className="tab-sec">December</Typography>
+                                                    <Typography className="tab-sec">{formatMonth(nextMonth)}</Typography>
                                                 </Tab>
                                             </TabList>
                                             <TabPanel value={0} sx={{ p: 0 }}>
