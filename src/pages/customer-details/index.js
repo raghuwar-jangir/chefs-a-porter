@@ -31,6 +31,7 @@ import location from "../../assets/images/location.png";
 import {navigate} from "gatsby";
 import OTPInput from "react-otp-input";
 import OtpContext from "../../context/OtpContext";
+import UsersContext from "../../context/UsersContext";
 import * as _ from 'lodash'
 import OtpVerificationModal from "../../components/OtpVerificationModal";
 import Cookies from "js-cookie";
@@ -49,6 +50,7 @@ const CustomerDetails = (props) => {
     const eventIdCookieValue = Cookies.get('eventIdValue');
     const eventId = eventIdCookieValue?.replaceAll('"', '')
     const {setOtpNumber, setVerifyOtp, setResendOtp, setIsSendOtpApiCall} = useContext(OtpContext);
+    const {customerDetailsPaymentCalculation} = useContext(UsersContext);
     const CHARACTER_LIMIT = 40;
     const [isNewAddress, setNewAddress] = useState();
     const formAddress = _.values(isNewAddress);
@@ -60,16 +62,16 @@ const CustomerDetails = (props) => {
     const [customerInfo, setCustomerInfo] = useState('')
     const cookieValue = Cookies?.get('customerData');
     const cDsPaymentCookieVal = Cookies?.get('CPaymentInfo');
-    const [customerDetailsPaymentCalculation, setCustomerDetailsPaymentCalculation] = useState();
+    // const [customerDetailsPaymentCalculation, setCustomerDetailsPaymentCalculation] = useState();
 
     useEffect(() => {
         if (cookieValue) {
             setCustomerInfo(JSON.parse(cookieValue));
         }
-        if (cDsPaymentCookieVal) {
-            setCustomerDetailsPaymentCalculation(JSON.parse(cDsPaymentCookieVal));
-        }
-    }, [cookieValue, cDsPaymentCookieVal])
+        // if (cDsPaymentCookieVal) {
+        //     setCustomerDetailsPaymentCalculation(JSON.parse(cDsPaymentCookieVal));
+        // }
+    }, [cookieValue])
 
     const handleOpenOtp = (contactNumber, values) => {
         if (!_.isEmpty(contactNumber)) {
@@ -1249,35 +1251,35 @@ const CustomerDetails = (props) => {
                                                                         <Typography
                                                                             className="table-details">Experience*</Typography>
                                                                         <Typography
-                                                                            className="table-details">{customerDetailsPaymentCalculation.experience}</Typography>
+                                                                            className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(customerDetailsPaymentCalculation?.experience)}</Typography>
                                                                     </Box>
                                                                     <Box className="table-box">
                                                                         <Typography
                                                                             className="table-details">Service
                                                                             Staff**</Typography>
                                                                         <Typography
-                                                                            className="table-details">{customerDetailsPaymentCalculation.service_staff}</Typography>
+                                                                            className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(customerDetailsPaymentCalculation?.service_staff)}</Typography>
                                                                     </Box>
                                                                     <Box className="table-box border table-details-pt">
                                                                         <Typography
                                                                             className="table-details">Sub
                                                                             total</Typography>
                                                                         <Typography
-                                                                            className="table-details">{customerDetailsPaymentCalculation.sub_total}</Typography>
+                                                                            className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(customerDetailsPaymentCalculation?.sub_total)}</Typography>
                                                                     </Box>
                                                                     <Box className="table-box table-details-pt">
                                                                         <Typography className="table-details">GST @5%</Typography>
-                                                                        <Typography className="table-details">{customerDetailsPaymentCalculation.GST}</Typography>
+                                                                        <Typography className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(customerDetailsPaymentCalculation?.GST)}</Typography>
                                                                     </Box>
                                                                     <Box className="table-box">
                                                                         <Typography className="table-details">Service Charges @10%</Typography>
-                                                                        <Typography className="table-details">{customerDetailsPaymentCalculation.service_charges}</Typography>
+                                                                        <Typography className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(customerDetailsPaymentCalculation?.service_charges)}</Typography>
                                                                     </Box>
                                                                     <Box className="table-box border">
                                                                         <Typography
                                                                             className="grand-total">Grand Total</Typography>
                                                                         <Typography
-                                                                            className="grand-total">{customerDetailsPaymentCalculation.total}</Typography>
+                                                                            className="grand-total">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(customerDetailsPaymentCalculation?.total)}</Typography>
                                                                     </Box>
                                                                     <Box className="tax tax1">
                                                                         <Typography className="table-details">*Includes

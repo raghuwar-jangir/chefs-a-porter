@@ -1381,7 +1381,7 @@ const PersonalDetails1 = () => {
                                                             </Typography>
                                                             <Typography className="table-details">
                                                                 {
-                                                                    personalDetailsPaymentCalculation?.ticket_price
+                                                                    new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(personalDetailsPaymentCalculation?.ticket_price)
                                                                 }
                                                             </Typography>
                                                         </Box>
@@ -1390,7 +1390,7 @@ const PersonalDetails1 = () => {
                                                                 Sub Total
                                                             </Typography>
                                                             <Typography className="table-details table-details-pt">
-                                                                {personalDetailsPaymentCalculation?.sub_total}
+                                                                {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(personalDetailsPaymentCalculation?.sub_total)}
                                                             </Typography>
                                                         </Box>
                                                         <Box className="table-box">
@@ -1398,7 +1398,7 @@ const PersonalDetails1 = () => {
                                                                 GST @5%
                                                             </Typography>
                                                             <Typography className="table-details table-details-pt">
-                                                                {personalDetailsPaymentCalculation?.GST}
+                                                                {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(personalDetailsPaymentCalculation?.GST)}
                                                             </Typography>
                                                         </Box>
                                                         <Box className="table-box">
@@ -1407,7 +1407,7 @@ const PersonalDetails1 = () => {
                                                             </Typography>
                                                             <Typography className="table-details">
                                                                 {
-                                                                    personalDetailsPaymentCalculation?.service_charges
+                                                                    new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(personalDetailsPaymentCalculation?.service_charges)
                                                                 }
                                                             </Typography>
                                                         </Box>
@@ -1416,7 +1416,7 @@ const PersonalDetails1 = () => {
                                                                 Grand Total
                                                             </Typography>
                                                             <Typography className="grand-total">
-                                                                {personalDetailsPaymentCalculation?.total}
+                                                                {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(personalDetailsPaymentCalculation?.total)}
                                                             </Typography>
                                                         </Box>
                                                     </Box>

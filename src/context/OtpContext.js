@@ -86,8 +86,11 @@ const OtpProvider = (props) => {
                 otp: verifyOtp,
             }).then((response) => {
                 if (response.status === 200) {
-                    setIsStatus(true);
-                    setSupperClubStatus(true);
+                    if (currentPath === 'customer-details') {
+                        setIsStatus(true);
+                    } else {
+                        setSupperClubStatus(true);
+                    }
                     // Cookies.remove('BookingId')
                 }
             })

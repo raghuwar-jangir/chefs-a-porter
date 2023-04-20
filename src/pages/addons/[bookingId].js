@@ -420,39 +420,45 @@ const Addons = (props) => {
                                                                 <Typography
                                                                     className="table-details">Experience*</Typography>
                                                                 <Typography
-                                                                    className="table-details">{adPaymentData?.payment?.experience}</Typography>
+                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(adPaymentData?.payment?.experience)}</Typography>
                                                             </Box>
                                                             <Box className="table-box">
                                                                 <Typography
                                                                     className="table-details">Service
                                                                     Staff**</Typography>
                                                                 <Typography
-                                                                    className="table-details">{adPaymentData?.payment?.service_staff}</Typography>
+                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(adPaymentData?.payment?.service_staff)}</Typography>
+                                                            </Box>
+                                                            <Box className="table-box">
+                                                                <Typography
+                                                                    className="table-details">Addon Cost</Typography>
+                                                                <Typography
+                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(adPaymentData?.payment?.addon_cost)}</Typography>
                                                             </Box>
                                                             <Box className="table-box border table-details-pt">
                                                                 <Typography
                                                                     className="table-details">Sub
                                                                     total</Typography>
                                                                 <Typography
-                                                                    className="table-details">{adPaymentData?.payment?.sub_total}</Typography>
+                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(adPaymentData?.payment?.sub_total)}</Typography>
                                                             </Box>
                                                             <Box className="table-box table-details-pt">
                                                                 <Typography className="table-details">GST
                                                                     @5%</Typography>
                                                                 <Typography
-                                                                    className="table-details">{adPaymentData?.payment?.GST}</Typography>
+                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(adPaymentData?.payment?.GST)}</Typography>
                                                             </Box>
                                                             <Box className="table-box">
                                                                 <Typography className="table-details">Service Charges
                                                                     @10%</Typography>
                                                                 <Typography
-                                                                    className="table-details">{adPaymentData?.payment?.service_charges}</Typography>
+                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(adPaymentData?.payment?.service_charges)}</Typography>
                                                             </Box>
                                                             <Box className="table-box border">
                                                                 <Typography
                                                                     className="grand-total">Grand Total</Typography>
                                                                 <Typography
-                                                                    className="grand-total">{adPaymentData?.payment?.total}</Typography>
+                                                                    className="grand-total">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(adPaymentData?.payment?.total)}</Typography>
                                                             </Box>
                                                             <Box className="tax tax1">
                                                                 <Typography className="table-details">*Includes

@@ -19,6 +19,7 @@ const UsersProvider = (props) => {
     const SupperClubRazorpay = useRazorpay();
     const path = useLocation();
     const currentPath = path.pathname.split("/")[1];
+    console.log("currentPath============",currentPath)
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
     const [userData, setUserData] = useState();
     const [addOnsData, setAddOnsData] = useState();
@@ -35,6 +36,7 @@ const UsersProvider = (props) => {
     const [supperClubRazorpay, setSupperClubRazorpay] = useState();
     const [isConfirm, setIsConfirm] = useState(false);
     const [payementEventId, setPaymentEventId] = useState();
+    const [customerDetailsPaymentCalculation, setCustomerDetailsPaymentCalculation] = useState();
     // const [supperClubBookingBookingConfirm, setSupperClubBookingBookingConfirm] = useState();
     // const cookieValueSupper = Cookies?.get('supperClubBookingBookingConfirm');
 
@@ -111,7 +113,8 @@ const UsersProvider = (props) => {
             })
         } else if (eventId && currentPath === 'event-details') {
             axios.get(baseUrl + `/menu/` + eventId).then(result => {
-                setUserData(result.data)
+                setUserData(result.data);
+                localStorage.setItem('eventId', JSON.stringify(eventId));
             })
         } else if (supperClubDetailId && currentPath === 'ticketed-detail') {
             axios.get(baseUrl + '/event/' + supperClubDetailId).then(result => {
@@ -253,6 +256,8 @@ const UsersProvider = (props) => {
             })
             setIsChefData(false);
         } else if (currentPath === 'ticketed-booking-summary' && supperClubBookingId) {
+            console.log("===========")
+            console.log("supperClubBookingId=========1111",supperClubBookingId)
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId, {
                 common_menu: eventId,
             }).then((response) => {
@@ -322,7 +327,7 @@ const UsersProvider = (props) => {
                 }
             })
             setSupperClubPayment(false);
-        } else if (currentPath === 'personal-details') {
+        } else if (superClubDetailId && currentPath === 'personal-details') {
             axios.post(baseUrl + '/booking/calculatepayment/', {
                 id: superClubDetailId,
                 type: 'supper_club',
@@ -333,7 +338,7 @@ const UsersProvider = (props) => {
                     Cookies.set('PersonalDetailsPaymentCalculation', JSON.stringify(response.data));
                 }
             })
-        } else if (currentPath === 'customer-details') {
+        } else if (payementEventId && currentPath === 'customer-details') {
             axios.post(baseUrl + '/booking/calculatepayment/', {
                 id: payementEventId,
                 type: "privee",
@@ -341,6 +346,7 @@ const UsersProvider = (props) => {
                 courses: numberOfCourses,
             }).then((response) => {
                 if (response.status === 200) {
+                    setCustomerDetailsPaymentCalculation(response.data)
                     Cookies.set('CPaymentInfo', JSON.stringify(response.data));
                 }
             })
@@ -447,7 +453,8 @@ const UsersProvider = (props) => {
                 setPartnerCityId,
                 commonCityData,
                 successOpen,
-                setSuccessOpen
+                setSuccessOpen,
+                customerDetailsPaymentCalculation
             }}
         >
             {children}

@@ -51,7 +51,7 @@ const EventDetails = (props) => {
     // console.log("userData.price_per_course==========",userData.price_per_course)
     useEffect(() => {
         setEventId(getEventId);
-        localStorage.setItem('eventId', JSON.stringify(getEventId));
+
     }, [getEventId]);
 
     const handleImageOpen = (title) => {
