@@ -56,7 +56,9 @@ const OtpProvider = (props) => {
     const [customerInfo, setCustomerInfo] = useState('')
     const customerInfoCookieValue = Cookies?.get('customerData');
     const [userAddress, setUserAddress] = useState()
-    console.log("userAddress=====", userAddress);
+    const selectedTab = Cookies.get('tabData');
+    const cityName = selectedTab?.replaceAll('"', '');
+    console.log("city=======",cityName);
     useEffect(() => {
         if (cookieValue1) {
             setPriveeData(JSON.parse(cookieValue1));
@@ -150,7 +152,7 @@ const OtpProvider = (props) => {
                 diner_count: experienceNumberOfSeats,
                 // courses: eventData?.numberOfCourses,
                 // city: superClubBookingDetails.foodPreference,
-                city: "Banglore",
+                city: cityName ? cityName : 'Mumbai',
                 // booking_date: experienceNumberOfDates,
                 booking_date: priveeData?.date,
                 common_menu: supperClubDetailId,
