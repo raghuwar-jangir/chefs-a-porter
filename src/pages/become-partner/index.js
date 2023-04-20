@@ -7,7 +7,9 @@ import {
     styled,
     TextField,
     Typography,
+    FormControl
 } from "@mui/material";
+import {useFormik} from "formik";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/NavbarComponent";
 import NeedHelp from "../../components/NeedHelp";
@@ -30,12 +32,13 @@ const BecomePartner = () => {
         setIsBecomePartner,
         setBecomePartnerData,
         partnerMenuData,
-        setPartnerId
-    } = useContext(UsersContext)
-    console.log("partnerMenuData=======", partnerMenuData)
+        partnerCityData,
+        setPartnerId,
+        setPartnerCityId
+    } = useContext(UsersContext);
     const handleClick = (values) => {
-        setBecomePartnerData(values);
-        setIsBecomePartner(true)
+        setIsBecomePartner(true);
+        setBecomePartnerData(values)
     }
 
     //Adding Multiple inputBox
@@ -61,11 +64,9 @@ const BecomePartner = () => {
 
     //validations
     const validationSchema = Yup.object({
-        partner: Yup.string().required('Please enter name'),
         name: Yup.string().required('Please enter name'),
         email: Yup.string().email('Incorrect Email Id').required('please enter email'),
         contactNumber: Yup.number().typeError("Incorrect Contact Number").required('please enter contact number'),
-        city: Yup.string().required('Please select city'),
         brandName: Yup.string().required('Please enter Company/Brand Name'),
         instagramLink: Yup.string().required('Please enter link'),
     });
@@ -358,9 +359,29 @@ const BecomePartner = () => {
             },
         },
     }))
-    const handleForm =(val,setFieldValue)=>{
-        setFieldValue('partner', val?.target.value.name);
-    }
+
+    const initialValues = {
+        partner: 'Select',
+        city: 'Select'
+    };
+
+    const formik = useFormik({
+        initialValues,
+        onSubmit: (values) => {
+            console.log(values);
+        },
+    });
+
+    const handleOptionChange = (event) => {
+        formik.setFieldValue("partner", event.target.value.name);
+        setPartnerId(event.target.value.id)
+    };
+
+    const handleCityOptionChange = (event) => {
+        formik.setFieldValue("city", event.target.value.name);
+        setPartnerCityId(event.target.value.id)
+    };
+
     return (
         <React.Fragment>
             <BoxWrapper>
@@ -390,6 +411,7 @@ const BecomePartner = () => {
                             }}
                             validationSchema={validationSchema}
                             onSubmit={(values) => {
+                                setBecomePartnerData(values)
                                 console.log("value===>", values)
                             }}
                         >
@@ -414,80 +436,77 @@ const BecomePartner = () => {
                                                     for a
                                                     faster response and closure.</Typography>
                                                 <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="validationCustom01">Partner with us as<span
-                                                        className="red">*</span></label>
-                                                    {!_.isEmpty(partnerMenuData) && (
-                                                        <>
-                                                            <Select
-                                                                labelId="demo-simple-select-standard-label"
-                                                                id="demo-simple-select-standard"
-                                                                name="partner"
-                                                                value={values.partner}
-                                                                onChange={(val) => {
-                                                                    console.log("val?.target.value=======", val?.target.value)
-                                                                    setFieldValue('partner', val?.target.value.name);
-                                                                }}
-                                                                label={values.partner}
-                                                                defaultValue={values.partner}
-                                                                placeholder="Select"
-                                                                displayEmpty
-                                                                renderValue={(selected) => {
-                                                                    if (!selected) {
-                                                                        return <b>Select</b>;
-                                                                    }
-                                                                    return selected;
-                                                                }}
-                                                                className="selectpicker my-select dropdown-toggle form-control"
-                                                                sx={{
-                                                                    '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                        border: 'none',
-                                                                    },
-                                                                    '.css-qiwgdb.MuiSelect-select': {
-                                                                        padding: '0px'
-                                                                    }
-                                                                }}
-                                                                MenuProps={{
-                                                                    PaperProps: {
-                                                                        sx: {
-                                                                            backgroundColor: '#DCD7CB !important',
-                                                                            li: {
-                                                                                fontFamily: 'ProximaNovaA-Regular',
-                                                                                borderBottom: "1px solid black",
-                                                                                fontWeight: '100',
-                                                                                padding: '6px 0px',
-                                                                                justifyContent: 'start'
+                                                    <FormControl fullWidth>
+                                                        <label htmlFor="validationCustom01">Partner with us as<span
+                                                            className="red">*</span></label>
+                                                        {!_.isEmpty(partnerMenuData) && (
+                                                            <>
+                                                                <Select labelId="demo-simple-select-standard-label"
+                                                                        id="demo-simple-select-standard"
+                                                                        id="partner"
+                                                                        name="partner"
+                                                                        value={formik.values.partner}
+                                                                        onChange={handleOptionChange}
+                                                                        placeholder="Select"
+                                                                        displayEmpty
+                                                                        renderValue={(selected) => {
+                                                                            if (!selected) {
+                                                                                return <b>Select</b>;
+                                                                            }
+                                                                            return selected;
+                                                                        }}
+                                                                        className="selectpicker my-select dropdown-toggle form-control"
+                                                                        sx={{
+                                                                            '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                                border: 'none',
                                                                             },
-                                                                            ul: {
-                                                                                display: 'flex',
-                                                                                flexDirection: 'column',
-                                                                                padding: '16px',
+                                                                            '.css-qiwgdb.MuiSelect-select': {
+                                                                                padding: '0px'
+                                                                            }
+                                                                        }}
+                                                                        MenuProps={{
+                                                                            PaperProps: {
+                                                                                sx: {
+                                                                                    backgroundColor: '#DCD7CB !important',
+                                                                                    li: {
+                                                                                        fontFamily: 'ProximaNovaA-Regular',
+                                                                                        borderBottom: "1px solid black",
+                                                                                        fontWeight: '100',
+                                                                                        padding: '6px 0px',
+                                                                                        justifyContent: 'start'
+                                                                                    },
+                                                                                    ul: {
+                                                                                        display: 'flex',
+                                                                                        flexDirection: 'column',
+                                                                                        padding: '16px',
+                                                                                    },
+                                                                                    'li:hover': {
+                                                                                        color: '#C6A87D!important',
+                                                                                        backgroundColor: 'unset !important'
+                                                                                    },
+                                                                                    'li:last-child': {
+                                                                                        borderBottom: 'none'
+                                                                                    },
+                                                                                    "&& .Mui-selected": {
+                                                                                        backgroundColor: "unset !important"
+                                                                                    },
+                                                                                },
                                                                             },
-                                                                            'li:hover': {
-                                                                                color: '#C6A87D!important',
-                                                                                backgroundColor: 'unset !important'
-                                                                            },
-                                                                            'li:last-child': {
-                                                                                borderBottom: 'none'
-                                                                            },
-                                                                            "&& .Mui-selected": {
-                                                                                backgroundColor: "unset !important"
-                                                                            },
-                                                                        },
-                                                                    },
-                                                                }}
-                                                            >
-                                                                {partnerMenuData?.map((item) => {
-                                                                    return (
-                                                                        <MenuItem labelId={item.id} value={item} id={item.id}>
-                                                                            {item.name}
-                                                                        </MenuItem>
-                                                                    );
-                                                                })}
-                                                            </Select>
-                                                        </>
-                                                    )}
-                                                    <ErrorMessage name='partner' component="div" className="error"/>
+                                                                        }}
+                                                                >
+                                                                    {partnerMenuData?.map((item) => {
+                                                                        return (
+                                                                            <MenuItem key={item.id} value={item}>
+                                                                                {item.name}
+                                                                            </MenuItem>
+                                                                        );
+                                                                    })}
+                                                                </Select>
+                                                            </>
+                                                        )}
+                                                        <ErrorMessage name='partner' component="div" className="error"/>
+                                                    </FormControl>
                                                 </Grid>
                                                 <Grid xs={12} className="mb-3">
                                                     <label htmlFor="validationCustomname">Your Name<span
@@ -541,66 +560,72 @@ const BecomePartner = () => {
                                                 <Grid xs={12} className="mb-3">
                                                     <label htmlFor="validationCustomcity">City<span
                                                         className="red">*</span></label>
-                                                    <Select
-                                                        labelId="demo-simple-select-standard-label"
-                                                        id="demo-simple-select-standard"
-                                                        name="city"
-                                                        value={values.city}
-                                                        defaultValue={values.city}
-                                                        onChange={handleChange}
-                                                        displayEmpty
-                                                        renderValue={(selected) => {
-                                                            if (!selected) {
-                                                                return <b>Select City</b>;
-                                                            }
-                                                            return selected;
-                                                        }}
-                                                        className="selectpicker my-select dropdown-toggle form-control"
-                                                        sx={{
-                                                            '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                border: 'none',
-                                                            },
-                                                            '.css-qiwgdb.MuiSelect-select': {
-                                                                padding: '0px'
-                                                            }
-                                                        }}
-                                                        MenuProps={{
-                                                            PaperProps: {
-                                                                sx: {
-                                                                    backgroundColor: '#DCD7CB !important',
-                                                                    li: {
-                                                                        fontFamily: 'ProximaNovaA-Regular',
-                                                                        borderBottom: "1px solid black",
-                                                                        fontWeight: '100',
-                                                                        padding: '6px 0px',
-                                                                        justifyContent: 'start'
-                                                                    },
-                                                                    ul: {
-                                                                        display: 'flex',
-                                                                        flexDirection: 'column',
-                                                                        padding: '16px',
-                                                                    },
-                                                                    'li:hover': {
-                                                                        color: '#C6A87D!important',
-                                                                        backgroundColor: 'unset !important'
-                                                                    },
-                                                                    'li:last-child': {
-                                                                        borderBottom: 'none'
-                                                                    },
-                                                                    "&& .Mui-selected": {
-                                                                        backgroundColor: "unset !important"
+                                                    {!_.isEmpty(partnerCityData) && (
+                                                        <>
+                                                            <Select
+                                                                labelId="demo-simple-select-standard-label"
+                                                                id="demo-simple-select-standard"
+                                                                name="city"
+                                                                id="city"
+                                                                placeholder="Select"
+                                                                value={formik.values.city}
+                                                                onChange={handleCityOptionChange}
+                                                                renderValue={(selected) => {
+                                                                    if (!selected) {
+                                                                        return <b>Select City</b>;
                                                                     }
-                                                                },
-                                                            },
-                                                        }}
-                                                    >
-                                                        <MenuItem value="Venue">Venue</MenuItem>
-                                                        <MenuItem value="Produce">Produce</MenuItem>
-                                                        <MenuItem value="Service Staff">Service Staff</MenuItem>
-                                                        <MenuItem value="Sommelier">Sommelier</MenuItem>
-                                                        <MenuItem value="Bartender">Bartender</MenuItem>
-                                                    </Select>
+                                                                    return selected;
+                                                                }}
+                                                                className="selectpicker my-select dropdown-toggle form-control"
+                                                                sx={{
+                                                                    '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                        border: 'none',
+                                                                    },
+                                                                    '.css-qiwgdb.MuiSelect-select': {
+                                                                        padding: '0px'
+                                                                    }
+                                                                }}
+                                                                MenuProps={{
+                                                                    PaperProps: {
+                                                                        sx: {
+                                                                            backgroundColor: '#DCD7CB !important',
+                                                                            li: {
+                                                                                fontFamily: 'ProximaNovaA-Regular',
+                                                                                borderBottom: "1px solid black",
+                                                                                fontWeight: '100',
+                                                                                padding: '6px 0px',
+                                                                                justifyContent: 'start'
+                                                                            },
+                                                                            ul: {
+                                                                                display: 'flex',
+                                                                                flexDirection: 'column',
+                                                                                padding: '16px',
+                                                                            },
+                                                                            'li:hover': {
+                                                                                color: '#C6A87D!important',
+                                                                                backgroundColor: 'unset !important'
+                                                                            },
+                                                                            'li:last-child': {
+                                                                                borderBottom: 'none'
+                                                                            },
+                                                                            "&& .Mui-selected": {
+                                                                                backgroundColor: "unset !important"
+                                                                            }
+                                                                        },
+                                                                    },
+                                                                }}
+                                                            >
+                                                                {partnerCityData?.map((item) => {
+                                                                    return (
+                                                                        <MenuItem key={item.id} value={item}>
+                                                                            {item.name}
+                                                                        </MenuItem>
+                                                                    );
+                                                                })}
+                                                            </Select>
+                                                        </>
+                                                    )}
                                                     <ErrorMessage name='city' component="div" className="error"/>
                                                 </Grid>
                                                 <Grid xs={12} className="mb-3">
@@ -772,7 +797,7 @@ const BecomePartner = () => {
                                                 </Grid>
                                                 <Grid xs={12} className="col-lg-12">
                                                     <button className="btn btn-primary" type="submit" onClick={() => {
-                                                        if (!_.isEmpty(values.partner && values.name && values.contactNumber && values.email && values.contactNumber && values.contactNumber && values.city && values.brandName && values.instagramLink && values.otherLinks && values.brandMessage && values.chefsMessage)) {
+                                                        if (!_.isEmpty(values.name && values.contactNumber && values.email && values.contactNumber && values.contactNumber && values.brandName && values.instagramLink && values.otherLinks && values.brandMessage && values.chefsMessage)) {
                                                             handleClick(values)
                                                         }
                                                     }}>Submit

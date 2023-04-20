@@ -23,13 +23,14 @@ const Addons = (props) => {
     const summaryCookieValue = Cookies.get('BookingId');
     const summaryBookingId = summaryCookieValue?.replaceAll('"', '')
 
-    console.log("summaryBookingId========",summaryBookingId)
+    console.log("summaryBookingId========", summaryBookingId)
     const {bookingId} = props;
-    const {addOnsData,adPaymentData,setPriveePayment} = useContext(UsersContext);
+    const {addOnsData, adPaymentData, setPriveePayment} = useContext(UsersContext);
     const handleClick = () => {
         navigate(`/booking-summary/${summaryBookingId}`);
         setPriveePayment(true)
     }
+
     // const cookieValue = Cookies?.get('adsPaymentInfo');
     // const [paymentCalculationData, setPaymentCalculationData] = useState()
     //
@@ -226,7 +227,7 @@ const Addons = (props) => {
             fontSize: '20px',
             lineHeight: '24px',
             color: '#FBFBFB',
-            padding:'16px 0px'
+            padding: '16px 0px'
         },
         '.border': {
             borderTop: '1px solid rgba(255, 255, 255, 0.6)',
@@ -296,6 +297,18 @@ const Addons = (props) => {
                 fontSize: '16px',
                 lineHeight: '18px',
             },
+            '.book-trad': {
+                display: 'none',
+                // placeItems: 'center',
+                // marginBottom: '40px',
+                // paddingLeft: '0px !important',
+            },
+            '.addons-div': {
+                padding: '0px'
+            },
+            '.dinner-box': {
+                display: 'none'
+            }
         },
         "@media (min-width: 371px) and (max-width:400px)": {
             '.header-club': {
@@ -361,23 +374,11 @@ const Addons = (props) => {
                                 </Box>
                                 <Box className="row customer-details addons-div">
                                     <Grid container>
+
                                         <Grid xl={7} lg={7} xs={7} md={7} sm={12} xs={12} className="partner">
-                                            <Box className="addons">
-                                                <Typography className="addons-heading">Our partners help you get set up
-                                                    with
-                                                    the perfect custom experience</Typography>
-                                                {
-                                                    !_.isEmpty(addOnsData) &&
-                                                    <Grid container className="addon-grid" rowSpacing={2}
-                                                          columnSpacing={2}>
-                                                        {addOnsData?.map((item, index) => (
-                                                            <Grid item xl={4} md={4} sm={6} xs={6} key={index}>
-                                                                <AddonsCard image={item?.image} title={item?.name}/>
-                                                            </Grid>
-                                                        ))}
-                                                    </Grid>
-                                                }
-                                            </Box>
+                                            <Typography className="addons-heading">Our partners help you get set up with
+                                                the perfect custom experience</Typography>
+                                            <AddonsCard/>
                                         </Grid>
                                         <Grid xl={5} lg={5} xs={5} md={5} sm={12} xs={12}
                                               className="cust-details dinner-box">
@@ -435,12 +436,16 @@ const Addons = (props) => {
                                                                     className="table-details">{adPaymentData?.payment?.sub_total}</Typography>
                                                             </Box>
                                                             <Box className="table-box table-details-pt">
-                                                                <Typography className="table-details">GST @5%</Typography>
-                                                                <Typography className="table-details">{adPaymentData?.payment?.GST}</Typography>
+                                                                <Typography className="table-details">GST
+                                                                    @5%</Typography>
+                                                                <Typography
+                                                                    className="table-details">{adPaymentData?.payment?.GST}</Typography>
                                                             </Box>
                                                             <Box className="table-box">
-                                                                <Typography className="table-details">Service Charges @10%</Typography>
-                                                                <Typography className="table-details">{adPaymentData?.payment?.service_charges}</Typography>
+                                                                <Typography className="table-details">Service Charges
+                                                                    @10%</Typography>
+                                                                <Typography
+                                                                    className="table-details">{adPaymentData?.payment?.service_charges}</Typography>
                                                             </Box>
                                                             <Box className="table-box border">
                                                                 <Typography

@@ -49,7 +49,6 @@ const OtpProvider = (props) => {
     const experienceNumberOfDates = supperClubExperienceDates?.replaceAll('"', '');
     const supperClubExperienceTime = Cookies?.get('supperClubExperienceTime');
     const experienceNumberOfTime = supperClubExperienceTime?.replaceAll('"', '');
-    console.log("experienceNumberOfTime=======>",experienceNumberOfTime);
     const eventIdCookieValue = Cookies.get('eventIdValue');
     const PaymentEventId = eventIdCookieValue?.replaceAll('"', '')
     const sEventIdCookieValue = Cookies.get('superClubDetailId');
@@ -120,7 +119,7 @@ const OtpProvider = (props) => {
                 common_menu: PaymentEventId,
                 message: customerInfo?.message,
                 common_address: {
-                    address1: userAddress?.landmark + userAddress?.society,
+                    address1: userAddress?.society,
                     address2: userAddress?.location,
                     landmark: userAddress?.landmark,
                     pincode: userAddress?.pincode,
@@ -148,8 +147,8 @@ const OtpProvider = (props) => {
                 // event: "642d5567086e9b0e5f84e65c",
                 event: sPaymentEventId,
                 meal: experienceNumberOfTime,
-                diner_count: priveeData?.diners,
-                courses: eventData?.numberOfCourses,
+                diner_count: experienceNumberOfSeats,
+                // courses: eventData?.numberOfCourses,
                 // city: superClubBookingDetails.foodPreference,
                 city: "Banglore",
                 // booking_date: experienceNumberOfDates,

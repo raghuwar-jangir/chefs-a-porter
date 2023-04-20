@@ -11,18 +11,18 @@ import {
   TextField,
   TextareaAutosize,
 } from "@mui/material";
-import { DatePickerInput } from "rc-datepicker";
+import {DatePickerInput} from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
 import CloseIcon from "@mui/icons-material/Close";
-import { Formik, Form } from "formik";
-import React, { useState, useRef, useContext, useEffect } from "react";
-import { useTheme } from "@mui/material/styles";
+import {Formik, Form} from "formik";
+import React, {useState, useRef, useContext, useEffect} from "react";
+import {useTheme} from "@mui/material/styles";
 import RestorentImg from "../../assets/images/sc-gallery.png";
 import RestorentImgMobile from "../../assets/images/RestorentImgMobile.png";
 import CardChefComponent from "../../components/CardChefComponent";
 import ChefCarousel from "../../components/ChefCarousel";
 import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
+import {autoPlay} from "react-swipeable-views-utils";
 import Footer from "../../components/Footer";
 import NeedHelp from "../../components/NeedHelp";
 import Tabs from "@mui/joy/Tabs";
@@ -30,7 +30,7 @@ import TabList from "@mui/joy/TabList";
 import Tab from "@mui/joy/Tab";
 import TabPanel from "@mui/joy/TabPanel";
 import GoogleMapReact from "google-map-react";
-import { Link } from "gatsby";
+import {Link} from "gatsby";
 import pLogo from "../../assets/images/valet.png";
 import Navbar from "../../components/NavbarComponent";
 import SuperClubPopUpCarousel from "../../components/SuperClubPopUpCarousel";
@@ -42,7 +42,7 @@ import EventChefCarousel from "../../components/EventChefCarousel";
 import ChefMakoCarousel from "../../components/ChefMakoCarousel";
 import MenuCarousel from "../../components/MenuCarousel";
 import DiningPage from "../../components/DiningPage";
-import { navigate } from "gatsby";
+import {navigate} from "gatsby";
 import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
 import moment from "moment/moment";
@@ -64,9 +64,9 @@ const images = [
   RestorentImgMobile,
 ];
 const SupperClubDetail = (props) => {
-  const { setSupperClubDetailId, userData } = useContext(UsersContext);
-  const getSupperClubDetailId = "62fe25e2d75a11bcf635e206";
-  // const getSupperClubDetailId = props?.params?.supperClubDetailId;
+    const {setSupperClubDetailId, userData} = useContext(UsersContext);
+    const getSupperClubDetailId = "62fe25e2d75a11bcf635e206";
+    // const getSupperClubDetailId = props?.params?.supperClubDetailId;
 
   const groupedDates = _.groupBy(userData?.new_dates, (item) => item.date);
   const showDates = Object.values(groupedDates);
@@ -106,7 +106,7 @@ const SupperClubDetail = (props) => {
     if (selectedDate === date && selectedTime === time || selectedTimeNext === nextTime) {
       setSelectedDate(null);
       setSelectedTime(null);
-      setSelectedTimeNext(null); 
+      setSelectedTimeNext(null);
     } else {
       setSelectedDate(date);
       setSelectedTime(time);
@@ -918,190 +918,74 @@ const SupperClubDetail = (props) => {
         display: "none",
       },
 
-      ".footer-box": {
-        display: "none",
-      },
-      ".box1": {
-        width: "85%",
-      },
-      ".box2": {
-        width: "84%",
-      },
-      ".grid-item": {
-        paddingRight: "0px",
-      },
-      ".grid-child-box": {
-        maxWidth: "100%",
-      },
-      ".supper-main-container": {
-        display: "none",
-      },
-      ".sub-box": {
-        padding: "20px 16px",
-        background: "#FBFBFB",
-      },
-      ".sub-box-heading": {
-        fontSize: "20px",
-        lineHeight: "25px",
-      },
-      ".sub-box-link": {
-        fontSize: "16px",
-        lineHeight: "19px",
-      },
-      ".dot": {
-        display: "none",
-      },
-      ".sub-box-text-2": {
-        fontSize: "14px",
-        lineHeight: "17px",
-        textAlign: "right",
-        flex: "1",
-      },
-      ".Joy-selected": {
-        fontSize: "16px",
-        lineHeight: "19px",
-      },
-      ".MuiTab-variantPlain": {
-        fontSize: "16px",
-        lineHeight: "19px",
-      },
-      ".MuiTabList-root": {
-        padding: "0px 16px",
-        width: "100% !important",
-        left: "0px !important",
-      },
-    },
-  }));
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 398,
-    boxShadow: 24,
-    ".modal-content": {
-      backgroundColor: "#DCD7CB !important",
-      boxShadow: "0px 8px 12px rgb(0 0 0 / 16%)",
-      padding: "40px 30px 20px",
-      display: "flex",
-      flexDirection: "column",
-      pointerEvents: "auto",
-      backgroundClip: "paddingBox",
-      outline: "0",
-    },
-    ".form-control": {
-      backgroundColor: "transparent",
-      border: "0px",
-      borderBottom: "0.25px solid #080B0E",
-      borderRadius: "0px",
-      paddingLeft: "0px",
-      paddingRight: "0px",
-      fontFamily: "Proxima Nova",
-      fontStyle: "normal",
-      fontWeight: "300",
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#222222",
-      width: "100%",
-    },
-    ".form-control:focus-visible": {
-      outline: "0px",
-    },
-    ".modal-header": {
-      padding: "0px",
-      marginBottom: "30px",
-      borderBottom: "none",
-      position: "relative",
-      justifyContent: "flex-start",
-    },
-    ".modal-header button": {
-      padding: "0px",
-      border: "0px",
-      position: "absolute",
-      right: "0px",
-      bottom: "8px",
-      background: "transparent",
-      cursor: "pointer",
-    },
-    ".schedule-label": {
-      fontFamily: "Proxima Nova",
-      fontStyle: "normal",
-      fontWeight: "600",
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#080B0E",
-      marginBottom: "8px",
-      display: "block",
-    },
-    ".schedule-heading": {
-      fontFamily: "Proxima Nova",
-      fontStyle: "normal",
-      fontWeight: "600",
-      fontSize: "24px",
-      lineHeight: "30px",
-      color: "#080B0E",
-      marginBottom: "8px",
-      marginTop: "0px",
-      display: "block",
-      textAlign: "center",
-    },
-    ".mb-3": {
-      marginBottom: "1rem",
-    },
-    ".btn-primary": {
-      border: "none !important",
-      background: "#080B0E",
-      width: "100% !important",
-      fontSize: "16px",
-      fontWeight: 600,
-      lineHeight: "19px",
-      borderRadius: "0px",
-      color: "#FBFBFB",
-      textTransform: "capitalize",
-      fontFamily: "Proxima Nova",
-      height: "40px !important",
-      marginTop: "0px",
-    },
-    ".react-datepicker-component .react-datepicker-input input": {
-      paddingLeft: "5px",
-      color: "#080B0E",
-    },
-    ".icon-rc-datepicker": {
-      color: "#080B0E !important",
-    },
-    ".react-datepicker-component .react-datepicker-input.is-open": {
-      background: "transparent",
-      border: "0px",
-      borderRadius: "0px",
-    },
-    ".react-datepicker-component .react-datepicker-input": {
-      background: "transparent",
-      border: "0px",
-      borderRadius: "0px",
-    },
-    ".react-datepicker-component .react-datepicker-input:hover": {
-      background: "transparent",
-      border: "0px",
-      borderRadius: "0px",
-    },
-    ".react-datepicker-component .react-datepicker-input.has-value input": {
-      color: "#080B0E !important",
-    },
-  };
-  return (
-    <React.Fragment>
-      <BoxWrapper>
-        {!_.isEmpty(userData) && (
-          <>
-            <Navbar isImage={true} />
-            <Box className="main-box">
-              <Box className="sub-box">
-                <Typography className="sub-box-heading">
-                  {userData?.title}
-                </Typography>
-                <Typography className="sub-box-text">
-                  Curated by{" "}
-                  <span>
+            ".footer-box": {
+                display: "none",
+            },
+            ".box1": {
+                width: "85%",
+            },
+            ".box2": {
+                width: "84%",
+            },
+            ".grid-item": {
+                paddingRight: "0px",
+            },
+            ".grid-child-box": {
+                maxWidth: "100%",
+            },
+            ".supper-main-container": {
+                display: "none",
+            },
+            ".sub-box": {
+                padding: "20px 16px",
+                background: "#FBFBFB",
+            },
+            ".sub-box-heading": {
+                fontSize: "20px",
+                lineHeight: "25px",
+            },
+            ".sub-box-link": {
+                fontSize: "16px",
+                lineHeight: "19px",
+            },
+            ".dot": {
+                display: "none",
+            },
+            ".sub-box-text-2": {
+                fontSize: "14px",
+                lineHeight: "17px",
+                textAlign: "right",
+                flex: "1",
+            },
+            ".Joy-selected": {
+                fontSize: "16px",
+                lineHeight: "19px",
+            },
+            ".MuiTab-variantPlain": {
+                fontSize: "16px",
+                lineHeight: "19px",
+            },
+            ".MuiTabList-root": {
+                padding: "0px 16px",
+                width: "100% !important",
+                left: "0px !important",
+            },
+        },
+    }));
+    return (
+        <React.Fragment>
+            <BoxWrapper>
+                {!_.isEmpty(userData) && (
+                    <>
+                        <Navbar isImage={true}/>
+                        <Box className="main-box">
+                            <Box className="sub-box">
+                                <Typography className="sub-box-heading">
+                                    {userData?.title}
+                                </Typography>
+                                <Typography className="sub-box-text">
+                                    Curated by{" "}
+                                    <span>
                     <b className="sub-box-link">{userData?.chef?.name}</b>
                   </span>
                 </Typography>
