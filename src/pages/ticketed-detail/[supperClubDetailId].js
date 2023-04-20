@@ -65,8 +65,8 @@ const images = [
 ];
 const SupperClubDetail = (props) => {
     const {setSupperClubDetailId, userData} = useContext(UsersContext);
-    const getSupperClubDetailId = "62fe25e2d75a11bcf635e206";
-    // const getSupperClubDetailId = props?.params?.supperClubDetailId;
+    // const getSupperClubDetailId = "62fe25e2d75a11bcf635e206";
+    const getSupperClubDetailId = props?.params?.supperClubDetailId;
 
     const groupedDates = _.groupBy(userData?.new_dates, (item) => item.date);
     const showDates = Object.values(groupedDates);
@@ -163,19 +163,19 @@ const SupperClubDetail = (props) => {
     ];
     const itemData2 = [
         {
-            img: userData?.pictures[1],
+            img: userData?.pictures[1] ? userData?.pictures[1] : userData?.pictures[0],
             title: "img2",
         },
         {
-            img: userData?.pictures[2],
+            img: userData?.pictures[2] ? userData?.pictures[2] : userData?.pictures[0],
             title: "img3",
         },
         {
-            img: userData?.pictures[3],
+            img: userData?.pictures[3] ? userData?.pictures[3] : userData?.pictures[0],
             title: "img4",
         },
         {
-            img: userData?.pictures[4],
+            img: userData?.pictures[4] ? userData?.pictures[4] : userData?.pictures[0],
             title: "img5",
         },
     ];
@@ -1293,9 +1293,6 @@ const SupperClubDetail = (props) => {
                                                                     style={{width: "100%"}}
                                                                 >
                                                                     {showArray[index] && (
-                                                                        // <ExperienceDrop
-                                                                        //     toggleClose={() => toggleClose(index)}
-                                                                        // />
                                                                         <Form>
                                                                             <Box>
                                                                                 <Box className="choose-seat">

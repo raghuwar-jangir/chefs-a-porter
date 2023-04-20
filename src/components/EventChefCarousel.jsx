@@ -193,6 +193,17 @@ const EventChefCarousel = (props) => {
         return item.image
     })
 
+    const dining = [
+        {
+            img: diningPicture
+        },
+        {
+            img: diningPicture
+        },
+        {
+            img: diningPicture
+        }
+    ]
     // let labels = ['Conscious Dining', 'Championing Chefs', 'Community'];
     const {title} = props
     return (
@@ -211,7 +222,7 @@ const EventChefCarousel = (props) => {
                             pagination={{
                                 clickable: true,
                                 renderBullet: function (index, className) {
-                                    return '<div class="' + className + '">' + (labels[index]) +
+                                    return '<div class="' + className + '">' + (labels) +
                                         '</div>';
 
                                 },
@@ -225,9 +236,13 @@ const EventChefCarousel = (props) => {
                             modules={[Pagination, Autoplay]}
                             className="mySwiper"
                         >
-                            {image?.map((item) => {
+                            {(image?.map((item)=> {
                                 return <SwiperSlide><img className='img' src={item}></img></SwiperSlide>
-                            })}
+                            }))? (image?.map((item)=> {
+                                return <SwiperSlide><img className='img' src={item}></img></SwiperSlide>
+                            })) :  (dining?.map((item)=> {
+                                return <SwiperSlide><img className='img' src={item.img}></img></SwiperSlide>
+                            }))}
                             ...
                         </Swiper>
                     </>

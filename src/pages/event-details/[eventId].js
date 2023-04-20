@@ -45,8 +45,8 @@ const EventDetails = (props) => {
     const {setEventId, userData} = useContext(UsersContext);
     const [showCarousel, setShowCarousel] = useState(false);
     const [title, setTitle] = useState("");
-    const getEventId = "640b22b691e7236a1d0a264e";
-    // const getEventId = props?.params?.eventId;
+    // const getEventId = "640b22b691e7236a1d0a264e";
+    const getEventId = props?.params?.eventId;
 
     useEffect(() => {
         setEventId(getEventId);

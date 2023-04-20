@@ -51,8 +51,8 @@ import "../../assets/styles/fontStyle.css";
 import ScheduleCallPopUp from "../../components/ScheduleCallPopUp";
 
 const ChefDetails = (props) => {
-    // const getUserId = props?.params?.userId;
-    const getUserId = "62b4582185ac160c4cbf118a";
+    const getUserId = props?.params?.userId;
+    // const getUserId = "62b4582185ac160c4cbf118a";
 
     const {setUserId, userData} = useContext(UsersContext);
     const [showCarousel, setShowCarousel] = useState(false);
@@ -88,7 +88,7 @@ const ChefDetails = (props) => {
   // const longText = "From Bangalore to the Culinary Institute of America in New York. He has developed his skills and love for the culinary arts. From Bangalore to the Culinary ..."
 
     const itemData = {
-        img: userData?.experinces[0]?.cover_picture,
+        img: userData?.experinces[0]?.cover_picture ? userData?.experinces[0]?.cover_picture : chef2,
         title: "chef1",
     };
 
