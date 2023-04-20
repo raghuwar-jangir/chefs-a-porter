@@ -34,10 +34,6 @@ const NavbarDemo = () => {
         setOpen(false)
     }
 
-    // console.log("navbar", location.pathname);
-    // const dark = 
-    // console.log("--->  dark", dark)
-
     const BoxWrapper = styled(Box)({
         flexGrow: 1,
         '.home-stack': {

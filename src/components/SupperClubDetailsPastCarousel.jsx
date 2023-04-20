@@ -17,7 +17,6 @@ const SupperClubDetailsPastCarousel = (props) => {
 
     const {userData} = useContext(UsersContext)
 
-    console.log("userData=====", userData)
     const {
         slidesPerView,
         isBackground,
@@ -142,7 +141,6 @@ const SupperClubDetailsPastCarousel = (props) => {
                 <Box className="chef-swiper">
                     {
                         userData?.chef?.details?.supper_club?.map((item) => {
-                            console.log("item 11==================", item)
                             return (
                                 <>
                                     <SwiperSlide className="swiper-slide supper-details-box">

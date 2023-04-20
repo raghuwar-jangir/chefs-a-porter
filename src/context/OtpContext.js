@@ -58,7 +58,6 @@ const OtpProvider = (props) => {
     const [userAddress, setUserAddress] = useState()
     const selectedTab = Cookies.get('tabData');
     const cityName = selectedTab?.replaceAll('"', '');
-    console.log("city=======",cityName);
     useEffect(() => {
         if (cookieValue1) {
             setPriveeData(JSON.parse(cookieValue1));
@@ -88,8 +87,11 @@ const OtpProvider = (props) => {
                 otp: verifyOtp,
             }).then((response) => {
                 if (response.status === 200) {
-                    setIsStatus(true);
-                    setSupperClubStatus(true);
+                    if (currentPath === 'customer-details') {
+                        setIsStatus(true);
+                    } else {
+                        setSupperClubStatus(true);
+                    }
                     // Cookies.remove('BookingId')
                 }
             })
@@ -145,7 +147,6 @@ const OtpProvider = (props) => {
                 email: superClubBookingDetails?.email,
                 mobile: otpNumber,
                 type: "chef_event",
-                // event: supperClubBookingId,
                 // event: "642d5567086e9b0e5f84e65c",
                 event: sPaymentEventId,
                 meal: experienceNumberOfTime,
@@ -153,10 +154,10 @@ const OtpProvider = (props) => {
                 // courses: eventData?.numberOfCourses,
                 // city: superClubBookingDetails.foodPreference,
                 city: cityName ? cityName : 'Mumbai',
-                // booking_date: experienceNumberOfDates,
-                booking_date: priveeData?.date,
+                booking_date: experienceNumberOfDates,
+                // booking_date: priveeData?.date,
                 common_menu: supperClubDetailId,
-                message: "Addition info",
+                message: superClubBookingDetails?.AdditionalMessage,
                 otp: verifyOtp,
                 seats: experienceNumberOfSeats,
                 seats_chefs_table: experienceNumberOfTables

@@ -1,14 +1,14 @@
 import {
-  styled,
-  Box,
-  Grid,
-  Typography,
-  Select,
-  MenuItem,
-  Stack,
-  Modal,
-  TextField,
-  Link,
+    styled,
+    Box,
+    Grid,
+    Typography,
+    Select,
+    MenuItem,
+    Stack,
+    Modal,
+    TextField,
+    Link,
 } from "@mui/material";
 import React, {useContext, useEffect, useState} from "react";
 import {Formik, Form, ErrorMessage, Field} from "formik";
@@ -25,6 +25,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import SupperClubTreatyComponent from "../../components/SupperClubTreatyComponent";
 import AddIcon from "@mui/icons-material/Add";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import contact from "../../assets/images/contact-form.png";
 import {navigate} from "gatsby";
 import InputAdornment from "@mui/material/InputAdornment";
 import OtpComponent from "../../components/OtpComponent";
@@ -37,11 +38,13 @@ import TodoForm from "../../components/TodoForm";
 
 const PersonalDetails1 = () => {
     const {setOtpNumber, setIsSendOtpApiCall} = useContext(OtpContext);
-    const {mealTypeData} = useContext(UsersContext);
+    const {mealTypeData, setChefFormData, setIsChefData} = useContext(UsersContext);
     const [contactPopUp, setContactPopUp] = useState(false);
     const ContactOpen = () => setContactPopUp(true);
     const ContactClose = () => setContactPopUp(false);
-    const [open, setOpen] = useState(false);  
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     const [openOtp, setOpenOtp] = useState(false);
     const [superClubBookingDetails, setSuperClubBookingDetails] = useState();
     const [todos, setTodos] = useState([]);
@@ -57,14 +60,14 @@ const PersonalDetails1 = () => {
         setPersonalDetailsPaymentCalculation,
     ] = useState();
 
-  useEffect(() => {
-    if (cookieValue2) {
-      setSuperClubBookingDetails(JSON.parse(cookieValue2));
-    }
-    if (cookieValue3) {
-      setPersonalDetailsPaymentCalculation(JSON.parse(cookieValue3));
-    }
-  }, [cookieValue2, cookieValue3]);
+    useEffect(() => {
+        if (cookieValue2) {
+            setSuperClubBookingDetails(JSON.parse(cookieValue2));
+        }
+        if (cookieValue3) {
+            setPersonalDetailsPaymentCalculation(JSON.parse(cookieValue3));
+        }
+    }, [cookieValue2, cookieValue3]);
 
     const handleOpenOtp = (contactNumber, values) => {
         if (!_.isEmpty(contactNumber)) {
@@ -76,217 +79,233 @@ const PersonalDetails1 = () => {
         Cookies.set("supperClubBookingPersonalDetail", JSON.stringify(values));
     };
     const handleCloseOtp = () => setOpenOtp(false);
-   
+    const onSubmit = (values, {resetForm}) => {
+        setChefFormData(values);
+        setTodos([...todos, values]);
+        resetForm();
+    };
+    const handleDeleteTodo = (index) => {
+        setTodos(todos.filter((todo, todoIndex) => todoIndex !== index));
+    };
 
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Name is required"),
-    email: Yup.string()
-      .email("Incorrect Email Id")
-      .required("please enter email"),
-    contactNumber: Yup.number().required("contactNumber is required"),
-    contact: Yup.number().required("contactNumber is required"),
-  });
+    const validationSchema = Yup.object().shape({
+        name: Yup.string().required("Name is required"),
+        email: Yup.string()
+            .email("Incorrect Email Id")
+            .required("please enter email"),
+        contactNumber: Yup.number().required("contactNumber is required"),
+        contact: Yup.number().required("contactNumber is required"),
+    });
 
-  
-  const MainBox = styled(Box)({
-    padding: "80px 120px",
-    marginTop: "40px",
-    background: "#dcd7cb",
-    ".book-trad": {
-      display: "flex",
-      placeItems: "center",
-      marginBottom: "40px",
-      paddingLeft: "0px !important",
-    },
-    ".addons-title": {
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-      fontWeight: 600,
-      fontSize: "32px",
-      lineHeight: "39px",
-      color: "#080B0E",
-      marginBottom: "0px",
-      marginLeft: "16px",
-    },
-    ".arrow-left": {
-      color: "#080B0E",
-      cursor: "pointer",
-    },
-    ".MuiFormHelperText-root": {
-      textAlign: "right",
-      fontFamily: "Proxima Nova ALT",
-      fontStyle: "normal",
-      fontWeight: "400",
-      fontSize: "14px",
-      lineHeight: "17px",
-      color: "#7D7D7D",
-      margin: "0px",
-    },
-    ".css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root": {
-      borderRadius: "0px",
-      padding: "0px",
-    },
-    ".dinner-box": {
-      paddingLeft: "10px",
-      position: "relative",
-    },
-    ".per-dinner": {
-      background: "#FBFBFB",
-      padding: "20px 20px 40px",
-      boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
-      position: "sticky",
-      top: "100px",
-    },
-    ".event-div": {
-      display: "flex",
-      placeItems: "center",
-    },
-    ".per-dinner-img": {
-      width: "116px",
-      height: "116px",
-      objectFit: "cover",
-    },
-    ".event-title": {
-      fontFamily: "Bon Vivant",
-      fontStyle: "normal",
-      fontWeight: "700",
-      fontSize: "20px",
-      lineHeight: "25px",
-      letterSpacing: "0.06em",
-      color: "#101418",
-      marginBottom: "8px",
-    },
-    ".event-subtitle": {
-      fontFamily: "Proxima Nova",
-      fontStyle: "normal",
-      fontSize: "12px",
-      lineHeight: "15px",
-      letterSpacing: "0.06em",
-      color: "#101418",
-      marginBottom: "11px",
-    },
-    ".event-link": {
-      fontFamily: "Proxima Nova",
-      fontStyle: "normal",
-      fontWeight: "700",
-      fontSize: "16px",
-      lineHeight: "19px",
-      textDecoration: "underline",
-      color: "#101418 !important",
-    },
-    ".experience-breakup": {
-      border: "0.5px solid #101418",
-      padding: "16px 16px 0px",
-      marginTop: "30px",
-    },
-    ".ex-details": {
-      position: "relative",
-    },
-    ".ex-heading": {
-      fontFamily: "Bon Vivant",
-      fontStyle: "normal",
-      fontWeight: "700",
-      fontSize: "20px",
-      lineHeight: "25px",
-      letterSpacing: "0.06em",
-      color: "#101418",
-      marginBottom: "10px",
-    },
-    ".ex-detail": {
-      fontFamily: "Proxima Nova Alt",
-      fontStyle: "normal",
-      fontWeight: 300,
-      fontSize: "14px",
-      lineHeight: "17px",
-      color: "#101418",
-      marginBottom: "0px",
-    },
-    ".ex-icon": {
-      position: "absolute",
-      right: "0px",
-      top: "0px",
-      fontSize: "30px",
-      color: "#101418",
-      " -webkit-text-stroke": "1px",
-    },
-    ".submit-req": {
-      background: "#080B0E",
-      color: "#C6A87D",
-      fontFamily: "ProximaNovaA-Regular",
-      fontSize: "20px",
-      lineHeight: "24px",
-      fontWeight: 600,
-      border: "0px",
-      marginBottom: "30px",
-      marginTop: "30px",
-      width: "100%",
-      cursor: "pointer",
-      padding: "18px 10px",
-    },
-    ".rating-star": {
-      fontFamily: "ProximaNovaA-Regular",
-      display: "flex",
-      alignItems: "center",
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#101418",
-    },
-    ".table": {
-      marginTop: "20px",
-      marginBottom: "0px",
-    },
-    ".table-box": {
-      width: "100%",
-      display: "flex",
-      justifyContent: "space-between",
-    },
-    ".table-details": {
-      fontFamily: "Proxima Nova",
-      fontStyle: "normal",
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#101418",
-      padding: "0px 0px 16px",
-    },
-    ".grand-total": {
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-      fontWeight: "400",
-      fontSize: "20px",
-      lineHeight: "24px",
-      color: "#101418",
-      padding: "16px 0px",
-    },
-    ".table-details-pt": {
-      paddingTop: "16px",
-    },
-    ".border": {
-      borderTop: "1px solid #080B0E",
-    },
-    ".border-tb": {
-      borderBottom: "1px solid #080B0E",
-      borderTop: "1px solid #080B0E",
-    },
-    ".tax1": {
-      paddingTop: "20px",
-    },
-    ".contact-text": {
-      fontFamily: "Proxima Nova",
-      fontStyle: "normal",
-      fontWeight: "300",
-      fontSize: "14px",
-      lineHeight: "17px",
-      textAlign: "center",
-      color: "#080B0E",
-    },
-    ".main-person-box": {
-      display: "flex",
-      flexWrap: "wrap",
-    },
-    ".container": {
-      width: "100%",
-      overflow: "hidden",
-    },
+    const validationSchemaTodo = Yup.object().shape({
+        name: Yup.string().required("Name is required"),
+        email: Yup.string()
+            .email("Incorrect Email Id")
+            .required("please enter email"),
+        contact: Yup.number()
+            .typeError("That doesn't look like a phone number")
+            .min(10)
+            .required("contactNumber is required"),
+    });
+    const MainBox = styled(Box)({
+        padding: "80px 120px",
+        marginTop: "40px",
+        background: "#dcd7cb",
+        ".book-trad": {
+            display: "flex",
+            placeItems: "center",
+            marginBottom: "40px",
+            paddingLeft: "0px !important",
+        },
+        ".addons-title": {
+            fontFamily: "ProximaNovaA-Regular",
+            fontStyle: "normal",
+            fontWeight: 600,
+            fontSize: "32px",
+            lineHeight: "39px",
+            color: "#080B0E",
+            marginBottom: "0px",
+            marginLeft: "16px",
+        },
+        ".arrow-left": {
+            color: "#080B0E",
+            cursor: "pointer",
+        },
+        ".MuiFormHelperText-root": {
+            textAlign: "right",
+            fontFamily: "Proxima Nova ALT",
+            fontStyle: "normal",
+            fontWeight: "400",
+            fontSize: "14px",
+            lineHeight: "17px",
+            color: "#7D7D7D",
+            margin: "0px",
+        },
+        ".css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root": {
+            borderRadius: "0px",
+            padding: "0px",
+        },
+        ".dinner-box": {
+            paddingLeft: "10px",
+            position: "relative",
+        },
+        ".per-dinner": {
+            background: "#FBFBFB",
+            padding: "20px 20px 40px",
+            boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
+            position: "sticky",
+            top: "100px",
+        },
+        ".event-div": {
+            display: "flex",
+            placeItems: "center",
+        },
+        ".per-dinner-img": {
+            width: "116px",
+            height: "116px",
+            objectFit: "cover",
+        },
+        ".event-title": {
+            fontFamily: "Bon Vivant",
+            fontStyle: "normal",
+            fontWeight: "700",
+            fontSize: "20px",
+            lineHeight: "25px",
+            letterSpacing: "0.06em",
+            color: "#101418",
+            marginBottom: "8px",
+        },
+        ".event-subtitle": {
+            fontFamily: "Proxima Nova",
+            fontStyle: "normal",
+            fontSize: "12px",
+            lineHeight: "15px",
+            letterSpacing: "0.06em",
+            color: "#101418",
+            marginBottom: "11px",
+        },
+        ".event-link": {
+            fontFamily: "Proxima Nova",
+            fontStyle: "normal",
+            fontWeight: "700",
+            fontSize: "16px",
+            lineHeight: "19px",
+            textDecoration: "underline",
+            color: "#101418 !important",
+        },
+        ".experience-breakup": {
+            border: "0.5px solid #101418",
+            padding: "16px 16px 0px",
+            marginTop: "30px",
+        },
+        ".ex-details": {
+            position: "relative",
+        },
+        ".ex-heading": {
+            fontFamily: "Bon Vivant",
+            fontStyle: "normal",
+            fontWeight: "700",
+            fontSize: "20px",
+            lineHeight: "25px",
+            letterSpacing: "0.06em",
+            color: "#101418",
+            marginBottom: "10px",
+        },
+        ".ex-detail": {
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: 300,
+            fontSize: "14px",
+            lineHeight: "17px",
+            color: "#101418",
+            marginBottom: "0px",
+        },
+        ".ex-icon": {
+            position: "absolute",
+            right: "0px",
+            top: "0px",
+            fontSize: "30px",
+            color: "#101418",
+            " -webkit-text-stroke": "1px",
+        },
+        ".submit-req": {
+            background: "#080B0E",
+            color: "#C6A87D",
+            fontFamily: "ProximaNovaA-Regular",
+            fontSize: "20px",
+            lineHeight: "24px",
+            fontWeight: 600,
+            border: "0px",
+            marginBottom: "30px",
+            marginTop: "30px",
+            width: "100%",
+            cursor: "pointer",
+            padding: "18px 10px",
+        },
+        ".rating-star": {
+            fontFamily: "ProximaNovaA-Regular",
+            display: "flex",
+            alignItems: "center",
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#101418",
+        },
+        ".table": {
+            marginTop: "20px",
+            marginBottom: "0px",
+        },
+        ".table-box": {
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+        },
+        ".table-details": {
+            fontFamily: "Proxima Nova",
+            fontStyle: "normal",
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#101418",
+            padding: "0px 0px 16px",
+        },
+        ".grand-total": {
+            fontFamily: "ProximaNovaA-Regular",
+            fontStyle: "normal",
+            fontWeight: "400",
+            fontSize: "20px",
+            lineHeight: "24px",
+            color: "#101418",
+            padding: "16px 0px",
+        },
+        ".table-details-pt": {
+            paddingTop: "16px",
+        },
+        ".border": {
+            borderTop: "1px solid #080B0E",
+        },
+        ".border-tb": {
+            borderBottom: "1px solid #080B0E",
+            borderTop: "1px solid #080B0E",
+        },
+        ".tax1": {
+            paddingTop: "20px",
+        },
+        ".contact-text": {
+            fontFamily: "Proxima Nova",
+            fontStyle: "normal",
+            fontWeight: "300",
+            fontSize: "14px",
+            lineHeight: "17px",
+            textAlign: "center",
+            color: "#080B0E",
+        },
+        ".main-person-box": {
+            display: "flex",
+            flexWrap: "wrap",
+        },
+        ".container": {
+            width: "100%",
+            overflow: "hidden",
+        },
 
         ".partner": {
             float: "left",
@@ -1036,7 +1055,7 @@ const PersonalDetails1 = () => {
                             AdditionalMessage: superClubBookingDetails?.AdditionalMessage
                                 ? superClubBookingDetails?.AdditionalMessage
                                 : "",
-                                
+
                         }}
                         enableReinitialize= {false}
                         validationSchema={validationSchema}
@@ -1367,7 +1386,7 @@ const PersonalDetails1 = () => {
                                                             </Typography>
                                                             <Typography className="table-details">
                                                                 {
-                                                                    personalDetailsPaymentCalculation?.ticket_price
+                                                                    new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(personalDetailsPaymentCalculation?.ticket_price)
                                                                 }
                                                             </Typography>
                                                         </Box>
@@ -1376,7 +1395,7 @@ const PersonalDetails1 = () => {
                                                                 Sub Total
                                                             </Typography>
                                                             <Typography className="table-details table-details-pt">
-                                                                {personalDetailsPaymentCalculation?.sub_total}
+                                                                {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(personalDetailsPaymentCalculation?.sub_total)}
                                                             </Typography>
                                                         </Box>
                                                         <Box className="table-box">
@@ -1384,7 +1403,7 @@ const PersonalDetails1 = () => {
                                                                 GST @5%
                                                             </Typography>
                                                             <Typography className="table-details table-details-pt">
-                                                                {personalDetailsPaymentCalculation?.GST}
+                                                                {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(personalDetailsPaymentCalculation?.GST)}
                                                             </Typography>
                                                         </Box>
                                                         <Box className="table-box">
@@ -1393,7 +1412,7 @@ const PersonalDetails1 = () => {
                                                             </Typography>
                                                             <Typography className="table-details">
                                                                 {
-                                                                    personalDetailsPaymentCalculation?.service_charges
+                                                                    new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(personalDetailsPaymentCalculation?.service_charges)
                                                                 }
                                                             </Typography>
                                                         </Box>
@@ -1402,7 +1421,7 @@ const PersonalDetails1 = () => {
                                                                 Grand Total
                                                             </Typography>
                                                             <Typography className="grand-total">
-                                                                {personalDetailsPaymentCalculation?.total}
+                                                                {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(personalDetailsPaymentCalculation?.total)}
                                                             </Typography>
                                                         </Box>
                                                     </Box>

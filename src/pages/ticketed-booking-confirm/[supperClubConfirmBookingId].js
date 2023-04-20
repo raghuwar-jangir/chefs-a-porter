@@ -83,10 +83,6 @@ const ScBookingConfirm = (props) => {
         setScPaymentId(JSON.parse(localStorage.getItem('scPaymentNumber')));
     }, [cookieValue2])
 
-    console.log("scBookingOrderNo================", scBookingOrderNo)
-    console.log("scPaymentId================", scPaymentId)
-    console.log("supperClubConfirmPaymentData================", supperClubConfirmPaymentData)
-
     const handlePayment = () => {
         setIsSupperBookingStatus(true)
     }
@@ -1209,7 +1205,6 @@ const ScBookingConfirm = (props) => {
                         }}
                         validationSchema={bookingSummaryValidationSchema}
                         onSubmit={(values) => {
-                            console.log("sc==========", values)
                         }}
                     >
                         {({values, handleChange, handleSubmit, setFieldValue}) => (
@@ -1382,25 +1377,25 @@ const ScBookingConfirm = (props) => {
                                                             <Typography className="table-details">Ticket
                                                                 Price</Typography>
                                                             <Typography
-                                                                className="table-details">{supperClubConfirmPaymentData?.payment?.ticket_price}</Typography>
+                                                                className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubConfirmPaymentData?.payment?.ticket_price)}</Typography>
                                                         </Box>
                                                         <Box className="table-box border-tb ">
                                                             <Typography className="table-details table-details-pt">Sub
                                                                 Total</Typography>
                                                             <Typography
-                                                                className="table-details table-details-pt">{supperClubConfirmPaymentData?.payment?.sub_total}</Typography>
+                                                                className="table-details table-details-pt">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubConfirmPaymentData?.payment?.sub_total)}</Typography>
                                                         </Box>
                                                         <Box className="table-box">
                                                             <Typography className="table-details table-details-pt">GST
                                                                 @5%</Typography>
                                                             <Typography
-                                                                className="table-details table-details-pt">{supperClubConfirmPaymentData?.payment?.GST}</Typography>
+                                                                className="table-details table-details-pt">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubConfirmPaymentData?.payment?.GST)}</Typography>
                                                         </Box>
                                                         <Box className="table-box">
                                                             <Typography className="table-details">Service Charge
                                                                 @10%</Typography>
                                                             <Typography
-                                                                className="table-details">{supperClubConfirmPaymentData?.payment?.service_charges}</Typography>
+                                                                className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubConfirmPaymentData?.payment?.service_charges)}</Typography>
                                                         </Box>
                                                         {
                                                             supperClubConfirmPaymentData?.payment?.discount && supperClubConfirmPaymentData?.payment?.voucher ? (
@@ -1409,7 +1404,7 @@ const ScBookingConfirm = (props) => {
                                                                         <Typography
                                                                             className="table-details">Discount</Typography>
                                                                         <Typography
-                                                                            className="table-details">{supperClubConfirmPaymentData?.payment?.discount}</Typography>
+                                                                            className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubConfirmPaymentData?.payment?.discount)}</Typography>
                                                                     </Box>
                                                                     <Box className="table-box">
                                                                         <Typography
@@ -1423,7 +1418,7 @@ const ScBookingConfirm = (props) => {
                                                         <Box className="table-box border">
                                                             <Typography className="grand-total">Grand Total</Typography>
                                                             <Typography
-                                                                className="grand-total">{supperClubConfirmPaymentData?.payment?.total}</Typography>
+                                                                className="grand-total">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubConfirmPaymentData?.payment?.total)}</Typography>
                                                         </Box>
                                                         <Box className="form-group1">
                                                             <input
@@ -1477,7 +1472,6 @@ const ScBookingConfirm = (props) => {
                         }}
                         validationSchema={bookingSummaryValidationSchema}
                         onSubmit={(values) => {
-                            console.log("sc==========", values)
                         }}
                     >
                         {({values, handleChange, handleSubmit, setFieldValue}) => (
@@ -1650,25 +1644,25 @@ const ScBookingConfirm = (props) => {
                                                             <Typography className="table-details">Ticket
                                                                 Price</Typography>
                                                             <Typography
-                                                                className="table-details">{superClubPaymentData?.payment?.ticket_price}</Typography>
+                                                                className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(superClubPaymentData?.payment?.ticket_price)}</Typography>
                                                         </Box>
                                                         <Box className="table-box border-tb ">
                                                             <Typography className="table-details table-details-pt">Sub
                                                                 Total</Typography>
                                                             <Typography
-                                                                className="table-details table-details-pt">{superClubPaymentData?.payment?.sub_total}</Typography>
+                                                                className="table-details table-details-pt">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(superClubPaymentData?.payment?.sub_total)}</Typography>
                                                         </Box>
                                                         <Box className="table-box">
                                                             <Typography className="table-details table-details-pt">GST
                                                                 @5%</Typography>
                                                             <Typography
-                                                                className="table-details table-details-pt">{superClubPaymentData?.payment?.GST}</Typography>
+                                                                className="table-details table-details-pt">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(superClubPaymentData?.payment?.GST)}</Typography>
                                                         </Box>
                                                         <Box className="table-box">
                                                             <Typography className="table-details">Service Charge
                                                                 @10%</Typography>
                                                             <Typography
-                                                                className="table-details">{superClubPaymentData?.payment?.service_charges}</Typography>
+                                                                className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(superClubPaymentData?.payment?.service_charges)}</Typography>
                                                         </Box>
                                                         {
                                                             superClubPaymentData?.payment?.discount && superClubPaymentData?.payment?.voucher ? (
@@ -1677,7 +1671,7 @@ const ScBookingConfirm = (props) => {
                                                                         <Typography
                                                                             className="table-details">Discount</Typography>
                                                                         <Typography
-                                                                            className="table-details">{superClubPaymentData?.payment?.discount}</Typography>
+                                                                            className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(superClubPaymentData?.payment?.discount)}</Typography>
                                                                     </Box>
                                                                     <Box className="table-box">
                                                                         <Typography
@@ -1691,7 +1685,7 @@ const ScBookingConfirm = (props) => {
                                                         <Box className="table-box border">
                                                             <Typography className="grand-total">Grand Total</Typography>
                                                             <Typography
-                                                                className="grand-total">{superClubPaymentData?.payment?.total}</Typography>
+                                                                className="grand-total">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(superClubPaymentData?.payment?.total)}</Typography>
                                                         </Box>
                                                         <Box className="form-group1">
                                                             <input
@@ -1776,8 +1770,6 @@ const ScBookingConfirm = (props) => {
                                             ...values,
                                             day: moment(_.get(values, "day")).format("ddd,DD MMM "),
                                         };
-                                        console.log("value===>", values);
-                                        console.log("experienceData===>", experienceData);
                                     }}
                                 >
                                     {({values, handleChange, handleSubmit, setFieldValue}) => (
@@ -2021,7 +2013,7 @@ const ScBookingConfirm = (props) => {
                                                         <div className="ex-details">
                                                             <h5>Paid Amount</h5>
                                                             <span
-                                                                className="i">₹ {supperClubConfirmPaymentData?.total}</span>
+                                                                className="i">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(superClubPaymentData?.payment?.total)}</span>
                                                         </div>
                                                         <div className="table table-borderless">
                                                             <div className="table-box">
@@ -2046,24 +2038,24 @@ const ScBookingConfirm = (props) => {
                                                             {showDiv && <div>
                                                                 <div className="table-box">
                                                                     <span>Ticket Price</span>
-                                                                    <span>{superClubPaymentData?.payment?.ticket_price}</span>
+                                                                    <span>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(superClubPaymentData?.payment?.ticket_price)}</span>
                                                                 </div>
                                                                 <div className="table-box border-tb pt-16">
                                                                     <span>Sub Total</span>
-                                                                    <span>{superClubPaymentData?.payment?.sub_total}</span>
+                                                                    <span>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(superClubPaymentData?.payment?.sub_total)}</span>
                                                                 </div>
                                                                 <div className="table-box pt-16">
                                                                     <span>GST @5%</span>
-                                                                    <span>{superClubPaymentData?.payment?.GST}</span>
+                                                                    <span>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(superClubPaymentData?.payment?.GST)}</span>
                                                                 </div>
                                                                 <div className="table-box">
                                                                     <span>Service Charges @10%</span>
-                                                                    <span>{superClubPaymentData?.payment?.service_charges}</span>
+                                                                    <span>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(superClubPaymentData?.payment?.service_charges)}</span>
                                                                 </div>
                                                                 <div className="table-box border pt-16">
                                                                     <span className="price">Grand Total</span>
                                                                     <span
-                                                                        className="price">{superClubPaymentData?.payment?.total}</span>
+                                                                        className="price">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(superClubPaymentData?.payment?.total)}</span>
                                                                 </div>
                                                             </div>}
                                                         </div>

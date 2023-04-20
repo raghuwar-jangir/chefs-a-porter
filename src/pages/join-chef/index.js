@@ -301,7 +301,6 @@ const ContactUs = () => {
                                     }}
                                     validationSchema={validationSchema}
                                     onSubmit={(values) => {
-                                        console.log("value==========", values)
                                     }}
                                 >
                                     {({values, handleChange, handleSubmit}) => (

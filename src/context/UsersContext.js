@@ -35,6 +35,7 @@ const UsersProvider = (props) => {
     const [supperClubRazorpay, setSupperClubRazorpay] = useState();
     const [isConfirm, setIsConfirm] = useState(false);
     const [payementEventId, setPaymentEventId] = useState();
+    const [customerDetailsPaymentCalculation, setCustomerDetailsPaymentCalculation] = useState();
     // const [supperClubBookingBookingConfirm, setSupperClubBookingBookingConfirm] = useState();
     // const cookieValueSupper = Cookies?.get('supperClubBookingBookingConfirm');
     //for submitting forms
@@ -86,12 +87,7 @@ const UsersProvider = (props) => {
     const [partnerId, setPartnerId] = useState();
     const [partnerCityId, setPartnerCityId] = useState();
     const [successOpen, setSuccessOpen] = useState(false);
-
-    console.log("successOpen=======", successOpen)
-
-    console.log("becomePartnerData=======", becomePartnerData)
-    console.log("partnerId=======", partnerId)
-    console.log("partnerCityId=======", partnerCityId)
+    const [scheduleCallOpen, setScheduleCallOpen] = useState(false);
 
     useEffect(() => {
         // if (cookieValueSupper) {
@@ -110,7 +106,8 @@ const UsersProvider = (props) => {
             })
         } else if (eventId && currentPath === 'event-details') {
             axios.get(baseUrl + `/menu/` + eventId).then(result => {
-                setUserData(result.data)
+                setUserData(result.data);
+                localStorage.setItem('eventId', JSON.stringify(eventId));
             })
         } else if (supperClubDetailId && currentPath === 'ticketed-detail') {
             axios.get(baseUrl + '/event/' + supperClubDetailId).then(result => {
@@ -226,9 +223,8 @@ const UsersProvider = (props) => {
                 mobile: scheduleCallData.contactNumber,
                 query: scheduleCallData.queryMessage
             }).then((response) => {
-                if (response.status === 200) {
-                    setSuccessOpen(true);
-                }
+                setScheduleCallOpen(false);
+                setSuccessOpen(true);
             })
             setIsScheduleCall(false)
         } else if (isJoinChefData) {
@@ -260,7 +256,6 @@ const UsersProvider = (props) => {
                 }
             })
         } else if (isSupperBookingStatus) {
-            console.log("supperClubBookingId===========", supperClubBookingId)
             axios.post(baseUrl + '/booking/confirm/' + supperClubBookingId).then((response) => {
                 if (response.status === 200) {
                     localStorage.setItem('scBookingOrderNumber', JSON.stringify(response.data.order_number));
@@ -321,7 +316,7 @@ const UsersProvider = (props) => {
                 }
             })
             setSupperClubPayment(false);
-        } else if (currentPath === 'personal-details') {
+        } else if (superClubDetailId && currentPath === 'personal-details') {
             axios.post(baseUrl + '/booking/calculatepayment/', {
                 id: superClubDetailId,
                 type: 'supper_club',
@@ -332,7 +327,7 @@ const UsersProvider = (props) => {
                     Cookies.set('PersonalDetailsPaymentCalculation', JSON.stringify(response.data));
                 }
             })
-        } else if (currentPath === 'customer-details') {
+        } else if (payementEventId && currentPath === 'customer-details') {
             axios.post(baseUrl + '/booking/calculatepayment/', {
                 id: payementEventId,
                 type: "privee",
@@ -340,6 +335,7 @@ const UsersProvider = (props) => {
                 courses: numberOfCourses,
             }).then((response) => {
                 if (response.status === 200) {
+                    setCustomerDetailsPaymentCalculation(response.data)
                     Cookies.set('CPaymentInfo', JSON.stringify(response.data));
                 }
             })
@@ -384,16 +380,14 @@ const UsersProvider = (props) => {
         }
         if (isUpdateBooking) {
             axios.patch(baseUrl + '/booking/' + bookingId, {
-                // addons:['6416f9978da15a0ecef5693a', '64241e3919915278d887421a']
                 addons: selectedAddonsId
             }).then((response) => {
                 if (response.status === 200) {
-                    console.log("response==========", response.data);
                     setIsUpdateBooking(false);
                 }
             })
         }
-    }, [isUpdateBooking, isScheduleCall, isBecomePartner, isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification])
+    }, [isUpdateBooking, isScheduleCall, isBecomePartner, isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification, successOpen])
 
     const {children} = props;
 
@@ -446,7 +440,9 @@ const UsersProvider = (props) => {
                 setPartnerCityId,
                 commonCityData,
                 successOpen,
-                setSuccessOpen
+                setSuccessOpen,
+                customerDetailsPaymentCalculation,
+                scheduleCallOpen, setScheduleCallOpen
             }}
         >
             {children}

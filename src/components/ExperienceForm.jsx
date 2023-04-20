@@ -88,7 +88,6 @@ const ExperienceForm = () => {
                     }}
                     validationSchema={validationSchema}
                     onSubmit={(values, { setSubmitting }) => {
-                        console.log("values", values)
                         setSubmitting(false);
                     }}
                 >

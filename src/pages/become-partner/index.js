@@ -368,7 +368,6 @@ const BecomePartner = () => {
     const formik = useFormik({
         initialValues,
         onSubmit: (values) => {
-            console.log(values);
         },
     });
 
@@ -412,7 +411,6 @@ const BecomePartner = () => {
                             validationSchema={validationSchema}
                             onSubmit={(values) => {
                                 setBecomePartnerData(values)
-                                console.log("value===>", values)
                             }}
                         >
                             {({values, handleChange, handleSubmit, setFieldValue}) => (

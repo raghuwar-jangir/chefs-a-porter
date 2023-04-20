@@ -36,8 +36,6 @@ const ScBookingSummary = () => {
     const [superClubBookingDetails, setSuperClubBookingDetails] = useState()
     const cookieValue2 = Cookies.get('supperClubBookingPersonalDetail');
 
-    console.log("supperClubPaymentData===========", supperClubPaymentData)
-    console.log("supperClubBookingId===========", supperClubBookingId)
     useEffect(() => {
         if (cookieValue) {
             setSupperClubBookingData(JSON.parse(cookieValue));
@@ -81,7 +79,6 @@ const ScBookingSummary = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const handleSubmit = (values, {setSubmitting}) => {
-        console.log(values);
         setSubmitting(false);
     }
     const MainBox = styled(Box)({
@@ -734,7 +731,6 @@ const ScBookingSummary = () => {
                         }}
                         validationSchema={bookingSummaryValidationSchema}
                         onSubmit={(values) => {
-                            // console.log("sc booking confrim value==========", values)
                         }}
                     >
                         {({values, handleChange, handleSubmit, setFieldValue}) => (
@@ -929,30 +925,30 @@ const ScBookingSummary = () => {
                                                             <Typography className="table-details">Ticket
                                                                 Price</Typography>
                                                             <Typography
-                                                                className="table-details">{supperClubPaymentData?.payment?.ticket_price}</Typography>
+                                                                className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubPaymentData?.payment?.ticket_price)}</Typography>
                                                         </Box>
                                                         <Box className="table-box border-tb ">
                                                             <Typography className="table-details table-details-pt">Sub
                                                                 Total</Typography>
                                                             <Typography
-                                                                className="table-details table-details-pt">{supperClubPaymentData?.payment?.sub_total}</Typography>
+                                                                className="table-details table-details-pt">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubPaymentData?.payment?.sub_total)}</Typography>
                                                         </Box>
                                                         <Box className="table-box">
                                                             <Typography className="table-details table-details-pt">GST
                                                                 @5%</Typography>
                                                             <Typography
-                                                                className="table-details table-details-pt">{supperClubPaymentData?.payment?.GST}</Typography>
+                                                                className="table-details table-details-pt">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubPaymentData?.payment?.GST)}</Typography>
                                                         </Box>
                                                         <Box className="table-box">
                                                             <Typography className="table-details">Service Charge
                                                                 @10%</Typography>
                                                             <Typography
-                                                                className="table-details">{supperClubPaymentData?.payment?.service_charges}</Typography>
+                                                                className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubPaymentData?.payment?.service_charges)}</Typography>
                                                         </Box>
                                                         <Box className="table-box border">
                                                             <Typography className="grand-total">Grand Total</Typography>
                                                             <Typography
-                                                                className="grand-total">{supperClubPaymentData?.payment?.total}</Typography>
+                                                                className="grand-total">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubPaymentData?.payment?.total)}</Typography>
                                                         </Box>
                                                     </Box>
                                                 }

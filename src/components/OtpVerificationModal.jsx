@@ -36,8 +36,6 @@ const OtpVerificationModal = (props) => {
         }
     }, [cookieValue])
 
-    console.log("bookingId=======", bookingId)
-
     //otp timer
     React.useEffect(() => {
         const interval = setInterval(() => {
@@ -242,7 +240,6 @@ const OtpVerificationModal = (props) => {
                                             <OTPInput
                                                 value={otp}
                                                 onChange={(number) => {
-                                                    console.log('number', number)
                                                     setOtp(number)
                                                 }}
                                                 numInputs={6}

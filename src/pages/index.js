@@ -934,7 +934,6 @@ const HomePage = () => {
                                                     diners: 1
                                                 }}
                                                 onSubmit={(values) => {
-                                                    console.log(values.date)
                                                     const experienceData = {
                                                         ...values,
                                                         // on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),

@@ -96,7 +96,6 @@ const MapComponent = ({setNewAddress, setOpen}) => {
     };
 
     const handleSelect = (selectedAddress) => {
-        console.log("getLatLng=====",getLatLng)
         geocodeByAddress(selectedAddress)
             .then((results) => getLatLng(results[0]))
             .then((latLng) => {
@@ -160,7 +159,6 @@ const MapComponent = ({setNewAddress, setOpen}) => {
                                                 className: "location-search-input",
                                             })}
                                         />
-                                        {/* {console.log("value====>", address)} */}
                                         <button className="add-location" onClick={handleImageClick}>
                                             Add Location
                                         </button>
@@ -219,7 +217,6 @@ const MapComponent = ({setNewAddress, setOpen}) => {
                                             validationSchema={validationSchema}
                                             onSubmit={(values) => {
                                                 setNewAddress(values);
-                                                console.log("value====>", values);
                                                 localStorage.setItem('userAddress', JSON.stringify(values));
                                             }}
                                         >

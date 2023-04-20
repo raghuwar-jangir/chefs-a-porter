@@ -449,7 +449,7 @@ const ChefDetailsForm = () => {
                                             onClick={() => {
                                                 setFieldValue(
                                                     "numberOfDinner",
-                                                    Math.min(values.numberOfDinner + 1, 10)
+                                                    Math.min(values.numberOfDinner + 1, 25)
                                                 );
                                                 if (
                                                     values.numberOfDinner + 1 >= 2 &&
