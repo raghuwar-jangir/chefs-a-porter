@@ -76,6 +76,7 @@ const BookingSummary = (props) => {
     const oderIDCookieValue = Cookies?.get("razorpayOrderId");
     const razorpayOrderId = oderIDCookieValue?.replaceAll('"', "");
     const [razorpayData, setRazorpayData] = useState();
+    const [privateBookingOrderNo,setPrivateBookingOrderNo]=useState();
 
     useEffect(() => {
         if (cookieValue) {
@@ -84,6 +85,7 @@ const BookingSummary = (props) => {
         if (bookingCookieValue) {
             setRazorpayData(JSON.parse(bookingCookieValue));
         }
+        setPrivateBookingOrderNo(JSON.parse(localStorage.getItem('privateBookingOrderNumber')));
     }, [cookieValue, bookingCookieValue])
 
     const initialValues = {
@@ -2097,7 +2099,7 @@ const BookingSummary = (props) => {
                                     <div className="booking-details">
                                         <img src={output} alt="" className="output"/>
                                         <h3>Booking Successful</h3>
-                                        <span>Booking ID {razorpayData?.order_number}</span>
+                                        <span>Booking ID {privateBookingOrderNo}</span>
                                         <p>
                                             We look forward to serving you a conscious <br/>
                                             dining experience!
