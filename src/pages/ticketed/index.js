@@ -343,15 +343,6 @@ const SupperClub = () => {
         const options = { month: "long" };
         return date.toLocaleDateString("en-US", options);
     };
-
-
-    // const tabData = [
-    //     { id: 0, label: "Mumbai", value: "Mumbai" },
-    //     { id: 1, label: "Delhi", value: "Delhi" },
-    //     { id: 2, label: "Goa", value: "Goa" },
-    //     { id: 3, label: "Bangalore", value: "Bangalore" },
-    //     { id: 4, label: "Hyderabad", value: "Hyderabad" },
-    // ];
     return (
         <React.Fragment>
             {!_.isEmpty(data?.supper_club) && (
