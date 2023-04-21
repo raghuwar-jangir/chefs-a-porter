@@ -5,6 +5,7 @@ import * as _ from "lodash";
 import {useLocation} from "@reach/router";
 import CmsContext from "./CmsContext";
 import UsersContext from "./UsersContext";
+import {navigate} from "gatsby";
 
 const defaultState = {
     data: {},
@@ -17,7 +18,7 @@ const OtpProvider = (props) => {
     const path = useLocation();
     const currentPath = path.pathname.split("/")[1];
     const {data} = useContext(CmsContext);
-    const {eventId, supperClubDetailId,commonCityData} = useContext(UsersContext);
+    const {eventId, supperClubDetailId, commonCityData} = useContext(UsersContext);
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
     const [otpNumber, setOtpNumber] = useState('');
     const [verifyOtp, setVerifyOtp] = useState('');
@@ -92,7 +93,7 @@ const OtpProvider = (props) => {
                     } else {
                         setSupperClubStatus(true);
                     }
-                    // Cookies.remove('BookingId')
+                    // Cookies.remove('bookingId')
                 }
             })
             setIsVerifiedOtpApiCall(false)
@@ -134,9 +135,11 @@ const OtpProvider = (props) => {
                 if (response.status === 200) {
                     // Cookies.remove('eventData');
                     // Cookies.remove('priveeData');
-                    Cookies.set('BookingId', JSON.stringify(response.data.id));
+                    Cookies.set('bookingId', JSON.stringify(response.data.id));
                     Cookies.set('summaryBookingId', JSON.stringify(response.data.id));
                 }
+                const bookingId=response.data.id;
+                navigate(`/addons/${bookingId}`);
             })
         } else if (isSupperClubStatus && currentPath === 'personal-details') {
             axios.post(baseUrl + '/booking', {

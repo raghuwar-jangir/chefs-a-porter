@@ -24,10 +24,10 @@ const OtpVerificationModal = (props) => {
         setIsBookingAPiCall,
     } = useContext(OtpContext);
     const [otp, setOtp] = useState('')
-    const [seconds, setSeconds] = useState(10);
+    const [seconds, setSeconds] = useState(30);
     const [eventData, setEventData] = useState()
     const cookieValue = Cookies.get('eventData');
-    const bookingIdCookieValue = Cookies?.get('BookingId');
+    const bookingIdCookieValue = Cookies.get('bookingId');
     const bookingId = bookingIdCookieValue?.replaceAll('"', '')
 
     useEffect(() => {
@@ -55,7 +55,6 @@ const OtpVerificationModal = (props) => {
         if (!_.isEmpty(otp)) {
             setVerifyOtp(otp);
             setIsVerifiedOtpApiCall(true);
-            navigate(`/addons/${bookingId}`);
             setIsBookingAPiCall(true);
         }
     }

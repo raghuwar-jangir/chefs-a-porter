@@ -42,8 +42,7 @@ const MainBox = styled(Box)({
 });
 
 const SupperClubDetailPopupCarousel = ({ title }) => {
-    const getEventId = "640b22b691e7236a1d0a264e";
-    const { setEventId, userData } = useContext(UsersContext);
+    const { userData } = useContext(UsersContext);
     const itemData = [
         {
             img: userData?.pictures[0],

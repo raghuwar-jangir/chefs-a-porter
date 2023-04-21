@@ -21,11 +21,11 @@ import Cookies from "js-cookie";
 
 
 const Addons = (props) => {
-    const summaryCookieValue = Cookies.get('BookingId');
-    const summaryBookingId = summaryCookieValue?.replaceAll('"', '')
-
     const {bookingId} = props;
     const {addOnsData, adPaymentData, setPriveePayment} = useContext(UsersContext);
+    const summaryCookieValue = Cookies?.get('bookingId');
+    const summaryBookingId = summaryCookieValue?.replaceAll('"', '')
+
     const handleClick = () => {
         navigate(`/booking-summary/${summaryBookingId}`);
         setPriveePayment(true)

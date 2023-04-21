@@ -919,7 +919,7 @@ const HomePage = () => {
             <BoxWrapper>
                 <React.Fragment>
                     {
-                        !_.isEmpty(data?.home && mealData) &&
+                        !_.isEmpty(data?.home && mealData && commonCityData) &&
                         <>
                             <Box className="home-banner" sx={{backgroundImage: `url(${data.home.header.image})`}}>
                                 <Box className="row justify-content-center">

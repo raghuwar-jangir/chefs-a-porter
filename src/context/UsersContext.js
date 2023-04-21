@@ -25,7 +25,7 @@ const UsersProvider = (props) => {
     const [userId, setUserId] = useState();
     const [eventId, setEventId] = useState();
     const [supperClubDetailId, setSupperClubDetailId] = useState();
-    const cookieValue = Cookies?.get('BookingId');
+    const cookieValue = Cookies?.get('bookingId');
     const bookingId = cookieValue?.replaceAll('"', '');
     const summaryBookingId = cookieValue?.replaceAll('"', '');
     const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
@@ -34,7 +34,6 @@ const UsersProvider = (props) => {
     const [paymentVerification, setPaymentVerification] = useState(false);
     const [supperClubRazorpay, setSupperClubRazorpay] = useState();
     const [isConfirm, setIsConfirm] = useState(false);
-    const [payementEventId, setPaymentEventId] = useState();
     const [customerDetailsPaymentCalculation, setCustomerDetailsPaymentCalculation] = useState();
 
     //for submitting forms
@@ -92,7 +91,6 @@ const UsersProvider = (props) => {
         if (eventDataCookieValue) {
             setEventDetailsData(JSON.parse(eventDataCookieValue))
         }
-        setPaymentEventId((JSON.parse(localStorage.getItem('eventId'))));
     }, [eventDataCookieValue])
 
     useEffect(() => {
@@ -103,7 +101,6 @@ const UsersProvider = (props) => {
         } else if (eventId && currentPath === 'event-details') {
             axios.get(baseUrl + `/menu/` + eventId).then(result => {
                 setUserData(result.data);
-                localStorage.setItem('eventId', JSON.stringify(eventId));
             })
         } else if (supperClubDetailId && currentPath === 'ticketed-detail') {
             axios.get(baseUrl + '/event/' + supperClubDetailId).then(result => {
@@ -320,16 +317,16 @@ const UsersProvider = (props) => {
                     Cookies.set('PersonalDetailsPaymentCalculation', JSON.stringify(response.data));
                 }
             })
-        } else if (payementEventId && currentPath === 'customer-details') {
+        } else if (PaymentEventId && currentPath === 'customer-details') {
             axios.post(baseUrl + '/booking/calculatepayment/', {
-                id: payementEventId,
+                id: PaymentEventId,
                 type: "privee",
                 diner: numberOfDinner,
                 courses: numberOfCourses,
             }).then((response) => {
                 if (response.status === 200) {
                     setCustomerDetailsPaymentCalculation(response.data)
-                    Cookies.set('CPaymentInfo', JSON.stringify(response.data));
+                    // Cookies.set('CPaymentInfo', JSON.stringify(response.data));
                 }
             })
         } else if (currentPath === 'become-partner') {
