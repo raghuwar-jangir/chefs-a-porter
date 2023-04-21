@@ -36,8 +36,7 @@ const UsersProvider = (props) => {
     const [isConfirm, setIsConfirm] = useState(false);
     const [payementEventId, setPaymentEventId] = useState();
     const [customerDetailsPaymentCalculation, setCustomerDetailsPaymentCalculation] = useState();
-    // const [supperClubBookingBookingConfirm, setSupperClubBookingBookingConfirm] = useState();
-    // const cookieValueSupper = Cookies?.get('supperClubBookingBookingConfirm');
+
     //for submitting forms
     const [contactUsData, setContactUsData] = useState({})
     const [isContactUsData, setIsContactUsData] = useState(false)
@@ -90,9 +89,6 @@ const UsersProvider = (props) => {
     const [scheduleCallOpen, setScheduleCallOpen] = useState(false);
 
     useEffect(() => {
-        // if (cookieValueSupper) {
-        //     setSupperClubBookingBookingConfirm(JSON.parse(cookieValueSupper));
-        // }
         if (eventDataCookieValue) {
             setEventDetailsData(JSON.parse(eventDataCookieValue))
         }
@@ -214,9 +210,6 @@ const UsersProvider = (props) => {
                 work_samples: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi"
             })
             setIsBecomePartner(false)
-            // setBecomePartnerData(null)
-            // setPartnerCityId(null)
-            // setPartnerId(null)
         } else if (isScheduleCall) {
             axios.post(baseUrl + '/call_schedule', {
                 date_time: scheduleCallData.day,
@@ -369,6 +362,11 @@ const UsersProvider = (props) => {
             axios.get('https://chefv2.hypervergedemo.site/v1/meal_times/all').then(result => {
                 setMealData(result.data)
             })
+            axios.get('https://chefv2.hypervergedemo.site/v1/city/all').then(result => {
+                setCommonCityData(result.data)
+            })
+        }
+        if(currentPath === "ticketed"){
             axios.get('https://chefv2.hypervergedemo.site/v1/city/all').then(result => {
                 setCommonCityData(result.data)
             })

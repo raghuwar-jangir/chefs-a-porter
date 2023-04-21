@@ -469,11 +469,11 @@ const BoxWrapper = styled(Box)(() => ({
         },
     },
     '@media(min-width:600px) and (max-width: 768px)': {
-        '.template':{
-            backgroundColor:'#FBFBFB !important'
+        '.template': {
+            backgroundColor: '#FBFBFB !important'
         },
-        '.template-title':{
-            color:'#080B0E !important'
+        '.template-title': {
+            color: '#080B0E !important'
         }
     }
 }))
@@ -588,7 +588,7 @@ const PriveePage = (props) => {
 
     const {data} = useContext(CmsContext);
     const {mealData,commonCityData} = useContext(UsersContext);
-    console.log("commonCityData=======>",commonCityData);
+
     const [search, setSearch] = useState(false);
     const handleChange = () => {
         setSearch(true);
@@ -681,7 +681,7 @@ const PriveePage = (props) => {
                                             className="exp-heading">Book an Experience</Typography>
                                         <Formik
                                             initialValues={{
-                                                city: commonCityData[0]?.name,
+                                                city: commonCityData[0].name,
                                                 date: new Date(),
                                                 time: '',
                                                 diners: 1
@@ -873,7 +873,7 @@ const PriveePage = (props) => {
                                                                        // value={values.diners}
                                                                        value={count}
                                                                        className="input-number"
-
+                                                                // value={count}
                                                                        InputProps={{
                                                                            sx: {
                                                                                width: "25px", background: 'transparent',

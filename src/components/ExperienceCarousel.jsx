@@ -73,7 +73,7 @@ const ExperienceCarousel = (props) => {
                                 return (
                                     <>
                                         <SwiperSlide><AvlExperienceCarousel
-                                        className="img"
+                                            className="img"
                                             // image={item.user.picture}
                                             image={item.cover_picture}
                                             title={item.title} description={`by ${item.user.name}`}

@@ -271,15 +271,15 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                     paddingLeft: '10px'
                 },
             },
-            '@media(min-width: 1000px) and (max-width: 1024px)': {
+            '@media(min-width: 769px) and (max-width: 1024px)': {
                 '.grid-box': {
-                    width: '75% !important'
+                    width: '70% !important'
                 },
                 '.header-search-box': {
                     display: 'none !important',
                 },
                 '.main-container': {
-                    padding: '8px 100px'
+                    padding: '8px 30px'
                 },
             },
             '@media(min-width: 1100px) and (max-width: 1450px)': {
@@ -363,7 +363,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                                         className={`browser-hamburger-menu`}
                                         activeClassName={'browser-hamburger-menu active'}
                                         to='/ticketed'>
-                                       Ticketed
+                                        Ticketed
                                     </Link>
                                     <Link
                                         className={`browser-hamburger-menu`}

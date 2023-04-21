@@ -424,7 +424,7 @@ const style = {
 }
 const PriveeViewMore = (props) => {
 
-        const {userData,mealData,commonCityData} = useContext(UsersContext);
+    const {userData, mealData, commonCityData} = useContext(UsersContext);
     const [priveeInfo, setPriveeInfo] = useState()
     const cookieValue = Cookies?.get('priveeData');
 
@@ -465,9 +465,9 @@ const PriveeViewMore = (props) => {
                                             !_.isEmpty(priveeInfo) &&
                                             <Formik
                                                 initialValues={{
-                                                    city: priveeInfo?.city,
+                                                    city: priveeInfo?.city ? priveeInfo?.city : commonCityData[0].name,
                                                     on: moment(priveeInfo?.date).format('ddd,DD MMM') ? moment(priveeInfo?.date).format('ddd,DD MMM') : new Date(),
-                                                    time: priveeInfo?.time ? priveeInfo?.time :'Lunch' ,
+                                                    time: priveeInfo?.time ? priveeInfo?.time : mealData[0].name,
                                                     diners: priveeInfo?.diners
                                                 }}
                                                 onSubmit={(values) => {
@@ -481,7 +481,8 @@ const PriveeViewMore = (props) => {
                                                     <Form onSubmit={handleSubmit}>
                                                         <Box className="form-row">
                                                             {
-                                                                !_.isEmpty(commonCityData) &&  <Box className="form-group">
+                                                                !_.isEmpty(commonCityData) &&
+                                                                <Box className="form-group">
                                                                     <label className="label">Where</label>
                                                                     <Select
                                                                         labelId="demo-simple-select-label"
@@ -682,8 +683,8 @@ const PriveeViewMore = (props) => {
                                                                         },
                                                                     }}
                                                                 >
-                                                                    {menuitemValue.map((item,index)=>(
-                                                                        <MenuItem value={index+1}>{item}</MenuItem>
+                                                                    {menuitemValue.map((item, index) => (
+                                                                        <MenuItem value={index + 1}>{item}</MenuItem>
                                                                     ))}
                                                                 </Select>
                                                             </Box>

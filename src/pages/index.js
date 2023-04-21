@@ -928,9 +928,9 @@ const HomePage = () => {
                                             <Typography className="hotchef-title">{data.home.header.title}</Typography>
                                             <Formik
                                                 initialValues={{
-                                                    city: 'Mumbai',
+                                                    city: commonCityData[0].name,
                                                     date: new Date(),
-                                                    time: 'Lunch',
+                                                    time: mealData[0].name,
                                                     diners: 1
                                                 }}
                                                 onSubmit={(values) => {

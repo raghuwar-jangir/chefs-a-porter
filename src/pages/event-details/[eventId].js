@@ -70,7 +70,7 @@ const EventDetails = (props) => {
     };
     const breadcrumbs = [
         <Typography sx={bread} key="1" color="#FBFBFB">
-            Privée
+            Private
         </Typography>,
         <Link underline="none" key="2" color="#C6A87D" href="">
             Event

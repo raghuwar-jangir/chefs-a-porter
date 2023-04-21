@@ -281,7 +281,7 @@ const OtpVerificationModal = (props) => {
                                         )}
                                         <div className="btn-val">
                                             <button className="btn validate" type="submit"
-                                                    onClick={handleClick}>Verfiy
+                                                    onClick={handleClick}>Verify
                                             </button>
                                         </div>
                                     </form>
