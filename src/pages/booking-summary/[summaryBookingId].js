@@ -52,6 +52,10 @@ const BookingSummary = (props) => {
     const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
 
+   const printDiv = () => {
+        window.print();
+    }
+
     const {
         bsPaymentData,
         voucher,
@@ -883,6 +887,9 @@ const BookingSummary = (props) => {
             pointerEvents: "auto",
             backgroundClip: "paddingBox",
             outline: "0",
+        },
+        '.pointer':{
+            cursor:'pointer'
         },
         ".close": {
             border: "none !important",
@@ -2081,7 +2088,7 @@ const BookingSummary = (props) => {
                     aria-labelledby="keep-mounted-modal-title"
                     aria-describedby="keep-mounted-modal-description"
                 >
-                    <Box sx={styleOtp}>
+                    <Box sx={styleOtp} id="printable-div">
                         <div className="modal-content">
                             <div className="modal-header">
                                 <button
@@ -2104,7 +2111,7 @@ const BookingSummary = (props) => {
                                             We look forward to serving you a conscious <br/>
                                             dining experience!
                                         </p>
-                                        <a href="javascript:void(0);">
+                                        <a onClick={printDiv} className="pointer">
                                             <img src={download} alt=""/>
                                             Download Invoice
                                         </a>
