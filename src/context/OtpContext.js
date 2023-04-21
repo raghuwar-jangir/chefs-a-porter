@@ -17,7 +17,7 @@ const OtpProvider = (props) => {
     const path = useLocation();
     const currentPath = path.pathname.split("/")[1];
     const {data} = useContext(CmsContext);
-    const {eventId, supperClubDetailId} = useContext(UsersContext);
+    const {eventId, supperClubDetailId,commonCityData} = useContext(UsersContext);
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
     const [otpNumber, setOtpNumber] = useState('');
     const [verifyOtp, setVerifyOtp] = useState('');
@@ -110,8 +110,6 @@ const OtpProvider = (props) => {
                 email: eventData.email,
                 mobile: otpNumber,
                 type: "chef_table",
-                // meal: priveeData.experience,
-                // diner_count: priveeData.numberOfDiner,
                 meal: priveeData.time,
                 diner_count: numberOfDinner,
                 courses: numberOfCourses,
@@ -119,7 +117,6 @@ const OtpProvider = (props) => {
                 booking_date: priveeData.date,
                 booking_time: eventData.startTime,
                 otp: verifyOtp,
-                // menu_selection: "host",
                 common_menu: PaymentEventId,
                 message: customerInfo?.message,
                 common_address: {
@@ -147,15 +144,11 @@ const OtpProvider = (props) => {
                 email: superClubBookingDetails?.email,
                 mobile: otpNumber,
                 type: "chef_event",
-                // event: "642d5567086e9b0e5f84e65c",
                 event: sPaymentEventId,
                 meal: experienceNumberOfTime,
                 diner_count: experienceNumberOfSeats,
-                // courses: eventData?.numberOfCourses,
-                // city: superClubBookingDetails.foodPreference,
-                city: cityName ? cityName : 'Mumbai',
+                city: cityName ? cityName : commonCityData[0].name,
                 booking_date: experienceNumberOfDates,
-                // booking_date: priveeData?.date,
                 common_menu: supperClubDetailId,
                 message: superClubBookingDetails?.AdditionalMessage,
                 otp: verifyOtp,

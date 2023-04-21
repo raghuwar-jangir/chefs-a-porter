@@ -88,7 +88,7 @@ const ChefDetails = (props) => {
     // const longText = "From Bangalore to the Culinary Institute of America in New York. He has developed his skills and love for the culinary arts. From Bangalore to the Culinary ..."
 
     const itemData = {
-        img: userData?.experinces[0]?.cover_picture,
+        img: userData?.experinces[0]?.cover_picture ? userData?.experinces[0]?.cover_picture : chef2,
         title: "chef1",
     };
 

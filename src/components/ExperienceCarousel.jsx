@@ -26,17 +26,20 @@ const ExperienceCarousel = (props) => {
             lineHeight: '30px !important',
             color: '#FBFBFB !important',
             textAlign: 'center !important',
-            letterSpacing: '0.06em',
-            fontWeight: 700
+            letterSpacing:'0.06em',
+            fontWeight:700
         },
         '.slider-box': {
             marginTop: '40px'
         },
         ".swiper-slide": {
-            width: '350px !important'
+            width: '401px !important'
         },
         '.pl': {
             paddingLeft: '120px'
+        },
+        '.img':{
+            height:"299.31px !important"
         },
         "@media (min-width: 1px) and (max-width:425px)": {
             '.main-box': {
@@ -63,13 +66,14 @@ const ExperienceCarousel = (props) => {
                     <Box className='slider-box'>
                         <Swiper
                             slidesPerView={4.5}
-                            spaceBetween={8}
+                            spaceBetween={20}
                             className="mySwiper pl"
                         >
                             {data.privee.experiences.experiences.results.map((item) => {
                                 return (
                                     <>
                                         <SwiperSlide><AvlExperienceCarousel
+                                            className="img"
                                             // image={item.user.picture}
                                             image={item.cover_picture}
                                             title={item.title} description={`by ${item.user.name}`}

@@ -179,21 +179,44 @@ const MainContentBox = styled(Box)({
         }
     }
 })
-
+let labels2 = [
+    {
+        text: 'Conscious Dining'
+    },
+    {
+        text: 'Championing Chefs'
+    },
+    {
+        text: 'Community'
+    }
+];
 const EventChefCarousel = (props) => {
 
     const {userData} = useContext(UsersContext);
     const {data} = useContext(CmsContext);
 
-    const labels = userData?.user?.details?.sliders?.map((item) => {
+    const labels = (userData?.user?.details?.sliders?.map((item) => {
         return item.text
-    })
+    }) ? userData?.user?.details?.sliders?.map((item) => {
+        return item.text
+    }) : labels2?.map((item) => {
+        return item.text
+    }))
 
     const image = userData?.user?.details?.sliders?.map((item) => {
         return item.image
     })
-
-    // let labels = ['Conscious Dining', 'Championing Chefs', 'Community'];
+    const dining = [
+        {
+            img: diningPicture
+        },
+        {
+            img: diningPicture
+        },
+        {
+            img: diningPicture
+        }
+    ]
     const {title} = props
     return (
         <React.Fragment>
@@ -225,9 +248,13 @@ const EventChefCarousel = (props) => {
                             modules={[Pagination, Autoplay]}
                             className="mySwiper"
                         >
-                            {image?.map((item) => {
+                            {(image?.map((item)=> {
                                 return <SwiperSlide><img className='img' src={item}></img></SwiperSlide>
-                            })}
+                            }))? (image?.map((item)=> {
+                                return <SwiperSlide><img className='img' src={item}></img></SwiperSlide>
+                            })) :  (dining?.map((item)=> {
+                                return <SwiperSlide><img className='img' src={item.img}></img></SwiperSlide>
+                            }))}
                             ...
                         </Swiper>
                     </>

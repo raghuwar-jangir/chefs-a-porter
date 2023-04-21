@@ -39,15 +39,15 @@ const ImagePopCarousel = ({ title }) => {
     const { setEventId, userData } = useContext(UsersContext);
     const itemData = [
         {
-            img: userData.experinces[0].cover_picture,
+            img: userData?.experinces[0]?.cover_picture ? userData?.experinces[0]?.cover_picture : userData?.details?.gallery_pictures[0],
             title: "chef1",
         },
         {
-            img: userData.details.gallery_pictures[0],
+            img: userData?.details?.gallery_pictures[0],
             title: " sGallery",
         },
         {
-            img: userData.details.gallery_pictures[1],
+            img: userData?.details?.gallery_pictures[1],
             title: "chef2",
         },
     ];

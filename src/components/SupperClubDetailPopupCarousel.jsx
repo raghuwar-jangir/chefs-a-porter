@@ -50,19 +50,19 @@ const SupperClubDetailPopupCarousel = ({ title }) => {
             title: "img1",
         },
         {
-            img: userData?.pictures[1],
+            img: userData?.pictures[1] ? userData?.pictures[1] : userData?.pictures[0],
             title: "img2",
         },
         {
-            img: userData?.pictures[2],
+            img: userData?.pictures[2] ? userData?.pictures[1] : userData?.pictures[0],
             title: "img3",
         },
         {
-            img: userData?.pictures[3],
+            img: userData?.pictures[3] ? userData?.pictures[1] : userData?.pictures[0],
             title: "img4",
         },
         {
-            img: userData?.pictures[4],
+            img: userData?.pictures[4] ? userData?.pictures[1] : userData?.pictures[0],
             title: "img5",
         },
     ];
