@@ -10,6 +10,7 @@ import styled from "styled-components";
 import {Box} from "@mui/system";
 import "../assets/styles/fontStyle.css";
 import UsersContext from "../context/UsersContext";
+import * as _ from "lodash";
 
 const MainBox = styled(Box)({
     ".swiper-button-prev": {
@@ -44,28 +45,24 @@ const MainBox = styled(Box)({
 const EventPopUpCarousel = ({title}) => {
     const getEventId = "640b22b691e7236a1d0a264e";
     const {setEventId, userData} = useContext(UsersContext);
-    const itemData = [
+    const itemData = 
         {
             img: userData.cover_picture,
             title: "chef1",
-        },
-        {
-            img: userData.user.details.gallery_pictures[0],
-            title: "sGallery",
-        },
-        {
-            img: userData.user.details.gallery_pictures[0],
-            title: "sGallery",
-        },
-        {
-            img: userData.user.details.gallery_pictures[1],
-            title: "chef2",
-        },
-        {
-            img: userData.user.details.gallery_pictures[1],
-            title: "chef2",
-        },
-    ];
+        }
+    const itemData2 = _.map(_.get(userData, "pictures", []), (item, index) => {
+        return {
+          img: item,
+           title:
+        index === 0
+          ? "sGallery"
+          : index === 1
+          ? "chef2"
+          : index === 2
+          ? "chef3"
+          : "chef4",
+        };
+      });
     return (
         <React.Fragment>
             <MainBox>
@@ -89,7 +86,7 @@ const EventPopUpCarousel = ({title}) => {
                                                 : 0
                         }`}
                     >
-                        {itemData.map((item) => (
+                        {itemData2.map((item) => (
                             <SwiperSlide>
                                 <img className="carousel-img" src={item.img}/>
                             </SwiperSlide>

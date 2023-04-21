@@ -29,7 +29,6 @@ import Cookies from "js-cookie";
 const SupperClub = () => {
     const { data } = useContext(CmsContext);
     const { commonCityData } = useContext(UsersContext);
-
     const MainBox = styled(Box)(() => ({
         ".home-banner": {
             marginTop: "25px",
@@ -239,8 +238,8 @@ const SupperClub = () => {
             fontFamily: "ProximaNovaA-Regular",
             fontStyle: "normal",
             fontWeight: 600,
-            fontSize: "24px",
-            lineHeight: "29px",
+            fontSize: "24px !important",
+            lineHeight: "29px !important",
             textAlign: "center",
             color: "#C6A87D",
             marginBottom: "0.5rem",

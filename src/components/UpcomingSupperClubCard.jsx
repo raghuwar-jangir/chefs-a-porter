@@ -167,7 +167,7 @@ const UpcomingSupperClubCard = () => {
                         }}
                              style={{cursor: 'pointer'}}>
                             <Box sx={{position: 'relative'}}>
-                                <img className='test-img' src={item.pictures}/>
+                                <img className='test-img' src={item.pictures[0]}/>
                                 {
                                     item.status &&
                                     <Box className='trending'>
