@@ -65,8 +65,8 @@ const images = [
 ];
 const SupperClubDetail = (props) => {
     const {setSupperClubDetailId, userData} = useContext(UsersContext);
-    const getSupperClubDetailId = "62fe25e2d75a11bcf635e206";
-    // const getSupperClubDetailId = props?.params?.supperClubDetailId;
+    // const getSupperClubDetailId = "62fe25e2d75a11bcf635e206";
+    const getSupperClubDetailId = props?.params?.supperClubDetailId;
 
     const groupedDates = _.groupBy(userData?.new_dates, (item) => item.date);
     const showDates = Object.values(groupedDates);
