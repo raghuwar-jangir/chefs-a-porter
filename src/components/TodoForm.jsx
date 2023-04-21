@@ -12,14 +12,14 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import * as _ from "lodash";
 import Cookies from "js-cookie";
 const validationSchemaTodo = Yup.object().shape({
-  name: Yup.string().required("Name is required"),
-  email: Yup.string()
-    .email("Incorrect Email Id")
-    .required("please enter email"),
-  contact: Yup.number()
-    .typeError("That doesn't look like a phone number")
-    .min(10)
-    .required("contactNumber is required"),
+    name: Yup.string().required("Name is required"),
+    email: Yup.string()
+        .email("Incorrect Email Id")
+        .required("please enter email"),
+    contact: Yup.number()
+        .typeError("That doesn't look like a phone number")
+        .min(10)
+        .required("contactNumber is required"),
 });
 const TodoForm = ({
   setTodos,
