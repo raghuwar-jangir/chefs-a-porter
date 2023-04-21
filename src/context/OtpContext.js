@@ -18,7 +18,7 @@ const OtpProvider = (props) => {
     const path = useLocation();
     const currentPath = path.pathname.split("/")[1];
     const {data} = useContext(CmsContext);
-    const {eventId, supperClubDetailId, commonCityData} = useContext(UsersContext);
+    const {eventId, supperClubDetailId, commonCityData,mealData} = useContext(UsersContext);
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
     const [otpNumber, setOtpNumber] = useState('');
     const [verifyOtp, setVerifyOtp] = useState('');
@@ -111,7 +111,7 @@ const OtpProvider = (props) => {
                 email: eventData.email,
                 mobile: otpNumber,
                 type: "chef_table",
-                meal: priveeData.time,
+                meal: priveeData.time ? priveeData.time : mealData[0].name,
                 diner_count: numberOfDinner,
                 courses: numberOfCourses,
                 city: priveeData.city,
@@ -162,6 +162,8 @@ const OtpProvider = (props) => {
                     Cookies.set('supperClubBookingId', JSON.stringify(response.data.id));
                     Cookies.set('supperClubConfirmBookingId', JSON.stringify(response.data.id));
                 }
+                const supperClubBookingId=response.data.id;
+                navigate(`/ticketed-booking-summary/${supperClubBookingId}`);
             })
         }
     }, [otpNumber, verifyOtp, resendOtp, isStatus, isSupperClubStatus])

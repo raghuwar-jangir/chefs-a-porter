@@ -866,29 +866,8 @@ const ScBookingSummary = () => {
                                         className="cust-details dinner-box"
                                     >
                                         <Box className="per-dinner adsss">
-                                            {/*<Box>*/}
-                                            {/*    <Stack*/}
-                                            {/*        className="date-stack"*/}
-                                            {/*    >*/}
-                                            {/*        {!_.isEmpty(supperClubPaymentData) &&*/}
-                                            {/*            <Typography className="date-description">*/}
-                                            {/*                {moment(supperClubPaymentData?.event?.dates[0]).format("MMMM D")}*/}
-                                            {/*            </Typography>*/}
-                                            {/*        }*/}
-                                            {/*        <span className="line">|</span>*/}
-                                            {/*        <Typography className="date-description">*/}
-                                            {/*            {" "}*/}
-                                            {/*            /!*7:30 PM - 10 PM*!/*/}
-                                            {/*            {moment(supperClubPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}*/}
-                                            {/*        </Typography>*/}
-                                            {/*        <span className="line">|</span>*/}
-                                            {/*        <Typography className="date-description">*/}
-                                            {/*            {supperClubPaymentData?.event?.venue}*/}
-                                            {/*        </Typography>*/}
-                                            {/*    </Stack>*/}
-                                            {/*</Box>*/}
                                             <Box className="event-div">
-                                                <img src={supperClubPaymentData?.event?.pictures[0]} alt=""
+                                                <img src={supperClubPaymentData?.event?.chef?.picture} alt=""
                                                      className="per-dinner-img"/>
                                                 <Box sx={{marginLeft: "12px"}}>
                                                     <Typography className="event-title">
@@ -925,30 +904,45 @@ const ScBookingSummary = () => {
                                                             <Typography className="table-details">Ticket
                                                                 Price</Typography>
                                                             <Typography
-                                                                className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubPaymentData?.payment?.ticket_price)}</Typography>
+                                                                className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                style: 'currency',
+                                                                currency: 'INR'
+                                                            }).format(supperClubPaymentData?.payment?.ticket_price)}</Typography>
                                                         </Box>
                                                         <Box className="table-box border-tb ">
                                                             <Typography className="table-details table-details-pt">Sub
                                                                 Total</Typography>
                                                             <Typography
-                                                                className="table-details table-details-pt">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubPaymentData?.payment?.sub_total)}</Typography>
+                                                                className="table-details table-details-pt">{new Intl.NumberFormat('en-IN', {
+                                                                style: 'currency',
+                                                                currency: 'INR'
+                                                            }).format(supperClubPaymentData?.payment?.sub_total)}</Typography>
                                                         </Box>
                                                         <Box className="table-box">
                                                             <Typography className="table-details table-details-pt">GST
                                                                 @5%</Typography>
                                                             <Typography
-                                                                className="table-details table-details-pt">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubPaymentData?.payment?.GST)}</Typography>
+                                                                className="table-details table-details-pt">{new Intl.NumberFormat('en-IN', {
+                                                                style: 'currency',
+                                                                currency: 'INR'
+                                                            }).format(supperClubPaymentData?.payment?.GST)}</Typography>
                                                         </Box>
                                                         <Box className="table-box">
                                                             <Typography className="table-details">Service Charge
                                                                 @10%</Typography>
                                                             <Typography
-                                                                className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubPaymentData?.payment?.service_charges)}</Typography>
+                                                                className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                style: 'currency',
+                                                                currency: 'INR'
+                                                            }).format(supperClubPaymentData?.payment?.service_charges)}</Typography>
                                                         </Box>
                                                         <Box className="table-box border">
                                                             <Typography className="grand-total">Grand Total</Typography>
                                                             <Typography
-                                                                className="grand-total">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubPaymentData?.payment?.total)}</Typography>
+                                                                className="grand-total">{new Intl.NumberFormat('en-IN', {
+                                                                style: 'currency',
+                                                                currency: 'INR'
+                                                            }).format(supperClubPaymentData?.payment?.total)}</Typography>
                                                         </Box>
                                                     </Box>
                                                 }

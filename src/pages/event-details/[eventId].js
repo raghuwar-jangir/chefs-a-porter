@@ -456,7 +456,7 @@ const EventDetails = (props) => {
                                 <Box className="header-club">
                                     <ArrowBackIcon className="header-icon"/>
                                     <Typography className="chef-mobile-heading">
-                                        Privée
+                                        Private
                                     </Typography>
                                 </Box>
                             ) : (

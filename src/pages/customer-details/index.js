@@ -62,12 +62,15 @@ const CustomerDetails = (props) => {
     const [customerInfo, setCustomerInfo] = useState('')
     const cookieValue = Cookies?.get('customerData');
     const cDsPaymentCookieVal = Cookies?.get('CPaymentInfo');
+    const[privateEventData,setPrivateEventData]=useState()
+
     // const [customerDetailsPaymentCalculation, setCustomerDetailsPaymentCalculation] = useState();
 
     useEffect(() => {
         if (cookieValue) {
             setCustomerInfo(JSON.parse(cookieValue));
         }
+        setPrivateEventData(JSON.parse(localStorage.getItem('privateEventData')))
         // if (cDsPaymentCookieVal) {
         //     setCustomerDetailsPaymentCalculation(JSON.parse(cDsPaymentCookieVal));
         // }
@@ -466,7 +469,7 @@ const CustomerDetails = (props) => {
             fontSize: '20px',
             lineHeight: '24px',
             color: '#FBFBFB',
-            padding:'16px 0px'
+            padding: '16px 0px'
         },
         '.border': {
             borderTop: '1px solid rgba(255, 255, 255, 0.6)',
@@ -892,7 +895,7 @@ const CustomerDetails = (props) => {
                                 <ArrowBackIcon className="arrow-left" onClick={() => {
                                     navigate(`/event-details/${eventId}`)
                                 }}/>
-                                <Typography className="addons-title">Book a Traditional Oma Kase</Typography>
+                                <Typography className="addons-title">Book {privateEventData?.title}</Typography>
                             </Box>
                             <Box className="row customer-details addons-div">
                                 <Formik
@@ -963,7 +966,7 @@ const CustomerDetails = (props) => {
                                                                 <TextField type="tel" name="address"
                                                                            className="form-control"
                                                                            id="validationCustom03"
-                                                                           placeholder="Add Address"
+                                                                           placeholder="Please select your address from the Venues"
                                                                            value={values.address}
                                                                     //        value={formAddress}
                                                                            onChange={handleChange}
@@ -1214,14 +1217,12 @@ const CustomerDetails = (props) => {
                                                       className="cust-details position">
                                                     <Box className="per-dinner adsss">
                                                         <Box className="event-div">
-                                                            <img src={sGallery} alt="" className="per-dinner-img"/>
+                                                            <img src={privateEventData?.cover_picture} alt="" className="per-dinner-img"/>
                                                             <Box sx={{marginLeft: '12px'}}>
-                                                                <Typography className="event-title">The Big Fat Parsi
-                                                                    Blowout</Typography>
+                                                                <Typography className="event-title">{privateEventData?.title}</Typography>
                                                                 <Typography className="event-subtitle">Curated by <a
                                                                     href="#"
-                                                                    className="event-link">Chef
-                                                                    Mako</a></Typography>
+                                                                    className="event-link">{privateEventData?.user?.name}</a></Typography>
                                                                 <Typography className='rating-star'>
                                                                     <StarIcon
                                                                         sx={{
@@ -1250,35 +1251,58 @@ const CustomerDetails = (props) => {
                                                                         <Typography
                                                                             className="table-details">Experience*</Typography>
                                                                         <Typography
-                                                                            className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(customerDetailsPaymentCalculation?.experience)}</Typography>
+                                                                            className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                            style: 'currency',
+                                                                            currency: 'INR'
+                                                                        }).format(customerDetailsPaymentCalculation?.experience)}</Typography>
                                                                     </Box>
                                                                     <Box className="table-box">
                                                                         <Typography
                                                                             className="table-details">Service
                                                                             Staff**</Typography>
                                                                         <Typography
-                                                                            className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(customerDetailsPaymentCalculation?.service_staff)}</Typography>
+                                                                            className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                            style: 'currency',
+                                                                            currency: 'INR'
+                                                                        }).format(customerDetailsPaymentCalculation?.service_staff)}</Typography>
                                                                     </Box>
                                                                     <Box className="table-box border table-details-pt">
                                                                         <Typography
                                                                             className="table-details">Sub
                                                                             total</Typography>
                                                                         <Typography
-                                                                            className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(customerDetailsPaymentCalculation?.sub_total)}</Typography>
+                                                                            className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                            style: 'currency',
+                                                                            currency: 'INR'
+                                                                        }).format(customerDetailsPaymentCalculation?.sub_total)}</Typography>
                                                                     </Box>
                                                                     <Box className="table-box table-details-pt">
-                                                                        <Typography className="table-details">GST @5%</Typography>
-                                                                        <Typography className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(customerDetailsPaymentCalculation?.GST)}</Typography>
+                                                                        <Typography className="table-details">GST
+                                                                            @5%</Typography>
+                                                                        <Typography
+                                                                            className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                            style: 'currency',
+                                                                            currency: 'INR'
+                                                                        }).format(customerDetailsPaymentCalculation?.GST)}</Typography>
                                                                     </Box>
                                                                     <Box className="table-box">
-                                                                        <Typography className="table-details">Service Charges @10%</Typography>
-                                                                        <Typography className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(customerDetailsPaymentCalculation?.service_charges)}</Typography>
+                                                                        <Typography className="table-details">Service
+                                                                            Charges @10%</Typography>
+                                                                        <Typography
+                                                                            className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                            style: 'currency',
+                                                                            currency: 'INR'
+                                                                        }).format(customerDetailsPaymentCalculation?.service_charges)}</Typography>
                                                                     </Box>
                                                                     <Box className="table-box border">
                                                                         <Typography
-                                                                            className="grand-total">Grand Total</Typography>
+                                                                            className="grand-total">Grand
+                                                                            Total</Typography>
                                                                         <Typography
-                                                                            className="grand-total">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(customerDetailsPaymentCalculation?.total)}</Typography>
+                                                                            className="grand-total">{new Intl.NumberFormat('en-IN', {
+                                                                            style: 'currency',
+                                                                            currency: 'INR'
+                                                                        }).format(customerDetailsPaymentCalculation?.total)}</Typography>
                                                                     </Box>
                                                                     <Box className="tax tax1">
                                                                         <Typography className="table-details">*Includes

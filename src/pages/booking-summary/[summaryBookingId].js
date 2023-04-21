@@ -52,7 +52,7 @@ const BookingSummary = (props) => {
     const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
 
-   const printDiv = () => {
+    const printDiv = () => {
         window.print();
     }
 
@@ -80,7 +80,8 @@ const BookingSummary = (props) => {
     const oderIDCookieValue = Cookies?.get("razorpayOrderId");
     const razorpayOrderId = oderIDCookieValue?.replaceAll('"', "");
     const [razorpayData, setRazorpayData] = useState();
-    const [privateBookingOrderNo,setPrivateBookingOrderNo]=useState();
+    const [privateBookingOrderNo, setPrivateBookingOrderNo] = useState();
+    const [privateEventData, setPrivateEventData] = useState();
 
     useEffect(() => {
         if (cookieValue) {
@@ -90,6 +91,7 @@ const BookingSummary = (props) => {
             setRazorpayData(JSON.parse(bookingCookieValue));
         }
         setPrivateBookingOrderNo(JSON.parse(localStorage.getItem('privateBookingOrderNumber')));
+        setPrivateEventData(JSON.parse(localStorage.getItem('privateEventData')))
     }, [cookieValue, bookingCookieValue])
 
     const initialValues = {
@@ -888,8 +890,8 @@ const BookingSummary = (props) => {
             backgroundClip: "paddingBox",
             outline: "0",
         },
-        '.pointer':{
-            cursor:'pointer'
+        '.pointer': {
+            cursor: 'pointer'
         },
         ".close": {
             border: "none !important",
@@ -1111,8 +1113,8 @@ const BookingSummary = (props) => {
             borderTop: "1px solid rgba(255, 255, 255, 0.6)",
             borderBottom: "1px solid rgba(255, 255, 255, 0.6)",
         },
-        '.pt-16':{
-            paddingTop:'16px'
+        '.pt-16': {
+            paddingTop: '16px'
         },
         ".grand-total": {
             padding: "10px 0px !important",
@@ -1187,9 +1189,9 @@ const BookingSummary = (props) => {
                                                             <Box className="booking-box">
                                                                 <Box class="chef-edit">
                                                                     <img className="chef-edit-img"
-                                                                         src={bsPaymentData?.common_menu?.user?.picture}/>
+                                                                         src={privateEventData?.user?.picture}/>
                                                                     <Typography className="chef-edit-title">
-                                                                        {bsPaymentData?.common_menu?.user?.name}
+                                                                        {privateEventData?.user?.name}
                                                                     </Typography>
                                                                     <CreateIcon className="pencil-icon"/>
                                                                 </Box>
@@ -1385,22 +1387,15 @@ const BookingSummary = (props) => {
                                                         >
                                                             <Box className="per-dinner adsss">
                                                                 <Box className="event-div">
-                                                                    <img
-                                                                        src={sGallery}
-                                                                        alt=""
-                                                                        className="per-dinner-img"
-                                                                    />
-                                                                    <Box sx={{marginLeft: "12px"}}>
-                                                                        <Typography className="event-title">
-                                                                            {/*The Big Fat Parsi Blowout*/}
-                                                                            {bsPaymentData?.common_menu?.title}
-                                                                        </Typography>
-                                                                        <Typography className="event-subtitle">
-                                                                            Curated by{" "}
-                                                                            <a href="#" className="event-link">
-                                                                                {bsPaymentData?.common_menu?.user?.name}
-                                                                            </a>
-                                                                        </Typography>
+                                                                    <img src={privateEventData?.cover_picture} alt=""
+                                                                         className="per-dinner-img"/>
+                                                                    <Box sx={{marginLeft: '12px'}}>
+                                                                        <Typography
+                                                                            className="event-title">{privateEventData?.title}</Typography>
+                                                                        <Typography className="event-subtitle">Curated
+                                                                            by <a
+                                                                                href="#"
+                                                                                className="event-link">{privateEventData?.user?.name}</a></Typography>
                                                                         <Typography className="rating-star">
                                                                             <StarIcon
                                                                                 sx={{
@@ -1434,14 +1429,20 @@ const BookingSummary = (props) => {
                                                                                 <Typography
                                                                                     className="table-details">Experience*</Typography>
                                                                                 <Typography
-                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.experience)}</Typography>
+                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'INR'
+                                                                                }).format(bsPaymentData?.payment?.experience)}</Typography>
                                                                             </Box>
                                                                             <Box className="table-box">
                                                                                 <Typography
                                                                                     className="table-details">Service
                                                                                     Staff**</Typography>
                                                                                 <Typography
-                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.service_staff)}</Typography>
+                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'INR'
+                                                                                }).format(bsPaymentData?.payment?.service_staff)}</Typography>
                                                                             </Box>
                                                                             <Box
                                                                                 className="table-box border table-details-pt">
@@ -1449,19 +1450,28 @@ const BookingSummary = (props) => {
                                                                                     className="table-details">Sub
                                                                                     total</Typography>
                                                                                 <Typography
-                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.sub_total)}</Typography>
+                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'INR'
+                                                                                }).format(bsPaymentData?.payment?.sub_total)}</Typography>
                                                                             </Box>
                                                                             <Box className="table-box table-details-pt">
                                                                                 <Typography className="table-details">GST
                                                                                     @5%</Typography>
                                                                                 <Typography
-                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.GST)}</Typography>
+                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'INR'
+                                                                                }).format(bsPaymentData?.payment?.GST)}</Typography>
                                                                             </Box>
                                                                             <Box className="table-box">
                                                                                 <Typography className="table-details">Service
                                                                                     Charges @10%</Typography>
                                                                                 <Typography
-                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.service_charges)}</Typography>
+                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'INR'
+                                                                                }).format(bsPaymentData?.payment?.service_charges)}</Typography>
                                                                             </Box>
                                                                             {
                                                                                 bsPaymentData?.payment?.discount && bsPaymentData?.payment?.voucher ? (
@@ -1470,13 +1480,19 @@ const BookingSummary = (props) => {
                                                                                             <Typography
                                                                                                 className="table-details">Discount</Typography>
                                                                                             <Typography
-                                                                                                className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.discount)}</Typography>
+                                                                                                className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                                                style: 'currency',
+                                                                                                currency: 'INR'
+                                                                                            }).format(bsPaymentData?.payment?.discount)}</Typography>
                                                                                         </Box>
                                                                                         <Box className="table-box">
                                                                                             <Typography
                                                                                                 className="table-details">Voucher</Typography>
                                                                                             <Typography
-                                                                                                className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.voucher)}</Typography>
+                                                                                                className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                                                style: 'currency',
+                                                                                                currency: 'INR'
+                                                                                            }).format(bsPaymentData?.payment?.voucher)}</Typography>
                                                                                         </Box>
                                                                                     </>
                                                                                 ) : ('')
@@ -1486,7 +1502,10 @@ const BookingSummary = (props) => {
                                                                                     className="grand-total">Grand
                                                                                     Total</Typography>
                                                                                 <Typography
-                                                                                    className="grand-total">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.total)}</Typography>
+                                                                                    className="grand-total">{new Intl.NumberFormat('en-IN', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'INR'
+                                                                                }).format(bsPaymentData?.payment?.total)}</Typography>
                                                                             </Box>
                                                                             <Box className="form-group1">
                                                                                 <input
@@ -1532,7 +1551,10 @@ const BookingSummary = (props) => {
                                                                                 onClick={handlePayment}
                                                                             >
                                                                                 Proceed to pay
-                                                                                {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.total)}
+                                                                                {new Intl.NumberFormat('en-IN', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'INR'
+                                                                                }).format(bsPaymentData?.payment?.total)}
                                                                                 {/*Proceed to pay ₹25,000*/}
                                                                             </button>
                                                                         </Box>
@@ -1581,9 +1603,9 @@ const BookingSummary = (props) => {
                                                             <Box className="booking-box">
                                                                 <Box class="chef-edit">
                                                                     <img className="chef-edit-img"
-                                                                         src={priveePaymentData?.common_menu?.user?.picture}/>
+                                                                         src={privateEventData?.user?.picture}/>
                                                                     <Typography className="chef-edit-title">
-                                                                        {priveePaymentData?.common_menu?.user?.name}
+                                                                        {privateEventData?.user?.name}
                                                                     </Typography>
                                                                     <CreateIcon className="pencil-icon"/>
                                                                 </Box>
@@ -1828,20 +1850,30 @@ const BookingSummary = (props) => {
                                                                                 <Typography
                                                                                     className="table-details">Experience*</Typography>
                                                                                 <Typography
-                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(priveePaymentData?.payment?.experience)}</Typography>
+                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'INR'
+                                                                                }).format(priveePaymentData?.payment?.experience)}</Typography>
                                                                             </Box>
                                                                             <Box className="table-box">
                                                                                 <Typography
                                                                                     className="table-details">Service
                                                                                     Staff**</Typography>
                                                                                 <Typography
-                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(priveePaymentData?.payment?.service_staff)}</Typography>
+                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'INR'
+                                                                                }).format(priveePaymentData?.payment?.service_staff)}</Typography>
                                                                             </Box>
                                                                             <Box className="table-box">
                                                                                 <Typography
-                                                                                    className="table-details">Addon Cost</Typography>
+                                                                                    className="table-details">Addon
+                                                                                    Cost</Typography>
                                                                                 <Typography
-                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(priveePaymentData?.payment?.addon_cost)}</Typography>
+                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'INR'
+                                                                                }).format(priveePaymentData?.payment?.addon_cost)}</Typography>
                                                                             </Box>
                                                                             <Box
                                                                                 className="table-box border table-details-pt">
@@ -1849,19 +1881,28 @@ const BookingSummary = (props) => {
                                                                                     className="table-details">Sub
                                                                                     total</Typography>
                                                                                 <Typography
-                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(priveePaymentData?.payment?.sub_total)}</Typography>
+                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'INR'
+                                                                                }).format(priveePaymentData?.payment?.sub_total)}</Typography>
                                                                             </Box>
                                                                             <Box className="table-box table-details-pt">
                                                                                 <Typography className="table-details">GST
                                                                                     @5%</Typography>
                                                                                 <Typography
-                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(priveePaymentData?.payment?.GST)}</Typography>
+                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'INR'
+                                                                                }).format(priveePaymentData?.payment?.GST)}</Typography>
                                                                             </Box>
                                                                             <Box className="table-box">
                                                                                 <Typography className="table-details">Service
                                                                                     Charges @10%</Typography>
                                                                                 <Typography
-                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(priveePaymentData?.payment?.service_charges)}</Typography>
+                                                                                    className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'INR'
+                                                                                }).format(priveePaymentData?.payment?.service_charges)}</Typography>
                                                                             </Box>
                                                                             {
                                                                                 priveePaymentData?.payment?.discount && priveePaymentData?.payment?.voucher ? (
@@ -1870,7 +1911,10 @@ const BookingSummary = (props) => {
                                                                                             <Typography
                                                                                                 className="table-details">Discount</Typography>
                                                                                             <Typography
-                                                                                                className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(priveePaymentData?.payment?.discount)}</Typography>
+                                                                                                className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                                                style: 'currency',
+                                                                                                currency: 'INR'
+                                                                                            }).format(priveePaymentData?.payment?.discount)}</Typography>
                                                                                         </Box>
                                                                                         <Box className="table-box">
                                                                                             <Typography
@@ -1886,7 +1930,10 @@ const BookingSummary = (props) => {
                                                                                     className="grand-total">Grand
                                                                                     Total</Typography>
                                                                                 <Typography
-                                                                                    className="grand-total">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(priveePaymentData?.payment?.total)}</Typography>
+                                                                                    className="grand-total">{new Intl.NumberFormat('en-IN', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'INR'
+                                                                                }).format(priveePaymentData?.payment?.total)}</Typography>
                                                                             </Box>
                                                                             <Box className="form-group1">
                                                                                 <input
@@ -1932,7 +1979,10 @@ const BookingSummary = (props) => {
                                                                                 onClick={handlePayment}
                                                                             >
                                                                                 Proceed to pay
-                                                                                {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(priveePaymentData?.payment?.total)}
+                                                                                {new Intl.NumberFormat('en-IN', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'INR'
+                                                                                }).format(priveePaymentData?.payment?.total)}
                                                                                 {/*Proceed to pay ₹25,000*/}
                                                                             </button>
                                                                         </Box>
@@ -2195,38 +2245,60 @@ const BookingSummary = (props) => {
                                                             <div className="table-box">
                                                                 <span>Experience*</span>
                                                                 <span
-                                                                    className="price">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.experience)}</span>
+                                                                    className="price">{new Intl.NumberFormat('en-IN', {
+                                                                    style: 'currency',
+                                                                    currency: 'INR'
+                                                                }).format(bsPaymentData?.payment?.experience)}</span>
                                                             </div>
                                                             <div className="table-box">
                                                                 <span>Service Staff**</span>
                                                                 <span
-                                                                    className="price">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.service_staff)}</span>
+                                                                    className="price">{new Intl.NumberFormat('en-IN', {
+                                                                    style: 'currency',
+                                                                    currency: 'INR'
+                                                                }).format(bsPaymentData?.payment?.service_staff)}</span>
                                                             </div>
                                                             <Box className="table-box">
                                                                 <Typography
                                                                     className="price">Addon Cost</Typography>
                                                                 <Typography
-                                                                    className="price">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.addon_cost)}</Typography>
+                                                                    className="price">{new Intl.NumberFormat('en-IN', {
+                                                                    style: 'currency',
+                                                                    currency: 'INR'
+                                                                }).format(bsPaymentData?.payment?.addon_cost)}</Typography>
                                                             </Box>
                                                             <div className="table-box border-tb pt-16">
                                                                 <span>Sub total</span>
-                                                                <span className="price">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.sub_total)}</span>
+                                                                <span
+                                                                    className="price">{new Intl.NumberFormat('en-IN', {
+                                                                    style: 'currency',
+                                                                    currency: 'INR'
+                                                                }).format(bsPaymentData?.payment?.sub_total)}</span>
                                                             </div>
                                                             <div className="table-box pt-16">
                                                                 <span className="price">GST @5%</span>
                                                                 <span
-                                                                    className="price">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.GST)}</span>
+                                                                    className="price">{new Intl.NumberFormat('en-IN', {
+                                                                    style: 'currency',
+                                                                    currency: 'INR'
+                                                                }).format(bsPaymentData?.payment?.GST)}</span>
                                                             </div>
                                                             <div className="table-box">
                                                                 <span
                                                                     className="price">Service Charges @10%</span>
                                                                 <span
-                                                                    className="price">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.service_charges)}</span>
+                                                                    className="price">{new Intl.NumberFormat('en-IN', {
+                                                                    style: 'currency',
+                                                                    currency: 'INR'
+                                                                }).format(bsPaymentData?.payment?.service_charges)}</span>
                                                             </div>
                                                             <div className="table-box border">
                                                                 <span className="grand-total">Grand Total</span>
                                                                 <span
-                                                                    className="grand-total">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.total)}</span>
+                                                                    className="grand-total">{new Intl.NumberFormat('en-IN', {
+                                                                    style: 'currency',
+                                                                    currency: 'INR'
+                                                                }).format(bsPaymentData?.payment?.total)}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2235,7 +2307,10 @@ const BookingSummary = (props) => {
                                                             <div className="table-box">
                                                                 <span>Razorpay Payment</span>
                                                                 <span
-                                                                    className="price">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(bsPaymentData?.payment?.total)}</span>
+                                                                    className="price">{new Intl.NumberFormat('en-IN', {
+                                                                    style: 'currency',
+                                                                    currency: 'INR'
+                                                                }).format(bsPaymentData?.payment?.total)}</span>
                                                             </div>
                                                             <div className="table-box">
                                                                 <span

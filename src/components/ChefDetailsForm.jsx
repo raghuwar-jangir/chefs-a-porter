@@ -1,13 +1,13 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Box, styled, Typography } from "@mui/material";
-import { DatePickerInput } from "rc-datepicker";
-import React, { useEffect, useState, useContext } from "react";
+import {Formik, Form, Field, ErrorMessage} from "formik";
+import {Box, styled, Typography} from "@mui/material";
+import {DatePickerInput} from "rc-datepicker";
+import React, {useEffect, useState, useContext} from "react";
 import gInfo from "../assets/images/info.png";
 import drop from "../assets/images/drop.png";
 import Tooltip from "@material-ui/core/Tooltip";
 import Checkbox from "@mui/material/Checkbox";
 import "../assets/styles/fontStyle.css";
-import { navigate } from "gatsby";
+import {navigate} from "gatsby";
 import * as _ from "lodash";
 import Cookies from "js-cookie";
 import {
@@ -43,17 +43,25 @@ const theme = createMuiTheme({
 });
 
 const ChefDetailsForm = () => {
+
     const [chefInfo, setChefInfo] = useState("");
+    const [priveeData, setPriveeData] = useState()
     const cookieValue = Cookies?.get("eventData");
-    const { userData } = useContext(UsersContext);
+    const cookieValue1 = Cookies.get('priveeData');
+    const {userData} = useContext(UsersContext);
     {
         !_.isEmpty(cookieValue) &&
         useEffect(() => {
             if (cookieValue) {
                 setChefInfo(JSON.parse(cookieValue));
             }
+            if (cookieValue1) {
+                setPriveeData(JSON.parse(cookieValue1));
+            }
         }, [cookieValue]);
     }
+    console.log("priveeData========", priveeData)
+    console.log("chefInfo========", chefInfo)
     const handleClick = () => {
         navigate("/customer-details");
     };
@@ -313,21 +321,19 @@ const ChefDetailsForm = () => {
                 !_.isEmpty(userData) &&
                 <BoxWrapper>
                     <Typography className="sub-text-price">
-                        Starting at ₹{userData?.price_per_course} <sub className="sub-text">Per Diner</sub>
+                        Starting at ₹{userData?.price_per_course} <sub className="sub-text">Per Diner & Per Course</sub>
                     </Typography>
 
                     <Formik
                         initialValues={{
                             name: chefInfo?.name,
                             email: chefInfo?.email,
-                            experienceDate: chefInfo?.experienceDate
-                                ? chefInfo?.experienceDate
-                                : new Date(),
+                            experienceDate: priveeData?.date ? priveeData?.date : new Date(),
                             startTime: chefInfo?.startTime
                                 ? chefInfo?.startTime
                                 : new Date().getHours() + ":" + new Date().getMinutes(),
-                            numberOfDinner: 2,
-                            numberOfCourses:  6,
+                            numberOfDinner: priveeData?.diners ? priveeData?.diners : 2,
+                            numberOfCourses: priveeData?.diners >= 6 ? userData?.min_course : 6,
                         }}
                         validationSchema={validationSchema}
                         onSubmit={(values) => {
@@ -357,7 +363,7 @@ const ChefDetailsForm = () => {
                                         value={values.name}
                                         onChange={handleChange}
                                     />
-                                    <ErrorMessage component="div" name="name" />
+                                    <ErrorMessage component="div" name="name"/>
                                 </Box>
 
                                 <Box className="common-field-box">
@@ -371,7 +377,7 @@ const ChefDetailsForm = () => {
                                         placeholder="eg yourname@email.com"
                                         autoComplete="off"
                                     />
-                                    <ErrorMessage component="div" name="email" />
+                                    <ErrorMessage component="div" name="email"/>
                                 </Box>
 
                                 <Box className="date-time-box">
@@ -400,7 +406,7 @@ const ChefDetailsForm = () => {
                                                     <MuiThemeProvider theme={theme}>
                                                         <Tooltip title={tipTitle} arrow placement="top">
                                                             <Box>
-                                                                <img className="gInfo-logo" src={gInfo} />
+                                                                <img className="gInfo-logo" src={gInfo}/>
                                                             </Box>
                                                         </Tooltip>
                                                     </MuiThemeProvider>
@@ -431,12 +437,12 @@ const ChefDetailsForm = () => {
                                                 );
 
                                                 if (
-                                                    values.numberOfDinner -1 >= 2 &&
+                                                    values.numberOfDinner - 1 >= 2 &&
                                                     values.numberOfDinner - 1 <= 6
                                                 ) {
                                                     setFieldValue("numberOfCourses", 6);
-                                                } else if (values.numberOfDinner -1  > 6) {
-                                                    setFieldValue("numberOfCourses", userData?.min_course);
+                                                } else if (values.numberOfDinner - 1 > 6) {
+                                                    // setFieldValue("numberOfCourses", userData?.min_course);
                                                 }
                                             }}
                                         >
@@ -453,10 +459,10 @@ const ChefDetailsForm = () => {
                                                 );
                                                 if (
                                                     values.numberOfDinner + 1 >= 2 &&
-                                                    values.numberOfDinner +1  <= 6
+                                                    values.numberOfDinner + 1 <= 6
                                                 ) {
                                                     setFieldValue("numberOfCourses", 6);
-                                                } else if (values.numberOfDinner  + 1> 6) {
+                                                } else if (values.numberOfDinner + 1 > 6) {
                                                     setFieldValue("numberOfCourses", userData?.min_course);
                                                 }
                                             }}
@@ -475,6 +481,19 @@ const ChefDetailsForm = () => {
                                         <button
                                             type="button"
                                             className="left-btn"
+                                            onClick={() => {
+                                                setFieldValue(
+                                                    "numberOfCourses",
+                                                    Math.max(values.numberOfCourses - 1, userData?.min_course)
+                                                );
+                                                if (
+                                                    values.numberOfDinner + 1 >= 2 &&
+                                                    values.numberOfDinner + 1 <= 6
+                                                ) {
+                                                    setFieldValue("numberOfCourses", 6);
+                                                }
+                                            }}
+                                            disabled={values.numberOfDinner <= userData?.min_course}
                                         >
                                             -
                                         </button>
@@ -482,6 +501,13 @@ const ChefDetailsForm = () => {
                                         <button
                                             type="button"
                                             className="right-btn"
+                                            onClick={() => {
+                                                setFieldValue(
+                                                    "numberOfCourses",
+                                                    Math.min(values.numberOfCourses + 1, 10)
+                                                );
+                                            }}
+                                            disabled={values.numberOfDinner <= 6}
                                         >
                                             +
                                         </button>
@@ -491,7 +517,7 @@ const ChefDetailsForm = () => {
                                 <Box className="surprise-box">
                                     <Box className="form-check">
                                         <Box className="surprise-check-box">
-                                            <Checkbox className="input-check" defaultChecked />
+                                            <Checkbox className="input-check" defaultChecked/>
                                             <Typography
                                                 className="form-check-label"
                                                 for="flexCheckChecked"

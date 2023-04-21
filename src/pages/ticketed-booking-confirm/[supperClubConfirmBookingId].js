@@ -1230,7 +1230,7 @@ const ScBookingConfirm = (props) => {
                                     >
                                         <Box className="per-dinner adsss">
                                             <Box className="event-div">
-                                                <img src={supperClubConfirmPaymentData?.event?.pictures[0]} alt=""
+                                                <img src={supperClubConfirmPaymentData?.event?.chef?.picture}  alt=""
                                                      className="per-dinner-img"/>
                                                 <Box sx={{marginLeft: "12px"}}>
                                                     <Typography className="event-title">
@@ -1497,7 +1497,7 @@ const ScBookingConfirm = (props) => {
                                     >
                                         <Box className="per-dinner adsss">
                                             <Box className="event-div">
-                                                <img src={superClubPaymentData?.event?.pictures[0]} alt=""
+                                                <img src={superClubPaymentData?.event?.chef?.picture} alt=""
                                                      className="per-dinner-img"/>
                                                 <Box sx={{marginLeft: "12px"}}>
                                                     <Typography className="event-title">

@@ -24,7 +24,11 @@ const Addons = (props) => {
     const {bookingId} = props;
     const {addOnsData, adPaymentData, setPriveePayment} = useContext(UsersContext);
     const summaryCookieValue = Cookies?.get('bookingId');
-    const summaryBookingId = summaryCookieValue?.replaceAll('"', '')
+    const summaryBookingId = summaryCookieValue?.replaceAll('"', '');
+    const[privateEventData,setPrivateEventData]=useState();
+    useEffect(() => {
+        setPrivateEventData(JSON.parse(localStorage.getItem('privateEventData')))
+    }, [])
 
     const handleClick = () => {
         navigate(`/booking-summary/${summaryBookingId}`);
@@ -372,13 +376,12 @@ const Addons = (props) => {
                                               className="cust-details dinner-box">
                                             <Box className="per-dinner adsss">
                                                 <Box className="event-div">
-                                                    <img src={sGallery} alt="" className="per-dinner-img"/>
+                                                    <img src={privateEventData?.cover_picture} alt="" className="per-dinner-img"/>
                                                     <Box sx={{marginLeft: '12px'}}>
-                                                        <Typography className="event-title">The Big Fat Parsi
-                                                            Blowout</Typography>
-                                                        <Typography className="event-subtitle">Curated by <a href="#"
-                                                                                                             className="event-link">Chef
-                                                            Mako</a></Typography>
+                                                        <Typography className="event-title">{privateEventData?.title}</Typography>
+                                                        <Typography className="event-subtitle">Curated by <a
+                                                            href="#"
+                                                            className="event-link">{privateEventData?.user?.name}</a></Typography>
                                                         <Typography className='rating-star'>
                                                             <StarIcon
                                                                 sx={{

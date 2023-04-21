@@ -55,6 +55,7 @@ const PersonalDetails1 = () => {
     const superClubDetailIdCookieValue = Cookies.get("superClubDetailId");
     const superClubDetailId = superClubDetailIdCookieValue?.replaceAll('"', "");
     const cookieValue3 = Cookies.get("PersonalDetailsPaymentCalculation");
+    const[ticketedEventData,setTicketedEventData]=useState()
     const [
         personalDetailsPaymentCalculation,
         setPersonalDetailsPaymentCalculation,
@@ -67,8 +68,10 @@ const PersonalDetails1 = () => {
         if (cookieValue3) {
             setPersonalDetailsPaymentCalculation(JSON.parse(cookieValue3));
         }
+        setTicketedEventData(JSON.parse(localStorage.getItem('ticketedEventData')));
     }, [cookieValue2, cookieValue3]);
 
+    console.log("ticketedEventData========",ticketedEventData)
     const handleOpenOtp = (contactNumber, values) => {
         if (!_.isEmpty(contactNumber)) {
             setOpenOtp(true);
@@ -1028,13 +1031,13 @@ const PersonalDetails1 = () => {
                 <Box className="event-div-mobile">
                     <Box style={{padding: "10px"}}>
                         <Typography className="event-title">
-                            The Big Fat Parsi Blowout
+                            {ticketedEventData?.title}
                         </Typography>
                         <div className="event-flex-div">
                             <Typography className="event-subtitle">
                                 Curated by{" "}
                                 <a href="#" className="event-link">
-                                    Chef Mako
+                                    {ticketedEventData?.chef?.name}
                                 </a>
                             </Typography>
                             <Typography className="rating-star">
@@ -1346,21 +1349,21 @@ const PersonalDetails1 = () => {
                                     >
                                         <Box className="per-dinner adsss">
                                             <Box className="event-div">
-                                                <img src={sGallery} alt="" className="per-dinner-img"/>
+                                                <img src={ticketedEventData?.chef?.picture} alt="" className="per-dinner-img"/>
                                                 <Box sx={{marginLeft: "12px"}}>
                                                     <Typography className="event-title">
-                                                        The Big Fat Parsi Blowout
+                                                        {ticketedEventData?.title}
                                                     </Typography>
                                                     <Typography className="event-subtitle">
                                                         Curated by{" "}
                                                         <a href="#" className="event-link">
-                                                            Chef Mako
+                                                            {ticketedEventData?.chef?.name}
                                                         </a>
                                                     </Typography>
                                                     <Typography className="rating-star">
                                                         <img className="rating-people" src={people}/>
                                                         <Typography className="rating-star">
-                                                            4 Seats
+                                                            {ticketedEventData?.chef?.name} Seats
                                                         </Typography>
                                                     </Typography>
                                                 </Box>

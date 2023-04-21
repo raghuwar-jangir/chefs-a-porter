@@ -101,10 +101,12 @@ const UsersProvider = (props) => {
         } else if (eventId && currentPath === 'event-details') {
             axios.get(baseUrl + `/menu/` + eventId).then(result => {
                 setUserData(result.data);
+                localStorage.setItem('privateEventData', JSON.stringify(result.data));
             })
         } else if (supperClubDetailId && currentPath === 'ticketed-detail') {
             axios.get(baseUrl + '/event/' + supperClubDetailId).then(result => {
-                setUserData(result.data)
+                setUserData(result.data);
+                localStorage.setItem('ticketedEventData', JSON.stringify(result.data));
             })
         } else if (currentPath === 'private-viewmore') {
             axios.get(baseUrl + '/menu').then(result => {
@@ -363,7 +365,7 @@ const UsersProvider = (props) => {
                 setCommonCityData(result.data)
             })
         }
-        if(currentPath === "ticketed"){
+        if (currentPath === "ticketed") {
             axios.get('https://chefv2.hypervergedemo.site/v1/city/all').then(result => {
                 setCommonCityData(result.data)
             })
