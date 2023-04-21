@@ -1363,7 +1363,7 @@ const PersonalDetails1 = () => {
                                                     <Typography className="rating-star">
                                                         <img className="rating-people" src={people}/>
                                                         <Typography className="rating-star">
-                                                            {ticketedEventData?.chef?.name} Seats
+                                                            {ticketedEventData?.seats} Seats
                                                         </Typography>
                                                     </Typography>
                                                 </Box>
