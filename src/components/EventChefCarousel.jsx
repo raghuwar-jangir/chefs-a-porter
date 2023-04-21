@@ -179,20 +179,33 @@ const MainContentBox = styled(Box)({
         }
     }
 })
-
+let labels2 = [
+    {
+        text: 'Conscious Dining'
+    },
+    {
+        text: 'Championing Chefs'
+    },
+    {
+        text: 'Community'
+    }
+];
 const EventChefCarousel = (props) => {
 
     const {userData} = useContext(UsersContext);
     const {data} = useContext(CmsContext);
 
-    const labels = userData?.user?.details?.sliders?.map((item) => {
+    const labels = (userData?.user?.details?.sliders?.map((item) => {
         return item.text
-    })
+    }) ? userData?.user?.details?.sliders?.map((item) => {
+        return item.text
+    }) : labels2?.map((item) => {
+        return item.text
+    }))
 
     const image = userData?.user?.details?.sliders?.map((item) => {
         return item.image
     })
-
     const dining = [
         {
             img: diningPicture
@@ -204,7 +217,6 @@ const EventChefCarousel = (props) => {
             img: diningPicture
         }
     ]
-    // let labels = ['Conscious Dining', 'Championing Chefs', 'Community'];
     const {title} = props
     return (
         <React.Fragment>
@@ -222,7 +234,7 @@ const EventChefCarousel = (props) => {
                             pagination={{
                                 clickable: true,
                                 renderBullet: function (index, className) {
-                                    return '<div class="' + className + '">' + (labels) +
+                                    return '<div class="' + className + '">' + (labels[index]) +
                                         '</div>';
 
                                 },
