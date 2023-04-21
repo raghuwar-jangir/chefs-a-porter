@@ -49,6 +49,8 @@ const ChefDetailsForm = () => {
     const cookieValue = Cookies?.get("eventData");
     const cookieValue1 = Cookies.get('priveeData');
     const {userData} = useContext(UsersContext);
+    console.log("userData=====", userData?.prices[userData?.prices?.length - 1]?.max_courses)
+    console.log("userData=====", userData)
     {
         !_.isEmpty(cookieValue) &&
         useEffect(() => {
@@ -466,7 +468,7 @@ const ChefDetailsForm = () => {
                                                     setFieldValue("numberOfCourses", userData?.min_course);
                                                 }
                                             }}
-                                            disabled={values.numberOfCourses >= 10}
+                                            disabled={values.numberOfCourses >= userData?.prices[userData?.prices?.length - 1]?.max_courses}
                                         >
                                             +
                                         </button>
