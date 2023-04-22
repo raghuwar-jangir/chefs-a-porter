@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import * as _ from "lodash";
 import useRazorpay from "react-razorpay";
 import SuccessFullPopUp from "../components/SuccessFullPopUp";
-import { toast } from 'react-toastify';
+import {toast} from 'react-toastify';
 
 const defaultState = {
     data: {},
@@ -87,12 +87,20 @@ const UsersProvider = (props) => {
     const [partnerCityId, setPartnerCityId] = useState();
     const [successOpen, setSuccessOpen] = useState(false);
     const [scheduleCallOpen, setScheduleCallOpen] = useState(false);
+    const [becomePatronData, setBecomePatronData] = useState({});
+    const [occasionData, setOccasionData] = useState({});
+    const [memberShipTypeData, setMemberShipTypeData] = useState({});
+    const [isBecomePatron, setIsBecomePatron] = useState('');
+    const membershipIdCookie = Cookies?.get('memberShipId');
+    const membershipId = membershipIdCookie?.replaceAll('"', '');
 
+    console.log("becomePatronData========",becomePatronData)
     useEffect(() => {
         if (eventDataCookieValue) {
             setEventDetailsData(JSON.parse(eventDataCookieValue))
         }
-    }, [eventDataCookieValue])
+    }, [eventDataCookieValue]);
+
 
     useEffect(() => {
         if (userId && currentPath === 'chef-details') {
@@ -249,6 +257,22 @@ const UsersProvider = (props) => {
                 ]
             })
             setIsChefData(false);
+        } else if (isBecomePatron) {
+            axios.post(baseUrl + '/patron/', {
+                type: becomePatronData?.enrollOrRenew,
+                membership_type: becomePatronData?.membershipType,
+                name: becomePatronData?.name,
+                company_name: becomePatronData?.brandName,
+                occassion: becomePatronData?.occupation,
+                email: becomePatronData?.email,
+                mobile: becomePatronData?.contactNumber,
+                date_of_birth: becomePatronData?.dateOfBirth,
+                anniverary_date: becomePatronData?.anniversaryDate,
+                patron_master: membershipId,
+            }).then((response) => {
+                toast.success('Response submitted successfully');
+                setIsBecomePatron(false);
+            })
         } else if (currentPath === 'ticketed-booking-summary' && supperClubBookingId) {
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId, {
                 common_menu: eventId,
@@ -385,6 +409,14 @@ const UsersProvider = (props) => {
                 setMealTypeData(result.data)
             })
         }
+        if (currentPath === "become-patron") {
+            axios.get('https://chefv2.hypervergedemo.site/v1/occasion_master/all').then(result => {
+                setOccasionData(result.data)
+            });
+            axios.get('https://chefv2.hypervergedemo.site/v1/partner_master/all').then(result => {
+                setMemberShipTypeData(result.data)
+            })
+        }
         if (isUpdateBooking) {
             axios.patch(baseUrl + '/booking/' + bookingId, {
                 addons: selectedAddonsId
@@ -394,7 +426,7 @@ const UsersProvider = (props) => {
                 }
             })
         }
-    }, [isUpdateBooking, isScheduleCall, isBecomePartner, isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification, successOpen])
+    }, [isBecomePatron, isUpdateBooking, isScheduleCall, isBecomePartner, isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification, successOpen])
 
     const {children} = props;
 
@@ -449,7 +481,10 @@ const UsersProvider = (props) => {
                 successOpen,
                 setSuccessOpen,
                 customerDetailsPaymentCalculation,
-                scheduleCallOpen, setScheduleCallOpen
+                scheduleCallOpen, setScheduleCallOpen,
+                becomePatronData, setBecomePatronData,
+                isBecomePatron, setIsBecomePatron,
+                occasionData,memberShipTypeData
             }}
         >
             {children}

@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import {
     Box,
     styled,
@@ -20,12 +20,29 @@ import CmsContext from "../../context/CmsContext";
 import * as _ from "lodash";
 import BecomeAPatronQuestion from "../../components/BecomeAPatronQuestions";
 import "../../assets/styles/fontStyle.css"
+import {navigate} from "gatsby";
+import Cookies from "js-cookie";
 
 
 const BecomePartner = () => {
 
-    const {data} = useContext(CmsContext);
+    const {
+        data,
+        masterData,
+    } = useContext(CmsContext);
+    const [goldMembership, setGoldMembership] = useState();
+    const [silverMembership, setSilverMembership] = useState();
 
+    useEffect(() => {
+        if (!_.isEmpty(masterData)) {
+            setGoldMembership(masterData[0])
+            setSilverMembership(masterData[1])
+        }
+    });
+    console.log("goldMembership========", goldMembership)
+    console.log("silverMembership========", silverMembership)
+
+    console.log("masterData========", masterData)
     const BoxWrapper = styled(Box)(() => ({
         background: '#FBFBFB',
         '.corporate-b': {
@@ -139,7 +156,7 @@ const BecomePartner = () => {
             fontStyle: 'normal',
             fontSize: '24px',
             lineHeight: '30px',
-            fontWeight:'700',
+            fontWeight: '700',
             textAlign: 'center',
             letterSpacing: ' 0.06em',
             color: '#080B0E',
@@ -149,12 +166,14 @@ const BecomePartner = () => {
             background: '#080B0E',
             padding: ' 40px 20px 49px',
             position: 'relative',
+            cursor: 'pointer'
         },
         '.silver-memberships': {
             background: '#DCD7CB',
             padding: ' 40px 20px 49px',
             position: 'relative',
             boxShadow: '0px 8px 29px rgb(0 0 0 / 12%)',
+            cursor: 'pointer'
         },
         '.gold-membership': {
             display: 'flex',
@@ -433,39 +452,53 @@ const BecomePartner = () => {
                             <Box><Typography
                                 className="membership-heading">{data.become_patron.become_patron.title}</Typography></Box>
                             <Grid container spacing={4}>
-                                <Grid item xl={6} md={6} xs={12}>
-                                    <Box className="gold-memberships">
-                                        <Box className="gold-membership">
-                                            <Box>
-                                                <b className="gold-membership-heading">Chef à Porter <span
-                                                    className="gold">Gold membership</span></b>
-                                                <span className="gold-months">for 12 months</span>
+                                {
+                                    !_.isEmpty(goldMembership) &&
+                                    <Grid item xl={6} md={6} xs={12} onClick={() => {
+                                        Cookies.set("memberShipId",JSON.stringify(goldMembership?.id));
+                                        navigate('/become-patron');
+                                    }}>
+                                        <Box className="gold-memberships">
+                                            <Box className="gold-membership">
+                                                <Box>
+                                                    <b className="gold-membership-heading">{goldMembership?.name}
+                                                        {/*<span className="gold">Gold membership</span>*/}
+                                                    </b>
+                                                    <span
+                                                        className="gold-months">for {goldMembership?.duration_in_months} months</span>
+                                                </Box>
+                                                <ArrowRightAltIcon className="gold-bi-arrow-right"/>
                                             </Box>
-                                            <ArrowRightAltIcon className="gold-bi-arrow-right"/>
+                                            <Typography
+                                                className="gold-membership-details">{goldMembership?.description}</Typography>
+                                            <span className="gold-amount"><b>₹</b>{goldMembership?.amount}/month</span>
+                                            {/*<span className="gold-amount"><b>₹</b><s>2,000</s> 1,800/month</span>*/}
+                                            <Box className="most-popular">Most Popular</Box>
                                         </Box>
-                                        <Typography className="gold-membership-details">Enjoy exclusive benefits through
-                                            the
-                                            year, including priority bookings, privileged seating and more</Typography>
-                                        <span className="gold-amount"><b>₹</b><s>2,000</s> 1,800/month</span>
-                                        <Box className="most-popular">Most Popular</Box>
-                                    </Box>
-                                </Grid>
-                                <Grid item xl={6} md={6} xs={12}>
-                                    <Box className="silver-memberships">
-                                        <Box className="gold-membership">
-                                            <Box>
-                                                <b className="silver-membership-heading">Chef à Porter Silver
-                                                    membership</b>
-                                                <span className="silver-months">for 1 months</span>
+                                    </Grid>
+                                }
+                                {
+                                    !_.isEmpty(silverMembership) &&
+                                    <Grid item xl={6} md={6} xs={12} onClick={() => {
+                                        Cookies.set("memberShipId",JSON.stringify(silverMembership?.id));
+                                        navigate('/become-patron');
+                                    }}>
+                                        <Box className="silver-memberships">
+                                            <Box className="gold-membership">
+                                                <Box>
+                                                    <b className="silver-membership-heading">{silverMembership?.name}</b>
+                                                    <span
+                                                        className="silver-months">for {silverMembership?.duration_in_months} months</span>
+                                                </Box>
+                                                <ArrowRightAltIcon className="silver-bi-arrow-right"/>
                                             </Box>
-                                            <ArrowRightAltIcon className="silver-bi-arrow-right"/>
+                                            <Typography
+                                                className="silver-membership-details">{silverMembership?.description}</Typography>
+                                            <span className="silver-amount">₹{silverMembership?.amount}/month</span>
                                         </Box>
-                                        <Typography className="silver-membership-details">Enjoy exclusive benefits
-                                            through the
-                                            year, including priority bookings, privileged seating and more</Typography>
-                                        <span className="silver-amount">₹2,000/month</span>
-                                    </Box>
-                                </Grid>
+                                    </Grid>
+
+                                }
                             </Grid>
                         </Box>
                         <BecomeAPatronQuestion isLightTheme={true}/>

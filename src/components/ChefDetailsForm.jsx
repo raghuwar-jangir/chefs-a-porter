@@ -81,6 +81,9 @@ const ChefDetailsForm = () => {
         padding: "40px 31px",
         position: "sticky",
         top: "100px",
+        //scroll
+        // overflowY: 'scroll',
+        // height: 'calc(100vh - 200px)',
 
         ".sub-text-price": {
             fontWeight: 600,
@@ -430,54 +433,54 @@ const ChefDetailsForm = () => {
                                     <label htmlFor="numberOfDinner" className="min-2-3">
                                         Number of Diners <span>(min 2)</span>
                                     </label>
-                                    {
-                                        !_.isEmpty(userData?.prices) &&
-                                        <Box>
-                                            <button
-                                                type="button"
-                                                className="left-btn"
-                                                onClick={() => {
-                                                    setFieldValue(
-                                                        "numberOfDinner",
-                                                        Math.max(values.numberOfDinner - 1, 2)
-                                                    );
+                                    {/*{*/}
+                                    {/*    !_.isEmpty(userData?.prices) &&*/}
+                                    <Box>
+                                        <button
+                                            type="button"
+                                            className="left-btn"
+                                            onClick={() => {
+                                                setFieldValue(
+                                                    "numberOfDinner",
+                                                    Math.max(values.numberOfDinner - 1, 2)
+                                                );
 
-                                                    if (
-                                                        values.numberOfDinner - 1 >= 2 &&
-                                                        values.numberOfDinner - 1 <= 6
-                                                    ) {
-                                                        setFieldValue("numberOfCourses", 6);
-                                                    } else if (values.numberOfDinner - 1 > 6) {
-                                                        // setFieldValue("numberOfCourses", userData?.min_course);
-                                                    }
-                                                }}
-                                            >
-                                                -
-                                            </button>
-                                            <span>{values.numberOfDinner}</span>
-                                            <button
-                                                type="button"
-                                                className="right-btn"
-                                                onClick={() => {
-                                                    setFieldValue(
-                                                        "numberOfDinner",
-                                                        Math.min(values.numberOfDinner + 1, 25)
-                                                    );
-                                                    if (
-                                                        values.numberOfDinner + 1 >= 2 &&
-                                                        values.numberOfDinner + 1 <= 6
-                                                    ) {
-                                                        setFieldValue("numberOfCourses", 6);
-                                                    } else if (values.numberOfDinner + 1 > 6) {
-                                                        setFieldValue("numberOfCourses", userData?.min_course);
-                                                    }
-                                                }}
-                                                disabled={values.numberOfCourses >= userData?.prices[userData?.prices?.length - 1]?.max_courses}
-                                            >
-                                                +
-                                            </button>
-                                        </Box>
-                                    }
+                                                if (
+                                                    values.numberOfDinner - 1 >= 2 &&
+                                                    values.numberOfDinner - 1 <= 6
+                                                ) {
+                                                    setFieldValue("numberOfCourses", 6);
+                                                } else if (values.numberOfDinner - 1 > 6) {
+                                                    // setFieldValue("numberOfCourses", userData?.min_course);
+                                                }
+                                            }}
+                                        >
+                                            -
+                                        </button>
+                                        <span>{values.numberOfDinner}</span>
+                                        <button
+                                            type="button"
+                                            className="right-btn"
+                                            onClick={() => {
+                                                setFieldValue(
+                                                    "numberOfDinner",
+                                                    Math.min(values.numberOfDinner + 1, 25)
+                                                );
+                                                if (
+                                                    values.numberOfDinner + 1 >= 2 &&
+                                                    values.numberOfDinner + 1 <= 6
+                                                ) {
+                                                    setFieldValue("numberOfCourses", 6);
+                                                } else if (values.numberOfDinner + 1 > 6) {
+                                                    setFieldValue("numberOfCourses", userData?.min_course);
+                                                }
+                                            }}
+                                            disabled={values.numberOfCourses >= userData?.prices[userData?.prices?.length - 1]?.max_courses}
+                                        >
+                                            +
+                                        </button>
+                                    </Box>
+                                    {/*}*/}
 
                                 </Box>
 
