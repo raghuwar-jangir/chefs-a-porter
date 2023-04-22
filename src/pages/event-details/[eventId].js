@@ -1,30 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Grid,
-  styled,
-  Typography,
-  Link,
-  Modal,
-  TextField,
-  TextareaAutosize,
-} from "@mui/material";
+import { Box, Button, Grid, styled, Typography, Link } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Formik, Form } from "formik";
-import { DatePickerInput } from "rc-datepicker";
-import InputAdornment from "@mui/material/InputAdornment";
 import CloseIcon from "@mui/icons-material/Close";
 import Navbar from "../../components/NavbarComponent";
 import Footer from "../../components/Footer";
 import FooterEnd from "../../components/FooterEndSection";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NeedHelp from "../../components/NeedHelp";
-import { isMobile, MobileView } from "react-device-detect";
+import { isMobile } from "react-device-detect";
 import ImageCarousel from "../../components/ImageCarousel";
-import chef1 from "../../assets/images/chef5.png";
-import chef2 from "../../assets/images/chef6.png";
-import sGallery from "../../assets/images/sc-gallery.png";
 import star from "../../assets/images/star.png";
 import "../../assets/styles/fontStyle.css";
 import EventCard from "../../components/EventCard";
@@ -38,7 +22,6 @@ import NeedHelpEvent from "../../components/NeedHelpEvent";
 import EventChefCarousel from "../../components/EventChefCarousel";
 import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
-import Cookies from "js-cookie";
 
 const EventDetails = (props) => {
   const { eventId } = props;
@@ -67,6 +50,7 @@ const EventDetails = (props) => {
     fontSize: "16px",
     lineHeight: "19px",
   };
+
   const breadcrumbs = [
     <Typography sx={bread} key="1" color="#FBFBFB">
       Private
@@ -75,22 +59,23 @@ const EventDetails = (props) => {
       Event
     </Link>,
   ];
+
   const itemData = {
     img: userData?.cover_picture,
-    title: "chef1",
+    title: "chef",
   };
+
   const itemData2 = _.map(_.get(userData, "pictures", []), (item, index) => {
     return {
       img: item,
-      //   title: index === 0 ? "sGallery" : "chef2",
       title:
-        index === 0
-          ? "sGallery"
-          : index === 1
-          ? "chef2"
+        index === 1
+          ? "chef1"
           : index === 2
+          ? "chef2"
+          : index === 3
           ? "chef3"
-          : "chef4",
+          : "sGallery",
     };
   });
 
@@ -451,6 +436,7 @@ const EventDetails = (props) => {
       },
     },
   }));
+
   return (
     <React.Fragment>
       <MainBox>
@@ -580,6 +566,16 @@ const EventDetails = (props) => {
                             />
                           </Grid>
                         ))}
+                        <Button
+                          className="show-btn"
+                          onClick={() => {
+                            setShowCarousel(true);
+                          }}
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModal"
+                        >
+                          Show All Photos
+                        </Button>
                       </Grid>
                     }
                   </Grid>
