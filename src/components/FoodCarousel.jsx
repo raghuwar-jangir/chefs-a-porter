@@ -239,7 +239,7 @@ const FoodCarousel = (isButtonShow) => {
                         {data.home.upcoming_supper_clubs.supper_clubs.map((item) => {
                             return (
                                 <SwiperSlide style={{cursor: 'pointer'}}   onClick={() => navigate(`/ticketed-detail/${item?.id}`)}>
-                                    <img className='test-img' src={item.pictures}/>
+                                    <img className='test-img' src={item.pictures[0]}/>
                                     {
                                         item.status &&
                                         <Box className='trending'>

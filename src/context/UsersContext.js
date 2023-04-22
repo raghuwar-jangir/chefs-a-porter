@@ -4,7 +4,8 @@ import {useLocation} from "@reach/router";
 import Cookies from "js-cookie";
 import * as _ from "lodash";
 import useRazorpay from "react-razorpay";
-import SuccessFullPopUp from "../components/SuccessFullPopUp"
+import SuccessFullPopUp from "../components/SuccessFullPopUp";
+import {toast} from 'react-toastify';
 
 const defaultState = {
     data: {},
@@ -25,7 +26,7 @@ const UsersProvider = (props) => {
     const [userId, setUserId] = useState();
     const [eventId, setEventId] = useState();
     const [supperClubDetailId, setSupperClubDetailId] = useState();
-    const cookieValue = Cookies?.get('BookingId');
+    const cookieValue = Cookies?.get('bookingId');
     const bookingId = cookieValue?.replaceAll('"', '');
     const summaryBookingId = cookieValue?.replaceAll('"', '');
     const supperClubBookingIdCookieValue = Cookies?.get('supperClubBookingId');
@@ -34,7 +35,6 @@ const UsersProvider = (props) => {
     const [paymentVerification, setPaymentVerification] = useState(false);
     const [supperClubRazorpay, setSupperClubRazorpay] = useState();
     const [isConfirm, setIsConfirm] = useState(false);
-    const [payementEventId, setPaymentEventId] = useState();
     const [customerDetailsPaymentCalculation, setCustomerDetailsPaymentCalculation] = useState();
 
     //for submitting forms
@@ -87,13 +87,20 @@ const UsersProvider = (props) => {
     const [partnerCityId, setPartnerCityId] = useState();
     const [successOpen, setSuccessOpen] = useState(false);
     const [scheduleCallOpen, setScheduleCallOpen] = useState(false);
+    const [becomePatronData, setBecomePatronData] = useState({});
+    const [occasionData, setOccasionData] = useState({});
+    const [memberShipTypeData, setMemberShipTypeData] = useState({});
+    const [isBecomePatron, setIsBecomePatron] = useState('');
+    const membershipIdCookie = Cookies?.get('memberShipId');
+    const membershipId = membershipIdCookie?.replaceAll('"', '');
 
+    console.log("becomePatronData========",becomePatronData)
     useEffect(() => {
         if (eventDataCookieValue) {
             setEventDetailsData(JSON.parse(eventDataCookieValue))
         }
-        setPaymentEventId((JSON.parse(localStorage.getItem('eventId'))));
-    }, [eventDataCookieValue])
+    }, [eventDataCookieValue]);
+
 
     useEffect(() => {
         if (userId && currentPath === 'chef-details') {
@@ -103,11 +110,12 @@ const UsersProvider = (props) => {
         } else if (eventId && currentPath === 'event-details') {
             axios.get(baseUrl + `/menu/` + eventId).then(result => {
                 setUserData(result.data);
-                localStorage.setItem('eventId', JSON.stringify(eventId));
+                localStorage.setItem('privateEventData', JSON.stringify(result.data));
             })
         } else if (supperClubDetailId && currentPath === 'ticketed-detail') {
             axios.get(baseUrl + '/event/' + supperClubDetailId).then(result => {
-                setUserData(result.data)
+                setUserData(result.data);
+                localStorage.setItem('ticketedEventData', JSON.stringify(result.data));
             })
         } else if (currentPath === 'private-viewmore') {
             axios.get(baseUrl + '/menu').then(result => {
@@ -192,8 +200,12 @@ const UsersProvider = (props) => {
                 email: contactUsData.email,
                 mobile: contactUsData.contactNumber,
                 cover_letter: contactUsData.coverLetterMessage,
+            }).then((response) => {
+                console.log("========success")
+                toast.success('Response submitted successfully');
+                setIsContactUsData(false)
             })
-            setIsContactUsData(false)
+
         } else if (isBecomePartner && becomePartnerData) {
             axios.post(baseUrl + '/partner', {
                 partner_as: partnerId,
@@ -208,8 +220,10 @@ const UsersProvider = (props) => {
                 why: becomePartnerData.chefsMessage,
                 // work_samples: becomePartnerData.workSampleFile,
                 work_samples: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi"
+            }).then((response) => {
+                setSuccessOpen(true);
             })
-            setIsBecomePartner(false)
+            setIsBecomePartner(false);
         } else if (isScheduleCall) {
             axios.post(baseUrl + '/call_schedule', {
                 date_time: scheduleCallData.day,
@@ -227,6 +241,9 @@ const UsersProvider = (props) => {
                 mobile: joinChefData.contactNumber,
                 resume: joinChefData.resume,
                 cover_letter: joinChefData.coverLetterMessage,
+            }).then((response) => {
+                setSuccessOpen(true);
+                setIsJoinChefData(false);
             })
         } else if (isChefData) {
             axios.post(baseUrl + '/booking/creatediners/' + supperClubBookingId, {
@@ -240,6 +257,22 @@ const UsersProvider = (props) => {
                 ]
             })
             setIsChefData(false);
+        } else if (isBecomePatron) {
+            axios.post(baseUrl + '/patron/', {
+                type: becomePatronData?.enrollOrRenew,
+                membership_type: becomePatronData?.membershipType,
+                name: becomePatronData?.name,
+                company_name: becomePatronData?.brandName,
+                occassion: becomePatronData?.occupation,
+                email: becomePatronData?.email,
+                mobile: becomePatronData?.contactNumber,
+                date_of_birth: becomePatronData?.dateOfBirth,
+                anniverary_date: becomePatronData?.anniversaryDate,
+                patron_master: membershipId,
+            }).then((response) => {
+                toast.success('Response submitted successfully');
+                setIsBecomePatron(false);
+            })
         } else if (currentPath === 'ticketed-booking-summary' && supperClubBookingId) {
             axios.post(baseUrl + '/booking/calculate/' + supperClubBookingId, {
                 common_menu: eventId,
@@ -320,16 +353,16 @@ const UsersProvider = (props) => {
                     Cookies.set('PersonalDetailsPaymentCalculation', JSON.stringify(response.data));
                 }
             })
-        } else if (payementEventId && currentPath === 'customer-details') {
+        } else if (PaymentEventId && currentPath === 'customer-details') {
             axios.post(baseUrl + '/booking/calculatepayment/', {
-                id: payementEventId,
+                id: PaymentEventId,
                 type: "privee",
                 diner: numberOfDinner,
                 courses: numberOfCourses,
             }).then((response) => {
                 if (response.status === 200) {
                     setCustomerDetailsPaymentCalculation(response.data)
-                    Cookies.set('CPaymentInfo', JSON.stringify(response.data));
+                    // Cookies.set('CPaymentInfo', JSON.stringify(response.data));
                 }
             })
         } else if (currentPath === 'become-partner') {
@@ -366,7 +399,7 @@ const UsersProvider = (props) => {
                 setCommonCityData(result.data)
             })
         }
-        if(currentPath === "ticketed"){
+        if (currentPath === "ticketed") {
             axios.get('https://chefv2.hypervergedemo.site/v1/city/all').then(result => {
                 setCommonCityData(result.data)
             })
@@ -374,6 +407,14 @@ const UsersProvider = (props) => {
         if (currentPath === "personal-details") {
             axios.get('https://chefv2.hypervergedemo.site/v1/meal_types/all').then(result => {
                 setMealTypeData(result.data)
+            })
+        }
+        if (currentPath === "become-patron") {
+            axios.get('https://chefv2.hypervergedemo.site/v1/occasion_master/all').then(result => {
+                setOccasionData(result.data)
+            });
+            axios.get('https://chefv2.hypervergedemo.site/v1/partner_master/all').then(result => {
+                setMemberShipTypeData(result.data)
             })
         }
         if (isUpdateBooking) {
@@ -385,7 +426,7 @@ const UsersProvider = (props) => {
                 }
             })
         }
-    }, [isUpdateBooking, isScheduleCall, isBecomePartner, isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification, successOpen])
+    }, [isBecomePatron, isUpdateBooking, isScheduleCall, isBecomePartner, isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification, successOpen])
 
     const {children} = props;
 
@@ -440,7 +481,10 @@ const UsersProvider = (props) => {
                 successOpen,
                 setSuccessOpen,
                 customerDetailsPaymentCalculation,
-                scheduleCallOpen, setScheduleCallOpen
+                scheduleCallOpen, setScheduleCallOpen,
+                becomePatronData, setBecomePatronData,
+                isBecomePatron, setIsBecomePatron,
+                occasionData,memberShipTypeData
             }}
         >
             {children}

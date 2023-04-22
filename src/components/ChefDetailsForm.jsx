@@ -1,13 +1,13 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Box, styled, Typography } from "@mui/material";
-import { DatePickerInput } from "rc-datepicker";
-import React, { useEffect, useState, useContext } from "react";
+import {Formik, Form, Field, ErrorMessage} from "formik";
+import {Box, styled, Typography} from "@mui/material";
+import {DatePickerInput} from "rc-datepicker";
+import React, {useEffect, useState, useContext} from "react";
 import gInfo from "../assets/images/info.png";
 import drop from "../assets/images/drop.png";
 import Tooltip from "@material-ui/core/Tooltip";
 import Checkbox from "@mui/material/Checkbox";
 import "../assets/styles/fontStyle.css";
-import { navigate } from "gatsby";
+import {navigate} from "gatsby";
 import * as _ from "lodash";
 import Cookies from "js-cookie";
 import {
@@ -20,37 +20,42 @@ import UsersContext from "../context/UsersContext";
 
 const defaultTheme = createMuiTheme();
 const theme = createMuiTheme({
-  overrides: {
-    MuiTooltip: {
-      tooltip: {
-        fontSize: "8px",
-        color: "#080B0E",
-        backgroundColor: "#DCD7CB",
-        boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.4)",
-        padding: "16px 32px",
-        textAlign: "center",
-        fontFamily: "Proxima Nova Alt",
-        fontStyle: " normal",
-        fontWeight: 300,
-        fontSize: "14px",
-        lineHeight: "17px",
-        opacity: "1",
-        width: "160px",
-        borderRadius: "1px",
-      },
+    overrides: {
+        MuiTooltip: {
+            tooltip: {
+                fontSize: "8px",
+                color: "#080B0E",
+                backgroundColor: "#DCD7CB",
+                boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.4)",
+                padding: "16px 32px",
+                textAlign: "center",
+                fontFamily: "Proxima Nova Alt",
+                fontStyle: " normal",
+                fontWeight: 300,
+                fontSize: "14px",
+                lineHeight: "17px",
+                opacity: "1",
+                width: "160px",
+                borderRadius: "1px",
+            },
+        },
     },
-  },
 });
 
 const ChefDetailsForm = () => {
     const [chefInfo, setChefInfo] = useState("");
+    const [priveeData, setPriveeData] = useState()
     const cookieValue = Cookies?.get("eventData");
-    const { userData } = useContext(UsersContext);
+    const cookieValue1 = Cookies.get('priveeData');
+    const {userData} = useContext(UsersContext);
     {
         !_.isEmpty(cookieValue) &&
         useEffect(() => {
             if (cookieValue) {
                 setChefInfo(JSON.parse(cookieValue));
+            }
+            if (cookieValue1) {
+                setPriveeData(JSON.parse(cookieValue1));
             }
         }, [cookieValue]);
     }
@@ -75,29 +80,29 @@ const ChefDetailsForm = () => {
         position: "sticky",
         top: "100px",
 
-    ".sub-text-price": {
-      fontWeight: 600,
-      fontSize: "36px",
-      lineHeight: "44px",
-      color: "#FBFBFB",
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-    },
+        ".sub-text-price": {
+            fontWeight: 600,
+            fontSize: "36px",
+            lineHeight: "44px",
+            color: "#FBFBFB",
+            fontFamily: "ProximaNovaA-Regular",
+            fontStyle: "normal",
+        },
 
-    ".sub-text": {
-      fontWeight: 300,
-      fontSize: "20px",
-      lineHeight: "24px",
-      color: "#FBFBFB",
-      fontFamily: "Proxima Nova Alt",
-      fontStyle: "normal",
-    },
-    ".error": {
-      fontSize: "20px",
-      lineHeight: "24px",
-      color: "#FBFBFB",
-      fontFamily: "Proxima Nova Alt",
-    },
+        ".sub-text": {
+            fontWeight: 300,
+            fontSize: "20px",
+            lineHeight: "24px",
+            color: "#FBFBFB",
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+        },
+        ".error": {
+            fontSize: "20px",
+            lineHeight: "24px",
+            color: "#FBFBFB",
+            fontFamily: "Proxima Nova Alt",
+        },
 
         ".common-field-box": {
             padding: "16px",
@@ -105,57 +110,57 @@ const ChefDetailsForm = () => {
             marginBottom: "16px",
         },
 
-    ".field-title": {
-      fontWeight: 600,
-      fontSize: "16px",
-      lineHeight: "19px",
-      padding: "0px 0px 8px 0px",
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-      color: "#FBFBFB",
-    },
+        ".field-title": {
+            fontWeight: 600,
+            fontSize: "16px",
+            lineHeight: "19px",
+            padding: "0px 0px 8px 0px",
+            fontFamily: "ProximaNovaA-Regular",
+            fontStyle: "normal",
+            color: "#FBFBFB",
+        },
 
-    ".form-control": {
-      position: "relative",
-      zIndex: "1",
-      paddingLeft: "10px",
-      flex: "1",
-      outline: "none",
-      backgroundColor: "transparent",
-      border: "0px",
-      borderBottom: "0.25px solid #FBFBFB",
-      borderRadius: "0px",
-      paddingRight: "0px",
-      fontFamily: "Proxima Nova Alt",
-      fontStyle: "normal",
-      fontWeight: "300",
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#FBFBFB",
-      display: "block",
-      width: "100%",
-      padding: "0.375rem 0.75rem 0.375rem 0px",
-      transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
-    },
+        ".form-control": {
+            position: "relative",
+            zIndex: "1",
+            paddingLeft: "10px",
+            flex: "1",
+            outline: "none",
+            backgroundColor: "transparent",
+            border: "0px",
+            borderBottom: "0.25px solid #FBFBFB",
+            borderRadius: "0px",
+            paddingRight: "0px",
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: "300",
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#FBFBFB",
+            display: "block",
+            width: "100%",
+            padding: "0.375rem 0.75rem 0.375rem 0px",
+            transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
+        },
 
         ".date-time-box": {
             display: "grid",
             gridTemplateColumns: "repeat(2, 1fr)",
         },
 
-    ".date-control": {
-      paddingBottom: "0px",
-    },
+        ".date-control": {
+            paddingBottom: "0px",
+        },
 
-    ".react-datepicker-component .react-datepicker-input.has-value input": {
-      color: "white !important",
-      paddingLeft: "0px",
-      fontFamily: "Proxima Nova Alt",
-      fontStyle: "normal",
-      fontWeight: "300",
-      fontSize: "16px",
-      lineHeight: "19px",
-    },
+        ".react-datepicker-component .react-datepicker-input.has-value input": {
+            color: "white !important",
+            paddingLeft: "0px",
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: "300",
+            fontSize: "16px",
+            lineHeight: "19px",
+        },
 
         ".react-datepicker-component .react-datepicker-input": {
             background: "transparent",
@@ -195,54 +200,54 @@ const ChefDetailsForm = () => {
             paddingRight: "10px",
         },
 
-    ".time-control": {
-      backgroundImage: `url(${drop})`,
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "right bottom",
-      webkitAppearance: "none",
-      mozAppearance: "none",
-      appearance: "none",
-      paddingRight: "0px",
-      backgroundSize: "23px",
-    },
+        ".time-control": {
+            backgroundImage: `url(${drop})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "right bottom",
+            webkitAppearance: "none",
+            mozAppearance: "none",
+            appearance: "none",
+            paddingRight: "0px",
+            backgroundSize: "23px",
+        },
 
-    ".sub-box-counter": {
-      display: "flex",
-      justifyContent: "space-between",
-      padding: "16px",
-      background: "#080B0E",
-      marginBottom: "16px",
-    },
+        ".sub-box-counter": {
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "16px",
+            background: "#080B0E",
+            marginBottom: "16px",
+        },
 
-    ".min-2-3": {
-      flex: "1",
-      marginBottom: "0px",
-      fontFamily: "Proxima Nova Alt",
-      fontWeight: "300",
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#FBFBFB",
-    },
+        ".min-2-3": {
+            flex: "1",
+            marginBottom: "0px",
+            fontFamily: "Proxima Nova Alt",
+            fontWeight: "300",
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#FBFBFB",
+        },
 
-    ".left-btn": {
-      width: "24px",
-      height: "24px",
-      borderRadius: "0px",
-      color: "#C6A87D",
-      border: "0.25px solid #C6A87D",
-      backgroundColor: "black",
-      marginRight: "10px",
-    },
+        ".left-btn": {
+            width: "24px",
+            height: "24px",
+            borderRadius: "0px",
+            color: "#C6A87D",
+            border: "0.25px solid #C6A87D",
+            backgroundColor: "black",
+            marginRight: "10px",
+        },
 
-    ".right-btn": {
-      width: "24px",
-      height: "24px",
-      borderRadius: "0px",
-      color: "black",
-      border: "0.25px solid #C6A87D",
-      backgroundColor: "#C6A87D",
-      marginLeft: "10px",
-    },
+        ".right-btn": {
+            width: "24px",
+            height: "24px",
+            borderRadius: "0px",
+            color: "black",
+            border: "0.25px solid #C6A87D",
+            backgroundColor: "#C6A87D",
+            marginLeft: "10px",
+        },
 
         ".surprise-box": {
             background: "#080B0E",
@@ -269,26 +274,26 @@ const ChefDetailsForm = () => {
             color: "#C6A87D !important",
         },
 
-    ".form-check-label": {
-      fontFamily: "Bon Vivant",
-      fontStyle: "normal",
-      fontWeight: "700",
-      fontSize: "16px",
-      lineHeight: "20px",
-      color: "#FBFBFB",
-    },
+        ".form-check-label": {
+            fontFamily: "Bon Vivant",
+            fontStyle: "normal",
+            fontWeight: "700",
+            fontSize: "16px",
+            lineHeight: "20px",
+            color: "#FBFBFB",
+        },
 
-    ".email-confirm": {
-      fontFamily: "Proxima Nova Alt",
-      fontStyle: "normal",
-      fontWeight: "300",
-      fontSize: "12px",
-      lineHeight: "15px",
-      color: "rgba(251, 251, 251, 0.6)",
-      display: "block",
-      marginTop: "4px",
-      marginLeft: "1.5rem",
-    },
+        ".email-confirm": {
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: "300",
+            fontSize: "12px",
+            lineHeight: "15px",
+            color: "rgba(251, 251, 251, 0.6)",
+            display: "block",
+            marginTop: "4px",
+            marginLeft: "1.5rem",
+        },
 
         ".experience-btn": {
             fontFamily: "ProximaNovaA-Regular",
@@ -313,27 +318,28 @@ const ChefDetailsForm = () => {
                 !_.isEmpty(userData) &&
                 <BoxWrapper>
                     <Typography className="sub-text-price">
-                        Starting at ₹{userData?.price_per_course} <sub className="sub-text">Per Diner</sub>
+                        Starting at ₹{userData?.price_per_course} <sub className="sub-text">Per Diner & Per Course</sub>
                     </Typography>
 
                     <Formik
                         initialValues={{
                             name: chefInfo?.name,
                             email: chefInfo?.email,
-                            experienceDate: chefInfo?.experienceDate
-                                ? chefInfo?.experienceDate
-                                : new Date(),
+                            experienceDate: priveeData?.date ? priveeData?.date : new Date(),
                             startTime: chefInfo?.startTime
                                 ? chefInfo?.startTime
                                 : new Date().getHours() + ":" + new Date().getMinutes(),
-                            numberOfDinner: 2,
-                            numberOfCourses:  6,
+                            numberOfDinner: chefInfo?.numberOfDinner > priveeData?.diners ? chefInfo?.numberOfDinner : priveeData?.diners,
+                            numberOfCourses: priveeData?.diners >= 6 ? userData?.min_course : chefInfo?.numberOfCourses,
                         }}
                         validationSchema={validationSchema}
                         onSubmit={(values) => {
                             Cookies.set("eventData", JSON.stringify(values));
                             Cookies.set('eventDinners', JSON.stringify(values?.numberOfDinner));
                             Cookies.set('eventCourses', JSON.stringify(values?.numberOfCourses));
+                            if (!_.isEmpty(values)) {
+                                navigate("/customer-details");
+                            }
                         }}
                     >
                         {({
@@ -343,7 +349,7 @@ const ChefDetailsForm = () => {
                               handleSubmit,
                               handleChange,
                           }) => (
-                            <Form onSubmit={handleSubmit}>
+                            <Form onSubmit={handleSubmit} noValidate>
                                 <Box className="common-field-box">
                                     <label htmlFor="name" className="field-title">
                                         Name
@@ -357,7 +363,7 @@ const ChefDetailsForm = () => {
                                         value={values.name}
                                         onChange={handleChange}
                                     />
-                                    <ErrorMessage component="div" name="name" />
+                                    <ErrorMessage component="div" name="name"/>
                                 </Box>
 
                                 <Box className="common-field-box">
@@ -371,7 +377,8 @@ const ChefDetailsForm = () => {
                                         placeholder="eg yourname@email.com"
                                         autoComplete="off"
                                     />
-                                    <ErrorMessage component="div" name="email" />
+                                    {/* {errors.email && touched.email ? (<div>{errors.email}</div>) : null} */}
+                                    <ErrorMessage component="div" name="email"/>
                                 </Box>
 
                                 <Box className="date-time-box">
@@ -400,7 +407,7 @@ const ChefDetailsForm = () => {
                                                     <MuiThemeProvider theme={theme}>
                                                         <Tooltip title={tipTitle} arrow placement="top">
                                                             <Box>
-                                                                <img className="gInfo-logo" src={gInfo} />
+                                                                <img className="gInfo-logo" src={gInfo}/>
                                                             </Box>
                                                         </Tooltip>
                                                     </MuiThemeProvider>
@@ -419,7 +426,8 @@ const ChefDetailsForm = () => {
                                     <label htmlFor="numberOfDinner" className="min-2-3">
                                         Number of Diners <span>(min 2)</span>
                                     </label>
-
+                                    {/*{*/}
+                                    {/*    !_.isEmpty(userData?.prices) &&*/}
                                     <Box>
                                         <button
                                             type="button"
@@ -431,12 +439,12 @@ const ChefDetailsForm = () => {
                                                 );
 
                                                 if (
-                                                    values.numberOfDinner -1 >= 2 &&
+                                                    values.numberOfDinner - 1 >= 2 &&
                                                     values.numberOfDinner - 1 <= 6
                                                 ) {
                                                     setFieldValue("numberOfCourses", 6);
-                                                } else if (values.numberOfDinner -1  > 6) {
-                                                    setFieldValue("numberOfCourses", userData?.min_course);
+                                                } else if (values.numberOfDinner - 1 > 6) {
+                                                    // setFieldValue("numberOfCourses", userData?.min_course);
                                                 }
                                             }}
                                         >
@@ -453,18 +461,20 @@ const ChefDetailsForm = () => {
                                                 );
                                                 if (
                                                     values.numberOfDinner + 1 >= 2 &&
-                                                    values.numberOfDinner +1  <= 6
+                                                    values.numberOfDinner + 1 <= 6
                                                 ) {
                                                     setFieldValue("numberOfCourses", 6);
-                                                } else if (values.numberOfDinner  + 1> 6) {
+                                                } else if (values.numberOfDinner + 1 > 6) {
                                                     setFieldValue("numberOfCourses", userData?.min_course);
                                                 }
                                             }}
-                                            disabled={values.numberOfCourses >= 10}
+                                            disabled={values.numberOfCourses >= userData?.prices[userData?.prices?.length - 1]?.max_courses}
                                         >
                                             +
                                         </button>
                                     </Box>
+                                    {/*}*/}
+
                                 </Box>
 
                                 <Box className="sub-box-counter">
@@ -475,6 +485,19 @@ const ChefDetailsForm = () => {
                                         <button
                                             type="button"
                                             className="left-btn"
+                                            onClick={() => {
+                                                setFieldValue(
+                                                    "numberOfCourses",
+                                                    Math.max(values.numberOfCourses - 1, userData?.min_course)
+                                                );
+                                                if (
+                                                    values.numberOfDinner + 1 >= 2 &&
+                                                    values.numberOfDinner + 1 <= 6
+                                                ) {
+                                                    setFieldValue("numberOfCourses", 6);
+                                                }
+                                            }}
+                                            disabled={values.numberOfDinner <= userData?.min_course}
                                         >
                                             -
                                         </button>
@@ -482,6 +505,13 @@ const ChefDetailsForm = () => {
                                         <button
                                             type="button"
                                             className="right-btn"
+                                            onClick={() => {
+                                                setFieldValue(
+                                                    "numberOfCourses",
+                                                    Math.min(values.numberOfCourses + 1, 10)
+                                                );
+                                            }}
+                                            disabled={values.numberOfDinner <= 6}
                                         >
                                             +
                                         </button>
@@ -491,7 +521,7 @@ const ChefDetailsForm = () => {
                                 <Box className="surprise-box">
                                     <Box className="form-check">
                                         <Box className="surprise-check-box">
-                                            <Checkbox className="input-check" defaultChecked />
+                                            <Checkbox className="input-check" defaultChecked/>
                                             <Typography
                                                 className="form-check-label"
                                                 for="flexCheckChecked"
@@ -509,11 +539,6 @@ const ChefDetailsForm = () => {
                                 <button
                                     type="submit"
                                     className="experience-btn"
-                                    onClick={() => {
-                                        if (!_.isEmpty(values.name && values.email)) {
-                                            handleClick();
-                                        }
-                                    }}
                                     // disabled={isSubmitting}
                                 >
                                     Book this experience

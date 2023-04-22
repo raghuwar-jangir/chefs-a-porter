@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState, useContext} from "react";
 import {
     Box,
     Grid,
@@ -20,11 +20,22 @@ import * as Yup from 'yup';
 import {isMobile} from "react-device-detect";
 import moment from "moment";
 import * as _ from 'lodash';
-import '../../assets/styles/searchBar.css'
-import "../../assets/styles/fontStyle.css"
+import '../../assets/styles/searchBar.css';
+import "../../assets/styles/fontStyle.css";
+import UsersContext from "../../context/UsersContext"
 
 const BecomePatronForm = () => {
 
+    const {
+        becomePatronData,
+        setBecomePatronData,
+        setIsBecomePatron,
+        occasionData,
+        memberShipTypeData
+    } = useContext(UsersContext);
+
+    console.log("occasionData======", occasionData)
+    console.log("memberShipTypeData======", memberShipTypeData)
     //validations
     const validationSchema = Yup.object({
         membershipType: Yup.string().required('Please select type'),
@@ -34,7 +45,6 @@ const BecomePatronForm = () => {
         occupation: Yup.string().required('Please select occupation'),
         brandName: Yup.string().required('Please enter Company/Brand Name'),
     });
-
     const BoxWrapper = styled(Box)(() => ({
         backgroundColor: '#DCD7CB',
         PaddingRight: '0px',
@@ -231,7 +241,7 @@ const BecomePatronForm = () => {
             },
             '.become-partner-form': {
                 marginTop: '55px',
-                width:'auto'
+                width: 'auto'
             },
         },
         '@media(min-width: 615px) and (max-width: 768px)': {
@@ -289,297 +299,317 @@ const BecomePatronForm = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                {/*{isMobile ? (*/}
-                {/*    <Box className="mobile-header">*/}
-                {/*        <ArrowBackIcon/>*/}
-                {/*        <Typography><a href="/" className="mobile-heading" style={{textAlign: 'center !important'}}>Become*/}
-                {/*            a Patron</a></Typography>*/}
-                {/*    </Box>*/}
-                {/*) : (<Navbar/>)}*/}
                 <Navbar isIcon={true} heading="Become a Patron"/>
                 <Box className="joinaschef">
                     <Box className="banner">
                         <Box className="become-partner-header">
-                            <Typography><a href="/" className="header-link"><ArrowBackIcon
+                            <Typography><a href="/become-a-patron" className="header-link"><ArrowBackIcon
                                 style={{marginRight: '20px'}}/>Back</a></Typography>
                             <Typography className="become-partner-heading">Become a Patron</Typography>
                         </Box>
                     </Box>
                     <Box className="container-fluid">
-                        <Formik
-                            initialValues={{
-                                enrollOrRenew: 'New Patron',
-                                membershipType: 'Decor',
-                                name: '',
-                                brandName: '',
-                                occupation: 'Decor',
-                                email: '',
-                                contactNumber: '',
-                                dateOfBirth: '',
-                                anniversaryDate: ''
-                            }}
-                            validationSchema={validationSchema}
-                            onSubmit={(values) => {
-                                const PatronData = {
-                                    ...values,
-                                    dateOfBirth: moment(JSON.stringify(_.get(values, 'dateOfBirth'))).format('DD/MM/YYYY'),
-                                    anniversaryDate: moment(JSON.stringify(_.get(values, 'anniversaryDate'))).format('DD/MM/YYYY')
-                                }
-                            }}
-                        >
-                            {({values, handleChange, handleSubmit, setFieldValue}) => (
-                                <Form onSubmit={handleSubmit}>
-                                    <Box className="row white-bg justify-content-center">
-                                        <Box className="">
-                                            <Grid className="row become-partner-form" xs={12}>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="enroll">Enroll or renew?</label>
-                                                    <Box className="form-check form-check-inline">
-                                                        <input className="form-check-input form-control" type="radio"
-                                                               name="enrollOrRenew" id="inlineRadio1"
-                                                               value="New Patron"
-                                                               checked={values.enrollOrRenew === "New Patron"}
-                                                               onChange={() => setFieldValue("enrollOrRenew", "New Patron")}
-                                                        />
-                                                        <label className="form-check-label" htmlFor="inlineRadio1">New
-                                                            Patron</label>
-                                                    </Box>
-                                                    <Box className="form-check form-check-inline">
-                                                        <input className="form-check-input form-control" type="radio"
-                                                               name="enrollOrRenew" id="inlineRadio2"
-                                                               value="Renew existing membership"
-                                                               checked={values.enrollOrRenew === "Renew existing membership"}
-                                                               onChange={() => setFieldValue("enrollOrRenew", "Renew existing membership")}
-                                                        />
-                                                        <label className="form-check-label" htmlFor="inlineRadio2">Renew
-                                                            existing membership</label>
-                                                    </Box>
-                                                </Grid>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="validationCustom01">Membership Type<span
-                                                        className="red">*</span></label>
-                                                    <Select
-                                                        labelId="demo-simple-select-label"
-                                                        id="demo-simple-select"
-                                                        name="membershipType"
-                                                        value={values.membershipType}
-                                                        onChange={handleChange}
-                                                        defaultValue={values.membershipType}
-                                                        className="selectpicker my-select dropdown-toggle form-control"
-                                                        sx={{
-                                                            '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                border: 'none',
-                                                            },
-                                                            '.css-qiwgdb.MuiSelect-select': {
-                                                                padding: '0px'
-                                                            }
-                                                        }}
-                                                        MenuProps={{
-                                                            PaperProps: {
-                                                                sx: {
-                                                                    backgroundColor: '#DCD7CB !important',
-                                                                    li: {
-                                                                        fontFamily: 'ProximaNovaA-Regular',
-                                                                        borderBottom: "1px solid black",
-                                                                        fontWeight: '100',
-                                                                        padding: '6px 0px',
-                                                                        justifyContent:'start'
+                        {
+                            !_.isEmpty(occasionData && memberShipTypeData) &&
+                            <Formik
+                                initialValues={{
+                                    enrollOrRenew: 'New Patron',
+                                    membershipType: memberShipTypeData[0]?.name,
+                                    name: '',
+                                    brandName: '',
+                                    occupation: occasionData[0]?.name,
+                                    email: '',
+                                    contactNumber: '',
+                                    dateOfBirth: '',
+                                    anniversaryDate: ''
+                                }}
+                                validationSchema={validationSchema}
+                                onSubmit={(values) => {
+                                    const PatronData = {
+                                        ...values,
+                                        dateOfBirth: moment(_.get(values, 'dateOfBirth')).toISOString(),
+                                        anniversaryDate: moment(_.get(values, 'anniversaryDate')).toISOString(),
+                                    }
+                                    if (!_.isEmpty(PatronData)) {
+                                        setBecomePatronData(PatronData);
+                                        setIsBecomePatron(true)
+                                    }
+                                }}
+                            >
+                                {({values, handleChange, handleSubmit, setFieldValue}) => (
+                                    <Form onSubmit={handleSubmit}>
+                                        <Box className="row white-bg justify-content-center">
+                                            <Box className="">
+                                                <Grid className="row become-partner-form" xs={12}>
+                                                    <Grid xs={12} className="mb-3">
+                                                        <label htmlFor="enroll">Enroll or renew?</label>
+                                                        <Box className="form-check form-check-inline">
+                                                            <input className="form-check-input form-control"
+                                                                   type="radio"
+                                                                   name="enrollOrRenew" id="inlineRadio1"
+                                                                   value="New Patron"
+                                                                   checked={values.enrollOrRenew === "New Patron"}
+                                                                   onChange={() => setFieldValue("enrollOrRenew", "New Patron")}
+                                                            />
+                                                            <label className="form-check-label" htmlFor="inlineRadio1">New
+                                                                Patron</label>
+                                                        </Box>
+                                                        <Box className="form-check form-check-inline">
+                                                            <input className="form-check-input form-control"
+                                                                   type="radio"
+                                                                   name="enrollOrRenew" id="inlineRadio2"
+                                                                   value="Renew existing membership"
+                                                                   checked={values.enrollOrRenew === "Renew existing membership"}
+                                                                   onChange={() => setFieldValue("enrollOrRenew", "Renew existing membership")}
+                                                            />
+                                                            <label className="form-check-label" htmlFor="inlineRadio2">Renew
+                                                                existing membership</label>
+                                                        </Box>
+                                                    </Grid>
+                                                    <Grid xs={12} className="mb-3">
+                                                        <label htmlFor="validationCustom01">Membership Type<span
+                                                            className="red">*</span></label>
+                                                        {
+                                                            !_.isEmpty(memberShipTypeData) &&
+                                                            <Select
+                                                                labelId="demo-simple-select-label"
+                                                                id="demo-simple-select"
+                                                                name="membershipType"
+                                                                value={values.membershipType}
+                                                                onChange={handleChange}
+                                                                defaultValue={values.membershipType}
+                                                                className="selectpicker my-select dropdown-toggle form-control"
+                                                                sx={{
+                                                                    '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                        border: 'none',
                                                                     },
-                                                                    ul: {
-                                                                        display: 'flex',
-                                                                        flexDirection: 'column',
-                                                                        padding: '16px',
+                                                                    '.css-qiwgdb.MuiSelect-select': {
+                                                                        padding: '0px'
+                                                                    }
+                                                                }}
+                                                                MenuProps={{
+                                                                    PaperProps: {
+                                                                        sx: {
+                                                                            backgroundColor: '#DCD7CB !important',
+                                                                            li: {
+                                                                                fontFamily: 'ProximaNovaA-Regular',
+                                                                                borderBottom: "1px solid black",
+                                                                                fontWeight: '100',
+                                                                                padding: '6px 0px',
+                                                                                justifyContent: 'start'
+                                                                            },
+                                                                            ul: {
+                                                                                display: 'flex',
+                                                                                flexDirection: 'column',
+                                                                                padding: '16px',
+                                                                            },
+                                                                            'li:hover': {
+                                                                                color: '#C6A87D!important',
+                                                                                backgroundColor: 'unset !important'
+                                                                            },
+                                                                            'li:last-child': {
+                                                                                borderBottom: 'none'
+                                                                            },
+                                                                            "&& .Mui-selected": {
+                                                                                backgroundColor: "unset !important"
+                                                                            },
+                                                                        },
                                                                     },
-                                                                    'li:hover': {
-                                                                        color: '#C6A87D!important',
-                                                                        backgroundColor: 'unset !important'
-                                                                    },
-                                                                    'li:last-child': {
-                                                                        borderBottom: 'none'
-                                                                    },
-                                                                    "&& .Mui-selected": {
-                                                                        backgroundColor: "unset !important"
-                                                                    },
-                                                                },
-                                                            },
-                                                        }}
-                                                    >
-                                                        <MenuItem value="Decor">Decor</MenuItem>
-                                                        <MenuItem value="Venue">Venue</MenuItem>
-                                                        <MenuItem value="Produce">Produce</MenuItem>
-                                                        <MenuItem value="Service Staff">Service Staff</MenuItem>
-                                                        <MenuItem value="Sommelier">Sommelier</MenuItem>
-                                                        <MenuItem value="Bartender">Bartender</MenuItem>
-                                                    </Select>
-                                                    <ErrorMessage name='membershipType' component="div"
-                                                                  className="error"/>
-                                                </Grid>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="validationCustomname">Your Name<span
-                                                        className="red">*</span></label>
-                                                    <TextField type="text" className="form-control" name="name"
-                                                               value={values.name}
-                                                               onChange={handleChange} id="validationCustomname"
-                                                               placeholder="Enter your full name"
-                                                               variant="standard"
-                                                               autoComplete="off"
-                                                               InputProps={{
-                                                                   disableUnderline: true,
-                                                               }}
-                                                    />
-                                                    <ErrorMessage name='name' component="div" className="error"/>
-                                                </Grid>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="validationCustomcompany">Company Name
-                                                        (Optional)</label>
-                                                    <TextField type="text" className="form-control"
-                                                               id="validationCustomcompany"
-                                                               placeholder="Please enter company or brand name"
-                                                               name="brandName"
-                                                               autoComplete="off"
-                                                               value={values.brandName}
-                                                               onChange={handleChange}
-                                                               variant="standard"
-                                                               InputProps={{
-                                                                   disableUnderline: true,
-                                                               }}/>
-                                                    <ErrorMessage name='brandName' component="div" className="error"/>
-                                                </Grid>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="validationCustom01">Occupation (Optional)</label>
-                                                    <Select
-                                                        labelId="demo-simple-select-label"
-                                                        id="demo-simple-select"
-                                                        name="occupation"
-                                                        value={values.occupation}
-                                                        onChange={handleChange}
-                                                        defaultValue={values.occupation}
-                                                        className="selectpicker my-select dropdown-toggle form-control"
-                                                        sx={{
-                                                            '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                border: 'none',
-                                                            },
-                                                            '.css-qiwgdb.MuiSelect-select': {
-                                                                padding: '0px'
-                                                            }
-                                                        }}
-                                                        MenuProps={{
-                                                            PaperProps: {
-                                                                sx: {
-                                                                    backgroundColor: '#DCD7CB !important',
-                                                                    li: {
-                                                                        fontFamily: 'ProximaNovaA-Regular',
-                                                                        borderBottom: "1px solid black",
-                                                                        fontWeight: '100',
-                                                                        padding: '6px 0px',
-                                                                        justifyContent:'start'
-                                                                    },
-                                                                    ul: {
-                                                                        display: 'flex',
-                                                                        flexDirection: 'column',
-                                                                        padding: '16px',
-                                                                    },
-                                                                    'li:hover': {
-                                                                        color: '#C6A87D!important',
-                                                                        backgroundColor: 'unset !important'
-                                                                    },
-                                                                    'li:last-child': {
-                                                                        borderBottom: 'none'
-                                                                    },
-                                                                    "&& .Mui-selected": {
-                                                                        backgroundColor: "unset !important"
-                                                                    },
-                                                                },
-                                                            },
-                                                        }}
-                                                    >
-                                                        <MenuItem value="Decor">Decor</MenuItem>
-                                                        <MenuItem value="Venue">Venue</MenuItem>
-                                                        <MenuItem value="Produce">Produce</MenuItem>
-                                                        <MenuItem value="Service Staff">Service Staff</MenuItem>
-                                                        <MenuItem value="Sommelier">Sommelier</MenuItem>
-                                                        <MenuItem value="Bartender">Bartender</MenuItem>
-                                                    </Select>
-                                                    <ErrorMessage name='occupation' component="div" className="error"/>
-                                                </Grid>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="validationCustom02">Email<span
-                                                        className="red">*</span></label>
-                                                    <TextField type="email" name="email" className="form-control"
-                                                               id="validationCustom02"
-                                                               value={values.email}
-                                                               onChange={handleChange}
-                                                               placeholder="Enter your email address"
-                                                               variant="standard"
-                                                               autoComplete="off"
-                                                               InputProps={{
-                                                                   disableUnderline: true,
-                                                               }}/>
-                                                    <ErrorMessage name='email' component="div" className="error"/>
-                                                </Grid>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="validationCustom03">Contact Number</label>
-                                                    <Box className="form-group">
-                                                        <TextField type="tel" name="contactNumber"
-                                                                   className="form-control" id="validationCustom03"
-                                                                   placeholder="10 digit number"
-                                                                   value={values.contactNumber}
-                                                                   onChange={handleChange}
-                                                                   autoComplete="off"
-                                                                   variant="standard"
-                                                                   InputProps={{
-                                                                       disableUnderline: true,
-                                                                       startAdornment: <InputAdornment
-                                                                           position="start">91+</InputAdornment>
-                                                                   }}/>
-                                                        <ErrorMessage name='contactNumber' component="div"
+                                                                }}
+                                                            >
+                                                                {
+                                                                    memberShipTypeData?.map((item) => {
+                                                                        return <MenuItem
+                                                                            value={item.name}>{item.name}</MenuItem>
+                                                                    })
+                                                                }
+                                                            </Select>
+                                                        }
+                                                        <ErrorMessage name='membershipType' component="div"
                                                                       className="error"/>
-                                                    </Box>
-                                                </Grid>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="validationCustom03">Date of Birth (Optional)</label>
-                                                    <Box className="form-group">
-                                                        <TextField type="date" name="dateOfBirth"
-                                                                   value={values.dateOfBirth}
-                                                                   onChange={handleChange}
-                                                                   className="form-control capital-date-format"
+                                                    </Grid>
+                                                    <Grid xs={12} className="mb-3">
+                                                        <label htmlFor="validationCustomname">Your Name<span
+                                                            className="red">*</span></label>
+                                                        <TextField type="text" className="form-control" name="name"
+                                                                   value={values.name}
+                                                                   onChange={handleChange} id="validationCustomname"
+                                                                   placeholder="Enter your full name"
+                                                                   variant="standard"
                                                                    autoComplete="off"
+                                                                   InputProps={{
+                                                                       disableUnderline: true,
+                                                                   }}
+                                                        />
+                                                        <ErrorMessage name='name' component="div" className="error"/>
+                                                    </Grid>
+                                                    <Grid xs={12} className="mb-3">
+                                                        <label htmlFor="validationCustomcompany">Company Name
+                                                            (Optional)</label>
+                                                        <TextField type="text" className="form-control"
+                                                                   id="validationCustomcompany"
+                                                                   placeholder="Please enter company or brand name"
+                                                                   name="brandName"
+                                                                   autoComplete="off"
+                                                                   value={values.brandName}
+                                                                   onChange={handleChange}
                                                                    variant="standard"
                                                                    InputProps={{
                                                                        disableUnderline: true,
-                                                                       autoCapitalize: true,
                                                                    }}/>
-                                                    </Box>
-                                                </Grid>
-                                                <Grid xs={12} className="mb-3">
-                                                    <label htmlFor="validationCustom03">Anniversary Date
-                                                        (Optional)</label>
-                                                    <Box className="form-group">
-                                                        <TextField type="date" name="anniversaryDate"
-                                                                   value={values.anniversaryDate}
+                                                        <ErrorMessage name='brandName' component="div"
+                                                                      className="error"/>
+                                                    </Grid>
+                                                    <Grid xs={12} className="mb-3">
+                                                        <label htmlFor="validationCustom01">Occassion (Optional)</label>
+                                                        {
+                                                            !_.isEmpty(occasionData) &&
+                                                            <Select
+                                                                labelId="demo-simple-select-label"
+                                                                id="demo-simple-select"
+                                                                name="occupation"
+                                                                value={values.occupation}
+                                                                onChange={handleChange}
+                                                                defaultValue={values.occupation}
+                                                                className="selectpicker my-select dropdown-toggle form-control"
+                                                                sx={{
+                                                                    '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                        border: 'none',
+                                                                    },
+                                                                    '.css-qiwgdb.MuiSelect-select': {
+                                                                        padding: '0px'
+                                                                    }
+                                                                }}
+                                                                MenuProps={{
+                                                                    PaperProps: {
+                                                                        sx: {
+                                                                            backgroundColor: '#DCD7CB !important',
+                                                                            li: {
+                                                                                fontFamily: 'ProximaNovaA-Regular',
+                                                                                borderBottom: "1px solid black",
+                                                                                fontWeight: '100',
+                                                                                padding: '6px 0px',
+                                                                                justifyContent: 'start'
+                                                                            },
+                                                                            ul: {
+                                                                                display: 'flex',
+                                                                                flexDirection: 'column',
+                                                                                padding: '16px',
+                                                                            },
+                                                                            'li:hover': {
+                                                                                color: '#C6A87D!important',
+                                                                                backgroundColor: 'unset !important'
+                                                                            },
+                                                                            'li:last-child': {
+                                                                                borderBottom: 'none'
+                                                                            },
+                                                                            "&& .Mui-selected": {
+                                                                                backgroundColor: "unset !important"
+                                                                            },
+                                                                        },
+                                                                    },
+                                                                }}
+                                                            >
+                                                                {
+                                                                    occasionData?.map((item) => {
+                                                                        return <MenuItem
+                                                                            value={item.name}>{item.name}</MenuItem>
+                                                                    })
+                                                                }
+                                                            </Select>
+                                                        }
+                                                        <ErrorMessage name='occupation' component="div"
+                                                                      className="error"/>
+                                                    </Grid>
+                                                    <Grid xs={12} className="mb-3">
+                                                        <label htmlFor="validationCustom02">Email<span
+                                                            className="red">*</span></label>
+                                                        <TextField type="email" name="email" className="form-control"
+                                                                   id="validationCustom02"
+                                                                   value={values.email}
                                                                    onChange={handleChange}
-                                                                   className="form-control capital-date-format"
-                                                                   autoComplete="off"
+                                                                   placeholder="Enter your email address"
                                                                    variant="standard"
+                                                                   autoComplete="off"
                                                                    InputProps={{
                                                                        disableUnderline: true,
-                                                                       autoCapitalize: true,
                                                                    }}/>
-                                                    </Box>
+                                                        <ErrorMessage name='email' component="div" className="error"/>
+                                                    </Grid>
+                                                    <Grid xs={12} className="mb-3">
+                                                        <label htmlFor="validationCustom03">Contact Number</label>
+                                                        <Box className="form-group">
+                                                            <TextField type="tel" name="contactNumber"
+                                                                       className="form-control" id="validationCustom03"
+                                                                       placeholder="10 digit number"
+                                                                       value={values.contactNumber}
+                                                                       onChange={handleChange}
+                                                                       autoComplete="off"
+                                                                       variant="standard"
+                                                                       InputProps={{
+                                                                           disableUnderline: true,
+                                                                           startAdornment: <InputAdornment
+                                                                               position="start">91+</InputAdornment>
+                                                                       }}/>
+                                                            <ErrorMessage name='contactNumber' component="div"
+                                                                          className="error"/>
+                                                        </Box>
+                                                    </Grid>
+                                                    <Grid xs={12} className="mb-3">
+                                                        <label htmlFor="validationCustom03">Date of Birth
+                                                            (Optional)</label>
+                                                        <Box className="form-group">
+                                                            <TextField type="date" name="dateOfBirth"
+                                                                       value={values.dateOfBirth}
+                                                                       onChange={handleChange}
+                                                                       className="form-control capital-date-format"
+                                                                       autoComplete="off"
+                                                                       variant="standard"
+                                                                       InputProps={{
+                                                                           disableUnderline: true,
+                                                                           autoCapitalize: true,
+                                                                           inputProps: {
+                                                                               max: new Date().toISOString().slice(0, 10),
+                                                                           }
+                                                                       }}/>
+                                                        </Box>
+                                                    </Grid>
+                                                    <Grid xs={12} className="mb-3">
+                                                        <label htmlFor="validationCustom03">Anniversary Date
+                                                            (Optional)</label>
+                                                        <Box className="form-group">
+                                                            <TextField type="date" name="anniversaryDate"
+                                                                       value={values.anniversaryDate}
+                                                                       onChange={handleChange}
+                                                                       className="form-control capital-date-format"
+                                                                       autoComplete="off"
+                                                                       variant="standard"
+                                                                       InputProps={{
+                                                                           disableUnderline: true,
+                                                                           autoCapitalize: true,
+                                                                           // inputProps: {
+                                                                           //     max: new Date().toISOString().slice(0, 10),
+                                                                           // }
+                                                                       }}
+                                                            />
+                                                        </Box>
+                                                    </Grid>
+                                                    <Grid xs={12} className="col-lg-12">
+                                                        <button className="btn btn-primary" type="submit">Submit
+                                                        </button>
+                                                        <p className="agree">By continuing you agree to the <a
+                                                            href="" className="agree-link">T&amp;C</a> of Chefs à Porter
+                                                        </p>
+                                                    </Grid>
                                                 </Grid>
-                                                <Grid xs={12} className="col-lg-12">
-                                                    <button className="btn btn-primary" type="submit">Submit</button>
-                                                    <p className="agree">By continuing you agree to the <a
-                                                        href="" className="agree-link">T&amp;C</a> of Chefs à Porter</p>
-                                                </Grid>
-                                            </Grid>
+                                            </Box>
                                         </Box>
-                                    </Box>
-                                </Form>
-                            )}
-                        </Formik>
+                                    </Form>
+                                )}
+                            </Formik>
+                        }
                     </Box>
                 </Box>
                 <NeedHelp/>

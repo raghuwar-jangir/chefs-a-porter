@@ -321,9 +321,9 @@ const SupperClub = () => {
         const tabValue = tabData[newValue];
         Cookies.set("tabData", JSON.stringify(tabValue.label));
     };
-    const tabData = commonCityData?.map((obj, index) => {
-        return { id: index, label: obj.name, value: obj.name };
-    });
+        const tabData = commonCityData?.map((obj, index) => {
+            return { id: index, label: obj.name, value: obj.name };
+        });
 
     const today = new Date();
     const startOfWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay() + 1);

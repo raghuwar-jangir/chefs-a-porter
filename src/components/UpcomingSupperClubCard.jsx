@@ -18,56 +18,6 @@ import Cookies from "js-cookie";
 const UpcomingSupperClubCard = () => {
 
     const {data} = useContext(CmsContext);
-    const cardDetails = [
-        {
-            potImg: img1,
-            title: 'The Big Fat Parsi Blowout',
-            chef: cap,
-            chefDetails: 'Chef Anna Miocher',
-            cal: date,
-            calDetails: 'April 9 | 7.30 PM - 10 PM',
-            price: tag,
-            priceDetails: '₹2500/per diner',
-            tend: trending,
-            trendDetails: 'Trending'
-        },
-        {
-            potImg: img2,
-            title: 'The Big Fat Parsi Blowout',
-            chef: cap,
-            chefDetails: 'Chef Anna Miocher',
-            cal: date,
-            calDetails: 'April 9 | 7.30 PM - 10 PM',
-            price: tag,
-            priceDetails: '₹2500/per diner',
-            tend: trending,
-            trendDetails: 'Trending'
-        },
-        {
-            potImg: img1,
-            title: 'The Big Fat Parsi Blowout',
-            chef: cap,
-            chefDetails: 'Chef Anna Miocher',
-            cal: date,
-            calDetails: 'April 9 | 7.30 PM - 10 PM',
-            price: tag,
-            priceDetails: '₹2500/per diner',
-            tend: trending,
-            trendDetails: 'Trending'
-        },
-        {
-            potImg: img2,
-            title: 'The Big Fat Parsi Blowout',
-            chef: cap,
-            chefDetails: 'Chef Anna Miocher',
-            cal: date,
-            calDetails: 'April 9 | 7.30 PM - 10 PM',
-            price: tag,
-            priceDetails: '₹2500/per diner',
-            tend: trending,
-            trendDetails: 'Trending'
-        }
-    ]
     const MainBox = styled(Box)({
         display: 'grid',
         gridTemplate: 'repeat(1,1fr) / repeat(4,1fr)',
