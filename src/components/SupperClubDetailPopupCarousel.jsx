@@ -10,6 +10,7 @@ import styled from "styled-components";
 import { Box } from "@mui/system";
 import "../assets/styles/fontStyle.css";
 import UsersContext from "../context/UsersContext";
+import * as _ from "lodash";
 
 const MainBox = styled(Box)({
     ".swiper-button-prev": {
@@ -42,29 +43,20 @@ const MainBox = styled(Box)({
 });
 
 const SupperClubDetailPopupCarousel = ({ title }) => {
-    const { userData } = useContext(UsersContext);
-    const itemData = [
+    const getEventId = "640b22b691e7236a1d0a264e";
+    const { setEventId, userData } = useContext(UsersContext);
+    const itemData =
         {
-            img: userData?.pictures[0],
-            title: "img1",
-        },
-        {
-            img: userData?.pictures[1] ? userData?.pictures[1] : userData?.pictures[0],
-            title: "img2",
-        },
-        {
-            img: userData?.pictures[2] ? userData?.pictures[1] : userData?.pictures[0],
-            title: "img3",
-        },
-        {
-            img: userData?.pictures[3] ? userData?.pictures[1] : userData?.pictures[0],
-            title: "img4",
-        },
-        {
-            img: userData?.pictures[4] ? userData?.pictures[1] : userData?.pictures[0],
-            title: "img5",
-        },
-    ];
+            img: userData?.chef?.picture,
+        }
+    const itemData2 = _.map(_.get(userData,'pictures',[]), (item,index) => {
+        return {
+            img: item,
+        }
+    })
+
+    const combinedArray = [itemData, ...itemData2];
+
     return (
         <React.Fragment>
             <MainBox>
@@ -75,20 +67,20 @@ const SupperClubDetailPopupCarousel = ({ title }) => {
                         grabCursor={true}
                         className="mySwiper"
                         initialSlide={`${
-                            title === "img1"
+                            title === "chef"
                                 ? 0
-                                : title === "img2"
+                                : title === "sGallery"
                                     ? 1
-                                    : title === "img3"
+                                    : title === "chef1"
                                         ? 2
-                                        : title === "img4"
+                                        : title === "chef2"
                                             ? 3
-                                            : title === "img5"
+                                            : title === "chef3"
                                                 ? 4
                                                 : 0
                         }`}
                     >
-                        {itemData.map((item) => (
+                        {combinedArray.map((item) => (
                             <SwiperSlide>
                                 <img className="carousel-img" src={item.img} />
                             </SwiperSlide>

@@ -1,15 +1,13 @@
-import React, {useContext, useEffect, useState} from "react";
-import chef1 from "./../assets/images/chef5.png";
-import chef2 from "./../assets/images/chef6.png";
-import sGallery from "./../assets/images/sc-gallery.png";
-import {Swiper, SwiperSlide} from "swiper/react";
+import React, { useContext } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import {Navigation} from "swiper";
+import { Navigation } from "swiper";
 import styled from "styled-components";
-import {Box} from "@mui/system";
+import { Box } from "@mui/system";
 import "../assets/styles/fontStyle.css";
 import UsersContext from "../context/UsersContext";
+import * as _ from "lodash";
 
 const MainBox = styled(Box)({
     ".swiper-button-prev": {
@@ -27,7 +25,6 @@ const MainBox = styled(Box)({
         display: "block",
         width: "75%",
         backgroundColor: "rgba(0,0,0,.8)",
-        // boxShadow: '0 0 8px rgb(0 0 0 / 60%)'
     },
     ".swiper-slide": {
         maxHeight: "100%",
@@ -41,57 +38,48 @@ const MainBox = styled(Box)({
     },
 });
 
-const EventPopUpCarousel = ({title}) => {
+const EventPopUpCarousel = ({ title }) => {
     const getEventId = "640b22b691e7236a1d0a264e";
-    const {setEventId, userData} = useContext(UsersContext);
-    const itemData = [
-        {
-            img: userData.cover_picture,
-            title: "chef1",
-        },
-        {
-            img: userData.user.details.gallery_pictures[0],
-            title: "sGallery",
-        },
-        {
-            img: userData.user.details.gallery_pictures[0],
-            title: "sGallery",
-        },
-        {
-            img: userData.user.details.gallery_pictures[1],
-            title: "chef2",
-        },
-        {
-            img: userData.user.details.gallery_pictures[1],
-            title: "chef2",
-        },
-    ];
+    const { userData } = useContext(UsersContext);
+
+    const itemData = {
+        img: userData.cover_picture,
+    };
+
+    const itemData2 = _.map(_.get(userData, "pictures", []), (item, index) => {
+        return {
+            img: item,
+        };
+    });
+
+    const combinedArray = [itemData, ...itemData2];
+
     return (
         <React.Fragment>
             <MainBox>
-                <Box style={{background: "rgba(0, 0, 0, 0.8)"}}>
+                <Box style={{ background: "rgba(0, 0, 0, 0.8)" }}>
                     <Swiper
                         navigation={true}
                         modules={[Navigation]}
                         grabCursor={true}
                         className="mySwiper"
                         initialSlide={`${
-                            title === "chef1"
+                            title === "chef"
                                 ? 0
                                 : title === "sGallery"
                                     ? 1
-                                    : title === "sGallery"
+                                    : title === "chef1"
                                         ? 2
                                         : title === "chef2"
                                             ? 3
-                                            : title === "chef2"
+                                            : title === "chef3"
                                                 ? 4
                                                 : 0
                         }`}
                     >
-                        {itemData.map((item) => (
+                        {combinedArray.map((item) => (
                             <SwiperSlide>
-                                <img className="carousel-img" src={item.img}/>
+                                <img className="carousel-img" src={item.img} />
                             </SwiperSlide>
                         ))}
                     </Swiper>

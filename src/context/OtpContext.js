@@ -59,6 +59,8 @@ const OtpProvider = (props) => {
     const [userAddress, setUserAddress] = useState()
     const selectedTab = Cookies.get('tabData');
     const cityName = selectedTab?.replaceAll('"', '');
+    const Mapcoords = Cookies.get('coords');
+    const coords = Mapcoords?.replaceAll('"', '');
     useEffect(() => {
         if (cookieValue1) {
             setPriveeData(JSON.parse(cookieValue1));
@@ -120,17 +122,15 @@ const OtpProvider = (props) => {
                 otp: verifyOtp,
                 common_menu: PaymentEventId,
                 message: customerInfo?.message,
-                common_address: {
-                    address1: userAddress?.society,
-                    address2: userAddress?.location,
-                    landmark: userAddress?.landmark,
-                    pincode: userAddress?.pincode,
-                    type: userAddress?.type,
-                    // coordinates: {
-                    //     "lat": 12.955625021230164,
-                    //     "lng": 77.65579622862903
-                    // }
-                },
+                address1: userAddress?.society ? userAddress?.society : "Wilson Garden",
+                address2: userAddress?.location ? userAddress?.location : "Bengaluru",
+                landmark: userAddress?.landmark ? userAddress?.landmark : "Rainbow Home School",
+                pincode: userAddress?.pincode ? userAddress?.pincode : 560027,
+                type: userAddress?.type ? userAddress?.type : "other",
+                coordinates: {
+                    "lat": coords?.lat,
+                    "lng": coords?.lng
+                }
             }).then((response) => {
                 if (response.status === 200) {
                     // Cookies.remove('eventData');

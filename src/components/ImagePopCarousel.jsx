@@ -1,15 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
-import chef1 from "./../assets/images/chef5.png";
-import chef2 from "./../assets/images/chef6.png";
-import sGallery from "./../assets/images/sc-gallery.png";
+import React, { useContext } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import styled from "styled-components";
 import { Box } from "@mui/system";
-import { ImageListItem } from "@mui/material";
 import UsersContext from "../context/UsersContext";
+import * as _ from "lodash";
 
 const MainBox = styled(Box)({
     ".swiper-button-prev": {
@@ -36,21 +33,26 @@ const MainBox = styled(Box)({
 });
 const ImagePopCarousel = ({ title }) => {
     const getEventId = "640b22b691e7236a1d0a264e";
-    const { setEventId, userData } = useContext(UsersContext);
-    const itemData = [
-        {
-            img: userData?.experinces[0]?.cover_picture ? userData?.experinces[0]?.cover_picture : userData?.details?.gallery_pictures[0],
-            title: "chef1",
-        },
-        {
-            img: userData?.details?.gallery_pictures[0],
-            title: " sGallery",
-        },
-        {
-            img: userData?.details?.gallery_pictures[1],
-            title: "chef2",
-        },
-    ];
+    const { userData } = useContext(UsersContext);
+
+    const itemData = _.map(_.get(userData, "experinces", []), (item, index) => {
+        return {
+            img: item.cover_picture,
+        };
+    });
+
+    const newData = itemData.pop();
+
+    const itemData2 = _.map(
+        _.get(userData?.details, "gallery_pictures", []),
+        (item, index) => {
+            return {
+                img: item,
+            };
+        }
+    );
+
+    const combinedArray = [newData, ...itemData2];
 
     return (
         <React.Fragment>
@@ -71,7 +73,7 @@ const ImagePopCarousel = ({ title }) => {
                                         : 0
                         }`}
                     >
-                        {itemData.map((item) => (
+                        {combinedArray.map((item) => (
                             <SwiperSlide>
                                 <img className="carousel-img" src={item.img} />
                             </SwiperSlide>

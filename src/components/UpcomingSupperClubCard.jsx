@@ -18,56 +18,6 @@ import Cookies from "js-cookie";
 const UpcomingSupperClubCard = () => {
 
     const {data} = useContext(CmsContext);
-    const cardDetails = [
-        {
-            potImg: img1,
-            title: 'The Big Fat Parsi Blowout',
-            chef: cap,
-            chefDetails: 'Chef Anna Miocher',
-            cal: date,
-            calDetails: 'April 9 | 7.30 PM - 10 PM',
-            price: tag,
-            priceDetails: '₹2500/per diner',
-            tend: trending,
-            trendDetails: 'Trending'
-        },
-        {
-            potImg: img2,
-            title: 'The Big Fat Parsi Blowout',
-            chef: cap,
-            chefDetails: 'Chef Anna Miocher',
-            cal: date,
-            calDetails: 'April 9 | 7.30 PM - 10 PM',
-            price: tag,
-            priceDetails: '₹2500/per diner',
-            tend: trending,
-            trendDetails: 'Trending'
-        },
-        {
-            potImg: img1,
-            title: 'The Big Fat Parsi Blowout',
-            chef: cap,
-            chefDetails: 'Chef Anna Miocher',
-            cal: date,
-            calDetails: 'April 9 | 7.30 PM - 10 PM',
-            price: tag,
-            priceDetails: '₹2500/per diner',
-            tend: trending,
-            trendDetails: 'Trending'
-        },
-        {
-            potImg: img2,
-            title: 'The Big Fat Parsi Blowout',
-            chef: cap,
-            chefDetails: 'Chef Anna Miocher',
-            cal: date,
-            calDetails: 'April 9 | 7.30 PM - 10 PM',
-            price: tag,
-            priceDetails: '₹2500/per diner',
-            tend: trending,
-            trendDetails: 'Trending'
-        }
-    ]
     const MainBox = styled(Box)({
         display: 'grid',
         gridTemplate: 'repeat(1,1fr) / repeat(4,1fr)',
@@ -151,9 +101,9 @@ const UpcomingSupperClubCard = () => {
         '.link': {
             textDecoration: 'none'
         },
-        "@media(min-width:1px) and (max-width: 425px)": {
-            display: 'block',
-        },
+        "@media (min-width: 1px) and (max-width:767px)": {
+            gridTemplate: 'repeat(1,1fr) / repeat(1,1fr)'
+        }
     })
     return (
         <React.Fragment>
@@ -167,7 +117,7 @@ const UpcomingSupperClubCard = () => {
                         }}
                              style={{cursor: 'pointer'}}>
                             <Box sx={{position: 'relative'}}>
-                                <img className='test-img' src={item.pictures}/>
+                                <img className='test-img' src={item.pictures[0]}/>
                                 {
                                     item.status &&
                                     <Box className='trending'>

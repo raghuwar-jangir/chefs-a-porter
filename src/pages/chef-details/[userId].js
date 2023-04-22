@@ -87,21 +87,22 @@ const ChefDetails = (props) => {
 
     // const longText = "From Bangalore to the Culinary Institute of America in New York. He has developed his skills and love for the culinary arts. From Bangalore to the Culinary ..."
 
-    const itemData = {
-        img: userData?.experinces[0]?.cover_picture ? userData?.experinces[0]?.cover_picture : chef2,
-        title: "chef1",
-    };
+    const itemData = _.map(_.get(userData, "experinces", []), (item, index) => {
+        return {
+            img: item.cover_picture,
+            title: "chef1",
+        };
+    });
 
-    const itemData2 = [
-        {
-            img: userData?.details?.gallery_pictures[0],
-            title: "sGallery",
-        },
-        {
-            img: userData?.details?.gallery_pictures[1],
-            title: "chef2",
-        },
-    ];
+    const itemData2 = _.map(
+        _.get(userData?.details, "gallery_pictures", []),
+        (item, index) => {
+            return {
+                img: item,
+                title: index === 0 ? "sGallery" : "chef2",
+            };
+        }
+    );
     const BoxWrapper = styled(Box)(() => ({
         background: "#080B0E",
         ".supper-gallery": {
@@ -181,38 +182,29 @@ const ChefDetails = (props) => {
             paddingBottom: "40px",
         },
         ".all-photos": {
+            position: "absolute",
+            bottom: "32px",
+            right: "29px",
             fontFamily: "ProximaNovaA-Regular",
             fontStyle: "normal",
-            fontWeight: "400",
+            fontWeight: 400,
             fontSize: "16px",
             lineHeight: "19px",
             color: "#080B0E",
-            textDecoration: "none",
+            textTransform: "math-auto",
             background: "#FBFBFB",
             boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
-            padding: "8px 12px",
-            position: "absolute",
-            bottom: "22px",
-            right: "18px",
             borderRadius: "1px",
-            textTransform: "math-auto",
+            padding: "8px 12px",
         },
-        // ".all-photos:hover": {
-        //     position: "absolute",
-        //     bottom: "20px",
-        //     right: "27px",
-        //     fontFamily: "ProximaNovaA-Regular",
-        //     fontStyle: "normal",
-        //     fontWeight: 400,
-        //     fontSize: "16px",
-        //     lineHeight: "19px",
-        //     color: "#080B0E",
-        //     textTransform: "math-auto",
-        //     background: "#FBFBFB",
-        //     boxShadow: "0px 20px 24px rgb(0 0 0 / 6%)",
-        //     borderRadius: "1px",
-        //     padding: "8px 12px",
-        // },
+        ".all-photos:hover": {
+            color: "#C6A87D",
+            backgroundColor: "#FBFBFB",
+        },
+        ".all-photos:focus": {
+            backgroundColor: "#FBFBFB",
+            color: "#C6A87D",
+        },
         ".read-more-less--more, .read-more-less--less": {
             all: "unset",
             color: "#080B0E",
@@ -613,27 +605,27 @@ const ChefDetails = (props) => {
                                 <Box>
                                     <Box className="container-spacing">
                                         <Box className="container">
-                                            {/*{itemData.map((item) => (*/}
-                                            <img
-                                                src={itemData.img}
-                                                alt={itemData.title}
-                                                loading="lazy"
-                                                onClick={() => {
-                                                    handleImageOpen(itemData.title);
-                                                }}
-                                                className="main-img"
-                                            />
-                                            {/*))}*/}
+                                            {itemData.map((item) => (
+                                                <img
+                                                    src={item.img}
+                                                    alt={item.title}
+                                                    loading="lazy"
+                                                    onClick={() => {
+                                                        handleImageOpen(item.title);
+                                                    }}
+                                                    className="main-img"
+                                                />
+                                            ))}
                                             {showCarousel && (
                                                 <Box className="carousel-popup">
                                                     <button
                                                         className="close-button"
                                                         onClick={handleImageClose}
                                                     >
-                                                        <CloseIcon className="pop-close-icon"/>
+                                                        <CloseIcon className="pop-close-icon" />
                                                     </button>
                                                     <Box className="carousel">
-                                                        <ImagePopCarousel title={title}/>
+                                                        <ImagePopCarousel title={title} />
                                                     </Box>
                                                 </Box>
                                             )}
@@ -654,7 +646,9 @@ const ChefDetails = (props) => {
                                                     ))}
                                                     <Button
                                                         className="all-photos"
-                                                        onClick={()=>{setShowCarousel(true)}}
+                                                        onClick={() => {
+                                                            setShowCarousel(true);
+                                                        }}
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#exampleModal"
                                                     >
@@ -754,7 +748,7 @@ const ChefDetails = (props) => {
                                         Available Experiences
                                     </Typography>
                                     <Grid container spacing={2}>
-                                        {userData.experinces.map((item) => {
+                                        {userData?.experinces?.map((item) => {
                                             return (
                                                 <Grid item xl={4} md={4} sm={6} xs={12}>
                                                     <AvlExperienceCarousel
@@ -798,18 +792,16 @@ const ChefDetails = (props) => {
                                     changeFont={{fontSize: "20px"}}
                                     backgroundColor="#DCD7CB"
                                 />
-                                {
-                                    !_.isEmpty(userData?.details?.sliders) && (
-                                        <>
-                                            <GalleryCarousel title={"Gallery"}/>
-                                            <Box className="chef-btn book-now">
-                                                <Link href="/our-chefs" className="view-all-gallery">
-                                                    View More Chef
-                                                </Link>
-                                            </Box>
-                                        </>
-                                    )
-                                }
+                                {!_.isEmpty(userData?.details?.sliders) && (
+                                    <>
+                                        <GalleryCarousel title={"Gallery"} />
+                                        <Box className="chef-btn book-now">
+                                            <Link href="/our-chefs" className="view-all-gallery">
+                                                View More Chef
+                                            </Link>
+                                        </Box>
+                                    </>
+                                )}
                             </Box>
                         </Box>
                         <NeedHelp/>

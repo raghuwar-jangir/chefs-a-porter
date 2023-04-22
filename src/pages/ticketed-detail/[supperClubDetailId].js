@@ -100,7 +100,10 @@ const SupperClubDetail = (props) => {
         const date = showDates[index]?.[0]?.date;
         const time = showDates[index]?.[0]?.time;
         const nextTime = showDates[index]?.[1]?.time;
-        if (selectedDate === date && selectedTime === time || selectedTimeNext === nextTime) {
+        if (
+            (selectedDate === date && selectedTime === time) ||
+            selectedTimeNext === nextTime
+        ) {
             setSelectedDate(null);
             setSelectedTime(null);
             setSelectedTimeNext(null);
@@ -108,10 +111,8 @@ const SupperClubDetail = (props) => {
             setSelectedDate(date);
             setSelectedTime(time);
             setSelectedTimeNext(nextTime);
-
         }
-        ;
-    }
+    };
     const disabledStyle = {
         opacity: 0.5,
     };
@@ -155,30 +156,23 @@ const SupperClubDetail = (props) => {
         setShowCarousel(false);
     };
 
-    const itemData = [
+    const itemData =
         {
-            img: userData?.pictures[0],
-            title: "img1",
-        },
-    ];
-    const itemData2 = [
-        {
-            img: userData?.pictures[1] ? userData?.pictures[1] : userData?.pictures[0],
-            title: "img2",
-        },
-        {
-            img: userData?.pictures[2] ? userData?.pictures[2] : userData?.pictures[0],
-            title: "img3",
-        },
-        {
-            img: userData?.pictures[3] ? userData?.pictures[3] : userData?.pictures[0],
-            title: "img4",
-        },
-        {
-            img: userData?.pictures[4] ? userData?.pictures[4] : userData?.pictures[0],
-            title: "img5",
-        },
-    ];
+            img: userData?.chef?.picture,
+            title: "chef",
+        }
+    const itemData2 = _.map(_.get(userData,'pictures',[]), (item,index) => {
+        return {
+            img: item,
+            title :  index === 1
+                ? "chef1"
+                : index === 2
+                    ? "chef2"
+                    : index === 3
+                        ? "chef3"
+                        : "sGallery",
+        }
+    })
 
     const BoxWrapper = styled(Box)(() => ({
         ".header-club": {
@@ -991,7 +985,7 @@ const SupperClubDetail = (props) => {
                             <Grid
                                 className="supper-main-container"
                                 container
-                                spacing={{md: 2}}
+                                spacing={{ md: 2 }}
                             >
                                 <Grid
                                     className="parent-container"
@@ -1002,27 +996,25 @@ const SupperClubDetail = (props) => {
                                     xs={12}
                                 >
                                     <Box className="container">
-                                        {itemData.map((item) => (
-                                            <img
-                                                src={item.img}
-                                                alt={item.title}
-                                                className="main-img"
-                                                loading="lazy"
-                                                onClick={() => {
-                                                    handleImageOpen(item.title);
-                                                }}
-                                            />
-                                        ))}
+                                        <img
+                                            src={itemData.img}
+                                            alt={itemData.title}
+                                            className="main-img"
+                                            loading="lazy"
+                                            onClick={() => {
+                                                handleImageOpen(itemData.title);
+                                            }}
+                                        />
                                         {showCarousel && (
                                             <Box className="carousel-popup">
                                                 <button
                                                     className="close-button"
                                                     onClick={handleImageClose}
                                                 >
-                                                    <CloseIcon className="pop-close-icon"/>
+                                                    <CloseIcon className="pop-close-icon" />
                                                 </button>
                                                 <Box className="carousel">
-                                                    <SupperClubDetailPopUpCarousel title={title}/>
+                                                    <SupperClubDetailPopUpCarousel title={title} />
                                                 </Box>
                                             </Box>
                                         )}
@@ -1053,7 +1045,7 @@ const SupperClubDetail = (props) => {
                                         <Button
                                             className="show-btn"
                                             onClick={() => {
-                                                setShowCarousel(true)
+                                                setShowCarousel(true);
                                             }}
                                             data-bs-toggle="modal"
                                             data-bs-target="#exampleModal"
@@ -1173,8 +1165,8 @@ const SupperClubDetail = (props) => {
                                 >
                                     <Formik
                                         initialValues={{
-                                            numberOfSeats: 1,
-                                            numberOfTables: 1,
+                                            numberOfSeats: userData?.seats ? 1 : 0,
+                                            numberOfTables: userData?.seats_chefs_table ? 1 : 0,
                                         }}
                                         onSubmit={(values) => {
                                             Cookies.set(
@@ -1183,9 +1175,7 @@ const SupperClubDetail = (props) => {
                                             );
                                             Cookies.set(
                                                 "supperClubExperienceDates",
-                                                JSON.stringify(
-                                                    moment(selectedDate).toISOString()
-                                                )
+                                                JSON.stringify(moment(selectedDate).toISOString())
                                             );
                                             Cookies.set(
                                                 "supperClubExperienceSeats",
@@ -1197,7 +1187,7 @@ const SupperClubDetail = (props) => {
                                             );
                                         }}
                                     >
-                                        {({values, setFieldValue}) => (
+                                        {({ values, setFieldValue }) => (
                                             <Form>
                                                 <Box className="sub-box-2">
                                                     <Box
@@ -1219,12 +1209,13 @@ const SupperClubDetail = (props) => {
                                                     </Box>
                                                     {showDates?.map((item, index) => {
                                                         const isSelected =
-                                                            selectedDate === item[0]?.date &&
-                                                            selectedTime === item[0]?.time || selectedTimeNext === item[1]?.time
+                                                            (selectedDate === item[0]?.date &&
+                                                                selectedTime === item[0]?.time) ||
+                                                            selectedTimeNext === item[1]?.time;
                                                         return (
                                                             <Box className="date-time-box">
                                                                 <Box
-                                                                    sx={{display: "flex", alignItems: "center"}}
+                                                                    sx={{ display: "flex", alignItems: "center" }}
                                                                 >
                                                                     <Typography className="main-date">
                                                                         {/* {values.mainDate = moment(item[0].date).format("D")} */}
@@ -1290,12 +1281,9 @@ const SupperClubDetail = (props) => {
                                                                 </Box>
                                                                 <Box
                                                                     className="experience-drop"
-                                                                    style={{width: "100%"}}
+                                                                    style={{ width: "100%" }}
                                                                 >
                                                                     {showArray[index] && (
-                                                                        // <ExperienceDrop
-                                                                        //     toggleClose={() => toggleClose(index)}
-                                                                        // />
                                                                         <Form>
                                                                             <Box>
                                                                                 <Box className="choose-seat">
@@ -1313,11 +1301,11 @@ const SupperClubDetail = (props) => {
                                                                                             Regular Seating
                                                                                         </div>
                                                                                         <span className="r-seat-rate">
-                                            <b className="r-seat-money">
-                                              ₹ {userData?.price}
-                                            </b>
-                                            / diner
-                                          </span>
+                                              <b className="r-seat-money">
+                                                ₹ {userData?.price ? userData?.price : 0}
+                                              </b>
+                                              / diner
+                                            </span>
                                                                                     </div>
                                                                                     <div>
                                                                                         <div className="input-div">
@@ -1341,8 +1329,7 @@ const SupperClubDetail = (props) => {
                                                                                                     values.numberOfSeats === 0
                                                                                                 }
                                                                                             />
-                                                                                            <Typography
-                                                                                                className="number-ans">
+                                                                                            <Typography className="number-ans">
                                                                                                 {values.numberOfSeats}
                                                                                             </Typography>
                                                                                             <AddIcon
@@ -1352,13 +1339,13 @@ const SupperClubDetail = (props) => {
                                                                                                         "numberOfSeats",
                                                                                                         Math.min(
                                                                                                             values.numberOfSeats + 1,
-                                                                                                            userData?.seats
+                                                                                                            userData?.seats ? userData?.seats : 0
                                                                                                         )
                                                                                                     )
                                                                                                 }
                                                                                                 disabled={
                                                                                                     values.numberOfSeats ===
-                                                                                                    userData?.seats
+                                                                                                    userData?.seats ? userData?.seats : 0
                                                                                                 }
                                                                                                 style={
                                                                                                     values.numberOfSeats ===
@@ -1369,22 +1356,22 @@ const SupperClubDetail = (props) => {
                                                                                             />
                                                                                         </div>
                                                                                         <span className="s-left">
-                                            {userData?.seats} seats left
-                                          </span>
+                                              {userData?.seats ? userData?.seats : 0} seats left
+                                            </span>
                                                                                     </div>
                                                                                 </Box>
-                                                                                <hr className="seat-hr"/>
+                                                                                <hr className="seat-hr" />
                                                                                 <Box className="regular-seat">
                                                                                     <div className="r-seat">
                                                                                         <div className="r-seat-text">
                                                                                             Chefs Table
                                                                                         </div>
                                                                                         <span className="r-seat-rate">
-                                            <b className="r-seat-money">
-                                              ₹ {userData?.price_chefs_table}
-                                            </b>
-                                            / diner
-                                          </span>
+                                              <b className="r-seat-money">
+                                                ₹ {userData?.price_chefs_table ? userData?.price_chefs_table : 0}
+                                              </b>
+                                              / diner
+                                            </span>
                                                                                     </div>
                                                                                     <div>
                                                                                         <div className="input-div">
@@ -1408,8 +1395,7 @@ const SupperClubDetail = (props) => {
                                                                                                     values.numberOfTables === 0
                                                                                                 }
                                                                                             />
-                                                                                            <Typography
-                                                                                                className="number-ans">
+                                                                                            <Typography className="number-ans">
                                                                                                 {values.numberOfTables}
                                                                                             </Typography>
                                                                                             <AddIcon
@@ -1419,7 +1405,7 @@ const SupperClubDetail = (props) => {
                                                                                                         "numberOfTables",
                                                                                                         Math.min(
                                                                                                             values.numberOfTables + 1,
-                                                                                                            userData?.seats_chefs_table
+                                                                                                            userData?.seats_chefs_table ? userData?.seats_chefs_table : 0
                                                                                                         )
                                                                                                     )
                                                                                                 }
@@ -1431,14 +1417,14 @@ const SupperClubDetail = (props) => {
                                                                                                 }
                                                                                                 disabled={
                                                                                                     values.numberOfTables ===
-                                                                                                    userData?.seats_chefs_table
+                                                                                                    userData?.seats_chefs_table ? userData?.seats_chefs_table : 0
                                                                                                 }
                                                                                             />
                                                                                         </div>
                                                                                         <span className="s-left">
-                                            {userData?.seats_chefs_table}{" "}
+                                              {userData?.seats_chefs_table ? userData?.seats_chefs_table : 0}{" "}
                                                                                             seats left
-                                          </span>
+                                            </span>
                                                                                     </div>
                                                                                 </Box>
                                                                             </Box>{" "}
