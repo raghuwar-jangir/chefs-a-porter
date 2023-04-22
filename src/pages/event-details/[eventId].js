@@ -1,30 +1,14 @@
-import React, {useContext, useEffect, useState} from "react";
-import {
-    Box,
-    Button,
-    Grid,
-    styled,
-    Typography,
-    Link,
-    Modal,
-    TextField,
-    TextareaAutosize,
-} from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
+import { Box, Button, Grid, styled, Typography, Link } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import {Formik, Form} from "formik";
-import {DatePickerInput} from "rc-datepicker";
-import InputAdornment from "@mui/material/InputAdornment";
 import CloseIcon from "@mui/icons-material/Close";
 import Navbar from "../../components/NavbarComponent";
 import Footer from "../../components/Footer";
 import FooterEnd from "../../components/FooterEndSection";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NeedHelp from "../../components/NeedHelp";
-import {isMobile, MobileView} from "react-device-detect";
+import { isMobile } from "react-device-detect";
 import ImageCarousel from "../../components/ImageCarousel";
-import chef1 from "../../assets/images/chef5.png";
-import chef2 from "../../assets/images/chef6.png";
-import sGallery from "../../assets/images/sc-gallery.png";
 import star from "../../assets/images/star.png";
 import "../../assets/styles/fontStyle.css";
 import EventCard from "../../components/EventCard";
@@ -38,13 +22,13 @@ import NeedHelpEvent from "../../components/NeedHelpEvent";
 import EventChefCarousel from "../../components/EventChefCarousel";
 import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
-import Cookies from "js-cookie";
 
 const EventDetails = (props) => {
-    const {eventId} = props;
-    const {setEventId, userData} = useContext(UsersContext);
+    const { eventId } = props;
+    const { setEventId, userData } = useContext(UsersContext);
     const [showCarousel, setShowCarousel] = useState(false);
     const [title, setTitle] = useState("");
+    // const getEventId = "640b22b691e7236a1d0a264e";
     const getEventId = props?.params?.eventId;
 
     useEffect(() => {
@@ -66,6 +50,7 @@ const EventDetails = (props) => {
         fontSize: "16px",
         lineHeight: "19px",
     };
+
     const breadcrumbs = [
         <Typography sx={bread} key="1" color="#FBFBFB">
             Private
@@ -74,21 +59,25 @@ const EventDetails = (props) => {
             Event
         </Link>,
     ];
+
     const itemData = {
         img: userData?.cover_picture,
-        title: "chef1",
+        title: "chef",
     };
 
-    const itemData2 = [
-        {
-            img: userData?.user?.details?.gallery_pictures[0],
-            title: "sGallery",
-        },
-        {
-            img: userData?.user?.details?.gallery_pictures[1],
-            title: "chef2",
-        },
-    ];
+    const itemData2 = _.map(_.get(userData, "pictures", []), (item, index) => {
+        return {
+            img: item,
+            title:
+                index === 1
+                    ? "chef1"
+                    : index === 2
+                        ? "chef2"
+                        : index === 3
+                            ? "chef3"
+                            : "sGallery",
+        };
+    });
 
     const MainBox = styled(Box)(() => ({
         ".main-box": {
@@ -150,6 +139,7 @@ const EventDetails = (props) => {
             position: "relative",
             marginLeft: "2px",
             paddingLeft: "0px",
+            paddingTop: "15px",
         },
         ".show-btn": {
             position: "absolute",
@@ -346,6 +336,7 @@ const EventDetails = (props) => {
         ".item-img-1": {
             paddingLeft: "10px !important",
             paddingRight: "10px !important",
+            paddingTop: "0px !important",
         },
         ".item-img-2": {
             paddingLeft: "10px !important",
@@ -424,12 +415,12 @@ const EventDetails = (props) => {
             ".invite-btn": {
                 width: "114px",
             },
-            // ".template": {
-            //     background: "#080B0E",
-            // },
-            // ".template-title": {
-            //     color: "#FBFBFB !important",
-            // },
+            ".template": {
+                background: "#080B0E",
+            },
+            ".template-title": {
+                color: "#FBFBFB !important",
+            },
         },
         "@media (min-width: 1px) and (max-width:320px)": {
             ".invite-btn": {
@@ -445,18 +436,24 @@ const EventDetails = (props) => {
             },
         },
     }));
+
     return (
         <React.Fragment>
             <MainBox>
-                {!_.isEmpty(userData && eventId) &&
+                {!_.isEmpty(userData && eventId) && (
                     <>
-                        <Navbar to={"/event-details"} heading="Private" isIcon={true} isColor={true}/>
+                        <Navbar
+                            to={"/event-details"}
+                            heading="Private"
+                            isIcon={true}
+                            isColor={true}
+                        />
                         <Box className="main-box">
                             {isMobile ? (
                                 <Box className="header-club">
-                                    <ArrowBackIcon className="header-icon"/>
+                                    <ArrowBackIcon className="header-icon" />
                                     <Typography className="chef-mobile-heading">
-                                        Private
+                                        Privée
                                     </Typography>
                                 </Box>
                             ) : (
@@ -466,7 +463,7 @@ const EventDetails = (props) => {
                                 <Box className="row supper-chef-details">
                                     <Box className="details">
                                         <Breadcrumbs
-                                            separator={<ChevronRightIcon className="chevron-right"/>}
+                                            separator={<ChevronRightIcon className="chevron-right" />}
                                             aria-label="breadcrumb"
                                             color="white"
                                             className="breadcrumbs-heading"
@@ -478,23 +475,19 @@ const EventDetails = (props) => {
                                                 {userData.title}
                                             </Typography>
                                             <Typography className="chef-name-rate">
-                                                <img className="star-logo" src={star}/>
+                                                <img className="star-logo" src={star} />
                                                 4.7
                                             </Typography>
                                         </Box>
                                         <Box className="chef-details">
                                             <Typography className="chef-details-by">by</Typography>
-                                            {/*{!_.isEmpty(userData?.user) && (*/}
-                                            {/*    <>*/}
-                                                    <Link href="/chef-details" className="detail-1">
-                                                        {userData?.user?.name}
-                                                    </Link>
-                                                    <span className="line">|</span>
-                                                    <Typography className="detail-2">
-                                                        Starting from ₹{userData?.price_per_course} per diner
-                                                    </Typography>
-                                            {/*    </>*/}
-                                            {/*)}*/}
+                                            <Link href="/chef-details" className="detail-1">
+                                                {userData?.user?.name}
+                                            </Link>
+                                            <span className="line">|</span>
+                                            <Typography className="detail-2">
+                                                Starting from ₹{userData?.price_per_course} per diner
+                                            </Typography>
                                         </Box>
                                     </Box>
                                 </Box>
@@ -503,7 +496,7 @@ const EventDetails = (props) => {
                                         {userData.title}
                                     </Typography>
                                 </Box>
-                                <ImageCarousel/>
+                                <ImageCarousel />
                                 {!_.isEmpty(userData?.user) && (
                                     <Box className="mobileView-chef">
                                         <Typography className="chef-details mbl-chef-name">
@@ -516,7 +509,7 @@ const EventDetails = (props) => {
                                     </Box>
                                 )}
 
-                                <Grid className="main-grid" container spacing={{md: 2}}>
+                                <Grid className="main-grid" container spacing={{ md: 2 }}>
                                     <Grid
                                         className="container-parent"
                                         item
@@ -526,7 +519,6 @@ const EventDetails = (props) => {
                                         xs={12}
                                     >
                                         <Box className="container">
-                                            {/*{itemData.map((item) => (*/}
                                             <img
                                                 src={itemData.img}
                                                 alt={itemData.title}
@@ -536,17 +528,16 @@ const EventDetails = (props) => {
                                                     handleImageOpen(itemData.title);
                                                 }}
                                             />
-                                            {/*))}*/}
                                             {showCarousel && (
                                                 <Box className="carousel-popup">
                                                     <button
                                                         className="close-button"
                                                         onClick={handleImageClose}
                                                     >
-                                                        <CloseIcon className="pop-close-icon"/>
+                                                        <CloseIcon className="pop-close-icon" />
                                                     </button>
                                                     <Box className="carousel">
-                                                        <EventPopUpCarosuel title={title}/>
+                                                        <EventPopUpCarosuel title={title} />
                                                     </Box>
                                                 </Box>
                                             )}
@@ -555,15 +546,15 @@ const EventDetails = (props) => {
                                     <Grid item md={5} sm={6} xs={12} xl={5} className="next-grid">
                                         {
                                             <Grid className="child-container" container spacing={2}>
-                                                <Grid
-                                                    className="item-img-1"
-                                                    item
-                                                    md={6}
-                                                    sm={6}
-                                                    xs={6}
-                                                    xl={6}
-                                                >
-                                                    {itemData2.map((item) => (
+                                                {itemData2.map((item) => (
+                                                    <Grid
+                                                        className="item-img-1"
+                                                        item
+                                                        md={6}
+                                                        sm={6}
+                                                        xs={6}
+                                                        xl={6}
+                                                    >
                                                         <img
                                                             src={item.img}
                                                             alt={item.title}
@@ -573,48 +564,30 @@ const EventDetails = (props) => {
                                                                 handleImageOpen(item.title);
                                                             }}
                                                         />
-                                                    ))}
-                                                </Grid>
-                                                <Grid
-                                                    className="item-img-1"
-                                                    item
-                                                    md={6}
-                                                    sm={6}
-                                                    xs={6}
-                                                    xl={6}
+                                                    </Grid>
+                                                ))}
+                                                <Button
+                                                    className="show-btn"
+                                                    onClick={() => {
+                                                        setShowCarousel(true);
+                                                    }}
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal"
                                                 >
-                                                    {itemData2.map((item) => (
-                                                        <img
-                                                            src={item.img}
-                                                            alt={item.img}
-                                                            className="main-img-1"
-                                                            loading="lazy"
-                                                            onClick={() => {
-                                                                handleImageOpen(item.title);
-                                                            }}
-                                                        />
-                                                    ))}
-                                                    <Button
-                                                        className="show-btn"
-                                                        onClick={()=>{setShowCarousel(true);}}
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal"
-                                                    >
-                                                        Show All Photos
-                                                    </Button>
-                                                </Grid>
+                                                    Show All Photos
+                                                </Button>
                                             </Grid>
                                         }
                                     </Grid>
                                 </Grid>
-                                <Grid className="grid-box-2" container spacing={{md: 2}}>
+                                <Grid className="grid-box-2" container spacing={{ md: 2 }}>
                                     <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
-                                        <EventCard/>
-                                        <EventChefCarousel/>
+                                        <EventCard />
+                                        <EventChefCarousel />
                                         <SupperClubDetailsCarousel
-                                            mainBox={{padding: "40px 0px"}}
-                                            changeDetails={{fontSize: "16px"}}
-                                            changeFont={{fontSize: "20px"}}
+                                            mainBox={{ padding: "40px 0px" }}
+                                            changeDetails={{ fontSize: "16px" }}
+                                            changeFont={{ fontSize: "20px" }}
                                             backgroundColor="#DCD7CB"
                                         />
                                         <Box className="last-contain">
@@ -637,22 +610,22 @@ const EventDetails = (props) => {
                                         xs={12}
                                         xl={5}
                                     >
-                                        <ChefDetailsForm/>
+                                        <ChefDetailsForm />
                                     </Grid>
                                 </Grid>
                             </Box>
                         </Box>
-                        <NeedHelpEvent/>
+                        <NeedHelpEvent />
                         <TemptedYet
                             title={"Tempted yet?"}
                             buttonText="Book this Experience"
                             isTempted={false}
                         />
-                        <NeedHelp/>
-                        <Footer/>
-                        <FooterEnd/>
+                        <NeedHelp />
+                        <Footer />
+                        <FooterEnd />
                     </>
-                }
+                )}
             </MainBox>
         </React.Fragment>
     );

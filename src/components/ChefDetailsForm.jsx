@@ -49,8 +49,8 @@ const ChefDetailsForm = () => {
     const cookieValue = Cookies?.get("eventData");
     const cookieValue1 = Cookies.get('priveeData');
     const {userData} = useContext(UsersContext);
-    console.log("userData=====", userData?.prices[userData?.prices?.length - 1]?.max_courses)
-    console.log("userData=====", userData)
+
+    console.log("chefInfo=====", chefInfo)
     {
         !_.isEmpty(cookieValue) &&
         useEffect(() => {
@@ -64,9 +64,6 @@ const ChefDetailsForm = () => {
     }
     console.log("priveeData========", priveeData)
     console.log("chefInfo========", chefInfo)
-    const handleClick = () => {
-        navigate("/customer-details");
-    };
 
     const validationSchema = Yup.object().shape({
         name: Yup.string().required("Name is required"),
@@ -334,14 +331,18 @@ const ChefDetailsForm = () => {
                             startTime: chefInfo?.startTime
                                 ? chefInfo?.startTime
                                 : new Date().getHours() + ":" + new Date().getMinutes(),
-                            numberOfDinner: priveeData?.diners ? priveeData?.diners : 2,
-                            numberOfCourses: priveeData?.diners >= 6 ? userData?.min_course : 6,
+                            numberOfDinner: chefInfo?.numberOfDinner > priveeData?.diners ? chefInfo?.numberOfDinner : priveeData?.diners,
+                            numberOfCourses: priveeData?.diners >= 6 ? userData?.min_course : chefInfo?.numberOfCourses,
                         }}
                         validationSchema={validationSchema}
                         onSubmit={(values) => {
+                            console.log("values========", values)
                             Cookies.set("eventData", JSON.stringify(values));
                             Cookies.set('eventDinners', JSON.stringify(values?.numberOfDinner));
                             Cookies.set('eventCourses', JSON.stringify(values?.numberOfCourses));
+                            if (!_.isEmpty(values)) {
+                                navigate("/customer-details");
+                            }
                         }}
                     >
                         {({
@@ -350,8 +351,9 @@ const ChefDetailsForm = () => {
                               setFieldValue,
                               handleSubmit,
                               handleChange,
+                              errors, touched,
                           }) => (
-                            <Form onSubmit={handleSubmit}>
+                            <Form onSubmit={handleSubmit} noValidate>
                                 <Box className="common-field-box">
                                     <label htmlFor="name" className="field-title">
                                         Name
@@ -379,7 +381,8 @@ const ChefDetailsForm = () => {
                                         placeholder="eg yourname@email.com"
                                         autoComplete="off"
                                     />
-                                    <ErrorMessage component="div" name="email"/>
+                                    {errors.email && touched.email ? (<div>{errors.email}</div>) : null}
+                                    {/*<ErrorMessage component="div" name="email"/>*/}
                                 </Box>
 
                                 <Box className="date-time-box">
@@ -427,52 +430,55 @@ const ChefDetailsForm = () => {
                                     <label htmlFor="numberOfDinner" className="min-2-3">
                                         Number of Diners <span>(min 2)</span>
                                     </label>
+                                    {
+                                        !_.isEmpty(userData?.prices) &&
+                                        <Box>
+                                            <button
+                                                type="button"
+                                                className="left-btn"
+                                                onClick={() => {
+                                                    setFieldValue(
+                                                        "numberOfDinner",
+                                                        Math.max(values.numberOfDinner - 1, 2)
+                                                    );
 
-                                    <Box>
-                                        <button
-                                            type="button"
-                                            className="left-btn"
-                                            onClick={() => {
-                                                setFieldValue(
-                                                    "numberOfDinner",
-                                                    Math.max(values.numberOfDinner - 1, 2)
-                                                );
+                                                    if (
+                                                        values.numberOfDinner - 1 >= 2 &&
+                                                        values.numberOfDinner - 1 <= 6
+                                                    ) {
+                                                        setFieldValue("numberOfCourses", 6);
+                                                    } else if (values.numberOfDinner - 1 > 6) {
+                                                        // setFieldValue("numberOfCourses", userData?.min_course);
+                                                    }
+                                                }}
+                                            >
+                                                -
+                                            </button>
+                                            <span>{values.numberOfDinner}</span>
+                                            <button
+                                                type="button"
+                                                className="right-btn"
+                                                onClick={() => {
+                                                    setFieldValue(
+                                                        "numberOfDinner",
+                                                        Math.min(values.numberOfDinner + 1, 25)
+                                                    );
+                                                    if (
+                                                        values.numberOfDinner + 1 >= 2 &&
+                                                        values.numberOfDinner + 1 <= 6
+                                                    ) {
+                                                        setFieldValue("numberOfCourses", 6);
+                                                    } else if (values.numberOfDinner + 1 > 6) {
+                                                        setFieldValue("numberOfCourses", userData?.min_course);
+                                                    }
+                                                }}
+                                                disabled={values.numberOfCourses >= userData?.prices[userData?.prices?.length - 1]?.max_courses}
+                                            >
+                                                +
+                                            </button>
+                                        </Box>
+                                    }
 
-                                                if (
-                                                    values.numberOfDinner - 1 >= 2 &&
-                                                    values.numberOfDinner - 1 <= 6
-                                                ) {
-                                                    setFieldValue("numberOfCourses", 6);
-                                                } else if (values.numberOfDinner - 1 > 6) {
-                                                    // setFieldValue("numberOfCourses", userData?.min_course);
-                                                }
-                                            }}
-                                        >
-                                            -
-                                        </button>
-                                        <span>{values.numberOfDinner}</span>
-                                        <button
-                                            type="button"
-                                            className="right-btn"
-                                            onClick={() => {
-                                                setFieldValue(
-                                                    "numberOfDinner",
-                                                    Math.min(values.numberOfDinner + 1, 25)
-                                                );
-                                                if (
-                                                    values.numberOfDinner + 1 >= 2 &&
-                                                    values.numberOfDinner + 1 <= 6
-                                                ) {
-                                                    setFieldValue("numberOfCourses", 6);
-                                                } else if (values.numberOfDinner + 1 > 6) {
-                                                    setFieldValue("numberOfCourses", userData?.min_course);
-                                                }
-                                            }}
-                                            disabled={values.numberOfCourses >= userData?.prices[userData?.prices?.length - 1]?.max_courses}
-                                        >
-                                            +
-                                        </button>
-                                    </Box>
                                 </Box>
 
                                 <Box className="sub-box-counter">
@@ -537,11 +543,6 @@ const ChefDetailsForm = () => {
                                 <button
                                     type="submit"
                                     className="experience-btn"
-                                    onClick={() => {
-                                        if (!_.isEmpty(values.name && values.email)) {
-                                            handleClick();
-                                        }
-                                    }}
                                     // disabled={isSubmitting}
                                 >
                                     Book this experience

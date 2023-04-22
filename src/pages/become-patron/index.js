@@ -231,7 +231,7 @@ const BecomePatronForm = () => {
             },
             '.become-partner-form': {
                 marginTop: '55px',
-                width:'auto'
+                width: 'auto'
             },
         },
         '@media(min-width: 615px) and (max-width: 768px)': {
@@ -289,13 +289,6 @@ const BecomePatronForm = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                {/*{isMobile ? (*/}
-                {/*    <Box className="mobile-header">*/}
-                {/*        <ArrowBackIcon/>*/}
-                {/*        <Typography><a href="/" className="mobile-heading" style={{textAlign: 'center !important'}}>Become*/}
-                {/*            a Patron</a></Typography>*/}
-                {/*    </Box>*/}
-                {/*) : (<Navbar/>)}*/}
                 <Navbar isIcon={true} heading="Become a Patron"/>
                 <Box className="joinaschef">
                     <Box className="banner">
@@ -324,6 +317,9 @@ const BecomePatronForm = () => {
                                     ...values,
                                     dateOfBirth: moment(JSON.stringify(_.get(values, 'dateOfBirth'))).format('DD/MM/YYYY'),
                                     anniversaryDate: moment(JSON.stringify(_.get(values, 'anniversaryDate'))).format('DD/MM/YYYY')
+                                }
+                                if (!_.isEmpty(PatronData)) {
+                                    console.log("values=======", values)
                                 }
                             }}
                         >
@@ -384,7 +380,7 @@ const BecomePatronForm = () => {
                                                                         borderBottom: "1px solid black",
                                                                         fontWeight: '100',
                                                                         padding: '6px 0px',
-                                                                        justifyContent:'start'
+                                                                        justifyContent: 'start'
                                                                     },
                                                                     ul: {
                                                                         display: 'flex',
@@ -474,7 +470,7 @@ const BecomePatronForm = () => {
                                                                         borderBottom: "1px solid black",
                                                                         fontWeight: '100',
                                                                         padding: '6px 0px',
-                                                                        justifyContent:'start'
+                                                                        justifyContent: 'start'
                                                                     },
                                                                     ul: {
                                                                         display: 'flex',

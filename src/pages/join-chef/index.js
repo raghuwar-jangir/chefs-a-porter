@@ -21,15 +21,15 @@ import {isMobile} from "react-device-detect";
 import * as _ from "lodash";
 import CmsContext from "../../context/CmsContext";
 import UsersContext from "../../context/UsersContext";
+import SuccessFullPopUp from "../../components/SuccessFullPopUp";
 
 const ContactUs = () => {
 
     const {data} = useContext(CmsContext);
-    const {setJoinChefData, setIsJoinChefData} = useContext(UsersContext);
+    const {setJoinChefData, setIsJoinChefData, successOpen} = useContext(UsersContext);
 
     const handleClick = (values) => {
-        setJoinChefData(values);
-        setIsJoinChefData(true)
+
     }
 
     //validations
@@ -301,6 +301,10 @@ const ContactUs = () => {
                                     }}
                                     validationSchema={validationSchema}
                                     onSubmit={(values) => {
+                                        if (!_.isEmpty(values)) {
+                                            setJoinChefData(values);
+                                            setIsJoinChefData(true)
+                                        }
                                     }}
                                 >
                                     {({values, handleChange, handleSubmit}) => (
@@ -427,11 +431,11 @@ const ContactUs = () => {
                                                         </Grid>
                                                         <Grid xs={12} className="col-lg-12">
                                                             <button className="btn btn-primary" type="submit"
-                                                                    onClick={() => {
-                                                                        if (!_.isEmpty(values.name && values.email && values.contactNumber && values.name && values.coverLetterMessage && values.resume)) {
-                                                                            handleClick(values)
-                                                                        }
-                                                                    }}
+                                                                // onClick={() => {
+                                                                //     if (!_.isEmpty(values.name && values.email && values.contactNumber && values.name && values.coverLetterMessage && values.resume)) {
+                                                                //         handleClick(values)
+                                                                //     }
+                                                                // }}
                                                             >Apply
                                                             </button>
                                                         </Grid>
@@ -451,6 +455,9 @@ const ContactUs = () => {
                         <Footer/>
                         <FooterEnd/>
                     </>
+                }
+                {
+                    successOpen && <SuccessFullPopUp/>
                 }
             </BoxWrapper>
         </React.Fragment>

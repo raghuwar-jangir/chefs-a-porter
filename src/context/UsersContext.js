@@ -4,7 +4,8 @@ import {useLocation} from "@reach/router";
 import Cookies from "js-cookie";
 import * as _ from "lodash";
 import useRazorpay from "react-razorpay";
-import SuccessFullPopUp from "../components/SuccessFullPopUp"
+import SuccessFullPopUp from "../components/SuccessFullPopUp";
+import { toast } from 'react-toastify';
 
 const defaultState = {
     data: {},
@@ -191,8 +192,12 @@ const UsersProvider = (props) => {
                 email: contactUsData.email,
                 mobile: contactUsData.contactNumber,
                 cover_letter: contactUsData.coverLetterMessage,
+            }).then((response) => {
+                console.log("========success")
+                toast.success('Response submitted successfully');
+                setIsContactUsData(false)
             })
-            setIsContactUsData(false)
+
         } else if (isBecomePartner && becomePartnerData) {
             axios.post(baseUrl + '/partner', {
                 partner_as: partnerId,
@@ -207,8 +212,10 @@ const UsersProvider = (props) => {
                 why: becomePartnerData.chefsMessage,
                 // work_samples: becomePartnerData.workSampleFile,
                 work_samples: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi"
+            }).then((response) => {
+                setSuccessOpen(true);
             })
-            setIsBecomePartner(false)
+            setIsBecomePartner(false);
         } else if (isScheduleCall) {
             axios.post(baseUrl + '/call_schedule', {
                 date_time: scheduleCallData.day,
@@ -226,6 +233,9 @@ const UsersProvider = (props) => {
                 mobile: joinChefData.contactNumber,
                 resume: joinChefData.resume,
                 cover_letter: joinChefData.coverLetterMessage,
+            }).then((response) => {
+                setSuccessOpen(true);
+                setIsJoinChefData(false);
             })
         } else if (isChefData) {
             axios.post(baseUrl + '/booking/creatediners/' + supperClubBookingId, {
