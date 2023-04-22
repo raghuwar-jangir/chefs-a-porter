@@ -94,13 +94,7 @@ const CustomerDetails = (props) => {
     };
     //google map for address popup
     const AnyReactComponent = ({text}) => <div>{text}</div>;
-    const defaultProps = {
-        center: {
-            lat: 10.99835602,
-            lng: 77.01502627,
-        },
-        zoom: 11,
-    };
+    
 
     const styleModel1 = {
         position: "absolute",
@@ -1058,7 +1052,6 @@ const CustomerDetails = (props) => {
                                                                 fullWidth
                                                                 multiline
                                                                 rows={1}
-                                                                autoComplete="off"
                                                             />
                                                             <ErrorMessage name='message' component="div"
                                                                           className="error"/>

@@ -48,14 +48,15 @@ const SupperClubDetailPopupCarousel = ({ title }) => {
     const itemData =
     {
       img: userData?.chef?.picture,
-      title: "img1",
     }
     const itemData2 = _.map(_.get(userData,'pictures',[]), (item,index) => {
       return {
            img: item,
-           title : index===0 ? 'sGallery' : 'chef2'
       }
     })
+
+    const combinedArray = [itemData, ...itemData2];
+
     return (
         <React.Fragment>
             <MainBox>
@@ -66,20 +67,20 @@ const SupperClubDetailPopupCarousel = ({ title }) => {
                         grabCursor={true}
                         className="mySwiper"
                         initialSlide={`${
-                            title === "img1"
-                                ? 0
-                                : title === "img2"
-                                    ? 1
-                                    : title === "img3"
-                                        ? 2
-                                        : title === "img4"
-                                            ? 3
-                                            : title === "img5"
-                                                ? 4
-                                                : 0
+                            title === "chef"
+                            ? 0
+                            : title === "sGallery"
+                            ? 1
+                            : title === "chef1"
+                            ? 2
+                            : title === "chef2"
+                            ? 3
+                            : title === "chef3"
+                            ? 4
+                            : 0
                         }`}
                     >
-                        {itemData2.map((item) => (
+                        {combinedArray.map((item) => (
                             <SwiperSlide>
                                 <img className="carousel-img" src={item.img} />
                             </SwiperSlide>

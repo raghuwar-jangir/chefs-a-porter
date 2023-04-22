@@ -14,6 +14,7 @@ import PlacesAutocomplete, {
     getLatLng,
 } from "react-places-autocomplete";
 import CmsContext from "../context/CmsContext";
+import Cookies from "js-cookie";
 
 const validationSchema = Yup.object({
     houseNo: Yup.string().required("House No is required"),
@@ -77,6 +78,7 @@ const MapComponent = ({setNewAddress, setOpen}) => {
     const [showCarousel, setShowCarousel] = useState(false);
     const [showCarousel2, setShowCarousel2] = useState(false);
     const [value, setValue] = useState();
+
     const handleImageClick = () => {
         if (address) {
             setShowCarousel(true);
@@ -100,6 +102,7 @@ const MapComponent = ({setNewAddress, setOpen}) => {
             .then((results) => getLatLng(results[0]))
             .then((latLng) => {
                 setCoords(latLng);
+                Cookies.set('coords',JSON.stringify(latLng));
             })
             .catch((error) => console.error("Error", error));
     };
@@ -114,7 +117,7 @@ const MapComponent = ({setNewAddress, setOpen}) => {
 
     const GoogleMapExample = withGoogleMap(() => (
 
-        <GoogleMap defaultCenter={coords} defaultZoom={13}>
+        <GoogleMap defaultCenter={coords}  defaultZoom={13}>
             <Marker position={coords} onClick={() => {
                 handleToggleOpen()
 
@@ -131,7 +134,6 @@ const MapComponent = ({setNewAddress, setOpen}) => {
             </Marker>
         </GoogleMap>
     ));
-
     return (
         <React.Fragment>
             <BoxWrapper>

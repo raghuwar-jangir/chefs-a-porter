@@ -159,12 +159,18 @@ const SupperClubDetail = (props) => {
   const itemData =
     {
       img: userData?.chef?.picture,
-      title: "img1",
+      title: "chef",
     }
     const itemData2 = _.map(_.get(userData,'pictures',[]), (item,index) => {
       return {
            img: item,
-           title : index===0 ? 'sGallery' : 'chef2'
+           title :  index === 1
+           ? "chef1"
+           : index === 2
+           ? "chef2"
+           : index === 3
+           ? "chef3"
+           : "sGallery",
       }
     })
   const BoxWrapper = styled(Box)(() => ({
