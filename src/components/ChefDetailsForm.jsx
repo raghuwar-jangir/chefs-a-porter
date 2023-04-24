@@ -1,556 +1,552 @@
-import {Formik, Form, Field, ErrorMessage} from "formik";
-import {Box, styled, Typography} from "@mui/material";
-import {DatePickerInput} from "rc-datepicker";
-import React, {useEffect, useState, useContext} from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Box, styled, Typography } from "@mui/material";
+import { DatePickerInput } from "rc-datepicker";
+import React, { useEffect, useState, useContext } from "react";
 import gInfo from "../assets/images/info.png";
 import drop from "../assets/images/drop.png";
 import Tooltip from "@material-ui/core/Tooltip";
 import Checkbox from "@mui/material/Checkbox";
 import "../assets/styles/fontStyle.css";
-import {navigate} from "gatsby";
+import { navigate } from "gatsby";
 import * as _ from "lodash";
 import Cookies from "js-cookie";
 import {
-    createMuiTheme,
-    MuiThemeProvider,
-    withStyles,
+  createMuiTheme,
+  MuiThemeProvider,
+  withStyles,
 } from "@material-ui/core/styles";
 import * as Yup from "yup";
 import UsersContext from "../context/UsersContext";
 
 const defaultTheme = createMuiTheme();
 const theme = createMuiTheme({
-    overrides: {
-        MuiTooltip: {
-            tooltip: {
-                fontSize: "8px",
-                color: "#080B0E",
-                backgroundColor: "#DCD7CB",
-                boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.4)",
-                padding: "16px 32px",
-                textAlign: "center",
-                fontFamily: "Proxima Nova Alt",
-                fontStyle: " normal",
-                fontWeight: 300,
-                fontSize: "14px",
-                lineHeight: "17px",
-                opacity: "1",
-                width: "160px",
-                borderRadius: "1px",
-            },
-        },
+  overrides: {
+    MuiTooltip: {
+      tooltip: {
+        fontSize: "8px",
+        color: "#080B0E",
+        backgroundColor: "#DCD7CB",
+        boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.4)",
+        padding: "16px 32px",
+        textAlign: "center",
+        fontFamily: "Proxima Nova Alt",
+        fontStyle: " normal",
+        fontWeight: 300,
+        fontSize: "14px",
+        lineHeight: "17px",
+        opacity: "1",
+        width: "160px",
+        borderRadius: "1px",
+      },
     },
+  },
 });
 
 const ChefDetailsForm = () => {
-    const [chefInfo, setChefInfo] = useState("");
-    const [priveeData, setPriveeData] = useState()
-    const cookieValue = Cookies?.get("eventData");
-    const cookieValue1 = Cookies.get('priveeData');
-    const {userData} = useContext(UsersContext);
-    {
-        !_.isEmpty(cookieValue) &&
-        useEffect(() => {
-            if (cookieValue) {
-                setChefInfo(JSON.parse(cookieValue));
-            }
-            if (cookieValue1) {
-                setPriveeData(JSON.parse(cookieValue1));
-            }
-        }, [cookieValue]);
+  const [chefInfo, setChefInfo] = useState("");
+  const [priveeData, setPriveeData] = useState();
+  const cookieValue = Cookies?.get("eventData");
+  const cookieValue1 = Cookies?.get("priveeData");
+  const { userData } = useContext(UsersContext);
+
+  useEffect(() => {
+    if (cookieValue) {
+      setChefInfo(JSON.parse(cookieValue));
     }
-    const handleClick = () => {
-        navigate("/customer-details");
-    };
+    if (cookieValue1) {
+      setPriveeData(JSON.parse(cookieValue1));
+    }
+  }, [cookieValue, cookieValue1]);
 
-    const validationSchema = Yup.object().shape({
-        name: Yup.string().required("Name is required"),
-        email: Yup.string()
-            .email("Incorrect Email Id")
-            .required("Email is required"),
-    });
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    email: Yup.string()
+      .email("Incorrect Email Id")
+      .required("Email is required"),
+  });
 
-    const tipTitle =
-        "Private Dining usually last upto 3 hrs but can extend upto 5 hrs based on number of courses";
+  const tipTitle =
+    "Private Dining usually last upto 3 hrs but can extend upto 5 hrs based on number of courses";
+  const BoxWrapper = styled(Box)(() => ({
+    background: "#101418",
+    color: "#FBFBFB",
+    padding: "40px 31px",
+    position: "sticky",
+    top: "100px",
 
-    const BoxWrapper = styled(Box)(() => ({
-        background: "#101418",
-        color: "#FBFBFB",
-        padding: "40px 31px",
-        position: "sticky",
-        top: "100px",
+    ".sub-text-price": {
+      fontWeight: 600,
+      fontSize: "36px",
+      lineHeight: "44px",
+      color: "#FBFBFB",
+      fontFamily: "ProximaNovaA-Regular",
+      fontStyle: "normal",
+    },
 
-        ".sub-text-price": {
-            fontWeight: 600,
-            fontSize: "36px",
-            lineHeight: "44px",
-            color: "#FBFBFB",
-            fontFamily: "ProximaNovaA-Regular",
-            fontStyle: "normal",
-        },
+    ".sub-text": {
+      fontWeight: 300,
+      fontSize: "20px",
+      lineHeight: "24px",
+      color: "#FBFBFB",
+      fontFamily: "Proxima Nova Alt",
+      fontStyle: "normal",
+    },
+    ".error": {
+      fontSize: "20px",
+      lineHeight: "24px",
+      color: "#FBFBFB",
+      fontFamily: "Proxima Nova Alt",
+    },
 
-        ".sub-text": {
-            fontWeight: 300,
-            fontSize: "20px",
-            lineHeight: "24px",
-            color: "#FBFBFB",
-            fontFamily: "Proxima Nova Alt",
-            fontStyle: "normal",
-        },
-        ".error": {
-            fontSize: "20px",
-            lineHeight: "24px",
-            color: "#FBFBFB",
-            fontFamily: "Proxima Nova Alt",
-        },
+    ".common-field-box": {
+      padding: "16px",
+      background: "#080B0E",
+      marginBottom: "16px",
+    },
 
-        ".common-field-box": {
-            padding: "16px",
-            background: "#080B0E",
-            marginBottom: "16px",
-        },
+    ".field-title": {
+      fontWeight: 600,
+      fontSize: "16px",
+      lineHeight: "19px",
+      padding: "0px 0px 8px 0px",
+      fontFamily: "ProximaNovaA-Regular",
+      fontStyle: "normal",
+      color: "#FBFBFB",
+    },
 
-        ".field-title": {
-            fontWeight: 600,
-            fontSize: "16px",
-            lineHeight: "19px",
-            padding: "0px 0px 8px 0px",
-            fontFamily: "ProximaNovaA-Regular",
-            fontStyle: "normal",
-            color: "#FBFBFB",
-        },
+    ".form-control": {
+      position: "relative",
+      zIndex: "1",
+      paddingLeft: "10px",
+      flex: "1",
+      outline: "none",
+      backgroundColor: "transparent",
+      border: "0px",
+      borderBottom: "0.25px solid #FBFBFB",
+      borderRadius: "0px",
+      paddingRight: "0px",
+      fontFamily: "Proxima Nova Alt",
+      fontStyle: "normal",
+      fontWeight: "300",
+      fontSize: "16px",
+      lineHeight: "19px",
+      color: "#FBFBFB",
+      display: "block",
+      width: "100%",
+      padding: "0.375rem 0.75rem 0.375rem 0px",
+      transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
+    },
 
-        ".form-control": {
-            position: "relative",
-            zIndex: "1",
-            paddingLeft: "10px",
-            flex: "1",
-            outline: "none",
-            backgroundColor: "transparent",
-            border: "0px",
-            borderBottom: "0.25px solid #FBFBFB",
-            borderRadius: "0px",
-            paddingRight: "0px",
-            fontFamily: "Proxima Nova Alt",
-            fontStyle: "normal",
-            fontWeight: "300",
-            fontSize: "16px",
-            lineHeight: "19px",
-            color: "#FBFBFB",
-            display: "block",
-            width: "100%",
-            padding: "0.375rem 0.75rem 0.375rem 0px",
-            transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
-        },
+    ".date-time-box": {
+      display: "grid",
+      gridTemplateColumns: "repeat(2, 1fr)",
+    },
 
-        ".date-time-box": {
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-        },
+    ".date-control": {
+      paddingBottom: "0px",
+    },
 
-        ".date-control": {
-            paddingBottom: "0px",
-        },
+    ".react-datepicker-component .react-datepicker-input.has-value input": {
+      color: "white !important",
+      paddingLeft: "0px",
+      fontFamily: "Proxima Nova Alt",
+      fontStyle: "normal",
+      fontWeight: "300",
+      fontSize: "16px",
+      lineHeight: "19px",
+    },
 
-        ".react-datepicker-component .react-datepicker-input.has-value input": {
-            color: "white !important",
-            paddingLeft: "0px",
-            fontFamily: "Proxima Nova Alt",
-            fontStyle: "normal",
-            fontWeight: "300",
-            fontSize: "16px",
-            lineHeight: "19px",
-        },
+    ".react-datepicker-component .react-datepicker-input": {
+      background: "transparent",
+      border: "none",
+    },
 
-        ".react-datepicker-component .react-datepicker-input": {
-            background: "transparent",
-            border: "none",
-        },
+    ".react-datepicker-component .react-datepicker-input .button-wrapper .input-button":
+      {
+        margin: "0px 0px",
+      },
 
-        ".react-datepicker-component .react-datepicker-input .button-wrapper .input-button":
-            {
-                margin: "0px 0px",
-            },
+    ".icon-rc-datepicker": {
+      color: "#C6A87D",
+      fontSize: "20px",
+    },
 
-        ".icon-rc-datepicker": {
-            color: "#C6A87D",
-            fontSize: "20px",
-        },
+    ".react-datepicker-component .react-datepicker-input:hover": {
+      background: "transparent",
+      border: "none",
+    },
 
-        ".react-datepicker-component .react-datepicker-input:hover": {
-            background: "transparent",
-            border: "none",
-        },
+    ".react-datepicker-component .react-datepicker-input.is-open": {
+      background: "transparent",
+      border: "0px",
+      borderRadius: "0px",
+    },
 
-        ".react-datepicker-component .react-datepicker-input.is-open": {
-            background: "transparent",
-            border: "0px",
-            borderRadius: "0px",
-        },
+    ".gInfo-logo": {
+      height: "16px",
+      width: "16px",
+      marginLeft: "8px",
+    },
 
-        ".gInfo-logo": {
-            height: "16px",
-            width: "16px",
-            marginLeft: "8px",
-        },
+    ".start-time-box": {
+      display: "flex",
+      alignItems: "center",
+      paddingRight: "10px",
+    },
 
-        ".start-time-box": {
-            display: "flex",
-            alignItems: "center",
-            paddingRight: "10px",
-        },
+    ".time-control": {
+      backgroundImage: `url(${drop})`,
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "right bottom",
+      webkitAppearance: "none",
+      mozAppearance: "none",
+      appearance: "none",
+      paddingRight: "0px",
+      backgroundSize: "23px",
+    },
 
-        ".time-control": {
-            backgroundImage: `url(${drop})`,
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "right bottom",
-            webkitAppearance: "none",
-            mozAppearance: "none",
-            appearance: "none",
-            paddingRight: "0px",
-            backgroundSize: "23px",
-        },
+    ".sub-box-counter": {
+      display: "flex",
+      justifyContent: "space-between",
+      padding: "16px",
+      background: "#080B0E",
+      marginBottom: "16px",
+    },
 
-        ".sub-box-counter": {
-            display: "flex",
-            justifyContent: "space-between",
-            padding: "16px",
-            background: "#080B0E",
-            marginBottom: "16px",
-        },
+    ".min-2-3": {
+      flex: "1",
+      marginBottom: "0px",
+      fontFamily: "Proxima Nova Alt",
+      fontWeight: "300",
+      fontSize: "16px",
+      lineHeight: "19px",
+      color: "#FBFBFB",
+    },
 
-        ".min-2-3": {
-            flex: "1",
-            marginBottom: "0px",
-            fontFamily: "Proxima Nova Alt",
-            fontWeight: "300",
-            fontSize: "16px",
-            lineHeight: "19px",
-            color: "#FBFBFB",
-        },
+    ".left-btn": {
+      width: "24px",
+      height: "24px",
+      borderRadius: "0px",
+      color: "#C6A87D",
+      border: "0.25px solid #C6A87D",
+      backgroundColor: "black",
+      marginRight: "10px",
+    },
 
-        ".left-btn": {
-            width: "24px",
-            height: "24px",
-            borderRadius: "0px",
-            color: "#C6A87D",
-            border: "0.25px solid #C6A87D",
-            backgroundColor: "black",
-            marginRight: "10px",
-        },
+    ".right-btn": {
+      width: "24px",
+      height: "24px",
+      borderRadius: "0px",
+      color: "black",
+      border: "0.25px solid #C6A87D",
+      backgroundColor: "#C6A87D",
+      marginLeft: "10px",
+    },
 
-        ".right-btn": {
-            width: "24px",
-            height: "24px",
-            borderRadius: "0px",
-            color: "black",
-            border: "0.25px solid #C6A87D",
-            backgroundColor: "#C6A87D",
-            marginLeft: "10px",
-        },
+    ".surprise-box": {
+      background: "#080B0E",
+      padding: "16px",
+      position: "relative",
+      marginBottom: "16px",
+    },
 
-        ".surprise-box": {
-            background: "#080B0E",
-            padding: "16px",
-            position: "relative",
-            marginBottom: "16px",
-        },
+    ".form-check": {
+      display: "block",
+      minHeight: "1.5rem",
+      marginBottom: "0.125rem",
+    },
 
-        ".form-check": {
-            display: "block",
-            minHeight: "1.5rem",
-            marginBottom: "0.125rem",
-        },
+    ".surprise-check-box": {
+      display: "flex",
+      placeItems: "center",
+    },
 
-        ".surprise-check-box": {
-            display: "flex",
-            placeItems: "center",
-        },
+    ".input-check": {
+      paddingRight: "5px !important",
+      padding: "0px",
+      marginBottom: "0.125rem",
+      color: "#C6A87D !important",
+    },
 
-        ".input-check": {
-            paddingRight: "5px !important",
-            padding: "0px",
-            marginBottom: "0.125rem",
-            color: "#C6A87D !important",
-        },
+    ".form-check-label": {
+      fontFamily: "Bon Vivant",
+      fontStyle: "normal",
+      fontWeight: "700",
+      fontSize: "16px",
+      lineHeight: "20px",
+      color: "#FBFBFB",
+    },
 
-        ".form-check-label": {
-            fontFamily: "Bon Vivant",
-            fontStyle: "normal",
-            fontWeight: "700",
-            fontSize: "16px",
-            lineHeight: "20px",
-            color: "#FBFBFB",
-        },
+    ".email-confirm": {
+      fontFamily: "Proxima Nova Alt",
+      fontStyle: "normal",
+      fontWeight: "300",
+      fontSize: "12px",
+      lineHeight: "15px",
+      color: "rgba(251, 251, 251, 0.6)",
+      display: "block",
+      marginTop: "4px",
+      marginLeft: "1.5rem",
+    },
 
-        ".email-confirm": {
-            fontFamily: "Proxima Nova Alt",
-            fontStyle: "normal",
-            fontWeight: "300",
-            fontSize: "12px",
-            lineHeight: "15px",
-            color: "rgba(251, 251, 251, 0.6)",
-            display: "block",
-            marginTop: "4px",
-            marginLeft: "1.5rem",
-        },
+    ".experience-btn": {
+      fontFamily: "ProximaNovaA-Regular",
+      background: "#C6A87D",
+      fontSize: "20px",
+      lineHeight: "24px",
+      width: "100%",
+      fontWeight: 600,
+      borderRadius: "0px",
+      color: "#080B0E",
+      textTransform: "math-auto",
+      padding: "18.5px 10px",
+      marginTop: "20px",
+      cursor: "pointer",
+    },
+  }));
 
-        ".experience-btn": {
-            fontFamily: "ProximaNovaA-Regular",
-            background: "#C6A87D",
-            fontSize: "20px",
-            lineHeight: "24px",
-            width: "100%",
-            fontWeight: 600,
-            borderRadius: "0px",
-            color: "#080B0E",
-            textTransform: "math-auto",
-            padding: "18.5px 10px",
-            marginTop: "20px",
-            cursor: "pointer",
-        },
-    }));
+  return (
+    <React.Fragment>
+      {!_.isEmpty(userData) && (
+        <BoxWrapper>
+          <Typography className="sub-text-price">
+            Starting at ₹{userData?.price_per_course}{" "}
+            <sub className="sub-text">Per Diner & Per Course</sub>
+          </Typography>
 
-    return (
-        <React.Fragment>
+          <Formik
+            initialValues={{
+              name: chefInfo?.name,
+              email: chefInfo?.email,
+              experienceDate: priveeData?.date ? priveeData?.date : new Date(),
+              startTime: chefInfo?.startTime
+                ? chefInfo?.startTime
+                : new Date().getHours() + ":" + new Date().getMinutes(),
+              numberOfDinner:
+                chefInfo?.numberOfDinner > priveeData?.diners
+                  ? chefInfo?.numberOfDinner
+                  : priveeData?.diners,
+              numberOfCourses:
+                priveeData?.diners >= 6 ? userData?.min_course : 6,
+            }}
+            validationSchema={validationSchema}
+            onSubmit={(values) => {
+              Cookies.set("eventData", JSON.stringify(values));
+              Cookies.set(
+                "eventDinners",
+                JSON.stringify(values?.numberOfDinner)
+              );
+              Cookies.set(
+                "eventCourses",
+                JSON.stringify(values?.numberOfCourses)
+              );
+              if (!_.isEmpty(values)) {
+                navigate("/customer-details");
+              }
+            }}
+          >
+            {({
+              isSubmitting,
+              values,
+              setFieldValue,
+              handleSubmit,
+              handleChange,
+            }) => (
+              <Form onSubmit={handleSubmit} noValidate>
+                <Box className="common-field-box">
+                  <label htmlFor="name" className="field-title">
+                    Name
+                  </label>
+                  <Field
+                    type="text"
+                    name="name"
+                    className="form-control"
+                    placeholder="Enter your full name"
+                    autoComplete="off"
+                    value={values.name}
+                    onChange={handleChange}
+                  />
+                  <ErrorMessage component="div" name="name" />
+                </Box>
 
-            {
-                !_.isEmpty(userData) &&
-                <BoxWrapper>
-                    <Typography className="sub-text-price">
-                        Starting at ₹{userData?.price_per_course} <sub className="sub-text">Per Diner & Per Course</sub>
-                    </Typography>
+                <Box className="common-field-box">
+                  <label htmlFor="email" className="field-title">
+                    Email
+                  </label>
+                  <Field
+                    type="email"
+                    name="email"
+                    className="form-control"
+                    placeholder="eg yourname@email.com"
+                    autoComplete="off"
+                  />
+                  <ErrorMessage component="div" name="email" />
+                </Box>
 
-                    <Formik
-                        initialValues={{
-                            name: chefInfo?.name,
-                            email: chefInfo?.email,
-                            experienceDate: priveeData?.date ? priveeData?.date : new Date(),
-                            startTime: chefInfo?.startTime
-                                ? chefInfo?.startTime
-                                : new Date().getHours() + ":" + new Date().getMinutes(),
-                            numberOfDinner: chefInfo?.numberOfDinner > priveeData?.diners ? chefInfo?.numberOfDinner : priveeData?.diners,
-                            numberOfCourses: priveeData?.diners >= 6 ? userData?.min_course : chefInfo?.numberOfCourses,
-                        }}
-                        validationSchema={validationSchema}
-                        onSubmit={(values) => {
-                            Cookies.set("eventData", JSON.stringify(values));
-                            Cookies.set('eventDinners', JSON.stringify(values?.numberOfDinner));
-                            Cookies.set('eventCourses', JSON.stringify(values?.numberOfCourses));
-                            if (!_.isEmpty(values)) {
-                                navigate("/customer-details");
-                            }
-                        }}
+                <Box className="date-time-box">
+                  <Box className="common-field-box">
+                    <label htmlFor="name" className="field-title">
+                      Experience Date
+                    </label>
+                    <DatePickerInput
+                      className="form-control date-control"
+                      name="experienceDate"
+                      displayFormat="ddd, MMM DD YYYY"
+                      onChange={(dateString) =>
+                        setFieldValue("experienceDate", dateString)
+                      }
+                      value={values.experienceDate}
+                    />
+                  </Box>
+
+                  <Box className="common-field-box">
+                    <Box className="start-time-box">
+                      <label htmlFor="name" className="field-title">
+                        Start Time
+                      </label>
+                      <MuiThemeProvider theme={defaultTheme}>
+                        <Box>
+                          <MuiThemeProvider theme={theme}>
+                            <Tooltip title={tipTitle} arrow placement="top">
+                              <Box>
+                                <img className="gInfo-logo" src={gInfo} />
+                              </Box>
+                            </Tooltip>
+                          </MuiThemeProvider>
+                        </Box>
+                      </MuiThemeProvider>
+                    </Box>
+                    <Field
+                      type="time"
+                      name="time"
+                      className="form-control time-control"
+                      defaultValue={values.startTime}
+                    />
+                  </Box>
+                </Box>
+                <Box className="sub-box-counter">
+                  <label htmlFor="numberOfDinner" className="min-2-3">
+                    Number of Diners <span>(min 2)</span>
+                  </label>
+                  <Box>
+                    <button
+                      type="button"
+                      className="left-btn"
+                      onClick={() => {
+                        setFieldValue(
+                          "numberOfDinner",
+                          Math.max(values.numberOfDinner - 1, 2)
+                        );
+
+                        if (
+                          values.numberOfDinner - 1 >= 2 &&
+                          values.numberOfDinner - 1 <= 6
+                        ) {
+                          setFieldValue("numberOfCourses", 6);
+                        }
+                      }}
                     >
-                        {({
-                              isSubmitting,
-                              values,
-                              setFieldValue,
-                              handleSubmit,
-                              handleChange,
-                          }) => (
-                            <Form onSubmit={handleSubmit} noValidate>
-                                <Box className="common-field-box">
-                                    <label htmlFor="name" className="field-title">
-                                        Name
-                                    </label>
-                                    <Field
-                                        type="text"
-                                        name="name"
-                                        className="form-control"
-                                        placeholder="Enter your full name"
-                                        autoComplete="off"
-                                        value={values.name}
-                                        onChange={handleChange}
-                                    />
-                                    <ErrorMessage component="div" name="name"/>
-                                </Box>
+                      -
+                    </button>
+                    <span>{values.numberOfDinner}</span>
+                    <button
+                      type="button"
+                      className="right-btn"
+                      onClick={() => {
+                        setFieldValue(
+                          "numberOfDinner",
+                          Math.min(values.numberOfDinner + 1, 25)
+                        );
+                        if (
+                          values.numberOfDinner + 1 >= 2 &&
+                          values.numberOfDinner + 1 <= 6
+                        ) {
+                          setFieldValue("numberOfCourses", 6);
+                        } else if (values.numberOfDinner + 1 > 6) {
+                          setFieldValue(
+                            "numberOfCourses",
+                            userData?.min_course
+                          );
+                        }
+                      }}
+                    >
+                      +
+                    </button>
+                  </Box>
+                </Box>
 
-                                <Box className="common-field-box">
-                                    <label htmlFor="email" className="field-title">
-                                        Email
-                                    </label>
-                                    <Field
-                                        type="email"
-                                        name="email"
-                                        className="form-control"
-                                        placeholder="eg yourname@email.com"
-                                        autoComplete="off"
-                                    />
-                                    {/* {errors.email && touched.email ? (<div>{errors.email}</div>) : null} */}
-                                    <ErrorMessage component="div" name="email"/>
-                                </Box>
+                <Box className="sub-box-counter">
+                  <label htmlFor="numberOfCourses" className="min-2-3">
+                    Number of Courses <span>(min 3)</span>
+                  </label>
+                  <Box>
+                    <button
+                      type="button"
+                      className="left-btn"
+                      onClick={() => {
+                        setFieldValue(
+                          "numberOfCourses",
+                          Math.max(
+                            values.numberOfCourses - 1,
+                            userData?.min_course
+                          )
+                        );
+                        if (
+                          values.numberOfDinner + 1 >= 2 &&
+                          values.numberOfDinner + 1 <= 6
+                        ) {
+                          setFieldValue("numberOfCourses", 6);
+                        }
+                      }}
+                      disabled={values.numberOfDinner <= userData?.min_course}
+                    >
+                      -
+                    </button>
+                    <span>{values.numberOfCourses}</span>
+                    <button
+                      type="button"
+                      className="right-btn"
+                      onClick={() => {
+                        setFieldValue(
+                          "numberOfCourses",
+                          Math.min(values.numberOfCourses + 1, 10)
+                        );
+                      }}
+                      disabled={values.numberOfDinner < 6}
+                    >
+                      +
+                    </button>
+                  </Box>
+                </Box>
 
-                                <Box className="date-time-box">
-                                    <Box className="common-field-box">
-                                        <label htmlFor="name" className="field-title">
-                                            Experience Date
-                                        </label>
-                                        <DatePickerInput
-                                            className="form-control date-control"
-                                            name="experienceDate"
-                                            displayFormat="ddd, MMM DD YYYY"
-                                            onChange={(dateString) =>
-                                                setFieldValue("experienceDate", dateString)
-                                            }
-                                            value={values.experienceDate}
-                                        />
-                                    </Box>
+                <Box className="surprise-box">
+                  <Box className="form-check">
+                    <Box className="surprise-check-box">
+                      <Checkbox className="input-check" defaultChecked />
+                      <Typography
+                        className="form-check-label"
+                        for="flexCheckChecked"
+                      >
+                        Surprise me
+                      </Typography>
+                    </Box>
+                    <Typography className="email-confirm">
+                      An agnostic menu that explores a diverse culinary journey
+                      with chef mako at the helm.
+                    </Typography>
+                  </Box>
+                </Box>
 
-                                    <Box className="common-field-box">
-                                        <Box className="start-time-box">
-                                            <label htmlFor="name" className="field-title">
-                                                Start Time
-                                            </label>
-                                            <MuiThemeProvider theme={defaultTheme}>
-                                                <Box>
-                                                    <MuiThemeProvider theme={theme}>
-                                                        <Tooltip title={tipTitle} arrow placement="top">
-                                                            <Box>
-                                                                <img className="gInfo-logo" src={gInfo}/>
-                                                            </Box>
-                                                        </Tooltip>
-                                                    </MuiThemeProvider>
-                                                </Box>
-                                            </MuiThemeProvider>
-                                        </Box>
-                                        <Field
-                                            type="time"
-                                            name="time"
-                                            className="form-control time-control"
-                                            defaultValue={values.startTime}
-                                        />
-                                    </Box>
-                                </Box>
-                                <Box className="sub-box-counter">
-                                    <label htmlFor="numberOfDinner" className="min-2-3">
-                                        Number of Diners <span>(min 2)</span>
-                                    </label>
-                                    {/*{*/}
-                                    {/*    !_.isEmpty(userData?.prices) &&*/}
-                                    <Box>
-                                        <button
-                                            type="button"
-                                            className="left-btn"
-                                            onClick={() => {
-                                                setFieldValue(
-                                                    "numberOfDinner",
-                                                    Math.max(values.numberOfDinner - 1, 2)
-                                                );
-
-                                                if (
-                                                    values.numberOfDinner - 1 >= 2 &&
-                                                    values.numberOfDinner - 1 <= 6
-                                                ) {
-                                                    setFieldValue("numberOfCourses", 6);
-                                                } else if (values.numberOfDinner - 1 > 6) {
-                                                    // setFieldValue("numberOfCourses", userData?.min_course);
-                                                }
-                                            }}
-                                        >
-                                            -
-                                        </button>
-                                        <span>{values.numberOfDinner}</span>
-                                        <button
-                                            type="button"
-                                            className="right-btn"
-                                            onClick={() => {
-                                                setFieldValue(
-                                                    "numberOfDinner",
-                                                    Math.min(values.numberOfDinner + 1, 25)
-                                                );
-                                                if (
-                                                    values.numberOfDinner + 1 >= 2 &&
-                                                    values.numberOfDinner + 1 <= 6
-                                                ) {
-                                                    setFieldValue("numberOfCourses", 6);
-                                                } else if (values.numberOfDinner + 1 > 6) {
-                                                    setFieldValue("numberOfCourses", userData?.min_course);
-                                                }
-                                            }}
-                                            disabled={values.numberOfCourses >= userData?.prices[userData?.prices?.length - 1]?.max_courses}
-                                        >
-                                            +
-                                        </button>
-                                    </Box>
-                                    {/*}*/}
-
-                                </Box>
-
-                                <Box className="sub-box-counter">
-                                    <label htmlFor="numberOfCourses" className="min-2-3">
-                                        Number of Courses <span>(min 3)</span>
-                                    </label>
-                                    <Box>
-                                        <button
-                                            type="button"
-                                            className="left-btn"
-                                            onClick={() => {
-                                                setFieldValue(
-                                                    "numberOfCourses",
-                                                    Math.max(values.numberOfCourses - 1, userData?.min_course)
-                                                );
-                                                if (
-                                                    values.numberOfDinner + 1 >= 2 &&
-                                                    values.numberOfDinner + 1 <= 6
-                                                ) {
-                                                    setFieldValue("numberOfCourses", 6);
-                                                }
-                                            }}
-                                            disabled={values.numberOfDinner <= userData?.min_course}
-                                        >
-                                            -
-                                        </button>
-                                        <span>{values.numberOfCourses}</span>
-                                        <button
-                                            type="button"
-                                            className="right-btn"
-                                            onClick={() => {
-                                                setFieldValue(
-                                                    "numberOfCourses",
-                                                    Math.min(values.numberOfCourses + 1, 10)
-                                                );
-                                            }}
-                                            disabled={values.numberOfDinner <= 6}
-                                        >
-                                            +
-                                        </button>
-                                    </Box>
-                                </Box>
-
-                                <Box className="surprise-box">
-                                    <Box className="form-check">
-                                        <Box className="surprise-check-box">
-                                            <Checkbox className="input-check" defaultChecked/>
-                                            <Typography
-                                                className="form-check-label"
-                                                for="flexCheckChecked"
-                                            >
-                                                Surprise me
-                                            </Typography>
-                                        </Box>
-                                        <Typography className="email-confirm">
-                                            An agnostic menu that explores a diverse culinary journey
-                                            with chef mako at the helm.
-                                        </Typography>
-                                    </Box>
-                                </Box>
-
-                                <button
-                                    type="submit"
-                                    className="experience-btn"
-                                    // disabled={isSubmitting}
-                                >
-                                    Book this experience
-                                </button>
-                            </Form>
-                        )}
-                    </Formik>
-                </BoxWrapper>
-            }
-
-        </React.Fragment>
-    );
+                <button type="submit" className="experience-btn">
+                  Book this experience
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </BoxWrapper>
+      )}
+    </React.Fragment>
+  );
 };
 
 export default ChefDetailsForm;

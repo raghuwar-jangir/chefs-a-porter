@@ -102,7 +102,8 @@ const MapComponent = ({setNewAddress, setOpen}) => {
             .then((results) => getLatLng(results[0]))
             .then((latLng) => {
                 setCoords(latLng);
-                Cookies.set('coords',JSON.stringify(latLng));
+                Cookies.set('latCoords',JSON.stringify(latLng.lat));
+                Cookies.set('lngCoords',JSON.stringify(latLng.lng));
             })
             .catch((error) => console.error("Error", error));
     };

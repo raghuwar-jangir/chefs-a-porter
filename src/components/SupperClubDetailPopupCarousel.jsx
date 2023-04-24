@@ -1,7 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import chef1 from "./../assets/images/chef5.png";
-import chef2 from "./../assets/images/chef6.png";
-import sGallery from "./../assets/images/sc-gallery.png";
+import React, { useContext } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -29,7 +26,6 @@ const MainBox = styled(Box)({
         display: "block",
         width: "75%",
         backgroundColor: "rgba(0,0,0,.8)",
-        // boxShadow: '0 0 8px rgb(0 0 0 / 60%)'
     },
     ".swiper-slide": {
         maxHeight: "100%",
@@ -46,17 +42,17 @@ const MainBox = styled(Box)({
 const SupperClubDetailPopupCarousel = ({ title }) => {
     const getEventId = "640b22b691e7236a1d0a264e";
     const { setEventId, userData } = useContext(UsersContext);
-    const itemData =
-        {
-            // img: userData?.chef?.picture,
-            img: ticketedImage,
-        }
+    const itemData =  
+   {
+      img: _.get(userData, "pictures.[0]", []),
+      title: "chef",
+    };
     const itemData2 = _.map(_.get(userData,'pictures',[]), (item,index) => {
         return {
             img: item,
         }
     })
-console.log("userData=====>",userData);
+    
     const combinedArray = [itemData, ...itemData2];
 
     return (
