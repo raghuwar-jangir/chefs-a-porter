@@ -720,7 +720,7 @@ const ChefDetails = (props) => {
                                                                     color: "#080B0E",
                                                                 }}
                                                             >
-                                                                {userData?.details?.intro}
+                                                                {userData?.details?.intro ? userData?.details?.intro : ''}
                                                             </ReactReadMoreReadLess>
                                                         </Box>
                                                     </Box>

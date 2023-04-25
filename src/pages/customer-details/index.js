@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Box, Grid, TextField, Checkbox, Typography } from "@mui/material";
+import { Box, Grid, TextField, Checkbox, Typography, styled } from "@mui/material";
 import Navbar from "../../components/NavbarComponent";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Formik, Form, ErrorMessage } from "formik";
@@ -268,7 +268,7 @@ const CustomerDetails = (props) => {
     },
   };
 
-  const BoxWrapper = {
+  const BoxWrapper = styled(Box) ({
     background: "#101418",
 
     ".supper-gallery": {
@@ -807,11 +807,11 @@ const CustomerDetails = (props) => {
       color: "#080B0E",
       fontFamily: "Bon Vivant",
     },
-  };
+  })
 
   return (
     <React.Fragment>
-      <Box sx={BoxWrapper}>
+      <BoxWrapper>
         <Navbar
           to={"/customer-details"}
           isColor={true}
@@ -924,8 +924,8 @@ const CustomerDetails = (props) => {
                                   className="form-control"
                                   id="validationCustom03"
                                   placeholder="Add Address"
-                                  // value={values.address}
-                                  value={formAddress}
+                                  value={values.address}
+                                  // value={formAddress}
                                   onChange={handleChange}
                                   autoComplete="off"
                                   variant="standard"
@@ -1444,7 +1444,7 @@ const CustomerDetails = (props) => {
             contactNumber={contactNumber}
           />
         )}
-      </Box>
+      </BoxWrapper>
     </React.Fragment>
   );
 };

@@ -1,12 +1,29 @@
 import React, { useEffect, useState, useContext } from "react";
 import * as Yup from "yup";
 import { Form, Formik, Field, ErrorMessage } from "formik";
-import { Box, Grid, Modal, styled, Typography, Checkbox } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Modal,
+  styled,
+  Typography,
+  TextField,
+  TextareaAutosize,
+  Checkbox,
+} from "@mui/material";
 import Navbar from "../../components/NavbarComponent";
+import add1 from "../../assets/images/add1.png";
+import add2 from "../../assets/images/add2.png";
+import add3 from "../../assets/images/add3.png";
+import add4 from "../../assets/images/add4.png";
+import add5 from "../../assets/images/add5.png";
+import add6 from "../../assets/images/add6.png";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import sGallery from "../../assets/images/sc-gallery.png";
 import StarIcon from "@mui/icons-material/Star";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { isMobile } from "react-device-detect";
+import chefImg from "../../assets/images/chef-img.png";
 import dateGold from "../../assets/images/date-gold.png";
 import location from "../../assets/images/location.png";
 import people from "../../assets/images/people.png";
@@ -21,11 +38,13 @@ import "../../assets/styles/fontStyle.css";
 import output from "../../assets/images/output.png";
 import download from "../../assets/images/download.png";
 import useRazorpay from "react-razorpay";
+import { useCallback } from "react";
 import Cookies from "js-cookie";
 import * as _ from "lodash";
 import { navigate } from "gatsby";
 import UsersContext from "../../context/UsersContext";
 import moment from "moment/moment";
+import axios from "axios";
 
 const BookingSummary = (props) => {
   const { summaryBookingId } = props;
@@ -34,6 +53,10 @@ const BookingSummary = (props) => {
     '"',
     ""
   );
+
+  const printDiv = () => {
+    window.print();
+  };
 
   const {
     bsPaymentData,
@@ -88,6 +111,7 @@ const BookingSummary = (props) => {
   const handleClose = () => setOpen(false);
   const Razorpay = useRazorpay();
 
+  // const [bookingSuccessOpen, setBookingSuccessOpen] = useState(false);
   const handleBookingSuccessOpen = () => setBookingSuccessOpen(true);
   const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
   const handlePayment = () => {
@@ -119,7 +143,7 @@ const BookingSummary = (props) => {
       }, [customerInfoCookieValue, eventDataCookieValue]);
   }
 
-  const BoxWrapper = {
+  const BoxWrapper = styled(Box)(() => ({
     background: "#080B0E",
     ".popup-form": {
       top: "50%",
@@ -161,6 +185,7 @@ const BookingSummary = (props) => {
     ".arrow-left": {
       color: "#FBFBFB",
       cursor: "pointer",
+      // fontSize: '20px',
     },
     ".partner": {
       border: "0px",
@@ -204,6 +229,7 @@ const BookingSummary = (props) => {
     ".event-title": {
       fontFamily: "Bon Vivant",
       fontStyle: "normal",
+      // fontWeight: '700',
       fontSize: "20px",
       lineHeight: "25px",
       letterSpacing: "0.06em",
@@ -213,6 +239,7 @@ const BookingSummary = (props) => {
     ".event-subtitle": {
       fontFamily: "Proxima Nova",
       fontStyle: "normal",
+      // fontWeight: '400',
       fontSize: "12px",
       lineHeight: "15px",
       letterSpacing: "0.06em",
@@ -222,6 +249,7 @@ const BookingSummary = (props) => {
     ".event-link": {
       fontFamily: "Proxima Nova",
       fontStyle: "normal",
+      // fontWeight: '700',
       fontSize: "16px",
       lineHeight: "19px",
       textDecoration: "none",
@@ -310,6 +338,7 @@ const BookingSummary = (props) => {
     ".table-details": {
       fontFamily: "Proxima Nova",
       fontStyle: "normal",
+      // fontWeight: '300',
       fontSize: "16px",
       lineHeight: "19px",
       color: "#FBFBFB",
@@ -330,7 +359,11 @@ const BookingSummary = (props) => {
     ".border": {
       borderTop: "1px solid rgba(255, 255, 255, 0.6)",
       borderBottom: "1px solid rgba(255, 255, 255, 0.6)",
+      // paddingTop: '16px'
     },
+    // ".tax1": {
+    //     paddingTop: "20px",
+    // },
     ".header-club": {
       display: "none",
       padding: "15px",
@@ -716,7 +749,7 @@ const BookingSummary = (props) => {
       color: "#080B0E",
       fontFamily: "Bon Vivant",
     },
-  };
+  }));
   const style = {
     position: "fixed",
     top: "0",
@@ -848,8 +881,9 @@ const BookingSummary = (props) => {
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: 800,
-    height: 841,
     boxShadow: 24,
+    margin: 'auto',
+        maxHeight: 'calc(100% - 2.25em)',
     ".modal-content": {
       backgroundColor: "#101418!important",
       boxShadow: "0px 8px 12px rgb(0 0 0 / 16%)",
@@ -859,6 +893,9 @@ const BookingSummary = (props) => {
       pointerEvents: "auto",
       backgroundClip: "paddingBox",
       outline: "0",
+    },
+    ".pointer": {
+      cursor: "pointer",
     },
     ".close": {
       border: "none !important",
@@ -1109,7 +1146,7 @@ const BookingSummary = (props) => {
 
   return (
     <React.Fragment>
-      <Box sx={BoxWrapper}>
+      <BoxWrapper>
         <Navbar
           to={"/booking-summary"}
           isIcon={true}
@@ -1148,6 +1185,7 @@ const BookingSummary = (props) => {
                             xs={7}
                             md={7}
                             sm={12}
+                            xs={12}
                             className="partner"
                           >
                             <Box className="booking-box">
@@ -1178,6 +1216,7 @@ const BookingSummary = (props) => {
                                     src={dateGold}
                                   />
                                   <Typography className="chef-profile-date">
+                                    {/*April 9 | 7:30 PM - 10 PM*/}
                                     {moment(eventData?.experienceDate).format(
                                       "MMMM D"
                                     )}{" "}
@@ -1194,6 +1233,7 @@ const BookingSummary = (props) => {
                                     src={location}
                                   />
                                   <Typography className="chef-profile-date">
+                                    {/*Silver bar, Downtown*/}
                                     {bsPaymentData?.city}
                                   </Typography>
                                 </Box>
@@ -1203,6 +1243,7 @@ const BookingSummary = (props) => {
                                     src={people}
                                   />
                                   <Typography className="chef-profile-date">
+                                    {/*6 Diners*/}
                                     {eventData?.numberOfDinner} Diners
                                   </Typography>
                                 </Box>
@@ -1285,6 +1326,7 @@ const BookingSummary = (props) => {
                                     name="number1"
                                   />
                                 </Box>
+                                {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
                               </Box>
                             </Box>
                             <Box className="booking-box">
@@ -1381,6 +1423,7 @@ const BookingSummary = (props) => {
                                 />
                                 <Box sx={{ marginLeft: "12px" }}>
                                   <Typography className="event-title">
+                                    {/*The Big Fat Parsi Blowout*/}
                                     {bsPaymentData?.common_menu?.title}
                                   </Typography>
                                   <Typography className="event-subtitle">
@@ -1408,6 +1451,11 @@ const BookingSummary = (props) => {
                                   <Typography className="ex-heading">
                                     Breakup
                                   </Typography>
+                                  {/*<Typography className="ex-detail">*/}
+                                  {/*    This is an estimate, final price will be{" "}*/}
+                                  {/*    <br/>*/}
+                                  {/*    communicated on call*/}
+                                  {/*</Typography>*/}
                                   <ExpandMoreIcon className="ex-icon" />
                                 </Box>
                                 {!_.isEmpty(bsPaymentData) && (
@@ -1573,6 +1621,7 @@ const BookingSummary = (props) => {
                                         style: "currency",
                                         currency: "INR",
                                       }).format(bsPaymentData?.payment?.total)}
+                                      {/*Proceed to pay ₹25,000*/}
                                     </button>
                                   </Box>
                                 )}
@@ -1607,6 +1656,7 @@ const BookingSummary = (props) => {
                             xs={7}
                             md={7}
                             sm={12}
+                            xs={12}
                             className="partner"
                           >
                             <Box className="booking-box">
@@ -1638,6 +1688,7 @@ const BookingSummary = (props) => {
                                     src={dateGold}
                                   />
                                   <Typography className="chef-profile-date">
+                                    {/*April 9 | 7:30 PM - 10 PM*/}
                                     {moment(eventData?.experienceDate).format(
                                       "MMMM D"
                                     )}{" "}
@@ -1654,6 +1705,7 @@ const BookingSummary = (props) => {
                                     src={location}
                                   />
                                   <Typography className="chef-profile-date">
+                                    {/*Silver bar, Downtown*/}
                                     {priveePaymentData?.city}
                                   </Typography>
                                 </Box>
@@ -1663,6 +1715,7 @@ const BookingSummary = (props) => {
                                     src={people}
                                   />
                                   <Typography className="chef-profile-date">
+                                    {/*6 Diners*/}
                                     {eventData?.numberOfDinner} Diners
                                   </Typography>
                                 </Box>
@@ -1745,6 +1798,7 @@ const BookingSummary = (props) => {
                                     name="number1"
                                   />
                                 </Box>
+                                {/* <Box class="invalid-feedback">Incorrect Mobile Number</Box> */}
                               </Box>
                             </Box>
                             <Box className="booking-box">
@@ -1828,6 +1882,7 @@ const BookingSummary = (props) => {
                             xs={5}
                             md={5}
                             sm={12}
+                            xs={12}
                             className="cust-details dinner-box"
                           >
                             <Box className="per-dinner adsss">
@@ -1839,6 +1894,7 @@ const BookingSummary = (props) => {
                                 />
                                 <Box sx={{ marginLeft: "12px" }}>
                                   <Typography className="event-title">
+                                    {/*The Big Fat Parsi Blowout*/}
                                     {priveePaymentData?.common_menu?.title}
                                   </Typography>
                                   <Typography className="event-subtitle">
@@ -1869,6 +1925,11 @@ const BookingSummary = (props) => {
                                   <Typography className="ex-heading">
                                     Breakup
                                   </Typography>
+                                  {/*<Typography className="ex-detail">*/}
+                                  {/*    This is an estimate, final price will be{" "}*/}
+                                  {/*    <br/>*/}
+                                  {/*    communicated on call*/}
+                                  {/*</Typography>*/}
                                   <ExpandMoreIcon className="ex-icon" />
                                 </Box>
                                 {!_.isEmpty(priveePaymentData) && (
@@ -2051,6 +2112,7 @@ const BookingSummary = (props) => {
                                       }).format(
                                         priveePaymentData?.payment?.total
                                       )}
+                                      {/*Proceed to pay ₹25,000*/}
                                     </button>
                                   </Box>
                                 )}
@@ -2181,7 +2243,7 @@ const BookingSummary = (props) => {
                           </Box>
 
                           <button
-                            type="submit"
+                            type={"submit"}
                             className="btn btn-primary"
                             disabled={isSubmitting}
                           >
@@ -2202,8 +2264,9 @@ const BookingSummary = (props) => {
           onClose={handleBookingSuccessClose}
           aria-labelledby="keep-mounted-modal-title"
           aria-describedby="keep-mounted-modal-description"
+          sx={{overflowY: 'auto !important'}}
         >
-          <Box sx={styleOtp}>
+          <Box sx={styleOtp} id="printable-div">
             <div className="modal-content">
               <div className="modal-header">
                 <button
@@ -2226,7 +2289,7 @@ const BookingSummary = (props) => {
                       We look forward to serving you a conscious <br />
                       dining experience!
                     </p>
-                    <a href="javascript:void(0);">
+                    <a onClick={printDiv} className="pointer">
                       <img src={download} alt="" />
                       Download Invoice
                     </a>
@@ -2429,7 +2492,7 @@ const BookingSummary = (props) => {
             </div>
           </Box>
         </Modal>
-      </Box>
+      </BoxWrapper>
     </React.Fragment>
   );
 };
