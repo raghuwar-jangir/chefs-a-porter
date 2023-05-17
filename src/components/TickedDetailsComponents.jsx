@@ -96,7 +96,6 @@ const { setSupperClubDetailId, userData } = useContext(UsersContext);
     }
   };
 
-  console.log('selected Data', selectedDate)
   const disabledStyle = {
     opacity: 0.5,
   };
@@ -1238,7 +1237,10 @@ const { setSupperClubDetailId, userData } = useContext(UsersContext);
                                     />
                                     <label
                                       htmlFor={`radio-${index}-1`}
-                                      onClick={() => handleToggle(index)}
+                                      onClick={() =>{
+                                        handleToggle(index);
+                                      }
+                                    }
                                     >
                                       <Typography className="time-text">
                                         {moment(item[0]?.from, "HH:mm").format(
@@ -1248,6 +1250,7 @@ const { setSupperClubDetailId, userData } = useContext(UsersContext);
                                         {moment(item[0]?.to, "HH:mm").format(
                                           "h:mm A"
                                         )}
+                                        {`switch-${index}Lunch`}
                                       </Typography>
                                     </label>
                                     <input
@@ -1260,7 +1263,10 @@ const { setSupperClubDetailId, userData } = useContext(UsersContext);
                                       !_.isEmpty(item[1]?.to) && (
                                         <label
                                           htmlFor={`radio-${index}-2`}
-                                          onClick={() => handleToggle(index)}
+                                          onClick={() => {
+                                            handleToggle(index);
+                                          }
+                                          }
                                         >
                                           <Typography className="time-text">
                                             {moment(
@@ -1272,6 +1278,7 @@ const { setSupperClubDetailId, userData } = useContext(UsersContext);
                                               item[1]?.to,
                                               "HH:mm"
                                             ).format("h:mm A")}
+                                            {`switch-${index}Dinner`}
                                           </Typography>
                                         </label>
                                       )}
@@ -1368,7 +1375,7 @@ const { setSupperClubDetailId, userData } = useContext(UsersContext);
                                             </span>
                                           </div>
                                         </Box>
-                                        {userData?.seats_chefs_table && userData?.seats_chefs_table!==0 && (
+                                        {userData?.seats_chefs_table!==0 && (
                                             <>
                                             <hr className="seat-hr" />
                                         <Box className="regular-seat">
