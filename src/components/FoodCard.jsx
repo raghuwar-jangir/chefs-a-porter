@@ -44,7 +44,7 @@ const FoodCard = () => {
             fontFamily: 'Proxima Nova'
         },
         "@media (min-width: 767px) and (max-width:2560px)": {
-                display:'none'
+            display:'none'
         },
 
     }))

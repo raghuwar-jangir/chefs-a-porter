@@ -13,33 +13,44 @@ import {
     Button,
     TextareaAutosize,
 } from "@mui/material";
-import Footer from "../../components/Footer";
-import Navbar from "../../components/NavbarComponent";
-import NeedHelp from "../../components/NeedHelp";
-import FooterEnd from "../../components/FooterEndSection";
-import party from "../../assets/images/party.png";
-import work from "../../assets/images/mdi_bag.png";
-import culinary from "../../assets/images/culinary.png";
-import chef from "../../assets/images/chef.png";
+import {navigate} from "gatsby";
+import Cookies from 'js-cookie';
+
+import Footer from "../components/Footer";
+import Navbar from "../components/NavbarComponent";
+import NeedHelp from "../components/NeedHelp";
+import FooterEnd from "../components/FooterEndSection";
+import party from "../assets/images/party.png";
+import work from "../assets/images/mdi_bag.png";
+import culinary from "../assets/images/culinary.png";
+import chef from "../assets/images/chef.png";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import ReactReadMoreReadLess from "react-read-more-read-less";
 import CloseIcon from "@mui/icons-material/Close";
 import * as _ from "lodash";
-import TemptedYet from "../../components/TemptedYet";
-import ImageCarousel from "../../components/ImageCarousel";
-import AvlExperienceCarousel from "../../components/AvlExperienceCarousel";
-import ImagePopCarousel from "../../components/ImagePopCarousel";
-import SupperClubDetailsCarousel from "../../components/SupperClubDetailsCarousel";
+import TemptedYet from "../components/TemptedYet";
+import ImageCarousel from "../components/ImageCarousel";
+import AvlExperienceCarousel from "../components/AvlExperienceCarousel";
+import ImagePopCarousel from "../components/ImagePopCarousel";
+import SupperClubDetailsCarousel from "../components/SupperClubDetailsCarousel";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import GalleryCarousel from "../../components/GalleryCarousel";
-import UsersContext from "../../context/UsersContext";
-import "../../assets/styles/fontStyle.css";
+import GalleryCarousel from "../components/GalleryCarousel";
+import UsersContext from "../context/UsersContext";
+import "../assets/styles/fontStyle.css";
+const ChefsDetailTemplate = (props) => { 
+    const [isReadMore, setIsReadMore] = useState(true);
+    const [isReadMore2, setIsReadMore2] = useState(true);
 
-const ChefDetails = (props) => {
-    const getUserId = props?.params?.userId;
-    // const getUserId = "62b4582185ac160c4cbf118a";
+    const toggleReadMore = () => {
+        setIsReadMore(!isReadMore);
+    };
+    const toggleReadMore2 = () => {
+        setIsReadMore2(!isReadMore2);
+    };
 
-    const {setUserId, userData} = useContext(UsersContext);
+
+  const getUserId = props.pageContext.id;
+  const {setUserId, userData} = useContext(UsersContext);
     const [showCarousel, setShowCarousel] = useState(false);
 
     const [title, setTitle] = useState("");
@@ -51,25 +62,24 @@ const ChefDetails = (props) => {
         setShowCarousel(false);
     };
 
-  useEffect(() => {
-    setUserId(getUserId);
-  }, [getUserId]);
-  const bread = {
-    fontFamily: "Proxima Nova Alt",
-    fontStyle: "normal",
-    fontWeight: 300,
-    fontSize: "16px",
-    lineHeight: "19px",
-  };
-
-  const breadcrumbs = [
-    <Typography sx={bread} key="1" color="#FBFBFB">
-      Private
-    </Typography>,
-    <Link underline="none" key="2" color="#C6A87D" href="">
-      Chef
-    </Link>,
-  ];
+    useEffect(() => {
+        setUserId(getUserId);
+    }, [getUserId]);
+    const bread = {
+        fontFamily: "Proxima Nova Alt",
+        fontStyle: "normal",
+        fontWeight: 300,
+        fontSize: "16px",
+        lineHeight: "19px",
+    };
+    const breadcrumbs = [
+        <Typography sx={bread} key="1" color="#FBFBFB">
+          Private
+        </Typography>,
+        <Link underline="none" key="2" color="#C6A87D" href="">
+          Chef
+        </Link>,
+      ];
 
     // const longText = "From Bangalore to the Culinary Institute of America in New York. He has developed his skills and love for the culinary arts. From Bangalore to the Culinary ..."
 
@@ -79,6 +89,7 @@ const ChefDetails = (props) => {
             title: "chef1",
         };
     });
+
 
     const itemData2 = _.map(
         _.get(userData?.details, "gallery_pictures", []),
@@ -198,6 +209,8 @@ const ChefDetails = (props) => {
             textUnderlineOffset: "3px",
             cursor: "pointer",
             fontWeight: "700",
+            float:"left",
+            width:"100%",
             fontFamily: "Proxima Nova",
         },
         ".treat": {
@@ -519,8 +532,9 @@ const ChefDetails = (props) => {
         },
     }));
 
-    return (
-        <React.Fragment>
+
+  return (
+    <React.Fragment>
             <BoxWrapper>
                 {!_.isEmpty(userData) && (
                     <>
@@ -553,7 +567,7 @@ const ChefDetails = (props) => {
                                             {userData.name}
                                         </Typography>
                                         <span className="chef-details">
-                      Specialty:
+                                        Cuisine Speciality:
                       <b>
                         {!_.isEmpty(userData?.details?.tags) && (
                             <span>
@@ -591,7 +605,7 @@ const ChefDetails = (props) => {
                                 <Box>
                                     <Box className="container-spacing">
                                         <Box className="container">
-                                            {itemData.map((item) => (
+                                            {itemData.slice(0,1).map((item) => (
                                                 <img
                                                     src={item.img}
                                                     alt={item.title}
@@ -706,7 +720,7 @@ const ChefDetails = (props) => {
                                                             </Box>
                                                         </Box>
                                                         <Box className="read-more">
-                                                            <ReactReadMoreReadLess
+                                                            {/* <ReactReadMoreReadLess
                                                                 charLimit={100}
                                                                 className="read-more-content"
                                                                 readMoreClassName="read-more-less--more"
@@ -721,7 +735,12 @@ const ChefDetails = (props) => {
                                                                 }}
                                                             >
                                                                 {userData?.details?.intro ? userData?.details?.intro : ''}
-                                                            </ReactReadMoreReadLess>
+                                                            </ReactReadMoreReadLess> */}
+
+                                                            {isReadMore ? `${userData?.details?.intro.slice(0, 100)}...` : <span dangerouslySetInnerHTML={{ __html: userData?.details?.intro }} style={{ whiteSpace: 'pre-line'}} ></span>}
+                                                            <span onClick={toggleReadMore} className="read-more-less--more" role="presentation" style={{ textDecoration: 'underline' }}>
+                                                            {isReadMore ? "Read more" : "Read less"}
+                                                            </span>
                                                         </Box>
                                                     </Box>
                                                 </Box>
@@ -741,6 +760,10 @@ const ChefDetails = (props) => {
                                                         image={item.cover_picture}
                                                         title={item.title}
                                                         description={`by ${userData.name}`}
+                                                        onClick={() => {
+                                                            navigate(`/event-details/${item?.id}`);
+                                                            Cookies.set('eventIdValue', JSON.stringify(item?.id));
+                                                        }}
                                                     />
                                                 </Grid>
                                             );
@@ -802,6 +825,7 @@ const ChefDetails = (props) => {
                 )}
             </BoxWrapper>
         </React.Fragment>
-    );
+  );
 };
-export default ChefDetails;
+
+export default ChefsDetailTemplate;

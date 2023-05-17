@@ -63,6 +63,7 @@ const MainContentBox = styled(Box)({
         fontSize: '20px',
         fontWeight: '400',
         lineHeight: '24px',
+        textAlign:'left',
         fontFamily: 'Bon Vivant',
         color: '#FBFBFB'
     },
@@ -135,9 +136,9 @@ const AvlExperienceCarousel = (props) => {
                     <Typography className='description'>
                         {props.description}
                     </Typography>
-                    <Typography className='sub-description'>
+                    {/* <Typography className='sub-description'>
                         {props.subDescription}
-                    </Typography>
+                    </Typography> */}
                     {
                         props.isLabelShow &&
                         <Box className='sub-box'>

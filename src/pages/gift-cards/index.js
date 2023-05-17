@@ -51,35 +51,35 @@ const GiftCards = () => {
         receiverMessage: Yup.string().required("Please enter text"),
     });
 
-  const [occassionMessage, setOccassionMessage] = useState("");
+    const [occassionMessage, setOccassionMessage] = useState("");
 
-  const [open, setOpen] = useState(false);
-  const handleOpenPopUp = () => setOpen(true);
-  const handleClosePopUp = () => setOpen(false);
-  const [contactPopUp, setContactPopUp] = useState(false);
-  const ContactOpen = () => setContactPopUp(true);
-  const ContactClose = () => setContactPopUp(false);
-  //for Cover Letter
-  const CHARACTER_LIMIT = 500;
+    const [open, setOpen] = useState(false);
+    const handleOpenPopUp = () => setOpen(true);
+    const handleClosePopUp = () => setOpen(false);
+    const [contactPopUp, setContactPopUp] = useState(false);
+    const ContactOpen = () => setContactPopUp(true);
+    const ContactClose = () => setContactPopUp(false);
+    //for Cover Letter
+    const CHARACTER_LIMIT = 500;
 
-  //for occassionMessage
-  const CHAR_LIMIT = 70;
-  let [count, setCount] = useState(1);
-  let Qty = 10;
+    //for occassionMessage
+    const CHAR_LIMIT = 70;
+    let [count, setCount] = useState(1);
+    let Qty = 10;
 
-  function incrementCount() {
-    if (count < Qty) {
-      count = count + 1;
-      setCount(count);
+    function incrementCount() {
+        if (count < Qty) {
+            count = count + 1;
+            setCount(count);
+        }
     }
-  }
 
-  function decrementCount() {
-    if (count > 0) {
-      count = count - 1;
-      setCount(count);
+    function decrementCount() {
+        if (count > 0) {
+            count = count - 1;
+            setCount(count);
+        }
     }
-  }
 
     const BoxWrapper = styled(Box)(() => ({
         backgroundColor: "#DCD7CB",

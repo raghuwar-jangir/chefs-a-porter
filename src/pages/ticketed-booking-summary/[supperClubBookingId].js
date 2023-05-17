@@ -20,6 +20,7 @@ import Cookies from "js-cookie";
 import * as _ from "lodash";
 import UsersContext from "../../context/UsersContext";
 import moment from "moment";
+import GstFormData from "../../components/GstFormData";
 
 
 const ScBookingSummary = () => {
@@ -27,7 +28,11 @@ const ScBookingSummary = () => {
         setIsSupperBookingStatus,
         bookingSuccessOpen,
         supperClubPaymentData,
-        setSupperClubPayment
+        setSupperClubPayment,
+        isGstSubmitData,
+        setIsGstSubmitData,
+        gstData,
+        setGstData
     } = useContext(UsersContext)
     const [supperClubBookingData, setSupperClubBookingData] = useState()
     const cookieValue = Cookies?.get('supperClubBookingData');
@@ -35,6 +40,8 @@ const ScBookingSummary = () => {
     const supperClubBookingId = supperClubBookingIdCookieValue?.replaceAll('"', '')
     const [superClubBookingDetails, setSuperClubBookingDetails] = useState()
     const cookieValue2 = Cookies.get('supperClubBookingPersonalDetail');
+    const cookieGstData = Cookies.get("gstInfo");
+
 
     useEffect(() => {
         if (cookieValue) {
@@ -43,7 +50,10 @@ const ScBookingSummary = () => {
         if (cookieValue2) {
             setSuperClubBookingDetails(JSON.parse(cookieValue2));
         }
-    }, [cookieValue, cookieValue2])
+        if(cookieGstData){
+            setGstData(JSON.parse(cookieGstData));
+          }
+    }, [cookieValue, cookieValue2, cookieGstData, gstData])
 
     const handleClick = () => {
         navigate(`/ticketed-booking-confirm/${supperClubBookingId}`);
@@ -55,6 +65,8 @@ const ScBookingSummary = () => {
             .required('contactNumber is required'),
         email: Yup.string().email('Incorrect Email Id').required('please enter email'),
     });
+
+    console.log('gstData',gstData)
 
     const validationSchema = Yup.object().shape({
         number: Yup.string()
@@ -122,6 +134,11 @@ const ScBookingSummary = () => {
         ".event-div": {
             display: "flex",
             placeItems: 'center'
+        },
+        ".event-di3":{
+            width: "100%",
+            float:"left",
+            overflow:"hidden"
         },
         ".per-dinner-img": {
             width: "116px",
@@ -510,6 +527,20 @@ const ScBookingSummary = () => {
             height: "18px",
             marginRight: "11px",
         },
+        ".form-gstcheck-label": {
+            width:"100% !important",
+            float:"left",
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: "300",
+            fontSize: "14px",
+            lineHeight: "16px",
+            color: "#080B0E",
+            marginBottom: "2px",
+            marginTop: "2px",
+            paddingTop: "2px",
+            paddingBottom: "2px",
+          },
         ".form-check-label": {
             fontFamily: "Proxima Nova Alt",
             fontStyle: "normal",
@@ -708,6 +739,19 @@ const ScBookingSummary = () => {
             fontFamily: 'ProximaNovaA-Regular',
             marginTop: "0px",
         },
+        ".form-gstcheck-label": {
+            width:"100%",
+            fontFamily: "Proxima Nova Alt",
+            fontStyle: "normal",
+            fontWeight: "300",
+            fontSize: "14px",
+            lineHeight: "16px",
+            color: "#FBFBFB",
+            marginBottom: "2px",
+            marginTop: "2px",
+            paddingTop: "2px",
+            paddingBottom: "2px",
+          }
     }
     return (
         <React.Fragment>
@@ -844,8 +888,24 @@ const ScBookingSummary = () => {
                                                 <KeyboardArrowRightIcon data-bs-toggle="modal"
                                                                         data-bs-target="#exampleModal"
                                                                         onClick={handleOpen} className="forward-arrow"/>
+
+                                                
+                                                <hr className="hr" />
                                             </Box>
                                         </Box>
+                                        <Box class="booking-box">
+                                        {gstData && (
+                                                <>
+                                                {gstData.number && <p className="form-gstcheck-label">{gstData.number}</p>}
+                                                {gstData.business_name && <p className="form-gstcheck-label">{gstData.business_name}</p>}
+                                                {gstData.building && <p className="form-gstcheck-label">{gstData.building}</p>}
+                                                {gstData.street && <p className="form-gstcheck-label">{gstData.street}</p>}
+                                                {gstData.pincode && <p className="form-gstcheck-label">{gstData.pincode}</p>}
+                                                </>
+                                                )                                                          
+                                                }
+                                        </Box>
+                                        <Box class="booking-box">
                                         <div className="gift-div">
                                             <div className="gift-child">
                                                 <img className="gift-img" src={giftCard}/>
@@ -855,6 +915,7 @@ const ScBookingSummary = () => {
                                                 </div>
                                             </div>
                                         </div>
+                                        </Box>
                                     </Grid>
                                     <Grid
                                         xl={5}
@@ -866,29 +927,8 @@ const ScBookingSummary = () => {
                                         className="cust-details dinner-box"
                                     >
                                         <Box className="per-dinner adsss">
-                                            {/*<Box>*/}
-                                            {/*    <Stack*/}
-                                            {/*        className="date-stack"*/}
-                                            {/*    >*/}
-                                            {/*        {!_.isEmpty(supperClubPaymentData) &&*/}
-                                            {/*            <Typography className="date-description">*/}
-                                            {/*                {moment(supperClubPaymentData?.event?.dates[0]).format("MMMM D")}*/}
-                                            {/*            </Typography>*/}
-                                            {/*        }*/}
-                                            {/*        <span className="line">|</span>*/}
-                                            {/*        <Typography className="date-description">*/}
-                                            {/*            {" "}*/}
-                                            {/*            /!*7:30 PM - 10 PM*!/*/}
-                                            {/*            {moment(supperClubPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}*/}
-                                            {/*        </Typography>*/}
-                                            {/*        <span className="line">|</span>*/}
-                                            {/*        <Typography className="date-description">*/}
-                                            {/*            {supperClubPaymentData?.event?.venue}*/}
-                                            {/*        </Typography>*/}
-                                            {/*    </Stack>*/}
-                                            {/*</Box>*/}
                                             <Box className="event-div">
-                                                <img src={supperClubPaymentData?.event?.pictures[0]} alt=""
+                                                <img src={supperClubPaymentData?.event?.chef?.picture} alt=""
                                                      className="per-dinner-img"/>
                                                 <Box sx={{marginLeft: "12px"}}>
                                                     <Typography className="event-title">
@@ -925,30 +965,45 @@ const ScBookingSummary = () => {
                                                             <Typography className="table-details">Ticket
                                                                 Price</Typography>
                                                             <Typography
-                                                                className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubPaymentData?.payment?.ticket_price)}</Typography>
+                                                                className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                style: 'currency',
+                                                                currency: 'INR'
+                                                            }).format(supperClubPaymentData?.payment?.ticket_price)}</Typography>
                                                         </Box>
                                                         <Box className="table-box border-tb ">
                                                             <Typography className="table-details table-details-pt">Sub
                                                                 Total</Typography>
                                                             <Typography
-                                                                className="table-details table-details-pt">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubPaymentData?.payment?.sub_total)}</Typography>
+                                                                className="table-details table-details-pt">{new Intl.NumberFormat('en-IN', {
+                                                                style: 'currency',
+                                                                currency: 'INR'
+                                                            }).format(supperClubPaymentData?.payment?.sub_total)}</Typography>
                                                         </Box>
                                                         <Box className="table-box">
                                                             <Typography className="table-details table-details-pt">GST
                                                                 @5%</Typography>
                                                             <Typography
-                                                                className="table-details table-details-pt">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubPaymentData?.payment?.GST)}</Typography>
+                                                                className="table-details table-details-pt">{new Intl.NumberFormat('en-IN', {
+                                                                style: 'currency',
+                                                                currency: 'INR'
+                                                            }).format(supperClubPaymentData?.payment?.GST)}</Typography>
                                                         </Box>
                                                         <Box className="table-box">
                                                             <Typography className="table-details">Service Charge
                                                                 @10%</Typography>
                                                             <Typography
-                                                                className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubPaymentData?.payment?.service_charges)}</Typography>
+                                                                className="table-details">{new Intl.NumberFormat('en-IN', {
+                                                                style: 'currency',
+                                                                currency: 'INR'
+                                                            }).format(supperClubPaymentData?.payment?.service_charges)}</Typography>
                                                         </Box>
                                                         <Box className="table-box border">
                                                             <Typography className="grand-total">Grand Total</Typography>
                                                             <Typography
-                                                                className="grand-total">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubPaymentData?.payment?.total)}</Typography>
+                                                                className="grand-total">{new Intl.NumberFormat('en-IN', {
+                                                                style: 'currency',
+                                                                currency: 'INR'
+                                                            }).format(supperClubPaymentData?.payment?.total)}</Typography>
                                                         </Box>
                                                     </Box>
                                                 }
@@ -978,77 +1033,10 @@ const ScBookingSummary = () => {
                     aria-labelledby="keep-mounted-modal-title"
                     aria-describedby="keep-mounted-modal-description"
                 >
-                    <Box sx={style}>
-                        <Box className="modal-content">
-                            <Box className="modal-header">
-                                <ArrowBackIcon className="form-arrow"/>
-                                <Typography className="modal-title" id="exampleModalLabel">GST Details</Typography>
-                                <button type="button" data-bs-dismiss="modal" aria-label="Close" className="close"
-                                        onClick={handleClose}>
-                                           <CloseIcon className="close-icon"/>
-                                </button>
-                            </Box>
-                            <Box class="modal-body">
-                                <Box class="container-fluid">
-                                    <Formik
-                                        initialValues={initialValues}
-                                        validationSchema={validationSchema}
-                                        onSubmit={handleSubmit}
-                                    >
-                                        {({isSubmitting}) => (
-                                            <Form>
-                                                <Box className="row">
-                                                    <Box className='form-field'>
-                                                        <label className="form-label" htmlFor="number">GST
-                                                            Number</label>
-                                                        <Field className="form-control" type="text" id="number"
-                                                               name="number" placeholder='Enter Location'/>
-                                                        {/* <ErrorMessage name="number" /> */}
-                                                    </Box>
-
-                                                    <Box className='form-field'>
-                                                        <label className="form-label" htmlFor="name">Registered Company
-                                                            Name</label>
-                                                        <Field className="form-control" type="text" id="name"
-                                                               name="name" placeholder="Enter Location"/>
-                                                        {/* <ErrorMessage name="name" /> */}
-                                                    </Box>
-
-                                                    <Box className='form-field'>
-                                                        <label className="form-label" htmlFor="flatNumber">Building/
-                                                            FlatNumber</label>
-                                                        <Field className="form-control" type="text" id="flatNumber"
-                                                               name="flatNumber" placeholder='Enter Location'/>
-                                                        {/* <ErrorMessage name="flatNumber" /> */}
-                                                    </Box>
-
-                                                    <Box className='form-field'>
-                                                        <label className="form-label" htmlFor="address">Street/area/
-                                                            Road name</label>
-                                                        <Field className="form-control" type="text" id="address"
-                                                               name="address" placeholder="Enter Locationr"/>
-                                                        {/* <ErrorMessage name="address" /> */}
-                                                    </Box>
-
-                                                    <Box className='form-field'>
-                                                        <label className="form-label" htmlFor="pincode">Pincode</label>
-                                                        <Field className="form-control" type="text" id="pincode"
-                                                               name="pincode" placeholder='Enter Location'/>
-                                                        {/* <ErrorMessage name="pincode" /> */}
-                                                    </Box>
-
-                                                    <button type="submit" className="btn btn-primary"
-                                                            disabled={isSubmitting}>
-                                                        Save
-                                                    </button>
-                                                </Box>
-                                            </Form>
-                                        )}
-                                    </Formik>
-                                </Box>
-                            </Box>
-                        </Box>
-                    </Box>
+                     <GstFormData
+                        handleClose={handleClose}
+                        gstDataData={gstData}
+                        /> 
                 </Modal>
             </MainBox>
         </React.Fragment>

@@ -209,21 +209,21 @@ const NeedHelpEvent = ({isColor}) => {
         <React.Fragment>
             <BoxWrapper>
                 <Box className="need-parent">
-                <Box className='need-help-box'>
-                    <Box>
-                        <Typography className="main-heading">Need Help?</Typography>
-                        <Typography className="details">We respond within 24 business hours.</Typography>
-                    </Box>
-                    <Box className='need-help-child-box'>
+                    <Box className='need-help-box'>
                         <Box>
+                            <Typography className="main-heading">Need Help?</Typography>
+                            <Typography className="details">We respond within 24 business hours.</Typography>
+                        </Box>
+                        <Box className='need-help-child-box'>
+                            <Box>
+                                <Button
+                                    type="submit"
+                                    className="btn" onClick={handleOpen}>Schedule a Call</Button></Box>
                             <Button
                                 type="submit"
-                                className="btn" onClick={handleOpen}>Schedule a Call</Button></Box>
-                        <Button
-                            type="submit"
-                            className="btn-2">Email us</Button>
+                                className="btn-2">Email us</Button>
+                        </Box>
                     </Box>
-                </Box>
                 </Box>
                 <Modal
                     keepMounted

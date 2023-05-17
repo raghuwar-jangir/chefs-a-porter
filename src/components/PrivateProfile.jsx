@@ -2,8 +2,7 @@ import React from 'react'
 import { Box, Button, styled, Typography } from '@mui/material';
 import Privee from './Privee';
 import chefProfile from './../assets/images/chef1.png'
-import chefProfile2 from './../assets/images/chef2.png';
-
+import chefProfile2 from './../assets/images/chef2.png'
 
 
 const MainContentBox = styled(Box)({

@@ -29,6 +29,7 @@ import Cookies from "js-cookie";
 const SupperClub = () => {
     const { data } = useContext(CmsContext);
     const { commonCityData } = useContext(UsersContext);
+
     const MainBox = styled(Box)(() => ({
         ".home-banner": {
             marginTop: "25px",
@@ -321,9 +322,11 @@ const SupperClub = () => {
         const tabValue = tabData[newValue];
         Cookies.set("tabData", JSON.stringify(tabValue.label));
     };
-        const tabData = commonCityData?.map((obj, index) => {
-            return { id: index, label: obj.name, value: obj.name };
-        });
+    const tabData = commonCityData?.map((obj, index) => {
+        return { id: index, label: obj.name, value: obj.name };
+    });
+
+    console.log('tabValue', tabValue)
 
     const today = new Date();
     const startOfWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay() + 1);
@@ -374,7 +377,8 @@ const SupperClub = () => {
                                 </Typography>
                             </Box>
                             <Box>
-                                <Tabs
+                                {tabData && (
+                                    <Tabs
                                     value={tabValue}
                                     defaultValue={0}
                                     sx={{ "--Tabs-gap": "0px", backgroundColor: "#C2BAA6" }}
@@ -569,6 +573,8 @@ const SupperClub = () => {
                                         </Tabs>
                                     </TabPanel>
                                 </Tabs>
+                                )}
+                                
                             </Box>
                         </Box>
                     </Box>

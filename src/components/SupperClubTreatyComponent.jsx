@@ -82,9 +82,9 @@ const SupperClubTreatyComponent = (props) => {
             flexDirection:'column'
         },treaty],
         "@media (min-width: 768px) and (max-width:1024px)": {
-        '.btn':{
-            width:'100px !important'
-        }
+            '.btn':{
+                width:'100px !important'
+            }
         },
         '@media(min-width: 1px) and (max-width: 425px)': {
             ".btn": {

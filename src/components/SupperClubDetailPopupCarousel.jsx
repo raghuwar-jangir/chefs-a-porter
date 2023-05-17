@@ -1,4 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import chef1 from "./../assets/images/chef5.png";
+import chef2 from "./../assets/images/chef6.png";
+import sGallery from "./../assets/images/sc-gallery.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -8,7 +11,6 @@ import { Box } from "@mui/system";
 import "../assets/styles/fontStyle.css";
 import UsersContext from "../context/UsersContext";
 import * as _ from "lodash";
-import ticketedImage from '../assets/images/ticeketd.jpeg'
 
 const MainBox = styled(Box)({
     ".swiper-button-prev": {
@@ -26,6 +28,7 @@ const MainBox = styled(Box)({
         display: "block",
         width: "75%",
         backgroundColor: "rgba(0,0,0,.8)",
+        // boxShadow: '0 0 8px rgb(0 0 0 / 60%)'
     },
     ".swiper-slide": {
         maxHeight: "100%",
@@ -42,17 +45,16 @@ const MainBox = styled(Box)({
 const SupperClubDetailPopupCarousel = ({ title }) => {
     const getEventId = "640b22b691e7236a1d0a264e";
     const { setEventId, userData } = useContext(UsersContext);
-    const itemData =  
-   {
-      img: _.get(userData, "pictures.[0]", []),
-      title: "chef",
-    };
+    const itemData =
+        {
+            img: userData?.chef?.picture,
+        }
     const itemData2 = _.map(_.get(userData,'pictures',[]), (item,index) => {
         return {
             img: item,
         }
     })
-    
+
     const combinedArray = [itemData, ...itemData2];
 
     return (

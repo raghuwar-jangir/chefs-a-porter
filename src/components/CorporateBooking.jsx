@@ -328,7 +328,7 @@ const CorporateBooking = () => {
                     }
                 </Box>
             </BoxWrapper>
-            </React.Fragment>
+        </React.Fragment>
     )
 }
 export default CorporateBooking;

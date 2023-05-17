@@ -51,6 +51,9 @@ module.exports = {
         description: "This is a demo site built with Gatsby",
         author: "John Doe",
     },
+    flags: {
+        DEV_SSR: true
+      },
     plugins: [
         {
             resolve: "gatsby-plugin-manifest",

@@ -71,9 +71,12 @@ const BoxWrapper = styled(Box)({
     },
 });
 
-const MapComponent = ({setNewAddress, setOpen}) => {
+const MapComponent = ({setNewAddress, newAddress, setOpen}) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [coords, setCoords] = useState();
+    const [coords, setCoords] = useState({
+        "lat": 12.9715987,
+        "lng": 77.5945627
+    });
     const [address, setAddress] = useState("");
     const [showCarousel, setShowCarousel] = useState(false);
     const [showCarousel2, setShowCarousel2] = useState(false);
@@ -102,8 +105,7 @@ const MapComponent = ({setNewAddress, setOpen}) => {
             .then((results) => getLatLng(results[0]))
             .then((latLng) => {
                 setCoords(latLng);
-                Cookies.set('latCoords',JSON.stringify(latLng.lat));
-                Cookies.set('lngCoords',JSON.stringify(latLng.lng));
+                Cookies.set('coords',JSON.stringify(latLng));
             })
             .catch((error) => console.error("Error", error));
     };
@@ -115,6 +117,8 @@ const MapComponent = ({setNewAddress, setOpen}) => {
     const handleToggleClose = () => {
         setIsOpen(false);
     };
+
+    console.log('address', address)
 
     const GoogleMapExample = withGoogleMap(() => (
 
@@ -157,6 +161,7 @@ const MapComponent = ({setNewAddress, setOpen}) => {
                                             Experience Location
                                         </Typography>
                                         <input
+                                            value={address}
                                             {...getInputProps({
                                                 placeholder: "Enter location",
                                                 className: "location-search-input",
@@ -210,12 +215,12 @@ const MapComponent = ({setNewAddress, setOpen}) => {
                                     <Box className="third-map-box">
                                         <Formik
                                             initialValues={{
-                                                houseNo: "",
-                                                location: "",
-                                                landmark: "",
-                                                society: "",
-                                                pincode: "",
-                                                type: ""
+                                                houseNo: newAddress ? newAddress[0] : '',
+                                                location: newAddress ? newAddress[1] : '',
+                                                landmark: newAddress ? newAddress[2] : '',
+                                                society: newAddress ? newAddress[3] : '',
+                                                pincode: newAddress ? newAddress[4] : '',
+                                                type: newAddress ? newAddress[5] : '',
                                             }}
                                             validationSchema={validationSchema}
                                             onSubmit={(values) => {
@@ -415,9 +420,9 @@ const MapComponent = ({setNewAddress, setOpen}) => {
                                                                 },
                                                             }}
                                                         >
-                                                            <MenuItem value="home">home</MenuItem>
-                                                            <MenuItem value="office">office</MenuItem>
-                                                            <MenuItem value="other">other</MenuItem>
+                                                            <MenuItem value="home">Home</MenuItem>
+                                                            <MenuItem value="office">Office</MenuItem>
+                                                            <MenuItem value="other">Other</MenuItem>
                                                         </Select>
                                                     </Box>
                                                     <button

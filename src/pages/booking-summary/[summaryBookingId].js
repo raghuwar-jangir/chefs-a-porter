@@ -11,6 +11,7 @@ import {
   TextareaAutosize,
   Checkbox,
 } from "@mui/material";
+import GstFormData from "../../components/GstFormData";
 import Navbar from "../../components/NavbarComponent";
 import add1 from "../../assets/images/add1.png";
 import add2 from "../../assets/images/add2.png";
@@ -67,6 +68,12 @@ const BookingSummary = (props) => {
     adPaymentData,
     bookingSuccessOpen,
     setBookingSuccessOpen,
+    setCustomerMobileNumber,
+    customerMobileNumber,
+    isGstSubmitData,
+    setIsGstSubmitData,
+    gstData,
+    setGstData
   } = useContext(UsersContext);
   const validationSchema = Yup.object().shape({
     number: Yup.string().required("Number is required"),
@@ -76,6 +83,7 @@ const BookingSummary = (props) => {
     pincode: Yup.string().required("Pincode is required"),
     number1: Yup.string().required("Number is required"),
   });
+  const cookieGstData = Cookies.get("gstInfo");
   const cookieValue = Cookies.get("bSPaymentInfo");
   const bookingCookieValue = Cookies.get("bookingConfirm");
   const [paymentCalulationData, setPaymentCalculationData] = useState("");
@@ -91,20 +99,27 @@ const BookingSummary = (props) => {
     if (bookingCookieValue) {
       setRazorpayData(JSON.parse(bookingCookieValue));
     }
+    if(cookieGstData){
+      setGstData(JSON.parse(cookieGstData));
+    }
     setPrivateBookingOrderNo(
       JSON.parse(localStorage.getItem("privateBookingOrderNumber"))
     );
-  }, [cookieValue, bookingCookieValue]);
+  }, [cookieValue, bookingCookieValue, cookieGstData, gstData]);
+
+
+
 
   const initialValues = {
-    number: "9876543210",
-    name: "Teqzo International",
-    flatNumber: "111",
-    address: "Manchester",
-    pincode: "400022",
+    gstnumber: "",
+    business_name: "",
+    building: "",
+    street: "",
+    pincode: "",
   };
   const handleSubmit = (values, { setSubmitting }) => {
-    setSubmitting(false);
+    console.log('values', values)
+    //setSubmitting(false);
   };
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -116,6 +131,9 @@ const BookingSummary = (props) => {
   const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
   const handlePayment = () => {
     setIsConfirm(true);
+  };
+  const handleGstSubmit = () => {
+    setIsGstSubmitData(true);
   };
 
   const [customerInfo, setCustomerInfo] = useState("");
@@ -142,6 +160,13 @@ const BookingSummary = (props) => {
         );
       }, [customerInfoCookieValue, eventDataCookieValue]);
   }
+
+  console.log('customerInfo',customerInfo)
+  if (typeof setCustomerMobileNumber === "function") { 
+    setCustomerMobileNumber(customerInfo?.contactNumber)
+  }
+  
+
 
   const BoxWrapper = styled(Box)(() => ({
     background: "#080B0E",
@@ -502,6 +527,18 @@ const BookingSummary = (props) => {
       marginBottom: "0px",
       paddingTop: "4px",
     },
+    ".form-gstcheck-label": {
+      fontFamily: "Proxima Nova Alt",
+      fontStyle: "normal",
+      fontWeight: "300",
+      fontSize: "14px",
+      lineHeight: "16px",
+      color: "#FBFBFB",
+      marginBottom: "2px",
+      marginTop: "2px",
+      paddingTop: "2px",
+      paddingBottom: "2px",
+    },
     ".forward-arrow": {
       position: "absolute",
       right: "0px",
@@ -750,131 +787,7 @@ const BookingSummary = (props) => {
       fontFamily: "Bon Vivant",
     },
   }));
-  const style = {
-    position: "fixed",
-    top: "0",
-    left: "0",
-    width: "100%",
-    zIndex: "12000",
-    height: "100%",
-    overflowX: "hidden",
-    overflowY: "auto",
-    outline: "0",
-    ".error": {
-      fontFamily: "Proxima Nova Alt",
-      fontStyle: "normal",
-      fontWeight: "400",
-      fontSize: "14px",
-      lineHeight: "15px",
-      color: "#FBFBFB",
-      marginTop: "6px",
-    },
-    ".modal-content": {
-      padding: "40px 20px",
-      backgroundColor: "#101418!important",
-      position: "relative",
-      display: "flex",
-      flexDirection: "column",
-      width: "255px",
-      pointerEvents: "auto",
-      top: "8%",
-      left: "42.5%",
-      backgroundClip: "padding-box",
-      outline: "0",
-      boxShadow: "0px 8px 12px rgb(0 0 0 / 16%)",
-    },
-    ".modal-header": {
-      display: "flex",
-      padding: "0px",
-      marginBottom: "30px",
-      borderBottom: "none",
-      position: "relative",
-      justifyContent: "flex-start",
-      flexShrink: "0",
-      alignItems: "center",
-    },
-    ".form-arrow": {
-      color: "#FBFBFB !important",
-      fontSize: "20px",
-      marginRight: "16px",
-    },
-    ".modal-title": {
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-      fontWeight: "600",
-      fontSize: "20px",
-      lineHeight: "24px",
-      color: "#FBFBFB",
-    },
-    ".close": {
-      position: "absolute",
-      padding: " 0px",
-      border: " 0px",
-      background: "transparent",
-      right: "0px",
-    },
-    ".close-icon": {
-      fontSize: "28px",
-      marginRight: "0px",
-      color: "#FBFBFB",
-    },
-    ".modal-body": {
-      padding: "0px",
-      position: "relative",
-      flex: "1 1 auto",
-    },
-    ".container-fluid": {
-      width: "100%",
-      marginRight: "auto",
-      marginLeft: "auto",
-    },
-    ".form-field": {
-      padding: "0px 0px 56px",
-    },
-    ".form-label": {
-      fontFamily: "ProximaNovaA-Regular",
-      fontStyle: "normal",
-      fontWeight: "600",
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#FBFBFB",
-      marginBottom: "8px",
-    },
-    ".form-control": {
-      outline: "none",
-      paddingLeft: "10px",
-      flex: "1",
-      backgroundColor: "transparent",
-      border: "0px",
-      borderBottom: "0.25px solid #FBFBFB",
-      borderRadius: "0px",
-      paddingRight: "0px",
-      fontFamily: "Proxima Nova Alt",
-      fontStyle: "normal",
-      fontWeight: "300",
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#FBFBFB",
-      display: "block",
-      width: "95%",
-      padding: "0.780rem 0.75rem 0.375rem 0px",
-      transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
-    },
-    ".btn-primary": {
-      border: "none !important",
-      background: "#C6A87D",
-      width: "100% !important",
-      padding: "14.5px 10px",
-      fontSize: "20px",
-      fontWeight: 600,
-      lineHeight: "24px",
-      borderRadius: "0px",
-      color: "#080B0E",
-      textTransform: "capitalize",
-      fontFamily: "ProximaNovaA-Regular",
-      marginTop: "0px",
-    },
-  };
+  
   const styleOtp = {
     position: "absolute",
     top: "50%",
@@ -1143,7 +1056,7 @@ const BookingSummary = (props) => {
       width: "400px !important",
     },
   };
-
+  console.log('bsPaymentData',bsPaymentData)
   return (
     <React.Fragment>
       <BoxWrapper>
@@ -1207,7 +1120,7 @@ const BookingSummary = (props) => {
                                 <Typography className="chef-edit-title">
                                   {bsPaymentData?.common_menu?.user?.name}
                                 </Typography>
-                                <CreateIcon className="pencil-icon" />
+                                {/* <CreateIcon className="pencil-icon" /> */}
                               </Box>
                               <Box class="chef-profile">
                                 <Box className="chef-profile-detail">
@@ -1286,10 +1199,21 @@ const BookingSummary = (props) => {
                                   data-bs-target="#exampleModal"
                                   onClick={handleOpen}
                                   className="forward-arrow"
-                                />
+                                />  
                               </Box>
+                              {gstData && (
+                                <>
+                                {gstData.number && <p className="form-gstcheck-label">{gstData.number}</p>}
+                                {gstData.business_name && <p className="form-gstcheck-label">{gstData.business_name}</p>}
+                                {gstData.building && <p className="form-gstcheck-label">{gstData.building}</p>}
+                                {gstData.street && <p className="form-gstcheck-label">{gstData.street}</p>}
+                                {gstData.pincode && <p className="form-gstcheck-label">{gstData.pincode}</p>}
+                                </>
+                              )                                                          
+                              }
                               <hr className="hr" />
-                            </Box>
+                               
+                               </Box>
                             <Box className="booking-box">
                               <Typography className="email-text">
                                 An Email Confirmation will be sent to
@@ -1486,6 +1410,22 @@ const BookingSummary = (props) => {
                                         )}
                                       </Typography>
                                     </Box>
+                                    {bsPaymentData?.payment?.discount && bsPaymentData?.payment?.discount!=0 && (
+                                      <Box className="table-box">
+                                        <Typography className="table-details">
+                                          Discount
+                                        </Typography>
+                                        <Typography className="table-details">
+                                          {new Intl.NumberFormat("en-IN", {
+                                            style: "currency",
+                                            currency: "INR",
+                                          }).format(
+                                            bsPaymentData?.payment?.discount
+                                          )}
+                                        </Typography>
+                                      </Box>
+                                    )}
+                                    
                                     <Box className="table-box border table-details-pt">
                                       <Typography className="table-details">
                                         Sub total
@@ -1524,7 +1464,7 @@ const BookingSummary = (props) => {
                                         )}
                                       </Typography>
                                     </Box>
-                                    {bsPaymentData?.payment?.discount &&
+                                    {bsPaymentData?.payment?.discount && bsPaymentData?.payment?.discount !==0 &&
                                     bsPaymentData?.payment?.voucher ? (
                                       <>
                                         <Box className="table-box">
@@ -1616,7 +1556,7 @@ const BookingSummary = (props) => {
                                       className="submit-req"
                                       onClick={handlePayment}
                                     >
-                                      Proceed to pay
+                                      Proceed to pay 
                                       {new Intl.NumberFormat("en-IN", {
                                         style: "currency",
                                         currency: "INR",
@@ -1625,10 +1565,10 @@ const BookingSummary = (props) => {
                                     </button>
                                   </Box>
                                 )}
-                                <Typography className="contact-text">
+                                {/* <Typography className="contact-text">
                                   Estimate figure, further changes may amend the
                                   total
-                                </Typography>
+                                </Typography> */}
                               </Box>
                             </Box>
                           </Grid>
@@ -1672,14 +1612,13 @@ const BookingSummary = (props) => {
                                 <img
                                   className="chef-edit-img"
                                   src={
-                                    priveePaymentData?.common_menu?.user
-                                      ?.picture
+                                    priveePaymentData?.common_menu?.cover_picture
                                   }
                                 />
                                 <Typography className="chef-edit-title">
                                   {priveePaymentData?.common_menu?.user?.name}
                                 </Typography>
-                                <CreateIcon className="pencil-icon" />
+                                {/* <CreateIcon className="pencil-icon" /> */}
                               </Box>
                               <Box class="chef-profile">
                                 <Box className="chef-profile-detail">
@@ -1760,7 +1699,19 @@ const BookingSummary = (props) => {
                                   className="forward-arrow"
                                 />
                               </Box>
+                              
+                              {gstData && (
+                                <>
+                                {gstData.number && <p className="form-gstcheck-label">{gstData.number}</p>}
+                                {gstData.business_name && <p className="form-gstcheck-label">{gstData.business_name}</p>}
+                                {gstData.building && <p className="form-gstcheck-label">{gstData.building}</p>}
+                                {gstData.street && <p className="form-gstcheck-label">{gstData.street}</p>}
+                                {gstData.pincode && <p className="form-gstcheck-label">{gstData.pincode}</p>}
+                                </>
+                              )                                                          
+                              }
                               <hr className="hr" />
+                              
                             </Box>
                             <Box className="booking-box">
                               <Typography className="email-text">
@@ -1888,7 +1839,7 @@ const BookingSummary = (props) => {
                             <Box className="per-dinner adsss">
                               <Box className="event-div">
                                 <img
-                                  src={sGallery}
+                                  src={priveePaymentData?.common_menu?.cover_picture}
                                   alt=""
                                   className="per-dinner-img"
                                 />
@@ -1961,7 +1912,24 @@ const BookingSummary = (props) => {
                                         )}
                                       </Typography>
                                     </Box>
-                                    <Box className="table-box">
+                                    {priveePaymentData?.payment?.discount && priveePaymentData?.payment?.discount!==0 && (
+                                      <Box className="table-box">
+                                      <Typography className="table-details">
+                                        Discount
+                                      </Typography>
+                                      <Typography className="table-details">
+                                        {new Intl.NumberFormat("en-IN", {
+                                          style: "currency",
+                                          currency: "INR",
+                                        }).format(
+                                          priveePaymentData?.payment
+                                            ?.discount
+                                        )}
+                                      </Typography>
+                                    </Box>
+                                    )}
+                                    
+                                    {/* <Box className="table-box">
                                       <Typography className="table-details">
                                         Addon Cost
                                       </Typography>
@@ -1973,7 +1941,7 @@ const BookingSummary = (props) => {
                                           priveePaymentData?.payment?.addon_cost
                                         )}
                                       </Typography>
-                                    </Box>
+                                    </Box> */}
                                     <Box className="table-box border table-details-pt">
                                       <Typography className="table-details">
                                         Sub total
@@ -2014,7 +1982,7 @@ const BookingSummary = (props) => {
                                         )}
                                       </Typography>
                                     </Box>
-                                    {priveePaymentData?.payment?.discount &&
+                                    {priveePaymentData?.payment?.discount && priveePaymentData?.payment?.discount !==0 && 
                                     priveePaymentData?.payment?.voucher ? (
                                       <>
                                         <Box className="table-box">
@@ -2116,10 +2084,10 @@ const BookingSummary = (props) => {
                                     </button>
                                   </Box>
                                 )}
-                                <Typography className="contact-text">
+                                {/* <Typography className="contact-text">
                                   Estimate figure, further changes may amend the
                                   total
-                                </Typography>
+                                </Typography> */}
                               </Box>
                             </Box>
                           </Grid>
@@ -2140,123 +2108,10 @@ const BookingSummary = (props) => {
           aria-labelledby="keep-mounted-modal-title"
           aria-describedby="keep-mounted-modal-description"
         >
-          <Box sx={style}>
-            <Box className="modal-content">
-              <Box className="modal-header">
-                <ArrowBackIcon className="form-arrow" />
-                <Typography className="modal-title" id="exampleModalLabel">
-                  GST Details
-                </Typography>
-                <button
-                  type="button"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  className="close"
-                  onClick={handleClose}
-                >
-                  <CloseIcon className="close-icon" />
-                </button>
-              </Box>
-              <Box class="modal-body">
-                <Box class="container-fluid">
-                  <Formik
-                    initialValues={initialValues}
-                    validationSchema={validationSchema}
-                    onSubmit={handleSubmit}
-                  >
-                    {({ isSubmitting }) => (
-                      <Form>
-                        <Box className="row">
-                          <Box className="form-field">
-                            <label className="form-label" htmlFor="number">
-                              GST Number
-                            </label>
-                            <Field
-                              className="form-control"
-                              type="text"
-                              id="number"
-                              name="number"
-                              placeholder="Enter Location"
-                              autoComplete="off"
-                            />
-                            <ErrorMessage name="number" className="error" />
-                          </Box>
-
-                          <Box className="form-field">
-                            <label className="form-label" htmlFor="name">
-                              Registered Company Name
-                            </label>
-                            <Field
-                              className="form-control"
-                              type="text"
-                              id="name"
-                              name="name"
-                              placeholder="Enter Location"
-                              autoComplete="off"
-                            />
-                            <ErrorMessage name="name" className="error" />
-                          </Box>
-
-                          <Box className="form-field">
-                            <label className="form-label" htmlFor="flatNumber">
-                              Building/ FlatNumber
-                            </label>
-                            <Field
-                              className="form-control"
-                              type="text"
-                              id="flatNumber"
-                              name="flatNumber"
-                              placeholder="Enter Location"
-                              autoComplete="off"
-                            />
-                            <ErrorMessage name="flatNumber" className="error" />
-                          </Box>
-
-                          <Box className="form-field">
-                            <label className="form-label" htmlFor="address">
-                              Street/area/ Road name
-                            </label>
-                            <Field
-                              className="form-control"
-                              type="text"
-                              id="address"
-                              name="address"
-                              placeholder="Enter Locationr"
-                              autoComplete="off"
-                            />
-                            <ErrorMessage name="address" className="error" />
-                          </Box>
-
-                          <Box className="form-field">
-                            <label className="form-label" htmlFor="pincode">
-                              Pincode
-                            </label>
-                            <Field
-                              className="form-control"
-                              type="text"
-                              id="pincode"
-                              name="pincode"
-                              placeholder="Enter Location"
-                              autoComplete="off"
-                            />
-                            <ErrorMessage name="pincode" className="error" />
-                          </Box>
-
-                          <button
-                            type={"submit"}
-                            className="btn btn-primary"
-                            disabled={isSubmitting}
-                          >
-                            Save
-                          </button>
-                        </Box>
-                      </Form>
-                    )}
-                  </Formik>
-                </Box>
-              </Box>
-            </Box>
-          </Box>
+            <GstFormData
+              handleClose={handleClose}
+              gstDataData={gstData}
+            /> 
         </Modal>
         <Modal
           keepMounted
@@ -2298,7 +2153,7 @@ const BookingSummary = (props) => {
                       Add to calender
                     </button>
                   </div>
-                  <div className="bookingBox">
+                  <div className="bookingBox" id="section-to-print">
                     <Grid container className="row booking-sum">
                       <Grid
                         item
@@ -2315,11 +2170,24 @@ const BookingSummary = (props) => {
                           </div>
                           <div className="col-lg-12">
                             <div className="chef-edit">
-                              <img
-                                src={bsPaymentData?.common_menu?.user?.picture}
-                                alt=""
-                              />
-                              <h5>{bsPaymentData?.common_menu?.user?.name}</h5>
+                              {bsPaymentData ? (
+                                <>
+                                <img
+                                  src={bsPaymentData?.common_menu?.user?.picture}
+                                  alt=""
+                                />
+                                <h5>{bsPaymentData?.common_menu?.user?.name}</h5>
+                                </>
+                              ) : (
+                                <>
+                                <img
+                                  src={priveePaymentData?.common_menu?.cover_picture}
+                                  alt=""
+                                />
+                                <h5>{priveePaymentData?.common_menu?.user?.name}</h5>
+                                </>
+                              )}
+                              
                             </div>
                             <div className="chef-profile">
                               <div>
@@ -2350,7 +2218,7 @@ const BookingSummary = (props) => {
                               <div>
                                 <img src={done} alt="" />
                                 <span>
-                                  An email confirmation has been sent to
+                                  An email confirmation has been sent to{" "}
                                   {eventData?.email} <br />
                                   and SMS sent to {customerInfo?.contactNumber}
                                 </span>
@@ -2401,6 +2269,7 @@ const BookingSummary = (props) => {
                                   )}
                                 </span>
                               </div>
+                              
                               <Box className="table-box">
                                 <Typography className="price">
                                   Addon Cost

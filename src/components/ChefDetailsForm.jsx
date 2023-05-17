@@ -47,8 +47,19 @@ const ChefDetailsForm = () => {
   const [priveeData, setPriveeData] = useState();
   const cookieValue = Cookies?.get("eventData");
   const cookieValue1 = Cookies?.get("priveeData");
-  const { userData } = useContext(UsersContext);
+  const { userData,
+    dinersMaxNumber,
+    dinersMinNumber,
+    dinersMinData} = useContext(UsersContext);
 
+    const [dinersValue, setDinersValue] = useState(dinersMinNumber);
+    const [minCourseValue, setMinCourseValue] = useState(dinersMinData['min_courses']);
+    const [maxCourseValue, setMaxCourseValue] = useState(dinersMinData['max_courses']);
+
+    
+
+  const mincourse = userData?.userData
+  const pricepercourse = userData?.price_per_course
   useEffect(() => {
     if (cookieValue) {
       setChefInfo(JSON.parse(cookieValue));
@@ -64,6 +75,25 @@ const ChefDetailsForm = () => {
       .email("Incorrect Email Id")
       .required("Email is required"),
   });
+
+  const getCourseHandler =(value)=>{
+    setDinersValue(value)
+    const courseMaxMinData = userData?.prices.filter((item)=>{
+      return value>=item.min_diner && value<= item.max_diner
+    })
+    setMinCourseValue(courseMaxMinData[0].min_courses)
+    setMaxCourseValue(courseMaxMinData[0].max_courses)
+    console.log('courseMaxMinData',courseMaxMinData)
+  }
+
+  useEffect(
+    () => {
+      console.log('updated minCourseValue',minCourseValue)  
+      console.log('updated maxCourseValue',maxCourseValue)  
+      console.log('dinersValue',dinersValue)
+    },
+    [minCourseValue, maxCourseValue,dinersValue],
+  )
 
   const tipTitle =
     "Private Dining usually last upto 3 hrs but can extend upto 5 hrs based on number of courses";
@@ -212,7 +242,6 @@ const ChefDetailsForm = () => {
       background: "#080B0E",
       marginBottom: "16px",
     },
-
     ".min-2-3": {
       flex: "1",
       marginBottom: "0px",
@@ -310,8 +339,8 @@ const ChefDetailsForm = () => {
       {!_.isEmpty(userData) && (
         <BoxWrapper>
           <Typography className="sub-text-price">
-            Starting at ₹{userData?.price_per_course}{" "}
-            <sub className="sub-text">Per Diner & Per Course</sub>
+            Starting at ₹{userData?.price_per_course * userData?.min_course}{" "}
+            <sub className="sub-text">Per Diner</sub>
           </Typography>
 
           <Formik
@@ -322,12 +351,14 @@ const ChefDetailsForm = () => {
               startTime: chefInfo?.startTime
                 ? chefInfo?.startTime
                 : new Date().getHours() + ":" + new Date().getMinutes(),
-              numberOfDinner:
-                chefInfo?.numberOfDinner > priveeData?.diners
-                  ? chefInfo?.numberOfDinner
-                  : priveeData?.diners,
-              numberOfCourses:
-                priveeData?.diners >= 6 ? userData?.min_course : 6,
+              // numberOfDinner:
+              //   chefInfo?.numberOfDinner > priveeData?.diners
+              //     ? chefInfo?.numberOfDinner
+              //     : priveeData?.diners,
+              // numberOfCourses:
+              //   priveeData?.diners >= 6 ? userData?.min_course : 6,
+                numberOfDinner: dinersValue,
+                numberOfCourses: minCourseValue
             }}
             validationSchema={validationSchema}
             onSubmit={(values) => {
@@ -435,39 +466,54 @@ const ChefDetailsForm = () => {
                       onClick={() => {
                         setFieldValue(
                           "numberOfDinner",
-                          Math.max(values.numberOfDinner - 1, 2)
+                          Math.max(values.numberOfDinner - 1, dinersMinNumber)
                         );
+                        getCourseHandler(Math.max(values.numberOfDinner - 1, dinersMinNumber));
 
-                        if (
-                          values.numberOfDinner - 1 >= 2 &&
-                          values.numberOfDinner - 1 <= 6
-                        ) {
-                          setFieldValue("numberOfCourses", 6);
-                        }
+                        // if (
+                        //   values.numberOfDinner - 1 >= 2 &&
+                        //   values.numberOfDinner - 1 <= 6
+                        // ) {
+                        //   setFieldValue("numberOfCourses", 6);
+                        // }
                       }}
                     >
                       -
                     </button>
-                    <span>{values.numberOfDinner}</span>
+                    <input type="number" value={values.numberOfDinner}
+                      name="numberOfDinner"
+                      id="numberOfDinner"
+                      className="left-btn"
+                      min={dinersMinNumber} max={dinersMaxNumber}
+                      onChange={(event) => {
+                        let { value, min, max } = event.target;
+                        value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+                        setFieldValue("numberOfDinner", value);    
+                        getCourseHandler(value);                                       
+                      }}></input>
+                    {/* <span>{values.numberOfDinner},</span>
+                    <span>{dinersMinNumber},</span>
+                    <span>{dinersMaxNumber}</span> */}
                     <button
                       type="button"
                       className="right-btn"
                       onClick={() => {
                         setFieldValue(
                           "numberOfDinner",
-                          Math.min(values.numberOfDinner + 1, 25)
+                          Math.min(values.numberOfDinner + 1, dinersMaxNumber)
                         );
-                        if (
-                          values.numberOfDinner + 1 >= 2 &&
-                          values.numberOfDinner + 1 <= 6
-                        ) {
-                          setFieldValue("numberOfCourses", 6);
-                        } else if (values.numberOfDinner + 1 > 6) {
-                          setFieldValue(
-                            "numberOfCourses",
-                            userData?.min_course
-                          );
-                        }
+                        getCourseHandler(Math.min(values.numberOfDinner + 1, dinersMaxNumber));
+                        // if (
+                        //   values.numberOfDinner + 1 >= 2 &&
+                        //   values.numberOfDinner + 1 <= 6
+                        // ) {
+                        //   setFieldValue("numberOfCourses", dinersMaxNumber);
+                        // } else if (values.numberOfDinner + 1 > dinersMaxNumber) {
+                        //   setFieldValue(
+                        //     "numberOfCourses",
+                        //     userData?.min_course
+                        //   );
+                        // }
                       }}
                     >
                       +
@@ -488,31 +534,43 @@ const ChefDetailsForm = () => {
                           "numberOfCourses",
                           Math.max(
                             values.numberOfCourses - 1,
-                            userData?.min_course
+                            minCourseValue
                           )
                         );
-                        if (
-                          values.numberOfDinner + 1 >= 2 &&
-                          values.numberOfDinner + 1 <= 6
-                        ) {
-                          setFieldValue("numberOfCourses", 6);
-                        }
+                        // if (
+                        //   values.numberOfDinner + 1 >= 2 &&
+                        //   values.numberOfDinner + 1 <= 6
+                        // ) {
+                        //   setFieldValue("numberOfCourses", 6);
+                        // }
                       }}
-                      disabled={values.numberOfDinner <= userData?.min_course}
+                      // disabled={values.numberOfDinner <= userData?.min_course}
                     >
                       -
                     </button>
-                    <span>{values.numberOfCourses}</span>
+                    <input type="number" value={values.numberOfCourses}
+                      className="left-btn"
+                      name="numberOfCourses"
+                      id="numberOfCourses"
+                      min={minCourseValue} max={maxCourseValue}
+                      onChange={(event) => {
+                        let { value, min, max } = event.target;
+                        value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+                        setFieldValue("numberOfCourses", value);                                           
+                      }}></input>
+                    {/* <span>{values.numberOfCourses},</span>
+                    <span>{minCourseValue},</span>
+                    <span>{maxCourseValue}</span> */}
                     <button
                       type="button"
                       className="right-btn"
                       onClick={() => {
                         setFieldValue(
                           "numberOfCourses",
-                          Math.min(values.numberOfCourses + 1, 10)
+                          Math.min(values.numberOfCourses + 1, maxCourseValue)
                         );
                       }}
-                      disabled={values.numberOfDinner < 6}
+                      // disabled={values.numberOfDinner < 6}
                     >
                       +
                     </button>

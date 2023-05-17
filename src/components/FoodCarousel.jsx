@@ -106,13 +106,13 @@ const MainParent = styled(Box)({
     '.trending-title': {
         fontFamily: 'Proxima Nova Alt',
         fontStyle: 'normal',
-fontWeight: 300,
-fontSize: '16px',
-lineHeight: '19px',
-textAlign: 'right',
-letterSpacing: '0.02em',
-color: '#C6A87D',
-padding:'5px 20px 5px 0px'
+        fontWeight: 300,
+        fontSize: '16px',
+        lineHeight: '19px',
+        textAlign: 'right',
+        letterSpacing: '0.02em',
+        color: '#C6A87D',
+        padding: '5px 20px 5px 0px'
     },
     '@media(min-width: 426px) and (max-width: 768px)': {
         padding: '58px 10px 40px 10px',
@@ -149,34 +149,34 @@ padding:'5px 20px 5px 0px'
             display: 'none'
         }
     },
-        '@media(min-width: 319px) and (max-width: 375px)': {
-            '.swiper-slide':{
-                width:'355.25px'
-            },
-            '.trending':{
-                display:'none'
-            }
+    '@media(min-width: 319px) and (max-width: 375px)': {
+        '.swiper-slide': {
+            width: '355.25px'
         },
-            '@media(min-width: 1px) and (max-width: 320px)': {
-                padding:'35px 10px 100px 10px',
-                '.swiper-slide':{
-                    width:'301.25px'
-                },
-                '.swiper':{
-                    height:'1100px'
-                },
-                '.swiper-button-prev':{
-                    display:'none'
-                },
-                '.swiper-button-next':{
-                    display:'none'
-                },
-                '.trending':{
-                    display:'none'
-                },
-                '.test-img':{
-                    height:'358px'
-                }
+        '.trending': {
+            display: 'none'
+        }
+    },
+    '@media(min-width: 1px) and (max-width: 320px)': {
+        padding: '35px 10px 100px 10px',
+        '.swiper-slide': {
+            width: '301.25px'
+        },
+        '.swiper': {
+            height: '1100px'
+        },
+        '.swiper-button-prev': {
+            display: 'none'
+        },
+        '.swiper-button-next': {
+            display: 'none'
+        },
+        '.trending': {
+            display: 'none'
+        },
+        '.test-img': {
+            height: '358px'
+        }
     }
 })
 
@@ -239,7 +239,7 @@ const FoodCarousel = (isButtonShow) => {
                         {data.home.upcoming_supper_clubs.supper_clubs.map((item) => {
                             return (
                                 <SwiperSlide style={{cursor: 'pointer'}}   onClick={() => navigate(`/ticketed-detail/${item?.id}`)}>
-                                    <img className='test-img' src={item.pictures[0]}/>
+                                    <img className='test-img' src={item.pictures}/>
                                     {
                                         item.status &&
                                         <Box className='trending'>

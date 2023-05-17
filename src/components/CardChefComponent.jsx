@@ -13,6 +13,15 @@ import * as _ from "lodash";
 
 
 const CardChefComponent = ({bgColor}) => {
+    const [isReadMore, setIsReadMore] = useState(true);
+    const [isReadMore2, setIsReadMore2] = useState(true);
+
+    const toggleReadMore = () => {
+        setIsReadMore(!isReadMore);
+    };
+    const toggleReadMore2 = () => {
+        setIsReadMore2(!isReadMore2);
+    };
 
     const {userData} = useContext(UsersContext);
     const longText = ' From Bangalore to the Culinary Institute of America in New York. He has developed his skills and love for the culinary arts. From Bangalore to the Culinary...';
@@ -56,7 +65,7 @@ const CardChefComponent = ({bgColor}) => {
             fontSize: "16px",
             lineHeight: "24px",
             color: "#080B0E",
-            padding: '12px 0px 0px 0px',
+            padding: '12px 12px 0px 0px',
             marginLeft: '16px'
         },
         '.logo': {
@@ -124,7 +133,7 @@ const CardChefComponent = ({bgColor}) => {
                             <Typography className="field-ans">{userData?.chef?.details?.trained_under}</Typography>
                         </Box>
                         <Typography className="details">
-                            <ReactReadMoreReadLess
+                            {/* <ReactReadMoreReadLess
                                 readMoreStyle={{textDecoration: "underline"}}
                                 readLessStyle={{textDecoration: "underline"}}
                                 charLimit={100}
@@ -132,10 +141,18 @@ const CardChefComponent = ({bgColor}) => {
                                 readLessText={"Read less"}
                                 readMoreClassName="read-more-less--more"
                                 readLessClassName="read-more-less--less"
+                                style={{ whiteSpace: 'pre-line'}} 
                             >
-                                {/*{longText}*/}
                                 {userData?.chef?.details?.intro}
-                            </ReactReadMoreReadLess>
+                            </ReactReadMoreReadLess> */}
+                            {userData?.chef?.details?.intro && (
+                            <>
+                            {isReadMore ? `${userData?.chef?.details?.intro.slice(0, 100)}...` : <span dangerouslySetInnerHTML={{ __html: userData?.chef?.details?.intro }} style={{ whiteSpace: 'pre-line'}} ></span>}
+                            <span onClick={toggleReadMore} className="read-more-less--more" role="presentation" style={{ textDecoration: 'underline' }}>
+                              {isReadMore ? "Read more" : "Read less"}
+                            </span>
+                            </>
+                             )}
                         </Typography>
                         <Typography className="heading">What to expect</Typography>
                         <Box className="sub-box-card">
@@ -152,7 +169,7 @@ const CardChefComponent = ({bgColor}) => {
                         <Typography className="field-ans">{userData?.mealhighlight}</Typography>
                     </Box>
                         <Typography className="details">
-                            <ReactReadMoreReadLess
+                            {/* <ReactReadMoreReadLess
                                 readMoreStyle={{textDecoration: "underline", fontWeight: 'bold'}}
                                 readLessStyle={{textDecoration: "underline", fontWeight: 'bold'}}
                                 charLimit={100}
@@ -161,9 +178,17 @@ const CardChefComponent = ({bgColor}) => {
                                 readMoreClassName="read-more-less--more"
                                 readLessClassName="read-more-less--less"
                             >
-                                {/*{longText2}*/}
                                 {userData?.desc}
-                            </ReactReadMoreReadLess>
+                            </ReactReadMoreReadLess> */}
+                            {userData?.desc && (
+                                <>
+                                {isReadMore2 ? `${userData?.desc.slice(0, 100)}...` : <span dangerouslySetInnerHTML={{ __html: userData?.desc }} style={{ whiteSpace: 'pre-line'}} ></span>}
+                                <span onClick={toggleReadMore2} className="read-more-less--more" role="presentation" style={{ textDecoration: 'underline' }}>
+                                  {isReadMore2 ? "Read more" : "Read less"}
+                                </span>
+                                </>
+                            )}
+                            
                         </Typography>
                     </>
                 }

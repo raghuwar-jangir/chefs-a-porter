@@ -56,7 +56,6 @@ const SupperClubOtpVerificationModal = (props) => {
             setVerifyOtp(otp);
             setIsVerifiedOtpApiCall(true);
             setIsBookingAPiCall(true);
-            navigate(`/ticketed-booking-summary/${supperClubBookingId}`);
         }
     }
 

@@ -35,11 +35,17 @@ const CmsProvider = (props) => {
     const emptyUrl = currentPath.startsWith(null) ? currentPath : currentPath + "/";
 
     const [data, setData] = useState();
+    const [masterData,setMasterData]=useState();
 
     useEffect(() => {
         if (pathInfo[currentPath] || path.pathname === '/') {
             axios.get(baseUrl + `/${pathInfo[!currentPath ? emptyUrl : currentPath]}/`).then(result => {
                 setData(result.data)
+            })
+        }
+        if (currentPath === 'become-a-patron') {
+            axios.get('https://chefv2.hypervergedemo.site/v1/patron_master/all').then(result => {
+                setMasterData(result.data)
             })
         }
     }, [path, currentPath])
@@ -49,6 +55,7 @@ const CmsProvider = (props) => {
         <CmsContext.Provider
             value={{
                 data,
+                masterData
             }}
         >
             {children}

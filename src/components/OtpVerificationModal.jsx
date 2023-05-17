@@ -8,6 +8,8 @@ import OtpContext from "../context/OtpContext";
 import * as _ from "lodash";
 import {navigate} from "gatsby";
 import Cookies from "js-cookie";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const OtpVerificationModal = (props) => {
     const {
@@ -16,6 +18,8 @@ const OtpVerificationModal = (props) => {
         contactNumber,
     } = props;
     const {
+        isLoading,
+        errorMessage,
         countOfResendOtp, setVerifyOtp,
         setOtpNumber,
         setResendOtp,
@@ -24,16 +28,20 @@ const OtpVerificationModal = (props) => {
         setIsBookingAPiCall,
     } = useContext(OtpContext);
     const [otp, setOtp] = useState('')
-    const [seconds, setSeconds] = useState(10);
+    const [seconds, setSeconds] = useState(30);
     const [eventData, setEventData] = useState()
     const cookieValue = Cookies.get('eventData');
-    const bookingIdCookieValue = Cookies?.get('BookingId');
+    const bookingIdCookieValue = Cookies.get('bookingId');
     const bookingId = bookingIdCookieValue?.replaceAll('"', '')
 
     useEffect(() => {
         if (cookieValue) {
             setEventData(JSON.parse(cookieValue));
         }
+        // if(errorMessage && errorMessage!==''){
+           
+        // }
+        console.log('errorMessage in otp file',errorMessage)
     }, [cookieValue])
 
     //otp timer
@@ -55,7 +63,6 @@ const OtpVerificationModal = (props) => {
         if (!_.isEmpty(otp)) {
             setVerifyOtp(otp);
             setIsVerifiedOtpApiCall(true);
-            navigate(`/addons/${bookingId}`);
             setIsBookingAPiCall(true);
         }
     }
@@ -211,12 +218,15 @@ const OtpVerificationModal = (props) => {
         },
     }
     return (
+        <>
+        {errorMessage && errorMessage!=='' && <ToastContainer autoClose={8000} />}
         <Modal
             open={openOtp}
             onClose={handleCloseOtp}
             aria-labelledby="keep-mounted-modal-title"
             aria-describedby="keep-mounted-modal-description"
         >
+            
             <Box sx={styleOtp}>
                 <div className="modal-content">
                     <div className="modal-header">
@@ -281,7 +291,7 @@ const OtpVerificationModal = (props) => {
                                         )}
                                         <div className="btn-val">
                                             <button className="btn validate" type="submit"
-                                                    onClick={handleClick}>Verify
+                                                    onClick={handleClick}>{isLoading ? '..Loading' : 'Verify'}
                                             </button>
                                         </div>
                                     </form>
@@ -297,6 +307,7 @@ const OtpVerificationModal = (props) => {
                 </div>
             </Box>
         </Modal>
+        </>
     )
 }
 export default OtpVerificationModal

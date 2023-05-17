@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import {
     Box,
     styled,
@@ -18,6 +18,14 @@ import * as _ from "lodash";
 
 
 const EventCard = () => {
+    const [isReadMore, setIsReadMore] = useState(true);
+    const [isReadMore2, setIsReadMore2] = useState(true);
+    const toggleReadMore = () => {
+        setIsReadMore(!isReadMore);
+    };
+    const toggleReadMore2 = () => {
+        setIsReadMore2(!isReadMore2);
+    };
 
     const {userData} = useContext(UsersContext);
 
@@ -170,7 +178,7 @@ const EventCard = () => {
                     </Box>
                     </Box>
                     <Typography className="details">
-                        {
+                        {/* {
                             !_.isEmpty(userData?.desc) &&
                             <ReactReadMoreReadLess
                                 readMoreStyle={{textDecoration: "underline"}}
@@ -181,10 +189,19 @@ const EventCard = () => {
                                 readMoreClassName="read-more-less--more"
                                 readLessClassName="read-more-less--less"
                             >
-                                {/*{longText2}*/}
+                               
                                 {userData?.desc}
                             </ReactReadMoreReadLess>
-                        }
+                        } */}
+                        {!_.isEmpty(userData?.desc) && (
+                            <>
+                            {isReadMore ? `${userData.desc.slice(0, 100)}...` : <span dangerouslySetInnerHTML={{ __html: userData.desc }} style={{ whiteSpace: 'pre-line'}} ></span>}
+                            <span onClick={toggleReadMore} className="read-more-less--more" role="presentation" style={{ textDecoration: 'underline' }}>
+                              {isReadMore ? "Read more" : "Read less"}
+                            </span>
+                            </>
+                        )}
+                       
 
                     </Typography>
                     <Box className='about-box'>
@@ -214,7 +231,7 @@ const EventCard = () => {
                             </Box>
                         </Box>
                         <Typography className="details-2">
-                            {
+                            {/* {
                                 !_.isEmpty(userData?.user?.details?.intro) &&
                                 <ReactReadMoreReadLess
                                     readMoreStyle={{textDecoration: "underline"}}
@@ -227,7 +244,15 @@ const EventCard = () => {
                                 >
                                     {userData?.user?.details?.intro}
                                 </ReactReadMoreReadLess>
-                            }
+                            } */}
+                            {!_.isEmpty(userData?.user?.details?.intro) && (
+                            <>
+                            {isReadMore2 ? `${userData?.user?.details?.intro.slice(0, 100)}...` : <span dangerouslySetInnerHTML={{ __html: userData?.user?.details?.intro }} style={{ whiteSpace: 'pre-line'}} ></span>}
+                            <span onClick={toggleReadMore2} className="read-more-less--more-2" role="presentation" style={{ textDecoration: 'underline' }}>
+                              {isReadMore2 ? "Read more" : "Read less"}
+                            </span>
+                            </>
+                        )}
 
                         </Typography>
                     </Box>

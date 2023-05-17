@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import {Box, styled, Typography} from "@mui/material";
 import {Swiper, SwiperSlide} from "swiper/react";
+import {Navigation, Pagination} from "swiper";
 import "swiper/css";
 import AvlExperienceCarousel from "./AvlExperienceCarousel";
 import avlExp1 from "../assets/images/avl-exp1.jpg";
@@ -13,6 +14,8 @@ import {navigate} from "gatsby";
 const ExperienceCarousel = (props) => {
 
     const {data} = useContext(CmsContext)
+
+    console.log('data',data)
 
     const WrapBox = styled(Box)({
         '.main-box': {
@@ -65,10 +68,31 @@ const ExperienceCarousel = (props) => {
                     </Box>
                     <Box className='slider-box'>
                         <Swiper
-                            slidesPerView={4.5}
+                            style={{
+                                "--swiper-navigation-color": "white",
+                                "--swiper-navigation-size": "17px",
+                            }}
+                            loop={true}
+                            slidesPerView={4}
                             spaceBetween={20}
+                            navigation={true}
+                            modules={[Navigation, Pagination]}
                             className="mySwiper pl"
                         >
+                            {data.privee.experiences.experiences.results.map((item) => {
+                                return (
+                                    <>
+                                        <SwiperSlide><AvlExperienceCarousel
+                                            className="img"
+                                            // image={item.user.picture}
+                                            image={item.cover_picture}
+                                            title={item.title} description={`by ${item.user.name}`}
+                                            isLabelShow={item.status && true}
+                                            onClick={() => navigate(`/event-details/${item?.id}`)}
+                                        /></SwiperSlide>
+                                    </>
+                                )
+                            })}
                             {data.privee.experiences.experiences.results.map((item) => {
                                 return (
                                     <>

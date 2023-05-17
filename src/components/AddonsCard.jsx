@@ -115,7 +115,7 @@ const AddonsCard = (props) => {
         addonsId,
         setIsUpdateBooking
     } = useContext(UsersContext);
-
+    console.log('addOnsData',addOnsData)
     const handleCheckboxChange = useCallback((event) => {
         const {id, checked} = event.target;
         if (checked) {
@@ -137,18 +137,24 @@ const AddonsCard = (props) => {
                         addOnsData.map((item, index) => {
                             return (
                                 <Grid item xl={4} md={4} sm={6} xs={6} key={index}>
-                                    <img src={item.image} alt="saffImage" style={{verticalAlign: 'top'}} width={'100%'}
+                                    {item?.link ? (
+                                        <a href={item?.link} target="_blank" rel="noopener noreferrer"><img src={item.image} alt="saffImage" style={{verticalAlign: 'top'}} width={'100%'}
+                                        className='addons-img'/></a>
+                                    ) : (
+                                        <img src={item.image} alt="saffImage" style={{verticalAlign: 'top'}} width={'100%'}
                                          className='addons-img'/>
+                                    )}
+                                    
                                     <Box className='addons-parent'>
                                         <div className="addons-box">
                                             <Typography className='title'>
                                                 {item.name}
                                             </Typography>
-                                            <input type={"checkbox"}
+                                            {/* <input type={"checkbox"}
                                                    checked={selectedAddonsId.includes(item.id)}
                                                    value={item.id}
                                                    id={item.id}
-                                                   className="checkBox" onChange={handleCheckboxChange}/>
+                                                   className="checkBox" onChange={handleCheckboxChange}/> */}
                                         </div>
                                         {
                                             props.isLabelShow &&

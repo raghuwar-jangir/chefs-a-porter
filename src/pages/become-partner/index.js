@@ -25,6 +25,7 @@ import * as Yup from 'yup';
 import {isMobile} from "react-device-detect";
 import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
+import SuccessFullPopUp from "../../components/SuccessFullPopUp";
 
 const BecomePartner = () => {
 
@@ -34,11 +35,11 @@ const BecomePartner = () => {
         partnerMenuData,
         partnerCityData,
         setPartnerId,
-        setPartnerCityId
+        setPartnerCityId,
+        successOpen
     } = useContext(UsersContext);
     const handleClick = (values) => {
-        setIsBecomePartner(true);
-        setBecomePartnerData(values)
+
     }
 
     //Adding Multiple inputBox
@@ -410,7 +411,10 @@ const BecomePartner = () => {
                             }}
                             validationSchema={validationSchema}
                             onSubmit={(values) => {
-                                setBecomePartnerData(values)
+                                if (!_.isEmpty(values)) {
+                                    setIsBecomePartner(true);
+                                    setBecomePartnerData(values)
+                                }
                             }}
                         >
                             {({values, handleChange, handleSubmit, setFieldValue}) => (
@@ -794,11 +798,7 @@ const BecomePartner = () => {
                                                     </Box>
                                                 </Grid>
                                                 <Grid xs={12} className="col-lg-12">
-                                                    <button className="btn btn-primary" type="submit" onClick={() => {
-                                                        if (!_.isEmpty(values.name && values.contactNumber && values.email && values.contactNumber && values.contactNumber && values.brandName && values.instagramLink && values.otherLinks && values.brandMessage && values.chefsMessage)) {
-                                                            handleClick(values)
-                                                        }
-                                                    }}>Submit
+                                                    <button className="btn btn-primary" type="submit">Submit
                                                     </button>
                                                     <p className="agree">By continuing you agree to the Terms of USe,
                                                         Privacy
@@ -815,6 +815,9 @@ const BecomePartner = () => {
                 <NeedHelp/>
                 <Footer/>
                 <FooterEnd/>
+                {
+                    successOpen && <SuccessFullPopUp/>
+                }
             </BoxWrapper>
         </React.Fragment>
     )

@@ -876,7 +876,7 @@ const BoxWrapper = styled(Box)({
 
 const HomePage = () => {
     const {data} = useContext(CmsContext);
-    const {mealData,commonCityData} = useContext(UsersContext);
+    const {mealData, commonCityData} = useContext(UsersContext);
 
     //FoodDrool
     const [imageData, setImageData] = useState([]);
@@ -919,46 +919,133 @@ const HomePage = () => {
             <BoxWrapper>
                 <React.Fragment>
                     {
-                        !_.isEmpty(data?.home && mealData) &&
+                        !_.isEmpty(data?.home && mealData && commonCityData) &&
                         <>
                             <Box className="home-banner" sx={{backgroundImage: `url(${data.home.header.image})`}}>
                                 <Box className="row justify-content-center">
                                     <Box className="chef-container">
                                         <Box className="pe-fo-exp">
                                             <Typography className="hotchef-title">{data.home.header.title}</Typography>
-                                            <Formik
-                                                initialValues={{
-                                                    city: commonCityData[0].name,
-                                                    date: new Date(),
-                                                    time: mealData[0].name,
-                                                    diners: 1
-                                                }}
-                                                onSubmit={(values) => {
-                                                    const experienceData = {
-                                                        ...values,
-                                                        // on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
-                                                        date: moment(_.get(values, 'date')).toISOString(),
-                                                    }
-                                                    Cookies.set('priveeData', JSON.stringify(experienceData));
-                                                }}
-                                            >
-                                                {({values, handleChange, handleSubmit, setFieldValue}) => (
-                                                    <Form onSubmit={handleSubmit}>
-                                                        <Box className="form-row">
-                                                            <Box className="form-group">
-                                                                <label className="label">Where</label>
-                                                                {
-                                                                    !_.isEmpty(commonCityData) && <Select
+                                            {!_.isEmpty(commonCityData) &&
+                                                <Formik
+                                                    initialValues={{
+                                                        city: commonCityData[0].name,
+                                                        date: new Date(),
+                                                        time: mealData[0].name,
+                                                        diners: 1
+                                                    }}
+                                                    onSubmit={(values) => {
+                                                        const experienceData = {
+                                                            ...values,
+                                                            // on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
+                                                            date: moment(_.get(values, 'date')).toISOString(),
+                                                        }
+                                                        Cookies.set('priveeData', JSON.stringify(experienceData));
+                                                    }}
+                                                >
+                                                    {({values, handleChange, handleSubmit, setFieldValue}) => (
+                                                        <Form onSubmit={handleSubmit}>
+                                                            <Box className="form-row">
+                                                                <Box className="form-group">
+                                                                    <label className="label">Where</label>
+                                                                    {
+                                                                        !_.isEmpty(commonCityData) && <Select
+                                                                            labelId="demo-simple-select-label"
+                                                                            id="demo-simple-select"
+                                                                            name="city"
+                                                                            value={values.city}
+                                                                            onChange={handleChange}
+                                                                            defaultValue={values.city}
+                                                                            className="selectpicker my-select dropdown-toggle form-control"
+                                                                            sx={{
+                                                                                fontFamily: 'ProximaNovaA-Regular',
+                                                                                fontSize: '20px',
+                                                                                '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                                    border: 'none',
+                                                                                },
+                                                                                '.MuiSelect-icon': {
+                                                                                    color: '#FBFBFB'
+                                                                                },
+                                                                                '.MuiSelect-select': {
+                                                                                    padding: '0px 5px',
+                                                                                    fontSize: '20px',
+                                                                                    fontWeight: '400',
+                                                                                    display: 'flex',
+                                                                                    fontFamily: 'ProximaNovaA-Regular',
+                                                                                    flexDirection: 'column'
+                                                                                }
+                                                                            }}
+                                                                            MenuProps={{
+                                                                                PaperProps: {
+                                                                                    sx: {
+                                                                                        background: "#080B0E",
+                                                                                        color: '#FBFBFB',
+                                                                                        li: {
+                                                                                            fontSize: '20px',
+                                                                                            fontWeight: '400',
+                                                                                            fontFamily: 'ProximaNovaA-Regular',
+                                                                                            padding: '6px 16px'
+                                                                                        },
+                                                                                        ul: {
+                                                                                            display: 'flex',
+                                                                                            flexDirection: 'column'
+                                                                                        },
+                                                                                        'li:last-child': {
+                                                                                            borderBottom: 'none'
+                                                                                        },
+                                                                                        'li:hover': {
+                                                                                            color: '#C6A87D!important',
+                                                                                            backgroundColor: '#DCD7CB !important'
+                                                                                        },
+                                                                                        "&& .Mui-selected": {
+                                                                                            backgroundColor: "#0000FF !important"
+                                                                                        }
+                                                                                    },
+                                                                                },
+                                                                            }}
+                                                                        >
+                                                                            {
+                                                                                commonCityData?.map((item) => {
+                                                                                    return <MenuItem
+                                                                                        value={item.name}>{item.name}</MenuItem>
+                                                                                })
+                                                                            }
+                                                                            {/*<MenuItem value="Mumbai">Mumbai</MenuItem>*/}
+                                                                            {/*<MenuItem value="Delhi">Delhi</MenuItem>*/}
+                                                                            {/*<MenuItem value="Goa">Goa</MenuItem>*/}
+                                                                            {/*<MenuItem value="Banglore">Banglore</MenuItem>*/}
+                                                                            {/*<MenuItem value="Hydrabad">Hydrabad</MenuItem>*/}
+                                                                        </Select>
+                                                                    }
+
+                                                                </Box>
+                                                                <Box className="form-group">
+                                                                    <label className="label"
+                                                                           style={{marginBottom: '1px !important'}}>On</label>
+                                                                    <DatePickerInput
+                                                                        name="date"
+                                                                        value={values.date}
+                                                                        displayFormat="ddd, DD MMM"
+                                                                        returnFormat="ddd,DD MMM"
+                                                                        className="form-control"
+                                                                        onChange={(dateString) => setFieldValue('date', dateString)}
+                                                                        defaultValue={values.date}
+                                                                    />
+                                                                </Box>
+                                                                <Box className="form-group">
+                                                                    <label className="label">Time</label>
+                                                                    <Select
                                                                         labelId="demo-simple-select-label"
                                                                         id="demo-simple-select"
-                                                                        name="city"
-                                                                        value={values.city}
+                                                                        name="time"
+                                                                        value={values.time}
                                                                         onChange={handleChange}
-                                                                        defaultValue={values.city}
+                                                                        defaultValue={values.time}
                                                                         className="selectpicker my-select dropdown-toggle form-control"
                                                                         sx={{
-                                                                            fontFamily: 'ProximaNovaA-Regular',
                                                                             fontSize: '20px',
+                                                                            fontFamily: 'ProximaNovaA-Regular',
                                                                             '.MuiOutlinedInput-notchedOutline': {border: 0},
                                                                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                                                                 border: 'none',
@@ -967,12 +1054,10 @@ const HomePage = () => {
                                                                                 color: '#FBFBFB'
                                                                             },
                                                                             '.MuiSelect-select': {
+                                                                                fontFamily: 'ProximaNovaA-Regular',
                                                                                 padding: '0px 5px',
                                                                                 fontSize: '20px',
-                                                                                fontWeight: '400',
-                                                                                display: 'flex',
-                                                                                fontFamily: 'ProximaNovaA-Regular',
-                                                                                flexDirection: 'column'
+                                                                                fontWeight: '100'
                                                                             }
                                                                         }}
                                                                         MenuProps={{
@@ -982,8 +1067,8 @@ const HomePage = () => {
                                                                                     color: '#FBFBFB',
                                                                                     li: {
                                                                                         fontSize: '20px',
-                                                                                        fontWeight: '400',
                                                                                         fontFamily: 'ProximaNovaA-Regular',
+                                                                                        fontWeight: '400',
                                                                                         padding: '6px 16px'
                                                                                     },
                                                                                     ul: {
@@ -1005,174 +1090,89 @@ const HomePage = () => {
                                                                         }}
                                                                     >
                                                                         {
-                                                                            commonCityData?.map((item) => {
+                                                                            mealData?.map((item) => {
                                                                                 return <MenuItem
                                                                                     value={item.name}>{item.name}</MenuItem>
                                                                             })
                                                                         }
-                                                                        {/*<MenuItem value="Mumbai">Mumbai</MenuItem>*/}
-                                                                        {/*<MenuItem value="Delhi">Delhi</MenuItem>*/}
-                                                                        {/*<MenuItem value="Goa">Goa</MenuItem>*/}
-                                                                        {/*<MenuItem value="Banglore">Banglore</MenuItem>*/}
-                                                                        {/*<MenuItem value="Hydrabad">Hydrabad</MenuItem>*/}
                                                                     </Select>
-                                                                }
-
-                                                            </Box>
-                                                            <Box className="form-group">
-                                                                <label className="label"
-                                                                       style={{marginBottom: '1px !important'}}>On</label>
-                                                                <DatePickerInput
-                                                                    name="date"
-                                                                    value={values.date}
-                                                                    displayFormat="ddd, DD MMM"
-                                                                    returnFormat="ddd,DD MMM"
-                                                                    className="form-control"
-                                                                    onChange={(dateString) => setFieldValue('date', dateString)}
-                                                                    defaultValue={values.date}
-                                                                />
-                                                            </Box>
-                                                            <Box className="form-group">
-                                                                <label className="label">Time</label>
-                                                                <Select
-                                                                    labelId="demo-simple-select-label"
-                                                                    id="demo-simple-select"
-                                                                    name="time"
-                                                                    value={values.time}
-                                                                    onChange={handleChange}
-                                                                    defaultValue={values.time}
-                                                                    className="selectpicker my-select dropdown-toggle form-control"
-                                                                    sx={{
-                                                                        fontSize: '20px',
-                                                                        fontFamily: 'ProximaNovaA-Regular',
-                                                                        '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                            border: 'none',
-                                                                        },
-                                                                        '.MuiSelect-icon': {
-                                                                            color: '#FBFBFB'
-                                                                        },
-                                                                        '.MuiSelect-select': {
-                                                                            fontFamily: 'ProximaNovaA-Regular',
-                                                                            padding: '0px 5px',
+                                                                </Box>
+                                                                <Box className="form-group">
+                                                                    <label className="label">Diners</label>
+                                                                    <Select
+                                                                        labelId="demo-simple-select-label"
+                                                                        id="demo-simple-select"
+                                                                        name="diners"
+                                                                        value={values.diners}
+                                                                        onChange={handleChange}
+                                                                        defaultValue={values.diners}
+                                                                        className="selectpicker my-select dropdown-toggle form-control"
+                                                                        sx={{
                                                                             fontSize: '20px',
-                                                                            fontWeight: '100'
-                                                                        }
-                                                                    }}
-                                                                    MenuProps={{
-                                                                        PaperProps: {
-                                                                            sx: {
-                                                                                background: "#080B0E",
-                                                                                color: '#FBFBFB',
-                                                                                li: {
-                                                                                    fontSize: '20px',
-                                                                                    fontFamily: 'ProximaNovaA-Regular',
-                                                                                    fontWeight: '400',
-                                                                                    padding: '6px 16px'
-                                                                                },
-                                                                                ul: {
-                                                                                    display: 'flex',
-                                                                                    flexDirection: 'column'
-                                                                                },
-                                                                                'li:last-child': {
-                                                                                    borderBottom: 'none'
-                                                                                },
-                                                                                'li:hover': {
-                                                                                    color: '#C6A87D!important',
-                                                                                    backgroundColor: '#DCD7CB !important'
-                                                                                },
-                                                                                "&& .Mui-selected": {
-                                                                                    backgroundColor: "#0000FF !important"
-                                                                                }
-                                                                            },
-                                                                        },
-                                                                    }}
-                                                                >
-                                                                    {
-                                                                        mealData?.map((item) => {
-                                                                            return <MenuItem
-                                                                                value={item.name}>{item.name}</MenuItem>
-                                                                        })
-                                                                    }
-                                                                    {/*<MenuItem value="Lunch">Lunch</MenuItem>*/}
-                                                                    {/*<MenuItem value="Dinner">Dinner</MenuItem>*/}
-                                                                    {/*<MenuItem value="BreakFast">BreakFast</MenuItem>*/}
-                                                                </Select>
-                                                            </Box>
-                                                            <Box className="form-group">
-                                                                <label className="label">Diners</label>
-                                                                <Select
-                                                                    labelId="demo-simple-select-label"
-                                                                    id="demo-simple-select"
-                                                                    name="diners"
-                                                                    value={values.diners}
-                                                                    onChange={handleChange}
-                                                                    defaultValue={values.diners}
-                                                                    className="selectpicker my-select dropdown-toggle form-control"
-                                                                    sx={{
-                                                                        fontSize: '20px',
-                                                                        fontFamily: 'ProximaNovaA-Regular',
-                                                                        '.MuiOutlinedInput-notchedOutline': {border: 0},
-                                                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                                            border: 'none',
-                                                                        },
-                                                                        '.MuiSelect-icon': {
-                                                                            color: '#FBFBFB'
-                                                                        },
-                                                                        '.MuiSelect-select': {
                                                                             fontFamily: 'ProximaNovaA-Regular',
-                                                                            padding: '0px 5px',
-                                                                            fontSize: '20px',
-                                                                            fontWeight: '100'
-                                                                        }
-                                                                    }}
-                                                                    MenuProps={{
-                                                                        PaperProps: {
-                                                                            sx: {
-                                                                                background: "#080B0E",
-                                                                                color: '#FBFBFB',
-                                                                                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-                                                                                li: {
-                                                                                    fontSize: '20px',
-                                                                                    fontFamily: 'ProximaNovaA-Regular',
-                                                                                    fontWeight: '400',
-                                                                                    padding: '6px 16px'
-                                                                                },
-                                                                                ul: {
-                                                                                    display: 'flex',
-                                                                                    flexDirection: 'column'
-                                                                                },
-                                                                                'li:last-child': {
-                                                                                    borderBottom: 'none'
-                                                                                },
-                                                                                'li:hover': {
-                                                                                    color: '#C6A87D!important',
-                                                                                    backgroundColor: '#DCD7CB !important'
-                                                                                },
-                                                                                "&& .Mui-selected": {
-                                                                                    backgroundColor: "#0000FF !important"
-                                                                                }
+                                                                            '.MuiOutlinedInput-notchedOutline': {border: 0},
+                                                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                                                border: 'none',
                                                                             },
-                                                                        },
-                                                                    }}
-                                                                >
-                                                                    {menuitemValue.map((item,index)=>(
-                                                                        <MenuItem value={index+1}>{item}</MenuItem>
-                                                                    ))}
-                                                                </Select>
+                                                                            '.MuiSelect-icon': {
+                                                                                color: '#FBFBFB'
+                                                                            },
+                                                                            '.MuiSelect-select': {
+                                                                                fontFamily: 'ProximaNovaA-Regular',
+                                                                                padding: '0px 5px',
+                                                                                fontSize: '20px',
+                                                                                fontWeight: '100'
+                                                                            }
+                                                                        }}
+                                                                        MenuProps={{
+                                                                            PaperProps: {
+                                                                                sx: {
+                                                                                    background: "#080B0E",
+                                                                                    color: '#FBFBFB',
+                                                                                    maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                                                                                    li: {
+                                                                                        fontSize: '20px',
+                                                                                        fontFamily: 'ProximaNovaA-Regular',
+                                                                                        fontWeight: '400',
+                                                                                        padding: '6px 16px'
+                                                                                    },
+                                                                                    ul: {
+                                                                                        display: 'flex',
+                                                                                        flexDirection: 'column'
+                                                                                    },
+                                                                                    'li:last-child': {
+                                                                                        borderBottom: 'none'
+                                                                                    },
+                                                                                    'li:hover': {
+                                                                                        color: '#C6A87D!important',
+                                                                                        backgroundColor: '#DCD7CB !important'
+                                                                                    },
+                                                                                    "&& .Mui-selected": {
+                                                                                        backgroundColor: "#0000FF !important"
+                                                                                    }
+                                                                                },
+                                                                            },
+                                                                        }}
+                                                                    >
+                                                                        {menuitemValue.map((item, index) => (
+                                                                            <MenuItem
+                                                                                value={index + 1}>{item}</MenuItem>
+                                                                        ))}
+                                                                    </Select>
+                                                                </Box>
+                                                                <Box className="form-group">
+                                                                    <Typography>
+                                                                        <button type="submit"
+                                                                                className="hot-chef-search-btn"
+                                                                                onClick={handleClick}>Search
+                                                                        </button>
+                                                                    </Typography>
+                                                                </Box>
                                                             </Box>
-                                                            <Box className="form-group">
-                                                                <Typography>
-                                                                    <button type="submit"
-                                                                            className="hot-chef-search-btn"
-                                                                            onClick={handleClick}>Search
-                                                                    </button>
-                                                                </Typography>
-                                                            </Box>
-                                                        </Box>
-                                                    </Form>
-                                                )}
-                                            </Formik>
+                                                        </Form>
+                                                    )}
+                                                </Formik>
+                                            }
                                         </Box>
                                     </Box>
                                 </Box>

@@ -20,6 +20,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {navigate} from "gatsby";
 import UsersContext from "../../context/UsersContext";
 import CmsContext from "../../context/CmsContext";
+import InfiniteScrollData from "../../components/InfiniteScrollData";
 import Cookies from 'js-cookie';
 
 const BoxWrapper = styled(Box)(() => ({
@@ -39,6 +40,26 @@ const BoxWrapper = styled(Box)(() => ({
     ".available-experiences": {
         padding: "80px 120px",
         background: "#080B0E"
+    },
+    ".btn-outer":{
+        width:"100%",
+        float:"left",
+        textAlign:"center",
+    },
+    ".more_btn":{
+        background:"#C6A87D",
+        color: "#080B0E",
+        fontFamily: "ProximaNovaA-Regular",
+        fontSize: "16px",
+        lineHeight: "20px",
+        border: "0px",
+        marginBottom: "30px",
+        marginTop: "30px",
+        width: "auto",
+        float:"none",
+        display:"inline-block",
+        cursor: "pointer",
+        padding: "14px 30px",
     },
     '.chef-header': {
         fontFamily: 'Bon Vivant',
@@ -282,7 +303,6 @@ const BoxWrapper = styled(Box)(() => ({
         },
     },
 }));
-
 const style = {
     position: 'absolute',
     top: '50%',
@@ -449,6 +469,8 @@ const PriveeViewMore = (props) => {
     //     navigate('/event-details');
     // }
 
+    console.log('userData',userData?.results)
+
     return (
         <React.Fragment>
             <BoxWrapper>
@@ -555,7 +577,7 @@ const PriveeViewMore = (props) => {
                                                                 <DatePickerInput
                                                                     name="on"
                                                                     value={values.on}
-                                                                    displayFormat="ddd,DD MMM"
+                                                                    displayFormat="ddd, DD MMM"
                                                                     returnFormat="ddd,DD MMM"
                                                                     className="form-control"
                                                                     onChange={(dateString) => setFieldValue('on', dateString)}
@@ -697,29 +719,10 @@ const PriveeViewMore = (props) => {
                                 </Box>
                             </Box>
                         </Box>
-                        <Box className="available-experiences">
-                            <Typography className="chef-header">Available Experiences</Typography>
-                            {
-                                !_.isEmpty(userData?.results) &&
-                                <Grid container spacing={5}>
-                                    {userData?.results?.map((item) => {
-                                        return (
-                                            <Grid item xl={4} md={4} sm={6} xs={12}>
-                                                <AvlExperienceCarousel
-                                                    // image={item.cover_picture}
-                                                    image={item.user.picture}
-                                                    title={item.title} description={`by ${item.user.name}`}
-                                                    onClick={() => {
-                                                        navigate(`/event-details/${item?.id}`);
-                                                        Cookies.set('eventIdValue', JSON.stringify(item?.id));
-                                                    }}
-                                                />
-                                            </Grid>
-                                        )
-                                    })}
-                                </Grid>
-                            }
-                        </Box>
+                        {
+                                !_.isEmpty(userData?.results) && userData?.results.length>0 &&
+                                <InfiniteScrollData allData={userData?.results} />
+                        }
                         <NeedHelp/>
                         <Footer/>
                         <FooterEnd/>

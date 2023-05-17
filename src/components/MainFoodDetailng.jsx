@@ -7,12 +7,12 @@ import * as _ from "lodash";
 
 const MainParent = styled(Box)({
     backgroundColor: '#DCD7CB',
-'.parent-body': {
-    padding: '80px 120px 0px 120px',
+    '.parent-body': {
+        padding: '80px 120px 0px 120px',
         backgroundColor: '#DCD7CB',
-},
-'.food-header': {
-    fontSize: '24px',
+    },
+    '.food-header': {
+        fontSize: '24px',
         lineHeight: '24px',
         color: '#050405',
         padding: '0px 5px',

@@ -34,6 +34,7 @@ const images = [
 ];
 const BoxWrapper = styled(Box)(() => ({
     padding: '40px 37px',
+    background: "#FBFBFB",
     color: '#222222',
     ".mainTitle": {
         fontSize: "24px",

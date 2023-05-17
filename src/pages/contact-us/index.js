@@ -21,15 +21,12 @@ import {isMobile} from "react-device-detect";
 import CmsContext from "../../context/CmsContext";
 import UsersContext from "../../context/UsersContext";
 import * as _ from "lodash";
+import {navigate} from "gatsby";
 
 const ContactUs = () => {
 
     const {data} = useContext(CmsContext);
     const {setContactUsData, setIsContactUsData} = useContext(UsersContext);
-    const handleClick = (values) => {
-        setContactUsData(values);
-        setIsContactUsData(true)
-    }
 
     //validations
     const validationSchema = Yup.object({
@@ -272,6 +269,10 @@ const ContactUs = () => {
                                     }}
                                     validationSchema={validationSchema}
                                     onSubmit={(values) => {
+                                        if (!_.isEmpty(values)) {
+                                            setContactUsData(values);
+                                            setIsContactUsData(true)
+                                        }
                                     }}
                                 >
                                     {({values, handleChange, handleSubmit}) => (
@@ -383,11 +384,12 @@ const ContactUs = () => {
                                                         </Grid>
                                                         <Grid xs={12} className="col-lg-12">
                                                             <button className="btn btn-primary" type="submit"
-                                                                    onClick={() => {
-                                                                        if (!_.isEmpty(values.name && values.email && values.contactNumber && values.name && values.coverLetterMessage)) {
-                                                                            handleClick(values)
-                                                                        }
-                                                                    }}>Apply
+                                                                    // onClick={() => {
+                                                                    //     if (!_.isEmpty(values.name && values.email && values.contactNumber && values.name && values.coverLetterMessage)) {
+                                                                    //         handleClick(values)
+                                                                    //     }
+                                                                    // }}
+                                                            >Apply
                                                             </button>
                                                         </Grid>
                                                     </Grid>

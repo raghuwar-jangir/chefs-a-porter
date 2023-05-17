@@ -33,3 +33,27 @@
     src: url("../fonts/ProximaNovaA-Bold.ttf") format('truetype');
     font-display: swap;
 }
+@media print {
+    body {
+      visibility: hidden;
+    }
+    #section-to-print {
+      visibility: visible;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+.sub-box-counter input[type=number] { 
+    text-align: center;
+    padding:0px 3px !important;
+}
+
+.sub-box-counter input[type=number]::-webkit-inner-spin-button, 
+.sub-box-counter input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}

@@ -36,7 +36,7 @@ const UsersProvider = (props) => {
     const [supperClubRazorpay, setSupperClubRazorpay] = useState();
     const [isConfirm, setIsConfirm] = useState(false);
     const [customerDetailsPaymentCalculation, setCustomerDetailsPaymentCalculation] = useState();
-
+    const [ customerMobileNumber, setCustomerMobileNumber ] = useState('')
     //for submitting forms
     const [contactUsData, setContactUsData] = useState({})
     const [isContactUsData, setIsContactUsData] = useState(false)
@@ -67,6 +67,7 @@ const UsersProvider = (props) => {
     const [supperClubPayment, setSupperClubPayment] = useState(false)
     const [chefFormData, setChefFormData] = useState({})
     const [isChefData, setIsChefData] = useState(false)
+    
     const forDinersValue = Cookies?.get('eventDinners')
     const numberOfDinner = parseInt(forDinersValue?.replaceAll('"', ''));
     const forCoursesValue = Cookies?.get('eventCourses')
@@ -91,8 +92,19 @@ const UsersProvider = (props) => {
     const [occasionData, setOccasionData] = useState({});
     const [memberShipTypeData, setMemberShipTypeData] = useState({});
     const [isBecomePatron, setIsBecomePatron] = useState('');
+    const [personalDetailsPaymentCalculation, setPersonalDetailsPaymentCalculation] = useState('');
     const membershipIdCookie = Cookies?.get('memberShipId');
     const membershipId = membershipIdCookie?.replaceAll('"', '');
+
+    const [isGstSubmitData, setIsGstSubmitData] = useState(false)
+    const [gstData, setGstData] = useState({})
+    
+
+    const [dinersMaxNumber, setDinersMaxNumber] = useState('');
+    const [dinersMinNumber, setDinersMinNumber] = useState('');
+
+    const [dinersMaxData, setDinersMaxData] = useState({});
+    const [dinersMinData, setDinersMinData] = useState({});
 
     console.log("becomePatronData========",becomePatronData)
     useEffect(() => {
@@ -111,6 +123,30 @@ const UsersProvider = (props) => {
             axios.get(baseUrl + `/menu/` + eventId).then(result => {
                 setUserData(result.data);
                 localStorage.setItem('privateEventData', JSON.stringify(result.data));
+                const dinersMaxValue = Math.max.apply(Math, result.data.prices.map(function(o) {
+                    return o.max_diner;
+                }));
+                const dinersMinValue = Math.min.apply(Math, result.data.prices.map(function(o) {
+                    return o.min_diner;
+                }));
+              
+                const dinersMaxGet = dinersMaxValue && result.data.prices.filter((item)=>{
+                  return item.max_diner===dinersMaxValue
+                })
+              
+                const dinersMinGet = dinersMinValue && result.data.prices.filter((item)=>{
+                  return item.min_diner===dinersMinValue
+                })
+              
+                const dinersMaxObject = dinersMaxGet && dinersMaxGet[0]
+                const dinersMinObject = dinersMinGet && dinersMinGet[0]
+                setDinersMaxNumber(dinersMaxValue);
+                setDinersMinNumber(dinersMinValue);
+                setDinersMaxData(dinersMaxObject);
+                setDinersMinData(dinersMinObject);
+
+                console.log('results in dinersMaxObject', dinersMaxObject)
+                console.log('results in dinersMinObject', dinersMinObject)
             })
         } else if (supperClubDetailId && currentPath === 'ticketed-detail') {
             axios.get(baseUrl + '/event/' + supperClubDetailId).then(result => {
@@ -118,7 +154,7 @@ const UsersProvider = (props) => {
                 localStorage.setItem('ticketedEventData', JSON.stringify(result.data));
             })
         } else if (currentPath === 'private-viewmore') {
-            axios.get(baseUrl + '/menu').then(result => {
+            axios.get(baseUrl + '/menu?limit=1000').then(result => {
                 setUserData(result.data)
             })
         } else if (currentPath === 'addons' && bookingId) {
@@ -163,7 +199,11 @@ const UsersProvider = (props) => {
                                     });
                             }
                         },
+                        prefill: {
+                            contact: customerMobileNumber && customerMobileNumber,
+                          },
                     };
+                    console.log('userData',userData)
                     const rzpay = new priveeRazorpay(options);
                     rzpay.open();
                 } else {
@@ -313,6 +353,9 @@ const UsersProvider = (props) => {
                                     });
                             }
                         },
+                        prefill: {
+                            contact: customerMobileNumber && customerMobileNumber,
+                          },
                     };
                     const rzpay = new SupperClubRazorpay(options);
                     rzpay.open();
@@ -391,7 +434,7 @@ const UsersProvider = (props) => {
                 Cookies.set('callMobileNumber', JSON.stringify(result.data.footer.footer.mobile));
             })
         }
-        if (path.pathname === '/' || currentPath === "private" || currentPath === "private-viewmore") {
+        if (path.pathname === '/' || currentPath === "private" || currentPath === "private-viewmore" || currentPath === 'event-details' || currentPath === 'customer-details') {
             axios.get('https://chefv2.hypervergedemo.site/v1/meal_times/all').then(result => {
                 setMealData(result.data)
             })
@@ -426,13 +469,51 @@ const UsersProvider = (props) => {
                 }
             })
         }
-    }, [isBecomePatron, isUpdateBooking, isScheduleCall, isBecomePartner, isChefData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification, successOpen])
-
+        if (isGstSubmitData && currentPath === 'customer-details') {
+            axios.patch(baseUrl + '/booking/' + bookingId, {
+                customer_gst: gstData
+            }).then((response) => {
+                if (response.status === 200) {
+                    setIsUpdateBooking(false);
+                    console.log('response data',response.data)
+                }
+            })
+        }
+        if (currentPath === 'customer-details' && isGstSubmitData && bookingId) {
+            axios.patch(baseUrl + '/booking/' + bookingId, {
+                customer_gst: gstData
+            }).then((response) => {
+                if (response.status === 200) {
+                    setIsUpdateBooking(false);
+                    console.log('response data',response.data)
+                }
+            })
+        }
+        if (currentPath === 'ticketed-booking-summary' && supperClubBookingId && isGstSubmitData) {
+            axios.patch(baseUrl + '/booking/' + supperClubBookingId, {
+                customer_gst: gstData,
+            }).then((response) => {
+                if (response.status === 200) {
+                    console.log('response data',response.data)
+                }
+            })
+        }
+    }, [customerMobileNumber, isBecomePatron, isUpdateBooking, isScheduleCall, isBecomePartner, isChefData, isGstSubmitData, isConfirm, isSupperClubCoupon, isCoupon, userId, eventId, currentPath, supperClubDetailId, bookingId, summaryBookingId, contactUsData, isContactUsData, isJoinChefData, joinChefData, supperClubBookingId, isSupperBookingStatus, paymentVerification, successOpen])
+    isGstSubmitData
     const {children} = props;
 
     return (
         <UsersContext.Provider
             value={{
+                dinersMaxNumber,
+                dinersMinNumber,
+                dinersMaxData,
+                dinersMinData,
+                setDinersMaxNumber,
+                setDinersMinNumber,
+                setDinersMaxData,
+                setDinersMinData,
+                setCustomerMobileNumber,
                 userData,
                 setUserId,
                 setEventId,
@@ -484,7 +565,13 @@ const UsersProvider = (props) => {
                 scheduleCallOpen, setScheduleCallOpen,
                 becomePatronData, setBecomePatronData,
                 isBecomePatron, setIsBecomePatron,
-                occasionData,memberShipTypeData
+                occasionData,memberShipTypeData,
+                isGstSubmitData,
+                setIsGstSubmitData,
+                gstData,
+                setGstData,
+                personalDetailsPaymentCalculation,
+                setPersonalDetailsPaymentCalculation
             }}
         >
             {children}

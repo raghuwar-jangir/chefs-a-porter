@@ -11,7 +11,7 @@ import CmsContext from "../context/CmsContext";
 import * as _ from "lodash";
 
 const LookLikeCarousel = () => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
     const { data } = useContext(CmsContext);
 

@@ -80,7 +80,7 @@ const OurChefsPage = () => {
             '.footer-shadow': {
                 display: 'none'
             }
-          }
+        }
     }))
 
     return (

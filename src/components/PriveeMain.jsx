@@ -14,10 +14,10 @@ import CmsContext from "../context/CmsContext";
 import * as _ from "lodash";
 
 const MainParent = styled(Box)({
-    '.continue-browsing-box': {
-        background: '#080B0E',
-        padding: '80px 120px',
-        color: '#fff'
+        '.continue-browsing-box': {
+            background: '#080B0E',
+            padding: '80px 120px',
+            color: '#fff'
 
         },
         '.main-heading': {
@@ -206,7 +206,7 @@ const MainParent = styled(Box)({
                 display: 'none'
             }
         }
-},
+    },
 )
 
 const PriveeMain = ({title, subTitle, isButtonShow = false}) => {
