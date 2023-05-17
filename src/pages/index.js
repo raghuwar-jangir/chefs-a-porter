@@ -70,10 +70,11 @@ const MainBoxContent = styled(Box)({
     backgroundColor: '#DCD7CB'
 })
 
-const BoxWrapper = styled(Box)({
+const BoxWrapper = styled(Box)((props) => ({
+
     '.home-banner': {
         marginTop: '80px',
-        backgroundImage: `url(${homeBanner})`,
+        backgroundImage: `url(${props.homebannerimage})`,
         backgroundSize: 'cover',
         // padding: '50px 120px',
         backgroundPosition: 'center',
@@ -872,7 +873,7 @@ const BoxWrapper = styled(Box)({
         }
     }
 
-})
+}))
 
 const HomePage = () => {
     const {data} = useContext(CmsContext);
@@ -916,7 +917,7 @@ const HomePage = () => {
     return (
         <React.Fragment>
             <Navbar isIcon={false} isImage={true}/>
-            <BoxWrapper>
+            <BoxWrapper homebannerimage={data?.home?.header?.image || ""}>
                 <React.Fragment>
                     {
                         !_.isEmpty(data?.home && mealData && commonCityData) &&
