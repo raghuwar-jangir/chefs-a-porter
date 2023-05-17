@@ -1268,6 +1268,26 @@ const ScBookingConfirm = (props) => {
                                                             <Typography
                                                                 className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubConfirmPaymentData?.payment?.ticket_price)}</Typography>
                                                         </Box>
+                                                        {
+                                                            supperClubConfirmPaymentData?.payment?.discount &&  (
+                                                                    <Box className="table-box">
+                                                                        <Typography
+                                                                            className="table-details">Discount</Typography>
+                                                                        <Typography
+                                                                            className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubConfirmPaymentData?.payment?.discount)}</Typography>
+                                                                    </Box>
+                                                            )
+                                                        }
+                                                        {
+                                                            supperClubConfirmPaymentData?.payment?.voucher && (
+                                                                    <Box className="table-box">
+                                                                        <Typography
+                                                                            className="table-details">Voucher</Typography>
+                                                                        <Typography
+                                                                            className="table-details">{supperClubConfirmPaymentData?.payment?.voucher}</Typography>
+                                                                    </Box>
+                                                            )
+                                                        }
                                                         <Box className="table-box border-tb ">
                                                             <Typography className="table-details table-details-pt">Sub
                                                                 Total</Typography>
@@ -1286,24 +1306,6 @@ const ScBookingConfirm = (props) => {
                                                             <Typography
                                                                 className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubConfirmPaymentData?.payment?.service_charges)}</Typography>
                                                         </Box>
-                                                        {
-                                                            supperClubConfirmPaymentData?.payment?.discount && supperClubConfirmPaymentData?.payment?.voucher ? (
-                                                                <>
-                                                                    <Box className="table-box">
-                                                                        <Typography
-                                                                            className="table-details">Discount</Typography>
-                                                                        <Typography
-                                                                            className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubConfirmPaymentData?.payment?.discount)}</Typography>
-                                                                    </Box>
-                                                                    <Box className="table-box">
-                                                                        <Typography
-                                                                            className="table-details">Voucher</Typography>
-                                                                        <Typography
-                                                                            className="table-details">{supperClubConfirmPaymentData?.payment?.voucher}</Typography>
-                                                                    </Box>
-                                                                </>
-                                                            ) : ('')
-                                                        }
                                                         <Box className="table-box border">
                                                             <Typography className="grand-total">Grand Total</Typography>
                                                             <Typography
