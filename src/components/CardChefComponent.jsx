@@ -148,9 +148,9 @@ const CardChefComponent = ({bgColor}) => {
                             {userData?.chef?.details?.intro && (
                             <>
                             {isReadMore ? `${userData?.chef?.details?.intro.slice(0, 100)}...` : <span dangerouslySetInnerHTML={{ __html: userData?.chef?.details?.intro }} style={{ whiteSpace: 'pre-line'}} ></span>}
-                            <span onClick={toggleReadMore} className="read-more-less--more" role="presentation" style={{ textDecoration: 'underline' }}>
-                              {isReadMore ? "Read more" : "Read less"}
-                            </span>
+                                <span onClick={toggleReadMore} className="read-more-less--more" role="presentation" style={{ textDecoration: 'underline' }}>
+                                    {isReadMore ? "Read more" : "Read less"}
+                                </span>
                             </>
                              )}
                         </Typography>
@@ -159,17 +159,29 @@ const CardChefComponent = ({bgColor}) => {
                             <img className="logo" src={dish}/>
                             <Typography className="field-name">Course:</Typography>
                             <Typography className="field-ans">{userData?.course}</Typography>
-                        </Box><Box className="sub-box-card">
-                        <img className="logo" src={glass}/>
-                        <Typography className="field-name">Drinks:</Typography>
-                        <Typography className="field-ans">{userData?.drinks}</Typography>
-                    </Box><Box className="sub-box-card">
-                        <img className="logo" src={star}/>
-                        <Typography className="field-name">Meal Highlight:</Typography>
-                        <Typography className="field-ans">{userData?.mealhighlight}</Typography>
-                    </Box>
+                        </Box>
+                        <Box className="sub-box-card">
+                            <img className="logo" src={glass}/>
+                            <Typography className="field-name">Drinks:</Typography>
+                            <Typography className="field-ans">{userData?.drinks}</Typography>
+                        </Box>
+                        <Box className="sub-box-card">
+                            <img className="logo" src={star}/>
+                            <Typography className="field-name">Meal Highlight:</Typography>
+                            <Typography className="field-ans">{userData?.meal_highlight}</Typography>
+                        </Box>
                         <Typography className="details">
-                            {/* <ReactReadMoreReadLess
+                            {userData?.desc && (
+                                <>
+                                {isReadMore2 ? `${userData?.desc.slice(0, 100)}...` : <span dangerouslySetInnerHTML={{ __html: userData?.desc }} style={{ whiteSpace: 'pre-line'}} ></span>}
+                                <span onClick={toggleReadMore2} className="read-more-less--more" role="presentation" style={{ textDecoration: 'underline' }}>
+                                    {isReadMore2 ? "Read more" : "Read less"}
+                                </span>
+                                </>
+                            )}
+                        </Typography>
+                        {/*
+                            <ReactReadMoreReadLess
                                 readMoreStyle={{textDecoration: "underline", fontWeight: 'bold'}}
                                 readLessStyle={{textDecoration: "underline", fontWeight: 'bold'}}
                                 charLimit={100}
@@ -178,18 +190,9 @@ const CardChefComponent = ({bgColor}) => {
                                 readMoreClassName="read-more-less--more"
                                 readLessClassName="read-more-less--less"
                             >
-                                {userData?.desc}
-                            </ReactReadMoreReadLess> */}
-                            {userData?.desc && (
-                                <>
-                                {isReadMore2 ? `${userData?.desc.slice(0, 100)}...` : <span dangerouslySetInnerHTML={{ __html: userData?.desc }} style={{ whiteSpace: 'pre-line'}} ></span>}
-                                <span onClick={toggleReadMore2} className="read-more-less--more" role="presentation" style={{ textDecoration: 'underline' }}>
-                                  {isReadMore2 ? "Read more" : "Read less"}
-                                </span>
-                                </>
-                            )}
-                            
-                        </Typography>
+                            {userData?.desc}
+                            </ReactReadMoreReadLess> 
+                        */}
                     </>
                 }
             </BoxWrapper>
