@@ -63,7 +63,7 @@ const Treaty = (props) => {
             background: '#FBFBFB',
             padding: '30px 20px 30px 30px',
             boxShadow: ' 0px 20px 24px rgb(0 0 0 / 6%)',
-            width: '636px'
+            // width: '636px'
         },
         '.btn-box': {
             display: 'flex',

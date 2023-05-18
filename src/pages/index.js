@@ -542,6 +542,9 @@ const BoxWrapper = styled(Box)((props) => ({
         display: "flex",
         justifyContent: 'center'
     },
+    '.treat-card': {
+        flex: 1
+    },
     //gallery
     '.gallery': {
         background: '#FBFBFB',
@@ -700,9 +703,6 @@ const BoxWrapper = styled(Box)((props) => ({
             fontWeight: 300,
             padding: '5px',
             marginBottom: '16px'
-        },
-        '.treat-card2': {
-            display: 'none'
         },
         '.treaty-card': {
             display: "block",
@@ -1256,8 +1256,8 @@ const HomePage = () => {
                                 </Grid>
                             </Box>
                             <Box className="treat">
-                                <Grid className="treaty-card">
-                                    <Grid className="treat-card1" xs={6} md={4} sm={4}>
+                                <Grid className="treaty-card row">
+                                    <Grid className="treat-card" xl={4} lg={4} xs={4} md={4} sm={12} xs={12}>
                                         <Treaty
                                             treatTitle={`#${data.home.gift.gift.hashtag}`}
                                             mainTitle={data.home.gift.gift.title}
@@ -1265,15 +1265,23 @@ const HomePage = () => {
                                             link={'/gift-cards'}
                                             button_text={data.home.gift.gift.button_text}
                                         />
-
                                     </Grid>
-                                    <Grid className="treat-card2" xs={6} md={4} sm={4}>
+                                    <Grid className="treat-card" xl={4} lg={4} xs={4} md={4} sm={12} xs={12}>
                                         <Treaty
                                             treatTitle={`#${data.home.gift.patron.hashtag}`}
                                             mainTitle={data.home.gift.patron.title}
                                             detail={data.home.gift.patron.description}
                                             link={'/become-a-patron'}
                                             button_text={data.home.gift.patron.button_text}
+                                        />
+                                    </Grid>
+                                    <Grid className="treat-card" xl={4} lg={4} xs={4} md={4} sm={12} xs={12}>
+                                        <Treaty
+                                            treatTitle={`#${data.home.gift.duchchef.hashtag}`}
+                                            mainTitle={data.home.gift.duchchef.title}
+                                            detail={data.home.gift.duchchef.description}
+                                            link={'/our-chefs'}
+                                            button_text={data.home.gift.duchchef.button_text}
                                         />
                                     </Grid>
                                 </Grid>
