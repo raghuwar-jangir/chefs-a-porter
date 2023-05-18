@@ -193,53 +193,55 @@ const FoodCarousel = (isButtonShow) => {
                         "--swiper-navigation-color": "white",
                         "--swiper-navigation-size": "17px",
                     }}
-                            slidesPerView={4}
-                            spaceBetween={20}
-                            navigation={true}
-                            modules={[Navigation, Pagination]}
-                            breakpoints={{
-                                320: {
-                                    slidesPerView: 2,
-                                    spaceBetween: 0,
-                                    direction: "vertical",
-                                    navigation: 'false'
-                                },
-                                375: {
-                                    slidesPerView: 2,
-                                    spaceBetween: 0,
-                                    direction: "vertical",
-                                    navigation: 'false'
-                                },
-                                425: {
-                                    slidesPerView: 2,
-                                    spaceBetween: 0,
-                                    direction: "vertical",
-                                    navigation: 'false'
-                                },
-                                768: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 8,
-                                    //   direction:'horizontal'
-                                },
-                                1024: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 20,
-                                },
-                                1440: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 20,
-                                },
-                                2560: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 20,
-                                },
+                        slidesPerView={4}
+                        spaceBetween={20}
+                        navigation={true}
+                        modules={[Navigation, Pagination]}
+                        breakpoints={{
+                            320: {
+                                slidesPerView: 2,
+                                spaceBetween: 0,
+                                direction: "vertical",
+                                navigation: 'false'
+                            },
+                            375: {
+                                slidesPerView: 2,
+                                spaceBetween: 0,
+                                direction: "vertical",
+                                navigation: 'false'
+                            },
+                            425: {
+                                slidesPerView: 2,
+                                spaceBetween: 0,
+                                direction: "vertical",
+                                navigation: 'false'
+                            },
+                            768: {
+                                slidesPerView: 3,
+                                spaceBetween: 8,
+                                //   direction:'horizontal'
+                            },
+                            1024: {
+                                slidesPerView: 4,
+                                spaceBetween: 20,
+                            },
+                            1440: {
+                                slidesPerView: 4,
+                                spaceBetween: 20,
+                            },
+                            2560: {
+                                slidesPerView: 4,
+                                spaceBetween: 20,
+                            },
 
-                            }}
-                            className="mySwiper">
+                        }}
+                        className="mySwiper"
+                    >
                         {data.home.upcoming_supper_clubs.supper_clubs.map((item) => {
+                            const pictures = Array.isArray(item.pictures) ? item.pictures[0] : item.pictures;
                             return (
                                 <SwiperSlide style={{cursor: 'pointer'}}   onClick={() => navigate(`/ticketed-detail/${item?.id}`)}>
-                                    <img className='test-img' src={item.pictures}/>
+                                    <img className='test-img' src={pictures}/>
                                     {
                                         item.status &&
                                         <Box className='trending'>
