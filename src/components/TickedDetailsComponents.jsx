@@ -54,11 +54,10 @@ const { setSupperClubDetailId, userData } = useContext(UsersContext);
   const showDates = Object.values(groupedDates);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
-  const [selectedTimeNext, setSelectedTimeNext] = useState(null);
   const [showCarousel, setShowCarousel] = useState(false);
-  const [showArray, setShowArray] = useState(
-    Array(showDates.length).fill(false)
-  );
+  const [selectedDateAndTime, setSelectedDataAndTime] = useState("");
+  const [selectedDay, setSelectedDay] = useState("");
+  // const [showArray, setShowArray] = useState(Array(showDates.length).fill(false));
 
   useEffect(() => {
     setSupperClubDetailId(getSupperClubDetailId);
@@ -68,43 +67,33 @@ const { setSupperClubDetailId, userData } = useContext(UsersContext);
     navigate("/personal-details");
   };
 
-  const handleToggle = (index) => {
-    setShowArray((prevState) => {
-      const newState = [...prevState];
-      newState[index] = !newState[index];
-      newState.forEach((state, i) => {
-        if (i !== index) {
-          newState[i] = false;
-        }
-      });
-      return newState;
-    });
-    const date = showDates[index]?.[0]?.date;
-    const time = showDates[index]?.[0]?.time;
-    const nextTime = showDates[index]?.[1]?.time;
-    if (
-      (selectedDate === date && selectedTime === time) ||
-      selectedTimeNext === nextTime
-    ) {
+  const handleToggle = (index,idx) => {
+    const value = `${index}-${idx}`;
+    if(value === selectedDateAndTime){
+      setSelectedDataAndTime("")
+    }else{
+      setSelectedDataAndTime(value)
+    }
+    if(index === selectedDay && value !== selectedDateAndTime){
+      setSelectedDay(index)
+    }else if(index === selectedDay){
+      setSelectedDay("")
+    }else{
+      setSelectedDay(index)
+    }
+    const date = showDates[index]?.[idx]?.date;
+    const time = showDates[index]?.[idx]?.time;
+    if ((selectedDate === date && selectedTime === time)) {
       setSelectedDate(null);
       setSelectedTime(null);
-      setSelectedTimeNext(null);
     } else {
       setSelectedDate(date);
       setSelectedTime(time);
-      setSelectedTimeNext(nextTime);
     }
   };
 
   const disabledStyle = {
     opacity: 0.5,
-  };
-  const toggleClose = (index) => {
-    setShowArray((prevState) => {
-      const newState = [...prevState];
-      newState[index] = false;
-      return newState;
-    });
   };
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
   const defaultProps = {
@@ -601,6 +590,9 @@ const { setSupperClubDetailId, userData } = useContext(UsersContext);
       overflow: "hidden",
     },
 
+    ".switch-field label.active": {
+      background: "rgba(0,0,0,0.1)"
+    },
     ".switch-field label": {
       flex: "1",
       margin: "0 4px",
@@ -1122,6 +1114,7 @@ const { setSupperClubDetailId, userData } = useContext(UsersContext);
                                 width: "100%",
                               }}
                             >
+                              {/* TODO : set google api key */}
                               <GoogleMapReact
                                 bootstrapURLKeys={{ key: "" }}
                                 defaultCenter={defaultProps.center}
@@ -1204,266 +1197,90 @@ const { setSupperClubDetailId, userData } = useContext(UsersContext);
                               Choose Your Date
                             </Typography>
                           </Box>
-                          {showDates?.map((item, index) => {
-                            const isSelected =
-                              (selectedDate === item[0]?.date &&
-                                selectedTime === item[0]?.time) ||
-                              selectedTimeNext === item[1]?.time;
+                          {showDates.map((item, index) => {
+                            const isSelected = (selectedDate === item[index]?.date && selectedTime === item[index]?.time)
                             return (
                               <Box className="date-time-box">
-                                <Box
-                                  sx={{ display: "flex", alignItems: "center" }}
-                                >
+                                {console.log("###item",item)}
+                                <Box sx={{ display: "flex", alignItems: "center" }}>
                                   <Typography className="main-date">
-                                    {/* {values.mainDate = moment(item[0].date).format("D")} */}
-                                    {moment(item[0]?.date).format("D")}
+                                    {moment(item[index]?.date).format("D")}
                                   </Typography>
                                   <Box>
                                     <Typography className="date-month">
-                                      {moment(item[0].date).format("MMMM")}
+                                      {moment(item[index]?.date).format("MMMM")}
                                     </Typography>
                                     <Typography className="date-day">
-                                      {moment(item[0].date).format("dddd")}
+                                      {moment(item[index]?.date).format("dddd")}
                                     </Typography>
                                   </Box>
                                 </Box>
                                 <Box className="time-btn-box">
                                   <Box className="switch-field">
-                                    <input
-                                      type="radio"
-                                      id={`radio-${index}-1`}
-                                      name={`switch-${index}`}
-                                      value="yes"
-                                    />
-                                    <label
-                                      htmlFor={`radio-${index}-1`}
-                                      onClick={() =>{
-                                        handleToggle(index);
-                                      }
-                                    }
-                                    >
-                                      <Typography className="time-text">
-                                        {moment(item[0]?.from, "HH:mm").format(
-                                          "h:mm A"
-                                        )}{" "}
-                                        -{" "}
-                                        {moment(item[0]?.to, "HH:mm").format(
-                                          "h:mm A"
-                                        )}
-                                        {`switch-${index}Lunch`}
-                                      </Typography>
-                                    </label>
-                                    <input
-                                      type="radio"
-                                      id={`radio-${index}-2`}
-                                      name={`switch-${index}`}
-                                      value="yes"
-                                    />
-                                    {!_.isEmpty(item[1]?.from) &&
-                                      !_.isEmpty(item[1]?.to) && (
-                                        <label
-                                          htmlFor={`radio-${index}-2`}
-                                          onClick={() => {
-                                            handleToggle(index);
-                                          }
-                                          }
-                                        >
-                                          <Typography className="time-text">
-                                            {moment(
-                                              item[1]?.from,
-                                              "HH:mm"
-                                            ).format("h:mm A")}{" "}
-                                            -{" "}
-                                            {moment(
-                                              item[1]?.to,
-                                              "HH:mm"
-                                            ).format("h:mm A")}
-                                            {`switch-${index}Dinner`}
-                                          </Typography>
-                                        </label>
-                                      )}
+                                    {item.map((time,idx) => <>
+                                      <input type="radio" id={`radio-${index}-${idx}`} name={`switch-${index}`} value="yes" />
+                                      <label htmlFor={`radio-${index}-${idx}`} onClick={() =>{ handleToggle(index,idx); }} className={selectedDateAndTime === `${index}-${idx}` ? "active" : ""} >
+                                        <Typography className="time-text">
+                                          {moment(time?.from, "HH:mm").format("h:mm A")}{" "}-{" "}{moment(time?.to, "HH:mm").format("h:mm A")}{" "}{time.time}
+                                        </Typography>
+                                      </label>
+                                    </>)}
                                   </Box>
                                 </Box>
-                                <Box
-                                  className="experience-drop"
-                                  style={{ width: "100%" }}
-                                >
-                                  {showArray[index] && (
+                                {/* this */}
+                                <Box className="experience-drop" style={{ width: "100%" }} >
+                                  {index === selectedDay && (
                                     <Form>
                                       <Box>
                                         <Box className="choose-seat">
-                                          <div className="choose-seat-text">
-                                            Choose Seating option
-                                          </div>
-                                          <KeyboardArrowDownIcon
-                                            className="seat-down"
-                                            onClick={toggleClose}
-                                          />
+                                          <div className="choose-seat-text">Choose Seating option</div>
+                                          <KeyboardArrowDownIcon className="seat-down" onClick={() => {setSelectedDay("");setSelectedDataAndTime("");}}/>
                                         </Box>
                                         <Box className="regular-seat">
                                           <div className="r-seat">
-                                            <div className="r-seat-text">
-                                              Regular Seating
-                                            </div>
+                                            <div className="r-seat-text">Regular Seating</div>
                                             <span className="r-seat-rate">
-                                              <b className="r-seat-money">
-                                                ₹{" "}
-                                                {userData?.price
-                                                  ? userData?.price
-                                                  : 0}
-                                              </b>
-                                              / diner
+                                              <b className="r-seat-money">₹{" "}{userData?.price ? userData?.price : 0}</b>/ diner
                                             </span>
                                           </div>
                                           <div>
                                             <div className="input-div">
-                                              <RemoveIcon
-                                                className="left-btn"
-                                                onClick={() =>
-                                                  setFieldValue(
-                                                    "numberOfSeats",
-                                                    Math.max(
-                                                      values.numberOfSeats - 1,
-                                                      0
-                                                    )
-                                                  )
-                                                }
-                                                style={
-                                                  values.numberOfSeats === 0
-                                                    ? disabledStyle
-                                                    : {}
-                                                }
-                                                disabled={
-                                                  values.numberOfSeats === 0
-                                                }
-                                              />
-                                              <Typography className="number-ans">
-                                                {values.numberOfSeats}
-                                              </Typography>
-                                              <AddIcon
-                                                className="right-btn"
-                                                onClick={() =>
-                                                  setFieldValue(
-                                                    "numberOfSeats",
-                                                    Math.min(
-                                                      values.numberOfSeats + 1,
-                                                      userData?.seats
-                                                        ? userData?.seats
-                                                        : 0
-                                                    )
-                                                  )
-                                                }
-                                                disabled={
-                                                  values.numberOfSeats ===
-                                                  userData?.seats
-                                                    ? userData?.seats
-                                                    : 0
-                                                }
-                                                style={
-                                                  values.numberOfSeats ===
-                                                  userData?.seats
-                                                    ? disabledStyle
-                                                    : {}
-                                                }
-                                              />
+                                              <RemoveIcon className="left-btn" onClick={() => setFieldValue("numberOfSeats", Math.max(values.numberOfSeats - 1, 0))} style={values.numberOfSeats === 0? disabledStyle: {}} disabled={values.numberOfSeats === 0}/>
+                                              <Typography className="number-ans">{values.numberOfSeats}</Typography>
+                                              <AddIcon className="right-btn" onClick={() => setFieldValue("numberOfSeats", Math.min(values.numberOfSeats + 1, userData?.seats ? userData?.seats : 0))} disabled={values.numberOfSeats === userData?.seats ? userData?.seats : 0} style={values.numberOfSeats === userData?.seats ? disabledStyle : {}} />
                                             </div>
-                                            <span className="s-left">
-                                              {userData?.seats
-                                                ? userData?.seats
-                                                : 0}{" "}
-                                              seats left
-                                            </span>
+                                            <span className="s-left">{userData?.seats ? userData?.seats : 0}{" "}seats left</span>
                                           </div>
                                         </Box>
-                                        {userData?.seats_chefs_table!==0 && (
-                                            <>
+                                        {userData?.seats_chefs_table !== 0 && (
+                                          <>
                                             <hr className="seat-hr" />
-                                        <Box className="regular-seat">
-                                          <div className="r-seat">
-                                            <div className="r-seat-text">
-                                              Chefs Table {userData?.seats_chefs_table}
-                                            </div>
-                                            <span className="r-seat-rate">
-                                              <b className="r-seat-money">
-                                                ₹{" "}
-                                                {userData?.price_chefs_table
-                                                  ? userData?.price_chefs_table
-                                                  : 0}
-                                              </b>
-                                              / diner
-                                            </span>
-                                          </div>
-                                          <div>
-                                            <div className="input-div">
-                                              <RemoveIcon
-                                                className="left-btn"
-                                                onClick={() =>
-                                                  setFieldValue(
-                                                    "numberOfTables",
-                                                    Math.max(
-                                                      values.numberOfTables - 1,
-                                                      0
-                                                    )
-                                                  )
-                                                }
-                                                style={
-                                                  values.numberOfTables === 0
-                                                    ? disabledStyle
-                                                    : {}
-                                                }
-                                                disabled={
-                                                  values.numberOfTables === 0
-                                                }
-                                              />
-                                              <Typography className="number-ans">
-                                                {values.numberOfTables}
-                                              </Typography>
-                                              <AddIcon
-                                                className="right-btn"
-                                                onClick={() =>
-                                                  setFieldValue(
-                                                    "numberOfTables",
-                                                    Math.min(
-                                                      values.numberOfTables + 1,
-                                                      userData?.seats_chefs_table
-                                                        ? userData?.seats_chefs_table
-                                                        : 0
-                                                    )
-                                                  )
-                                                }
-                                                style={
-                                                  values.numberOfTables ===
-                                                  userData?.seats_chefs_table
-                                                    ? disabledStyle
-                                                    : {}
-                                                }
-                                                disabled={
-                                                  values.numberOfTables ===
-                                                  userData?.seats_chefs_table
-                                                    ? userData?.seats_chefs_table
-                                                    : 0
-                                                }
-                                              />
-                                            </div>
-                                            <span className="s-left">
-                                              {userData?.seats_chefs_table
-                                                ? userData?.seats_chefs_table
-                                                : 0}{" "}
-                                              seats left
-                                            </span>
-                                          </div>
-                                        </Box>
-                                        </>
+                                            <Box className="regular-seat">
+                                              <div className="r-seat">
+                                                <div className="r-seat-text">Chefs Table {userData?.seats_chefs_table}</div>
+                                                <span className="r-seat-rate">
+                                                  <b className="r-seat-money">₹{" "}{userData?.price_chefs_table? userData?.price_chefs_table: 0}</b>/ diner
+                                                </span>
+                                              </div>
+                                              <div>
+                                                <div className="input-div">
+                                                  <RemoveIcon className="left-btn" onClick={() => setFieldValue("numberOfTables",Math.max(values.numberOfTables - 1,0))} style={values.numberOfTables === 0? disabledStyle: {}} disabled={values.numberOfTables === 0}/>
+                                                  <Typography className="number-ans">{values.numberOfTables}</Typography>
+                                                  <AddIcon className="right-btn" onClick={() => setFieldValue("numberOfTables",Math.min(values.numberOfTables + 1,userData?.seats_chefs_table? userData?.seats_chefs_table: 0))} style={values.numberOfTables ===userData?.seats_chefs_table? disabledStyle: {}} disabled={values.numberOfTables ===userData?.seats_chefs_table? userData?.seats_chefs_table: 0} />
+                                                </div>
+                                                <span className="s-left">
+                                                  {userData?.seats_chefs_table? userData?.seats_chefs_table: 0}{" "}seats left
+                                                </span>
+                                              </div>
+                                            </Box>
+                                          </>
                                         )}
-                                        
-
-                                      </Box>{" "}
+                                      </Box>
                                     </Form>
                                   )}
                                 </Box>
                               </Box>
-                            );
-                          })}
+                            )})}
                           <Button
                             type="submit"
                             className={selectedDate ? 'submit-request' : 'submit-request-disabled'}
@@ -1471,7 +1288,6 @@ const { setSupperClubDetailId, userData } = useContext(UsersContext);
                           >
                             Reserve a seat
                           </Button>
-                          <Box></Box>
                         </Box>
                       </Form>
                     )}
