@@ -142,7 +142,8 @@ const EventCard = () => {
             paddingBottom: '20px'
         },
         '.about-box': {
-            backgroundColor: '#DCD7CB'
+            backgroundColor: '#DCD7CB',
+            padding: "0 20px"
         },
         "@media (min-width: 1px) and (max-width:425px)": {
             '.heading': {
@@ -206,6 +207,7 @@ const EventCard = () => {
                     </Typography>
                     <Box className='about-box'>
                         <Typography className="heading-2">About the Chef</Typography>
+                        {/* here */}
                         <Box className='what-details'>
                             <Box className="sub-box-card">
                                 <img className="logo" src={party}/>
