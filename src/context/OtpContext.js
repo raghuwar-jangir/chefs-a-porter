@@ -200,16 +200,16 @@ const OtpProvider = (props) => {
               {
                 axios
                 .post(baseUrl + "/booking", {
-                  name: eventData.name,
-                  email: eventData.email,
+                  name: eventData?.name,
+                  email: eventData?.email,
                   mobile: otpNumber,
                   type: "chef_table",
-                  meal: priveeData.time ? priveeData.time : mealData && mealData?.[0].name,
+                  meal: priveeData?.time ? priveeData?.time : mealData && mealData?.[0].name,
                   diner_count: numberOfDinner,
                   courses: numberOfCourses,
-                  city: priveeData.city,
-                  booking_date: priveeData.date,
-                  booking_time: eventData.startTime,
+                  city: priveeData?.city,
+                  booking_date: priveeData?.date,
+                  booking_time: eventData?.startTime,
                   otp: verifyOtp,
                   common_menu: PaymentEventId,
                   common_address: {
