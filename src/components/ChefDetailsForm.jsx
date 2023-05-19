@@ -260,8 +260,9 @@ const ChefDetailsForm = () => {
       border: "0.25px solid #C6A87D",
       backgroundColor: "black",
       marginRight: "10px",
+      cursor: "Pointer"
     },
-
+    
     ".right-btn": {
       width: "24px",
       height: "24px",
@@ -269,7 +270,8 @@ const ChefDetailsForm = () => {
       color: "black",
       border: "0.25px solid #C6A87D",
       backgroundColor: "#C6A87D",
-      marginLeft: "10px",
+      // marginLeft: "10px",
+      cursor: "Pointer"
     },
 
     ".surprise-box": {
@@ -457,7 +459,7 @@ const ChefDetailsForm = () => {
                 </Box>
                 <Box className="sub-box-counter">
                   <label htmlFor="numberOfDinner" className="min-2-3">
-                    Number of Diners <span>(min 2)</span>
+                    Number of Diners <span>(min {dinersMinNumber})</span>
                   </label>
                   <Box>
                     <button
@@ -523,7 +525,7 @@ const ChefDetailsForm = () => {
 
                 <Box className="sub-box-counter">
                   <label htmlFor="numberOfCourses" className="min-2-3">
-                    Number of Courses <span>(min 3)</span>
+                    Number of Courses <span>(min {minCourseValue})</span>
                   </label>
                   <Box>
                     <button

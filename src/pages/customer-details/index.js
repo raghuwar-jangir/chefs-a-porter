@@ -1159,7 +1159,7 @@ const CustomerDetails = (props) => {
                                                                         returnFormat="DD/MMMM/YYYY"
                                                                         className="form-control"
                                                                         autoComplete="off"
-                                                                        placeholder="-DD/MM/YYYY-"
+                                                                        placeholder="DD/MM/YYYY"
                                                                         onChange={(dateString) => setFieldValue('date', dateString)}
                                                                         defaultValue={values.date}/>
                                                                     <Typography className="sp-occ ex-detail">We will
@@ -1178,7 +1178,7 @@ const CustomerDetails = (props) => {
                                                                         returnFormat="DD/MMMM/YYYY"
                                                                         autoComplete="off"
                                                                         className="form-control"
-                                                                        placeholder="-DD/MM/YYYY-"
+                                                                        placeholder="DD/MM/YYYY"
                                                                         onChange={(dateString) => setFieldValue('date1', dateString)}
                                                                         defaultValue={values.date1}/>
                                                                     <Typography className="sp-occ ex-detail">We will
@@ -1197,7 +1197,7 @@ const CustomerDetails = (props) => {
                                                                         returnFormat="DD/MMMM/YYYY"
                                                                         autoComplete="off"
                                                                         className="form-control"
-                                                                        placeholder="-DD/MM/YYYY-"
+                                                                        placeholder="DD/MM/YYYY"
                                                                         onChange={(dateString) => setFieldValue('date2', dateString)}
                                                                         defaultValue={values.date2}/>
                                                                     <Typography className="sp-occ ex-detail">We will
@@ -1242,7 +1242,7 @@ const CustomerDetails = (props) => {
                                                                         returnFormat="DD/MMMM/YYYY"
                                                                         autoComplete="off"
                                                                         className="form-control"
-                                                                        placeholder="-DD/MM/YYYY-"
+                                                                        placeholder="DD/MM/YYYY"
                                                                         onChange={(dateString) => setFieldValue('date3', dateString)}
                                                                         defaultValue={values.date3}/>
                                                                     <Typography className="sp-occ ex-detail">We will
