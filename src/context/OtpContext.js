@@ -274,7 +274,7 @@ const OtpProvider = (props) => {
                 event: sPaymentEventId,
                 meal: experienceNumberOfTime,
                 diner_count: experienceNumberOfSeats,
-                city: cityName ? cityName : commonCityData[0].name,
+                city: cityName ? cityName : commonCityData?.[0].name,
                 booking_date: experienceNumberOfDates,
                 common_menu: supperClubDetailId,
                 message: superClubBookingDetails?.AdditionalMessage,
