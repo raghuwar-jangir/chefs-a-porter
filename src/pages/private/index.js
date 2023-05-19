@@ -683,7 +683,7 @@ const PriveePage = (props) => {
                                         { !_.isEmpty(commonCityData) &&
                                             <Formik
                                                 initialValues={{
-                                                    city: commonCityData[0].name,
+                                                    city: commonCityData?.[0].name,
                                                     date: new Date(),
                                                     time: '',
                                                     diners: 1

@@ -812,7 +812,7 @@ const ScBookingSummary = () => {
                                                 <Box className="chef-profile-detail">
                                                     <img className="chef-profile-icon" src={dateGold}/>
                                                     <Typography className="chef-profile-date">
-                                                        {moment(supperClubPaymentData?.event?.dates[0]).format("MMMM D")} | {moment(supperClubPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
+                                                        {moment(supperClubPaymentData?.event?.dates?.[0]).format("MMMM D")} | {moment(supperClubPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
                                                     </Typography>
                                                 </Box>
                                                 <Box className="chef-profile-detail">

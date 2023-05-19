@@ -889,7 +889,7 @@ const HomePage = () => {
         }
     }, [data?.home])
 
-    const valueAtIndex2 = imageData[1];
+    const valueAtIndex2 = imageData?.[1];
     imageData.splice(1, 1);
     imageData.splice(2, 0, valueAtIndex2);
     const imgData = imageData.map(item => {
@@ -930,9 +930,9 @@ const HomePage = () => {
                                             {!_.isEmpty(commonCityData) &&
                                                 <Formik
                                                     initialValues={{
-                                                        city: commonCityData[0].name,
+                                                        city: commonCityData?.[0].name,
                                                         date: new Date(),
-                                                        time: mealData[0].name,
+                                                        time: mealData?.[0].name,
                                                         diners: 1
                                                     }}
                                                     onSubmit={(values) => {

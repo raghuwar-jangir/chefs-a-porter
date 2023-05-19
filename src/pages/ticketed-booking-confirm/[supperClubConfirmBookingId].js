@@ -1131,7 +1131,7 @@ const ScBookingConfirm = (props) => {
                                                 <Box className="chef-profile-detail">
                                                     <img className="chef-profile-icon" src={dateGold}/>
                                                     <Typography className="chef-profile-date">
-                                                        {moment(supperClubConfirmPaymentData?.event?.dates[0]).format("MMMM D")} | {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
+                                                        {moment(supperClubConfirmPaymentData?.event?.dates?.[0]).format("MMMM D")} | {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
                                                     </Typography>
                                                 </Box>
                                                 <Box className="chef-profile-detail">
@@ -1403,7 +1403,7 @@ const ScBookingConfirm = (props) => {
                                                 <Box className="chef-profile-detail">
                                                     <img className="chef-profile-icon" src={dateGold}/>
                                                     <Typography className="chef-profile-date">
-                                                        {moment(superClubPaymentData?.event?.dates[0]).format("MMMM D")} | {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
+                                                        {moment(superClubPaymentData?.event?.dates?.[0]).format("MMMM D")} | {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
                                                     </Typography>
                                                 </Box>
                                                 <Box className="chef-profile-detail">
@@ -1683,14 +1683,14 @@ const ScBookingConfirm = (props) => {
                                                     </div>
                                                     <div className="col-lg-12">
                                                         <div className="chef-edit">
-                                                            <img src={supperClubConfirmPaymentData?.event?.pictures[0]}
+                                                            <img src={supperClubConfirmPaymentData?.event?.pictures?.[0]}
                                                                  alt=""/>
                                                             <h5>{supperClubConfirmPaymentData?.event?.chef?.name}</h5>
                                                         </div>
                                                         <div className="chef-profile">
                                                             <div>
                                                                 <img src={dateGold} alt=""/>
-                                                                <span>{moment(supperClubConfirmPaymentData?.event?.dates[0]).format("MMMM D")} | {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}</span>
+                                                                <span>{moment(supperClubConfirmPaymentData?.event?.dates?.[0]).format("MMMM D")} | {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}</span>
                                                             </div>
                                                             <div>
                                                                 <img src={location} alt=""/>
@@ -1782,7 +1782,7 @@ const ScBookingConfirm = (props) => {
                                                             </div>
                                                             <div className="table-box">
                                                     <span className="table-box-span">
-                                                    {moment(supperClubConfirmPaymentData?.event?.dates[0]).format("MMMM D")} | {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
+                                                    {moment(supperClubConfirmPaymentData?.event?.dates?.[0]).format("MMMM D")} | {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
                                                     </span>
                                                             </div>
                                                             <div className="table-box">

@@ -16,7 +16,7 @@ const defaultState = {
 const OtpContext = React.createContext(defaultState)
 const OtpProvider = (props) => {
     const path = useLocation();
-    const currentPath = path.pathname.split("/")[1];
+    const currentPath = path.pathname.split("/")?.[1];
     const {data} = useContext(CmsContext);
     const {eventId, supperClubDetailId, commonCityData,mealData} = useContext(UsersContext);
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
@@ -145,7 +145,7 @@ const OtpProvider = (props) => {
                   email: eventData.email,
                   mobile: otpNumber,
                   type: "chef_table",
-                  meal: priveeData.time ? priveeData.time : mealData && mealData[0].name,
+                  meal: priveeData.time ? priveeData.time : mealData && mealData?.[0].name,
                   diner_count: numberOfDinner,
                   courses: numberOfCourses,
                   city: priveeData.city,
@@ -204,7 +204,7 @@ const OtpProvider = (props) => {
                   email: eventData.email,
                   mobile: otpNumber,
                   type: "chef_table",
-                  meal: priveeData.time ? priveeData.time : mealData && mealData[0].name,
+                  meal: priveeData.time ? priveeData.time : mealData && mealData?.[0].name,
                   diner_count: numberOfDinner,
                   courses: numberOfCourses,
                   city: priveeData.city,

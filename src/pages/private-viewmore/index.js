@@ -487,9 +487,9 @@ const PriveeViewMore = (props) => {
                                             !_.isEmpty(priveeInfo) &&
                                             <Formik
                                                 initialValues={{
-                                                    city: priveeInfo?.city ? priveeInfo?.city : commonCityData[0].name,
+                                                    city: priveeInfo?.city ? priveeInfo?.city : commonCityData?.[0].name,
                                                     on: moment(priveeInfo?.date).format('ddd,DD MMM') ? moment(priveeInfo?.date).format('ddd,DD MMM') : new Date(),
-                                                    time: priveeInfo?.time ? priveeInfo?.time : mealData[0].name,
+                                                    time: priveeInfo?.time ? priveeInfo?.time : mealData?.[0].name,
                                                     diners: priveeInfo?.diners
                                                 }}
                                                 onSubmit={(values) => {

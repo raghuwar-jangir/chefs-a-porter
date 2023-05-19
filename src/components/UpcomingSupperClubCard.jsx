@@ -117,7 +117,7 @@ const UpcomingSupperClubCard = () => {
                         }}
                              style={{cursor: 'pointer'}}>
                             <Box sx={{position: 'relative'}}>
-                                <img className='test-img' src={item.pictures[0]}/>
+                                <img className='test-img' src={item.pictures?.[0]}/>
                                 {
                                     item.status &&
                                     <Box className='trending'>
@@ -136,7 +136,7 @@ const UpcomingSupperClubCard = () => {
                                         <img className='img-tag' src={date} alt="date"/>
                                             {/*<Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography>*/}
                                             <Typography
-                                                className='tag-detail'>{moment(item.dates[0]).format("MMMM D")} | {moment(item.timefrom, 'HH:mm').format('h:mm A')} - {moment(item.timetill, 'HH:mm').format('h:mm A')}</Typography>
+                                                className='tag-detail'>{moment(item.dates?.[0]).format("MMMM D")} | {moment(item.timefrom, 'HH:mm').format('h:mm A')} - {moment(item.timetill, 'HH:mm').format('h:mm A')}</Typography>
                                     </span>
                                         <span className='chef-tag'>
                                         <img className='img-tag' src={tag} alt="Rates"/>

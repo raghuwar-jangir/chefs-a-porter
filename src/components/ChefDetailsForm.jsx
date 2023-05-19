@@ -81,8 +81,8 @@ const ChefDetailsForm = () => {
     const courseMaxMinData = userData?.prices.filter((item)=>{
       return value>=item.min_diner && value<= item.max_diner
     })
-    setMinCourseValue(courseMaxMinData[0].min_courses)
-    setMaxCourseValue(courseMaxMinData[0].max_courses)
+    setMinCourseValue(courseMaxMinData?.[0].min_courses)
+    setMaxCourseValue(courseMaxMinData?.[0].max_courses)
     console.log('courseMaxMinData',courseMaxMinData)
   }
 
