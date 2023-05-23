@@ -35,6 +35,18 @@ const ExperienceCarousel = (props) => {
         '.slider-box': {
             marginTop: '40px'
         },
+        ".swiper-button-prev, .swiper-button-next" : {
+            height: "100%",
+            background: "#0000008c",
+            top: "0",
+            padding: "0 10px",
+        },
+        ".swiper-button-prev" : {
+            left: "0"
+        },
+        ".swiper-button-next" : {
+            right: "0"
+        },
         ".swiper-slide": {
             width: '401px !important'
         },
@@ -70,7 +82,7 @@ const ExperienceCarousel = (props) => {
                         <Swiper
                             style={{
                                 "--swiper-navigation-color": "white",
-                                "--swiper-navigation-size": "17px",
+                                "--swiper-navigation-size": "30px",
                             }}
                             loop={true}
                             slidesPerView={4}

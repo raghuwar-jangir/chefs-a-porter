@@ -1293,7 +1293,7 @@ const { setSupperClubDetailId, userData } = useContext(UsersContext);
                     )}
                   </Formik>
                   <SupperClubTreatyComponent
-                    padding={"40px 16px"}
+                    padding={"40px 0"}
                     subTitle="Give the gift of an unforgettable food experience"
                   />
                 </Grid>

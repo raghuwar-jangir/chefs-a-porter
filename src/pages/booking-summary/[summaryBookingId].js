@@ -1178,15 +1178,15 @@ const BookingSummary = (props) => {
                             </Box>
                             <Box className="contact">
                               <Box className="form-check">
-                                <Checkbox
+                                {/* <Checkbox
                                   className="input-check"
                                   defaultChecked
-                                />
+                                /> */}
                                 <label
                                   className="form-check-label"
                                   for="flexCheckDefault"
                                 >
-                                  Enter GSTIN for tax benefits (Optional)
+                                  Enter your GST information (Optional)
                                 </label>
                                 <KeyboardArrowRightIcon
                                   data-bs-toggle="modal"
@@ -1676,15 +1676,15 @@ const BookingSummary = (props) => {
                             </Box>
                             <Box className="contact">
                               <Box className="form-check">
-                                <Checkbox
+                                {/* <Checkbox
                                   className="input-check"
                                   defaultChecked
-                                />
+                                /> */}
                                 <label
                                   className="form-check-label"
                                   for="flexCheckDefault"
                                 >
-                                  Enter GSTIN for tax benefits (Optional)
+                                  Enter your GST information (Optional)
                                 </label>
                                 <KeyboardArrowRightIcon
                                   data-bs-toggle="modal"

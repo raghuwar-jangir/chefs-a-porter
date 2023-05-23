@@ -252,21 +252,24 @@ const FoodCarousel = (isButtonShow) => {
                                     <Box className='supper-info'>
                                         <Typography className='super-title'>{item.title}</Typography>
                                         <Box className='super-chef-details'>
-                                    <span className='chef-tag'>
-                                        <img className='img-tag' src={cap} alt="chef cap"/>
-                                        <Typography className='tag-detail'>{`Chef ${item.chef.name}`}</Typography>
-                                    </span>
                                             <span className='chef-tag'>
-                                        <img className='img-tag' src={date} alt="date"/>
+                                                <img className='img-tag' src={cap} alt="chef cap"/>
+                                                <Typography className='tag-detail'>{`Chef ${item.chef.name}`}</Typography>
+                                            </span>
+                                            <span className='chef-tag'>
+                                                {/* here */}
+                                                <img className='img-tag' src={date} alt="date"/>
                                                 {/*<Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography>*/}
-                                                <Typography
-                                                    className='tag-detail'>{moment(item.dates?.[0]).format("MMMM D")} | {moment(item.timefrom, 'HH:mm').format('h:mm A')} - {moment(item.timetill, 'HH:mm').format('h:mm A')}</Typography>
-                                    </span>
+                                                <Typography className='tag-detail'>
+                                                    {moment(item.new_dates?.[0]?.date).format("MMMM D")} | {moment(item.new_dates?.[0]?.from, 'HH:mm').format('h:mm A')} - {moment(item.new_dates?.[0]?.to, 'HH:mm').format('h:mm A')}
+                                                </Typography>
+                                            </span>
                                             <span className='chef-tag'>
-                                        <img className='img-tag' src={tag} alt="Rates"/>
-                                        <Typography
-                                            className='tag-detail'><b>{`₹${item.price}`}</b>/per diner</Typography>
-                                    </span>
+                                                <img className='img-tag' src={tag} alt="Rates"/>
+                                                <Typography className='tag-detail'>
+                                                    <b>{`₹${item.price}`}</b>/per diner
+                                                </Typography>
+                                            </span>
                                         </Box>
                                     </Box>
                                 </SwiperSlide>

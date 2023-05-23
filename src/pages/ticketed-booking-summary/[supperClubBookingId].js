@@ -878,18 +878,18 @@ const ScBookingSummary = () => {
                                         </Box>
                                         <Box className="gst-block">
                                             <Box className="form-check">
-                                                <Checkbox className="input-check" defaultChecked/>
+                                                {/* <Checkbox className="input-check" defaultChecked/> */}
                                                 <label
                                                     className="form-check-label"
                                                     for="flexCheckDefault"
                                                 >
-                                                    Enter GSTIN for tax benefits (Optional)
+                                                    Enter your GST information (Optional)
                                                 </label>
-                                                <KeyboardArrowRightIcon data-bs-toggle="modal"
-                                                                        data-bs-target="#exampleModal"
-                                                                        onClick={handleOpen} className="forward-arrow"/>
-
-                                                
+                                                <KeyboardArrowRightIcon 
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal"
+                                                    onClick={handleOpen} className="forward-arrow"
+                                                />
                                                 <hr className="hr" />
                                             </Box>
                                         </Box>

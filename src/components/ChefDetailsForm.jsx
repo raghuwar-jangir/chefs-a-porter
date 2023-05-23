@@ -364,18 +364,12 @@ const ChefDetailsForm = () => {
             }}
             validationSchema={validationSchema}
             onSubmit={(values) => {
-              values.experienceDate = new Date(values.experienceDate?.toUTCString())?.toISOString()
+              values.experienceDate = typeof values.experienceDate === 'string' ? values.experienceDate : (typeof values.experienceDate === 'object' ? new Date(values.experienceDate?.toUTCString())?.toISOString() : new Date().toISOString())
               values.date = values.experienceDate
               Cookies.set("eventData", JSON.stringify(values));
               Cookies.set('priveeData', JSON.stringify(values));
-              Cookies.set(
-                "eventDinners",
-                JSON.stringify(values?.numberOfDinner)
-              );
-              Cookies.set(
-                "eventCourses",
-                JSON.stringify(values?.numberOfCourses)
-              );
+              Cookies.set("eventDinners",JSON.stringify(values?.numberOfDinner));
+              Cookies.set("eventCourses",JSON.stringify(values?.numberOfCourses));
               if (!_.isEmpty(values)) {
                 navigate("/customer-details");
               }

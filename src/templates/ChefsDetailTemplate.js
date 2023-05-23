@@ -136,6 +136,7 @@ const ChefsDetailTemplate = (props) => {
         },
         "#pills-home": {
             background: "#DCD7CB",
+            padding: "0 10px"
         },
         ".about-chef-heading": {
             fontFamily: "Bon Vivant",
@@ -149,13 +150,12 @@ const ChefsDetailTemplate = (props) => {
             paddingTop: "20px",
         },
         ".about-chef-details": {
-            fontfamily: "Proxima Nova",
-            fontStyle: "normal",
-            fontWeight: "300",
-            color: "#080B0E",
-            marginLeft: "10px",
-            fontSize: "16px",
-            lineHeight: "19px !important",
+            fontFamily: 'Bon Vivant',
+            fontWeight: '100',
+            fontSize: "20px",
+            lineHeight: "24px",
+            marginLeft: '10px',
+            color: '#080B0E'
         },
         ".about-chef-icon": {
             width: "24px",
@@ -169,14 +169,14 @@ const ChefsDetailTemplate = (props) => {
             alignItems: "center",
         },
         ".read-more": {
-            fontFamily: "Proxima Nova",
-            fontStyle: "normal",
+            fontFamily: 'Proxima Nova Alt',
             fontWeight: 300,
             fontSize: "16px",
-            lineHeight: "19px !important",
+            lineHeight: "24px",
             color: "#080B0E",
-            margin: "0px 16px",
-            paddingBottom: "40px",
+            padding: '12px 12px 0px 0px',
+            marginLeft: '16px',
+            paddingBottom: "45px"
         },
         ".all-photos": {
             position: "absolute",
@@ -211,7 +211,7 @@ const ChefsDetailTemplate = (props) => {
             fontWeight: "700",
             float:"left",
             width:"100%",
-            fontFamily: "Proxima Nova",
+            fontFamily: 'Proxima Nova Alt',
         },
         ".treat": {
             padding: "40px 20px",
@@ -241,7 +241,7 @@ const ChefsDetailTemplate = (props) => {
             fontSize: "15px",
             lineHeight: "24px",
             color: "#FBFBFB",
-            fontFamily: "Proxima Nova",
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: "normal",
         },
         ".surprise-Box": {
@@ -252,7 +252,7 @@ const ChefsDetailTemplate = (props) => {
             fontSize: "16px",
             lineHeight: "19px",
             color: "#FBFBFB",
-            fontFamily: "Proxima nova",
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: "normal",
             letterSpacing: "0.06em",
             marginBottom: "8px",
@@ -266,7 +266,7 @@ const ChefsDetailTemplate = (props) => {
             fontSize: "16px",
             lineHeight: "19px",
             color: "#FBFBFB",
-            fontFamily: "Proxima nova",
+            fontFamily: 'Proxima Nova Alt',
             fontStyle: "normal",
             letterSpacing: "0.06em",
             marginBottom: "40px",
@@ -425,6 +425,10 @@ const ChefsDetailTemplate = (props) => {
             ".view-all-gallery": {
                 marginBottom: "40px",
             },
+            ".about-chef-details":{
+                fontSize: "16px",
+                lineHeight: "19px",
+            }
         },
         "@media(min-width: 700px) and (max-width: 768px)": {
             ".bm-burger-bars": {
@@ -680,7 +684,8 @@ const ChefsDetailTemplate = (props) => {
                                                                     className="about-chef-icon"
                                                                     alt=""
                                                                 />
-                                                                <Typography className="about-chef-details">
+                                                                {/* here */}
+                                                                <Typography className="about-chef-details field-name">
                                                                     Fun facts:{" "}
                                                                     <b>{userData?.details?.fun_fact}</b>
                                                                 </Typography>
@@ -691,7 +696,7 @@ const ChefsDetailTemplate = (props) => {
                                                                     className="about-chef-icon"
                                                                     alt=""
                                                                 />
-                                                                <Typography className="about-chef-details">
+                                                                <Typography className="about-chef-details field-name">
                                                                     Worked at:{" "}
                                                                     <b>{userData?.details?.worked_at}</b>
                                                                 </Typography>
@@ -702,7 +707,7 @@ const ChefsDetailTemplate = (props) => {
                                                                     className="about-chef-icon"
                                                                     alt=""
                                                                 />
-                                                                <Typography className="about-chef-details">
+                                                                <Typography className="about-chef-details field-name">
                                                                     Culinary School:{" "}
                                                                     <b>{userData?.details?.culinary_school}</b>
                                                                 </Typography>
@@ -713,7 +718,7 @@ const ChefsDetailTemplate = (props) => {
                                                                     className="about-chef-icon"
                                                                     alt=""
                                                                 />
-                                                                <Typography className="about-chef-details">
+                                                                <Typography className="about-chef-details field-name">
                                                                     Trained under:{" "}
                                                                     <b>{userData?.details?.trained_under}</b>
                                                                 </Typography>
@@ -726,7 +731,7 @@ const ChefsDetailTemplate = (props) => {
                                                                 readMoreClassName="read-more-less--more"
                                                                 readLessClassName="read-more-less--less"
                                                                 style={{
-                                                                    fontFamily: "Proxima Nova",
+                                                                    fontFamily: 'Proxima Nova Alt',
                                                                     fontStyle: "normal",
                                                                     // fontWeight: 300,
                                                                     fontSize: "16px",
