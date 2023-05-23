@@ -7,6 +7,8 @@ import CmsContext from "./CmsContext";
 import UsersContext from "./UsersContext";
 import {navigate} from "gatsby";
 import { ToastContainer, toast } from 'react-toastify';
+import moment from 'moment';
+
 const defaultState = {
     data: {},
     toggleDark: () => {
@@ -145,11 +147,11 @@ const OtpProvider = (props) => {
                   email: eventData.email,
                   mobile: otpNumber,
                   type: "chef_table",
-                  meal: priveeData.time ? priveeData.time : mealData && mealData?.[0].name,
+                  meal: priveeData?.time ? priveeData?.time : mealData && mealData?.[0].name,
                   diner_count: numberOfDinner,
                   courses: numberOfCourses,
-                  city: priveeData.city,
-                  booking_date: priveeData.date,
+                  city: priveeData?.city ? priveeData?.city : (eventData?.city ? eventData?.city : "Bengaluru"),
+                  booking_date: priveeData?.date ? priveeData?.date : moment(_.get(eventData, 'date'))?.toISOString(),
                   booking_time: eventData.startTime,
                   otp: verifyOtp,
                   common_menu: PaymentEventId,

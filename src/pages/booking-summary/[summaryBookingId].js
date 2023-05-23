@@ -1169,15 +1169,9 @@ const BookingSummary = (props) => {
                                 </Typography>
                                 <KeyboardArrowDownIcon className="drop-down" />
                                 <ul className="exp-ul">
-                                  <li className="exp-li">Service Includes</li>
-                                  <li className="exp-li">Service Excludes</li>
-                                  <li className="exp-li">
-                                    Table set upincludes
-                                  </li>
-                                  <li className="exp-li">
-                                    Confirm Details before proceeding to pay
-                                  </li>
-                                  <li className="exp-li">Decor not included</li>
+                                  {eventData?.important_info?.map((info,idx) => (
+                                    <li key={idx} className="exp-li">{info}</li>
+                                  ))}
                                 </ul>
                                 <hr className="hr" />
                               </Box>

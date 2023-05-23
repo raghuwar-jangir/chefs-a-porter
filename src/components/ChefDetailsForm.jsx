@@ -365,8 +365,9 @@ const ChefDetailsForm = () => {
             validationSchema={validationSchema}
             onSubmit={(values) => {
               values.experienceDate = new Date(values.experienceDate.toUTCString()).toISOString()
-              console.log("####JSON.stringify(values)",values,)
+              values.date = values.experienceDate
               Cookies.set("eventData", JSON.stringify(values));
+              Cookies.set('priveeData', JSON.stringify(values));
               Cookies.set(
                 "eventDinners",
                 JSON.stringify(values?.numberOfDinner)

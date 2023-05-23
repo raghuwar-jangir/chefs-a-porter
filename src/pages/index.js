@@ -404,6 +404,7 @@ const BoxWrapper = styled(Box)((props) => ({
         fontSize: '16px',
         lineHeight: '20px',
         color: '#080B0E',
+        width: '80%',
         marginBottom: '20px',
     },
     '.supper-card-link': {
@@ -1197,12 +1198,17 @@ const HomePage = () => {
                             <Box className="supper-desktop">
                                 <Box className="row">
                                     <Box className="supper-details">
-                                        <Typography
-                                            className="supper-card-title">{data.home.booking_types.supper_club.title}</Typography>
-                                        <Typography
-                                            className='supper-card-details'>{data.home.booking_types.supper_club.description}</Typography>
-                                        <Typography><Link href="/ticketed"
-                                                          className="supper-card-link">{data.home.booking_types.supper_club.button_text}</Link></Typography>
+                                        <Typography className="supper-card-title">
+                                            {data.home.booking_types.supper_club.title}
+                                        </Typography>
+                                        <Typography className='supper-card-details'>
+                                            {data.home.booking_types.supper_club.description}
+                                        </Typography>
+                                        <Typography>
+                                            <Link href="/ticketed" className="supper-card-link">
+                                                {data.home.booking_types.supper_club.button_text}
+                                            </Link>
+                                        </Typography>
                                     </Box>
                                     <Box className="privee-video">
                                         <img src={data.home.booking_types.supper_club.image} className='video'/>
