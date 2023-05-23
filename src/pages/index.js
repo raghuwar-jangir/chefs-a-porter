@@ -536,7 +536,7 @@ const BoxWrapper = styled(Box)((props) => ({
         display: 'flex',
         justifyContent: 'center',
         background: ' #DCD7CB',
-        padding: '80px 120px'
+        padding: '80px 80px'
     },
     '.treaty-card': {
         display: "flex",
@@ -1256,8 +1256,8 @@ const HomePage = () => {
                                 </Grid>
                             </Box>
                             <Box className="treat">
-                                <Grid className="treaty-card row">
-                                    <Grid className="treat-card" xl={4} lg={4} xs={4} md={4} sm={12} xs={12}>
+                                <Grid container className="treaty-card row" >
+                                    <Grid item className="" xl={4} lg={6}>
                                         <Treaty
                                             treatTitle={`#${data.home.gift.gift.hashtag}`}
                                             mainTitle={data.home.gift.gift.title}
@@ -1266,7 +1266,7 @@ const HomePage = () => {
                                             button_text={data.home.gift.gift.button_text}
                                         />
                                     </Grid>
-                                    <Grid className="treat-card" xl={4} lg={4} xs={4} md={4} sm={12} xs={12}>
+                                    <Grid item className="" xl={4} lg={6}>
                                         <Treaty
                                             treatTitle={`#${data.home.gift.patron.hashtag}`}
                                             mainTitle={data.home.gift.patron.title}
@@ -1275,7 +1275,7 @@ const HomePage = () => {
                                             button_text={data.home.gift.patron.button_text}
                                         />
                                     </Grid>
-                                    <Grid className="treat-card" xl={4} lg={4} xs={4} md={4} sm={12} xs={12}>
+                                    <Grid item className="" xl={4} lg={6}>
                                         <Treaty
                                             treatTitle={`#${data.home.gift.duchchef.hashtag}`}
                                             mainTitle={data.home.gift.duchchef.title}

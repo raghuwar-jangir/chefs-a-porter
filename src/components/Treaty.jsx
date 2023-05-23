@@ -35,7 +35,7 @@ const Treaty = (props) => {
             fontWeight: '300',
             lineHeight: '26px',
             color: '#080B0E',
-            height: '26px',
+            height: '50px',
             marginBottom: '13px',
         },
         ".btn": {
@@ -103,7 +103,7 @@ const Treaty = (props) => {
         },
         '@media(min-width: 1100px) and (max-width: 1450px)': {
             '.sub-div': {
-                width: '550px'
+                // width: '550px'
             }
         },
     }))
