@@ -53,8 +53,8 @@ const ChefDetailsForm = () => {
     dinersMinData} = useContext(UsersContext);
 
     const [dinersValue, setDinersValue] = useState(dinersMinNumber);
-    const [minCourseValue, setMinCourseValue] = useState(dinersMinData['min_courses']);
-    const [maxCourseValue, setMaxCourseValue] = useState(dinersMinData['max_courses']);
+    const [minCourseValue, setMinCourseValue] = useState(dinersMinData?.['min_courses']);
+    const [maxCourseValue, setMaxCourseValue] = useState(dinersMinData?.['max_courses']);
 
     
 
