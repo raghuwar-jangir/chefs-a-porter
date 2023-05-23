@@ -340,7 +340,7 @@ const ChefDetailsForm = () => {
         <BoxWrapper>
           <Typography className="sub-text-price">
             Starting at ₹{userData?.price_per_course * userData?.min_course}{" "}
-            <sub className="sub-text">Per Diner</sub>
+            <sub className="sub-text">Per Course & Per Diner </sub>
           </Typography>
 
           <Formik
