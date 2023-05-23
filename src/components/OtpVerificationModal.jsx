@@ -39,9 +39,10 @@ const OtpVerificationModal = (props) => {
             setEventData(JSON.parse(cookieValue));
         }
         // if(errorMessage && errorMessage!==''){
-           
         // }
-        console.log('errorMessage in otp file',errorMessage)
+        if(errorMessage){
+            console.log('errorMessage in otp file',errorMessage)
+        }
     }, [cookieValue])
 
     //otp timer
