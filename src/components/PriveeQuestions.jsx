@@ -70,6 +70,7 @@ const PriveeQuestions = ({isLightTheme = false}) => {
             fontVariant: 'normal',
             lineHeight: '1.5',
             fontSize: '1rem',
+            padding: "0 20px"
         },
         '.frequently-ans': {
             fontStyle: 'normal',
@@ -135,10 +136,12 @@ const PriveeQuestions = ({isLightTheme = false}) => {
                                                 // expandIcon={<AddIcon sx={{ color: '#fff' }} />}
                                                               expandIcon={expanded === `panel${index}` ?
                                                                   <RemoveIcon sx={{
-                                                                      color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
-                                                                  }}/> : <AddIcon sx={{
-                                                                      fontSize: '19px',
-                                                                      color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`
+                                                                      color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`,
+                                                                      padding: "20px"
+                                                                    }}/> : <AddIcon sx={{
+                                                                        fontSize: '19px',
+                                                                        color: `${isLightTheme ? '#080B0E' : '#FBFBFB'}`,
+                                                                        padding: "20px"
                                                                   }}/>}
                                                               aria- controls="panel1a-content"
                                                               id="panel1a-header"
