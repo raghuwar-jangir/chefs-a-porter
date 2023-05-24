@@ -76,7 +76,8 @@ const CardChefComponent = ({bgColor}) => {
         '.read-more-less--more': {
             display: 'block',
             fontFamily: 'ProximaNovaA-Regular',
-            fontWeight: 700
+            fontWeight: 700,
+            cursor: "pointer"
         },
         '.read-more-less--less': {
             display: 'block',

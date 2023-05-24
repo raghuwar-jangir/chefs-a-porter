@@ -1089,9 +1089,9 @@ const GiftCards = () => {
                             <Box className="container-fluid">
                                 <Formik
                                     initialValues={{
-                                        name: "sana",
-                                        email: "kachwallasana@gmail.com",
-                                        contactNumber: "8794561230",
+                                        name: "",
+                                        email: "",
+                                        contactNumber: "",
                                         giftCardAmount: "",
                                         receiverMessage: "",
                                         occassionMessage1: "",

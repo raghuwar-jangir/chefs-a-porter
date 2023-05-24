@@ -255,7 +255,7 @@ const Footer = () => {
                                                            fontWeight: '300',
                                                            fontSize: '14px',
                                                            lineHeight: '25px',
-                                                           color: '#BDBDBD',
+                                                           color: '#000000',
                                                            padding: '8px 14px'
                                                        }
                                                    }}

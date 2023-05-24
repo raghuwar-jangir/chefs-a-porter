@@ -72,7 +72,7 @@ const EventCard = () => {
             whiteSpace: 'nowrap'
         },
         ".field-name-2": {
-            fontFamily: 'Proxima Nova Alt',
+            fontFamily: 'Bon Vivant',
             fontWeight: 600,
             fontSize: "16px",
             lineHeight: "19px",
@@ -119,24 +119,28 @@ const EventCard = () => {
             color: "#C6A87D",
             fontWeight: '700 !important',
             fontFamily: 'ProximaNovaA-Regular',
+            cursor: "pointer"
         },
         '.read-more-less--less': {
             display: 'block',
             color: "#C6A87D",
             fontWeight: '700 !important',
             fontFamily: 'ProximaNovaA-Regular',
+            cursor: "pointer"
         },
         '.read-more-less--more-2': {
             display: 'block',
             color: "#080B0E",
             fontWeight: '700 !important',
             fontFamily: 'ProximaNovaA-Regular',
+            cursor: "pointer"
         },
         '.read-more-less--less-2': {
             display: 'block',
             color: "#080B0E",
             fontWeight: '700 !important',
             fontFamily: 'ProximaNovaA-Regular',
+            cursor: "pointer"
         },
         '.what-details': {
             paddingBottom: '20px'

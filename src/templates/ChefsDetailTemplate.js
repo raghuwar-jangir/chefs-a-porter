@@ -211,7 +211,8 @@ const ChefsDetailTemplate = (props) => {
             fontWeight: "700",
             float:"left",
             width:"100%",
-            fontFamily: 'Proxima Nova Alt',
+            fontFamily: 'ProximaNovaA-Regular',
+            cursor: "pointer"
         },
         ".treat": {
             padding: "40px 20px",
