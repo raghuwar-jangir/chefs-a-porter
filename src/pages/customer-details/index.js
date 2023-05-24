@@ -1007,8 +1007,7 @@ const CustomerDetails = (props) => {
                                                                 <ErrorMessage name='address' component="div"
                                                                               className="error"/> */}
                                                                 <Typography className="alternative">
-                                                                  Enter your address 
-                                                                  <span onClick={handleOpen}>Venues</span></Typography>
+                                                                  Enter your <span onClick={handleOpen}>address</span></Typography>
                                                                 
                                                             </Box>
                                                         </Grid>
