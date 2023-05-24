@@ -1277,24 +1277,24 @@ const ScBookingConfirm = (props) => {
                                                                     className="table-details table-details-pt">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubConfirmPaymentData?.payment?.sub_total)}</Typography>
                                                             </Box>
                                                             {
-                                                                supperClubConfirmPaymentData?.payment?.discount &&  (
+                                                                supperClubConfirmPaymentData?.payment?.discount ?  (
                                                                         <Box className="table-box">
                                                                             <Typography
                                                                                 className="table-details">Discount</Typography>
                                                                             <Typography
                                                                                 className="table-details">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(supperClubConfirmPaymentData?.payment?.discount)}</Typography>
                                                                         </Box>
-                                                                )
+                                                                ) : null
                                                             }
                                                             {
-                                                                supperClubConfirmPaymentData?.payment?.voucher && (
+                                                                supperClubConfirmPaymentData?.payment?.voucher ? (
                                                                         <Box className="table-box">
                                                                             <Typography
                                                                                 className="table-details">Voucher</Typography>
                                                                             <Typography
                                                                                 className="table-details">{supperClubConfirmPaymentData?.payment?.voucher}</Typography>
                                                                         </Box>
-                                                                )
+                                                                ) : null
                                                             }
                                                         </Box>
                                                         <Box className="table-box">
