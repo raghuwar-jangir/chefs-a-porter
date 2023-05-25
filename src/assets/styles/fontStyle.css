@@ -1,13 +1,13 @@
 @font-face {
-    font-family: "BonVivant-Regular";
-    src: url("../fonts/BonVivant-Regular.ttf") format('truetype');
-    font-display: swap;
+  font-family: 'BonVivant-Regular';
+  src: url('../fonts/BonVivant-Regular.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
-    font-family: "Bon Vivant";
-    src: url("../fonts/BonVivantSerif.ttf") format('truetype');
-    font-display: swap;
+  font-family: 'Bon Vivant';
+  src: url('../fonts/BonVivantSerif.ttf') format('truetype');
+  font-display: swap;
 }
 
 /*@font-face {
@@ -17,43 +17,47 @@
 }
 */
 @font-face {
-    font-family: "ProximaNovaA-Regular";
-    src: url("../fonts/ProximaNovaA-Regular.ttf") format('truetype');
-    font-display: swap;
+  font-family: 'ProximaNovaA-Regular';
+  src: url('../fonts/ProximaNovaA-Regular.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
-    font-family: "Proxima Nova Alt";
-    src: url("../fonts/ProximaNovaA-Light.ttf") format('truetype');
-    font-display: swap;
+  font-family: 'Proxima Nova Alt';
+  src: url('../fonts/ProximaNovaA-Light.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
-    font-family: "Proxima Nova Alt Bold";
-    src: url("../fonts/ProximaNovaA-Bold.ttf") format('truetype');
-    font-display: swap;
+  font-family: 'Proxima Nova Alt Bold';
+  src: url('../fonts/ProximaNovaA-Bold.ttf') format('truetype');
+  font-display: swap;
 }
 @media print {
-    body {
-      visibility: hidden;
-    }
-    #section-to-print {
-      visibility: visible;
-      position: absolute;
-      left: 0;
-      top: 0;
-    }
+  body {
+    visibility: hidden;
   }
-
-.sub-box-counter input[type=number] { 
-    text-align: center;
-    padding:0px 3px !important;
+  #section-to-print {
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 }
 
-.sub-box-counter input[type=number]::-webkit-inner-spin-button, 
-.sub-box-counter input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: 0; 
+.sub-box-counter input[type='number'] {
+  text-align: center;
+  padding: 0px 3px !important;
+}
+
+.sub-box-counter input[type='number']::-webkit-inner-spin-button,
+.sub-box-counter input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.home_ticketed_chef .swiper-wrapper {
+  justify-content: center;
 }

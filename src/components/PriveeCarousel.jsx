@@ -22,8 +22,7 @@ const MainParent = styled(Box)({
     lineHeight: '24px',
     fontFamily: 'Bon Vivant',
     fontStyle: 'normal',
-    fontWeight: '400',
-    fontSize: '24px',
+    fontWeight: '600',
     letterSpacing: '0.06em',
     color: '#FBFBFB',
     marginBottom: '18px',
@@ -238,7 +237,9 @@ const PriveeCarousel = (props, { title, subTitle, isButtonShow = true }) => {
           <Box className="continue-browsing-box">
             <Box className="btn-view">
               <Box>
-                <Typography className="main-heading mt-0">{data.home.chefs_private_dining.title}</Typography>
+                <Typography className="main-heading mt-0">
+                  {data.home.chefs_private_dining.title}
+                </Typography>
               </Box>
               <Box>
                 {isMobile ? (
@@ -313,13 +314,17 @@ const PriveeCarousel = (props, { title, subTitle, isButtonShow = true }) => {
                       </Box>
                     )}
                     <Box className="name-box">
-                      <Typography className="chef-title">{item.name}</Typography>
+                      <Typography className="chef-title">
+                        {item.name}
+                      </Typography>
                       <Box className="chef-details">
                         {item.details.tags.map((tagsItem, index) => {
                           return (
                             <span>
                               {tagsItem}
-                              {index !== item.details.tags.length - 1 && <span className="line">|</span>}
+                              {index !== item.details.tags.length - 1 && (
+                                <span className="line">|</span>
+                              )}
                             </span>
                           );
                         })}
