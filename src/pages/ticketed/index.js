@@ -155,8 +155,13 @@ const SupperClub = () => {
             "0%": { opacity: "0" },
             "100%": { opacity: "1" },
         },
+        ".tab-container": {
+            borderRadius: 0,
+            marginBottom: "15px"
+        },
         ".tab-box": {
             height: "48px",
+            margin: "0px"
         },
         ".css-130r91k-JoyTabList-root": {
             gridGap: "20px !important",
@@ -166,6 +171,7 @@ const SupperClub = () => {
         },
         ".cooking-tab": {
             height: "67.8px",
+            margin: "0px"
         },
         ".what-we-cooking": {
             background: "#C2BAA6",
@@ -384,10 +390,9 @@ const SupperClub = () => {
                                     sx={{ "--Tabs-gap": "0px", backgroundColor: "#C2BAA6" }}
                                     onChange={handleTabChange}
                                 >
-                                    <TabList>
+                                    <TabList className="tab-container">
                                         {tabData.map((tab) => (
                                             <Tab key={tab.id} className="tab-box" value={tab.id}>
-                                                {" "}
                                                 {tab.label}
                                             </Tab>
                                         ))}
@@ -400,7 +405,7 @@ const SupperClub = () => {
                                                 backgroundColor: "transparent",
                                             }}
                                         >
-                                            <TabList>
+                                            <TabList className="tab-container">
                                                 <Tab className="cooking-tab" value={0}>
                                                     This Week
                                                     <Typography className="tab-sec">{formatWeek(startOfWeek, endOfWeek)}</Typography>

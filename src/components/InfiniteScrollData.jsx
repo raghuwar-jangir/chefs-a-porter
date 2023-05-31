@@ -11,7 +11,7 @@ const InfiniteScrollData = ({allData, pagelimit=9})=>{
     const [hasMore, setHasMore] = useState(allData.length > 10);
     const loadRef = useRef();
     const handleObserver = (entities) => {
-        const target = entities[0];
+        const target = entities?.[0];
         if (target.isIntersecting) {
           setLoadMore(true);
         }

@@ -28,7 +28,7 @@ const CmsProvider = (props) => {
 
     const path = useLocation();
 
-    const currentPath = path.pathname.split("/")[1];
+    const currentPath = path.pathname.split("/")?.[1];
 
     const baseUrl = `https://chefv2.hypervergedemo.site/v1/cms`;
 

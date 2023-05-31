@@ -144,7 +144,7 @@ const SupperClubDetailsPastCarousel = (props) => {
                             return (
                                 <>
                                     <SwiperSlide className="swiper-slide supper-details-box">
-                                        <img className="supper-img" src={item.pictures}/>
+                                        <img className="supper-img" src={ Array.isArray(item.pictures) ? item.pictures[0] : item.pictures}/>
                                         <Box>
                                             <Typography className="chef-name">{item.title}</Typography>
                                             <Typography className="chef-details">

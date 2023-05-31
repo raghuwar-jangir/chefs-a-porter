@@ -53,8 +53,8 @@ const ChefDetailsForm = () => {
     dinersMinData} = useContext(UsersContext);
 
     const [dinersValue, setDinersValue] = useState(dinersMinNumber);
-    const [minCourseValue, setMinCourseValue] = useState(dinersMinData['min_courses']);
-    const [maxCourseValue, setMaxCourseValue] = useState(dinersMinData['max_courses']);
+    const [minCourseValue, setMinCourseValue] = useState(dinersMinData?.['min_courses']);
+    const [maxCourseValue, setMaxCourseValue] = useState(dinersMinData?.['max_courses']);
 
     
 
@@ -81,8 +81,8 @@ const ChefDetailsForm = () => {
     const courseMaxMinData = userData?.prices.filter((item)=>{
       return value>=item.min_diner && value<= item.max_diner
     })
-    setMinCourseValue(courseMaxMinData[0].min_courses)
-    setMaxCourseValue(courseMaxMinData[0].max_courses)
+    setMinCourseValue(courseMaxMinData?.[0].min_courses)
+    setMaxCourseValue(courseMaxMinData?.[0].max_courses)
     console.log('courseMaxMinData',courseMaxMinData)
   }
 
@@ -260,8 +260,9 @@ const ChefDetailsForm = () => {
       border: "0.25px solid #C6A87D",
       backgroundColor: "black",
       marginRight: "10px",
+      cursor: "Pointer"
     },
-
+    
     ".right-btn": {
       width: "24px",
       height: "24px",
@@ -269,7 +270,8 @@ const ChefDetailsForm = () => {
       color: "black",
       border: "0.25px solid #C6A87D",
       backgroundColor: "#C6A87D",
-      marginLeft: "10px",
+      // marginLeft: "10px",
+      cursor: "Pointer"
     },
 
     ".surprise-box": {
@@ -362,15 +364,12 @@ const ChefDetailsForm = () => {
             }}
             validationSchema={validationSchema}
             onSubmit={(values) => {
+              values.experienceDate = typeof values.experienceDate === 'string' ? values.experienceDate : (typeof values.experienceDate === 'object' ? new Date(values.experienceDate?.toUTCString())?.toISOString() : new Date().toISOString())
+              values.date = values.experienceDate
               Cookies.set("eventData", JSON.stringify(values));
-              Cookies.set(
-                "eventDinners",
-                JSON.stringify(values?.numberOfDinner)
-              );
-              Cookies.set(
-                "eventCourses",
-                JSON.stringify(values?.numberOfCourses)
-              );
+              Cookies.set('priveeData', JSON.stringify(values));
+              Cookies.set("eventDinners",JSON.stringify(values?.numberOfDinner));
+              Cookies.set("eventCourses",JSON.stringify(values?.numberOfCourses));
               if (!_.isEmpty(values)) {
                 navigate("/customer-details");
               }
@@ -457,7 +456,7 @@ const ChefDetailsForm = () => {
                 </Box>
                 <Box className="sub-box-counter">
                   <label htmlFor="numberOfDinner" className="min-2-3">
-                    Number of Diners <span>(min 2)</span>
+                    Number of Diners <span>(min {dinersMinNumber})</span>
                   </label>
                   <Box>
                     <button
@@ -523,7 +522,7 @@ const ChefDetailsForm = () => {
 
                 <Box className="sub-box-counter">
                   <label htmlFor="numberOfCourses" className="min-2-3">
-                    Number of Courses <span>(min 3)</span>
+                    Number of Courses <span>(min {minCourseValue})</span>
                   </label>
                   <Box>
                     <button

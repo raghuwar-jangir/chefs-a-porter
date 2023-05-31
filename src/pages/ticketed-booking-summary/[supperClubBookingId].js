@@ -515,7 +515,7 @@ const ScBookingSummary = () => {
         ".form-check": {
             marginBottom: "30px",
             minHeight: "1.5rem",
-            paddingTop: '20px',
+            padding: '10px 10px 5px',
             background: 'rgba(189, 189, 189, 0.2)',
             display: 'flex',
         },
@@ -754,6 +754,7 @@ const ScBookingSummary = () => {
           }
     }
     return (
+        // here
         <React.Fragment>
             <MainBox>
                 <Navbar heading="Ticketed" isColor={true}/>
@@ -812,7 +813,7 @@ const ScBookingSummary = () => {
                                                 <Box className="chef-profile-detail">
                                                     <img className="chef-profile-icon" src={dateGold}/>
                                                     <Typography className="chef-profile-date">
-                                                        {moment(supperClubPaymentData?.event?.dates[0]).format("MMMM D")} | {moment(supperClubPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
+                                                        {moment(supperClubPaymentData?.event?.dates?.[0]).format("MMMM D")} | {moment(supperClubPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
                                                     </Typography>
                                                 </Box>
                                                 <Box className="chef-profile-detail">
@@ -877,19 +878,19 @@ const ScBookingSummary = () => {
                                             </Box>
                                         </Box>
                                         <Box className="gst-block">
-                                            <Box className="form-check">
-                                                <Checkbox className="input-check" defaultChecked/>
+                                            <Box className="form-check ">
+                                                {/* <Checkbox className="input-check" defaultChecked/> */}
                                                 <label
-                                                    className="form-check-label"
+                                                    className="form-check-label gst-label"
                                                     for="flexCheckDefault"
                                                 >
-                                                    Enter GSTIN for tax benefits (Optional)
+                                                    Enter your GST information (Optional)
                                                 </label>
-                                                <KeyboardArrowRightIcon data-bs-toggle="modal"
-                                                                        data-bs-target="#exampleModal"
-                                                                        onClick={handleOpen} className="forward-arrow"/>
-
-                                                
+                                                <KeyboardArrowRightIcon 
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal"
+                                                    onClick={handleOpen} className="forward-arrow"
+                                                />
                                                 <hr className="hr" />
                                             </Box>
                                         </Box>

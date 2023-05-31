@@ -102,7 +102,7 @@ const MapComponent = ({setNewAddress, newAddress, setOpen}) => {
 
     const handleSelect = (selectedAddress) => {
         geocodeByAddress(selectedAddress)
-            .then((results) => getLatLng(results[0]))
+            .then((results) => getLatLng(results?.[0]))
             .then((latLng) => {
                 setCoords(latLng);
                 Cookies.set('coords',JSON.stringify(latLng));
@@ -215,12 +215,12 @@ const MapComponent = ({setNewAddress, newAddress, setOpen}) => {
                                     <Box className="third-map-box">
                                         <Formik
                                             initialValues={{
-                                                houseNo: newAddress ? newAddress[0] : '',
-                                                location: newAddress ? newAddress[1] : '',
-                                                landmark: newAddress ? newAddress[2] : '',
-                                                society: newAddress ? newAddress[3] : '',
-                                                pincode: newAddress ? newAddress[4] : '',
-                                                type: newAddress ? newAddress[5] : '',
+                                                houseNo: newAddress ? newAddress?.[0] : '',
+                                                location: newAddress ? newAddress?.[1] : '',
+                                                landmark: newAddress ? newAddress?.[2] : '',
+                                                society: newAddress ? newAddress?.[3] : '',
+                                                pincode: newAddress ? newAddress?.[4] : '',
+                                                type: newAddress ? newAddress?.[5] : '',
                                             }}
                                             validationSchema={validationSchema}
                                             onSubmit={(values) => {

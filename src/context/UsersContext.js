@@ -19,7 +19,7 @@ const UsersProvider = (props) => {
     const priveeRazorpay = useRazorpay();
     const SupperClubRazorpay = useRazorpay();
     const path = useLocation();
-    const currentPath = path.pathname.split("/")[1];
+    const currentPath = path.pathname.split("/")?.[1];
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
     const [userData, setUserData] = useState();
     const [addOnsData, setAddOnsData] = useState();
@@ -138,8 +138,8 @@ const UsersProvider = (props) => {
                   return item.min_diner===dinersMinValue
                 })
               
-                const dinersMaxObject = dinersMaxGet && dinersMaxGet[0]
-                const dinersMinObject = dinersMinGet && dinersMinGet[0]
+                const dinersMaxObject = dinersMaxGet && dinersMaxGet?.[0]
+                const dinersMinObject = dinersMinGet && dinersMinGet?.[0]
                 setDinersMaxNumber(dinersMaxValue);
                 setDinersMinNumber(dinersMinValue);
                 setDinersMaxData(dinersMaxObject);

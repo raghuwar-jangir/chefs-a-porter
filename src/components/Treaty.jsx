@@ -35,7 +35,7 @@ const Treaty = (props) => {
             fontWeight: '300',
             lineHeight: '26px',
             color: '#080B0E',
-            height: '26px',
+            height: '50px',
             marginBottom: '13px',
         },
         ".btn": {
@@ -63,7 +63,7 @@ const Treaty = (props) => {
             background: '#FBFBFB',
             padding: '30px 20px 30px 30px',
             boxShadow: ' 0px 20px 24px rgb(0 0 0 / 6%)',
-            width: '636px'
+            // width: '636px'
         },
         '.btn-box': {
             display: 'flex',
@@ -103,7 +103,7 @@ const Treaty = (props) => {
         },
         '@media(min-width: 1100px) and (max-width: 1450px)': {
             '.sub-div': {
-                width: '550px'
+                // width: '550px'
             }
         },
     }))

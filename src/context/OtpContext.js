@@ -7,6 +7,8 @@ import CmsContext from "./CmsContext";
 import UsersContext from "./UsersContext";
 import {navigate} from "gatsby";
 import { ToastContainer, toast } from 'react-toastify';
+import moment from 'moment';
+
 const defaultState = {
     data: {},
     toggleDark: () => {
@@ -16,7 +18,7 @@ const defaultState = {
 const OtpContext = React.createContext(defaultState)
 const OtpProvider = (props) => {
     const path = useLocation();
-    const currentPath = path.pathname.split("/")[1];
+    const currentPath = path.pathname.split("/")?.[1];
     const {data} = useContext(CmsContext);
     const {eventId, supperClubDetailId, commonCityData,mealData} = useContext(UsersContext);
     const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
@@ -145,11 +147,11 @@ const OtpProvider = (props) => {
                   email: eventData.email,
                   mobile: otpNumber,
                   type: "chef_table",
-                  meal: priveeData.time ? priveeData.time : mealData && mealData[0].name,
+                  meal: priveeData?.time ? priveeData?.time : mealData && mealData?.[0].name,
                   diner_count: numberOfDinner,
                   courses: numberOfCourses,
-                  city: priveeData.city,
-                  booking_date: priveeData.date,
+                  city: priveeData?.city ? priveeData?.city : (eventData?.city ? eventData?.city : "Bengaluru"),
+                  booking_date: priveeData?.date ? priveeData?.date : moment(_.get(eventData, 'date'))?.toISOString(),
                   booking_time: eventData.startTime,
                   otp: verifyOtp,
                   common_menu: PaymentEventId,
@@ -200,16 +202,16 @@ const OtpProvider = (props) => {
               {
                 axios
                 .post(baseUrl + "/booking", {
-                  name: eventData.name,
-                  email: eventData.email,
+                  name: eventData?.name,
+                  email: eventData?.email,
                   mobile: otpNumber,
                   type: "chef_table",
-                  meal: priveeData.time ? priveeData.time : mealData && mealData[0].name,
+                  meal: priveeData?.time ? priveeData?.time : mealData && mealData?.[0].name,
                   diner_count: numberOfDinner,
                   courses: numberOfCourses,
-                  city: priveeData.city,
-                  booking_date: priveeData.date,
-                  booking_time: eventData.startTime,
+                  city: priveeData?.city,
+                  booking_date: priveeData?.date,
+                  booking_time: eventData?.startTime,
                   otp: verifyOtp,
                   common_menu: PaymentEventId,
                   common_address: {
@@ -274,7 +276,7 @@ const OtpProvider = (props) => {
                 event: sPaymentEventId,
                 meal: experienceNumberOfTime,
                 diner_count: experienceNumberOfSeats,
-                city: cityName ? cityName : commonCityData[0].name,
+                city: cityName ? cityName : commonCityData?.[0].name,
                 booking_date: experienceNumberOfDates,
                 common_menu: supperClubDetailId,
                 message: superClubBookingDetails?.AdditionalMessage,

@@ -239,6 +239,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                 height: '40px',
                 display: 'flex',
                 alignItems: 'center',
+                padding: "0 10px"
             },
             '.mobile-navbar': {
                 display: 'none'
@@ -408,9 +409,9 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                                             />
                                         </Box>
                                     }
-                                    {/*<a href="tel:`${callMobileNumber}`">*/}
-                                    <img src={telLogo} onClick={handlePhoneCall} className='telePhoneLogo'/>
-                                    {/*</a>*/}
+                                    <a href={`callto:${callMobileNumber}`}>
+                                        <img src={telLogo} onClick={handlePhoneCall} className='telePhoneLogo'/>
+                                    </a>
                                 </Grid>
                             </Grid>
                         </Box>

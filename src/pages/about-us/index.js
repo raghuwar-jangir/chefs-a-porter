@@ -358,12 +358,12 @@ const AboutCardComponent = (props) => {
 
                             <Box>
                                 <Box className="sub-box-2">
-                                    <img
+                                    {data.about_us?.mission?.image ? <img
                                         src={data.about_us.mission.image}
                                         alt="view"
                                         className="hotelview-img"
                                         className="team-img"
-                                    />
+                                    /> : null}
                                     <CommanTextCard
                                         mainTitle={data.about_us.mission.title}
                                         colors='#FBFBFB'
@@ -373,11 +373,11 @@ const AboutCardComponent = (props) => {
                                 </Box>
                             </Box>
                             <Box className="sub-box-3">
-                                <img
+                                {data.about_us?.values?.image ? <img
                                     src={data.about_us.values.image}
                                     alt="view"
                                     className="team-img"
-                                />
+                                /> : null}
                                 <CommanTextCard
                                     mainTitle={data.about_us.values.title}
                                     details={data.about_us.values.description}

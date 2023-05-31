@@ -35,8 +35,8 @@ const BecomePartner = () => {
 
     useEffect(() => {
         if (!_.isEmpty(masterData)) {
-            setGoldMembership(masterData[0])
-            setSilverMembership(masterData[1])
+            setGoldMembership(masterData?.[0])
+            setSilverMembership(masterData?.[1])
         }
     });
     console.log("goldMembership========", goldMembership)

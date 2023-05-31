@@ -1058,6 +1058,7 @@ const BookingSummary = (props) => {
   };
   console.log('bsPaymentData',bsPaymentData)
   return (
+    // here
     <React.Fragment>
       <BoxWrapper>
         <Navbar
@@ -1169,30 +1170,24 @@ const BookingSummary = (props) => {
                                 </Typography>
                                 <KeyboardArrowDownIcon className="drop-down" />
                                 <ul className="exp-ul">
-                                  <li className="exp-li">Service Includes</li>
-                                  <li className="exp-li">Service Excludes</li>
-                                  <li className="exp-li">
-                                    Table set upincludes
-                                  </li>
-                                  <li className="exp-li">
-                                    Confirm Details before proceeding to pay
-                                  </li>
-                                  <li className="exp-li">Decor not included</li>
+                                  {eventData?.important_info?.map((info,idx) => (
+                                    <li key={idx} className="exp-li">{info}</li>
+                                  ))}
                                 </ul>
                                 <hr className="hr" />
                               </Box>
                             </Box>
                             <Box className="contact">
                               <Box className="form-check">
-                                <Checkbox
+                                {/* <Checkbox
                                   className="input-check"
                                   defaultChecked
-                                />
+                                /> */}
                                 <label
                                   className="form-check-label"
                                   for="flexCheckDefault"
                                 >
-                                  Enter GSTIN for tax benefits (Optional)
+                                  Enter your GST information (Optional)
                                 </label>
                                 <KeyboardArrowRightIcon
                                   data-bs-toggle="modal"
@@ -1667,30 +1662,24 @@ const BookingSummary = (props) => {
                                 </Typography>
                                 <KeyboardArrowDownIcon className="drop-down" />
                                 <ul className="exp-ul">
-                                  <li className="exp-li">Service Includes</li>
-                                  <li className="exp-li">Service Excludes</li>
-                                  <li className="exp-li">
-                                    Table set upincludes
-                                  </li>
-                                  <li className="exp-li">
-                                    Confirm Details before proceeding to pay
-                                  </li>
-                                  <li className="exp-li">Decor not included</li>
+                                  {eventData?.important_info?.map((info,idx) => (
+                                    <li key={idx} className="exp-li">{info}</li>
+                                  ))}
                                 </ul>
                                 <hr className="hr" />
                               </Box>
                             </Box>
                             <Box className="contact">
                               <Box className="form-check">
-                                <Checkbox
+                                {/* <Checkbox
                                   className="input-check"
                                   defaultChecked
-                                />
+                                /> */}
                                 <label
                                   className="form-check-label"
                                   for="flexCheckDefault"
                                 >
-                                  Enter GSTIN for tax benefits (Optional)
+                                  Enter your GST information (Optional)
                                 </label>
                                 <KeyboardArrowRightIcon
                                   data-bs-toggle="modal"

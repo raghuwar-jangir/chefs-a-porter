@@ -314,10 +314,10 @@ const BecomePatronForm = () => {
                             <Formik
                                 initialValues={{
                                     enrollOrRenew: 'New Patron',
-                                    membershipType: memberShipTypeData[0]?.name,
+                                    membershipType: memberShipTypeData?.[0]?.name,
                                     name: '',
                                     brandName: '',
-                                    occupation: occasionData[0]?.name,
+                                    occupation: occasionData?.[0]?.name,
                                     email: '',
                                     contactNumber: '',
                                     dateOfBirth: '',
