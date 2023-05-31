@@ -114,12 +114,22 @@ const BoxWrapper = styled(Box)(() => ({
     margin: '0px',
     position: 'relative',
   },
+  '.bg-cover-overlay': {
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    zIndex: '2',
+    background: 'rgba(8, 11, 14, 0.4)',
+    width: '100%',
+    height: '100%',
+  },
   '.arrows': {
     position: 'absolute',
     bottom: '28px',
     display: 'block',
     left: '0px',
     right: '0px',
+    zIndex: '3',
     margin: '0 auto',
     '-moz-animation': 'bounce 2s infinite',
     '-webkit-animatio': 'bounce 2s infinite',
@@ -137,6 +147,7 @@ const BoxWrapper = styled(Box)(() => ({
     left: '0px',
     right: '0px',
     bottom: '42px',
+    zIndex: '3',
   },
   '.down-arrow-op': {
     opacity: '0.38',
@@ -660,9 +671,11 @@ const PriveePage = (props) => {
                     {/*</video>*/}
                     <img
                       src={data.privee.header.image}
-                      className="video home-banner-video"
+                      className="video home-banner-video "
                     />
+                    <Box className="bg-cover-overlay" />
                   </Box>
+
                   <Box className="arrows">
                     <Typography className="home-text">
                       {data.privee.header.title}
