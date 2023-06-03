@@ -568,7 +568,7 @@ const BoxWrapper = styled(Box)((props) => ({
     fontWeight: '700',
   },
   '.gallery_img_box': {
-    objectFit: 'revert !important',
+    objectFit: 'cover',
   },
   '.gallery-btn': {
     fontStyle: 'normal',
@@ -892,6 +892,15 @@ const HomePage = () => {
 
   //FoodDrool
   const [imageData, setImageData] = useState([]);
+  const [onData, setOnData] = useState();
+
+  useEffect(() => {
+    const date1 = new Date();
+    const futureDate = date1.getDate() + 2;
+    date1.setDate(futureDate);
+    const defaultValue = date1.toLocaleDateString('en-CA');
+    setOnData(defaultValue);
+  }, [onData]);
 
   useEffect(() => {
     {
@@ -949,7 +958,7 @@ const HomePage = () => {
                         <Formik
                           initialValues={{
                             city: commonCityData?.[0].name,
-                            date: new Date(),
+                            date: new Date(onData),
                             time: mealData?.[0].name,
                             diners: 1,
                           }}
