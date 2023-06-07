@@ -65,7 +65,7 @@ const CardChefComponent = ({bgColor}) => {
             fontSize: "16px",
             lineHeight: "24px",
             color: "#080B0E",
-            padding: '12px 12px 0px 0px',
+            padding: '12px 24px 0px 0px',
             marginLeft: '16px'
         },
         '.logo': {
@@ -86,7 +86,7 @@ const CardChefComponent = ({bgColor}) => {
         },
         "@media (min-width: 1px) and (max-width:768px)": {
             '.details': {
-                padding: '12px 16px 0px 0px'
+                padding: '12px 18px 0px 0px'
             },
             '.heading': {
                 fontSize: "20px",

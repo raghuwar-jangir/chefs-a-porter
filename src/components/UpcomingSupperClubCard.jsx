@@ -1,19 +1,19 @@
-import React, {useContext, useEffect} from "react";
-import {Typography, styled} from "@mui/material";
+import React, { useContext, useEffect } from 'react';
+import { Typography, styled } from '@mui/material';
 import img1 from '../assets/images/supper-1.png';
 import img2 from '../assets/images/testImage2.png';
 import cap from '../assets/images/chef-cap.png';
 import date from '../assets/images/date.png';
 import tag from '../assets/images/tag-chef.png';
-import trending from '../assets/images/trending.png'
-import {Box} from "@mui/system";
+import trending from '../assets/images/trending.png';
+import { Box } from '@mui/system';
 import '../assets/styles/fontStyle.css';
-import {Link} from "gatsby";
-import {navigate} from "gatsby";
-import CmsContext from "../context/CmsContext";
-import * as _ from "lodash";
-import moment from "moment";
-import Cookies from "js-cookie";
+import { Link } from 'gatsby';
+import { navigate } from 'gatsby';
+import CmsContext from '../context/CmsContext';
+import * as _ from 'lodash';
+import moment from 'moment';
+import Cookies from 'js-cookie';
 
 const UpcomingSupperClubCard = () => {
 
@@ -135,8 +135,9 @@ const UpcomingSupperClubCard = () => {
                                         <span className='chef-tag'>
                                         <img className='img-tag' src={date} alt="date"/>
                                             {/*<Typography className='tag-detail'>April 9 | 7.30 PM - 10 PM</Typography>*/}
-                                            <Typography
-                                                className='tag-detail'>{moment(item.dates?.[0]).format("MMMM D")} | {moment(item.timefrom, 'HH:mm').format('h:mm A')} - {moment(item.timetill, 'HH:mm').format('h:mm A')}</Typography>
+                                            <Typography className='tag-detail'>
+                                                {moment(item.new_dates?.[0]?.date).format("MMMM D")} | {moment(item.new_dates?.[0]?.from, 'HH:mm').format('h:mm A')} - {moment(item.new_dates?.[0]?.to, 'HH:mm').format('h:mm A')}
+                                            </Typography>
                                     </span>
                                         <span className='chef-tag'>
                                         <img className='img-tag' src={tag} alt="Rates"/>
@@ -155,4 +156,3 @@ const UpcomingSupperClubCard = () => {
 }
 
 export default UpcomingSupperClubCard;
-

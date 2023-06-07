@@ -34,7 +34,7 @@ const EventCard = () => {
     const MainBox = styled(Box)(() => ({
         ".heading": {
             fontFamily: 'Bon Vivant',
-            fontWeight: '300',
+            fontWeight: '700',
             fontSize: "24px",
             lineHeight: "30px",
             margin: '40px 16px 20px',
@@ -43,7 +43,7 @@ const EventCard = () => {
         },
         ".heading-2": {
             fontFamily: 'Bon Vivant',
-            fontWeight: '300',
+            fontWeight: '700',
             fontSize: "24px",
             lineHeight: "30px",
             margin: '40px 16px 20px',
