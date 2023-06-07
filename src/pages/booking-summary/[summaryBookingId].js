@@ -361,7 +361,7 @@ const BookingSummary = (props) => {
       justifyContent: "space-between",
     },
     ".table-details": {
-      fontFamily: "Proxima Nova",
+      fontFamily: "Proxima Nova Alt",
       fontStyle: "normal",
       // fontWeight: '300',
       fontSize: "16px",
@@ -1187,7 +1187,7 @@ const BookingSummary = (props) => {
                                   className="form-check-label"
                                   for="flexCheckDefault"
                                 >
-                                  Enter your GST information (Optional)
+                                  Enter your <strong style={{fontWeight: 700, cursor: "pointer"}} data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleOpen}>GST information</strong> (Optional)
                                 </label>
                                 <KeyboardArrowRightIcon
                                   data-bs-toggle="modal"
@@ -1551,12 +1551,12 @@ const BookingSummary = (props) => {
                                       className="submit-req"
                                       onClick={handlePayment}
                                     >
-                                      Proceed to pay 
+                                      Proceed to pay{" "}
                                       {new Intl.NumberFormat("en-IN", {
                                         style: "currency",
                                         currency: "INR",
                                       }).format(bsPaymentData?.payment?.total)}
-                                      {/*Proceed to pay ₹25,000*/}
+                                      {/*Proceed to pay{" "} ₹25,000*/}
                                     </button>
                                   </Box>
                                 )}
@@ -1679,7 +1679,7 @@ const BookingSummary = (props) => {
                                   className="form-check-label"
                                   for="flexCheckDefault"
                                 >
-                                  Enter your GST information (Optional)
+                                  Enter your <strong style={{fontWeight: 700, cursor: "pointer"}} data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleOpen}>GST information</strong> (Optional)
                                 </label>
                                 <KeyboardArrowRightIcon
                                   data-bs-toggle="modal"
@@ -2062,14 +2062,14 @@ const BookingSummary = (props) => {
                                       className="submit-req"
                                       onClick={handlePayment}
                                     >
-                                      Proceed to pay
+                                      Proceed to pay{" "}
                                       {new Intl.NumberFormat("en-IN", {
                                         style: "currency",
                                         currency: "INR",
                                       }).format(
                                         priveePaymentData?.payment?.total
                                       )}
-                                      {/*Proceed to pay ₹25,000*/}
+                                      {/*Proceed to pay{" "} ₹25,000*/}
                                     </button>
                                   </Box>
                                 )}

@@ -884,7 +884,7 @@ const ScBookingSummary = () => {
                                                     className="form-check-label gst-label"
                                                     for="flexCheckDefault"
                                                 >
-                                                    Enter your GST information (Optional)
+                                                    Enter your <strong style={{fontWeight: 700, cursor: "pointer"}} data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleOpen}>GST information</strong> (Optional)
                                                 </label>
                                                 <KeyboardArrowRightIcon 
                                                     data-bs-toggle="modal"
