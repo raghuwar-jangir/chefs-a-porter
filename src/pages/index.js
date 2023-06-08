@@ -1,18 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {
-  Box,
-  Button,
-  Grid,
-  ImageList,
-  ImageListItem,
-  List,
-  ListItemIcon,
-  MenuItem,
-  Select,
-  Stack,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Grid, ImageList, ImageListItem, List, ListItemIcon, MenuItem, Select, Stack, TextField, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { MobileView } from 'react-device-detect';
 import FrontFood from '../components/FrontFood';
@@ -926,13 +913,9 @@ const HomePage = () => {
   const ITEM_PADDING_TOP = 8;
   const menuitemValue = _.range(1, 26);
 
-  const finalImgData = imgData.map((item, i) =>
-    Object.assign({}, item, rowOfObjects[i])
-  );
+  const finalImgData = imgData.map((item, i) => Object.assign({}, item, rowOfObjects[i]));
 
-  const finalImageData = finalImgData.map((item, i) =>
-    Object.assign({}, item, ColsOfObjects[i])
-  );
+  const finalImageData = finalImgData.map((item, i) => Object.assign({}, item, ColsOfObjects[i]));
   const handleClick = () => {
     navigate('/private-viewmore');
   };
@@ -944,16 +927,11 @@ const HomePage = () => {
         <React.Fragment>
           {!_.isEmpty(data?.home && mealData && commonCityData) && (
             <>
-              <Box
-                className="home-banner"
-                sx={{ backgroundImage: `url(${data.home.header.image})` }}
-              >
+              <Box className="home-banner" sx={{ backgroundImage: `url(${data.home.header.image})` }}>
                 <Box className="row justify-content-center">
                   <Box className="chef-container">
                     <Box className="pe-fo-exp">
-                      <Typography className="hotchef-title">
-                        {data.home.header.title}
-                      </Typography>
+                      <Typography className="hotchef-title">{data.home.header.title}</Typography>
                       {!_.isEmpty(commonCityData) && (
                         <Formik
                           initialValues={{
@@ -968,18 +946,10 @@ const HomePage = () => {
                               // on: moment(_.get(values, 'date')).format('DD/MM/YYYY'),
                               date: moment(_.get(values, 'date')).toISOString(),
                             };
-                            Cookies.set(
-                              'priveeData',
-                              JSON.stringify(experienceData)
-                            );
+                            Cookies.set('priveeData', JSON.stringify(experienceData));
                           }}
                         >
-                          {({
-                            values,
-                            handleChange,
-                            handleSubmit,
-                            setFieldValue,
-                          }) => (
+                          {({ values, handleChange, handleSubmit, setFieldValue }) => (
                             <Form onSubmit={handleSubmit}>
                               <Box className="form-row">
                                 <Box className="form-group">
@@ -999,10 +969,9 @@ const HomePage = () => {
                                         '.MuiOutlinedInput-notchedOutline': {
                                           border: 0,
                                         },
-                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline':
-                                          {
-                                            border: 'none',
-                                          },
+                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                          border: 'none',
+                                        },
                                         '.MuiSelect-icon': {
                                           color: '#FBFBFB',
                                         },
@@ -1023,8 +992,7 @@ const HomePage = () => {
                                             li: {
                                               fontSize: '20px',
                                               fontWeight: '400',
-                                              fontFamily:
-                                                'ProximaNovaA-Regular',
+                                              fontFamily: 'ProximaNovaA-Regular',
                                               padding: '6px 16px',
                                             },
                                             ul: {
@@ -1036,23 +1004,17 @@ const HomePage = () => {
                                             },
                                             'li:hover': {
                                               color: '#C6A87D!important',
-                                              backgroundColor:
-                                                '#DCD7CB !important',
+                                              backgroundColor: '#DCD7CB !important',
                                             },
                                             '&& .Mui-selected': {
-                                              backgroundColor:
-                                                '#0000FF !important',
+                                              backgroundColor: '#0000FF !important',
                                             },
                                           },
                                         },
                                       }}
                                     >
                                       {commonCityData?.map((item) => {
-                                        return (
-                                          <MenuItem value={item.name}>
-                                            {item.name}
-                                          </MenuItem>
-                                        );
+                                        return <MenuItem value={item.name}>{item.name}</MenuItem>;
                                       })}
                                       {/*<MenuItem value="Mumbai">Mumbai</MenuItem>*/}
                                       {/*<MenuItem value="Delhi">Delhi</MenuItem>*/}
@@ -1063,10 +1025,7 @@ const HomePage = () => {
                                   )}
                                 </Box>
                                 <Box className="form-group">
-                                  <label
-                                    className="label"
-                                    style={{ marginBottom: '1px !important' }}
-                                  >
+                                  <label className="label" style={{ marginBottom: '1px !important' }}>
                                     On
                                   </label>
                                   <DatePickerInput
@@ -1075,9 +1034,7 @@ const HomePage = () => {
                                     displayFormat="ddd, DD MMM"
                                     returnFormat="ddd,DD MMM"
                                     className="form-control"
-                                    onChange={(dateString) =>
-                                      setFieldValue('date', dateString)
-                                    }
+                                    onChange={(dateString) => setFieldValue('date', dateString)}
                                     defaultValue={values.date}
                                   />
                                 </Box>
@@ -1097,10 +1054,9 @@ const HomePage = () => {
                                       '.MuiOutlinedInput-notchedOutline': {
                                         border: 0,
                                       },
-                                      '&.Mui-focused .MuiOutlinedInput-notchedOutline':
-                                        {
-                                          border: 'none',
-                                        },
+                                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                        border: 'none',
+                                      },
                                       '.MuiSelect-icon': {
                                         color: '#FBFBFB',
                                       },
@@ -1131,23 +1087,17 @@ const HomePage = () => {
                                           },
                                           'li:hover': {
                                             color: '#C6A87D!important',
-                                            backgroundColor:
-                                              '#DCD7CB !important',
+                                            backgroundColor: '#DCD7CB !important',
                                           },
                                           '&& .Mui-selected': {
-                                            backgroundColor:
-                                              '#0000FF !important',
+                                            backgroundColor: '#0000FF !important',
                                           },
                                         },
                                       },
                                     }}
                                   >
                                     {mealData?.map((item) => {
-                                      return (
-                                        <MenuItem value={item.name}>
-                                          {item.name}
-                                        </MenuItem>
-                                      );
+                                      return <MenuItem value={item.name}>{item.name}</MenuItem>;
                                     })}
                                   </Select>
                                 </Box>
@@ -1167,10 +1117,9 @@ const HomePage = () => {
                                       '.MuiOutlinedInput-notchedOutline': {
                                         border: 0,
                                       },
-                                      '&.Mui-focused .MuiOutlinedInput-notchedOutline':
-                                        {
-                                          border: 'none',
-                                        },
+                                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                        border: 'none',
+                                      },
                                       '.MuiSelect-icon': {
                                         color: '#FBFBFB',
                                       },
@@ -1186,9 +1135,7 @@ const HomePage = () => {
                                         sx: {
                                           background: '#080B0E',
                                           color: '#FBFBFB',
-                                          maxHeight:
-                                            ITEM_HEIGHT * 4.5 +
-                                            ITEM_PADDING_TOP,
+                                          maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
                                           li: {
                                             fontSize: '20px',
                                             fontFamily: 'ProximaNovaA-Regular',
@@ -1204,31 +1151,23 @@ const HomePage = () => {
                                           },
                                           'li:hover': {
                                             color: '#C6A87D!important',
-                                            backgroundColor:
-                                              '#DCD7CB !important',
+                                            backgroundColor: '#DCD7CB !important',
                                           },
                                           '&& .Mui-selected': {
-                                            backgroundColor:
-                                              '#0000FF !important',
+                                            backgroundColor: '#0000FF !important',
                                           },
                                         },
                                       },
                                     }}
                                   >
                                     {menuitemValue.map((item, index) => (
-                                      <MenuItem value={index + 1}>
-                                        {item}
-                                      </MenuItem>
+                                      <MenuItem value={index + 1}>{item}</MenuItem>
                                     ))}
                                   </Select>
                                 </Box>
                                 <Box className="form-group">
                                   <Typography>
-                                    <button
-                                      type="submit"
-                                      className="hot-chef-search-btn"
-                                      onClick={handleClick}
-                                    >
+                                    <button type="submit" className="hot-chef-search-btn" onClick={handleClick}>
                                       Search
                                     </button>
                                   </Typography>
@@ -1246,18 +1185,11 @@ const HomePage = () => {
               <Box className="privee-desktop">
                 <Box className="row">
                   <Box className="privee-video">
-                    <img
-                      src={data.home.booking_types.privee.image}
-                      className="video"
-                    />
+                    <img src={data.home.booking_types.privee.image} className="video" />
                   </Box>
                   <Box className="privee-details">
-                    <Typography className="privee-card-title">
-                      {data.home.booking_types.privee.title}
-                    </Typography>
-                    <Typography className="privee-card-details">
-                      {data.home.booking_types.privee.description}
-                    </Typography>
+                    <Typography className="privee-card-title">{data.home.booking_types.privee.title}</Typography>
+                    <Typography className="privee-card-details">{data.home.booking_types.privee.description}</Typography>
                     <Typography>
                       <Link href="/private" className="privee-card-link">
                         {data.home.booking_types.privee.button_text}
@@ -1269,12 +1201,8 @@ const HomePage = () => {
               <Box className="supper-desktop">
                 <Box className="row">
                   <Box className="supper-details">
-                    <Typography className="supper-card-title">
-                      {data.home.booking_types.supper_club.title}
-                    </Typography>
-                    <Typography className="supper-card-details">
-                      {data.home.booking_types.supper_club.description}
-                    </Typography>
+                    <Typography className="supper-card-title">{data.home.booking_types.supper_club.title}</Typography>
+                    <Typography className="supper-card-details">{data.home.booking_types.supper_club.description}</Typography>
                     <Typography>
                       <Link href="/ticketed" className="supper-card-link">
                         {data.home.booking_types.supper_club.button_text}
@@ -1282,19 +1210,13 @@ const HomePage = () => {
                     </Typography>
                   </Box>
                   <Box className="privee-video">
-                    <img
-                      src={data.home.booking_types.supper_club.image}
-                      className="video"
-                    />
+                    <img src={data.home.booking_types.supper_club.image} className="video" />
                   </Box>
                 </Box>
               </Box>
               <PriveeMain />
               <Box className="home_ticketed_chef">
-                <MainFoodDetailng
-                  title={data.home.upcoming_supper_clubs.title}
-                  description={data.home.upcoming_supper_clubs.description}
-                />
+                <MainFoodDetailng title={data.home.upcoming_supper_clubs.title} description={data.home.upcoming_supper_clubs.description} />
               </Box>
               <PriveeCarousel />
               <RatingCarousel />
@@ -1302,45 +1224,23 @@ const HomePage = () => {
               <TestimonialCarousel />
               <Box className="gallery">
                 <Box>
-                  <Typography className="gallery-heading">
-                    {data.home.food_drools.title}
-                  </Typography>
+                  <Typography className="gallery-heading">{data.home.food_drools.title}</Typography>
                 </Box>
-                <ImageList
-                  variant="masonry"
-                  sx={{ width: '100%', height: '100%' }}
-                  cols={3}
-                  gap={20}
-                  rowHeight={300}
-                >
+                <ImageList variant="masonry" sx={{ width: '100%', height: '100%' }} cols={3} gap={20} rowHeight={300}>
                   {finalImageData.map((item, index) => (
-                    <ImageListItem
-                      key={index}
-                      cols={item.cols || 1}
-                      rows={item.rows || 1}
-                    >
-                      <img
-                        src={item.image}
-                        alt={item?.title || ''}
-                        className="gallery_img_box"
-                        loading="lazy"
-                      />
+                    <ImageListItem key={index} cols={item.cols || 1} rows={item.rows || 1}>
+                      <img src={item.image} alt={item?.title || ''} className="gallery_img_box" loading="lazy" />
                     </ImageListItem>
                   ))}
                 </ImageList>
               </Box>
               <Box className="mobileView-gallery">
                 <Box>
-                  <Typography className="gallery-heading">
-                    {data.home.food_drools.title}
-                  </Typography>
+                  <Typography className="gallery-heading">{data.home.food_drools.title}</Typography>
                 </Box>
                 <Grid container spacing={1} sx={{ padding: '10px 12px' }}>
                   <Grid item xs={12}>
-                    <img
-                      src={gallery1}
-                      style={{ width: '100%', height: '200px' }}
-                    />
+                    <img src={gallery1} style={{ width: '100%', height: '200px' }} />
                   </Grid>
                   <Grid item xs={12}>
                     <img
@@ -1381,7 +1281,7 @@ const HomePage = () => {
                       treatTitle={`#${data.home.gift.patron.hashtag}`}
                       mainTitle={data.home.gift.patron.title}
                       detail={data.home.gift.patron.description}
-                      link={'/become-a-patron'}
+                      link={'/private'}
                       button_text={data.home.gift.patron.button_text}
                     />
                   </Grid>
@@ -1390,7 +1290,7 @@ const HomePage = () => {
                       treatTitle={`#${data.home.gift.duchchef.hashtag}`}
                       mainTitle={data.home.gift.duchchef.title}
                       detail={data.home.gift.duchchef.description}
-                      link={'/our-chefs'}
+                      link={'/become-a-patron'}
                       button_text={data.home.gift.duchchef.button_text}
                     />
                   </Grid>
@@ -1399,37 +1299,13 @@ const HomePage = () => {
               <Box className="join-table join-table1">
                 <Box className="container-fluid">
                   <Grid container className="row">
-                    <Grid
-                      xl={6}
-                      lg={6}
-                      xs={6}
-                      md={6}
-                      sm={12}
-                      xs={12}
-                      className="join-table-image"
-                    >
-                      <img
-                        src={JoinTableImg}
-                        alt="Join The Table"
-                        className="jtable-img"
-                      />
+                    <Grid xl={6} lg={6} xs={6} md={6} sm={12} xs={12} className="join-table-image">
+                      <img src={JoinTableImg} alt="Join The Table" className="jtable-img" />
                     </Grid>
-                    <Grid
-                      xl={6}
-                      lg={6}
-                      xs={6}
-                      md={6}
-                      sm={12}
-                      xs={12}
-                      className="join-table-title"
-                    >
-                      <Typography className="join-table-heading">
-                        Join our table
-                      </Typography>
+                    <Grid xl={6} lg={6} xs={6} md={6} sm={12} xs={12} className="join-table-title">
+                      <Typography className="join-table-heading">Join our table</Typography>
                       <Typography className="join-table-details">
-                        Receive recipes , tips and tricks from top chefs from
-                        around the globe, and exclusive offers right to your
-                        inbox.
+                        Receive recipes , tips and tricks from top chefs from around the globe, and exclusive offers right to your inbox.
                       </Typography>
                       <form action="" accept-charset="UTF-8" method="get">
                         <Box className="input-group">
@@ -1478,9 +1354,7 @@ const HomePage = () => {
                         </a>
                       </Typography>
                       <Box className="find-us">
-                        <Typography className="find-us-title">
-                          Find us on:
-                        </Typography>
+                        <Typography className="find-us-title">Find us on:</Typography>
                         <Box className="social-icon">
                           <InstagramIcon className="icon" />
                           <LinkedInIcon className="icon" />
@@ -1492,20 +1366,14 @@ const HomePage = () => {
               </Box>
               <CorporateBooking />
               <Box className="fresh-blog">
-                <Typography className="fresh-food-heading">
-                  {data.home.blog.title}
-                </Typography>
+                <Typography className="fresh-food-heading">{data.home.blog.title}</Typography>
                 {data.home.blog.content.map((item, index) => (
                   <Box className="fresh-food-detail">
                     <Box key={index} className="food-box">
                       <img src={item.image} className="fresh-food-img" />
                       <Box style={{ marginLeft: '20px' }}>
-                        <Typography className="fresh-food-title">
-                          {item.title}
-                        </Typography>
-                        <Typography className="fresh-food-sub-details">
-                          {item.description}
-                        </Typography>
+                        <Typography className="fresh-food-title">{item.title}</Typography>
+                        <Typography className="fresh-food-sub-details">{item.description}</Typography>
                       </Box>
                     </Box>
                     <Box>
@@ -1514,14 +1382,8 @@ const HomePage = () => {
                   </Box>
                 ))}
               </Box>
-              <DiningExperienceCarousel
-                title="Peek into our Private Dining Experiences"
-                subTitle="@Private"
-              />
-              <TemptedYet
-                title={data.home.home_footer.moblie_title}
-                buttonText={data.home.home_footer.mobile_button}
-              />
+              <DiningExperienceCarousel title="Peek into our Private Dining Experiences" subTitle="@Private" />
+              <TemptedYet title={data.home.home_footer.moblie_title} buttonText={data.home.home_footer.mobile_button} />
               <NeedHelp
                 title={data.home.home_footer.desktop_title}
                 description={data.home.home_footer.desktop_description}
