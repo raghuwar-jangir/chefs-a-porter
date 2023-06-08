@@ -1643,10 +1643,10 @@ const GiftCards = () => {
                             </Box>
                         </Box>
                         <NeedHelp
-                            title={data.gift_card.home_footer.desktop_title}
-                            description={data.gift_card.home_footer.desktop_description}
-                            button_call={data.gift_card.home_footer.desktop_button_call}
-                            button_email={data.gift_card.home_footer.desktop_button_email}
+                            title={data.gift_card.footer.common_footer.details.title}
+                            description={data.gift_card.footer.common_footer.details.description}
+                            button_call={data.gift_card.footer.common_footer.details.button1_text}
+                            button_email={data.gift_card.footer.common_footer.details.button2_text}
                         />
                         <Footer />
                         <FooterEnd />

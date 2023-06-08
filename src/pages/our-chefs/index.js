@@ -106,10 +106,10 @@ const OurChefsPage = () => {
               {/*</Box>*/}
             </Box>
             <NeedHelp
-              title={data.our_chefs.home_footer.desktop_title}
-              description={data.our_chefs.home_footer.desktop_description}
-              button_call={data.our_chefs.home_footer.desktop_button_call}
-              button_email={data.our_chefs.home_footer.desktop_button_email}
+              title={data.our_chefs.footer.common_footer.details.title}
+              description={data.our_chefs.footer.common_footer.details.description}
+              button_call={data.our_chefs.footer.common_footer.details.button1_text}
+              button_email={data.our_chefs.footer.common_footer.details.button2_text}
             />
             <FoodCard />
             <Footer />

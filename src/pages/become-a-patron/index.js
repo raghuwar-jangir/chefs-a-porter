@@ -513,10 +513,11 @@ const BecomePartner = () => {
                                 </Box>
                             </Box>
                         </Box>
-                        <NeedHelp title={data.become_patron.home_footer.desktop_title}
-                                  description={data.become_patron.home_footer.desktop_description}
-                                  button_call={data.become_patron.home_footer.desktop_button_call}
-                                  button_email={data.become_patron.home_footer.desktop_button_email}
+                        <NeedHelp 
+                            title={data.become_patron.footer.common_footer.details.title}
+                            description={data.become_patron.footer.common_footer.details.description}
+                            button_call={data.become_patron.footer.common_footer.details.button1_text}
+                            button_email={data.become_patron.footer.common_footer.details.button2_text}
                         />
                         <Footer/>
                         <FooterEnd/>

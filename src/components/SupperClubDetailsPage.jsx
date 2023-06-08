@@ -22,6 +22,7 @@ import NeedHelp from "./NeedHelp";
 import PriveeDining from "./PriveeDining";
 import RatingCarousel from "./RatingCarousel";
 import ChefDetailsForm from "./ChefDetailsForm";
+import CmsContext from "../context/CmsContext";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -34,6 +35,8 @@ const images = [
 ];
 const SupperClubDetailsPage = () => {
     const theme = useTheme();
+    const {footerData} = useContext(CmsContext)
+
     const [activeStep, setActiveStep] = React.useState(0);
     const maxSteps = images.length;
     const handleStepChange = (step) => {
@@ -322,7 +325,13 @@ const SupperClubDetailsPage = () => {
                                 <Button className="book-now-btn">Book Now</Button>
                             </Box>
                             <RatingCarousel isColor={true} />
-                            <NeedHelp isColor={true} />
+                            <NeedHelp 
+                                isColor={true} 
+                                title={footerData?.footer.footer.common_footer.details.title}
+                                description={footerData?.footer.footer.common_footer.details.description}
+                                button_call={footerData?.footer.footer.common_footer.details.button1_text}
+                                button_email={footerData?.footer.footer.common_footer.details.button2_text}
+                            />
                             {/* <ChefCarousel /> */}
                             {/* <DetailsCarousel /> */}
                             {/* <Treaty /> */}

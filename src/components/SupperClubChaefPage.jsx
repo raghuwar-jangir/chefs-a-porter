@@ -15,6 +15,7 @@ import Treaty from "./Treaty";
 import NeedHelp from "./NeedHelp";
 import sampleText from './../assets/images/SupperClub.png'
 import arrow from './../assets/images/arrow.png'
+import CmsContext from "../context/CmsContext";
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -29,6 +30,9 @@ const images = [
 
 const SupperClubChaefPage = () => {
     const theme = useTheme();
+    const {footerData} = useContext(CmsContext)
+    
+
     const [activeStep, setActiveStep] = React.useState(0);
     const maxSteps = images.length;
     const handleStepChange = (step) => {
@@ -307,7 +311,12 @@ const SupperClubChaefPage = () => {
                             <ChefCarousel />
                             <DetailsCarousel />
                             <Treaty />
-                            <NeedHelp />
+                            <NeedHelp
+                                title={footerData?.footer.footer.common_footer.details.title}
+                                description={footerData?.footer.footer.common_footer.details.description}
+                                button_call={footerData?.footer.footer.common_footer.details.button1_text}
+                                button_email={footerData?.footer.footer.common_footer.details.button2_text}
+                            />
                         </Grid>
                         <Grid item md={5} sm={6} xs={12} xl={5} className="secound-grid">
                             <Grid container spacing={2}>

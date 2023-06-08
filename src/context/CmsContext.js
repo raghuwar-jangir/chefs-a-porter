@@ -7,6 +7,7 @@ import configuration from '../configuration';
 
 const defaultState = {
     data: {},
+    footerData: {},
     toggleDark: () => {
     },
 }
@@ -37,6 +38,8 @@ const CmsProvider = (props) => {
 
     const [data, setData] = useState();
     const [masterData,setMasterData]=useState();
+    const [isFooter,setIsFooter]=useState(false);
+    const [footerData,setFooterData]=useState();
 
     useEffect(() => {
         if (pathInfo[currentPath] || path.pathname === '/') {
@@ -51,12 +54,20 @@ const CmsProvider = (props) => {
         }
     }, [path, currentPath])
 
+    useEffect(() => {
+        axios.get(baseUrl + `/footer/`).then(result => {
+            setFooterData(result.data)
+        })
+    }, [])
+    
+
     const {children} = props
     return (
         <CmsContext.Provider
             value={{
                 data,
-                masterData
+                masterData,
+                footerData
             }}
         >
             {children}

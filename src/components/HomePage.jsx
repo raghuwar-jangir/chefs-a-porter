@@ -15,6 +15,7 @@ import Questions from './Questions';
 import Footer from './Footer';
 import MainFoodDetailng from './MainFoodDetailng';
 import NeedHelp from "./NeedHelp";
+import CmsContext from '../context/CmsContext';
 
 
 const MainBoxContent = styled(Box)({
@@ -165,6 +166,8 @@ const BoxWrapper = styled(Box)({
 })
 
 const HomePage = () => {
+    const {footerData} = useContext(CmsContext)
+    
     return (
         <React.Fragment>
             <BoxWrapper>
@@ -230,7 +233,12 @@ const HomePage = () => {
                 <PriveeMain title='Chefs available for private dining this month' isButtonShow={true} />
                 <RatingCarousel />
                 <Questions />
-                <NeedHelp/>
+                <NeedHelp
+                    title={footerData?.footer.footer.common_footer.details.title}
+                    description={footerData?.footer.footer.common_footer.details.description}
+                    button_call={footerData?.footer.footer.common_footer.details.button1_text}
+                    button_email={footerData?.footer.footer.common_footer.details.button2_text}
+                />
                 <Footer />
 
                 {/* <PrivateProfile /> */}

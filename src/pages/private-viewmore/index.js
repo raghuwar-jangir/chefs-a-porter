@@ -448,6 +448,8 @@ const PriveeViewMore = (props) => {
     const [priveeInfo, setPriveeInfo] = useState()
     const cookieValue = Cookies?.get('priveeData');
 
+    const {footerData} = useContext(CmsContext)
+ 
     {
         !_.isEmpty(cookieValue) &&
         useEffect(() => {
@@ -723,7 +725,12 @@ const PriveeViewMore = (props) => {
                                 !_.isEmpty(userData?.results) && userData?.results.length>0 &&
                                 <InfiniteScrollData allData={userData?.results} />
                         }
-                        <NeedHelp/>
+                        <NeedHelp
+                            title={footerData?.footer.footer.common_footer.details.title}
+                            description={footerData?.footer.footer.common_footer.details.description}
+                            button_call={footerData?.footer.footer.common_footer.details.button1_text}
+                            button_email={footerData?.footer.footer.common_footer.details.button2_text}
+                        />
                         <Footer/>
                         <FooterEnd/>
                         <Modal

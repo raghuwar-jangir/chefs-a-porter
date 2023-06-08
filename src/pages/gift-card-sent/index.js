@@ -41,6 +41,7 @@ import moment from "moment";
 import * as _ from "lodash";
 import {DatePickerInput} from "rc-datepicker";
 import InputAdornment from "@mui/material/InputAdornment";
+import CmsContext from "../../context/CmsContext";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -54,6 +55,8 @@ const images = [
 
 const GiftCardSent = () => {
     const [showCarousel, setShowCarousel] = useState(false);
+    const {footerData} = useContext(CmsContext)
+
     const handleImageClick = () => {
         setShowCarousel(true);
     };
@@ -989,7 +992,12 @@ const GiftCardSent = () => {
                         </Grid>
                     </Grid>
                 </Box>
-                <NeedHelp/>
+                <NeedHelp
+                    title={footerData?.footer.footer.common_footer.details.title}
+                    description={footerData?.footer.footer.common_footer.details.description}
+                    button_call={footerData?.footer.footer.common_footer.details.button1_text}
+                    button_email={footerData?.footer.footer.common_footer.details.button2_text}
+                />
                 <Box className="footer-box">
                     <Footer/>
                 </Box>

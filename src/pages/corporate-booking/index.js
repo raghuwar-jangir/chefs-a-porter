@@ -431,10 +431,11 @@ const CorporateBooking = () => {
                         <Box className="apply_div">
                             <a href="" className="apply_btn">Apply</a>
                         </Box>
-                        <NeedHelp title={data.corporate_booking.home_footer.desktop_title}
-                                  description={data.corporate_booking.home_footer.desktop_description}
-                                  button_call={data.corporate_booking.home_footer.desktop_button_call}
-                                  button_email={data.corporate_booking.home_footer.desktop_button_email}
+                        <NeedHelp 
+                            title={data.corporate_booking.footer.common_footer.details.title}
+                            description={data.corporate_booking.footer.common_footer.details.description}
+                            button_call={data.corporate_booking.footer.common_footer.details.button1_text}
+                            button_email={data.corporate_booking.footer.common_footer.details.button2_text}
                         />
                         <Footer/>
                         <FooterEnd/>

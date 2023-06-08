@@ -22,7 +22,7 @@ const UsersProvider = (props) => {
     const path = useLocation();
     const currentPath = path.pathname.split("/")?.[1];
     const baseUrl = configuration.API_BASEURL;
-    console.log("###process.env.GATSBY_API_BASEURL",process.env.GATSBY_API_BASEURL)
+
     const [userData, setUserData] = useState();
     const [addOnsData, setAddOnsData] = useState();
     const [userId, setUserId] = useState();

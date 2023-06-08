@@ -22,8 +22,11 @@ import moment from "moment";
 import * as _ from 'lodash';
 import '../../assets/styles/searchBar.css'
 import "../../assets/styles/fontStyle.css"
+import CmsContext from "../../context/CmsContext";
 
 const PatronAppSubmit = () => {
+
+    const {footerData} = useContext(CmsContext)
 
     //validations
     const validationSchema = Yup.object({
@@ -575,7 +578,12 @@ const PatronAppSubmit = () => {
                         </Formik>
                     </Box>
                 </Box>
-                <NeedHelp/>
+                <NeedHelp
+                    title={footerData?.footer.footer.common_footer.details.title}
+                    description={footerData?.footer.footer.common_footer.details.description}
+                    button_call={footerData?.footer.footer.common_footer.details.button1_text}
+                    button_email={footerData?.footer.footer.common_footer.details.button2_text}
+                />
                 <Footer/>
                 <FooterEnd/>
             </BoxWrapper>

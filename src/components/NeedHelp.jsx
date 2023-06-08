@@ -1,13 +1,13 @@
-import {Box, Button, TextareaAutosize, styled, TextField, Typography, Link} from "@mui/material";
+import { Box, Button, TextareaAutosize, styled, TextField, Typography, Link } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import InputAdornment from "@mui/material/InputAdornment";
-import {DatePickerInput} from "rc-datepicker";
+import { DatePickerInput } from "rc-datepicker";
 import 'rc-datepicker/lib/style.css';
 import Modal from '@mui/material/Modal';
 import moment from "moment";
 import * as _ from "lodash";
-import {Formik, Form} from "formik";
+import { Formik, Form } from "formik";
 import '../assets/styles/fontStyle.css'
 import CmsContext from "../context/CmsContext";
 import OtpVerificationModal from "./OtpVerificationModal";
@@ -17,11 +17,13 @@ import SuccessFullPopUp from "../components/SuccessFullPopUp"
 
 const NeedHelp = (props) => {
 
-    const {isColor, title, description, button_email, button_call} = props;
-    const {successOpen,setSuccessOpen,scheduleCallOpen, setScheduleCallOpen} = useContext(UsersContext);
+    const { isColor, title, description, button_email, button_call } = props;
+    const { successOpen, setSuccessOpen, scheduleCallOpen, setScheduleCallOpen } = useContext(UsersContext);
+    const { data, footerData } = useContext(CmsContext);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setScheduleCallOpen(true);
     const handleClose = () => setScheduleCallOpen(false);
+
 
     const BoxWarraper = styled(Box)(() => ({
         padding: '40px 120px',
@@ -73,6 +75,11 @@ const NeedHelp = (props) => {
             textTransform: "capitalize !important",
             fontFamily: 'ProximaNovaA-Regular',
             textDecoration: 'none',
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
         },
         ".btn-2:hover": {
             color: "#C6A87D !important",
@@ -142,14 +149,13 @@ const NeedHelp = (props) => {
         }
     }))
 
-    const {data} = useContext(CmsContext);
 
     return (
 
         <React.Fragment>
             <BoxWarraper>
                 {
-                    !_.isEmpty(data) &&
+                    (!_.isEmpty(data) || !_.isEmpty(footerData)) &&
                     <React.Fragment>
                         <Box md={6} sm={6} xs={12} xl={7}>
                             <Typography className="main-heading">{title ? title : 'Need Help?'}</Typography>
@@ -167,11 +173,11 @@ const NeedHelp = (props) => {
                         </Box>
                         {
                             scheduleCallOpen && <ScheduleCallPopUp open={scheduleCallOpen}
-                                                       handleClose={handleClose}
+                                handleClose={handleClose}
                             />
                         }
                         {
-                            successOpen && <SuccessFullPopUp/>
+                            successOpen && <SuccessFullPopUp />
                         }
                     </React.Fragment>
                 }

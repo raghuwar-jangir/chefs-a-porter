@@ -23,12 +23,16 @@ import TemptedYet from "./TemptedYet";
 import NeedHelpEvent from "./NeedHelpEvent";
 import EventChefCarousel from "./EventChefCarousel";
 import UsersContext from "../context/UsersContext";
+import CmsContext from "../context/CmsContext";
 
 
 const EventsDetailsComponent = ({eventId})=>{
   const { setEventId,
     userData
     } = useContext(UsersContext);
+
+    const {footerData} = useContext(CmsContext)
+                
   const [showCarousel, setShowCarousel] = useState(false);
   const [minDinersValue, setMinDinersValue] = useState(0);
   const [maxDinersValue, setMaxDinersValue] = useState(0);
@@ -722,7 +726,12 @@ const EventsDetailsComponent = ({eventId})=>{
               buttonText="Book this Experience"
               isTempted={false}
             />
-            <NeedHelp />
+            <NeedHelp
+                title={footerData?.footer.footer.common_footer.details.title}
+                description={footerData?.footer.footer.common_footer.details.description}
+                button_call={footerData?.footer.footer.common_footer.details.button1_text}
+                button_email={footerData?.footer.footer.common_footer.details.button2_text}
+            />
             <Footer />
             <FooterEnd />
           </>

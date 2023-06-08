@@ -1060,10 +1060,10 @@ const PriveePage = (props) => {
               isTempted={true}
             />
             <NeedHelp
-              title={data.privee.home_footer.desktop_title}
-              description={data.privee.home_footer.desktop_description}
-              button_call={data.privee.home_footer.desktop_button_call}
-              button_email={data.privee.home_footer.desktop_button_email}
+                title={data.privee.footer.common_footer.details.title}
+                description={data.privee.footer.common_footer.details.description}
+                button_call={data.privee.footer.common_footer.details.button1_text}
+                button_email={data.privee.footer.common_footer.details.button2_text}
             />
             <Footer />
             <FooterEnd />

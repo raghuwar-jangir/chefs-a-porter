@@ -37,9 +37,13 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import GalleryCarousel from "../components/GalleryCarousel";
 import UsersContext from "../context/UsersContext";
 import "../assets/styles/fontStyle.css";
+import CmsContext from "../context/CmsContext";
+
 const ChefsDetailTemplate = (props) => { 
     const [isReadMore, setIsReadMore] = useState(true);
     const [isReadMore2, setIsReadMore2] = useState(true);
+
+    const {footerData} = useContext(CmsContext)
 
     const toggleReadMore = () => {
         setIsReadMore(!isReadMore);
@@ -819,7 +823,12 @@ const ChefsDetailTemplate = (props) => {
                                 )}
                             </Box>
                         </Box>
-                        <NeedHelp/>
+                        <NeedHelp
+                            title={footerData?.footer.footer.common_footer.details.title}
+                            description={footerData?.footer.footer.common_footer.details.description}
+                            button_call={footerData?.footer.footer.common_footer.details.button1_text}
+                            button_email={footerData?.footer.footer.common_footer.details.button2_text}
+                        />
                         <Footer/>
                         <TemptedYet
                             isTempted={true}

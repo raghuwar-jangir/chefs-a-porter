@@ -400,10 +400,11 @@ const ContactUs = () => {
                                 </Formik>
                             </Box>
                         </Box>
-                        <NeedHelp title={data.contact_us.home_footer.desktop_title}
-                                  description={data.contact_us.home_footer.desktop_description}
-                                  button_call={data.contact_us.home_footer.desktop_button_call}
-                                  button_email={data.contact_us.home_footer.desktop_button_email}
+                        <NeedHelp
+                            title={data.contact_us.footer.common_footer.details.title}
+                            description={data.contact_us.footer.common_footer.details.description}
+                            button_call={data.contact_us.footer.common_footer.details.button1_text}
+                            button_email={data.contact_us.footer.common_footer.details.button2_text}
                         />
                         <Footer/>
                         <FooterEnd/>

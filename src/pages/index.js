@@ -1386,10 +1386,10 @@ const HomePage = () => {
               <DiningExperienceCarousel title="Peek into our Private Dining Experiences" subTitle="@Private" />
               <TemptedYet title={data.home.home_footer.moblie_title} buttonText={data.home.home_footer.mobile_button} />
               <NeedHelp
-                title={data.home.home_footer.desktop_title}
-                description={data.home.home_footer.desktop_description}
-                button_call={data.home.home_footer.desktop_button_call}
-                button_email={data.home.home_footer.desktop_button_email}
+                title={data.home.footer.common_footer.details.title}
+                description={data.home.footer.common_footer.details.description}
+                button_call={data.home.footer.common_footer.details.button1_text}
+                button_email={data.home.footer.common_footer.details.button2_text}
               />
               <Footer />
               <FooterEnd />

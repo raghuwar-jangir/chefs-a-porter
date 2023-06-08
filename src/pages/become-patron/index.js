@@ -23,6 +23,7 @@ import * as _ from 'lodash';
 import '../../assets/styles/searchBar.css';
 import "../../assets/styles/fontStyle.css";
 import UsersContext from "../../context/UsersContext"
+import CmsContext from "../../context/CmsContext";
 
 const BecomePatronForm = () => {
 
@@ -34,8 +35,7 @@ const BecomePatronForm = () => {
         memberShipTypeData
     } = useContext(UsersContext);
 
-    console.log("occasionData======", occasionData)
-    console.log("memberShipTypeData======", memberShipTypeData)
+    const {footerData} = useContext(CmsContext)
     //validations
     const validationSchema = Yup.object({
         membershipType: Yup.string().required('Please select type'),
@@ -612,7 +612,12 @@ const BecomePatronForm = () => {
                         }
                     </Box>
                 </Box>
-                <NeedHelp/>
+                <NeedHelp
+                    title={footerData?.footer.footer.common_footer.details.title}
+                    description={footerData?.footer.footer.common_footer.details.description}
+                    button_call={footerData?.footer.footer.common_footer.details.button1_text}
+                    button_email={footerData?.footer.footer.common_footer.details.button2_text}
+                />
                 <Footer/>
                 <FooterEnd/>
             </BoxWrapper>

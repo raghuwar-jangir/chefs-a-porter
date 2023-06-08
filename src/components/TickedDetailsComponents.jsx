@@ -35,6 +35,7 @@ import SupperClubDetailPopUpCarousel from './SupperClubDetailPopupCarousel';
 import SupperClubDetailsPastCarousel from './SupperClubDetailsPastCarousel';
 import FooterEnd from './FooterEndSection';
 import ticketedImage from '../assets/images/ticeketd.jpeg';
+import CmsContext from '../context/CmsContext';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const images = [RestorentImgMobile, RestorentImgMobile, RestorentImgMobile, RestorentImgMobile, RestorentImgMobile];
@@ -42,6 +43,7 @@ const images = [RestorentImgMobile, RestorentImgMobile, RestorentImgMobile, Rest
 const TickedDetailsComponents = ({ id }) => {
   const getSupperClubDetailId = id;
   const { setSupperClubDetailId, userData } = useContext(UsersContext);
+  const {footerData } = useContext(CmsContext);
   const groupedDates = _.groupBy(userData?.new_dates, (item) => item.date);
   const showDates = Object.values(groupedDates);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -1273,7 +1275,12 @@ const TickedDetailsComponents = ({ id }) => {
               </Grid>
             </Grid>
           </Box>
-          <NeedHelp />
+          <NeedHelp
+              title={footerData?.footer.footer.common_footer.details.title}
+              description={footerData?.footer.footer.common_footer.details.description}
+              button_call={footerData?.footer.footer.common_footer.details.button1_text}
+              button_email={footerData?.footer.footer.common_footer.details.button2_text}
+          />
           <Box className="footer-box">
             <Footer />
           </Box>
