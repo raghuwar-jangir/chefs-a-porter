@@ -613,10 +613,10 @@ const BecomePatronForm = () => {
                     </Box>
                 </Box>
                 <NeedHelp
-                    title={footerData?.footer.footer.common_footer.details.title}
-                    description={footerData?.footer.footer.common_footer.details.description}
-                    button_call={footerData?.footer.footer.common_footer.details.button1_text}
-                    button_email={footerData?.footer.footer.common_footer.details.button2_text}
+                    title={footerData?.footer?.footer?.common_footer?.details?.title??"Get in touch with us!"}
+                    description={footerData?.footer?.footer?.common_footer?.details?.description??"Schedule a call or email us and we will get back to you within 24 hours."}
+                    button_call={footerData?.footer?.footer?.common_footer?.details?.button1_text??"Call"}
+                    button_email={footerData?.footer?.footer?.common_footer?.details?.button2_text??"Email"}
                 />
                 <Footer/>
                 <FooterEnd/>
