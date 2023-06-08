@@ -1226,11 +1226,12 @@ const HomePage = () => {
                 <Box>
                   <Typography className="gallery-heading">{data.home.food_drools.title}</Typography>
                 </Box>
-                <ImageList variant="masonry" sx={{ width: '100%', height: '100%' }} cols={3} gap={20} rowHeight={300}>
+                <ImageList variant="masonry" sx={{ width: '100%', height: '100%' }} cols={1} gap={20} rowHeight={300}>
+                  {console.log("finalImageData",finalImageData)}
                   {finalImageData.map((item, index) => (
-                    <ImageListItem key={index} cols={item.cols || 1} rows={item.rows || 1}>
+                    item.image ? <ImageListItem key={index} cols={item.cols || 1} rows={item.rows || 1} style={{height:"100%"}}>
                       <img src={item.image} alt={item?.title || ''} className="gallery_img_box" loading="lazy" />
-                    </ImageListItem>
+                    </ImageListItem> : null
                   ))}
                 </ImageList>
               </Box>
