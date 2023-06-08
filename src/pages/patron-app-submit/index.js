@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
     Box,
     Grid,
@@ -579,10 +579,10 @@ const PatronAppSubmit = () => {
                     </Box>
                 </Box>
                 <NeedHelp
-                    title={footerData?.footer.footer.common_footer.details.title}
-                    description={footerData?.footer.footer.common_footer.details.description}
-                    button_call={footerData?.footer.footer.common_footer.details.button1_text}
-                    button_email={footerData?.footer.footer.common_footer.details.button2_text}
+                    title={footerData?.footer?.common_footer?.details?.title}
+                    description={footerData?.footer?.common_footer?.details?.description}
+                    button_call={footerData?.footer?.common_footer?.details?.button1_text}
+                    button_email={footerData?.footer?.common_footer?.details?.button2_text}
                 />
                 <Footer/>
                 <FooterEnd/>
