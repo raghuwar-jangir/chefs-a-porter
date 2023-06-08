@@ -6,6 +6,7 @@ import * as _ from "lodash";
 import useRazorpay from "react-razorpay";
 import SuccessFullPopUp from "../components/SuccessFullPopUp";
 import {toast} from 'react-toastify';
+import configuration from '../configuration';
 
 const defaultState = {
     data: {},
@@ -20,7 +21,8 @@ const UsersProvider = (props) => {
     const SupperClubRazorpay = useRazorpay();
     const path = useLocation();
     const currentPath = path.pathname.split("/")?.[1];
-    const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
+    const baseUrl = configuration.API_BASEURL;
+    console.log("###process.env.GATSBY_API_BASEURL",process.env.GATSBY_API_BASEURL)
     const [userData, setUserData] = useState();
     const [addOnsData, setAddOnsData] = useState();
     const [userId, setUserId] = useState();
@@ -183,7 +185,7 @@ const UsersProvider = (props) => {
                             if (response) {
                                 localStorage.setItem('privatePaymentNumber', JSON.stringify(response.razorpay_payment_id));
                                 setIsConfirm(false);
-                                axios.post('https://chefv2.hypervergedemo.site/v1/booking/verifypayment/' + summaryBookingId, {
+                                axios.post(baseUrl +'/booking/verifypayment/' + summaryBookingId, {
                                     razorpay_order_id: response.razorpay_order_id,
                                     razorpay_payment_id: response.razorpay_payment_id,
                                     razorpay_signature: response.razorpay_signature,
@@ -337,7 +339,7 @@ const UsersProvider = (props) => {
                             if (response) {
                                 localStorage.setItem('scPaymentNumber', JSON.stringify(response.razorpay_payment_id));
                                 setIsSupperBookingStatus(false);
-                                axios.post('https://chefv2.hypervergedemo.site/v1/booking/verifypayment/' + supperClubBookingId, {
+                                axios.post(baseUrl +'/booking/verifypayment/' + supperClubBookingId, {
                                     razorpay_order_id: response.razorpay_order_id,
                                     razorpay_payment_id: response.razorpay_payment_id,
                                     razorpay_signature: response.razorpay_signature,
@@ -435,28 +437,28 @@ const UsersProvider = (props) => {
             })
         }
         if (path.pathname === '/' || currentPath === "private" || currentPath === "private-viewmore" || currentPath === 'event-details' || currentPath === 'customer-details') {
-            axios.get('https://chefv2.hypervergedemo.site/v1/meal_times/all').then(result => {
+            axios.get(baseUrl +'/meal_times/all').then(result => {
                 setMealData(result.data)
             })
-            axios.get('https://chefv2.hypervergedemo.site/v1/city/all').then(result => {
+            axios.get(baseUrl +'/city/all').then(result => {
                 setCommonCityData(result.data)
             })
         }
         if (currentPath === "ticketed") {
-            axios.get('https://chefv2.hypervergedemo.site/v1/city/all').then(result => {
+            axios.get(baseUrl +'/city/all').then(result => {
                 setCommonCityData(result.data)
             })
         }
         if (currentPath === "personal-details") {
-            axios.get('https://chefv2.hypervergedemo.site/v1/meal_types/all').then(result => {
+            axios.get(baseUrl +'/meal_types/all').then(result => {
                 setMealTypeData(result.data)
             })
         }
         if (currentPath === "become-patron") {
-            axios.get('https://chefv2.hypervergedemo.site/v1/occasion_master/all').then(result => {
+            axios.get(baseUrl +'/occasion_master/all').then(result => {
                 setOccasionData(result.data)
             });
-            axios.get('https://chefv2.hypervergedemo.site/v1/partner_master/all').then(result => {
+            axios.get(baseUrl +'/partner_master/all').then(result => {
                 setMemberShipTypeData(result.data)
             })
         }

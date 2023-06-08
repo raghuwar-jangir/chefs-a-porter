@@ -2,6 +2,7 @@ import React, {useEffect, useState, useLayoutEffect} from 'react';
 import axios from "axios";
 import {useLocation} from "@reach/router"
 import * as _ from "lodash";
+import configuration from '../configuration';
 
 
 const defaultState = {
@@ -30,7 +31,7 @@ const CmsProvider = (props) => {
 
     const currentPath = path.pathname.split("/")?.[1];
 
-    const baseUrl = `https://chefv2.hypervergedemo.site/v1/cms`;
+    const baseUrl = `${configuration.API_BASEURL}/cms`;
 
     const emptyUrl = currentPath.startsWith(null) ? currentPath : currentPath + "/";
 
@@ -44,7 +45,7 @@ const CmsProvider = (props) => {
             })
         }
         if (currentPath === 'become-a-patron') {
-            axios.get('https://chefv2.hypervergedemo.site/v1/patron_master/all').then(result => {
+            axios.get(`${configuration.API_BASEURL}/patron_master/all`).then(result => {
                 setMasterData(result.data)
             })
         }

@@ -8,6 +8,7 @@ import UsersContext from "./UsersContext";
 import {navigate} from "gatsby";
 import { ToastContainer, toast } from 'react-toastify';
 import moment from 'moment';
+import configuration from '../configuration';
 
 const defaultState = {
     data: {},
@@ -21,7 +22,7 @@ const OtpProvider = (props) => {
     const currentPath = path.pathname.split("/")?.[1];
     const {data} = useContext(CmsContext);
     const {eventId, supperClubDetailId, commonCityData,mealData} = useContext(UsersContext);
-    const baseUrl = `https://chefv2.hypervergedemo.site/v1`;
+    const baseUrl = configuration.API_BASEURL;
     const [openOtp, setOpenOtp] = useState(false);
     const [otpNumber, setOtpNumber] = useState('');
     const [verifyOtp, setVerifyOtp] = useState('');

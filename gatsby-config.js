@@ -45,21 +45,29 @@
 //     ],
 // }
 
+require("dotenv").config({
+    path: `.env`,
+});
+
 module.exports = {
     siteMetadata: {
-        title: "My Gatsby Site",
-        description: "This is a demo site built with Gatsby",
-        author: "John Doe",
+        title: "Chefs á Porter",
+        description: "The best chef’s table affair with carefully thought out menus that is guaranteed to satisfy your fine dining craving. The best cuisines paired with the best wines",
+        author: "Chefs á Porter",
+        og: {
+            title: "Best Curated Dining experience in Bangalore - Chefs á Porter",
+            description: "The best chef’s table affair with carefully thought out menus that is guaranteed to satisfy your fine dining craving. The best cuisines paired with the best wines",
+        }
     },
     flags: {
         DEV_SSR: true
-      },
+    },
     plugins: [
         {
             resolve: "gatsby-plugin-manifest",
             options: {
-                name: "My Gatsby Site",
-                short_name: "My Site",
+                name: "Chefs á Porter",
+                short_name: "Chefs á Porter",
                 start_url: "/",
                 background_color: "#ffffff",
                 theme_color: "#663399",
