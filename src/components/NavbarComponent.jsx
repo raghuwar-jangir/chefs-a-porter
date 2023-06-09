@@ -468,7 +468,11 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                                     </ListItem>
                                     <ListItem button>
                                         <Link
-                                            className="hamburger-title" to='/supper-club'> Supper Clubs </Link>
+                                            className="hamburger-title" to='/ticketed'> Ticketed </Link>
+                                    </ListItem>
+                                    <ListItem button>
+                                        <Link
+                                            className="hamburger-title" to='/join-chef'> Join As Chef </Link>
                                     </ListItem>
                                     <ListItem button>
                                         <Link
@@ -476,82 +480,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                                     </ListItem>
                                     <ListItem button>
                                         <Link
-                                            className="hamburger-title" to='/privee'> Corporate Bookings </Link>
-                                    </ListItem>
-                                    <ListItem button>
-                                        <Link
-                                            className="hamburger-title" to='/become-a-patron'> Become a Patron </Link>
-                                    </ListItem>
-                                    <ListItem button>
-                                        <Link
-                                            className="hamburger-title" to='/gift-cards'> Gift Cards </Link>
-                                    </ListItem>
-                                    <ListItem button>
-                                        <List
-                                            sx={{
-                                                width: '100%', maxWidth: '100%',
-                                                '.css-fpvc7o-MuiList-root': {
-                                                    paddingBottom: '0px !important',
-                                                    paddingTop: '0px !important'
-                                                },
-                                            }}
-                                            component="nav"
-                                        >
-                                            <ListItemButton onClick={handleClick} sx={{
-                                                padding: '0px !important',
-                                                '.css-fpvc7o-MuiList-root': {
-                                                    paddingBottom: '0px !important',
-                                                    paddingTop: '0px !important'
-                                                },
-                                                '.MuiListItemText-root': {
-                                                    marginBottom: '0px !important',
-                                                    marginTop: '0px !important'
-                                                },
-                                            }}>
-                                                <ListItemText disableTypography primary="Join Us"
-                                                              className='hamburger-title'
-                                                              sx={{
-                                                                  fontSize: '18px',
-                                                                  '.css-fpvc7o-MuiList-root': {
-                                                                      paddingBottom: '0px !important',
-                                                                      paddingTop: '0px !important'
-                                                                  },
-                                                              }}/>
-                                                {expanded ? <ExpandLess sx={{color: '#FBFBFB'}}/> :
-                                                    <ExpandMore sx={{color: '#FBFBFB'}}/>}
-                                            </ListItemButton>
-                                            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                                                <List component="div" disablePadding>
-                                                    <ListItemButton sx={{
-                                                        padding: '8px 0px !important'
-                                                    }}>
-                                                        <Link to={'/our-chef-page'}
-                                                              className="hamburger-subtitle">Chef</Link>
-                                                    </ListItemButton>
-                                                    <ListItemButton sx={{
-                                                        padding: '8px 0px !important'
-                                                    }}>
-                                                        <Link to={'/become-partner'} className="hamburger-subtitle">Sponsor
-                                                            Partner</Link>
-                                                    </ListItemButton>
-                                                    <ListItemButton sx={{
-                                                        padding: '8px 0px !important'
-                                                    }}>
-                                                        <Link to={'/'} className="hamburger-subtitle">Vendor<br/>(decor,
-                                                            venue,
-                                                            crockery, cultery, produce, etc)</Link>
-                                                    </ListItemButton>
-                                                </List>
-                                            </Collapse>
-                                        </List>
-                                    </ListItem>
-                                    <ListItem button>
-                                        <Link
-                                            className="hamburger-title" to='/about-us/'> About us </Link>
-                                    </ListItem>
-                                    <ListItem button>
-                                        <Link
-                                            className="hamburger-title" to='/contact'> Contact </Link>
+                                            className="hamburger-title" to='/contact-us'> Contact </Link>
                                     </ListItem>
                                 </List>
                             </div>
