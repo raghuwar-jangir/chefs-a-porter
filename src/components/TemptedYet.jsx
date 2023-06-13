@@ -64,7 +64,13 @@ const TemptedYet = (props) => {
             <BoxWrapper>
                 <Box className="template show">
                     <Typography className="template-title">{title}</Typography>
-                    <a href="" className="view-all">{buttonText}</a>
+                    <a href="" className="view-all" onClick={(e) => {
+                       
+                        if(props?.toggleBookingFormMobile){
+                            e.preventDefault();
+                            props.toggleBookingFormMobile();
+                        }
+                    }}>{buttonText}</a>
                 </Box>
             </BoxWrapper>
         </React.Fragment>

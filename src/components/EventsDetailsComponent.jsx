@@ -37,11 +37,20 @@ const EventsDetailsComponent = ({eventId})=>{
   const [minDinersValue, setMinDinersValue] = useState(0);
   const [maxDinersValue, setMaxDinersValue] = useState(0);
   const [title, setTitle] = useState("");
+
+  // to handle booking form hide/show in mobile
+  const [showBookingFormMobile, setShowBookingFormMobile] = useState(false);
   console.log('userData',userData)
 
   useEffect(() => {
     setEventId(eventId);
   },[eventId]);
+
+  const toggleBookingFormMobile = () => { 
+    console.log('yes');
+    setShowBookingFormMobile(true);
+    window.scrollTo(0, 0)
+  }
 
 
 
@@ -516,6 +525,12 @@ const EventsDetailsComponent = ({eventId})=>{
       ".grid-child-box": {
         display: "none",
       },
+      ".grid-item.mobile-booking-form-show": {
+        display: "none",
+      },
+      ".grid-child-box.mobile-booking-form-show": {
+        display: "block",
+      },
       ".invite-btn": {
         width: "114px",
       },
@@ -540,6 +555,7 @@ const EventsDetailsComponent = ({eventId})=>{
       },
     },
   }));
+
     return(
         <MainBox>
         {!_.isEmpty(userData && eventId) && (
@@ -686,7 +702,7 @@ const EventsDetailsComponent = ({eventId})=>{
                   </Grid>
                 </Grid>
                 <Grid className="grid-box-2" container spacing={{ md: 2 }}>
-                  <Grid className="grid-item" item xl={7} md={7} sm={6} xs={12}>
+                  <Grid className={`grid-item ${showBookingFormMobile === true ? "mobile-booking-form-show" : ""}`} item xl={7} md={7} sm={6} xs={12}>
                     <EventCard />
                     <EventChefCarousel />
                     <SupperClubDetailsCarousel
@@ -708,7 +724,7 @@ const EventsDetailsComponent = ({eventId})=>{
                     </Box>
                   </Grid>
                   <Grid
-                    className="grid-child-box"
+                    className={`grid-child-box ${showBookingFormMobile === true ? "mobile-booking-form-show" : ""}`}
                     item
                     md={5}
                     sm={6}
@@ -720,12 +736,15 @@ const EventsDetailsComponent = ({eventId})=>{
                 </Grid>
               </Box>
             </Box>
+            {showBookingFormMobile !== true && (<>
             <NeedHelpEvent />
             <TemptedYet
               title={"Tempted yet?"}
               buttonText="Book this Experience"
               isTempted={false}
+              toggleBookingFormMobile={toggleBookingFormMobile}
             />
+            </>)}
             <NeedHelp
                 title={footerData?.footer.footer.common_footer.details.title}
                 description={footerData?.footer.footer.common_footer.details.description}
