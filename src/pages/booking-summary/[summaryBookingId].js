@@ -740,7 +740,7 @@ const BookingSummary = (props) => {
         display: "none",
       },
       ".dinner-box": {
-        display: "none",
+        // display: "none",
       },
     },
     "@media (min-width: 371px) and (max-width:400px)": {

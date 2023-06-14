@@ -299,7 +299,7 @@ const Addons = (props) => {
                 padding: '0px'
             },
             '.dinner-box': {
-                display: 'none'
+                // display: 'none'
             }
         },
         "@media (min-width: 371px) and (max-width:400px)": {

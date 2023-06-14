@@ -52,7 +52,7 @@ const InfiniteScrollData = ({allData, pagelimit=9})=>{
                                      {list && list.map((item) => (
                                         <Grid item xl={4} md={4} sm={6} xs={12}>
                                             <AvlExperienceCarousel
-                                                image={item?.user?.picture}
+                                                image={item?.cover_picture}
                                                 title={item?.title} description={`by ${item?.user?.name}`}
                                                 onClick={() => {
                                                     navigate(`/event-details/${item?.id}`);

@@ -106,6 +106,7 @@ const MapComponent = ({setNewAddress, newAddress, setOpen}) => {
             .then((latLng) => {
                 setCoords(latLng);
                 Cookies.set('coords',JSON.stringify(latLng));
+                setAddress(selectedAddress)
             })
             .catch((error) => console.error("Error", error));
     };
@@ -226,6 +227,7 @@ const MapComponent = ({setNewAddress, newAddress, setOpen}) => {
                                             onSubmit={(values) => {
                                                 setNewAddress(values);
                                                 localStorage.setItem('userAddress', JSON.stringify(values));
+                                                // setOpen(false);
                                             }}
                                         >
                                             {({values, handleChange, handleSubmit}) => (
@@ -241,7 +243,7 @@ const MapComponent = ({setNewAddress, newAddress, setOpen}) => {
                                                             House/Flat Floor No
                                                         </Typography>
                                                         <Field
-                                                            type="tel"
+                                                            type="text"
                                                             name="houseNo"
                                                             id="houseNo"
                                                             className="form-control"
@@ -430,7 +432,6 @@ const MapComponent = ({setNewAddress, newAddress, setOpen}) => {
                                                         className="save-btn"
                                                         onClick={() => {
                                                             handleSubmit(values);
-                                                            setOpen(false);
                                                         }}
                                                     >
                                                         Save Address

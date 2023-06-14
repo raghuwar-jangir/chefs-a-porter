@@ -1023,20 +1023,13 @@ const PriveePage = (props) => {
                   return (
                     <Grid item xl={4} md={4} sm={6} xs={12}>
                       <AvlExperienceCarousel
-                        image={item.user.picture}
+                        image={item.cover_picture}
                         title={item.title}
                         description={`by ${item.user.name}`}
-                      />
-                    </Grid>
-                  );
-                })}
-                {data.privee.experiences.experiences.results.map((item) => {
-                  return (
-                    <Grid item xl={4} md={4} sm={6} xs={12}>
-                      <AvlExperienceCarousel
-                        image={item.user.picture}
-                        title={item.title}
-                        description={`by ${item.user.name}`}
+                        onClick={() => {
+                          navigate(`/event-details/${item?.id}`);
+                          Cookies.set('eventIdValue', JSON.stringify(item?.id));
+                        }}
                       />
                     </Grid>
                   );

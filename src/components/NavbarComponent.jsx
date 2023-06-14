@@ -422,7 +422,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                         <AppBar position="fixed" className="appbar">
                             <Toolbar>
                                 {isShareIcon && <ShareIcon sx={{color: `${isColor ? '#FBFBFB' : '#000000'}`}}/>}
-                                {isIcon && <ArrowBackIcon sx={{color: `${isColor ? '#FBFBFB' : '#000000'}`}}/>}
+                                {isIcon && <ArrowBackIcon onClick={() => navigate(-1)} sx={{color: `${isColor ? '#FBFBFB' : '#000000'}`}}/>}
                                 {isImage &&
                                     <img src={LightThemeIcon} className='mobile-navbar-img'/>}
                                 <Typography variant="h6" className={classes.title}

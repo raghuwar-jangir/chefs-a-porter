@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import sGallery from "./../assets/images/sc-gallery.png";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
@@ -7,28 +7,14 @@ import {Box} from "@mui/material";
 import "swiper/css/pagination";
 import {Pagination} from "swiper";
 import "../assets/styles/fontStyle.css";
+import UsersContext from "../context/UsersContext";
+import _ from "lodash";
 
 const ImageCarousel = () => {
     const pagination = {
         clickable: true,
     };
-    const image = [
-        {
-            img: sGallery,
-        },
-        {
-            img: sGallery,
-        },
-        {
-            img: sGallery,
-        },
-        {
-            img: sGallery,
-        },
-        {
-            img: sGallery,
-        },
-    ];
+    
     const MainBox = styled(Box)({
         paddingTop: '30px',
         ".carousel-img": {
@@ -59,6 +45,20 @@ const ImageCarousel = () => {
             display: 'none'
         }
     });
+
+    const { userData } = useContext(UsersContext);
+    const itemData = {
+        img: userData.cover_picture,
+    };
+
+    const itemData2 = _.map(_.get(userData, "pictures", []), (item, index) => {
+        return {
+            img: item,
+        };
+    });
+
+    const combinedArray = [itemData, ...itemData2];
+
     return (
         <React.Fragment>
             <MainBox>
@@ -69,7 +69,7 @@ const ImageCarousel = () => {
                         grabCursor={true}
                         className="mySwiper"
                     >
-                        {image.map((item) => (
+                        {combinedArray.map((item) => (
                             <SwiperSlide>
                                 <img className="carousel-img" src={item.img}/>
                             </SwiperSlide>
