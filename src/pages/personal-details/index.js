@@ -597,7 +597,8 @@ const PersonalDetails1 = () => {
                 borderRight: "0px",
             },
             ".dinner-box": {
-                display: "none",
+                // display: "none",
+                paddingLeft: 0
             },
             ".event-div-mobile": {
                 display: "block",
@@ -1383,7 +1384,7 @@ const PersonalDetails1 = () => {
                                     <Grid
                                         xl={5}
                                         lg={5}
-                                        xs={5}
+                                        xs={12}
                                         md={5}
                                         sm={12}
                                         className="cust-details dinner-box"

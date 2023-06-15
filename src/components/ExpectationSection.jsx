@@ -74,7 +74,7 @@ const ExpectactionSection = () => {
             <BoxWrapper className="BoxWrapper">
                 <Box className="BoxWrapper">
                     <Hidden only='xl'>
-                        <Typography className="main-title">What to expect at a Supper Club ?</Typography>
+                        <Typography className="main-title">What to expect at a Ticketed Experience ?</Typography>
                     </Hidden>
                     <Grid container columnSpacing={{ xs: 1 }} className="grid">
                         <Grid item xs={6} md={6} xl={6} >
@@ -94,7 +94,7 @@ const ExpectactionSection = () => {
                         <Grid item xs={6} md={6} xl={6}>
                             <Box className="description-menu">
                                 <Hidden only='xs'>
-                                    <Typography className="main-title">What to expect at a Supper Club ?</Typography>
+                                    <Typography className="main-title">What to expect at a Ticketed Experience ?</Typography>
                                 </Hidden>
                                 <Box className="parent-box">
                                     <CircleIcon className="dot-icon" />

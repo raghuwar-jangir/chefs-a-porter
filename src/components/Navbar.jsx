@@ -142,7 +142,7 @@ const NavbarDemo = () => {
                             <Grid className='browser-menu' item md={5}>
                                 <Link className='browser-hamburger-menu'
                                     to='/privee'>
-                                    Privee
+                                    Private
                                 </Link>
                                 <Link className='browser-hamburger-menu'
                                     to='/super-club'>

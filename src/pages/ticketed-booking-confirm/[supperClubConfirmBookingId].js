@@ -644,7 +644,7 @@ const ScBookingConfirm = (props) => {
         "@media (min-width: 1px) and (max-width:425px)": {
             padding: '0px',
             '.dinner-box': {
-                display: 'none'
+                // display: 'none'
             },
             '.partner': {
                 maxWidth: '100%',
@@ -1067,6 +1067,11 @@ const ScBookingConfirm = (props) => {
         "@media (min-width: 400px) and (max-width:425px)": {
             width: "400px !important",
         },
+        "@media (min-width: 1px) and (max-width:768px)": {
+            ".grid-box, .grid-box-1": {
+                border: 0
+            },
+        }
     };
     return (
         <React.Fragment>
@@ -1222,7 +1227,7 @@ const ScBookingConfirm = (props) => {
                                     <Grid
                                         xl={5}
                                         lg={5}
-                                        xs={5}
+                                        xs={12}
                                         md={5}
                                         sm={12}
                                         // xs={12}
@@ -1662,7 +1667,7 @@ const ScBookingConfirm = (props) => {
                                         </a>
                                         <button className="add-cal">
                                             <img src={dateGold} alt=""/>
-                                            Add to calender
+                                            Add to calendar
                                         </button>
                                     </div>
                                     <div className="bookingBox">
@@ -1716,7 +1721,7 @@ const ScBookingConfirm = (props) => {
                                                             <hr className="hr"/>
                                                         </div>
                                                     </div>
-                                                    <div className="col-lg-12">
+                                                    {/* <div className="col-lg-12">
                                                         <div className="share-link-copy">
                               <span>
                                 Share link for the Experience with your guests
@@ -1744,8 +1749,8 @@ const ScBookingConfirm = (props) => {
                                                                 />
                                                             </form>
                                                         </div>
-                                                    </div>
-                                                    <hr className="hr"/>
+                                                    </div> <hr className="hr"/>*/}
+                                                    
                                                     <div className="col-lg-12">
                                                         <div className="form-check">
                                                             <label
@@ -1782,6 +1787,7 @@ const ScBookingConfirm = (props) => {
                                                             </div>
                                                             <div className="table-box">
                                                     <span className="table-box-span">
+                                                        {console.log('supperClubConfirmPaymentData', supperClubConfirmPaymentData)}
                                                     {moment(supperClubConfirmPaymentData?.event?.dates?.[0]).format("MMMM D")} | {moment(supperClubConfirmPaymentData?.event?.timefrom, 'HH:mm').format('h:mm A')} - {moment(supperClubConfirmPaymentData?.event?.timetill, 'HH:mm').format('h:mm A')}
                                                     </span>
                                                             </div>

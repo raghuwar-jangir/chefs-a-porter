@@ -184,7 +184,7 @@ const ClubSection = () => {
                         <Box className='main-container'>
                             <img src={PriveeImg} alt="privee" className="privee-demo"/>
                             <Box className='overlay'>
-                                <Typography className='privee-title-hover'>Privee </Typography>
+                                <Typography className='privee-title-hover'>Private </Typography>
                                 <Typography className='privee-sub-title'> Dine in the comfort of your home with friends
                                     and family
                                 </Typography>
@@ -205,7 +205,7 @@ const ClubSection = () => {
                         <Box className='main-container'>
                             <img src={SupperClubImg} alt="privee" className="supper-demo"/>
                             <Box className='supper-overlay'>
-                                <Typography className='supper-title-hover'> Supper Club </Typography>
+                                <Typography className='supper-title-hover'> Ticketed Experience </Typography>
                                 <Typography className='supper-sub-title'> Experience a shared meal at bespoke
                                     locations </Typography>
                                 <Button
@@ -216,7 +216,7 @@ const ClubSection = () => {
                                     type="submit"
                                     color="primary"
                                 >
-                                    Book a Supper Club
+                                    Book a Ticketed Experience
                                 </Button>
                             </Box>
                         </Box>

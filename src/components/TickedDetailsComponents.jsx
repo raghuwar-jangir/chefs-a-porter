@@ -850,13 +850,13 @@ const TickedDetailsComponents = ({ id }) => {
         background: '#101418',
         color: '#FBFBFB',
       },
-      '.parent-container ': {
-        flex: '0 0 auto',
-        width: '58.33333333%',
-        maxWidth: 'none',
-      },
+      // '.parent-container ': {
+      //   flex: '0 0 auto',
+      //   width: '58.33333333%',
+      //   maxWidth: 'none',
+      // },
       '.grid-box-2': {
-        flexDirection: 'column',
+        flexDirection: 'column-reverse',
       },
       '.next-grid': {
         flex: ' 0 0 auto',
@@ -867,7 +867,7 @@ const TickedDetailsComponents = ({ id }) => {
         maxWidth: '100%',
       },
       '.sub-box-2': {
-        display: 'none',
+        // display: 'none',
       },
       '.time-btn-box': {
         width: '100%',
@@ -924,7 +924,7 @@ const TickedDetailsComponents = ({ id }) => {
         maxWidth: '100%',
       },
       '.supper-main-container': {
-        display: 'none',
+        // display: 'none',
       },
       '.sub-box': {
         padding: '20px 16px',
@@ -978,7 +978,7 @@ const TickedDetailsComponents = ({ id }) => {
               </Typography>
             </Box>
             <Grid className="supper-main-container" container spacing={{ md: 2 }}>
-              <Grid className="parent-container" item xl={7} md={7} sm={6} xs={12}>
+              <Grid className="parent-container" item xl={7} md={7} sm={12} xs={12}>
                 <Box className="container">
                   <img
                     src={itemData.img}
@@ -1001,7 +1001,7 @@ const TickedDetailsComponents = ({ id }) => {
                   )}
                 </Box>
               </Grid>
-              <Grid item md={5} sm={6} xs={12} xl={5} className="next-grid">
+              <Grid item md={5} sm={12} xs={12} xl={5} className="next-grid">
                 <Grid className="child-container" container spacing={2}>
                   {itemData2.map((item) => (
                     <Grid className="item-img-1" item md={6} sm={6} xs={6} xl={6}>

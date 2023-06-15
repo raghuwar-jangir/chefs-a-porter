@@ -146,6 +146,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                 position: 'relative',
                 color: `${isColor ? '#FBFBFB' : '#080B0E'}`,
                 fontFamily: 'Proxima Nova Alt',
+                whiteSpace: 'nowrap'
             },
             '.browser-hamburger-menu.active:after': {
                 content: `''`,

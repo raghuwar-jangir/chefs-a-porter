@@ -612,7 +612,7 @@ const ScBookingSummary = () => {
         "@media (min-width: 1px) and (max-width:425px)": {
             padding: '0px',
             '.dinner-box': {
-                display: 'none'
+                // display: 'none'
             },
             '.partner': {
                 maxWidth: '100%',

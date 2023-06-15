@@ -128,9 +128,15 @@ const SupperClubDetailsPastCarousel = (props) => {
                     "--swiper-navigation-color": "none",
                     "--swiper-navigation-size": "0px",
                 }}
+                breakpoints={{
+                    768: {
+                    // width: 768,
+                    slidesPerView: 3,
+                    },
+                }}
                 // rewind={true}
                 spaceBetween={4}
-                slidesPerView={3}
+                slidesPerView={1}
                 // navigation={true}
                 pagination={{
                     clickable: true,
