@@ -1,8 +1,8 @@
 import {styled} from "@mui/system";
 import {Box, Button, Grid, Typography} from "@mui/material";
-import PriveeImg from "../assets/images/priveeImg.png";
-import SupperClubImg from "../assets/images/SupperClubImg.png";
-import React from "react";
+import React, { useContext } from "react";
+import CmsContext from "../context/CmsContext";
+import { isImageOrVideo } from "../helpers";
 
 
 const BoxWrapper = styled(Box)({
@@ -105,19 +105,25 @@ const BoxWrapper = styled(Box)({
         '.img-box': {
             padding: '40px 0px'
         },
+        '.main-container': {
+            width:'100%',
+        },
         '.privee-demo': {
             width: '100%',
-            height:'100%'
+            height:'100%',
+            objectFit: 'cover',
         },
         '.supper-demo': {
             width: '100%',
-            height:'100%'
+            height:'100%',
+            objectFit: 'cover',
         },
         '.supperClub-demo': {
             width: '45%',
         },
         '.container': {
-            padding: '25px'
+            padding: '25px',
+            display: 'flex',
         },
         '.privee-container': {
             height:'156px'
@@ -127,96 +133,134 @@ const BoxWrapper = styled(Box)({
         },
         '.supper-title-hover': {
             fontSize: '16px',
-            paddingTop:'0px'
+            paddingTop:'5px'
         },
         '.supper-sub-title': {
             fontSize: '12px',
-            padding: '0px',
+            padding: '3px',
+            '-webkit-line-clamp': '3',
+            '-webkit-box-orient': 'vertical',
+            overflow: 'hidden',
+            display: '-webkit-box'
         },
         '.main-container:hover .supper-overlay': {
-            padding: '10px',
+            padding: '1px 10px',
             // height: 'auto',
             width:'auto',
+            bottom: '-1px'
         },
         '.book-btn': {
             fontSize: '12px',
             fontWeight: 300,
             padding: '5px',
-            marginBottom: '0px'
+            marginBottom: '0px',
+            marginTop: '-30px',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            textTransform: 'none'
         },
         '.privee-title-hover': {
             fontSize: '16px',
-            paddingTop:'0px'
+            paddingTop:'5px'
         },
         '.privee-sub-title': {
             fontSize: '12px',
-            padding: '5px',
+            padding: '3px',
+            '-webkit-line-clamp': '3',
+            '-webkit-box-orient': 'vertical',
+            overflow: 'hidden',
+            display: '-webkit-box'
         },
         '.main-container:hover .overlay': {
-            padding: '10px',
+            padding: '1px 10px',
             // height: 'auto',
             width:'auto',
+            bottom: '-1px'
         },
         '.view-btn': {
             fontSize: '12px',
             fontWeight: 300,
             padding: '5px',
-            marginBottom: '0px'
+            marginBottom: '0px',
+            marginTop: '10px',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis', 
+            textTransform: 'none'
         },
     },
-
-    '@media(min-width: 1px) and (max-width: 768px)': {
-        '.container':{
-            display:'flex'
-        }
-    },
-
-
 })
 
 const ClubSection = () => {
-
+    const { data } = useContext(CmsContext);
+    
     return (
         <React.Fragment>
             <BoxWrapper>
                 <Grid className='container' container spacing={2} sx={{width:'auto'}}>
                     <Grid className='privee-container' item xs={6}>
                         <Box className='main-container'>
-                            <img src={PriveeImg} alt="privee" className="privee-demo"/>
+                            {isImageOrVideo(data.home.booking_types.privee.image) === "video" ? (
+                                <video className="privee-demo" autoPlay muted loop>
+                                    <source
+                                    src={data.home.booking_types.privee.image}
+                                    type="video/mp4"
+                                    />
+                                </video>
+                                ) : (
+                                <img
+                                    src={data.home.booking_types.privee.image}
+                                    className="privee-demo"
+                                />
+                                )}
                             <Box className='overlay'>
-                                <Typography className='privee-title-hover'>Private </Typography>
-                                <Typography className='privee-sub-title'> Dine in the comfort of your home with friends
-                                    and family
+                                <Typography className='privee-title-hover'>{data.home.booking_types.privee.title.split(" ")[0]} </Typography>
+                                <Typography className='privee-sub-title'>  {data.home.booking_types.privee.description}
                                 </Typography>
                                 <Button
                                     fullWidth
                                     className='view-btn'
                                     disableElevation
                                     disableRipple={false}
-                                    type="submit"
+                                    type="button"
                                     color="primary"
+                                    href="/private"
                                 >
-                                    View Experiences
+                                    {data.home.booking_types.privee.button_text}
                                 </Button>
                             </Box>
                         </Box>
                     </Grid>
                     <Grid className='supper-container' item xs={6}>
                         <Box className='main-container'>
-                            <img src={SupperClubImg} alt="privee" className="supper-demo"/>
+                        {isImageOrVideo(data.home.booking_types.supper_club.image) ===
+                            "video" ? (
+                                <video className="supper-demo" autoPlay muted loop>
+                                <source
+                                src={data.home.booking_types.supper_club.image}
+                                type="video/mp4"
+                                />
+                                </video>
+                                ) : (
+                                    <img
+                                    src={data.home.booking_types.supper_club.image}
+                                    className="supper-demo"
+                                    />
+                                    )}
                             <Box className='supper-overlay'>
-                                <Typography className='supper-title-hover'> Ticketed Experience </Typography>
-                                <Typography className='supper-sub-title'> Experience a shared meal at bespoke
-                                    locations </Typography>
+                                <Typography className='supper-title-hover'> {data.home.booking_types.supper_club.title.split(" ")[0]} </Typography>
+                                <Typography className='supper-sub-title'>  {data.home.booking_types.supper_club.description} </Typography>
                                 <Button
                                     fullWidth
                                     className='book-btn'
                                     disableElevation
                                     disableRipple={false}
-                                    type="submit"
+                                    type="button"
                                     color="primary"
+                                    href="/ticketed"
                                 >
-                                    Book a Ticketed Experience
+                                   {data.home.booking_types.supper_club.button_text}
                                 </Button>
                             </Box>
                         </Box>

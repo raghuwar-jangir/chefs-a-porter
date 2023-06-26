@@ -51,6 +51,7 @@ import UsersContext from '../context/UsersContext';
 import '../assets/styles/searchBar.css';
 import '../assets/styles/fontStyle.css';
 import Cookies from 'js-cookie';
+import { isImageOrVideo } from '../helpers';
 
 const MainBoxContent = styled(Box)({
   padding: '20px',
@@ -919,21 +920,7 @@ const HomePage = () => {
   const handleClick = () => {
     navigate('/private-viewmore');
   };
-  const isImageOrVideo = (filename) => {
-    const fileExtension = filename.split('.').pop(); // Get the file extension
-    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
-    const videoExtensions = ['mp4', 'mov', 'avi', 'mkv'];
   
-    const lowercaseExtension = fileExtension.toLowerCase();
-  
-    if (imageExtensions.includes(lowercaseExtension)) {
-      return 'image';
-    } else if (videoExtensions.includes(lowercaseExtension)) {
-      return 'video';
-    } else {
-      return 'other';
-    }
-  };
 
   return (
     <React.Fragment>
