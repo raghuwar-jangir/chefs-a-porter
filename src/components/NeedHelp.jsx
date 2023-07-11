@@ -35,7 +35,7 @@ const NeedHelp = (props) => {
             // border: '0.25px solid #fff',
             border: 'none !important',
             background: "#080B0E !important",
-            width: '214px !important',
+            width: '154px !important',
             fontSize: "16px !important",
             fontWeight: '400',
             lineHeight: "19px",
@@ -54,7 +54,7 @@ const NeedHelp = (props) => {
         ".btn-2": {
             border: `${isColor ? '0.25px solid #080B0E' : '0.25px solid #080B0E'}`,
             background: "#FBFBFB",
-            width: '214px !important',
+            width: '154px !important',
             fontSize: "16px !important",
             // fontWeight: '400',
             lineHeight: "19px !important",

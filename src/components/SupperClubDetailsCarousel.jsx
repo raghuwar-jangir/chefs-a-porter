@@ -184,8 +184,44 @@ const SupperClubDetailsCarousel = ({backgroundColor, changeFont, changeDetails, 
                         ))}
                     </div>
                 }
+                {!_.isEmpty(userData?.user?.feedbacks) &&
+                    <div>
+                        {userData?.user?.feedbacks?.map((item, index) => (
+                            <div key={index}>
+                                <SwiperSlide className='main-div'>
+                                    <Typography className='mainTitle'>
+                                        {item.title.replace(',', ',\n')}
+                                    </Typography>
+                                    <Typography
+                                        className='star'
+                                    >
+                                        <Rating
+                                            sx={{
+                                                color: '#222222',
+                                                borderColor: '#222222'
+                                            }}
+                                            name="simple-controlled"
+                                            value={item.rating}
+                                            // value={value}
+                                            // onChange={(newValue) => {
+                                            //     setValue(newValue);
+                                            // }}
+                                            size="large"
+                                        />
+                                    </Typography>
+                                    <Typography className='details'>
+                                        {item.description.replace('.', '.\n')}
+                                    </Typography>
+                                    <Typography className='ceoName'>
+                                        {item.from}
+                                    </Typography>
+                                </SwiperSlide>
+                            </div>
+                        ))}
+                    </div>
+                }
                 {
-                    _.isEmpty(userData?.feedbacks) &&
+                    _.isEmpty(userData?.feedbacks) &&_.isEmpty(userData?.user?.feedbacks) &&
                     <div>{images.map((step, index) => (
                         <div key={index}>
                             <SwiperSlide className='main-div'>

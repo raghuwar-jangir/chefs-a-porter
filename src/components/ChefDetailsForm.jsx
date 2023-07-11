@@ -588,8 +588,7 @@ const ChefDetailsForm = () => {
                       </Typography>
                     </Box>
                     <Typography className="email-confirm">
-                      An agnostic menu that explores a diverse culinary journey
-                      with chef mako at the helm.
+                    Leave it to Chef {userData?.user?.name} to curate a bespoke menu
                     </Typography>
                   </Box>
                 </Box>

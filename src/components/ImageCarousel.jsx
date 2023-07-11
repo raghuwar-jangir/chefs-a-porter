@@ -48,7 +48,7 @@ const ImageCarousel = () => {
 
     const { userData } = useContext(UsersContext);
     const itemData = {
-        img: userData.cover_picture,
+        img: userData?.cover_picture,
     };
 
     const itemData2 = _.map(_.get(userData, "pictures", []), (item, index) => {
@@ -59,7 +59,7 @@ const ImageCarousel = () => {
 
     const combinedArray = [itemData, ...itemData2];
 
-    return (
+    return userData?(
         <React.Fragment>
             <MainBox>
                 <Box>
@@ -78,6 +78,6 @@ const ImageCarousel = () => {
                 </Box>
             </MainBox>
         </React.Fragment>
-    );
+    ):'';
 };
 export default ImageCarousel;

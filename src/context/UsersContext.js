@@ -156,7 +156,7 @@ const UsersProvider = (props) => {
                 localStorage.setItem('ticketedEventData', JSON.stringify(result.data));
             })
         } else if (currentPath === 'private-viewmore') {
-            axios.get(baseUrl + '/menu?limit=1000').then(result => {
+            axios.get(baseUrl + '/menu/frontend?limit=1000').then(result => {
                 setUserData(result.data)
             })
         } else if (currentPath === 'addons' && bookingId) {

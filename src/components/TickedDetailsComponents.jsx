@@ -1076,9 +1076,9 @@ const TickedDetailsComponents = ({ id }) => {
                             padding: '16px 16px 20px 16px',
                           }}
                         >
-                          <Box className="map-heading">{userData?.chef?.details?.address2}</Box>
+                          <Box className="map-heading">{userData?.venue}</Box>
                           <a
-                            href={`https://www.google.com/maps/search/?api=1&query=${userData?.chef?.details?.coordinates?.lat},${userData?.chef?.details?.coordinates?.lng}`}
+                            href={`https://www.google.com/maps/search/?api=1&query=${userData?.lat},${userData?.lng}`}
                             className="map-link"
                             target="_blank"
                           >
@@ -1091,22 +1091,22 @@ const TickedDetailsComponents = ({ id }) => {
                             }}
                           >
                             {/* TODO : set google api key */}
-                            <GoogleMapExample containerElement={<div style={{ height: `480px`, width: '100%' }} />} mapElement={<div style={{ height: `100%` }} />} />
+                            {/* <GoogleMapExample containerElement={<div style={{ height: `480px`, width: '100%' }} />} mapElement={<div style={{ height: `100%` }} />} /> */}
 
-                            {/* <GoogleMapReact
-                              bootstrapURLKeys={{ key: '' }}
+                            {/* {userData?.lat&&userData?.lng?(<GoogleMapReact
+                              bootstrapURLKeys={{ key: 'AIzaSyAlUV7Gli9S0rwtq72UMXLf9HlrRWkvqc8' }}
                               defaultCenter={defaultProps.center}
                               defaultZoom={defaultProps.zoom}
                               onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
                             >
                               <Marker
                                 position={{
-                                  lat: 12.9715987,
-                                  lng: 77.5945627,
+                                  lat: userData?.lat,
+                                  lng: userData?.lng,
                                 }}
                               />
                               <AnyReactComponent lat={userData?.chef?.details?.coordinates?.lat} lng={userData?.chef?.details?.coordinates?.lng} />
-                            </GoogleMapReact> */}
+                            </GoogleMapReact>):''} */}
                           </Box>
                         </Box>
                       </Box>
