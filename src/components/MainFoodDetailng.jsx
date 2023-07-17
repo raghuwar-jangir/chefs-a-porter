@@ -1,9 +1,10 @@
 import {Box, Button, styled, Typography} from '@mui/material';
-import React from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import FoodDetailing from './FoodDetailing';
-import FoodCarousel from "./FoodCarousel";
 import '../assets/styles/fontStyle.css'
 import * as _ from "lodash";
+import FoodCarouselDesktop from './FoodCarousel/desktop';
+import FoodCarouselMobile from './FoodCarousel/mobile';
 
 const MainParent = styled(Box)({
     backgroundColor: '#DCD7CB',
@@ -59,46 +60,22 @@ const MainParent = styled(Box)({
         }
     },
     '@media(min-width: 375px)and (max-width: 425px)': {
-        '.view-button': {
-            position: 'absolute',
-            border: '1px solid black',
-            width: '100%',
-            fontSize: '13px',
-            fontWeight: '600',
-            fontFamily: 'ProximaNovaA-Regular',
-            top: '1170px',
-            right: '0px',
-            borderRadius: '1px'
-        },
         '.css-10vjzfb-MuiButtonBase-root-MuiButton-root:hover ': {
             color: '#C6A87D !important'
         },
 
     },
-    '@media(min-width: 320px)and (max-width: 375px)': {
+    '@media(min-width: 1px)and (max-width: 768px)': {
         '.view-button': {
-            position: 'absolute',
             border: '1px solid black',
             width: '100%',
-            fontSize: '13px',
-            fontWeight: '600',
-            fontFamily: 'ProximaNovaA-Regular',
-            top: '1193px',
-            right: '0px',
-            borderRadius: '1px'
+            fontSize: '16px',
+            padding: '10px',
+            lineHeight: '19px'
         },
-    },
-    '@media(min-width: 1px)and (max-width: 320px)': {
-        '.view-button': {
-            position: 'absolute',
-            border: '1px solid black',
-            width: '100%',
-            fontSize: '13px',
-            fontWeight: '600',
-            fontFamily: 'ProximaNovaA-Regular',
-            top: '1200px',
-            right: '0px',
-            borderRadius: '1px'
+        '.button-component': {
+            textAlign: 'center',
+            padding: '0 10px 30px',
         },
     },
     '@media(min-width: 1px) and (max-width: 425px)': {
@@ -116,18 +93,23 @@ const MainParent = styled(Box)({
             lineHeight: '19px',
             paddingTop: '8px'
         },
-        '.view-button': {
-            width: '100%',
-            fontSize: '16px',
-            padding: '10px',
-            lineHeight: '19px'
-        },
+        
     },
 
 })
 
 
 const MainFoodDetailng = (props) => {
+    const [size, setSize] = useState([0, 0]);
+    useLayoutEffect(() => {
+        function updateSize() {
+        setSize([window.innerWidth, window.innerHeight]);
+        }
+        window.addEventListener("resize", updateSize);
+        updateSize();
+        return () => window.removeEventListener("resize", updateSize);
+    }, []);
+
     return (
         <React.Fragment>
             <MainParent>
@@ -140,17 +122,25 @@ const MainFoodDetailng = (props) => {
                                 <Typography className="sub-description">
                                     {props.description}
                                 </Typography>
-                                <Box className='button-component'>
+                                {size[0] > 768 && <Box className='button-component'>
                                     <Button
                                         fullWidth
                                         className='view-button'
                                     >
                                         View All
                                     </Button>
-                                </Box>
+                                </Box>}
                             </Box>
                         </Box>
-                        <FoodCarousel/>
+                         {size[0] > 768 ? <FoodCarouselDesktop /> : <FoodCarouselMobile />}
+                         {size[0] <= 768 && <Box className='button-component'>
+                            <Button
+                                fullWidth
+                                className='view-button'
+                            >
+                                View All
+                            </Button>
+                        </Box>}
                     </Box>
             </MainParent>
         </React.Fragment>
