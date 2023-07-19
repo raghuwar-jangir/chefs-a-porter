@@ -343,8 +343,6 @@ const SupperClub = () => {
     return { id: index, label: obj.name, value: obj.name };
   });
 
-  console.log('tabValue', tabValue);
-
   const today = new Date();
   const startOfWeek = new Date(
     today.getFullYear(),

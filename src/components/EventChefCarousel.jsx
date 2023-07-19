@@ -149,7 +149,7 @@ const MainContentBox = styled(Box)({
             bottom: '0px !important'
         }
     },
-    '@media(min-width: 375px) and (max-width: 425px)': {
+    '@media(min-width: 375px) and (max-width: 431px)': {
         '.swiper-pagination-bullet': {
             width: '130px',
             margin: '4px !important'

@@ -56,7 +56,7 @@ const ExperienceCarousel = (props) => {
         '.img':{
             height:"299.31px !important"
         },
-        "@media (min-width: 1px) and (max-width:425px)": {
+        "@media (min-width: 1px) and (max-width:431px)": {
             '.main-box': {
                 display: 'none'
             },

@@ -72,7 +72,7 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
             color: `${isColor ? '#FBFBFB' : '#000000'}`,
         },
         list: {
-            width: "310px",
+            width: "100%",
             height: '100%',
             backgroundColor: '#080B0E',
             paddingRight: '8px'
@@ -82,20 +82,20 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
         },
         '@media(min-width: 1px) and (max-width: 320px)': {
             list: {
-                width: "319px",
+                width: "100%",
             },
         },
         '@media(min-width: 321px) and (max-width: 375px)': {
             list: {
-                width: "374px",
+                width: "100%",
             },
         },
         '@media(min-width: 376px) and (max-width: 768px)': {
             list: {
-                width: "399px",
+                width: "100%",
             },
         },
-        '@media(min-width: 426px) and (max-width: 767px)': {
+        '@media(min-width: 431px) and (max-width: 767px)': {
             title: {
                 textAlign: 'left'
             },
@@ -263,12 +263,12 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                     paddingLeft: '90px'
                 },
             },
-            '@media(min-width: 400px) and (max-width: 425px)': {
+            '@media(min-width: 400px) and (max-width: 431px)': {
                 '.mobile-navbar-img': {
                     paddingLeft: '120px'
                 },
             },
-            '@media(min-width: 426px) and (max-width: 768px)': {
+            '@media(min-width: 431px) and (max-width: 768px)': {
                 '.mobile-navbar-img': {
                     paddingLeft: '10px'
                 },
@@ -456,33 +456,55 @@ const Navbar = ({isColor, isShareIcon, isIcon, isImage, heading, to, supperClubL
                                 // onKeyDown={toggleDrawer(false)}
                             >
                                 <List>
-                                    <ListItem button sx={{display: 'flex', justifyContent: 'flex-end'}}>
-                                        <CloseIcon sx={{color: '#c6a87d'}}
-                                                   onClick={toggleDrawer(false)}/>
-                                    </ListItem>
-                                    <ListItem button>
-                                        <Link className='hamburger-title' to='/'> Home </Link>
-                                    </ListItem>
-                                    <ListItem button>
-                                        <Link
-                                            className="hamburger-title" to='/private'> Private </Link>
-                                    </ListItem>
-                                    <ListItem button>
-                                        <Link
-                                            className="hamburger-title" to='/ticketed'> Ticketed </Link>
-                                    </ListItem>
-                                    <ListItem button>
-                                        <Link
-                                            className="hamburger-title" to='/join-chef'> Join As Chef </Link>
-                                    </ListItem>
-                                    <ListItem button>
-                                        <Link
-                                            className="hamburger-title" to='/our-chefs'> Our Chefs </Link>
-                                    </ListItem>
-                                    <ListItem button>
-                                        <Link
-                                            className="hamburger-title" to='/contact-us'> Contact </Link>
-                                    </ListItem>
+                                  <ListItem
+                                    button
+                                    style={{
+                                      display: "flex",
+                                      justifyContent: "flex-end",
+                                      paddingRight: "10px",
+                                    }}
+                                  >
+                                    <CloseIcon
+                                      sx={{ color: "#c6a87d" }}
+                                      onClick={toggleDrawer(false)}
+                                    />
+                                  </ListItem>
+                                  <ListItem button style={{ margin: "15px 0" }}>
+                                    <Link className="hamburger-title" to="/">
+                                      {" "}
+                                      Home{" "}
+                                    </Link>
+                                  </ListItem>
+                                  <ListItem button style={{ margin: "15px 0" }}>
+                                    <Link className="hamburger-title" to="/private">
+                                      {" "}
+                                      Private{" "}
+                                    </Link>
+                                  </ListItem>
+                                  <ListItem button style={{ margin: "15px 0" }}>
+                                    <Link className="hamburger-title" to="/ticketed">
+                                      {" "}
+                                      Ticketed{" "}
+                                    </Link>
+                                  </ListItem>
+                                  <ListItem button style={{ margin: "15px 0" }}>
+                                    <Link className="hamburger-title" to="/join-chef">
+                                      {" "}
+                                      Join As Chef{" "}
+                                    </Link>
+                                  </ListItem>
+                                  <ListItem button style={{ margin: "15px 0" }}>
+                                    <Link className="hamburger-title" to="/our-chefs">
+                                      {" "}
+                                      Our Chefs{" "}
+                                    </Link>
+                                  </ListItem>
+                                  <ListItem button style={{ margin: "15px 0" }}>
+                                    <Link className="hamburger-title" to="/contact-us">
+                                      {" "}
+                                      Contact{" "}
+                                    </Link>
+                                  </ListItem>
                                 </List>
                             </div>
                         </Drawer>

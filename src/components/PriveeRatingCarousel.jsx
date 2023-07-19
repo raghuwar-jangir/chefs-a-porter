@@ -23,7 +23,7 @@ const PriveeRatingCarousel = (props) => {
         '& .MuiRating-icon': {
             fontSize: '40px',
         },
-        "@media (min-width: 1px) and (max-width:425px)": {
+        "@media (min-width: 1px) and (max-width:431px)": {
             '& .MuiRating-icon': {
                 fontSize: '24px',
             },
@@ -145,7 +145,7 @@ const PriveeRatingCarousel = (props) => {
                 padding: '0px 100px',
             },
         },
-        "@media (min-width: 1px) and (max-width:425px)": {
+        "@media (min-width: 1px) and (max-width:431px)": {
             padding: '40px 20px',
             ".mainTitle": {
                 fontSize: '22px ',
@@ -179,7 +179,7 @@ const PriveeRatingCarousel = (props) => {
                 margin: '0px 5px !important'
             }
         },
-        "@media (min-width: 430px) and (max-width:768px)": {
+        "@media (min-width: 431px) and (max-width:768px)": {
             '.swiper-pagination-bullet': {
                 width: '4px',
                 height: '4px',

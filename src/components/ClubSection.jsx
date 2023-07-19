@@ -101,7 +101,7 @@ const BoxWrapper = styled(Box)({
 
     // !media query for mobile device demo component(Privee and supperClub)
 
-    '@media(min-width: 1px) and (max-width: 425px)': {
+    '@media(min-width: 1px) and (max-width: 431px)': {
         '.img-box': {
             padding: '40px 0px'
         },

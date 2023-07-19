@@ -23,7 +23,7 @@ const SupperClubRatingCarousel = (props) => {
         '& .MuiRating-icon': {
             fontSize: '40px',
         },
-        "@media (min-width: 1px) and (max-width:425px)": {
+        "@media (min-width: 1px) and (max-width:431px)": {
             '& .MuiRating-icon': {
                 fontSize: '24px',
             },
@@ -135,7 +135,6 @@ const SupperClubRatingCarousel = (props) => {
                 textTransform: 'uppercase'
             },
         },
-
         "@media (min-width: 1100px) and (max-width:1450px)": {
             padding: '40px 120px',
             ".details": {
@@ -145,7 +144,7 @@ const SupperClubRatingCarousel = (props) => {
                 padding: '0px 100px',
             },
         },
-        "@media (min-width: 1px) and (max-width:425px)": {
+        "@media (min-width: 1px) and (max-width:431px)": {
             padding: '40px 20px',
             ".mainTitle": {
                 fontSize: '22px ',
@@ -179,7 +178,7 @@ const SupperClubRatingCarousel = (props) => {
                 margin: '0px 5px !important'
             }
         },
-        "@media (min-width: 430px) and (max-width:768px)": {
+        "@media (min-width: 431px) and (max-width:768px)": {
             '.swiper-pagination-bullet': {
                 width: '4px',
                 height: '4px',

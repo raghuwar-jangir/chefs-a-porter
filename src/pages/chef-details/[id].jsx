@@ -52,8 +52,6 @@ const ChefsDetailTemplate = (props) => {
     setIsReadMore2(!isReadMore2);
   };
 
-  console.log(props, "wew");
-
   const getUserId = props.id;
   const { setUserId, userData } = useContext(UsersContext);
   const [showCarousel, setShowCarousel] = useState(false);
@@ -440,7 +438,7 @@ const ChefsDetailTemplate = (props) => {
         background: "#080B0E !important",
       },
     },
-    "@media (min-width: 320px) and (max-width:425px)": {
+    "@media (min-width: 320px) and (max-width:431px)": {
       ".css-5n45bv-MuiPaper-root-MuiMobileStepper-root": {
         paddingLeft: "130px",
         top: "300px !important",
@@ -452,7 +450,7 @@ const ChefsDetailTemplate = (props) => {
         top: "270px  !important",
       },
     },
-    "@media (min-width: 425px) and (max-width:450px)": {
+    "@media (min-width: 431px) and (max-width:450px)": {
       ".css-5n45bv-MuiPaper-root-MuiMobileStepper-root": {
         paddingLeft: "160px !important",
         top: "330px  !important",
@@ -461,7 +459,7 @@ const ChefsDetailTemplate = (props) => {
         padding: "14px 140px 0px 10px",
       },
     },
-    "@media (min-width: 1px) and (max-width:425px)": {
+    "@media (min-width: 1px) and (max-width:431px)": {
       ".supper-chef-details": {
         display: "none",
       },
@@ -855,7 +853,7 @@ const ChefsDetailTemplate = (props) => {
             <TemptedYet
               isTempted={true}
               title={"Tempted yet?"}
-              buttonRText={"Book an Experience"}
+              buttonText={"Book an Experience"}
             />
             <FooterEnd />
           </>

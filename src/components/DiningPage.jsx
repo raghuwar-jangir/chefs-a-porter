@@ -89,7 +89,7 @@ const DiningPage = (props) => {
         '.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet': {
             margin: '0 var(--swiper-pagination-bullet-horizontal-gap,19px) !important'
         },
-        '@media(min-width: 430px) and (max-width: 768px)': {
+        '@media(min-width: 431px) and (max-width: 768px)': {
             '.dining-title': {
                 padding: '0px 29px',
                 font: '20px'
@@ -142,7 +142,7 @@ const DiningPage = (props) => {
                 margin: '0 var(--swiper-pagination-bullet-horizontal-gap,19px) !important'
             },
         },
-        '@media(min-width: 370px) and (max-width: 425px)': {
+        '@media(min-width: 370px) and (max-width: 431px)': {
             '.dining-img': {
                 height: '250px'
             },

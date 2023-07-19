@@ -652,7 +652,7 @@ const BoxWrapper = styled(Box)((props) => ({
 
   // !media query for mobile device demo component(Privee and supperClub)
 
-  '@media(min-width: 1px) and (max-width: 425px)': {
+  '@media(min-width: 1px) and (max-width: 431px)': {
     '.img-box': {
       padding: '40px 0px',
     },
@@ -789,7 +789,12 @@ const BoxWrapper = styled(Box)((props) => ({
       objectPosition: '0px 50px',
     },
   },
-  '@media(min-width: 426px) and (max-width: 768px)': {
+  // '@media(min-width: 1px) and (max-width: 431px)': {
+  //   '.justify-content-center': {
+  //     display: 'none !important',
+  //   },
+  // },
+  '@media(min-width: 431px) and (max-width: 768px)': {
     '.treaty-card': {
       display: 'block',
     },

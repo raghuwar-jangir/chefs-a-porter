@@ -110,7 +110,7 @@ const Privee = (props) => {
                 height: '100%'
             },
             '.privee-img': {
-                height: '220.24px',
+                // height: '220.24px',
                 objectPosition: 'center'
             },
             '.chef-title': {

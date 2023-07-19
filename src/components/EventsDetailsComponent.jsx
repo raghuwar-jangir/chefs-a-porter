@@ -40,7 +40,6 @@ const EventsDetailsComponent = ({eventId})=>{
 
   // to handle booking form hide/show in mobile
   const [showBookingFormMobile, setShowBookingFormMobile] = useState(false);
-  console.log('userData',userData)
 
   useEffect(() => {
     setEventId(eventId);
@@ -458,7 +457,7 @@ const EventsDetailsComponent = ({eventId})=>{
     ".container-parent": {
       paddingRight: "5px !important",
     },
-    "@media(min-width: 425px) and (max-width: 768px)": {
+    "@media(min-width: 431px) and (max-width: 768px)": {
       ".container-parent": {
         flex: "0 0 auto",
         maxWidth: "58.333333%",
@@ -481,7 +480,7 @@ const EventsDetailsComponent = ({eventId})=>{
         maxWidth: "100%",
       },
     },
-    "@media (min-width: 1px) and (max-width:425px)": {
+    "@media (min-width: 1px) and (max-width:431px)": {
       ".main-grid": {
         display: "none",
       },

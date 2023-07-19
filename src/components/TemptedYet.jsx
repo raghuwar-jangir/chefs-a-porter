@@ -48,7 +48,7 @@ const TemptedYet = (props) => {
                 display: 'block',
             },
         },
-        "@media (min-width: 1px) and (max-width:425px)": {
+        "@media (min-width: 1px) and (max-width:431px)": {
             '.view-all': {
                 marginTop: '5px',
                 color: '#080B0E',

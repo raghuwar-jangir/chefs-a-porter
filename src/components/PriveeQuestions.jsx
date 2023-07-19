@@ -84,7 +84,7 @@ const PriveeQuestions = ({isLightTheme = false}) => {
         },
         // !media query for accodion component(mobileView)
 
-        '@media(min-width: 1px) and (max-width: 425px)': {
+        '@media(min-width: 1px) and (max-width: 431px)': {
             '.title-question': {
                 fontSize: '24px',
                 fontWeight: '700',

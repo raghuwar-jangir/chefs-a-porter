@@ -69,7 +69,7 @@ const Treaty = (props) => {
       display: 'flex',
       justifyContent: 'end',
     },
-    '@media(min-width: 1px) and (max-width: 425px)': {
+    '@media(min-width: 1px) and (max-width: 431px)': {
       '.btn': {
         width: '100% !important',
       },
@@ -90,7 +90,7 @@ const Treaty = (props) => {
         width: 'auto',
       },
     },
-    '@media(min-width: 426px) and (max-width: 768px)': {
+    '@media(min-width: 431px) and (max-width: 768px)': {
       '.btn': {
         width: '100% !important',
         margin: '0px',

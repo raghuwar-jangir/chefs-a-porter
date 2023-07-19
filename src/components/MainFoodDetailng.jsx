@@ -50,7 +50,7 @@ const MainParent = styled(Box)({
     },
 
 // ! media query for foodDetails card-component(Mobile-view)
-    '@media(min-width: 425px)and (max-width: 768px)': {
+    '@media(min-width: 431px)and (max-width: 768px)': {
         '.parent-body': {
             padding: '36px 5px 0px 19px'
         },
@@ -59,7 +59,7 @@ const MainParent = styled(Box)({
             lineHeight: '141.5%',
         }
     },
-    '@media(min-width: 375px)and (max-width: 425px)': {
+    '@media(min-width: 375px)and (max-width: 431px)': {
         '.css-10vjzfb-MuiButtonBase-root-MuiButton-root:hover ': {
             color: '#C6A87D !important'
         },
@@ -78,7 +78,7 @@ const MainParent = styled(Box)({
             padding: '0 10px 30px',
         },
     },
-    '@media(min-width: 1px) and (max-width: 425px)': {
+    '@media(min-width: 1px) and (max-width: 431px)': {
         '.parent-body': {
             padding: '58px 10px 0px 10px',
             backgroundColor: '#DCD7CB',

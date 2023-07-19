@@ -130,7 +130,7 @@ const MainParent = styled(Box)({
     objectFit: 'cover',
     width: '100%',
   },
-  '@media(min-width: 426px) and (max-width: 768px)': {
+  '@media(min-width: 431px) and (max-width: 768px)': {
     '.continue-browsing-box': {
       padding: '40px 10px',
     },
@@ -165,7 +165,7 @@ const MainParent = styled(Box)({
       lineHeight: '15px',
     },
   },
-  '@media(min-width: 1px) and (max-width: 425px)': {
+  '@media(min-width: 1px) and (max-width: 431px)': {
     '.img': {
       height: '553px',
     },

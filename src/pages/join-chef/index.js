@@ -214,7 +214,7 @@ const ContactUs = () => {
             padding: '15px',
             backgroundColor: '#DCD7CB',
         },
-        '@media(min-width: 1px) and (max-width: 425px)': {
+        '@media(min-width: 1px) and (max-width: 431px)': {
             '.banner': {
                 display: 'none',
             },

@@ -186,7 +186,7 @@ const BoxWrapper = styled(Box)(() => ({
     '.header-icon': {
         color: '#FBFBFB'
     },
-    "@media (min-width: 1px) and (max-width:425px)": {
+    "@media (min-width: 1px) and (max-width:431px)": {
         ".header-club": {
             padding: '0px',
             display: 'flex',
@@ -237,7 +237,7 @@ const BoxWrapper = styled(Box)(() => ({
             display: 'block',
         },
     },
-    "@media (min-width: 426px) and (max-width:768px)": {
+    "@media (min-width: 431px) and (max-width:768px)": {
         ".available-experiences": {
             padding: "40px",
             background: "#080B0E"

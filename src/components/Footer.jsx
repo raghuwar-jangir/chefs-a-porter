@@ -241,15 +241,7 @@ const Footer = () => {
                       <img src={footerArrow} />
                     </ListItemIcon>
                     <Link href="/become-partner" className="listItem-subheading">
-                      As Sponsor Partner
-                    </Link>
-                  </List>
-                  <List>
-                    <ListItemIcon className="listItem">
-                      <img src={footerArrow} />
-                    </ListItemIcon>
-                    <Link href="/become-partner" className="listItem-subheading">
-                      As Vendor
+                      As a Partner
                     </Link>
                   </List>
                 </Box>

@@ -317,7 +317,7 @@ const BecomePartner = () => {
             marginTop: '8px',
             marginBottom: '0px',
         },
-        '@media(min-width: 1px) and (max-width: 425px)': {
+        '@media(min-width: 1px) and (max-width: 431px)': {
             '.banner': {
                 display: 'none',
             },
@@ -385,13 +385,13 @@ const BecomePartner = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
-                <Navbar heading="Become a partner" isIcon={true}/>
+                <Navbar heading="Join as a Partner" isIcon={true}/>
                 <Box className="joinaschef">
                     <Box className="banner">
                         <Box className="become-partner-header">
                             <Typography><a href="/" className="header-link"><ArrowBackIcon
                                 style={{marginRight: '20px'}}/>Back</a></Typography>
-                            <Typography className="become-partner-heading">Become a partner</Typography>
+                            <Typography className="become-partner-heading">Join as a Partner</Typography>
                         </Box>
                     </Box>
                     <Box className="container-fluid">
@@ -422,21 +422,8 @@ const BecomePartner = () => {
                                     <Box className="row white-bg justify-content-center">
                                         <Box className="">
                                             <Grid className="row become-partner-form" xs={12}>
-                                                <Typography className="form-details">We’re looking for talented people
-                                                    to
-                                                    help our bring out our chefs vision to life. If you think you fit
-                                                    the
-                                                    bill, apply below!</Typography>
-                                                <Typography className="form-details">If your service meets Chefs à
-                                                    Porter prerequisite one of our representatives shall get in touch
-                                                    with
-                                                    you via email
-                                                    either approving/rejecting your request or asking you for a
-                                                    clarification where
-                                                    required. Request you to promptly respond to the clarification
-                                                    requested
-                                                    for a
-                                                    faster response and closure.</Typography>
+                                                <Typography className="form-details">At Chefs-à-Porter, we are dedicated to creating meaningful partnerships that drive mutual success in the industry. As one of our partners, you will have the opportunity to connect with a diverse and engaged audience, and gain valuable exposure for your brand or services.</Typography>
+                                                <Typography className="form-details">Take advantage of this exciting opportunity by simply filling in your information below, and we will take it forward from there!</Typography>
                                                 <Grid xs={12} className="mb-3">
                                                     <FormControl fullWidth>
                                                         <label htmlFor="validationCustom01">Partner with us as<span

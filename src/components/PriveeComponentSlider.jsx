@@ -56,12 +56,12 @@ const  PriveeComponentSlider = (props) => {
         '.biYdFZ':{
             left:'31% important'
         },
-        '@media(min-width: 430px) and (max-width: 768px)': {
+        '@media(min-width: 431px) and (max-width: 768px)': {
             '.main-box':{
                 display:'none'
             }
         },
-        '@media(min-width: 1px) and (max-width: 425px)': {
+        '@media(min-width: 1px) and (max-width: 431px)': {
             '.img':{
                 width: '100%',
                 height: '111px',
