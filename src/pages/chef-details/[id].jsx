@@ -807,9 +807,7 @@ const ChefsDetailTemplate = (props) => {
                           Surprise me
                         </Typography>
                         <Typography className="surpirse-details">
-                          An agnostic menu that explores a Boxerse culinary
-                          <br />
-                          journey with chef mako at the helm
+                        Leave it to Chef {userData?.name} to curate a bespoke menu
                         </Typography>
                       </Box>
                       <Box className="book-now">

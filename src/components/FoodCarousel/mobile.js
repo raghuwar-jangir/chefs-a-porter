@@ -103,7 +103,7 @@ const MainParent = styled(Box)({
     color: "#C6A87D",
     padding: "5px 20px 5px 0px",
   },
-  "@media(min-width: 426px) and (max-width: 768px)": {
+  "@media(min-width: 431px) and (max-width: 768px)": {
     padding: "35px 10px 15px",
     ".test-img": {
       height: "358px",
@@ -115,7 +115,7 @@ const MainParent = styled(Box)({
       fontSize: "15px",
     },
   },
-  "@media(min-width: 374px) and (max-width: 425px)": {
+  "@media(min-width: 374px) and (max-width: 431px)": {
     padding: "35px 10px 15px",
     ".test-img": {
       height: "358px",

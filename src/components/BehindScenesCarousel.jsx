@@ -132,7 +132,7 @@ const BehindScenesCarousel = (props) => {
     }))
     return (
         <BoxWrapper>
-            <Typography className="supper-heading">{chefHeading}</Typography>
+            <Typography className="supper-heading">{data.supper_club.behind_scenes.title}</Typography>
             <Swiper
                 slidesPerView={4}
                 slidesPerGroupSkip={1}

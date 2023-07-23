@@ -79,7 +79,7 @@ const TestimonialCarousel = () => {
             placeItems: 'center',
             justifyContent: 'center'
         },
-        '@media(min-width: 430px) and (max-width: 768px)': {
+        '@media(min-width: 1px) and (max-width: 768px)': {
             padding: '40px 20px',
             '.details': {
                 padding: '20px',
@@ -96,22 +96,7 @@ const TestimonialCarousel = () => {
                 padding: '0px 0px 20px ',
             }
         },
-        '@media(min-width: 1px) and (max-width: 425px)': {
-            padding: '40px 20px',
-            '.details': {
-                padding: '20px',
-                fontSize: '16px',
-                textAlign: 'center',
-            },
-            '.swiper-pagination-bullet': {
-                width: '4px',
-                height: '4px',
-                margin: '0px 5px !important'
-            },
-            ".details": {
-                marginBottom: '10px',
-                padding: '0px 0px 20px ',
-            },
+        '@media(min-width: 1px) and (max-width: 431px)': {
             '.swiper-pagination-bullet-active': {
                 width: '7px !important',
                 height: '7px !important'

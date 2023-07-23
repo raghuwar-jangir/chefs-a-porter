@@ -1,15 +1,11 @@
-import React, { useContext } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { Navigation, Pagination } from 'swiper';
+import React, { useContext, useLayoutEffect, useState } from 'react';
 import { Box, Button, Grid, Hidden, styled, Typography } from '@mui/material';
-import reebok from '../assets/images/rebook.png';
-import { isMobile } from 'react-device-detect';
 import { Link } from 'gatsby';
 import '../assets/styles/fontStyle.css';
 import CmsContext from '../context/CmsContext';
 import * as _ from 'lodash';
+import PriveeCarouselDesktop from './PriveeCarousel/desktop';
+import PriveeCarouselMobile from './PriveeCarousel/mobile';
 
 const MainParent = styled(Box)({
   '.continue-browsing-box': {
@@ -25,7 +21,10 @@ const MainParent = styled(Box)({
     fontWeight: '600',
     letterSpacing: '0.06em',
     color: '#FBFBFB',
-    marginBottom: '18px',
+  },
+  '.more-button': {
+    marginTop: 'auto',
+    marginBottom: 'auto',
   },
   '.parent-view-button': {
     width: '16.66666667%',
@@ -45,7 +44,6 @@ const MainParent = styled(Box)({
     width: '100%',
     padding: '0px',
     border: '0px',
-    marginTop: '10px',
     background: 'none',
     textTransform: 'math-auto',
   },
@@ -170,7 +168,7 @@ const MainParent = styled(Box)({
       height: '553px',
     },
     '.continue-browsing-box': {
-      padding: '40px 10px 100px 10px',
+      padding: '40px 10px',
     },
     '.main-heading': {
       fontSize: '24px',
@@ -195,6 +193,7 @@ const MainParent = styled(Box)({
     },
     '.name-box': {
       padding: '16px 8px',
+      marginBottom: '20px'
     },
     '.rebook-title': {
       fontSize: '12px',
@@ -210,9 +209,6 @@ const MainParent = styled(Box)({
       height: '1180px',
     },
     '.view-more': {
-      position: 'absolute',
-      top: '1290px',
-      left: '0%',
       border: '0.5px solid #C6A87D',
       width: '100%',
       fontSize: '16px',
@@ -230,6 +226,16 @@ const MainParent = styled(Box)({
 
 const PriveeCarousel = (props, { title, subTitle, isButtonShow = true }) => {
   const { data } = useContext(CmsContext);
+
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
   return (
     <React.Fragment>
       {!_.isEmpty(data?.home) && (
@@ -241,99 +247,24 @@ const PriveeCarousel = (props, { title, subTitle, isButtonShow = true }) => {
                   {data.home.chefs_private_dining.title}
                 </Typography>
               </Box>
-              <Box>
-                {isMobile ? (
-                  <Box className="more-button">
-                    <Button fullWidth className="view-more" variant="contained">
-                      View More Chefs
-                    </Button>
-                  </Box>
-                ) : (
-                  <Box className="more-button">
-                    <Button fullWidth className="view-more" variant="contained">
-                      <Link className="link" to="/our-chefs">
-                        View All
-                      </Link>
-                    </Button>
-                  </Box>
-                )}
-              </Box>
+              {size[0] > 430 && (
+                <Box className="more-button">
+                  <Button fullWidth className="view-more" variant="contained">
+                    <Link className="link" to="/our-chefs">
+                      View All
+                    </Link>
+                  </Button>
+                </Box>
+              )}
             </Box>
-            <Swiper
-              style={{
-                '--swiper-navigation-color': 'white',
-                '--swiper-navigation-size': '17px',
-              }}
-              slidesPerView={4}
-              spaceBetween={20}
-              navigation={true}
-              modules={[Navigation, Pagination]}
-              breakpoints={{
-                320: {
-                  slidesPerView: 2,
-                  spaceBetween: 8,
-                  direction: 'vertical',
-                },
-                375: {
-                  slidesPerView: 2,
-                  spaceBetween: 8,
-                  direction: 'vertical',
-                },
-                425: {
-                  slidesPerView: 2,
-                  spaceBetween: 8,
-                  direction: 'vertical',
-                },
-                768: {
-                  slidesPerView: 3,
-                  spaceBetween: 8,
-                },
-                1024: {
-                  slidesPerView: 4,
-                  spaceBetween: 20,
-                },
-                1440: {
-                  slidesPerView: 4,
-                  spaceBetween: 20,
-                },
-                2560: {
-                  slidesPerView: 4,
-                  spaceBetween: 20,
-                },
-              }}
-              className="mySwiper"
-            >
-              {data.home.chefs_private_dining.chefs.map((item) => {
-                return (
-                  <SwiperSlide style={{ cursor: 'pointer' }}>
-                    <img className="img" src={item.picture} />
-                    {item.details.is_featured && (
-                      <Box className="rebook">
-                        <img className="rebook-img" src={reebok} />
-                        <Typography className="rebook-title">Rebook</Typography>
-                      </Box>
-                    )}
-                    <Box className="name-box">
-                      <Typography className="chef-title">
-                        {item.name}
-                      </Typography>
-                      <Box className="chef-details">
-                        {item.details.tags.map((tagsItem, index) => {
-                          return (
-                            <span>
-                              {tagsItem}
-                              {index !== item.details.tags.length - 1 && (
-                                <span className="line">|</span>
-                              )}
-                            </span>
-                          );
-                        })}
-                      </Box>
-                    </Box>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
+            {size[0] > 430 ? <PriveeCarouselDesktop /> : <PriveeCarouselMobile />}
+            {size[0] <= 430 && (
+              <Box className="more-button">
+                <Button fullWidth className="view-more" variant="contained">
+                  View More Chefs
+                </Button>
+              </Box>
+            )}
           </Box>
         </MainParent>
       )}

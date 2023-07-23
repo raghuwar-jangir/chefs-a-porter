@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/thumbs";
 import teamImg from "../assets/images/team.png";
-import { FreeMode, Thumbs, Navigation } from "swiper";
+import { FreeMode, Thumbs, Navigation, Pagination } from "swiper";
 import "../assets/styles/fontStyle.css";
 import CmsContext from "../context/CmsContext";
 import * as _ from "lodash";
@@ -140,8 +140,9 @@ const LookLikeCarousel = () => {
                             loop={true}
                             spaceBetween={10}
                             thumbs={{ swiper: thumbsSwiper }}
-                            modules={[FreeMode, Thumbs]}
+                            modules={[FreeMode, Thumbs,Navigation, Pagination]}
                             className="mySwiper2"
+                            navigation={true}
                         >
                             {data.supper_club.looks.content.map((item, index) => (
                                 <Box key={index}>

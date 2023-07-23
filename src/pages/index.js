@@ -1,63 +1,39 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Box, Button, Grid, ImageList, ImageListItem, List, ListItemIcon, MenuItem, Select, Stack, TextField, Typography } from '@mui/material';
 import { styled } from '@mui/system';
-import { MobileView } from 'react-device-detect';
-import FrontFood from '../components/FrontFood';
 import PriveeMain from '../components/PriveeMain';
 import RatingCarousel from '../components/RatingCarousel';
 import Footer from '../components/Footer';
 import MainFoodDetailng from '../components/MainFoodDetailng';
 import NeedHelp from '../components/NeedHelp';
 import Navbar from '../components/NavbarComponent';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { Link, navigate } from 'gatsby';
-import LightThemeIcon from '../assets/images/lightThemeIcon.png';
 import JoinTableImg from '../assets/images/jointhetable.png';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import footerArrow from '../assets/images/footer-arrow.png';
-import { isMobile } from 'react-device-detect';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import Treaty from '../components/Treaty';
 import gallery1 from '../assets/images/gallery1.png';
 import gallery2 from '../assets/images/gallery2.png';
 import gallery3 from '../assets/images/gallery3.png';
-import gallery4 from '../assets/images/team.png';
-import gallery5 from '../assets/images/about3.png';
-import homeBanner from '../assets/images/homebanner.png';
-import food1 from '../assets/images/food1.png';
-import food2 from '../assets/images/food2.png';
-import food3 from '../assets/images/food3.png';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import FooterEnd from '../components/FooterEndSection';
 import DiningPage from '../components/DiningPage';
-import diningPicture from '../../src/assets/images/cook1.png';
 import CorporateBooking from '../components/CorporateBooking';
-import PriveeComponentSlider from '../components/PriveeComponentSlider';
 import PriveeCarousel from '../components/PriveeCarousel';
 import TemptedYet from '../components/TemptedYet';
-import joinChef from '../assets/images/joinchef-banner.png';
 import { Form, Formik } from 'formik';
 import moment from 'moment/moment';
 import * as _ from 'lodash';
 import { DatePickerInput } from 'rc-datepicker';
-import PriveeImg from '../assets/images/priveeImg.png';
-import SupperClubImg from '../assets/images/SupperClubImg.png';
 import ClubSection from '../components/ClubSection';
 import DiningExperienceCarousel from '../components/DiningExperienceCarousel';
-import axios from 'axios';
 import CmsContext from '../context/CmsContext';
 import UsersContext from '../context/UsersContext';
 import '../assets/styles/searchBar.css';
 import '../assets/styles/fontStyle.css';
 import Cookies from 'js-cookie';
 import { isImageOrVideo } from '../helpers';
-
-const MainBoxContent = styled(Box)({
-  padding: '20px',
-  textAlign: 'center',
-  backgroundColor: '#DCD7CB',
-});
 
 const BoxWrapper = styled(Box)((props) => ({
   '.home-banner': {

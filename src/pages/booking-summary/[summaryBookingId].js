@@ -39,10 +39,9 @@ import "../../assets/styles/fontStyle.css";
 import output from "../../assets/images/output.png";
 import download from "../../assets/images/download.png";
 import useRazorpay from "react-razorpay";
-import { useCallback } from "react";
 import Cookies from "js-cookie";
 import * as _ from "lodash";
-import { navigate } from "gatsby";
+import { Link, navigate } from "gatsby";
 import UsersContext from "../../context/UsersContext";
 import moment from "moment/moment";
 import axios from "axios";
@@ -1290,10 +1289,7 @@ const BookingSummary = (props) => {
                                     src={support}
                                   />
                                   <Typography className="chef-profile-dis">
-                                    Our team and Chef will get in touch with you
-                                    to discuss menu <br />
-                                    (allergen+protein info), venue, set up and
-                                    pricing
+                                  Our Team will get in touch with you to finalise the Menu,<br /> and set-up of your Chef's Table once we receive your booking.
                                   </Typography>
                                 </Box>
                               </Box>
@@ -1318,9 +1314,11 @@ const BookingSummary = (props) => {
                                     </label>
                                   </Box>
                                 </Box>
-                                <Typography className="policy-link">
-                                  View Cancellation Policy
-                                </Typography>
+                                <Link to='/cancellation-policy' target="_blank">
+                                  <Typography className="policy-link">
+                                    View Cancellation Policy
+                                  </Typography>
+                                </Link>
                               </Box>
                             </Box>
                           </Grid>
@@ -1782,10 +1780,7 @@ const BookingSummary = (props) => {
                                     src={support}
                                   />
                                   <Typography className="chef-profile-dis">
-                                    Our team and Chef will get in touch with you
-                                    to discuss menu <br />
-                                    (allergen+protein info), venue, set up and
-                                    pricing
+                                  Our Team will get in touch with you to finalise the Menu,<br /> and set-up of your Chef's Table once we receive your booking.
                                   </Typography>
                                 </Box>
                               </Box>
@@ -1810,9 +1805,11 @@ const BookingSummary = (props) => {
                                     </label>
                                   </Box>
                                 </Box>
-                                <Typography className="policy-link">
-                                  View Cancellation Policy
-                                </Typography>
+                                <Link to='/cancellation-policy' target="_blank">
+                                  <Typography className="policy-link">
+                                    View Cancellation Policy
+                                  </Typography>
+                                </Link>
                               </Box>
                             </Box>
                           </Grid>
