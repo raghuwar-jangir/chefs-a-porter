@@ -149,7 +149,7 @@ const EventCard = () => {
             backgroundColor: '#DCD7CB',
             padding: "0 20px"
         },
-        "@media (min-width: 1px) and (max-width:425px)": {
+        "@media (min-width: 1px) and (max-width:431px)": {
             '.heading': {
                 fontSize: '20px',
                 lineHeight: '25px',

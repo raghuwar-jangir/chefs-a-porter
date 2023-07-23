@@ -152,12 +152,20 @@ const ChefsDetailTemplate = (props) => {
       paddingTop: "20px",
     },
     ".about-chef-details": {
-      fontFamily: "Bon Vivant",
-      fontWeight: "100",
-      fontSize: "20px",
-      lineHeight: "24px",
-      marginLeft: "10px",
+      fontFamily: 'Bon Vivant',
+      fontWeight: 600,
+      fontSize: "16px",
+      lineHeight: "19px",
+      marginLeft: '10px',
+      color: '#080B0E'
+    },
+    ".field-ans-2": {
+      fontWeight: '600',
+      fontSize: "16px",
+      lineHeight: "19px",
       color: "#080B0E",
+      fontFamily: 'ProximaNovaA-Regular',
+      marginLeft: '10px'
     },
     ".about-chef-icon": {
       width: "24px",
@@ -429,8 +437,12 @@ const ChefsDetailTemplate = (props) => {
         marginBottom: "40px",
       },
       ".about-chef-details": {
+        fontFamily: 'Bon Vivant',
+        fontWeight: 600,
         fontSize: "16px",
         lineHeight: "19px",
+        marginLeft: '10px',
+        color: '#080B0E'
       },
     },
     "@media(min-width: 700px) and (max-width: 768px)": {
@@ -689,8 +701,8 @@ const ChefsDetailTemplate = (props) => {
                                 {/* here */}
                                 <Typography className="about-chef-details field-name">
                                   Fun facts:{" "}
-                                  <b>{userData?.details?.fun_fact}</b>
                                 </Typography>
+                                <Typography className="field-ans-2">{userData?.details?.fun_fact}</Typography>
                               </Box>
                               <Box className="about-container">
                                 <img
@@ -700,8 +712,8 @@ const ChefsDetailTemplate = (props) => {
                                 />
                                 <Typography className="about-chef-details field-name">
                                   Worked at:{" "}
-                                  <b>{userData?.details?.worked_at}</b>
                                 </Typography>
+                                <Typography className="field-ans-2">{userData?.details?.worked_at}</Typography>
                               </Box>
                               <Box className="about-container">
                                 <img
@@ -711,8 +723,8 @@ const ChefsDetailTemplate = (props) => {
                                 />
                                 <Typography className="about-chef-details field-name">
                                   Culinary School:{" "}
-                                  <b>{userData?.details?.culinary_school}</b>
                                 </Typography>
+                                <Typography className="field-ans-2">{userData?.details?.culinary_school}</Typography>
                               </Box>
                               <Box className="about-container">
                                 <img
@@ -722,8 +734,8 @@ const ChefsDetailTemplate = (props) => {
                                 />
                                 <Typography className="about-chef-details field-name">
                                   Trained under:{" "}
-                                  <b>{userData?.details?.trained_under}</b>
                                 </Typography>
+                                <Typography className="field-ans-2">{userData?.details?.trained_under}</Typography>
                               </Box>
                             </Box>
                             <Box className="read-more">
