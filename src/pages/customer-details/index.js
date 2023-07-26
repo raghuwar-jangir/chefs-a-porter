@@ -45,13 +45,13 @@ const validationSchema = Yup.object({
 
 
 const CustomerDetails = (props) => {
-
+    let userAddress = JSON.parse(localStorage.getItem('userAddress'));
     const eventIdCookieValue = Cookies.get('eventIdValue');
     const eventId = eventIdCookieValue?.replaceAll('"', '')
     const {setOtpNumber, setVerifyOtp, setResendOtp, setIsSendOtpApiCall, openOtp, setOpenOtp} = useContext(OtpContext);
     const {customerDetailsPaymentCalculation} = useContext(UsersContext);
     const CHARACTER_LIMIT = 40;
-    const [isNewAddress, setNewAddress] = useState();
+    const [isNewAddress, setNewAddress] = useState(userAddress);
     const formAddress = _.values(isNewAddress);
     const MapLoader = withScriptjs(MapComponent);
     const [open, setOpen] = useState(false);
@@ -78,7 +78,9 @@ const CustomerDetails = (props) => {
 
     useEffect(() => {
         if (cookieValue) {
-            setCustomerInfo(JSON.parse(cookieValue));
+            let cookieValueObj = JSON.parse(cookieValue);
+            setCustomerInfo(cookieValueObj);
+            setContactNumber(cookieValueObj.contactNumber);
         }
         setPrivateEventData(JSON.parse(localStorage.getItem('privateEventData')))
         // if (cDsPaymentCookieVal) {
@@ -922,7 +924,9 @@ const CustomerDetails = (props) => {
         }
       }))
 
-      console.log('formAddress',formAddress)
+      // console.log('formAddress',formAddress)
+      // console.log('customerInfo',customerInfo)
+      // // console.log('isNewAddress',isNewAddress)
 
     return (
         <React.Fragment>
