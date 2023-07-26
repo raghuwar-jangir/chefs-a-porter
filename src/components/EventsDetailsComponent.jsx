@@ -24,7 +24,7 @@ import NeedHelpEvent from "./NeedHelpEvent";
 import EventChefCarousel from "./EventChefCarousel";
 import UsersContext from "../context/UsersContext";
 import CmsContext from "../context/CmsContext";
-
+import Cookies from "js-cookie";
 
 const EventsDetailsComponent = ({eventId})=>{
   const { setEventId,
@@ -43,6 +43,7 @@ const EventsDetailsComponent = ({eventId})=>{
 
   useEffect(() => {
     setEventId(eventId);
+    Cookies.set("eventIdValue",JSON.stringify(eventId));
   },[eventId]);
 
   const toggleBookingFormMobile = () => { 

@@ -94,6 +94,7 @@ const CustomerDetails = (props) => {
             setOtpNumber(`+91${contactNumber}`);
             setContactNumber(contactNumber);
             setIsSendOtpApiCall(true);
+            setIsConfirm(false);
         }
         Cookies.set('customerData', JSON.stringify(values));
     }
