@@ -119,8 +119,6 @@ const MapComponent = ({setNewAddress, newAddress, setOpen}) => {
         setIsOpen(false);
     };
 
-    console.log('address', address)
-
     const GoogleMapExample = withGoogleMap(() => (
 
         <GoogleMap defaultCenter={coords}  defaultZoom={13}>
@@ -432,6 +430,7 @@ const MapComponent = ({setNewAddress, newAddress, setOpen}) => {
                                                         className="save-btn"
                                                         onClick={() => {
                                                             handleSubmit(values);
+                                                            setOpen(false)
                                                         }}
                                                     >
                                                         Save Address
