@@ -85,13 +85,10 @@ const ChefsDetailTemplate = (props) => {
   ];
 
   // const longText = "From Bangalore to the Culinary Institute of America in New York. He has developed his skills and love for the culinary arts. From Bangalore to the Culinary ..."
-
-  const itemData = _.map(_.get(userData, "experinces", []), (item, index) => {
-    return {
-      img: item.cover_picture,
-      title: "chef1",
-    };
-  });
+  const itemData = [{
+    img: userData?.picture,
+    title: "chef1",
+  }];
 
   const itemData2 = _.map(
     _.get(userData?.details, "gallery_pictures", []),
@@ -102,6 +99,7 @@ const ChefsDetailTemplate = (props) => {
       };
     }
   );
+
   const BoxWrapper = styled(Box)(() => ({
     background: "#080B0E",
     ".supper-gallery": {
@@ -355,7 +353,8 @@ const ChefsDetailTemplate = (props) => {
     },
     ".main-img": {
       width: "100%",
-      height: "395px",
+      // height: "395px",
+      height: 'calc(100% - 12px)',
       display: "block",
       objectFit: "cover",
       boxShadow: "0px 8px 16px rgb(0 0 0 / 16%)",
@@ -613,11 +612,29 @@ const ChefsDetailTemplate = (props) => {
                   </Typography>
                 </Box>
                 <Box className="gallery-carousel">
-                  <ImageCarousel />
+                  <ImageCarousel pictures={[...itemData2]}/>
                 </Box>
                 <Box className="mobileView-chef">
                   <Typography className="chef-details mbl-chef-name">
-                    Specialty: <span> Thai, Japanese</span>
+                    Speciality:
+                    <b>
+                      {!_.isEmpty(userData?.details?.tags) && (
+                        <span>
+                          {userData?.details?.tags?.map((item, index) => {
+                            return (
+                              <span>
+                                {" "}
+                                {item}
+                                {index !==
+                                  userData?.details?.tags.length - 1 && (
+                                  <span>,</span>
+                                )}
+                              </span>
+                            );
+                          })}
+                        </span>
+                      )}
+                    </b>
                   </Typography>
                 </Box>
                 <Box>

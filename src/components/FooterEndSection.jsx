@@ -62,11 +62,11 @@ const FooterEnd = () => {
             <BoxWrapper>
                 <Box className="footer-end">
                     <ul className='footer-text'>
-                        <li><Link className='footer-item' to='/'> FAQs </Link></li>
+                        <li><Link className='footer-item' to='/cancellation-policy'> FAQs </Link></li>
                         <li><FiberManualRecordIcon className="dot-icon"/></li>
-                        <li><Link className='footer-item' to='/'> Privacy Policy </Link></li>
+                        <li><Link className='footer-item' to='/cancellation-policy'> Privacy Policy </Link></li>
                         <li><FiberManualRecordIcon className="dot-icon"/></li>
-                        <li><Link className='footer-item' to='/'> T&C </Link></li>
+                        <li><Link className='footer-item' to='/cancellation-policy'> T&C </Link></li>
                     </ul>
                 </Box>
             </BoxWrapper>

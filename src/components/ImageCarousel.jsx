@@ -10,7 +10,7 @@ import "../assets/styles/fontStyle.css";
 import UsersContext from "../context/UsersContext";
 import _ from "lodash";
 
-const ImageCarousel = () => {
+const ImageCarousel = ({pictures = []}) => {
     const pagination = {
         clickable: true,
     };
@@ -57,8 +57,7 @@ const ImageCarousel = () => {
         };
     });
 
-    const combinedArray = [itemData, ...itemData2];
-
+    const combinedArray = pictures.length > 0 ? [...pictures] : [itemData, ...itemData2];
     return userData?(
         <React.Fragment>
             <MainBox>

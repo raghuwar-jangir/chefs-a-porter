@@ -170,7 +170,8 @@ const AboutCardComponent = (props) => {
         },
         '.conscious-option': {
             border: '1px solid #080B0E', padding: '27px', borderRadius: '100%',
-            width: 'fit-content'
+            width: 'fit-content',
+            margin: '0 auto'
         },
         // '.parent-stack': {
         //     padding: '40px 0px'
@@ -188,6 +189,8 @@ const AboutCardComponent = (props) => {
         '.options-icon': {width: '41px', height: '41px'},
         '.parent-options': {
             textAlign: 'center',
+            width: '33.33%',
+            margin: '0'
         },
         '.footer-text': {
             display: 'flex',
