@@ -1414,12 +1414,10 @@ const HomePage = () => {
                       className="join-table-title"
                     >
                       <Typography className="join-table-heading">
-                        Join our table
+                        Join Our Mailing List!
                       </Typography>
                       <Typography className="join-table-details">
-                        Receive recipes , tips and tricks from top chefs from
-                        around the globe, and exclusive offers right to your
-                        inbox.
+                        Receive exclusive access to our Chefs, the latest recipes, and first dibs to our Chef's Tables.
                       </Typography>
                       <form action="" accept-charset="UTF-8" method="get">
                         <Box className="input-group">
@@ -1458,14 +1456,14 @@ const HomePage = () => {
                         </Box>
                       </form>
                       <Typography className="join-table-details">
-                        By signing up, I agree to Chef’s a porter’s{" "}
-                        <a href="" className="sign-in">
+                        By signing up, I agree to Chefs-à-Porter{" "}
+                        <Link to="/cancellation-policy" className="sign-in">
                           T&C’s
-                        </a>{" "}
+                        </Link>{" "}
                         and{" "}
-                        <a href="" className="sign-in">
+                        <Link to="/cancellation-policy" className="sign-in">
                           Privacy Policy
-                        </a>
+                        </Link>
                       </Typography>
                       <Box className="find-us">
                         <Typography className="find-us-title">

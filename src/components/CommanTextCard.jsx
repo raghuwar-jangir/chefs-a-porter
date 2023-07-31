@@ -19,9 +19,10 @@ const CommanTextCard = ({mainTitle, details, colors, fontSize,marginTop}) => {
             fontWeight: '400',
             fontSize: `${fontSize}`,
             lineHeight: "24px",
-            textAlign: 'center',
+            textAlign: 'justify',
             color: `${colors}`,
-            margin: '0px 405px'
+            margin: '0px 350px',
+            whiteSpace:'pre-line',
         },
         "@media (min-width: 1px) and (max-width:425px)": {
             '.details': {

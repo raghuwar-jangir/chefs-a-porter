@@ -118,6 +118,9 @@ const AboutCardComponent = (props) => {
             padding: '80px 160px 40px ',
             background: '#101418'
         },
+        ".sub-box-2 p, .sub-box-3 p, .sub-box-4 p": {
+            padding: "0 16px",
+        },
         ".custom-log": {
             height: "120px",
             width: "120px",
@@ -204,7 +207,7 @@ const AboutCardComponent = (props) => {
             width: "100%",
             height: '500px',
             objectFit: 'cover',
-            marginBottom: "40px"
+            marginTop: "40px"
         },
         "@media (min-width: 1px) and (max-width:425px)": {
             ".main-box": {
@@ -361,31 +364,33 @@ const AboutCardComponent = (props) => {
 
                             <Box>
                                 <Box className="sub-box-2">
-                                    {data.about_us?.mission?.image ? <img
-                                        src={data.about_us.mission.image}
-                                        alt="view"
-                                        className="hotelview-img"
-                                        className="team-img"
-                                    /> : null}
                                     <CommanTextCard
                                         mainTitle={data.about_us.mission.title}
                                         colors='#FBFBFB'
                                         details={data.about_us.mission.description}
                                         fontSize='16px'
                                     />
+                                    {data.about_us?.mission?.image ? <img
+                                        src={data.about_us.mission.image}
+                                        alt="view"
+                                        className="hotelview-img"
+                                        className="team-img"
+                                    /> : null}
+                                    
                                 </Box>
                             </Box>
                             <Box className="sub-box-3">
-                                {data.about_us?.values?.image ? <img
-                                    src={data.about_us.values.image}
-                                    alt="view"
-                                    className="team-img"
-                                /> : null}
                                 <CommanTextCard
                                     mainTitle={data.about_us.values.title}
                                     details={data.about_us.values.description}
                                     fontSize='16px'
                                 />
+                                {data.about_us?.values?.image ? <img
+                                    src={data.about_us.values.image}
+                                    alt="view"
+                                    className="team-img"
+                                /> : null}
+                                
                             </Box>
                             <Box className='sub-box-4'>
                                 <CommanTextCard

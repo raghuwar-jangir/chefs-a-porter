@@ -49,7 +49,7 @@ const CustomerDetails = (props) => {
     const eventIdCookieValue = Cookies.get('eventIdValue');
     const eventId = eventIdCookieValue?.replaceAll('"', '')
     const {setOtpNumber, setVerifyOtp, setResendOtp, setIsSendOtpApiCall, openOtp, setOpenOtp} = useContext(OtpContext);
-    const {customerDetailsPaymentCalculation} = useContext(UsersContext);
+    const {customerDetailsPaymentCalculation, setIsConfirm} = useContext(UsersContext);
     const CHARACTER_LIMIT = 40;
     const [isNewAddress, setNewAddress] = useState(userAddress);
     const formAddress = _.values(isNewAddress);
