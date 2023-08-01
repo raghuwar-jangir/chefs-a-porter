@@ -45,13 +45,14 @@ const validationSchema = Yup.object({
 
 
 const CustomerDetails = (props) => {
-    let userAddress = JSON.parse(localStorage.getItem('userAddress'));
+    // let userAddress = JSON.parse(localStorage.getItem('userAddress'));
     const eventIdCookieValue = Cookies.get('eventIdValue');
     const eventId = eventIdCookieValue?.replaceAll('"', '')
     const {setOtpNumber, setVerifyOtp, setResendOtp, setIsSendOtpApiCall, openOtp, setOpenOtp} = useContext(OtpContext);
     const {customerDetailsPaymentCalculation, setIsConfirm} = useContext(UsersContext);
     const CHARACTER_LIMIT = 40;
-    const [isNewAddress, setNewAddress] = useState(userAddress);
+    // const [isNewAddress, setNewAddress] = useState(userAddress);
+    const [isNewAddress, setNewAddress] = useState();
     const formAddress = _.values(isNewAddress);
     const MapLoader = withScriptjs(MapComponent);
     const [open, setOpen] = useState(false);

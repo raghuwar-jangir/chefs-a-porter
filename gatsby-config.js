@@ -52,11 +52,11 @@ require("dotenv").config({
 module.exports = {
     siteMetadata: {
         title: "Chefs á Porter",
-        description: "The best chef’s table affair with carefully thought out menus that is guaranteed to satisfy your fine dining craving. The best cuisines paired with the best wines",
+        description: "Chef's Tables™ : Immersive, intimate, & conscious fine-dining experiences for the epicurious.",
         author: "Chefs á Porter",
         og: {
             title: "Best Curated Dining experience in Bangalore - Chefs á Porter",
-            description: "The best chef’s table affair with carefully thought out menus that is guaranteed to satisfy your fine dining craving. The best cuisines paired with the best wines",
+            description: "Chef's Tables™ : Immersive, intimate, & conscious fine-dining experiences for the epicurious.",
         }
     },
     flags: {
