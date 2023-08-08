@@ -14,12 +14,13 @@ const Privee = (props) => {
     const MainContentBox = styled(Box)({
         '.grid': {
             display: 'grid',
-            gridTemplate: 'repeat(1, 1fr) / repeat(3, 3fr)',
+            gridTemplate: 'repeat(1, 1fr) / repeat(3, 30%)', // changes here
             gap: '40px',
             // height: '1200px',
             overflow: 'hidden',
             paddingLeft: '0.5rem',
-            paddingRight: '0.5rem'
+            paddingRight: '0.5rem',
+            backgroundSize: 'cover', 
         },
         '.privee-img': {
             width: '100%',
@@ -99,6 +100,11 @@ const Privee = (props) => {
             },
             '.privee-img': {
                 height: '553px'
+            }
+        },
+        "@media (min-width: 2400px)" : {
+            '.privee-img': {
+                height: '800px'
             }
         },
         "@media (min-width: 1px) and (max-width:767px)": {
