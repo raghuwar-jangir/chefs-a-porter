@@ -559,7 +559,7 @@ const EventsDetailsComponent = ({eventId})=>{
     return(
         <MainBox>
         {!_.isEmpty(userData && eventId) && (
-          <>
+          <> 
             <Navbar
               to={"/event-details"}
               heading="Private"
