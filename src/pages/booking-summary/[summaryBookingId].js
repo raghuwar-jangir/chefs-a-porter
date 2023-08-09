@@ -127,7 +127,10 @@ const BookingSummary = (props) => {
 
   // const [bookingSuccessOpen, setBookingSuccessOpen] = useState(false);
   const handleBookingSuccessOpen = () => setBookingSuccessOpen(true);
-  const handleBookingSuccessClose = () => setBookingSuccessOpen(false);
+  const handleBookingSuccessClose = () => {
+    setBookingSuccessOpen(false)
+    navigate('/')
+  };
   const handlePayment = () => {
     setIsConfirm(true);
   };
@@ -2102,10 +2105,16 @@ const BookingSummary = (props) => {
         <Modal
           keepMounted
           open={bookingSuccessOpen}
-          onClose={handleBookingSuccessClose}
+          onClose={(event, reason) => {
+            if(reason === 'escapeKeyDown' || reason === 'backdropClick'){
+              return false; 
+            }
+            handleBookingSuccessClose()
+          }}
           aria-labelledby="keep-mounted-modal-title"
           aria-describedby="keep-mounted-modal-description"
           sx={{overflowY: 'auto !important'}}
+          disableEscapeKeyDown={true}
         >
           <Box sx={styleOtp} id="printable-div">
             <div className="modal-content">

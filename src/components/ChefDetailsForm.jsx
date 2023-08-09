@@ -17,6 +17,9 @@ import {
 } from "@material-ui/core/styles";
 import * as Yup from "yup";
 import UsersContext from "../context/UsersContext";
+import axios from "axios";
+import configuration from "../configuration";
+import { toast } from "react-toastify";
 
 const defaultTheme = createMuiTheme();
 const theme = createMuiTheme({
@@ -43,11 +46,13 @@ const theme = createMuiTheme({
 });
 
 const ChefDetailsForm = () => {
+  const baseUrl = configuration.API_BASEURL;
+
   const [chefInfo, setChefInfo] = useState("");
   const [priveeData, setPriveeData] = useState();
   const cookieValue = Cookies?.get("eventData");
   const cookieValue1 = Cookies?.get("priveeData");
-  const { userData,
+  const { eventId,userData,
     dinersMaxNumber,
     dinersMinNumber,
     dinersMinData} = useContext(UsersContext);
@@ -364,15 +369,43 @@ const ChefDetailsForm = () => {
             }}
             validationSchema={validationSchema}
             onSubmit={(values) => {
-              values.experienceDate = typeof values.experienceDate === 'string' ? values.experienceDate : (typeof values.experienceDate === 'object' ? new Date(values.experienceDate?.toUTCString())?.toISOString() : new Date().toISOString())
-              values.date = values.experienceDate
-              Cookies.set("eventData", JSON.stringify(values));
-              Cookies.set('priveeData', JSON.stringify(values));
-              Cookies.set("eventDinners",JSON.stringify(values?.numberOfDinner));
-              Cookies.set("eventCourses",JSON.stringify(values?.numberOfCourses));
-              if (!_.isEmpty(values)) {
-                navigate("/customer-details");
-              }
+              axios
+                .post(baseUrl + "/booking/calculatepayment/", {
+                  id: eventId,
+                  type: "privee",
+                  diner: values.numberOfDinner,
+                  courses: values.numberOfCourses,
+                })
+                .then((response) => {
+                  if (response.status === 200) {
+                    values.experienceDate =
+                      typeof values.experienceDate === "string"
+                        ? values.experienceDate
+                        : typeof values.experienceDate === "object"
+                        ? new Date(
+                            values.experienceDate?.toUTCString()
+                          )?.toISOString()
+                        : new Date().toISOString();
+                    values.date = values.experienceDate;
+                    Cookies.set("eventData", JSON.stringify(values));
+                    Cookies.set("priveeData", JSON.stringify(values));
+                    Cookies.set(
+                      "eventDinners",
+                      JSON.stringify(values?.numberOfDinner)
+                    );
+                    Cookies.set(
+                      "eventCourses",
+                      JSON.stringify(values?.numberOfCourses)
+                    );
+                    if (!_.isEmpty(values)) {
+                      navigate("/customer-details");
+                    }
+                  }
+                }).catch((error) => {
+                  if(error?.response?.data?.message){
+                    toast.error(error?.response?.data?.message);
+                  }
+                });
             }}
           >
             {({

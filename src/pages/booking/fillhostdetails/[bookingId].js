@@ -14,17 +14,19 @@ import Navbar from "../../../components/NavbarComponent";
 import NeedHelp from "../../../components/NeedHelp";
 import FooterEnd from "../../../components/FooterEndSection";
 import "../../../assets/styles/fontStyle.css";
-import { FieldArray, Formik } from "formik";
+import { FieldArray, Form, Formik } from "formik";
 import axios from "axios";
 import configuration from "../../../configuration";
+import * as Yup from 'yup';
+import { ToastContainer, toast } from "react-toastify";
 
 const HostDetails = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [initialValues, setInitialValues] = useState({
     diners: [
       {
-        name: "deshan madurajith",
-        email: "desh@email.com",
+        name: "",
+        email: "",
         mobile: "",
         meal_type: "",
       },
@@ -105,13 +107,25 @@ const HostDetails = (props) => {
     },
     "@media (min-width: 1px) and (max-width:431px)": {
       ".main-box": {
-        padding: "0px",
+        padding: "15px",
       },
       ".about-heading": {
         display: "none",
       },
       ".mt-40": {
         marginTop: "40px !important",
+      },
+      ".form-row": {
+        flexWrap: "wrap"
+      },
+      ".form-control": {
+        marginTop: '10px'
+      },
+      ".form-control:last-child": {
+        padding: "0 0.75rem 0 0",
+      },
+      ".save-form-btn": {
+        marginRight: '12px',
       },
     },
     "@media (min-width: 431px) and (max-width:769px)": {
@@ -131,26 +145,36 @@ const HostDetails = (props) => {
       setIsLoading(true);
       axios.get(baseUrl + "/booking/" + bookingId).then((result) => {
         let data = result?.data;
-        console.log(data, "booking response");
+        
         if (data !== undefined) {
+          let x = [];
           if (data?.diners?.length < 1 && data?.diner_count > 0) {
-            let x = [];
+            
             for (let i = 0; i < data?.diner_count; i++) {
               x.push({
-                name: "deshan madurajith",
-                email: "desh@email.com",
-                mobile: "",
+                name: i === 0 && data?.user?.name ? data?.user?.name : "",
+                email: i === 0 && data?.user?.email ? data?.user?.email : "",
+                mobile: i === 0 && data?.user?.mobile ? data?.user?.mobile : "",
                 meal_type: "",
               });
             }
-            setInitialValues((prev) => ({ ...prev, diners: [...x] }));
+          } else {
+            data.diners.forEach((dinerValue) => {
+              x.push({
+                name: dinerValue?.user?.name,
+                email: dinerValue?.user?.email,
+                mobile: dinerValue?.user?.mobile,
+                meal_type: dinerValue?.meal_type
+              })
+            })
           }
+          setInitialValues((prev) => ({ ...prev, diners: [...x] }));
         }
         setIsLoading(false);
       });
     }
   }, [bookingId]);
-
+  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   return (
     <React.Fragment>
       <Backdrop
@@ -172,29 +196,63 @@ const HostDetails = (props) => {
             </p>
             <Formik
               initialValues={initialValues}
-              // validationSchema={Yup.object({
-              //   organizationName: Yup.string().required(
-              //     "Organization Name is required"
-              //   ),
-              //   users: Yup.array().of(
-              //     Yup.object().shape({
-              //       name: Yup.string().required("Name required"),
-              //       email: Yup.string()
-              //         .required("email required")
-              //         .email("Enter valid email"),
-              //     })
-              //   ),
-              // })}
-              onSubmit={(values) =>
-                console.log(JSON.stringify(values, null, 2))
-              }
-              render={({ values, touched, errors, handleChange }) => (
-                <form className="form-container">
+              validationSchema={Yup.object({
+                diners: Yup.array().of(
+                  Yup.object().shape({
+                    name: Yup.string().trim().required("Name is required"),
+                    email: Yup.string().trim()
+                      .required("Email is required")
+                      .email("Enter valid email"),
+                    mobile: Yup.string().trim().matches(phoneRegExp, 'Mobile number is not valid')
+                    .required("Mobile is required"),
+                    meal_type: Yup.string().trim()
+                    .required("Meal type is required"),
+                  })
+                ),
+              })}
+              onSubmit={(values) =>{
+                console.log(JSON.stringify(values, null, 2));
+                let body = {};
+                values.diners.forEach((item) => {
+                  if(item.name !== ''){
+                    if(body['name'] === undefined){
+                      body['name'] = [];
+                    }
+                    body['name'].push(item.name);
+                  }
+                  if(item.email !== ''){
+                    if(body['email'] === undefined){
+                      body['email'] = [];
+                    }
+                    body['email'].push(item.email);
+                  }
+                  if(item.mobile !== ''){
+                    if(body['mobile'] === undefined){
+                      body['mobile'] = [];
+                    }
+                    body['mobile'].push(Number(item.mobile));
+                  }
+                  if(item.meal_type !== ''){
+                    if(body['meal_type'] === undefined){
+                      body['meal_type'] = [];
+                    }
+                    body['meal_type'].push(item.meal_type);
+                  }
+                })
+                axios.post(baseUrl + "/booking/fillhostdetailsapi/" + bookingId, body).then((response) => {
+                  toast.success("Details saved successfully.");
+                });
+              }}
+              render={({ values, touched, errors, handleChange }) => {
+                // console.log(touched, errors?.['diners']?.[1]?.['meal_type'], 'sad errors');
+                return (
+                <Form className="form-container">
+                  
                   <FieldArray
                     name="diners"
                     render={(arrayHelpers) => {
                       const diners = values.diners;
-                      console.log(values, "asd");
+                      // console.log(values, "asd");
                       return (
                         <>
                           {diners &&
@@ -212,12 +270,12 @@ const HostDetails = (props) => {
                                 <div className="form-row">
                                   <TextField
                                     error={
-                                      touched[`diners.${index}.name`] &&
-                                      Boolean(errors[`diners.${index}.name`])
+                                      touched?.['diners']?.[index]?.['name'] &&
+                                      errors?.['diners']?.[index]?.['name'] ? true : false
                                     }
                                     helperText={
-                                      touched[`diners.${index}.name`] &&
-                                      errors[`diners.${index}.name`]
+                                      touched?.['diners']?.[index]?.['name'] &&
+                                      errors?.['diners']?.[index]?.['name'] ?  errors?.['diners']?.[index]?.['name']  :''
                                     }
                                     id="standard-error"
                                     label="Diner Name"
@@ -230,35 +288,17 @@ const HostDetails = (props) => {
                                   />
                                   <TextField
                                     error={
-                                      touched[`diners.${index}.email`] &&
-                                      Boolean(errors[`diners.${index}.email`])
-                                    }
-                                    helperText={
-                                      touched[`diners.${index}.email`] &&
-                                      errors[`diners.${index}.email`]
-                                    }
-                                    id="standard-error"
-                                    label="Diner Mobile"
-                                    variant="standard"
-                                    className="form-control"
-                                    fullWidth={true}
-                                    name={`diners.${index}.email`}
-                                    value={diner.email}
-                                    onChange={handleChange}
-                                  />
-                                  <TextField
-                                    error={
-                                      touched[`diners.${index}.meal_type`] &&
+                                      touched?.['diners']?.[index]?.['mobile'] &&
                                       Boolean(
-                                        errors[`diners.${index}.meal_type`]
+                                        errors?.['diners']?.[index]?.['mobile']
                                       )
                                     }
                                     helperText={
-                                      touched[`diners.${index}.meal_type`] &&
-                                      errors[`diners.${index}.meal_type`]
+                                      touched?.['diners']?.[index]?.['mobile'] &&
+                                      errors?.['diners']?.[index]?.['mobile']
                                     }
                                     id="standard-error"
-                                    label="Diner email"
+                                    label="Diner Mobile"
                                     variant="standard"
                                     className="form-control"
                                     fullWidth={true}
@@ -268,14 +308,32 @@ const HostDetails = (props) => {
                                   />
                                   <TextField
                                     error={
-                                      touched[`diners.${index}.meal_type`] &&
+                                      touched?.['diners']?.[index]?.['email'] &&
+                                      Boolean(errors?.['diners']?.[index]?.['email'])
+                                    }
+                                    helperText={
+                                      touched?.['diners']?.[index]?.['email'] &&
+                                      errors?.['diners']?.[index]?.['email']
+                                    }
+                                    id="standard-error"
+                                    label="Diner Email"
+                                    variant="standard"
+                                    className="form-control"
+                                    fullWidth={true}
+                                    name={`diners.${index}.email`}
+                                    value={diner.email}
+                                    onChange={handleChange}
+                                  />
+                                  <TextField
+                                    error={
+                                      touched?.['diners']?.[index]?.['meal_type'] &&
                                       Boolean(
-                                        errors[`diners.${index}.meal_type`]
+                                        errors?.['diners']?.[index]?.['meal_type']
                                       )
                                     }
                                     helperText={
-                                      touched[`diners.${index}.meal_type`] &&
-                                      errors[`diners.${index}.meal_type`]
+                                      touched?.['diners']?.[index]?.['meal_type'] &&
+                                      errors?.['diners']?.[index]?.['meal_type']
                                     }
                                     id="standard-error"
                                     label="Diner Preferences"
@@ -298,8 +356,8 @@ const HostDetails = (props) => {
                       Save
                     </Button>
                   </div>
-                </form>
-              )}
+                </Form>
+              )}}
             />
             <p className="content">
               We look forward to hosting you soon! <br /> <br />
@@ -313,6 +371,7 @@ const HostDetails = (props) => {
         <NeedHelp />
         <Footer />
         <FooterEnd />
+        <ToastContainer />
       </BoxWrapper>
     </React.Fragment>
   );

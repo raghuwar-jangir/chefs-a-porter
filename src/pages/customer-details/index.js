@@ -65,6 +65,11 @@ const CustomerDetails = (props) => {
 
     console.log('customerDetailsPaymentCalculation',customerDetailsPaymentCalculation)
 
+    useEffect(() => {
+      let userAddress = JSON.parse(localStorage.getItem('userAddress'));
+      setNewAddress(userAddress);
+    }, [])
+    
     // const getMinDiners=()=> {
     //   return customerDetailsPaymentCalculation.prices.reduce((min, p) => p.min_diner < min ? p.min_diner : min, data[0].min_diner);
     // }

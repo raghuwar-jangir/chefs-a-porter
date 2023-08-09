@@ -25,6 +25,7 @@ import EventChefCarousel from "./EventChefCarousel";
 import UsersContext from "../context/UsersContext";
 import CmsContext from "../context/CmsContext";
 import Cookies from "js-cookie";
+import { ToastContainer } from "react-toastify";
 
 const EventsDetailsComponent = ({eventId})=>{
   const { setEventId,
@@ -753,6 +754,7 @@ const EventsDetailsComponent = ({eventId})=>{
             />
             <Footer />
             <FooterEnd />
+            <ToastContainer />
           </>
         )}
       </MainBox>

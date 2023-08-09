@@ -61,7 +61,7 @@ const TemptedYet = (props) => {
 
     return (
         <React.Fragment>
-            <BoxWrapper>
+            {buttonText && <BoxWrapper>
                 <Box className="template show">
                     <Typography className="template-title">{title}</Typography>
                     <a href="" className="view-all" onClick={(e) => {
@@ -72,7 +72,7 @@ const TemptedYet = (props) => {
                         }
                     }}>{buttonText}</a>
                 </Box>
-            </BoxWrapper>
+            </BoxWrapper>}
         </React.Fragment>
     )
 }
