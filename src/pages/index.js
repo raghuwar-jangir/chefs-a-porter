@@ -8,8 +8,10 @@ import MainFoodDetailng from '../components/MainFoodDetailng';
 import NeedHelp from '../components/NeedHelp';
 import Navbar from '../components/NavbarComponent';
 import { Link, navigate } from 'gatsby';
-import JoinTableImg from '../assets/images/jointhetable.png';
+import LunchWithFork from '../assets/images/lunch_with_fork.jpg';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import Treaty from '../components/Treaty';
@@ -1399,7 +1401,7 @@ const HomePage = () => {
                       className="join-table-image"
                     >
                       <img
-                        src={JoinTableImg}
+                        src={LunchWithFork}
                         alt="Join The Table"
                         className="jtable-img"
                       />
@@ -1469,9 +1471,10 @@ const HomePage = () => {
                         <Typography className="find-us-title">
                           Find us on:
                         </Typography>
-                        <Box className="social-icon">
-                          <InstagramIcon className="icon" />
-                          <LinkedInIcon className="icon" />
+                        <Box className="social-icon">          
+                                <a href={data.home.footer.instagram_link} target='_blank'><InstagramIcon className="icon" /></a>
+                                <a href={data.home.footer.facebook_link} target='_blank'><FacebookIcon className="icon" /></a>
+                                <a href={data.home.footer.twitter_link} target='_blank'><TwitterIcon className="icon" /></a>                          
                         </Box>
                       </Box>
                     </Grid>

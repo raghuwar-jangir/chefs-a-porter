@@ -23,6 +23,7 @@ const CommanTextCard = ({mainTitle, details, colors, fontSize,marginTop}) => {
             color: `${colors}`,
             margin: '0px 350px',
             whiteSpace:'pre-line',
+            textAlign: 'center'
         },
         "@media (min-width: 1px) and (max-width:425px)": {
             '.details': {
@@ -49,7 +50,7 @@ const CommanTextCard = ({mainTitle, details, colors, fontSize,marginTop}) => {
             '.details': {
                 fontSize: '16px !important',
                 lineHeight: '24px !important',
-                margin: '0px 200px'
+                margin: '0px 200px',
             },
         },
     }))
