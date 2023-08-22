@@ -1,6 +1,6 @@
 import { Box, Button, styled, Typography } from '@mui/material';
-import React, { useContext } from 'react';
-import Privee from '../../components/Privee';
+import React, { useContext, useEffect, useState } from 'react';
+import Privee from '../../components/PriveeOurChefs';
 import Footer from '../../components/Footer';
 import FoodCard from '../../components/FoodCard';
 import Navbar from '../../components/NavbarComponent';
@@ -8,9 +8,16 @@ import NeedHelp from '../../components/NeedHelp';
 import FooterEnd from '../../components/FooterEndSection';
 import CmsContext from '../../context/CmsContext';
 import * as _ from 'lodash';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import configuration from '../../configuration';
+import axios from 'axios';
 
 const OurChefsPage = () => {
   const { data } = useContext(CmsContext);
+
+  const [page, setPage] = useState(1);
+  const [chefs, setChefs] = useState([]);
+  const [hasMoreChefs, setHasMoreChefs] = useState(false)
 
   const BoxWrapper = styled(Box)(() => ({
     background: '#080B0E',
@@ -84,6 +91,20 @@ const OurChefsPage = () => {
     },
   }));
 
+  useEffect(() => {
+    fetchChefs();
+  }, [])
+
+  const fetchChefs = async () => { 
+    
+    const response = await axios.get(configuration.API_BASEURL + `users/chefs?page=${page}`);
+    console.log(response, 'respo')
+    setChefs((prev) => ([...prev, ...response.data.results]));
+    setHasMoreChefs(page < response.data.totalPages)
+    let x = page+1;
+    setPage(x);
+  }
+
   return (
     <React.Fragment>
       <BoxWrapper>
@@ -95,12 +116,22 @@ const OurChefsPage = () => {
                 {data.our_chefs.our_chefs.title}
               </Typography>
               <Box className="chef-content">
-                <Privee />
-                <Box className="parent-view-button">
-                  <Button fullWidth className="view-more" variant="contained">
-                    View All Chefs
-                  </Button>
-                </Box>
+                {chefs.length > 0 && (<>
+                  <InfiniteScroll
+                    dataLength={chefs.length}
+                    next={fetchChefs}
+                    hasMore={hasMoreChefs} // Replace with a condition based on your data source
+                    loader={<p>Loading...</p>}
+                    endMessage={<p>No more data to load.</p>}
+                  >
+                    <Privee chefs={chefs}/>
+                  </InfiniteScroll>
+                  <Box className="parent-view-button">
+                      <Button fullWidth className="view-more" variant="contained">
+                        View All Chefs
+                      </Button>
+                  </Box>
+                </>)}
               </Box>
               {/*<Box className="footer-shadow">*/}
               {/*</Box>*/}
