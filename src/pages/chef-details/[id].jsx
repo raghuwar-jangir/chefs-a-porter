@@ -668,7 +668,7 @@ const ChefsDetailTemplate = (props) => {
                     <Box className="main-2">
                       <Box className="child-container">
                         <Box className="restorent-1">
-                          {itemData2.map((item) => (
+                          {itemData2.slice(0,4).map((item) => (
                             <img
                               src={item.img}
                               alt={item.title}

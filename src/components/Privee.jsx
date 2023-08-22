@@ -32,7 +32,8 @@ const Privee = (props) => {
             padding: '16px 20px',
             background: '#101418',
             position: 'relative',
-            bottom: '5px'
+            bottom: '5px',
+            textAlign: 'center'  
         },
         '.chef-title': {
             display: 'flex',
@@ -57,6 +58,9 @@ const Privee = (props) => {
             color: 'rgba(198, 168, 125, 0.8)',
             position: 'relative',
             paddingTop: '6px',
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
         },
         '.line': {
             position: 'relative',

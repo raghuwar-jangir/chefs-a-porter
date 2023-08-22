@@ -171,6 +171,7 @@ const HomePage = () => {
     return (
         <React.Fragment>
             <BoxWrapper>
+                
 
                 {/* //! Header for home Screen with title (Mobile-screen)  */}
 

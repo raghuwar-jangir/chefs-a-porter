@@ -9,8 +9,9 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Button from '@mui/material/Button';
 import '../assets/styles/fontStyle.css';
-
+import CmsContext from '../context/CmsContext'; //changes here...
 const Footer = () => {
+const {data} = useContext(CmsContext); //changes here
   const BoxWrapper = styled(Box)(() => ({
     // display: 'flex',
     // justifyContent: 'space-between',
@@ -146,8 +147,10 @@ const Footer = () => {
               />
             </Box>
             <Box className="social-icon">
+              {/* <a href={data.footer ? data.footer.instagram_link : '#'} target='_blank'><InstagramIcon className="icon" /></a>
+              <a href={data.footer ? data.footer.facebook_link : '#'} target='_blank'><FacebookIcon className="icon" /></a>
+              <a href={data.footer ? data.footer.twitter_link : '#'} target='_blank'><TwitterIcon className="icon" /></a> */}
               <InstagramIcon className="icon" />
-              <LinkedInIcon className="icon" />
               <FacebookIcon className="icon" />
               <TwitterIcon className="icon" />
             </Box>
@@ -156,7 +159,7 @@ const Footer = () => {
             <Grid container sx={{ padding: '0px 12px' }}>
               <Grid item xs={2} sm={2}>
                 <Box>
-                  <Typography className="main-heading">Chef a porter</Typography>
+                  <Typography className="main-heading">Chefs-à-Porter</Typography>
                   <List>
                     <ListItemIcon className="listItem">
                       <img src={footerArrow} />
