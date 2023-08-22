@@ -97,7 +97,7 @@ const OurChefsPage = () => {
 
   const fetchChefs = async () => { 
     
-    const response = await axios.get(configuration.API_BASEURL + `users/chefs?page=${page}`);
+    const response = await axios.get(configuration.API_BASEURL + `/users/chefs?page=${page}`);
     console.log(response, 'respo')
     setChefs((prev) => ([...prev, ...response.data.results]));
     setHasMoreChefs(page < response.data.totalPages)
