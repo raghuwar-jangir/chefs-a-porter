@@ -148,8 +148,8 @@ const {footerData} = useContext(CmsContext); //changes here
               />
             </Box>
             <Box className="social-icon">
-              <a href={footerData.footer.footer.instagram_link} target='_blank'><InstagramIcon className="icon" /></a>
-              <a href={footerData.footer.footer.facebook_link} target='_blank'><FacebookIcon className="icon" /></a>
+              <a href={footerData?.footer?.footer?.instagram_link || 'https://www.instagram.com/chefsaporter/'} target='_blank'><InstagramIcon className="icon" /></a>
+              <a href={footerData?.footer?.footer?.facebook_link || 'https://www.facebook.com/chefsaporter-108644200956818'} target='_blank'><FacebookIcon className="icon" /></a>
             </Box>
           </Box>
           <Box className="sub-div">
