@@ -55,10 +55,12 @@ const MainParent = styled(Box)({
     background: '#101418',
     position: 'relative',
     bottom: '29%',
+    textAlign: 'center'
   },
   '.chef-title': {
     display: 'flex',
-    placeContent: 'flex-start',
+    justifyContent: 'center',
+    // placeContent: 'flex-start',
     fontSize: '20px',
     lineHeight: '25px',
     marginBottom: '6px',
@@ -66,7 +68,10 @@ const MainParent = styled(Box)({
     fontWeight: 700,
   },
   '.chef-details': {
-    textAlign: 'start',
+    display: 'flex',
+    flexWrap: 'wrap !important',
+    justifyContent: 'center !important',
+    textAlign: 'center',
     fontSize: '16px',
     lineHeight: '19px',
     fontFamily: 'Proxima Nova Alt',
