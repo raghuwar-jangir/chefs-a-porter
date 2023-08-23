@@ -148,7 +148,7 @@ const {footerData} = useContext(CmsContext); //changes here
               />
             </Box>
             <Box className="social-icon">
-              <a href={footerData.footer.footer.facebook_link} target='_blank'><InstagramIcon className="icon" /></a>
+              <a href={footerData.footer.footer.instagram_link} target='_blank'><InstagramIcon className="icon" /></a>
               <a href={footerData.footer.footer.facebook_link} target='_blank'><FacebookIcon className="icon" /></a>
             </Box>
           </Box>
