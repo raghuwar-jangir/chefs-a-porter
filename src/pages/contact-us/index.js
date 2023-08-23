@@ -76,7 +76,7 @@ const ContactUs = () => {
             fontWeight: '600',
             fontSize: '32px',
             lineHeight: '39px',
-            color: '#FBFBFB',
+            color: '#080b0e',
             flex: '1',
             textAlign: 'center',
         },

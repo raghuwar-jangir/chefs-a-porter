@@ -22,6 +22,7 @@ const Privee = ({chefs}) => {
             height: '426px'
         },
         ".name-box": {
+            textAlign: 'center',
             padding: '16px 20px',
             background: '#101418',
             position: 'relative',
@@ -50,6 +51,9 @@ const Privee = ({chefs}) => {
             color: 'rgba(198, 168, 125, 0.8)',
             position: 'relative',
             paddingTop: '6px',
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
         },
         '.line': {
             position: 'relative',

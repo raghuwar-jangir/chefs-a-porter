@@ -1473,8 +1473,7 @@ const HomePage = () => {
                         </Typography>
                         <Box className="social-icon">          
                                 <a href={data.home.footer.instagram_link} target='_blank'><InstagramIcon className="icon" /></a>
-                                <a href={data.home.footer.facebook_link} target='_blank'><FacebookIcon className="icon" /></a>
-                                <a href={data.home.footer.twitter_link} target='_blank'><TwitterIcon className="icon" /></a>                          
+                                <a href={data.home.footer.facebook_link} target='_blank'><FacebookIcon className="icon" /></a>                     
                         </Box>
                       </Box>
                     </Grid>

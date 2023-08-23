@@ -10,8 +10,9 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import Button from '@mui/material/Button';
 import '../assets/styles/fontStyle.css';
 import CmsContext from '../context/CmsContext'; //changes here...
+import { json } from 'react-router-dom';
 const Footer = () => {
-const {data} = useContext(CmsContext); //changes here
+const {footerData} = useContext(CmsContext); //changes here
   const BoxWrapper = styled(Box)(() => ({
     // display: 'flex',
     // justifyContent: 'space-between',
@@ -147,12 +148,8 @@ const {data} = useContext(CmsContext); //changes here
               />
             </Box>
             <Box className="social-icon">
-              {/* <a href={data.footer ? data.footer.instagram_link : '#'} target='_blank'><InstagramIcon className="icon" /></a>
-              <a href={data.footer ? data.footer.facebook_link : '#'} target='_blank'><FacebookIcon className="icon" /></a>
-              <a href={data.footer ? data.footer.twitter_link : '#'} target='_blank'><TwitterIcon className="icon" /></a> */}
-              <InstagramIcon className="icon" />
-              <FacebookIcon className="icon" />
-              <TwitterIcon className="icon" />
+              <a href={footerData?.footer?.footer?.instagram_link || 'https://www.instagram.com/chefsaporter/'} target='_blank'><InstagramIcon className="icon" /></a>
+              <a href={footerData?.footer?.footer?.facebook_link || 'https://www.facebook.com/chefsaporter-108644200956818'} target='_blank'><FacebookIcon className="icon" /></a>
             </Box>
           </Box>
           <Box className="sub-div">
