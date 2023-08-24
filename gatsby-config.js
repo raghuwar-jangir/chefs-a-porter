@@ -66,8 +66,9 @@ module.exports = {
         {
             resolve: "gatsby-plugin-manifest",
             options: {
-                name: "Chefs á Porter",
+                title: "Chefs á Porter",
                 short_name: "Chefs á Porter",
+                description: "Chef's Tables™ : Immersive, intimate, & conscious fine-dining experiences for the epicurious.",
                 start_url: "/",
                 background_color: "#ffffff",
                 theme_color: "#663399",
