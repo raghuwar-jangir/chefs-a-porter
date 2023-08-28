@@ -63,6 +63,7 @@ module.exports = {
         DEV_SSR: true
     },
     plugins: [
+        `gatsby-plugin-react-helmet`,
         {
             resolve: "gatsby-plugin-manifest",
             options: {
@@ -72,7 +73,7 @@ module.exports = {
                 start_url: "/",
                 background_color: "#ffffff",
                 theme_color: "#663399",
-                display: "standalone",
+                display: "minimal-ui",
                 icon: "src/assets/images/Logo.png",
             },
         },
