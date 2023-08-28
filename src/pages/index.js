@@ -1047,6 +1047,7 @@ const HomePage = () => {
                                       setFieldValue("date", dateString)
                                     }
                                     defaultValue={values.date}
+                                    minDate={new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)}
                                   />
                                 </Box>
                                 <Box className="form-group">

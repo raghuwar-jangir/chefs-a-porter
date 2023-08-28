@@ -24,6 +24,7 @@ const DiningPage = (props) => {
             padding: '4px 69px'
         },
         '.dining-title': [{
+            textAlign: 'center',
             fontFamily: 'Bon Vivant',
             fontStyle: 'normal',
             fontWeight: '700',

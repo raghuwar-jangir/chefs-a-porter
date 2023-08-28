@@ -130,7 +130,7 @@ const LookLikeCarousel = () => {
                 <Box sx={style}>
                     <Box className="swiper-box">
                         <Typography className="swiper-heading">
-                            See what our supper clubs look like
+                            {data.supper_club.looks.title}
                         </Typography>
                         <Swiper
                             style={{

@@ -365,7 +365,7 @@ const SupperClub = () => {
   const formatWeek = (startDate, endDate) => {
     const startDay = startDate.getDate();
     const endDay = endDate.getDate();
-    const month = startDate.toLocaleString('default', { month: 'short' });
+    const month = endDate.toLocaleString('default', { month: 'short' });
     return `${startDay} - ${endDay} ${month}`;
   };
   const formatMonth = (date) => {

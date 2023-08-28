@@ -38,6 +38,9 @@ import Cookies from "js-cookie";
 import {withScriptjs} from "react-google-maps";
 import MapComponent from "../../components/MapComponent";
 
+import configuration from "../../configuration";
+
+const {API_KEY} = configuration;
 
 const validationSchema = Yup.object({
     contactNumber: Yup.number().required('please enter the number')
@@ -1443,7 +1446,7 @@ const CustomerDetails = (props) => {
                                                 <Box className="map-box">
                                                     <MapLoader setNewAddress={setNewAddress} setOpen={setOpen}
                                                               newAddress={formAddress && formAddress}
-                                                               googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlUV7Gli9S0rwtq72UMXLf9HlrRWkvqc8&libraries=places"
+                                                               googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`}
                                                                loadingElement={<div style={{height: `100%`}}/>}
                                                     />
                                                 </Box>

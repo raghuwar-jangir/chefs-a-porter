@@ -37,6 +37,10 @@ import FooterEnd from './FooterEndSection';
 import ticketedImage from '../assets/images/ticeketd.jpeg';
 import CmsContext from '../context/CmsContext';
 
+import configuration from '../configuration';
+
+const {API_KEY} = configuration;
+
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const images = [RestorentImgMobile, RestorentImgMobile, RestorentImgMobile, RestorentImgMobile, RestorentImgMobile];
 
@@ -1094,7 +1098,7 @@ const TickedDetailsComponents = ({ id }) => {
                             {/* <GoogleMapExample containerElement={<div style={{ height: `480px`, width: '100%' }} />} mapElement={<div style={{ height: `100%` }} />} /> */}
 
                             {/* {userData?.lat&&userData?.lng?(<GoogleMapReact
-                              bootstrapURLKeys={{ key: 'AIzaSyAlUV7Gli9S0rwtq72UMXLf9HlrRWkvqc8' }}
+                              bootstrapURLKeys={{ key: {API_KEY} }}
                               defaultCenter={defaultProps.center}
                               defaultZoom={defaultProps.zoom}
                               onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
