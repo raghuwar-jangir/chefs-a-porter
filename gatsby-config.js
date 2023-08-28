@@ -57,7 +57,8 @@ module.exports = {
         og: {
             title: "Best Curated Dining experience in Bangalore - Chefs á Porter",
             description: "Chef's Tables™ : Immersive, intimate, & conscious fine-dining experiences for the epicurious.",
-        }
+        },
+        siteUrl: 'https://www.chefsaporter.com/'
     },
     flags: {
         DEV_SSR: true
